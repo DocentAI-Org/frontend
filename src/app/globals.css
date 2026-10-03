@@ -1,13 +1,14 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #1f2933;
+  --color-paper: #f7f8fb;
+  --color-accent: #2563eb;
+  --color-success: #0f766e;
+}
 
 :root {
   color-scheme: light;
-}
-
-* {
-  box-sizing: border-box;
 }
 
 body {
