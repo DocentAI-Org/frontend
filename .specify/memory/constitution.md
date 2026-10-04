@@ -1,42 +1,3 @@
-<!--
-SYNC IMPACT REPORT
-==================
-Version change: 1.0.0 → 2.0.0
-Bump rationale: MAJOR. Principle II is redefined (two roles → three roles, admin added), which
-changes who the role rules govern.
-
-Reason for amendment: decisions made while specifying 001-mvp-prototype.
-
-Modified principles:
-- II. Two Roles, Two Experiences → II. Role Separation (admin, teacher, student; admin is minimal;
-  all role rules apply to all three roles; teachers cannot see other teachers' courses)
-
-Modified sections:
-- Preamble: three roles; product requirements now referenced from
-  `knowledge-base/docs/requirements.md`
-- Technical Constraints › Responsiveness: desktop-first now explicitly covers all three roles
-  (unchanged in substance)
-
-Unchanged, reaffirmed:
-- VIII. Bilingual from the MVP: text not changed. "Every feature before it merges" already covers
-  prototype features such as 001-mvp-prototype: Spanish and English are both required.
-
-Added sections: none
-Removed sections: none
-
-Templates reviewed (not modified; they read the constitution at runtime):
-- .specify/templates/spec-template.md — ✅ compatible (role per story is stated in spec content)
-- .specify/templates/plan-template.md — ✅ compatible (Constitution Check reads Principles I–IX)
-- .specify/templates/tasks-template.md — ✅ compatible
-
-Dependent artifacts now out of sync:
-- ⚠ specs/001-mvp-prototype/spec.md — student screens are specified mobile-first (FR-003,
-  US1/US4–US6/US11–US13 "Device" lines, Assumptions) and the prototype is Spanish-only (FR-002,
-  Assumptions); both conflict with 2.0.0. Admin-role assumption is now resolved.
-
-Deferred TODOs: none
--->
-
 # DocentAI Frontend Constitution
 
 DocentAI is a teacher-guided AI education platform (see `docs/proposal`) with three roles: admin,
@@ -88,13 +49,16 @@ public-sector education contexts require AA compliance.
 
 ### IV. Design System First
 
-- Figma variables MUST map one-to-one to Tailwind v4 tokens declared in `@theme`, with matching
-  names.
+- The design tool is a static HTML prototype: plain HTML pages styled with Tailwind v4 (browser
+  CDN build). Figma is not used.
+- The prototype MUST declare its design tokens in `@theme`, and they MUST be the same tokens, with
+  the same names and values, that the React app declares.
 - Hardcoded visual values (hex/rgb colors, arbitrary `[..]` utility values, raw pixel spacing) are
-  forbidden outside token definitions.
-- Reusable components MUST have the same name in Figma and in React.
-- Figma is the source of truth for visuals; `spec.md` is the source of truth for behavior.
-- Every spec that includes UI MUST link the Figma frames it implements.
+  forbidden outside token definitions, in both the prototype and the app.
+- Reusable components MUST have the same name in the HTML prototype and in React.
+- The HTML prototype is the source of truth for visuals; `spec.md` is the source of truth for
+  behavior.
+- Every spec that includes UI MUST link the prototype pages it implements.
 
 **Rationale**: A single shared vocabulary between design and code keeps the product consistent
 and makes design changes cheap to propagate.
@@ -118,8 +82,8 @@ them first keeps scope tied to the spec.
 - The backend API version used for type generation MUST be pinned in `plan.md`.
 - All backend calls MUST go through `src/lib`; components MUST NOT call the API directly.
 - When the backend is not ready, mocks MUST honor the same generated, typed contract.
-- Loading, empty and error states MUST be designed (in Figma) and tested for every data-driven
-  view.
+- Loading, empty and error states MUST be designed in the HTML prototype and tested for every
+  data-driven view.
 
 **Rationale**: A generated contract catches frontend/backend drift at compile time, and a single
 access layer keeps auth, errors and mocking in one place.
@@ -162,6 +126,8 @@ surface and code that is easier to change.
 - **Platform & services**: Vercel (hosting and previews), Supabase Auth, Sentry.
 - **Responsiveness**: desktop-first for all three roles (admin, teacher, student); every screen
   MUST be fully functional on mobile with no horizontal scroll.
+- **Prototype**: the HTML prototype MAY load the Tailwind v4 browser CDN build; this is not an
+  app dependency, and the React app MUST use the standard Tailwind v4 build.
 - **Browser support**: the last 2 versions of Chrome, Edge, Firefox and Safari.
 - **CI gates** (all MUST pass before merge): lint, typecheck, unit tests, E2E tests (including
   axe accessibility checks), build. Missing translations also fail CI (Principle VIII).
@@ -175,7 +141,7 @@ surface and code that is easier to change.
 - **Branches**: one branch per feature, named after its `specs/` folder (`NNN-name`).
 - **Conventional Commits**: one commit per SDD artifact (`docs(spec): ...`, `docs(plan): ...`,
   `docs(tasks): ...`); code commits MUST reference the task ID (e.g. `feat(chat): T012 ...`).
-- **Pull requests**: one PR per feature, squash-merged, linking `spec.md`, the Figma frames and
+- **Pull requests**: one PR per feature, squash-merged, linking `spec.md`, the prototype pages and
   the completed checklists.
 - **Review**: reviewers MUST also check the Vercel preview. UX changes MUST additionally be
   validated by the pedagogy team.
@@ -193,4 +159,4 @@ surface and code that is easier to change.
   - **MINOR**: a principle or section is added, or guidance is materially expanded.
   - **PATCH**: wording, clarifications and typo fixes with no change in meaning.
 
-**Version**: 2.0.0 | **Ratified**: 2026-10-04 | **Last Amended**: 2026-10-04
+**Version**: 2.1.0 | **Ratified**: 2026-10-04 | **Last Amended**: 2026-10-04
