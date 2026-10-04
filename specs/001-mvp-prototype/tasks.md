@@ -333,19 +333,19 @@ Read these once. Every page task assumes them.
 
 **Independent Test**: Change to "Solo pistas", see the preview, try to leave with unsaved changes, save, recover from a save failure (flow F7)
 
-- [ ] T053 [P] [US3] Write tests/prototype/e2e/flow-f07.spec.js with one `test()` per acceptance scenario, titled with its ID, in a serial `test.describe`:
+- [X] T053 [P] [US3] Write tests/prototype/e2e/flow-f07.spec.js with one `test()` per acceptance scenario, titled with its ID, in a serial `test.describe`:
   - `US-03 AS1` the defaults are level "Intermedio", tone "Cercano" and "Primero pistas, luego solución", each with a one-line explanation;
   - `US-03 AS2` selecting "Solo pistas (modo guiado)" and saving shows a confirmation and a preview exchange with step hints;
   - `US-03 AS3` leaving with unsaved changes opens the warning dialog;
   - `US-03 AS4` save-failed keeps the changes visible and offers "Reintentar".
-- [ ] T054 [US3] Build public/prototype/teacher/tutor-settings.html (#19) with the states `default`, `loading`, `load-error`, `hints-only`, `preview`, `unsaved`, `saved` and `save-failed` (`load-error`: the settings could not be loaded; `save-failed`: saving failed):
+- [X] T054 [US3] Build public/prototype/teacher/tutor-settings.html (#19) with the states `default`, `loading`, `load-error`, `hints-only`, `preview`, `unsaved`, `saved` and `save-failed` (`load-error`: the settings could not be loaded; `save-failed`: saving failed):
   - three `RadioGroup`s for level, tone and solution policy (direct solutions allowed / hints first, then solution / hints only), each option with a one-line explanation;
   - a preview `Card` with an example exchange;
   - the unsaved-changes `Dialog`, triggered by the nav links when in `hints-only`;
   - a saved `Toast` showing "Guardado · 6 oct 2026, 10:42" through `data-i18n-date`.
 
   Add its manifest entry and the `teacher.tutorSettings.*` keys
-- [ ] T055 [US3] Wire flow F7, run `npm run test:e2e -- flow-f07 a11y-sweep`, then do the ES/EN review and keyboard pass and log them in specs/001-mvp-prototype/validation.md
+- [X] T055 [US3] Wire flow F7, run `npm run test:e2e -- flow-f07 a11y-sweep`, then do the ES/EN review and keyboard pass and log them in specs/001-mvp-prototype/validation.md
 
 ---
 

@@ -27,6 +27,9 @@ export function applyState(root, entry, search = window.location.search) {
     const states = el.getAttribute("data-state").split(/\s+/).filter(Boolean);
     el.hidden = !states.includes(state);
   });
+  root.querySelectorAll("[data-checked-in]").forEach((input) => {
+    input.checked = input.getAttribute("data-checked-in").split(/\s+/).includes(state);
+  });
   document.documentElement.dataset.state = state;
   syncDialogs(root);
 
@@ -92,6 +95,20 @@ function syncSwitch(button) {
   scope.querySelectorAll("[data-switch-off]").forEach((el) => (el.hidden = on));
 }
 
+// [data-leave-guard="s1 s2"] with data-leave-state="unsaved": while the current state is guarded,
+// following a link to another page opens the leave state instead; [data-leave-link] gets the target.
+function guardLeave(link, event) {
+  const guard = document.querySelector("[data-leave-guard]");
+  if (!guard || link.closest("dialog") || link.hasAttribute("data-leave-link")) return false;
+  const guarded = guard.getAttribute("data-leave-guard").split(/\s+/);
+  if (!guarded.includes(document.documentElement.dataset.state)) return false;
+  event.preventDefault();
+  document.querySelectorAll("[data-leave-link]").forEach((a) => a.setAttribute("href", link.getAttribute("href")));
+  lastOpener = link;
+  goto(guard.getAttribute("data-leave-state"));
+  return true;
+}
+
 export function bindNavigation(root = document.body) {
   root.querySelectorAll("[data-switch]").forEach(syncSwitch);
 
@@ -115,13 +132,15 @@ export function bindNavigation(root = document.body) {
 
     const button = target.closest("[data-goto]");
     if (button && root.contains(button)) {
-      event.preventDefault();
+      // Radios and checkboxes keep their native check; other elements don't navigate on their own.
+      if (button.tagName !== "INPUT") event.preventDefault();
       if (!button.closest("dialog")) lastOpener = button;
       goto(button.getAttribute("data-goto"));
       return;
     }
 
     const link = target.closest("a[href]");
+    if (link && root.contains(link) && !isSamePageStateLink(link) && guardLeave(link, event)) return;
     if (link && root.contains(link) && isSamePageStateLink(link)) {
       const state = new URLSearchParams(link.getAttribute("href")).get("state");
       if (state) {

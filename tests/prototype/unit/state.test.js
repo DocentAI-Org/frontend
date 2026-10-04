@@ -244,3 +244,59 @@ describe("switches", () => {
     expect(document.getElementById("off").hidden).toBe(false);
   });
 });
+
+describe("data-checked-in", () => {
+  const e2 = { ...entry, states: ["default", "hints-only"] };
+
+  beforeEach(() => {
+    document.body.innerHTML = `
+      <input type="radio" name="p" id="r1" data-checked-in="default" />
+      <input type="radio" name="p" id="r2" data-checked-in="hints-only" data-goto="hints-only" />`;
+  });
+
+  it("checks the radio that belongs to the current state", () => {
+    setUrl("?state=hints-only");
+    applyState(document.body, e2);
+    expect(document.getElementById("r2").checked).toBe(true);
+    expect(document.getElementById("r1").checked).toBe(false);
+  });
+
+  it("does not block the native check when a radio has data-goto", () => {
+    applyState(document.body, e2);
+    bindNavigation(document.body);
+    const click = new MouseEvent("click", { bubbles: true, cancelable: true });
+    document.getElementById("r2").dispatchEvent(click);
+    expect(click.defaultPrevented).toBe(false);
+    expect(new URL(window.location.href).searchParams.get("state")).toBe("hints-only");
+  });
+});
+
+describe("leave guard", () => {
+  const e3 = { ...entry, states: ["default", "hints-only", "unsaved"] };
+
+  beforeEach(() => {
+    document.body.innerHTML = `
+      <nav><a id="away" href="/prototype/teacher/courses.html">Mis cursos</a></nav>
+      <main data-leave-guard="hints-only" data-leave-state="unsaved"><a id="local" href="?state=default">x</a></main>
+      <dialog data-state="unsaved"><a id="leave" data-leave-link href="#">Salir sin guardar</a></dialog>`;
+  });
+
+  it("stops navigation in a guarded state and opens the leave state with the target kept", () => {
+    setUrl("?state=hints-only");
+    applyState(document.body, e3);
+    bindNavigation(document.body);
+    const click = new MouseEvent("click", { bubbles: true, cancelable: true });
+    document.getElementById("away").dispatchEvent(click);
+    expect(click.defaultPrevented).toBe(true);
+    expect(new URL(window.location.href).searchParams.get("state")).toBe("unsaved");
+    expect(document.getElementById("leave").getAttribute("href")).toBe("/prototype/teacher/courses.html");
+  });
+
+  it("does not interfere in other states", () => {
+    applyState(document.body, e3);
+    bindNavigation(document.body);
+    const click = new MouseEvent("click", { bubbles: true, cancelable: true });
+    document.getElementById("away").dispatchEvent(click);
+    expect(click.defaultPrevented).toBe(false);
+  });
+});

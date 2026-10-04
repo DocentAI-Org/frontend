@@ -32,6 +32,7 @@ One row per page reviewed in both languages at 1440 px (and 390 px where the man
 | student/chat.html (all 12 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | The prototype state panel covered the send button at 390 px; it now starts collapsed as a small pill (top centre on mobile, bottom right on desktop). Button colours briefly faded in after load, which axe caught as low contrast; transitions are now off until the page is revealed. |
 | teacher/material.html (all 9 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
 | teacher/fragments.html (all 5 states) | 2026-10-04 | 1440 | Pass (ES, EN) | None. |
+| teacher/tutor-settings.html (all 8 states) | 2026-10-04 | 1440 | Pass (ES, EN) | Radio names included the explanation text; each radio is now named by its option only and described by the explanation (also fixed in the design system RadioGroup). |
 
 ## Keyboard pass log
 
@@ -44,6 +45,7 @@ return it to the opener.
 | student/chat.html | 2026-10-04 | Pass | Order: skip link, shell nav, user menu, switch course, citation chip, suggestion, composer, send, footer. First-use dialog: focus stays inside, Esc does not close it (acknowledgement required). Citation sheet: Enter opens it with focus on Close; Esc closes it and focus returns to the chip. |
 | teacher/material.html | 2026-10-04 | Pass | Shell nav → back link → upload → per document: include switch, review-fragments link (its name includes the document). Duplicate dialog: focus starts on Cancelar and stays inside. |
 | teacher/fragments.html | 2026-10-04 | Pass | Back link → search field → search button → footer. |
+| teacher/tutor-settings.html | 2026-10-04 | Pass | Back link → policy, level, tone radio groups (arrow keys within a group) → example, discard, save. Unsaved dialog: focus starts on "Seguir editando"; Esc returns to the form with the change kept. |
 
 ## Session plan
 
@@ -63,6 +65,7 @@ To be filled before the first session (quickstart.md B1).
 |---|---|---|---|
 | 2026-10-04 | Added an `error` state to teacher/material.html. The contract listed none, but FR-001 and Constitution VI require one for every data-driven page. | Implementation of T049 | contract §4 updated |
 | 2026-10-04 | The upload empty state lists "PDF, DOCX, Markdown" (spec US-02 AS1 wording) rather than "PDF, DOCX, MD" (task T049). | Implementation of T049 | none |
+| 2026-10-04 | Tutor settings keep the "saved" confirmation and the hint example visible together, so US-03 AS2 (confirmation plus example after saving) is one state. | Implementation of T054 | none |
 
 ## Success criteria results
 

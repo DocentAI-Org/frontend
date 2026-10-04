@@ -129,5 +129,37 @@
     "simulate": [
       "error"
     ]
+  },
+  {
+    "path": "teacher/tutor-settings.html",
+    "screen": [
+      19
+    ],
+    "role": "teacher",
+    "titleKey": "teacher.tutorSettings.pageTitle",
+    "stories": [
+      "US-03"
+    ],
+    "requirements": [
+      "T3",
+      "S3",
+      "FR-022"
+    ],
+    "priority": "P1",
+    "mobile": false,
+    "states": [
+      "default",
+      "loading",
+      "load-error",
+      "hints-only",
+      "preview",
+      "unsaved",
+      "saved",
+      "save-failed"
+    ],
+    "simulate": [
+      "save-failed",
+      "load-error"
+    ]
   }
 ]

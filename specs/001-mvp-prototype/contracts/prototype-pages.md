@@ -70,6 +70,8 @@ Rules:
 | `data-dismissible="false"` | `<dialog data-modal>` | Esc does not close it (used when an acknowledgement is required). |
 | `data-focus="<selector>"` | button | Moves focus to the matching element (e.g. "Reformular la pregunta" → the composer). |
 | `data-switch` | `role="switch"` button | Toggles `aria-checked`. In the nearest `[data-switch-scope]`, `[data-switch-on]` content shows when checked and `[data-switch-off]` when not. |
+| `data-checked-in="<stateId> …"` | radio or checkbox | Checked when the current state is one of the listed IDs (so each state shows the right selection). A radio with `data-goto` keeps its native check. |
+| `data-leave-guard="<stateId> …"` + `data-leave-state="<stateId>"` | page container | While the current state is guarded, links to other pages open the leave state (e.g. an unsaved-changes dialog) instead; `[data-leave-link]` inside it gets the link's target. |
 | `data-set-lang="es\|en"` | button (`LanguageSwitcher`, state panel) | Switches the language without reloading; `aria-pressed` marks the current one. |
 | `data-nav` | navigation container | Links inside it that point to the current page get `aria-current="page"`. |
 | `data-component="<Name>"` | component root | The future React component's name (plan.md › Components). `data-variant` is optional. |

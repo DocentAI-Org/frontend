@@ -473,6 +473,59 @@
         "questions": "Questions"
       },
       "role": "Teacher"
+    },
+    "tutorSettings": {
+      "back": "Back to the course",
+      "discard": "Discard",
+      "keepEditing": "Keep editing",
+      "lastSaved": "Last saved: {date}",
+      "lead": "Decide how the tutor behaves with your students in this course. You can change it at any time.",
+      "leave": "Leave without saving",
+      "leaveBody": "You have unsaved changes to the tutor settings. If you leave now, they will be lost.",
+      "leaveTitle": "Leave without saving?",
+      "level": {
+        "advanced": "Advanced",
+        "advancedHelp": "Short explanations that get straight to the point.",
+        "basic": "Basic",
+        "basicHelp": "Very step-by-step explanations with simple vocabulary.",
+        "intermediate": "Intermediate",
+        "intermediateHelp": "Full explanations that assume the basic concepts.",
+        "legend": "Course level"
+      },
+      "loadError": "Couldn't load the settings",
+      "pageTitle": "Tutor settings",
+      "policy": {
+        "direct": "Direct solutions allowed",
+        "directHelp": "The tutor may give the full solution when asked.",
+        "hintsFirst": "Hints first, then solution",
+        "hintsFirstHelp": "The tutor gives hints and shows the solution only when they run out.",
+        "hintsOnly": "Hints only (guided mode)",
+        "hintsOnlyHelp": "The tutor never gives the full solution: it guides with step-by-step hints.",
+        "legend": "Solutions"
+      },
+      "preview": {
+        "hint1": "Hint 1: Which operation goes with 2x on the left-hand side? Think about how to undo it.",
+        "hint2": "Hint 2: Add 4 to both sides. What's left? Try it and I'll tell you if you're on track.",
+        "lead": "Example with \"Hints only (guided mode)\".",
+        "note": "With this setting the tutor never gives the full solution.",
+        "student": "Student",
+        "title": "This is how the tutor will answer"
+      },
+      "save": "Save changes",
+      "saveFailed": "Your changes couldn't be saved. They're still on screen; please try again.",
+      "saved": "Saved · {date}",
+      "showPreview": "See an example",
+      "title": "Tutor settings",
+      "tone": {
+        "formal": "Formal",
+        "formalHelp": "Formal address and an academic register.",
+        "friendly": "Friendly",
+        "friendlyHelp": "Informal and encouraging.",
+        "legend": "Tone",
+        "neutral": "Neutral",
+        "neutralHelp": "Direct, without colloquial expressions."
+      },
+      "unsaved": "You have unsaved changes."
     }
   }
 }

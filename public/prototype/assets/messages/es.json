@@ -473,6 +473,59 @@
         "questions": "Preguntas"
       },
       "role": "Profesor/a"
+    },
+    "tutorSettings": {
+      "back": "Volver al curso",
+      "discard": "Descartar",
+      "keepEditing": "Seguir editando",
+      "lastSaved": "Última vez guardado: {date}",
+      "lead": "Decide cómo se comporta el tutor con tus estudiantes en este curso. Puedes cambiarlo cuando quieras.",
+      "leave": "Salir sin guardar",
+      "leaveBody": "Tienes cambios sin guardar en la configuración del tutor. Si sales ahora, se perderán.",
+      "leaveTitle": "¿Salir sin guardar?",
+      "level": {
+        "advanced": "Avanzado",
+        "advancedHelp": "Explicaciones breves que van al grano.",
+        "basic": "Básico",
+        "basicHelp": "Explicaciones muy pasos a paso, con vocabulario sencillo.",
+        "intermediate": "Intermedio",
+        "intermediateHelp": "Explicaciones completas que dan por sabidos los conceptos básicos.",
+        "legend": "Nivel del curso"
+      },
+      "loadError": "No se ha podido cargar la configuración",
+      "pageTitle": "Configuración del tutor",
+      "policy": {
+        "direct": "Soluciones directas permitidas",
+        "directHelp": "El tutor puede dar la solución completa si se la piden.",
+        "hintsFirst": "Primero pistas, luego solución",
+        "hintsFirstHelp": "El tutor da pistas y solo muestra la solución cuando se acaban.",
+        "hintsOnly": "Solo pistas (modo guiado)",
+        "hintsOnlyHelp": "El tutor nunca da la solución completa: guía con pistas paso a paso.",
+        "legend": "Soluciones"
+      },
+      "preview": {
+        "hint1": "Pista 1: ¿Qué operación acompaña al 2x en el lado izquierdo? Piensa en cómo deshacerla.",
+        "hint2": "Pista 2: Suma 4 en los dos lados. ¿Qué te queda? Inténtalo y te digo si vas bien.",
+        "lead": "Ejemplo con «Solo pistas (modo guiado)».",
+        "note": "Con este ajuste el tutor nunca da la solución completa.",
+        "student": "Estudiante",
+        "title": "Así responderá el tutor"
+      },
+      "save": "Guardar cambios",
+      "saveFailed": "No se han podido guardar los cambios. Siguen en pantalla; vuelve a intentarlo.",
+      "saved": "Guardado · {date}",
+      "showPreview": "Ver un ejemplo",
+      "title": "Configuración del tutor",
+      "tone": {
+        "formal": "Formal",
+        "formalHelp": "Trata de usted y usa un registro académico.",
+        "friendly": "Cercano",
+        "friendlyHelp": "Tutea y anima al estudiante.",
+        "legend": "Tono",
+        "neutral": "Neutro",
+        "neutralHelp": "Directo y sin expresiones coloquiales."
+      },
+      "unsaved": "Tienes cambios sin guardar."
     }
   }
 }
