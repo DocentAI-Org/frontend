@@ -1,39 +1,48 @@
 <!--
 SYNC IMPACT REPORT
 ==================
-Version change: (unversioned template) → 1.0.0
-Bump rationale: Initial ratification; all template placeholders replaced with project content.
+Version change: 1.0.0 → 2.0.0
+Bump rationale: MAJOR. Principle II is redefined (two roles → three roles, admin added), which
+changes who the role rules govern.
 
-Modified principles (template placeholder → new title):
-- [PRINCIPLE_1_NAME] → I. Teacher Control & Transparency
-- [PRINCIPLE_2_NAME] → II. Two Roles, Two Experiences
-- [PRINCIPLE_3_NAME] → III. Accessibility WCAG 2.2 AA (NON-NEGOTIABLE)
-- [PRINCIPLE_4_NAME] → IV. Design System First
-- [PRINCIPLE_5_NAME] → V. Test-First (NON-NEGOTIABLE)
+Reason for amendment: decisions made while specifying 001-mvp-prototype.
 
-Added sections:
-- Principles VI. Typed Backend Contract, VII. Privacy by Design, VIII. Bilingual from the MVP,
-  IX. Simplicity (template provided 5 principle slots; project defines 9)
-- Technical Constraints (from [SECTION_2_NAME])
-- Development Workflow (from [SECTION_3_NAME])
+Modified principles:
+- II. Two Roles, Two Experiences → II. Role Separation (admin, teacher, student; admin is minimal;
+  all role rules apply to all three roles; teachers cannot see other teachers' courses)
 
+Modified sections:
+- Preamble: three roles; product requirements now referenced from
+  `knowledge-base/docs/requirements.md`
+- Technical Constraints › Responsiveness: desktop-first now explicitly covers all three roles
+  (unchanged in substance)
+
+Unchanged, reaffirmed:
+- VIII. Bilingual from the MVP: text not changed. "Every feature before it merges" already covers
+  prototype features such as 001-mvp-prototype: Spanish and English are both required.
+
+Added sections: none
 Removed sections: none
 
-Templates reviewed (not modified by this command; they read the constitution at runtime):
-- .specify/templates/plan-template.md — "Constitution Check" gate MUST be evaluated against
-  Principles I–IX; "Complexity Tracking" is the exception mechanism. ⚠ verify on next /speckit-plan
-- .specify/templates/spec-template.md — user stories MUST state role (II) and link Figma frames (IV).
-  ⚠ verify on next /speckit-specify
-- .specify/templates/tasks-template.md — test tasks MUST precede implementation tasks per story (V).
-  ⚠ verify on next /speckit-tasks
+Templates reviewed (not modified; they read the constitution at runtime):
+- .specify/templates/spec-template.md — ✅ compatible (role per story is stated in spec content)
+- .specify/templates/plan-template.md — ✅ compatible (Constitution Check reads Principles I–IX)
+- .specify/templates/tasks-template.md — ✅ compatible
+
+Dependent artifacts now out of sync:
+- ⚠ specs/001-mvp-prototype/spec.md — student screens are specified mobile-first (FR-003,
+  US1/US4–US6/US11–US13 "Device" lines, Assumptions) and the prototype is Spanish-only (FR-002,
+  Assumptions); both conflict with 2.0.0. Admin-role assumption is now resolved.
 
 Deferred TODOs: none
 -->
 
 # DocentAI Frontend Constitution
 
-DocentAI is a teacher-guided AI education platform (see `docs/proposal`) with two roles: teacher
-and student. The student age range is not yet decided (secondary and/or university), so every rule
+DocentAI is a teacher-guided AI education platform (see `docs/proposal`) with three roles: admin,
+teacher and student. Product requirements (IDs T#, S#, P#) live in
+`knowledge-base/docs/requirements.md` at the DocentAI workspace root; specs MUST reference them
+from there. The student age range is not yet decided (secondary and/or university), so every rule
 in this constitution is written for the most restrictive case: **students may be minors**.
 
 ## Core Principles
@@ -49,17 +58,22 @@ in this constitution is written for the most restrictive case: **students may be
 
 **Rationale**: DocentAI's differentiator is that the teacher controls the content; the AI assists.
 
-### II. Two Roles, Two Experiences
+### II. Role Separation
 
-- Teacher and student MUST have separate routes, navigation and layouts, implemented as separate
-  App Router route groups.
+- There are exactly three roles: admin, teacher and student. Every rule in this principle applies
+  to all three.
+- Each role MUST have its own routes, navigation and layout, implemented as separate App Router
+  route groups.
+- The admin role MUST stay minimal: it covers only the account and course management that a spec
+  explicitly requires. Any other admin capability needs its own spec.
 - Role-based access MUST be enforced server-side. Hiding elements on the client is not access
   control and MUST NOT be relied on as such.
-- Views MUST NOT mix data across roles and MUST NOT expose one student's data to another student.
-- Every user story MUST state which role it belongs to.
+- Views MUST NOT mix data across roles, MUST NOT expose one student's data to another student,
+  and MUST NOT expose one teacher's courses to another teacher.
+- Every user story MUST state which role or roles it belongs to.
 
-**Rationale**: Teachers and students have different goals and different data rights; blurring
-them creates both UX confusion and data leaks.
+**Rationale**: Admins, teachers and students have different goals and different data rights;
+blurring them creates both UX confusion and data leaks.
 
 ### III. Accessibility WCAG 2.2 AA (NON-NEGOTIABLE)
 
@@ -146,8 +160,8 @@ surface and code that is easier to change.
 
 - **Stack**: Next.js 16 (App Router), React 19, TypeScript in strict mode, Tailwind CSS v4.
 - **Platform & services**: Vercel (hosting and previews), Supabase Auth, Sentry.
-- **Responsiveness**: desktop-first for both roles; every screen MUST be fully functional on
-  mobile with no horizontal scroll.
+- **Responsiveness**: desktop-first for all three roles (admin, teacher, student); every screen
+  MUST be fully functional on mobile with no horizontal scroll.
 - **Browser support**: the last 2 versions of Chrome, Edge, Firefox and Safari.
 - **CI gates** (all MUST pass before merge): lint, typecheck, unit tests, E2E tests (including
   axe accessibility checks), build. Missing translations also fail CI (Principle VIII).
@@ -179,4 +193,4 @@ surface and code that is easier to change.
   - **MINOR**: a principle or section is added, or guidance is materially expanded.
   - **PATCH**: wording, clarifications and typo fixes with no change in meaning.
 
-**Version**: 1.0.0 | **Ratified**: 2026-10-04 | **Last Amended**: 2026-10-04
+**Version**: 2.0.0 | **Ratified**: 2026-10-04 | **Last Amended**: 2026-10-04
