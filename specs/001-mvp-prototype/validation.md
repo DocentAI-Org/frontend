@@ -20,7 +20,7 @@ details are stored here.
 |---|---|---|
 | Official IMFAHE logo file. The prototype shows an HTML placeholder ("Logo IMFAHE – pendiente") until IMFAHE supplies the file (research R-10). | Team | Pending |
 | IMFAHE acknowledgement wording. Draft: "Proyecto financiado por la Fundación IMFAHE" (spec Assumptions). | Team | Pending confirmation |
-| `npm run lint` fails on every branch: typescript-eslint does not support TypeScript 7.0 (repo pins `typescript` 7.0.2). Blocks the CI lint gate. | Team | Open |
+| `npm run lint` failed: typescript-eslint does not support TypeScript 7.0. Fixed by running TS side by side: `typescript` → `@typescript/typescript6` (API for tools), `typescript7` → `typescript@7.0.2` (the `tsc` used by `npm run typecheck`). | Team | Resolved 2026-10-04 |
 
 ## ES/EN review log
 
