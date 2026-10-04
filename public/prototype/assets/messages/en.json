@@ -172,6 +172,12 @@
       "errorBody": "There was a connection problem. Check your internet connection and try again.",
       "errorTitle": "Couldn't load this",
       "loading": "Loading…"
+    },
+    "theme": {
+      "label": "Theme",
+      "system": "System theme",
+      "light": "Light theme",
+      "dark": "Dark theme"
     }
   },
   "prototype": {

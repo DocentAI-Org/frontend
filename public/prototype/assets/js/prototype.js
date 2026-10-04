@@ -4,6 +4,7 @@
 
 import { applyIncludes, markCurrentLinks } from "./include.js";
 import { LANGS, applyI18n, getLang, setLang, translate } from "./i18n.js";
+import { THEMES, applyTheme, getTheme, setTheme, syncThemeSwitchers } from "./theme.js";
 import { applyState, bindNavigation, decorateLinks, isPanelHidden, renderPanel, resolveState } from "./state.js";
 
 const TAILWIND_URL = "https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3";
@@ -13,6 +14,20 @@ const REVEAL_FALLBACK_MS = 10000;
 
 function reveal() {
   document.body.removeAttribute("data-cloak");
+}
+
+// Self-hosted Figtree: preload the Latin file so text paints in the brand face on first reveal.
+function loadFonts() {
+  const preload = document.createElement("link");
+  preload.rel = "preload";
+  preload.as = "font";
+  preload.type = "font/woff2";
+  preload.crossOrigin = "anonymous";
+  preload.href = new URL("fonts/figtree-latin-wght-normal.woff2", ASSETS_URL).href;
+  const sheet = document.createElement("link");
+  sheet.rel = "stylesheet";
+  sheet.href = new URL("fonts/fonts.css", ASSETS_URL).href;
+  document.head.append(preload, sheet);
 }
 
 async function loadTheme() {
@@ -96,19 +111,34 @@ function bindLanguageSwitch(entry) {
   });
 }
 
+function bindThemeSwitch() {
+  document.addEventListener("click", (event) => {
+    const button = event.target instanceof Element ? event.target.closest("[data-set-theme]") : null;
+    if (!button) return;
+    const theme = button.getAttribute("data-set-theme");
+    if (THEMES.includes(theme)) setTheme(theme);
+  });
+}
+
 async function start() {
+  // First: an explicit light/dark choice must apply before anything paints.
+  const theme = getTheme();
+  applyTheme(theme);
   const fallback = setTimeout(reveal, REVEAL_FALLBACK_MS);
+  loadFonts();
   const tailwindReady = loadTheme().then(loadTailwind);
 
   const [entry] = await Promise.all([loadManifestEntry(), applyIncludes(document)]);
 
   if (entry && !isPanelHidden()) renderPanel(entry, resolveState(entry));
   await localize(entry, getLang());
+  syncThemeSwitchers(theme);
   markCurrentLinks(document.body);
   decorateLinks(document.body);
   if (entry) applyState(document.body, entry);
   bindNavigation(document.body);
   bindLanguageSwitch(entry);
+  bindThemeSwitch();
 
   await tailwindReady;
   await stylesReady();

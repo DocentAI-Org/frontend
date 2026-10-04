@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title data-i18n="prototype.index.title">DocentAI</title>
     <style>
+      :root { color-scheme: light dark; }
       [data-cloak] { visibility: hidden; }
       [data-cloak] *, [data-cloak] *::before, [data-cloak] *::after { transition: none !important; }
       summary::-webkit-details-marker { display: none; }
@@ -35,7 +36,7 @@
             <li data-i18n="prototype.index.updated" data-i18n-vars='{"date":"date:2026-10-04"}'></li>
           </ul>
         </div>
-        <div class="flex flex-wrap gap-3">
+        <div class="flex shrink-0 flex-wrap gap-3">
           <a href="design-system.html" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-border-strong bg-surface-raised px-4 text-sm font-semibold text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" data-component="Button" data-variant="secondary">
             <svg class="size-4" aria-hidden="true"><use href="assets/img/icons.svg#sparkles"/></svg><span data-i18n="prototype.index.links.designSystem"></span>
           </a>
@@ -97,10 +98,10 @@
       for (const [id, starts] of FLOWS) {
         const start = starts.find((s) => known.has(s.split("?")[0]));
         flowList.append(
-          h(`<li class="flex items-center justify-between gap-3 rounded-xl border border-border bg-surface-raised p-4">
+          h(`<li class="flex items-center justify-between gap-3 rounded-xl border border-border bg-surface-raised py-3 pr-3 pl-4">
               <span class="text-sm font-medium text-fg" data-i18n="prototype.index.flows.${id}"></span>
               ${start
-                ? `<a href="${start}" class="inline-flex min-h-10 shrink-0 items-center gap-1 rounded-lg bg-primary-600 px-3 text-sm font-semibold text-fg-inverse hover:bg-primary-700 ${FOCUS}"><span data-i18n="prototype.index.flows.start"></span><svg class="size-4" aria-hidden="true"><use href="assets/img/icons.svg#chevron-right"/></svg></a>`
+                ? `<a href="${start}" class="inline-flex min-h-10 shrink-0 items-center gap-1 rounded-lg bg-primary-50 px-3 text-sm font-semibold text-primary-800 hover:bg-primary-100 ${FOCUS}"><span data-i18n="prototype.index.flows.start"></span><svg class="size-4" aria-hidden="true"><use href="assets/img/icons.svg#chevron-right"/></svg></a>`
                 : `<span class="shrink-0 rounded-full bg-surface-sunken px-2.5 py-0.5 text-xs font-medium text-fg-muted" data-i18n="prototype.index.flows.pending"></span>`}
             </li>`)
         );

@@ -8,7 +8,7 @@ export const COMPONENTS = [
   "ImfaheAcknowledgement", "ChatMessage", "ChatComposer", "SourceCitation", "CitationSheet",
   "NoSourceNotice", "AIDisclosure", "MessageAllowance", "LimitReachedBanner", "GuidedModeIndicator",
   "FileUploadItem", "DocumentRow", "FragmentItem", "ClassCode", "FlagControl", "QuizQuestion",
-  "ProgressByTopic"
+  "ProgressByTopic", "ThemeSwitcher"
 ];
 
 describe("data-component names", () => {

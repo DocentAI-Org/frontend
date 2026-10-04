@@ -1,7 +1,7 @@
 <footer class="mt-auto border-t border-border bg-surface-raised" data-component="ImfaheAcknowledgement" data-variant="footer">
   <div class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-6 text-sm text-fg-muted sm:px-6 md:flex-row md:items-center md:justify-between">
     <div class="flex items-center gap-3">
-      <img src="~/assets/img/imfahe-logo-transparent.webp" alt="" width="90" height="40" class="h-10 w-auto shrink-0" />
+      <img src="~/assets/img/imfahe-logo-transparent.webp" alt="" width="90" height="40" class="h-10 w-auto shrink-0 dark:invert dark:hue-rotate-180" />
       <p data-i18n="common.imfahe.acknowledgement"></p>
     </div>
     <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
@@ -10,6 +10,11 @@
       <div role="group" class="inline-flex rounded-lg border border-border-strong p-0.5" data-component="LanguageSwitcher" data-i18n-attr="aria-label:common.a11y.language">
         <button type="button" data-set-lang="es" lang="es" aria-pressed="false" class="min-h-8 rounded-md px-3 text-sm font-medium text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus aria-pressed:bg-primary-700 aria-pressed:text-fg-inverse" data-i18n="common.language.es"></button>
         <button type="button" data-set-lang="en" lang="en" aria-pressed="false" class="min-h-8 rounded-md px-3 text-sm font-medium text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus aria-pressed:bg-primary-700 aria-pressed:text-fg-inverse" data-i18n="common.language.en"></button>
+      </div>
+      <div role="group" class="inline-flex rounded-lg border border-border-strong p-0.5" data-component="ThemeSwitcher" data-i18n-attr="aria-label:common.theme.label">
+        <button type="button" data-set-theme="system" aria-pressed="false" class="inline-flex size-8 items-center justify-center rounded-md text-fg-muted hover:bg-surface-sunken hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus aria-pressed:bg-primary-700 aria-pressed:text-fg-inverse" data-i18n-attr="aria-label:common.theme.system;title:common.theme.system"><svg class="size-4 shrink-0" aria-hidden="true"><use href="~/assets/img/icons.svg#monitor"/></svg></button>
+        <button type="button" data-set-theme="light" aria-pressed="false" class="inline-flex size-8 items-center justify-center rounded-md text-fg-muted hover:bg-surface-sunken hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus aria-pressed:bg-primary-700 aria-pressed:text-fg-inverse" data-i18n-attr="aria-label:common.theme.light;title:common.theme.light"><svg class="size-4 shrink-0" aria-hidden="true"><use href="~/assets/img/icons.svg#sun"/></svg></button>
+        <button type="button" data-set-theme="dark" aria-pressed="false" class="inline-flex size-8 items-center justify-center rounded-md text-fg-muted hover:bg-surface-sunken hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus aria-pressed:bg-primary-700 aria-pressed:text-fg-inverse" data-i18n-attr="aria-label:common.theme.dark;title:common.theme.dark"><svg class="size-4 shrink-0" aria-hidden="true"><use href="~/assets/img/icons.svg#moon"/></svg></button>
       </div>
     </div>
   </div>

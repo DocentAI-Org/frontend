@@ -1,8 +1,9 @@
 @import "tailwindcss";
+@import "../../public/prototype/assets/fonts/fonts.css";
 @import "../../public/prototype/assets/theme.css";
 
 :root {
-  color-scheme: light;
+  color-scheme: light dark;
 }
 
 body {

@@ -57,7 +57,7 @@ within 1 s of an action (spec Edge Cases). These are prototype goals, not produc
 
 **Constraints**: No build step for the prototype. WCAG 2.2 AA (contrast ≥4.5:1 text, ≥3:1 large
 text and UI parts, visible focus, targets ≥24×24 px and 44×44 px for primary student mobile
-actions). Light mode only. Only fictitious people and data. No hex/rgb or arbitrary `[..]`
+actions). Light and dark themes (system preference by default, manual switch; R-20). Only fictitious people and data. No hex/rgb or arbitrary `[..]`
 values outside the token file. Desktop-first design for all roles; no horizontal scroll at 390 px.
 
 **Scale/Scope**: 32 screens from the Screen Inventory below, implemented as 31 pages (the citation
@@ -199,7 +199,7 @@ follow from it (`--color-primary-600` → `bg-primary-600`).
 | Semantic colors | `--color-fg`, `--color-fg-muted`, `--color-fg-inverse`, `--color-surface`, `--color-surface-raised`, `--color-surface-sunken`, `--color-border`, `--color-border-strong`, `--color-focus` | Alias palette steps with `var()`. Components use these, not palette steps, where a semantic role exists (R-03). |
 | Spacing | `--spacing: 0.25rem` | Tailwind v4's single base unit (4 px). `p-4` = 16 px. |
 | Radius | `--radius-{sm,md,lg,xl}` (plus Tailwind's `rounded-full`) | |
-| Type | `--font-sans`, `--font-mono`, `--text-{xs,sm,base,lg,xl,2xl,3xl}` with `--text-*--line-height`, `--font-weight-{normal,medium,semibold,bold}` | System font stack; no web-font request (R-04). |
+| Type | `--font-sans`, `--font-mono`, `--text-{xs,sm,base,lg,xl,2xl,3xl}` with `--text-*--line-height`, `--font-weight-{normal,medium,semibold,bold}` | Self-hosted Figtree with a system fallback; no third-party font request (R-04). |
 | Shadow | `--shadow-{sm,md,lg}` | A real token now, unlike Figma. |
 | Motion | `--ease-standard`, `--animate-*` as needed | Every animation has a `motion-reduce:` alternative. |
 
@@ -231,6 +231,7 @@ is identical on every page, as with shells and the footer. Otherwise its canonic
 | `FlagControl` | none, incorrect, needs improvement | US8 |
 | `QuizQuestion` | unanswered, correct, incorrect, teacher review | US10, US11 |
 | `ProgressByTopic` | bar with text label | US13 |
+| `ThemeSwitcher` | system / light / dark, footer | R-20 |
 
 ## Bilingual Copy
 

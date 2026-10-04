@@ -61,11 +61,15 @@ with only their wording changed.
 
 ### R-04 · Fonts and icons
 
-- **Decision**: System font stack in `--font-sans`, with no web-font request. Icons are an inline
+- **Decision** (revised 2026-10-05): Figtree (variable, SIL OFL 1.1) self-hosted from
+  `assets/fonts/` and declared in `assets/fonts/fonts.css`, with the system font stack as fallback in
+  `--font-sans`. Only the Latin file (~20 KB) is preloaded; Latin Extended loads on demand through
+  `unicode-range`. There is still no third-party font request. Icons are an inline
   SVG sprite (`assets/img/icons.svg`) of [Lucide](https://lucide.dev) icons (ISC license), used
   with `<svg><use href="…#name"/></svg>`. Decorative icons get `aria-hidden="true"`, and
   meaningful ones get a translated `aria-label`.
-- **Rationale**: No third-party font request (privacy, speed on phones). Copying ISC-licensed SVGs
+- **Rationale**: A brand face gives the prototype its own voice at a small cost, while self-hosting
+  keeps the privacy and speed reasons for avoiding third-party font requests. Copying ISC-licensed SVGs
   adds no dependency. Lucide is also available as a React package for the app later, under the
   same icon names.
 - **Alternatives considered**: Google Fonts: an external request that has been ruled a GDPR issue
@@ -275,3 +279,19 @@ with only their wording changed.
 - **Rationale**: The constitution's workflow puts the spec first for behavior.
 - **Alternatives considered**: Editing the prototype during sessions, which leaves the spec
   behind.
+
+### R-20 · Light and dark themes
+
+- **Decision** (2026-10-05): Every color token in `assets/theme.css` holds both values as
+  `light-dark(light, dark)`. The page follows the system preference (`color-scheme: light dark`);
+  a footer `ThemeSwitcher` (system / light / dark) sets `data-theme` on `<html>`, stored in
+  `localStorage` under `docentai.prototype.theme`, and `?theme=` overrides it for session links.
+  Dark scales mirror the light ones (50 is the darkest tint, 900 the lightest), so existing class
+  pairings keep their contrast without page changes. A `dark:` variant covers the few things tokens
+  cannot flip (the black-ink IMFAHE logo is inverted). The axe sweep runs every page × state in both
+  schemes.
+- **Rationale**: One token definition per color, no duplicated dark block, no class changes in the
+  31 pages. The stored value is a display preference, not personal data (Constitution VII).
+- **Alternatives considered**: A separate `[data-theme="dark"]` block plus a media-query copy:
+  two places to keep in sync. Tailwind `dark:` classes on every element: hundreds of edits and easy
+  to miss one.

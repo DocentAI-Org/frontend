@@ -153,7 +153,7 @@ function guardLeave(link, event) {
 function keepParams(target) {
   const url = new URL(target, window.location.href);
   const here = new URLSearchParams(window.location.search);
-  for (const k of ["lang", "panel"]) if (here.has(k) && !url.searchParams.has(k)) url.searchParams.set(k, here.get(k));
+  for (const k of ["lang", "panel", "theme"]) if (here.has(k) && !url.searchParams.has(k)) url.searchParams.set(k, here.get(k));
   return url.href;
 }
 
@@ -258,7 +258,7 @@ export function decorateLinks(root = document.body, search = window.location.sea
     const value = params.get(a.getAttribute("data-href-param"));
     if (value && isRelative(value)) a.setAttribute("href", value);
   });
-  const keep = ["lang", "panel"].filter((k) => params.has(k));
+  const keep = ["lang", "panel", "theme"].filter((k) => params.has(k));
   if (!keep.length) return;
   root.querySelectorAll("a[href]").forEach((a) => {
     const href = a.getAttribute("href");
@@ -328,7 +328,7 @@ export function renderPanel(entry, { state, unknown } = resolveState(entry)) {
       "data-i18n": `common.language.${lang}`
     });
 
-  const body = el("div", { class: "flex w-72 max-w-full flex-col gap-3 p-3" }, [
+  const body = el("div", { class: "flex w-full flex-col gap-3 px-4 pb-3 lg:w-72 lg:p-3" }, [
     el("p", {
       class: "rounded-md bg-warning-100 px-2 py-1 text-xs font-medium text-fg",
       "data-i18n": "prototype.panel.notProduct"
@@ -381,14 +381,16 @@ export function renderPanel(entry, { state, unknown } = resolveState(entry)) {
       "data-prototype-panel": true,
       "aria-labelledby": "prototype-panel-title",
       class:
-        "fixed top-2 left-1/2 z-50 max-h-96 max-w-72 -translate-x-1/2 overflow-auto rounded-lg border border-border-strong bg-surface-raised text-fg shadow-lg print:hidden lg:top-auto lg:right-2 lg:bottom-2 lg:left-auto lg:translate-x-0"
+        // Phones: a thin facilitator bar above the app header, in the page flow, so it never covers
+        // the header or the sticky chat composer. Desktop: a floating card in the bottom-right corner.
+        "relative z-50 border-b border-warning-200 bg-warning-50 text-fg print:hidden lg:fixed lg:right-3 lg:bottom-3 lg:max-h-96 lg:max-w-72 lg:overflow-auto lg:rounded-xl lg:border lg:border-border lg:bg-surface-raised lg:shadow-lg"
     },
     [
       el("details", {}, [
         el("summary", {
           id: "prototype-panel-title",
           class:
-            "cursor-pointer rounded-lg px-3 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus",
+            "cursor-pointer px-4 py-2 text-xs font-semibold text-warning-900 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus lg:rounded-xl lg:px-3 lg:text-sm lg:text-fg",
           "data-i18n": "prototype.panel.title"
         }),
         body
@@ -405,7 +407,10 @@ export function renderPanel(entry, { state, unknown } = resolveState(entry)) {
     }
   });
 
-  document.body.append(panel);
+  // Right after the skip link: the phone bar sits in the flow at the top of the page.
+  const skip = document.body.querySelector(':scope > a[href="#main"]');
+  if (skip) skip.after(panel);
+  else document.body.prepend(panel);
   return panel;
 }
 

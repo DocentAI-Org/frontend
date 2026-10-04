@@ -172,6 +172,12 @@
       "errorBody": "Ha habido un problema de conexión. Comprueba tu conexión a internet y vuelve a intentarlo.",
       "errorTitle": "No se ha podido cargar",
       "loading": "Cargando…"
+    },
+    "theme": {
+      "label": "Tema",
+      "system": "Tema del sistema",
+      "light": "Tema claro",
+      "dark": "Tema oscuro"
     }
   },
   "prototype": {

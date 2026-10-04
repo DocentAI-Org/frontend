@@ -1,5 +1,9 @@
 /*
  * DocentAI design tokens — the single source of truth (Constitution IV).
+ * Every color token holds its light and dark value: light-dark(light, dark). The active scheme comes
+ * from the system preference, or from data-theme="light|dark" on <html> when the user picks one.
+ * Dark scales mirror the light ones (50 is the darkest tint, 900 the lightest), so a pairing such as
+ * bg-primary-50 + text-primary-800 or bg-primary-600 + text-fg-inverse keeps its contrast in both.
  * Loaded by the HTML prototype (assets/js/prototype.js) and imported by the React app
  * (src/app/globals.css). Only this file may contain raw color values.
  */
@@ -7,78 +11,79 @@
   /* Remove Tailwind's default palette: only DocentAI colors exist. */
   --color-*: initial;
 
-  /* Neutral (cool gray) */
-  --color-neutral-0: oklch(1 0 0);
-  --color-neutral-50: oklch(0.985 0.002 250);
-  --color-neutral-100: oklch(0.967 0.004 250);
-  --color-neutral-200: oklch(0.922 0.006 250);
-  --color-neutral-300: oklch(0.869 0.01 250);
-  --color-neutral-400: oklch(0.705 0.015 250);
-  --color-neutral-500: oklch(0.554 0.018 250);
-  --color-neutral-600: oklch(0.446 0.02 250);
-  --color-neutral-700: oklch(0.372 0.022 250);
-  --color-neutral-800: oklch(0.279 0.022 250);
-  --color-neutral-900: oklch(0.208 0.02 250);
+  /* Neutral (cool gray, tinted toward the brand indigo) */
+  --color-neutral-0: light-dark(oklch(0.996 0.002 277), oklch(0.218 0.014 277));
+  --color-neutral-50: light-dark(oklch(0.983 0.004 277), oklch(0.178 0.012 277));
+  --color-neutral-100: light-dark(oklch(0.963 0.007 277), oklch(0.258 0.016 277));
+  --color-neutral-200: light-dark(oklch(0.918 0.01 277), oklch(0.305 0.018 277));
+  --color-neutral-300: light-dark(oklch(0.865 0.014 277), oklch(0.37 0.02 277));
+  --color-neutral-400: light-dark(oklch(0.7 0.018 277), oklch(0.5 0.02 277));
+  --color-neutral-450: light-dark(oklch(0.635 0.02 277), oklch(0.565 0.02 277));
+  --color-neutral-500: light-dark(oklch(0.55 0.022 277), oklch(0.665 0.018 277));
+  --color-neutral-600: light-dark(oklch(0.445 0.024 277), oklch(0.765 0.015 277));
+  --color-neutral-700: light-dark(oklch(0.37 0.025 277), oklch(0.84 0.012 277));
+  --color-neutral-800: light-dark(oklch(0.28 0.025 277), oklch(0.905 0.008 277));
+  --color-neutral-900: light-dark(oklch(0.21 0.024 277), oklch(0.965 0.005 277));
 
-  /* Primary (calm blue) */
-  --color-primary-50: oklch(0.97 0.014 255);
-  --color-primary-100: oklch(0.932 0.032 255);
-  --color-primary-200: oklch(0.882 0.059 255);
-  --color-primary-300: oklch(0.809 0.105 255);
-  --color-primary-400: oklch(0.707 0.165 255);
-  --color-primary-500: oklch(0.623 0.19 259);
-  --color-primary-600: oklch(0.52 0.2 262);
-  --color-primary-700: oklch(0.46 0.19 264);
-  --color-primary-800: oklch(0.4 0.16 265);
-  --color-primary-900: oklch(0.34 0.12 266);
+  /* Primary (brand indigo, sampled from the DocentAI logo between its sky blue and violet) */
+  --color-primary-50: light-dark(oklch(0.972 0.012 277), oklch(0.245 0.04 279));
+  --color-primary-100: light-dark(oklch(0.94 0.028 277), oklch(0.285 0.056 279));
+  --color-primary-200: light-dark(oklch(0.89 0.05 277), oklch(0.345 0.08 279));
+  --color-primary-300: light-dark(oklch(0.81 0.09 277), oklch(0.43 0.112 279));
+  --color-primary-400: light-dark(oklch(0.705 0.14 277), oklch(0.53 0.144 279));
+  --color-primary-500: light-dark(oklch(0.6 0.2 278), oklch(0.63 0.16 279));
+  --color-primary-600: light-dark(oklch(0.515 0.215 279), oklch(0.72 0.147 279));
+  --color-primary-700: light-dark(oklch(0.455 0.2 280), oklch(0.79 0.103 279));
+  --color-primary-800: light-dark(oklch(0.395 0.165 281), oklch(0.865 0.063 279));
+  --color-primary-900: light-dark(oklch(0.33 0.125 282), oklch(0.935 0.028 279));
 
   /* Success (green) */
-  --color-success-50: oklch(0.979 0.021 166);
-  --color-success-100: oklch(0.95 0.052 163);
-  --color-success-200: oklch(0.905 0.093 164);
-  --color-success-300: oklch(0.845 0.143 164);
-  --color-success-400: oklch(0.765 0.177 163);
-  --color-success-500: oklch(0.65 0.15 162);
-  --color-success-600: oklch(0.52 0.12 163);
-  --color-success-700: oklch(0.46 0.105 165);
-  --color-success-800: oklch(0.4 0.088 166);
-  --color-success-900: oklch(0.34 0.07 168);
+  --color-success-50: light-dark(oklch(0.979 0.021 166), oklch(0.245 0.033 164));
+  --color-success-100: light-dark(oklch(0.95 0.052 163), oklch(0.285 0.045 164));
+  --color-success-200: light-dark(oklch(0.905 0.093 164), oklch(0.345 0.065 164));
+  --color-success-300: light-dark(oklch(0.845 0.143 164), oklch(0.43 0.091 164));
+  --color-success-400: light-dark(oklch(0.765 0.177 163), oklch(0.53 0.112 164));
+  --color-success-500: light-dark(oklch(0.65 0.15 162), oklch(0.63 0.13 164));
+  --color-success-600: light-dark(oklch(0.52 0.12 163), oklch(0.72 0.123 164));
+  --color-success-700: light-dark(oklch(0.46 0.105 165), oklch(0.79 0.104 164));
+  --color-success-800: light-dark(oklch(0.4 0.088 166), oklch(0.865 0.072 164));
+  --color-success-900: light-dark(oklch(0.34 0.07 168), oklch(0.935 0.039 164));
 
   /* Warning (amber) */
-  --color-warning-50: oklch(0.987 0.022 95);
-  --color-warning-100: oklch(0.962 0.059 95);
-  --color-warning-200: oklch(0.924 0.12 95);
-  --color-warning-300: oklch(0.879 0.169 91);
-  --color-warning-400: oklch(0.828 0.189 84);
-  --color-warning-500: oklch(0.72 0.17 70);
-  --color-warning-600: oklch(0.53 0.14 55);
-  --color-warning-700: oklch(0.47 0.125 49);
-  --color-warning-800: oklch(0.41 0.105 46);
-  --color-warning-900: oklch(0.36 0.085 46);
+  --color-warning-50: light-dark(oklch(0.987 0.022 95), oklch(0.245 0.035 80));
+  --color-warning-100: light-dark(oklch(0.962 0.059 95), oklch(0.285 0.049 80));
+  --color-warning-200: light-dark(oklch(0.924 0.12 95), oklch(0.345 0.07 80));
+  --color-warning-300: light-dark(oklch(0.879 0.169 91), oklch(0.43 0.088 80));
+  --color-warning-400: light-dark(oklch(0.828 0.189 84), oklch(0.53 0.106 80));
+  --color-warning-500: light-dark(oklch(0.72 0.17 70), oklch(0.63 0.13 80));
+  --color-warning-600: light-dark(oklch(0.53 0.14 55), oklch(0.72 0.133 80));
+  --color-warning-700: light-dark(oklch(0.47 0.125 49), oklch(0.79 0.112 80));
+  --color-warning-800: light-dark(oklch(0.41 0.105 46), oklch(0.865 0.077 80));
+  --color-warning-900: light-dark(oklch(0.36 0.085 46), oklch(0.935 0.042 80));
 
   /* Danger (red) */
-  --color-danger-50: oklch(0.971 0.013 17);
-  --color-danger-100: oklch(0.936 0.032 17);
-  --color-danger-200: oklch(0.885 0.062 18);
-  --color-danger-300: oklch(0.808 0.114 19);
-  --color-danger-400: oklch(0.704 0.191 22);
-  --color-danger-500: oklch(0.62 0.22 25);
-  --color-danger-600: oklch(0.53 0.2 27);
-  --color-danger-700: oklch(0.47 0.18 27);
-  --color-danger-800: oklch(0.41 0.15 26);
-  --color-danger-900: oklch(0.36 0.12 25);
+  --color-danger-50: light-dark(oklch(0.971 0.013 17), oklch(0.245 0.043 24));
+  --color-danger-100: light-dark(oklch(0.936 0.032 17), oklch(0.285 0.059 24));
+  --color-danger-200: light-dark(oklch(0.885 0.062 18), oklch(0.345 0.085 24));
+  --color-danger-300: light-dark(oklch(0.808 0.114 19), oklch(0.43 0.119 24));
+  --color-danger-400: light-dark(oklch(0.704 0.191 22), oklch(0.53 0.153 24));
+  --color-danger-500: light-dark(oklch(0.62 0.22 25), oklch(0.63 0.17 24));
+  --color-danger-600: light-dark(oklch(0.53 0.2 27), oklch(0.72 0.162 24));
+  --color-danger-700: light-dark(oklch(0.47 0.18 27), oklch(0.79 0.121 24));
+  --color-danger-800: light-dark(oklch(0.41 0.15 26), oklch(0.865 0.068 24));
+  --color-danger-900: light-dark(oklch(0.36 0.12 25), oklch(0.935 0.031 24));
 
   /* Info (teal-cyan, distinct from primary) */
-  --color-info-50: oklch(0.984 0.019 200);
-  --color-info-100: oklch(0.956 0.045 203);
-  --color-info-200: oklch(0.917 0.08 205);
-  --color-info-300: oklch(0.865 0.127 207);
-  --color-info-400: oklch(0.789 0.154 211);
-  --color-info-500: oklch(0.67 0.13 215);
-  --color-info-600: oklch(0.52 0.1 221);
-  --color-info-700: oklch(0.46 0.09 223);
-  --color-info-800: oklch(0.4 0.075 224);
-  --color-info-900: oklch(0.34 0.06 227);
+  --color-info-50: light-dark(oklch(0.984 0.019 200), oklch(0.245 0.028 212));
+  --color-info-100: light-dark(oklch(0.956 0.045 203), oklch(0.285 0.038 212));
+  --color-info-200: light-dark(oklch(0.917 0.08 205), oklch(0.345 0.055 212));
+  --color-info-300: light-dark(oklch(0.865 0.127 207), oklch(0.43 0.072 212));
+  --color-info-400: light-dark(oklch(0.789 0.154 211), oklch(0.53 0.089 212));
+  --color-info-500: light-dark(oklch(0.67 0.13 215), oklch(0.63 0.11 212));
+  --color-info-600: light-dark(oklch(0.52 0.1 221), oklch(0.72 0.104 212));
+  --color-info-700: light-dark(oklch(0.46 0.09 223), oklch(0.79 0.088 212));
+  --color-info-800: light-dark(oklch(0.4 0.075 224), oklch(0.865 0.061 212));
+  --color-info-900: light-dark(oklch(0.34 0.06 227), oklch(0.935 0.033 212));
 
   /* Semantic aliases: components use these where a role exists (research R-03). */
   --color-fg: var(--color-neutral-900);
@@ -88,20 +93,24 @@
   --color-surface-raised: var(--color-neutral-0);
   --color-surface-sunken: var(--color-neutral-100);
   --color-border: var(--color-neutral-200);
-  --color-border-strong: var(--color-neutral-500);
+  --color-border-strong: var(--color-neutral-450); /* 3:1 on raised and canvas surfaces (WCAG 1.4.11) */
   --color-focus: var(--color-primary-600);
+  /* Dialog backdrop: dark in both schemes. */
+  --color-scrim: oklch(0.16 0.02 277);
 
   /* Spacing: Tailwind v4 single base unit (4 px) */
   --spacing: 0.25rem;
 
   /* Radius */
-  --radius-sm: 0.25rem;
-  --radius-md: 0.375rem;
-  --radius-lg: 0.5rem;
-  --radius-xl: 0.75rem;
+  /* Radius: controls 10 px (lg), cards 14 px (xl), large panels 18 px (2xl), pills full. */
+  --radius-sm: 0.3125rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.625rem;
+  --radius-xl: 0.875rem;
+  --radius-2xl: 1.125rem;
 
-  /* Typography (system fonts only, no web-font request: research R-04) */
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  /* Typography: self-hosted Figtree (assets/fonts/fonts.css), system fonts as fallback (research R-04) */
+  --font-sans: "Figtree", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   --text-xs: 0.75rem;
@@ -112,23 +121,132 @@
   --text-base--line-height: 1.5rem;
   --text-lg: 1.125rem;
   --text-lg--line-height: 1.75rem;
+  --text-lg--letter-spacing: -0.005em;
   --text-xl: 1.25rem;
   --text-xl--line-height: 1.75rem;
+  --text-xl--letter-spacing: -0.01em;
   --text-2xl: 1.5rem;
-  --text-2xl--line-height: 2rem;
-  --text-3xl: 1.875rem;
-  --text-3xl--line-height: 2.25rem;
+  --text-2xl--line-height: 1.9rem;
+  --text-2xl--letter-spacing: -0.018em;
+  --text-3xl: 2rem;
+  --text-3xl--line-height: 2.4rem;
+  --text-3xl--letter-spacing: -0.024em;
 
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 2px 0 oklch(0.208 0.02 250 / 0.08);
-  --shadow-md: 0 4px 8px -2px oklch(0.208 0.02 250 / 0.12), 0 2px 4px -2px oklch(0.208 0.02 250 / 0.08);
-  --shadow-lg: 0 12px 24px -6px oklch(0.208 0.02 250 / 0.18), 0 4px 8px -4px oklch(0.208 0.02 250 / 0.1);
+  /* Shadows: tinted with the neutral ink, soft offset blur; borders carry resting elevation. */
+  --shadow-sm: 0 1px 2px 0 light-dark(oklch(0.21 0.024 277 / 0.05), oklch(0.08 0.01 277 / 0.3));
+  --shadow-md: 0 6px 16px -6px light-dark(oklch(0.21 0.024 277 / 0.14), oklch(0.08 0.01 277 / 0.5)),
+    0 2px 4px -2px light-dark(oklch(0.21 0.024 277 / 0.06), oklch(0.08 0.01 277 / 0.3));
+  --shadow-lg: 0 18px 40px -12px light-dark(oklch(0.21 0.024 277 / 0.22), oklch(0.08 0.01 277 / 0.6)),
+    0 4px 10px -4px light-dark(oklch(0.21 0.024 277 / 0.08), oklch(0.08 0.01 277 / 0.35));
 
   /* Motion */
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Color scheme: follow the system unless the user picked one (assets/js/theme.js). */
+:root {
+  color-scheme: light dark;
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+/* dark: variant, for the few things tokens cannot flip (black-ink logos). Same rule as above. */
+@custom-variant dark {
+  &:where([data-theme="dark"], [data-theme="dark"] *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(:root:not([data-theme="light"]), :root:not([data-theme="light"]) *) {
+      @slot;
+    }
+  }
+}
+
+/*
+ * Base layer: browser surfaces that pages never style themselves (selection, caret, scrollbars,
+ * placeholders), text wrapping, and the shared interaction feedback. Utilities still win.
+ */
+@layer base {
+  html {
+    accent-color: var(--color-primary-600);
+    caret-color: var(--color-primary-600);
+    scrollbar-color: var(--color-neutral-300) transparent;
+    -webkit-text-size-adjust: 100%;
+    font-optical-sizing: auto;
+  }
+
+  ::selection {
+    background-color: var(--color-primary-200);
+    color: var(--color-primary-900);
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p,
+  li,
+  dd {
+    text-wrap: pretty;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-neutral-500);
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    a,
+    button,
+    summary,
+    input,
+    select,
+    textarea,
+    label {
+      transition-property: color, background-color, border-color, box-shadow, transform;
+      transition-duration: 150ms;
+      transition-timing-function: var(--ease-out);
+    }
+
+    /* Feedback on press, not on release. */
+    button:not(:disabled):active,
+    summary:active,
+    [data-component="Button"]:active {
+      transform: scale(0.98);
+      transition-duration: 80ms;
+    }
+
+    /* Menus and disclosures grow out of their trigger instead of popping in. */
+    details[open] > :not(summary) {
+      animation: dai-reveal 180ms var(--ease-out);
+    }
+  }
+
+  @keyframes dai-reveal {
+    from {
+      opacity: 0;
+      translate: 0 -4px;
+    }
+  }
+}
+
+/* Translucent app header falls back to a solid surface when transparency is reduced. */
+@media (prefers-reduced-transparency: reduce) {
+  [data-component="AppShell"] {
+    background-color: var(--color-surface-raised);
+    backdrop-filter: none;
+  }
 }
