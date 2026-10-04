@@ -592,5 +592,89 @@
     "simulate": [
       "error"
     ]
+  },
+  {
+    "path": "teacher/conversations.html",
+    "screen": [
+      23
+    ],
+    "role": "teacher",
+    "titleKey": "teacher.conversations.pageTitle",
+    "stories": [
+      "US-08"
+    ],
+    "requirements": [
+      "T4",
+      "FR-023"
+    ],
+    "priority": "P2",
+    "mobile": true,
+    "states": [
+      "default",
+      "empty",
+      "loading",
+      "error",
+      "filtered",
+      "no-results"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "teacher/conversation.html",
+    "screen": [
+      24
+    ],
+    "role": "teacher",
+    "titleKey": "teacher.conversations.detailPageTitle",
+    "stories": [
+      "US-08"
+    ],
+    "requirements": [
+      "T4",
+      "T6",
+      "S1",
+      "S2",
+      "FR-023"
+    ],
+    "priority": "P2",
+    "mobile": false,
+    "states": [
+      "default",
+      "loading",
+      "error",
+      "flag-dialog",
+      "flagged"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "teacher/flags.html",
+    "screen": [
+      25
+    ],
+    "role": "teacher",
+    "titleKey": "teacher.flags.pageTitle",
+    "stories": [
+      "US-08"
+    ],
+    "requirements": [
+      "T6",
+      "FR-023"
+    ],
+    "priority": "P2",
+    "mobile": false,
+    "states": [
+      "default",
+      "empty",
+      "loading",
+      "error"
+    ],
+    "simulate": [
+      "error"
+    ]
   }
 ]

@@ -49,6 +49,9 @@ One row per page reviewed in both languages at 1440 px (and 390 px where the man
 | admin/users.html (4 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | Table at 1440 px; stacked list at 390 px. |
 | admin/teacher-new.html (4 states) | 2026-10-04 | 1440 | Pass (ES, EN) | None. |
 | admin/courses.html (4 states) | 2026-10-04 | 1440 | Pass (ES, EN) | None. |
+| teacher/conversations.html (6 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
+| teacher/conversation.html (5 states) | 2026-10-04 | 1440 | Pass (ES, EN) | The flag badge stretched to full width; now sized to its content. |
+| teacher/flags.html (4 states) | 2026-10-04 | 1440 | Pass (ES, EN) | None. |
 
 ## Keyboard pass log
 
@@ -74,6 +77,9 @@ return it to the opener.
 | student/profile.html | 2026-10-04 | Pass | Review consent → withdraw. Dialog: focus starts on Cancelar. |
 | admin/teacher-new.html | 2026-10-04 | Pass | Name → email → cancel → send. Errors: summary alert plus per-field errors in the field descriptions. |
 | auth/password-recovery.html, auth/access-denied.html, about.html, admin/users.html, admin/courses.html | 2026-10-04 | Pass | Linear order; tables use row headers and a caption. |
+| teacher/conversations.html | 2026-10-04 | Pass | Flags link → three labelled filters → apply → one "open" link per conversation, described by the student name. |
+| teacher/conversation.html | 2026-10-04 | Pass | Flag buttons after each tutor answer. Flag dialog: radio group (arrows) → comment → cancel → save; focus stays inside. |
+| teacher/flags.html | 2026-10-04 | Pass | One "view the message" link per flag, named with the student. |
 
 ## Session plan
 
@@ -101,6 +107,8 @@ To be filled before the first session (quickstart.md B1).
 | 2026-10-04 | Role separation (Constitution II, FR-041) checked on all 31 pages: student pages show only the signed-in student; teacher pages only the teacher’s own courses and students; only admin pages list all users and courses. | T085 | none |
 | 2026-10-04 | Demo sign-in links read "Entrar como profesor/a" (gender-neutral, as in the spec) rather than "profesora" (task T076). The access-denied home link takes the role home from `?home=` (default: student courses). | Implementation of T076, T078 | contract §3 |
 | 2026-10-04 | Browser tests serve the pinned Tailwind browser build from node_modules instead of jsDelivr: hundreds of CDN loads per run caused intermittent unstyled pages and flaky accessibility results. The prototype itself still uses the CDN. | Phase 9 test runs | plan.md dependency note |
+| 2026-10-04 | In the teacher conversation view, citations are shown as non-interactive chips and the no-source reply has no student actions; the teacher reviews but does not act as the student. | Implementation of T087 | none |
+| 2026-10-04 | Playwright runs with 4 workers locally and 2 on CI, a 60 s test timeout and a 10 s assertion timeout: with ~500 page loads, uncapped parallelism made the timed state changes and WebKit axe runs flaky. | Phase 10 test runs | none |
 
 ## Success criteria results
 

@@ -461,17 +461,17 @@ Read these once. Every page task assumes them.
 
 **Independent Test**: Filter conversations, open one, flag a tutor answer (flow F11)
 
-- [ ] T086 [P] [US8] Write tests/prototype/e2e/flow-f11.spec.js with one `test()` per acceptance scenario, titled with its ID, in a serial `test.describe`:
+- [X] T086 [P] [US8] Write tests/prototype/e2e/flow-f11.spec.js with one `test()` per acceptance scenario, titled with its ID, in a serial `test.describe`:
   - `US-08 AS1` the list can be filtered by student, date and topic, and shows message counts and a no-source marker;
   - `US-08 AS2` flag as "Incorrecta" or "Mejorable" with a comment, shown on the message;
   - `US-08 AS3` the flags list links back to the message;
   - `US-08 AS4` the empty state;
   - `US-08 AS5` `student/chat.html` shows the teacher-review label.
-- [ ] T087 [US8] Add `FlagControl` (none, incorrect, needs improvement) to public/prototype/design-system.html, then build three pages, each with its manifest entry:
+- [X] T087 [US8] Add `FlagControl` (none, incorrect, needs improvement) to public/prototype/design-system.html, then build three pages, each with its manifest entry:
   - public/prototype/teacher/conversations.html (#23): states `default`, `empty`, `loading`, `error`, `filtered` and `no-results`;
   - public/prototype/teacher/conversation.html (#24): states `default` (cited answer + no-source message), `loading`, `error`, `flag-dialog` and `flagged`;
   - public/prototype/teacher/flags.html (#25): states `default`, `empty`, `loading` and `error`.
-- [ ] T088 [US8] Add the `teacher.conversations.*` and `teacher.flags.*` keys (ES/EN), wire flow F11, run `npm run test:e2e -- flow-f11 a11y-sweep`, and log the ES/EN review in specs/001-mvp-prototype/validation.md
+- [X] T088 [US8] Add the `teacher.conversations.*` and `teacher.flags.*` keys (ES/EN), wire flow F11, run `npm run test:e2e -- flow-f11 a11y-sweep`, and log the ES/EN review in specs/001-mvp-prototype/validation.md
 
 ---
 

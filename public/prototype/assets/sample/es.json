@@ -55,6 +55,11 @@
       "good": "Has quitado bien los paréntesis en el paso 1.",
       "loc": "§ 3.2"
     },
+    "flags": {
+      "answerExcerpt": "Para despejar x tienes que dejarla sola…",
+      "comment1": "Falta comprobar el resultado sustituyendo en la ecuación.",
+      "comment2": "Usa «miembros» sin explicarlo; mejor «lados»."
+    },
     "fragments": {
       "f11": "Una ecuación de primer grado es una igualdad con una incógnita cuyo exponente es 1. Por ejemplo, 3x + 5 = 20.",
       "f11loc": "p. 11",

@@ -55,6 +55,11 @@
       "good": "You removed the brackets correctly in step 1.",
       "loc": "§ 3.2"
     },
+    "flags": {
+      "answerExcerpt": "To solve for x, you need to get it on its own…",
+      "comment1": "It doesn't check the result by substitution.",
+      "comment2": "Uses \"members\" without explaining it; \"sides\" is clearer."
+    },
     "fragments": {
       "f11": "A linear equation is an equality with one unknown whose exponent is 1. For example, 3x + 5 = 20.",
       "f11loc": "p. 11",
