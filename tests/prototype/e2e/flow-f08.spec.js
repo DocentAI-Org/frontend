@@ -1,6 +1,5 @@
 // F8 · Student guided (Socratic) mode (US5). Tasks T065.
-import { expect, test } from "@playwright/test";
-import { gotoState, scenario } from "./helpers.js";
+import { expect, gotoState, scenario, test } from "./helpers.js";
 
 test.describe.configure({ mode: "serial" });
 

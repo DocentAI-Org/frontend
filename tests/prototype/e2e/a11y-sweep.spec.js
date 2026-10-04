@@ -1,7 +1,6 @@
 // Axe sweep: every manifest page × state, WCAG 2.2 A/AA, at 1440 px and (when mobile) 390 px (T037).
 import AxeBuilder from "@axe-core/playwright";
-import { expect, test } from "@playwright/test";
-import { expectNoMissingKeys, gotoState, readManifest, waitForReady } from "./helpers.js";
+import { expect, expectNoMissingKeys, gotoState, readManifest, test, waitForReady } from "./helpers.js";
 
 const TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
 

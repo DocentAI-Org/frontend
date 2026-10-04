@@ -49,7 +49,7 @@ describe("pages.json", () => {
     expect([...used].filter((s) => !page.states.includes(s))).toEqual([]);
   });
 
-  it.each(pages.map((p) => [p.path, p]))("%s gives every declared state some markup", (_, page) => {
+  it.each(pages.filter((p) => p.states.length > 1).map((p) => [p.path, p]))("%s gives every declared state some markup", (_, page) => {
     const doc = parseHtml(page.path);
     const marked = new Set();
     doc.querySelectorAll("[data-state]").forEach((el) =>

@@ -41,6 +41,14 @@ One row per page reviewed in both languages at 1440 px (and 390 px where the man
 | student/chat-guided.html (11 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | The indicator icon wrapped onto its own line at 390 px; icon and text now stay together. |
 | student/exercise.html (6 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | In unreadable-photo the native file field says no file is selected (a static page cannot pre-fill it); the attached file name is shown under the field. Accepted for the prototype. |
 | student/exercise-feedback.html (5 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
+| auth/sign-in.html (4 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
+| auth/password-recovery.html (4 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
+| auth/access-denied.html (3 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
+| about.html | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
+| student/profile.html (5 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
+| admin/users.html (4 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | Table at 1440 px; stacked list at 390 px. |
+| admin/teacher-new.html (4 states) | 2026-10-04 | 1440 | Pass (ES, EN) | None. |
+| admin/courses.html (4 states) | 2026-10-04 | 1440 | Pass (ES, EN) | None. |
 
 ## Keyboard pass log
 
@@ -62,6 +70,10 @@ return it to the opener.
 | student/chat-guided.html | 2026-10-04 | Pass | Citation chip → "Otra pista" → "Intentarlo yo" (moves focus to the composer) → composer → send. The citation sheet returns to the hint state it was opened from, with focus back on the chip. |
 | student/exercise.html | 2026-10-04 | Pass | Statement → steps → photo → review. Errors are announced (role alert) and fields are aria-invalid. Review: Edit → Send. |
 | student/exercise-feedback.html | 2026-10-04 | Pass | Citation chip (opens the sheet, focus returns on close) → ask the tutor → fix and resend. |
+| auth/sign-in.html | 2026-10-04 | Pass | Language → email → password → forgot → sign in → three demo links → privacy. |
+| student/profile.html | 2026-10-04 | Pass | Review consent → withdraw. Dialog: focus starts on Cancelar. |
+| admin/teacher-new.html | 2026-10-04 | Pass | Name → email → cancel → send. Errors: summary alert plus per-field errors in the field descriptions. |
+| auth/password-recovery.html, auth/access-denied.html, about.html, admin/users.html, admin/courses.html | 2026-10-04 | Pass | Linear order; tables use row headers and a caption. |
 
 ## Session plan
 
@@ -86,6 +98,9 @@ To be filled before the first session (quickstart.md B1).
 | 2026-10-04 | Creating a course leads to the course page in `no-students` state (a new course has no students yet). Join codes for the prototype: ALG-7K3P valid, ALG-4X2B expired, ALG-8M1D disabled, anything else invalid. | Implementation of T059, T062 | none |
 | 2026-10-04 | Added a `citation` state to student/chat-guided.html so hint citations open the citation sheet (US-05 AS4, S1). The sheet uses `data-close-state="@back"` to return to the hint the student was on. | Implementation of T067 | contract §3, §4 |
 | 2026-10-04 | Added a `citation` state to student/exercise-feedback.html so its citation opens the passage (FR-012). Added `data-mirror` so the review step shows what the student typed. | Implementation of T070, T071 | contract §3, §4 |
+| 2026-10-04 | Role separation (Constitution II, FR-041) checked on all 31 pages: student pages show only the signed-in student; teacher pages only the teacher’s own courses and students; only admin pages list all users and courses. | T085 | none |
+| 2026-10-04 | Demo sign-in links read "Entrar como profesor/a" (gender-neutral, as in the spec) rather than "profesora" (task T076). The access-denied home link takes the role home from `?home=` (default: student courses). | Implementation of T076, T078 | contract §3 |
+| 2026-10-04 | Browser tests serve the pinned Tailwind browser build from node_modules instead of jsDelivr: hundreds of CDN loads per run caused intermittent unstyled pages and flaky accessibility results. The prototype itself still uses the CDN. | Phase 9 test runs | plan.md dependency note |
 
 ## Success criteria results
 

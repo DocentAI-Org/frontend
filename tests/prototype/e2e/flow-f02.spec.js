@@ -1,6 +1,5 @@
 // F2 · Student asks the tutor and sees cited sources (US1 part, from consent). Tasks T038.
-import { expect, test } from "@playwright/test";
-import { expectNoMissingKeys, gotoState, scenario, waitForReady } from "./helpers.js";
+import { expect, expectNoMissingKeys, gotoState, scenario, test, waitForReady } from "./helpers.js";
 
 test.describe.configure({ mode: "serial" });
 

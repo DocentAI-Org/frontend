@@ -75,6 +75,7 @@ Rules:
 | `data-route` (+ `data-route-field`, `data-routes`, `data-route-default`, `data-route-empty`, `data-route-empty-target`) | `<form>` | On submit, picks the next state or page: if all `data-route-empty` fields are empty → the empty target; otherwise the `data-route-field` value is looked up (trimmed, case-insensitive) in the `data-routes` JSON, else the default. A target is a state ID, `?state=…`, `@next` (the `?next` parameter) or a page URL (keeps `lang` and `panel`). |
 | `data-invalid-in="<stateId> …"` | form control | `aria-invalid="true"` only in the listed states. |
 | `data-mirror="<selector>"` | element | On each state change, shows the value typed in the matching field (keeps its own text when the field is empty). Used by review steps. |
+| `data-href-param="<name>"` | link | Uses the relative URL in the `?<name>=` parameter as its target when present (e.g. access denied → the visitor's home). |
 | `data-set-lang="es\|en"` | button (`LanguageSwitcher`, state panel) | Switches the language without reloading; `aria-pressed` marks the current one. |
 | `data-nav` | navigation container | Links inside it that point to the current page get `aria-current="page"`. |
 | `data-component="<Name>"` | component root | The future React component's name (plan.md › Components). `data-variant` is optional. |

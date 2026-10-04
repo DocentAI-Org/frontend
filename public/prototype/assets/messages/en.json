@@ -1,11 +1,77 @@
 {
+  "about": {
+    "back": "Back to sign in",
+    "contact": "For any question about your data, write to {email}.",
+    "fundingTitle": "Funding",
+    "lead": "DocentAI is an artificial intelligence tutor that answers only from the material each teacher approves, so teachers stay in control of what is taught.",
+    "pageTitle": "About DocentAI",
+    "privacy1": "We only store what the tutor and the study need: your messages, exercises and quiz answers.",
+    "privacy2": "Your teacher may review your conversations. The research team only works with data without your name.",
+    "privacy3": "You can withdraw your consent at any time from your profile.",
+    "privacyTitle": "Privacy",
+    "title": "About DocentAI"
+  },
   "admin": {
+    "courses": {
+      "colCourse": "Course",
+      "colCreated": "Created",
+      "colStudents": "Students",
+      "colTeacher": "Teacher",
+      "emptyBody": "Courses will appear here when teachers create them.",
+      "emptyTitle": "No courses yet",
+      "lead": "All courses on the platform. Only their teacher can see their content.",
+      "loadError": "Couldn't load the courses",
+      "pageTitle": "Courses",
+      "tableCaption": "Platform courses",
+      "title": "Courses"
+    },
     "shell": {
       "nav": {
         "courses": "Courses",
         "users": "Users"
       },
       "role": "Administration"
+    },
+    "teacherNew": {
+      "back": "Back to users",
+      "createAnother": "Create another account",
+      "createdBody": "We've sent an invitation to {email}. The account will show as pending until it's accepted.",
+      "createdTitle": "Account created",
+      "email": "Email",
+      "emailError": "Enter a valid email, for example name@example.org.",
+      "emailHelp": "Use the teacher's institutional email.",
+      "errorSummary": "Check the highlighted fields to send the invitation.",
+      "lead": "We'll send an invitation so they can create their password.",
+      "name": "Full name",
+      "nameError": "Enter the full name.",
+      "pageTitle": "Create a teacher account",
+      "sending": "Sending invitation…",
+      "submit": "Send invitation",
+      "title": "Create a teacher account"
+    },
+    "users": {
+      "colEmail": "Email",
+      "colName": "Name",
+      "colRole": "Role",
+      "colStatus": "Status",
+      "create": "Create a teacher account",
+      "emptyBody": "Create the first teacher account. Students will join later with their course code.",
+      "emptyTitle": "There are no other users yet",
+      "lead": "Platform accounts. Only teacher accounts are created here; students join with their course code.",
+      "loadError": "Couldn't load the users",
+      "pageTitle": "Users",
+      "role": {
+        "admin": "Administration",
+        "student": "Student",
+        "teacher": "Teacher"
+      },
+      "status": {
+        "active": "Active",
+        "disabled": "Disabled",
+        "pending": "Invitation pending"
+      },
+      "tableCaption": "Platform users",
+      "title": "Users"
     }
   },
   "common": {
@@ -36,13 +102,48 @@
       "send": "Send",
       "signOut": "Sign out"
     },
+    "auth": {
+      "asAdmin": "Sign in as admin",
+      "asStudent": "Sign in as a student",
+      "asTeacher": "Sign in as a teacher",
+      "backToSignIn": "Back to sign in",
+      "demoNote": "Prototype only: go straight in with each role.",
+      "demoTitle": "Demo access",
+      "email": "Email",
+      "emailError": "Enter your email.",
+      "emailPlaceholder": "name@example.org",
+      "expired": "Your session has expired. Sign in again to continue where you were.",
+      "forgot": "Forgot your password?",
+      "invalid": "Incorrect email or password. Check them and try again.",
+      "password": "Password",
+      "recoveryError": "The link couldn't be sent. Check your connection and try again.",
+      "recoveryLead": "Enter your email and we'll send you a link to create a new password.",
+      "recoveryPageTitle": "Recover your password",
+      "recoveryTitle": "Recover your password",
+      "sendLink": "Send link",
+      "sending": "Sending…",
+      "sent": "If an account exists for that email, we've sent you a link. Check your spam folder too.",
+      "signIn": "Sign in",
+      "signInLead": "Your course tutor, guided by your teacher.",
+      "signInPageTitle": "Sign in",
+      "signInTitle": "Sign in to DocentAI",
+      "signingIn": "Signing in…"
+    },
     "brand": {
       "markAlt": "DocentAI",
       "name": "DocentAI"
     },
     "errors": {
+      "courseRemovedBody": "Your teacher removed it or you're no longer enrolled. Your other courses are still on your home page.",
+      "courseRemovedTitle": "This course is no longer available",
+      "deniedBody": "This page belongs to another role or to a course you're not in. If you think this is a mistake, talk to your teacher or the administration.",
+      "deniedPageTitle": "Access denied",
+      "deniedTitle": "You don't have access to this page",
       "generic": "Something went wrong. Please try again in a moment.",
+      "goHome": "Go to my home",
       "network": "You're offline. Check your internet connection and try again.",
+      "notFoundBody": "The link may be mistyped or the page may no longer exist.",
+      "notFoundTitle": "We can't find this page",
       "sessionExpired": "Your session has expired. Sign in again to continue."
     },
     "imfahe": {
@@ -495,6 +596,25 @@
       "searching": "Looking for the course…",
       "teacher": "Teacher",
       "title": "Join a course"
+    },
+    "profile": {
+      "accountTitle": "Account",
+      "consentAccepted": "Accepted on {date}",
+      "consentBody": "With your consent you can use the tutor and submit exercises. You can withdraw it at any time.",
+      "consentRevoked": "Withdrawn on {date}",
+      "consentTitle": "Consent",
+      "email": "Email",
+      "giveAgain": "Give my consent again",
+      "language": "Language",
+      "loadError": "Couldn't load your profile",
+      "name": "Name",
+      "pageTitle": "Profile",
+      "review": "Review what you agreed to",
+      "revoke": "Withdraw consent",
+      "revokeBody": "You'll no longer be able to use the tutor or submit exercises in any course. You can give it again whenever you like.",
+      "revokeTitle": "Withdraw your consent?",
+      "revokedNotice": "You've withdrawn your consent. You can't use the tutor until you give it again.",
+      "title": "Your profile"
     },
     "shell": {
       "aiLabel": "AI tutor",

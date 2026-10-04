@@ -9,7 +9,7 @@ import { applyState, bindNavigation, decorateLinks, isPanelHidden, renderPanel, 
 const TAILWIND_URL = "https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3";
 const ASSETS_URL = new URL("../", import.meta.url);
 const PROTOTYPE_ROOT = new URL("../../", import.meta.url);
-const REVEAL_FALLBACK_MS = 4000;
+const REVEAL_FALLBACK_MS = 10000;
 
 function reveal() {
   document.body.removeAttribute("data-cloak");

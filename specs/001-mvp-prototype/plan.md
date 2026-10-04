@@ -85,7 +85,9 @@ Constitution version: **2.1.0**.
 **Dependency justification (IX)**: `vitest`, `@testing-library/dom` and `jsdom` (unit tests,
 Constitution V), `@playwright/test` and `@axe-core/playwright` (E2E and axe, Constitutions III and
 V). All five are needed by the React app later, so adding them now costs nothing extra. Nothing is
-added to `dependencies`.
+added to `dependencies`. `@tailwindcss/browser` (dev only, pinned to the same 4.3.3 the prototype
+loads) is served to the browser tests in place of the jsDelivr URL: hundreds of page loads per run
+made the CDN a source of flaky failures. The prototype itself still loads the CDN build.
 
 **Gate result (pre-research)**: PASS.
 

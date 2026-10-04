@@ -1,6 +1,5 @@
 // F1 · Teacher uploads and validates material (US2). Tasks T047; starts from My courses after T099.
-import { expect, test } from "@playwright/test";
-import { gotoState, scenario } from "./helpers.js";
+import { expect, gotoState, scenario, test } from "./helpers.js";
 
 test.describe.configure({ mode: "serial" });
 

@@ -225,6 +225,10 @@ function isRelative(href) {
 
 export function decorateLinks(root = document.body, search = window.location.search) {
   const params = new URLSearchParams(search);
+  root.querySelectorAll("a[data-href-param]").forEach((a) => {
+    const value = params.get(a.getAttribute("data-href-param"));
+    if (value && isRelative(value)) a.setAttribute("href", value);
+  });
   const keep = ["lang", "panel"].filter((k) => params.has(k));
   if (!keep.length) return;
   root.querySelectorAll("a[href]").forEach((a) => {

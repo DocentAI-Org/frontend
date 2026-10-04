@@ -1,6 +1,5 @@
 // F4 · Daily message limit (chat part). Tasks T040.
-import { expect, test } from "@playwright/test";
-import { gotoState, scenario } from "./helpers.js";
+import { expect, gotoState, scenario, test } from "./helpers.js";
 
 test.describe.configure({ mode: "serial" });
 

@@ -1,6 +1,5 @@
 // F7 · Teacher configures the tutor (US3). Tasks T053. Tutor settings is a desktop page.
-import { expect, test } from "@playwright/test";
-import { gotoState, scenario } from "./helpers.js";
+import { expect, gotoState, scenario, test } from "./helpers.js";
 
 test.describe.configure({ mode: "serial" });
 

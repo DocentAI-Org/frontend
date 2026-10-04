@@ -1,6 +1,5 @@
 // F6 · Teacher creates a course, student joins (US4). Tasks T056.
-import { expect, test } from "@playwright/test";
-import { gotoState, scenario, waitForReady } from "./helpers.js";
+import { expect, gotoState, scenario, test, waitForReady } from "./helpers.js";
 
 test.describe.configure({ mode: "serial" });
 

@@ -1,11 +1,77 @@
 {
+  "about": {
+    "back": "Volver al inicio de sesión",
+    "contact": "Para cualquier duda sobre tus datos, escribe a {email}.",
+    "fundingTitle": "Financiación",
+    "lead": "DocentAI es un tutor de inteligencia artificial que responde solo con el material que valida cada profesor/a, para que el profesorado mantenga el control de lo que se enseña.",
+    "pageTitle": "Acerca de DocentAI",
+    "privacy1": "Solo guardamos lo necesario para que el tutor funcione y para el estudio: tus mensajes, ejercicios y respuestas a cuestionarios.",
+    "privacy2": "Tu profesor/a puede revisar tus conversaciones. El equipo de investigación solo trabaja con datos sin tu nombre.",
+    "privacy3": "Puedes retirar tu consentimiento cuando quieras desde tu perfil.",
+    "privacyTitle": "Privacidad",
+    "title": "Acerca de DocentAI"
+  },
   "admin": {
+    "courses": {
+      "colCourse": "Curso",
+      "colCreated": "Creado",
+      "colStudents": "Estudiantes",
+      "colTeacher": "Profesor/a",
+      "emptyBody": "Los cursos aparecerán aquí cuando el profesorado los cree.",
+      "emptyTitle": "Todavía no hay cursos",
+      "lead": "Todos los cursos de la plataforma. Solo su profesor/a puede ver su contenido.",
+      "loadError": "No se han podido cargar los cursos",
+      "pageTitle": "Cursos",
+      "tableCaption": "Cursos de la plataforma",
+      "title": "Cursos"
+    },
     "shell": {
       "nav": {
         "courses": "Cursos",
         "users": "Usuarios"
       },
       "role": "Administración"
+    },
+    "teacherNew": {
+      "back": "Volver a usuarios",
+      "createAnother": "Crear otra cuenta",
+      "createdBody": "Hemos enviado una invitación a {email}. La cuenta aparecerá como pendiente hasta que la acepte.",
+      "createdTitle": "Cuenta creada",
+      "email": "Correo electrónico",
+      "emailError": "Escribe un correo válido, por ejemplo nombre@example.org.",
+      "emailHelp": "Usa el correo institucional del profesor/a.",
+      "errorSummary": "Revisa los campos marcados para enviar la invitación.",
+      "lead": "Enviaremos una invitación para que cree su contraseña.",
+      "name": "Nombre completo",
+      "nameError": "Escribe el nombre completo.",
+      "pageTitle": "Crear cuenta de profesor/a",
+      "sending": "Enviando invitación…",
+      "submit": "Enviar invitación",
+      "title": "Crear cuenta de profesor/a"
+    },
+    "users": {
+      "colEmail": "Correo",
+      "colName": "Nombre",
+      "colRole": "Rol",
+      "colStatus": "Estado",
+      "create": "Crear cuenta de profesor/a",
+      "emptyBody": "Crea la primera cuenta de profesor/a. Los estudiantes se unirán después con el código de su curso.",
+      "emptyTitle": "Todavía no hay más usuarios",
+      "lead": "Cuentas de la plataforma. Desde aquí solo se crean cuentas de profesorado; los estudiantes se unen con el código de su curso.",
+      "loadError": "No se han podido cargar los usuarios",
+      "pageTitle": "Usuarios",
+      "role": {
+        "admin": "Administración",
+        "student": "Estudiante",
+        "teacher": "Profesor/a"
+      },
+      "status": {
+        "active": "Activa",
+        "disabled": "Desactivada",
+        "pending": "Invitación pendiente"
+      },
+      "tableCaption": "Usuarios de la plataforma",
+      "title": "Usuarios"
     }
   },
   "common": {
@@ -36,13 +102,48 @@
       "send": "Enviar",
       "signOut": "Cerrar sesión"
     },
+    "auth": {
+      "asAdmin": "Entrar como admin",
+      "asStudent": "Entrar como estudiante",
+      "asTeacher": "Entrar como profesor/a",
+      "backToSignIn": "Volver a iniciar sesión",
+      "demoNote": "Solo en el prototipo: entra directamente con cada rol.",
+      "demoTitle": "Accesos de demostración",
+      "email": "Correo electrónico",
+      "emailError": "Escribe tu correo electrónico.",
+      "emailPlaceholder": "nombre@example.org",
+      "expired": "Tu sesión ha caducado. Vuelve a iniciar sesión para continuar donde estabas.",
+      "forgot": "¿Has olvidado tu contraseña?",
+      "invalid": "Correo o contraseña incorrectos. Revísalos e inténtalo de nuevo.",
+      "password": "Contraseña",
+      "recoveryError": "No se ha podido enviar el enlace. Comprueba tu conexión y vuelve a intentarlo.",
+      "recoveryLead": "Escribe tu correo y te enviaremos un enlace para crear una contraseña nueva.",
+      "recoveryPageTitle": "Recuperar la contraseña",
+      "recoveryTitle": "Recuperar la contraseña",
+      "sendLink": "Enviar enlace",
+      "sending": "Enviando…",
+      "sent": "Si existe una cuenta con ese correo, te hemos enviado un enlace. Revisa también la carpeta de correo no deseado.",
+      "signIn": "Entrar",
+      "signInLead": "El tutor de tu curso, guiado por tu profesor/a.",
+      "signInPageTitle": "Iniciar sesión",
+      "signInTitle": "Inicia sesión en DocentAI",
+      "signingIn": "Entrando…"
+    },
     "brand": {
       "markAlt": "DocentAI",
       "name": "DocentAI"
     },
     "errors": {
+      "courseRemovedBody": "Tu profesor/a lo ha eliminado o ya no estás inscrito/a. Tus otros cursos siguen en tu inicio.",
+      "courseRemovedTitle": "Este curso ya no está disponible",
+      "deniedBody": "Esta página pertenece a otro rol o a un curso en el que no estás. Si crees que es un error, habla con tu profesor/a o con la administración.",
+      "deniedPageTitle": "Acceso denegado",
+      "deniedTitle": "No tienes acceso a esta página",
       "generic": "Algo ha fallado. Vuelve a intentarlo dentro de un momento.",
+      "goHome": "Ir a mi inicio",
       "network": "No hay conexión. Comprueba tu conexión a internet y vuelve a intentarlo.",
+      "notFoundBody": "Puede que el enlace esté mal escrito o que la página ya no exista.",
+      "notFoundTitle": "No encontramos esta página",
       "sessionExpired": "Tu sesión ha caducado. Vuelve a iniciar sesión para continuar."
     },
     "imfahe": {
@@ -495,6 +596,25 @@
       "searching": "Buscando el curso…",
       "teacher": "Profesor/a",
       "title": "Unirse a un curso"
+    },
+    "profile": {
+      "accountTitle": "Cuenta",
+      "consentAccepted": "Aceptado el {date}",
+      "consentBody": "Con tu consentimiento puedes usar el tutor y enviar ejercicios. Puedes retirarlo cuando quieras.",
+      "consentRevoked": "Retirado el {date}",
+      "consentTitle": "Consentimiento",
+      "email": "Correo",
+      "giveAgain": "Volver a dar mi consentimiento",
+      "language": "Idioma",
+      "loadError": "No se ha podido cargar tu perfil",
+      "name": "Nombre",
+      "pageTitle": "Perfil",
+      "review": "Ver qué aceptaste",
+      "revoke": "Retirar consentimiento",
+      "revokeBody": "Dejarás de poder usar el tutor y enviar ejercicios en todos tus cursos. Puedes volver a darlo cuando quieras.",
+      "revokeTitle": "¿Retirar tu consentimiento?",
+      "revokedNotice": "Has retirado tu consentimiento. No puedes usar el tutor hasta que vuelvas a darlo.",
+      "title": "Tu perfil"
     },
     "shell": {
       "aiLabel": "Tutor IA",

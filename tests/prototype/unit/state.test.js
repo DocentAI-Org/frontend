@@ -416,3 +416,19 @@ describe("data-mirror", () => {
     expect(document.getElementById("out").textContent).toBe("x = 2");
   });
 });
+
+describe("data-href-param", () => {
+  it("takes the link target from a query parameter when present", () => {
+    document.body.innerHTML = '<a id="home" href="../student/courses.html" data-href-param="home">Inicio</a>';
+    setUrl("?home=../admin/users.html");
+    decorateLinks(document.body);
+    expect(document.getElementById("home").getAttribute("href")).toBe("../admin/users.html");
+  });
+
+  it("keeps the default target otherwise", () => {
+    document.body.innerHTML = '<a id="home" href="../student/courses.html" data-href-param="home">Inicio</a>';
+    setUrl("");
+    decorateLinks(document.body);
+    expect(document.getElementById("home").getAttribute("href")).toBe("../student/courses.html");
+  });
+});

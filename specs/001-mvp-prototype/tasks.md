@@ -426,30 +426,30 @@ Read these once. Every page task assumes them.
 
 **Independent Test**: Admin, teacher and student sign-ins reach three different homes; another role's page shows access denied; admin creates a teacher (flows F5, F10)
 
-- [ ] T074 [P] [US7] Write tests/prototype/e2e/flow-f05.spec.js with one `test()` per acceptance scenario, titled with its ID, in a serial `test.describe`:
+- [X] T074 [P] [US7] Write tests/prototype/e2e/flow-f05.spec.js with one `test()` per acceptance scenario, titled with its ID, in a serial `test.describe`:
   - `US-07 AS1` sign-in shows the DocentAI identity, form, IMFAHE logo and acknowledgement, and privacy link;
   - `US-07 AS2` the admin link lands on `admin/users.html`, and the teacher link lands on `teacher/courses.html`;
   - `US-07 AS6` users empty → create teacher → created with "Invitación pendiente";
   - `US-07 AS5` the access-denied page explains and links home.
-- [ ] T075 [P] [US7] Write tests/prototype/e2e/flow-f10.spec.js with one `test()` per acceptance scenario, titled with its ID, in a serial `test.describe`:
+- [X] T075 [P] [US7] Write tests/prototype/e2e/flow-f10.spec.js with one `test()` per acceptance scenario, titled with its ID, in a serial `test.describe`:
   - `US-07 AS3` invalid-credentials shows "Correo o contraseña incorrectos" with a recovery link;
   - recovery → sent;
   - `US-07 AS7` session-expired asks to sign in again and returns to the page in `?next=`.
-- [ ] T076 [P] [US7] Build public/prototype/auth/sign-in.html (#1) with the states `default`, `loading`, `invalid-credentials` and `session-expired`. It has no role shell, and includes `ImfaheAcknowledgement` (sign-in variant) and `LanguageSwitcher`. For the prototype, three demo buttons stand in for signing in as each role:
+- [X] T076 [P] [US7] Build public/prototype/auth/sign-in.html (#1) with the states `default`, `loading`, `invalid-credentials` and `session-expired`. It has no role shell, and includes `ImfaheAcknowledgement` (sign-in variant) and `LanguageSwitcher`. For the prototype, three demo buttons stand in for signing in as each role:
   - "Entrar como estudiante" → `../student/consent.html`;
   - "Entrar como profesora" → `../teacher/courses.html`;
   - "Entrar como admin" → `../admin/users.html`.
 
   In `session-expired`, signing in returns to the page in `?next=`. Add its manifest entry
-- [ ] T077 [P] [US7] Build public/prototype/auth/password-recovery.html (#2) with the states `default`, `loading`, `error` and `sent` (the message does not reveal whether the email exists). Add its manifest entry
-- [ ] T078 [P] [US7] Build public/prototype/auth/access-denied.html (#3) with the states `default`, `not-found` and `course-removed`, using `AccessDenied` with a link to the role's home. Add its manifest entry
-- [ ] T079 [P] [US7] Build public/prototype/about.html (#4) with `ImfaheAcknowledgement` (about variant), a short project description and privacy information. Add its manifest entry
-- [ ] T080 [P] [US7] Build public/prototype/student/profile.html (#13) with the states `default` (consent accepted on "5 oct 2026"), `loading`, `error`, `revoke-confirm` (`Dialog`) and `revoked` (no tutor access, and how to consent again → consent.html). Add its manifest entry
-- [ ] T081 [P] [US7] Build public/prototype/admin/users.html (#20) with the states `default`, `empty`, `loading` and `error`. It is a table of display name, role, email (`@example.org`) and status (active / pending invitation / disabled), shown as a stacked list at 390 px. Add its manifest entry
-- [ ] T082 [P] [US7] Build public/prototype/admin/teacher-new.html (#21) with the states `default`, `validation-error`, `loading` and `created` ("Invitación pendiente"). Add its manifest entry
-- [ ] T083 [P] [US7] Build public/prototype/admin/courses.html (#22) with the states `default`, `empty`, `loading` and `error`, showing course name, teacher, student count and created date. Add its manifest entry
-- [ ] T084 [US7] Add the `common.auth.*`, `common.errors.*` (access denied, not found, course removed), `about.*`, `admin.users.*`, `admin.teacherNew.*`, `admin.courses.*` and `student.profile.*` keys (ES/EN). Wire flows F5 and F10, and run `npm run test:e2e -- flow-f05 flow-f10 a11y-sweep`
-- [ ] T085 [US7] Do the ES/EN review and keyboard pass for the eight US7 pages. Check that no page shows another student's data or another teacher's course (Constitution II, FR-041), and log the results in specs/001-mvp-prototype/validation.md
+- [X] T077 [P] [US7] Build public/prototype/auth/password-recovery.html (#2) with the states `default`, `loading`, `error` and `sent` (the message does not reveal whether the email exists). Add its manifest entry
+- [X] T078 [P] [US7] Build public/prototype/auth/access-denied.html (#3) with the states `default`, `not-found` and `course-removed`, using `AccessDenied` with a link to the role's home. Add its manifest entry
+- [X] T079 [P] [US7] Build public/prototype/about.html (#4) with `ImfaheAcknowledgement` (about variant), a short project description and privacy information. Add its manifest entry
+- [X] T080 [P] [US7] Build public/prototype/student/profile.html (#13) with the states `default` (consent accepted on "5 oct 2026"), `loading`, `error`, `revoke-confirm` (`Dialog`) and `revoked` (no tutor access, and how to consent again → consent.html). Add its manifest entry
+- [X] T081 [P] [US7] Build public/prototype/admin/users.html (#20) with the states `default`, `empty`, `loading` and `error`. It is a table of display name, role, email (`@example.org`) and status (active / pending invitation / disabled), shown as a stacked list at 390 px. Add its manifest entry
+- [X] T082 [P] [US7] Build public/prototype/admin/teacher-new.html (#21) with the states `default`, `validation-error`, `loading` and `created` ("Invitación pendiente"). Add its manifest entry
+- [X] T083 [P] [US7] Build public/prototype/admin/courses.html (#22) with the states `default`, `empty`, `loading` and `error`, showing course name, teacher, student count and created date. Add its manifest entry
+- [X] T084 [US7] Add the `common.auth.*`, `common.errors.*` (access denied, not found, course removed), `about.*`, `admin.users.*`, `admin.teacherNew.*`, `admin.courses.*` and `student.profile.*` keys (ES/EN). Wire flows F5 and F10, and run `npm run test:e2e -- flow-f05 flow-f10 a11y-sweep`
+- [X] T085 [US7] Do the ES/EN review and keyboard pass for the eight US7 pages. Check that no page shows another student's data or another teacher's course (Constitution II, FR-041), and log the results in specs/001-mvp-prototype/validation.md
 
 **Checkpoint**: All P1 stories are clickable; flows F1–F10 exist and their tests pass.
 

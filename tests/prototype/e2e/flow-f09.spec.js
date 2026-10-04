@@ -1,6 +1,5 @@
 // F9 · Student submits a worked exercise and gets feedback (US6). Tasks T069.
-import { expect, test } from "@playwright/test";
-import { gotoState, scenario, waitForReady } from "./helpers.js";
+import { expect, gotoState, scenario, test, waitForReady } from "./helpers.js";
 
 test.describe.configure({ mode: "serial" });
 

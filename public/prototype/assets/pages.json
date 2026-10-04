@@ -1,5 +1,101 @@
 [
   {
+    "path": "auth/sign-in.html",
+    "screen": [
+      1
+    ],
+    "role": "all",
+    "titleKey": "common.auth.signInPageTitle",
+    "stories": [
+      "US-07"
+    ],
+    "requirements": [
+      "P1",
+      "FR-005",
+      "FR-040",
+      "FR-041"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default",
+      "loading",
+      "invalid-credentials",
+      "session-expired"
+    ],
+    "simulate": [
+      "session-expired"
+    ]
+  },
+  {
+    "path": "auth/password-recovery.html",
+    "screen": [
+      2
+    ],
+    "role": "all",
+    "titleKey": "common.auth.recoveryPageTitle",
+    "stories": [
+      "US-07"
+    ],
+    "requirements": [
+      "P1",
+      "FR-040"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default",
+      "loading",
+      "error",
+      "sent"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "auth/access-denied.html",
+    "screen": [
+      3
+    ],
+    "role": "all",
+    "titleKey": "common.errors.deniedPageTitle",
+    "stories": [
+      "US-07"
+    ],
+    "requirements": [
+      "P1",
+      "FR-040",
+      "FR-041"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default",
+      "not-found",
+      "course-removed"
+    ]
+  },
+  {
+    "path": "about.html",
+    "screen": [
+      4
+    ],
+    "role": "all",
+    "titleKey": "about.pageTitle",
+    "stories": [
+      "US-07"
+    ],
+    "requirements": [
+      "FR-005"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default"
+    ]
+  },
+  {
     "path": "student/consent.html",
     "screen": [
       5
@@ -226,6 +322,33 @@
     ]
   },
   {
+    "path": "student/profile.html",
+    "screen": [
+      13
+    ],
+    "role": "student",
+    "titleKey": "student.profile.pageTitle",
+    "stories": [
+      "US-07"
+    ],
+    "requirements": [
+      "P1",
+      "FR-015"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default",
+      "loading",
+      "error",
+      "revoke-confirm",
+      "revoked"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
     "path": "teacher/courses.html",
     "screen": [
       14
@@ -393,6 +516,81 @@
     "simulate": [
       "save-failed",
       "load-error"
+    ]
+  },
+  {
+    "path": "admin/users.html",
+    "screen": [
+      20
+    ],
+    "role": "admin",
+    "titleKey": "admin.users.pageTitle",
+    "stories": [
+      "US-07"
+    ],
+    "requirements": [
+      "P1",
+      "FR-042"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default",
+      "empty",
+      "loading",
+      "error"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "admin/teacher-new.html",
+    "screen": [
+      21
+    ],
+    "role": "admin",
+    "titleKey": "admin.teacherNew.pageTitle",
+    "stories": [
+      "US-07"
+    ],
+    "requirements": [
+      "P1",
+      "FR-042"
+    ],
+    "priority": "P1",
+    "mobile": false,
+    "states": [
+      "default",
+      "validation-error",
+      "loading",
+      "created"
+    ]
+  },
+  {
+    "path": "admin/courses.html",
+    "screen": [
+      22
+    ],
+    "role": "admin",
+    "titleKey": "admin.courses.pageTitle",
+    "stories": [
+      "US-07"
+    ],
+    "requirements": [
+      "P1",
+      "FR-042"
+    ],
+    "priority": "P1",
+    "mobile": false,
+    "states": [
+      "default",
+      "empty",
+      "loading",
+      "error"
+    ],
+    "simulate": [
+      "error"
     ]
   }
 ]
