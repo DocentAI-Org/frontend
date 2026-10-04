@@ -376,23 +376,25 @@ Every screen below needs populated, empty (where applicable), loading and error 
 
 ### Prototype pages
 
-Links are added once pages exist (FR-052). Each link points to the screen's page; a state is opened by adding its query parameter.
+Each link opens the screen's page in the running prototype (`npm run dev`, or a Vercel preview);
+add `?state=<id>` to open a state (contract §4) and `&lang=en` for English. The cover page
+(`/prototype`) lists every page and state, and the start of each flow F1–F15 (FR-052).
 
 | Story | Screens | Pages |
 |---|---|---|
-| US1 | Consent & AI transparency, Course chat, Citation sheet | _To be linked_ |
-| US2 | Material list & upload, Fragment review | _To be linked_ |
-| US3 | Tutor settings | _To be linked_ |
-| US4 | Teacher my courses, Create course, Course overview, Student my courses, Join course | _To be linked_ |
-| US5 | Course chat – guided mode | _To be linked_ |
-| US6 | Submit exercise, Exercise feedback | _To be linked_ |
-| US7 | Sign-in, Password recovery, Access denied / not found, Acerca de, Profile & consent, Admin users, Create teacher, Admin courses | _To be linked_ |
-| US8 | Conversations list, Conversation detail, Flags list | _To be linked_ |
-| US9 | Dashboard, At-risk student detail | _To be linked_ |
-| US10 | Quiz question review | _To be linked_ |
-| US11 | Quiz, Quiz summary | _To be linked_ |
-| US12 | Exercise feedback (repeated-mistake notice), Targeted explanation / practice | _To be linked_ |
-| US13 | My progress | _To be linked_ |
+| US1 | Consent & AI transparency, Course chat, Citation sheet | [`student/consent.html`](/prototype/student/consent.html), [`student/chat.html`](/prototype/student/chat.html), [`student/chat.html?state=citation`](/prototype/student/chat.html?state=citation) |
+| US2 | Material list & upload, Fragment review | [`teacher/material.html`](/prototype/teacher/material.html), [`teacher/fragments.html`](/prototype/teacher/fragments.html) |
+| US3 | Tutor settings | [`teacher/tutor-settings.html`](/prototype/teacher/tutor-settings.html) |
+| US4 | Teacher my courses, Create course, Course overview, Student my courses, Join course | [`student/courses.html`](/prototype/student/courses.html), [`student/join.html`](/prototype/student/join.html), [`teacher/courses.html`](/prototype/teacher/courses.html), [`teacher/course-new.html`](/prototype/teacher/course-new.html), [`teacher/course.html`](/prototype/teacher/course.html) |
+| US5 | Course chat – guided mode | [`student/chat-guided.html`](/prototype/student/chat-guided.html) |
+| US6 | Submit exercise, Exercise feedback | [`student/exercise.html`](/prototype/student/exercise.html), [`student/exercise-feedback.html`](/prototype/student/exercise-feedback.html) |
+| US7 | Sign-in, Password recovery, Access denied / not found, Acerca de, Profile & consent, Admin users, Create teacher, Admin courses | [`auth/sign-in.html`](/prototype/auth/sign-in.html), [`auth/password-recovery.html`](/prototype/auth/password-recovery.html), [`auth/access-denied.html`](/prototype/auth/access-denied.html), [`about.html`](/prototype/about.html), [`student/consent.html`](/prototype/student/consent.html), [`student/profile.html`](/prototype/student/profile.html), [`admin/users.html`](/prototype/admin/users.html), [`admin/teacher-new.html`](/prototype/admin/teacher-new.html), [`admin/courses.html`](/prototype/admin/courses.html) |
+| US8 | Conversations list, Conversation detail, Flags list | [`teacher/conversations.html`](/prototype/teacher/conversations.html), [`teacher/conversation.html`](/prototype/teacher/conversation.html), [`teacher/flags.html`](/prototype/teacher/flags.html) |
+| US9 | Dashboard, At-risk student detail | [`teacher/dashboard.html`](/prototype/teacher/dashboard.html), [`teacher/student-risk.html`](/prototype/teacher/student-risk.html) |
+| US10 | Quiz question review | [`teacher/questions.html`](/prototype/teacher/questions.html) |
+| US11 | Quiz, Quiz summary | [`student/quiz.html`](/prototype/student/quiz.html), [`student/quiz-summary.html`](/prototype/student/quiz-summary.html) |
+| US12 | Exercise feedback (repeated-mistake notice), Targeted explanation / practice | [`student/exercise-feedback.html`](/prototype/student/exercise-feedback.html), [`student/practice.html`](/prototype/student/practice.html), [`student/exercise-feedback.html?state=repeated-mistake`](/prototype/student/exercise-feedback.html?state=repeated-mistake) |
+| US13 | My progress | [`student/progress.html`](/prototype/student/progress.html) |
 
 ### Key Entities
 

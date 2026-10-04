@@ -556,12 +556,12 @@ Read these once. Every page task assumes them.
 
 **Purpose**: Cross-story flows, coverage audits, usability validation and spec traceability
 
-- [ ] T099 Extend tests/prototype/e2e/flow-f02.spec.js to start at `auth/sign-in.html` and add the tests `US-07 AS1` and `US-07 AS2` (student link → consent → courses → chat). Point the "Entendido, continuar" link in public/prototype/student/consent.html to `courses.html` (it goes to `chat.html?state=first-use` until the US4 pages exist). Extend tests/prototype/e2e/flow-f01.spec.js to start at `teacher/courses.html` → course.html → material.html. Wire any missing links and run `npm run test:e2e`
-- [ ] T100 [P] Coverage audit: compare pages.json with the contract §4 state table and plan.md › Pages and states (31 pages, every listed state, `mobile` matches "M"), then fix any gaps in public/prototype/ (SC-005)
-- [ ] T101 [P] Check that `ImfaheAcknowledgement` is on sign-in.html and about.html, and reachable in ≤1 click/tap from every role's home through the footer partial (SC-007). Add a test for this to tests/prototype/e2e/flow-f05.spec.js
-- [ ] T102 [P] Check that every chat, guided-chat and exercise page shows the AI label, the teacher-review notice and `MessageAllowance` (FR-010, FR-011, FR-014). Add an assertion over those pages to tests/prototype/e2e/a11y-sweep.spec.js or a new tests/prototype/e2e/student-shell.spec.js
-- [ ] T103 [P] Check that no sample name matches a team member or participant and that every email uses `example.org`, in public/prototype/assets/sample/es.json and en.json. Record the check in specs/001-mvp-prototype/validation.md
-- [ ] T104 [P] Do the ES/EN review (1440 px, and 390 px where `mobile`) and the keyboard-only pass (Tab order follows the visual order, visible focus, dialog focus trap and return) for every P2/P3 page (US8–US13), and log the results in specs/001-mvp-prototype/validation.md (FR-004)
+- [X] T099 Extend tests/prototype/e2e/flow-f02.spec.js to start at `auth/sign-in.html` and add the tests `US-07 AS1` and `US-07 AS2` (student link → consent → courses → chat). Point the "Entendido, continuar" link in public/prototype/student/consent.html to `courses.html` (it goes to `chat.html?state=first-use` until the US4 pages exist). Extend tests/prototype/e2e/flow-f01.spec.js to start at `teacher/courses.html` → course.html → material.html. Wire any missing links and run `npm run test:e2e`
+- [X] T100 [P] Coverage audit: compare pages.json with the contract §4 state table and plan.md › Pages and states (31 pages, every listed state, `mobile` matches "M"), then fix any gaps in public/prototype/ (SC-005)
+- [X] T101 [P] Check that `ImfaheAcknowledgement` is on sign-in.html and about.html, and reachable in ≤1 click/tap from every role's home through the footer partial (SC-007). Add a test for this to tests/prototype/e2e/flow-f05.spec.js
+- [X] T102 [P] Check that every chat, guided-chat and exercise page shows the AI label, the teacher-review notice and `MessageAllowance` (FR-010, FR-011, FR-014). Add an assertion over those pages to tests/prototype/e2e/a11y-sweep.spec.js or a new tests/prototype/e2e/student-shell.spec.js
+- [X] T103 [P] Check that no sample name matches a team member or participant and that every email uses `example.org`, in public/prototype/assets/sample/es.json and en.json. Record the check in specs/001-mvp-prototype/validation.md
+- [X] T104 [P] Do the ES/EN review (1440 px, and 390 px where `mobile`) and the keyboard-only pass (Tab order follows the visual order, visible focus, dialog focus trap and return) for every P2/P3 page (US8–US13), and log the results in specs/001-mvp-prototype/validation.md (FR-004)
 - [ ] T105 Run `npm run lint`, `npm run typecheck`, `npm test`, `npm run test:e2e` and `npm run build`; all must pass. Then deploy a Vercel preview and confirm that `/prototype` loads on a phone over mobile data in under 2 s
 - [ ] T106 **(Team)** Get the pedagogy team's review of the student-facing copy (ES/EN) and of the guided-mode flow, and record the sign-off for SC-006 in specs/001-mvp-prototype/validation.md
 - [ ] T107 **(Team)** Check whether the Vercel preview has Deployment Protection enabled; if so, create a shareable preview link or protection bypass for the session deployment so participants can open it without a Vercel login. Then prepare the sessions per quickstart.md B1: participant links (`?panel=0`) and facilitator links per flow, consent form, private recording storage, and session sheets (materials outside the repo); then set the cover status in public/prototype/index.html to "En validación"
@@ -571,7 +571,7 @@ Read these once. Every page task assumes them.
 - [ ] T111 Apply the critical and major findings: behavior changes go into specs/001-mvp-prototype/spec.md first, then public/prototype/; log each decision with its spec revision in specs/001-mvp-prototype/validation.md; keep `npm test` and `npm run test:e2e` green
 - [ ] T112 **(Team)** If any critical finding was fixed, re-test the changed P1 flows with ≥2 new participants (quickstart.md B8)
 - [ ] T113 Fill in the SC-001 to SC-007 results table in specs/001-mvp-prototype/validation.md. When all pass, set the cover status in public/prototype/index.html to "Validado" with the date and version
-- [ ] T114 Fill the "Prototype pages" table in specs/001-mvp-prototype/spec.md with links (`/prototype/<page>.html`) per user story (FR-052)
+- [X] T114 Fill the "Prototype pages" table in specs/001-mvp-prototype/spec.md with links (`/prototype/<page>.html`) per user story (FR-052)
 
 ---
 

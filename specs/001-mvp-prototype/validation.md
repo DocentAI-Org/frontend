@@ -18,6 +18,7 @@ details are stored here.
 
 | Item | Owner | Status |
 |---|---|---|
+| Sample names re-checked against participants once they are recruited (T103 checked only the names this repository knows). | Team | Pending |
 | Official IMFAHE logo file. The prototype shows an HTML placeholder ("Logo IMFAHE – pendiente") until IMFAHE supplies the file (research R-10). | Team | Pending |
 | IMFAHE acknowledgement wording. Draft: "Proyecto financiado por la Fundación IMFAHE" (spec Assumptions). | Team | Pending confirmation |
 | `npm run lint` failed: typescript-eslint does not support TypeScript 7.0. Fixed by running TS side by side: `typescript` → `@typescript/typescript6` (API for tools), `typescript7` → `typescript@7.0.2` (the `tsc` used by `npm run typecheck`). | Team | Resolved 2026-10-04 |
@@ -126,15 +127,18 @@ To be filled before the first session (quickstart.md B1).
 | 2026-10-04 | Question review states each show the result of one action from the pending list (approve: 2/13/2, reject: 2/12/3), so counters are consistent within each state. | Implementation of T092 | none |
 | 2026-10-04 | Added a `citation` state to student/quiz.html so feedback citations open the passage (FR-012). The quiz shows question 1, its correct/incorrect feedback, and a later question after the level change; any answer to that one leads to the summary. | Implementation of T094 | contract §4 |
 | 2026-10-04 | Added a `citation` state to student/practice.html (FR-012). The repeated-mistake dismissal is kept in sessionStorage under a pattern key (no personal data). | Implementation of T096 | contract §3, §4 |
+| 2026-10-04 | T103: no sample name matches the repository author or any word in the project proposal (including its team section); every email in sample and message files is @example.org (enforced by unit/sample-data). Participant names are not known yet; recheck before sessions. | T103 | none |
+| 2026-10-04 | T104: ES/EN review and keyboard pass done for every P2/P3 page (rows above, US8–US13). | T104 | none |
+| 2026-10-04 | T100 is now a permanent unit test (unit/coverage) that parses contract §4 and the plan pages table and checks the manifest: 31 pages, every state, mobile flag. | T100 | none |
 
 ## Success criteria results
 
 | Criterion | Target | Result | Pass? |
 |---|---|---|---|
-| SC-001 unaided P1 task completion | ≥80% per task | | |
-| SC-002 AI and teacher-review recall | ≥90% of students | | |
-| SC-003 find source / tell no-source apart | ≥90% of students | | |
-| SC-004 setup time / time to first question | <10 min / <2 min | | |
-| SC-005 states and contrast coverage | 100% (axe sweep green) | | |
-| SC-006 pedagogy sign-off and traceability | signed; flow tests green | | |
-| SC-007 IMFAHE visible, ≤1 tap/click | yes | | |
+| SC-001 unaided P1 task completion | ≥80% per task | Needs usability sessions (T108, T109) | Pending |
+| SC-002 AI and teacher-review recall | ≥90% of students | Needs usability sessions (T108) | Pending |
+| SC-003 find source / tell no-source apart | ≥90% of students | Needs usability sessions (T108) | Pending |
+| SC-004 setup time / time to first question | <10 min / <2 min | Needs usability sessions (T108, T109) | Pending |
+| SC-005 states and contrast coverage | 100% (axe sweep green) | 31 pages, every contract state present (unit/coverage); axe WCAG 2.2 A/AA sweep green on every state at 1440 px and, for "M" pages, 390 px (2026-10-04) | Yes |
+| SC-006 pedagogy sign-off and traceability | signed; flow tests green | Traceability: every acceptance scenario of US1–US13 has its own named E2E test, all green. Pedagogy sign-off: pending (T106) | Pending |
+| SC-007 IMFAHE visible, ≤1 tap/click | yes | Acknowledgement on sign-in and about; in the footer of every role home (0 clicks), about page 1 click (e2e F5 › SC-007). Official logo still pending | Yes (placeholder logo) |

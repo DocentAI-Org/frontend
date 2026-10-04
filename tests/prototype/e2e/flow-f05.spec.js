@@ -59,4 +59,15 @@ test.describe("F5 · Minimal admin tasks", () => {
     await gotoState(page, "auth/access-denied.html", "course-removed");
     await expect(page.getByRole("heading", { level: 1 })).toContainText("Este curso ya no está disponible");
   });
+
+  scenario("SC-007", "the IMFAHE acknowledgement is visible on sign-in and about, and at most one click from every home", async ({ page }) => {
+    for (const home of ["student/courses.html", "teacher/courses.html", "admin/users.html"]) {
+      await gotoState(page, home);
+      const footer = page.locator('footer[data-component="ImfaheAcknowledgement"]');
+      await expect(footer).toContainText("Fundación IMFAHE");
+      await expect(footer.getByRole("link", { name: "Acerca de DocentAI" })).toBeVisible();
+    }
+    await gotoState(page, "about.html");
+    await expect(page.locator('main [data-component="ImfaheAcknowledgement"][data-variant="about"]')).toContainText("Fundación IMFAHE");
+  });
 });

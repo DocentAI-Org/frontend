@@ -4,6 +4,27 @@ import { expect, expectNoMissingKeys, gotoState, scenario, test, waitForReady } 
 test.describe.configure({ mode: "serial" });
 
 test.describe("F2 · Ask the tutor and see the sources", () => {
+  scenario("US-07 AS1", "the journey starts at sign-in, which shows the identity and IMFAHE", async ({ page }) => {
+    await gotoState(page, "auth/sign-in.html");
+    await expect(page.getByRole("heading", { level: 1 })).toContainText("DocentAI");
+    await expect(page.locator('main [data-component="ImfaheAcknowledgement"]')).toBeVisible();
+  });
+
+  scenario("US-07 AS2", "a first-time student lands on consent, then their courses, then the chat", async ({ page }) => {
+    await gotoState(page, "auth/sign-in.html");
+    await page.getByRole("link", { name: "Entrar como estudiante" }).click();
+    await expect(page).toHaveURL(/student\/consent\.html/);
+    await waitForReady(page);
+    await page.getByRole("checkbox", { name: /He leído/ }).check();
+    await page.getByRole("button", { name: "Continuar" }).click();
+    await waitForReady(page);
+    await page.getByRole("link", { name: /Entendido/ }).click();
+    await expect(page).toHaveURL(/student\/courses\.html/);
+    await waitForReady(page);
+    await page.getByRole("link", { name: "Preguntar al tutor" }).first().click();
+    await expect(page).toHaveURL(/student\/chat\.html/);
+  });
+
   scenario("US-07 AS4", "consent must be accepted before continuing", async ({ page }) => {
     await gotoState(page, "student/consent.html");
     await expectNoMissingKeys(page);
@@ -16,7 +37,7 @@ test.describe("F2 · Ask the tutor and see the sources", () => {
     await waitForReady(page);
     await expect(page.getByRole("heading", { name: "Cómo funciona el tutor" })).toBeVisible();
     await page.getByRole("link", { name: /Entendido/ }).click();
-    await expect(page).toHaveURL(/student\/chat\.html\?.*state=first-use/);
+    await expect(page).toHaveURL(/student\/courses\.html/);
   });
 
   scenario("US-01 AS1", "first-use disclosure blocks sending until acknowledged", async ({ page }) => {

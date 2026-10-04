@@ -1,9 +1,18 @@
 // F1 · Teacher uploads and validates material (US2). Tasks T047; starts from My courses after T099.
-import { expect, gotoState, scenario, test } from "./helpers.js";
+import { expect, gotoState, scenario, test, waitForReady } from "./helpers.js";
 
 test.describe.configure({ mode: "serial" });
 
 test.describe("F1 · Upload and validate the course material", () => {
+  scenario("US-02 (start)", "the teacher reaches the material from My courses and the course", async ({ page }) => {
+    await gotoState(page, "teacher/courses.html");
+    await page.getByRole("link", { name: /Matemáticas 3º ESO – Álgebra/ }).click();
+    await expect(page).toHaveURL(/teacher\/course\.html/);
+    await waitForReady(page);
+    await page.getByRole("link", { name: "Material" }).click();
+    await expect(page).toHaveURL(/teacher\/material\.html/);
+  });
+
   scenario("US-02 AS1", "the empty state explains why material matters and lists formats and size", async ({ page }) => {
     await gotoState(page, "teacher/material.html", "empty");
     const empty = page.locator('[data-component="EmptyState"]');
