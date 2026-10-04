@@ -7,7 +7,9 @@ of view. It is not a database schema. It is the input for the future API contrac
 generated from the backend's OpenAPI schema (Constitution VI). Field names are descriptive. The
 "Visible to" column applies Constitution II (role separation) and VII (minimum data per view).
 
-Screen numbers (#) refer to the Screen Inventory in [plan.md](plan.md#screen-inventory).
+Screen numbers (#) refer to the pages table in [plan.md](plan.md#pages-and-states); the page path and
+state IDs for each number are in [contracts/prototype-pages.md](contracts/prototype-pages.md).
+Example values are fictitious; in the prototype they come from `assets/sample/{es,en}.json`.
 
 ## Entities
 
@@ -131,11 +133,10 @@ State transitions for a student message: `sending → sent | failed`; `failed �
 | state | normal / low (≤5) / reached | #8, #10, #11 | student (own) |
 | resetsAt | 00:00 | `LimitReachedBanner` | student (own) |
 
-Scope — **open question for `/speckit-clarify`**: requirements §4.3 says "per-student daily
-message limit" (one count across courses), while the spec's edge case "Student in several
-courses" scopes the limit indicator to the selected course. The prototype shows one count in
-the selected course and states in its copy whether it is shared; the frames are the same either
-way, only the copy changes.
+Scope — **resolved 2026-10-04** (spec › Clarifications): one allowance per student, shared
+across all their courses (requirements §4.3). Every course's chat and exercise pages show the
+same count, and the copy says it covers all courses ("Te quedan 12 mensajes hoy, en todos tus
+cursos").
 
 ### ExerciseSubmission and Feedback
 
@@ -228,7 +229,7 @@ the student cannot reach the tutor (#8, #10, #11 redirect to #5).
 - A Course has one TutorSettings.
 - A Student has one Conversation per Course, made of Messages; tutor Messages have Citations,
   which point to Fragments.
-- A Student has a DailyMessageAllowance (per student or per course: open question, see above).
+- A Student has one DailyMessageAllowance, shared across all their Courses.
 - A Student has ExerciseSubmissions (one Feedback each), ErrorPatterns, QuizAttempts and
   TopicProgress per Course.
 - A Teacher creates TeacherFlags on Messages in their own Courses.

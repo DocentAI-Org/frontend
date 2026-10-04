@@ -2,206 +2,275 @@
 
 **Feature**: [spec.md](spec.md) · **Plan**: [plan.md](plan.md) · **Date**: 2026-10-04
 
-Design decisions for the Figma prototype. Each entry: decision, rationale, alternatives
-considered. Items marked **Verify** depend on Figma product limits that should be confirmed in
-the Figma account before building, since plans and limits change.
+Design decisions for the static HTML prototype (constitution 2.1.0). Each entry gives the
+decision, the rationale and the alternatives considered. This replaces the Figma-based research:
+R-01 to R-06 and R-11 are new, R-12 to R-19 carry over the interaction and validation decisions,
+with only their wording changed.
 
-## Tooling and file setup
+## Tooling and structure
 
-### R-01 · Figma plan that supports two variable modes
+### R-01 · Tailwind v4 browser build from a pinned CDN URL
 
-- **Decision**: Build the file in a team on a Figma plan that allows at least 2 modes per
-  variable collection (Professional, Education or higher). Apply for Figma for Education with
-  the team's university accounts first, since it is free for verified educators and students;
-  otherwise pay for one Professional editor seat for the months of design work.
-- **Rationale**: The `copy` collection needs `es` and `en` modes (Constitution VIII). The free
-  Starter plan is limited to 1 mode per collection. The project budget is $1,000, so a free
-  education plan is preferred.
-- **Alternatives considered**: Two duplicated pages (ES and EN): doubles the frames and lets the
-  two languages drift. A translation plugin: adds a tool dependency and does not keep the
-  future i18n keys.
-- **Verify**: current mode limits per plan and Education eligibility.
+- **Decision**: Load `https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3`, with the version
+  pinned to the app's `tailwindcss` 4.3.3 and upgraded together with it. `prototype.js` adds the
+  script tag after it has injected the theme (R-02).
+- **Rationale**: The constitution allows the browser CDN build for the prototype only, and the user
+  asked for no build step. Pinning the version means the prototype generates the same utilities
+  as the app.
+- **Checked**: the 4.3.3 build processes `<style type="text/tailwindcss">` blocks and rebuilds
+  through a `MutationObserver`. It throws "The browser build does not support @import" for any
+  `@import` other than Tailwind's own, so the token file cannot be imported directly (R-02).
+- **Privacy note**: each page load requests jsDelivr, which sees the visitor's IP address. No
+  personal data is entered in the prototype, so this is acceptable for sessions with consenting
+  adults. If whoever coordinates ethics for the project objects, the same pinned file can be
+  copied to `assets/vendor/` with no other change.
+- **Alternatives considered**: The Tailwind CLI: a build step, which was excluded. Play CDN v3:
+  different syntax and tokens from the app's v4.
 
-### R-02 · Variable naming and mapping to code
+### R-02 · One token file shared by the prototype and the app
 
-- **Decision**: Figma variables use `/` to group (`color/primary/500`,
-  `student/chat/limitReached`). Mapping rule: style tokens are `--` + path joined by `-`
-  (`--color-primary-500`); copy keys are the path joined by `.` (`student.chat.limitReached`).
-  Names use lowerCamelCase for the last segment of copy keys and kebab/number steps for tokens.
-- **Rationale**: `/` creates groups in Figma's variable panel, and the mapping is mechanical, so
-  a script can export them later without renaming. Constitution IV requires matching names.
-- **Alternatives considered**: Dots in Figma names: not usable as grouping and, as far as we
-  know, not allowed in variable names. Flat names (`colorPrimary500`): no grouping, hard to
-  browse.
-- **Verify**: allowed characters in Figma variable names.
+- **Decision**: `public/prototype/assets/theme.css` contains only the `@theme { … }` block.
+  - **App**: `src/app/globals.css` does `@import "tailwindcss";` and then
+    `@import "../../public/prototype/assets/theme.css";`, which PostCSS resolves at build time.
+  - **Prototype**: `prototype.js` fetches `theme.css`, inserts its text into a
+    `<style type="text/tailwindcss">` element together with `@import "tailwindcss";`, and only
+    then adds the Tailwind script. The page body stays hidden (`visibility: hidden` set in a
+    small inline style) until the first build, to avoid a flash of unstyled content.
+- **Rationale**: Constitution IV requires the *same* tokens in both. A single file makes them
+  identical by construction, with no sync script. The file sits in `public/` because the
+  prototype is served from there, and the prototype is the visual source of truth.
+- **Alternatives considered**: Two copies plus a diff test: they can drift between test runs.
+  Tokens in `src/` copied to `public/` at build: a build step. A `<link>` to the CSS: the browser
+  build ignores it.
+- **Verify during implementation**: a Next.js production build resolves the relative import from
+  `src/app/globals.css` into `public/` (it is a plain file path, so it should).
 
-### R-03 · Shadows
+### R-03 · Token naming
 
-- **Decision**: Shadows are effect styles named `shadow/sm`, `shadow/md`, `shadow/lg`, with
-  their colors bound to `color/*` variables. They map to `--shadow-sm` and so on.
-- **Rationale**: Figma variables have no composite shadow type. Effect styles keep the
-  one-to-one name match that Constitution IV requires.
-- **Alternatives considered**: Number variables for each shadow parameter: very verbose, and the
-  composite still has to be an effect.
+- **Decision**: Use Tailwind v4 theme namespaces as they are (`--color-*`, `--spacing`,
+  `--radius-*`, `--text-*`, `--font-*`, `--font-weight-*`, `--shadow-*`, `--ease-*`). Clear the
+  default palette with `--color-*: initial;`. Semantic color names are short so their utilities
+  read well: `--color-fg` → `text-fg`, `--color-surface-raised` → `bg-surface-raised`,
+  `--color-focus` → `outline-focus`. Spacing uses v4's single `--spacing: 0.25rem` multiplier.
+- **Rationale**: Namespaced variables are what generate utilities in v4, so the token name and the
+  utility name stay predictable. Clearing defaults makes off-system colors (`bg-red-500`)
+  impossible, not just discouraged.
+- **Alternatives considered**: The previous `color/text/default` scheme from the Figma plan gives
+  `text-text-default`, which is awkward. Named spacing steps (`--spacing-4`): redundant with v4's
+  multiplier.
 
-### R-04 · Sample user content in two languages
+### R-04 · Fonts and icons
 
-- **Decision**: Sample content (student questions, tutor answers, document names, people) is
-  stored as string variables under a separate `sample/…` group in the `copy` collection, with
-  ES and EN modes. `sample/*` keys are clearly marked as **not** future i18n keys.
-- **Rationale**: Switching mode must switch the whole screen, including the conversation, so
-  each P1 screen can be checked in both languages. Keeping it separate stops sample text from
-  leaking into the i18n key structure.
-- **Alternatives considered**: Literal text on frames: the EN check would show mixed languages.
-  Sample content only in Spanish: hides layout problems in EN.
+- **Decision**: System font stack in `--font-sans`, with no web-font request. Icons are an inline
+  SVG sprite (`assets/img/icons.svg`) of [Lucide](https://lucide.dev) icons (ISC license), used
+  with `<svg><use href="…#name"/></svg>`. Decorative icons get `aria-hidden="true"`, and
+  meaningful ones get a translated `aria-label`.
+- **Rationale**: No third-party font request (privacy, speed on phones). Copying ISC-licensed SVGs
+  adds no dependency. Lucide is also available as a React package for the app later, under the
+  same icon names.
+- **Alternatives considered**: Google Fonts: an external request that has been ruled a GDPR issue
+  in the EU. Icon fonts: worse accessibility.
 
-### R-05 · How prototype flows reuse role screens
+### R-05 · Reusing markup without a build step
 
-- **Decision**: Each screen × state on the role pages is a **component** (e.g.
-  `Screen/Student/Chat/limit-reached-390`). The Prototype Flows page contains **instances** of
-  them, connected with prototype interactions. State changes inside a screen use interactive
-  component variants.
-- **Rationale**: Figma prototype connections only work between frames on the same page, while
-  the requested structure keeps screens on role pages. Instances keep one source of truth, so an
-  edit on a role page updates the flows.
-- **Alternatives considered**: Copying frames to the flows page: they drift apart. Building
-  flows on each role page: breaks the requested page structure, and F6 crosses roles.
+- **Decision**: Shells (`AppShell` per role) and the footer with `ImfaheAcknowledgement` are
+  partials, injected by `include.js` from `data-include="partials/shell-student.html"`. Every other
+  component is copied markup marked `data-component="Name"`, and its canonical version lives on
+  `design-system.html`. A unit test lists every `data-component` name used and fails on names that
+  are not in the component list (plan.md › Components).
+- **Rationale**: Shells appear on every page and must not drift. Most other components differ per
+  instance (text, state), and templating them in vanilla JS would go beyond "minimal JS".
+- **Alternatives considered**: Custom elements (`<dai-button>`): the names cannot match the React
+  names (a hyphen is required). JS render functions for every component: in effect a framework.
 
-### R-06 · Color mode
-
-- **Decision**: Light mode only; the `color` collection has a single `light` mode, and
-  components use semantic aliases (`color/text/default`) rather than palette steps directly.
-- **Rationale**: The spec does not require dark mode. Semantic aliases let a dark mode be
-  added later without touching components.
-- **Alternatives considered**: Light + dark now: doubles contrast checks without a requirement
-  asking for it.
-
-## Interaction patterns
-
-### R-07 · Citation display (S1)
-
-- **Decision**: Under each grounded tutor answer, a row of `SourceCitation` chips shows
-  "Tema 3 · p. 12". Tapping a chip opens a `CitationSheet` (bottom sheet at 390 px, side panel
-  at 1440 px) with document name, page or section, and the quoted passage. If the document has
-  since been excluded, the chip shows "Documento ya no disponible" and is not clickable.
-- **Rationale**: Chips are large enough to tap (≥24×24 px, 44 px tall on mobile), are labelled
-  in text (not color only) and keep the answer readable. A sheet keeps the student in the chat,
-  as AS3 requires.
-- **Alternatives considered**: Inline superscript numbers [1]: too small to tap, and need a
-  footnote list. Always-expanded quotes: make answers long on mobile. Opening the PDF itself:
-  leaves the chat and needs a document viewer.
-
-### R-08 · "No validated source" answer (S2)
-
-- **Decision**: A distinct `ChatMessage` variant (`tutor-no-source`) with an info icon, an
-  information color (not error red), the heading "El material del curso no cubre esta
-  pregunta" and suggested actions as buttons: "Reformular la pregunta", "Preguntar al
-  profesor/a". It has no citation row. The same `NoSourceNotice` is reused in hints, exercise
-  feedback and explanations.
-- **Rationale**: SC-003 needs students to tell it apart from a normal answer; text and icon do
-  that without relying on color. Red would suggest the student did something wrong, but this is
-  correct tutor behavior.
-- **Alternatives considered**: Plain text answer: indistinguishable from a normal one. Warning
-  or error styling: implies a malfunction.
-
-### R-09 · Communicating the daily message limit
-
-- **Decision**: `MessageAllowance` near the composer always shows the remaining count ("Te
-  quedan 12 mensajes hoy"). At 5 or fewer it changes to the low state, with an icon and text. When
-  the limit is reached, `LimitReachedBanner` replaces the composer: it explains the limit, shows
-  the reset time ("Podrás escribir de nuevo a las 00:00") and keeps the draft and history readable.
-  Failed messages are shown as not counted.
-- **Rationale**: Showing the limit early avoids a surprise block (AS5); replacing the composer
-  makes the disabled state obvious without a modal, so the student can still reread answers (AS6).
-- **Alternatives considered**: Only telling the student at the limit: abrupt. A blocking modal:
-  stops them reading the history. A progress bar only: depends on color and a visual estimate.
-
-### R-10 · AI disclosure
-
-- **Decision**: Three layers. A first-use `AIDisclosure` dialog that the student must
-  acknowledge, covering that it's an AI, that it answers only from the material, and that the
-  teacher may review conversations. A persistent label in the chat header ("Tutor IA · tu
-  profesor/a puede revisar esta conversación"). An "IA" tag on every tutor message.
-- **Rationale**: Requirements §4.1 transparency and spec FR-010/FR-011; SC-002 measures recall.
-  A one-time notice alone is easily forgotten.
-- **Alternatives considered**: Only in the terms or consent text: low recall. A banner on
-  every message: noisy.
-
-### R-11 · Guided mode hints (S3)
-
-- **Decision**: Hints are `ChatMessage` `tutor-hint` variants labelled "Pista 1", "Pista 2" and
-  so on, with quick replies "Otra pista" and "Intentarlo yo". After the last hint, either "Ver
-  solución" (if allowed) or a note that the teacher chose hints only. `GuidedModeIndicator` in
-  the chat header.
-- **Rationale**: It stays in the chat, so there is no extra mode to learn. Numbered hints make
-  progress visible, and quick replies keep mobile typing short.
-- **Alternatives considered**: One accordion with all hints: shows hints the student hasn't
-  asked for yet. A separate "exercise mode" screen: duplicates the chat.
-
-### R-12 · Accessibility specifics
+### R-06 · States, the state panel and "Simular"
 
 - **Decision**:
-  - The focus ring is a 2 px outline in `color/border/focus` with a 2 px offset and ≥3:1 contrast
-    against adjacent colors, shown as a `focus` variant on every interactive component.
-  - Targets are at least 24×24 px, and 44×44 px for primary student mobile actions.
-  - Each P1 screen gets numbered focus-order annotations.
-  - Prototype transitions use "Instant" or a short dissolve. The motion spec on the Design System
-    page lists a no-motion alternative for `prefers-reduced-motion`.
-- **Rationale**: WCAG 2.2 AA (2.4.7, 2.4.11, 2.5.8, 1.4.3, 1.4.11) at design level, as required by
-  Constitution III and FR-004.
-- **Alternatives considered**: Leaving focus states to developers: they get skipped, and they
-  can't be validated.
+  - **Marking states**: each page declares its states in `pages.json`. Markup that belongs to
+    particular states carries `data-state="loading"` or a list (`data-state="default empty"`).
+    Markup without the attribute is always shown.
+  - **Choosing a state**: `state.js` reads `?state=` (default `default`) and hides non-matching
+    elements with the `hidden` attribute, so hidden markup is also removed from the accessibility
+    tree.
+  - **Moving between states**: in-page actions are links (`href="?state=tutor-writing"`) or
+    buttons with `data-goto`. Loading states can advance on their own (`data-advance="answer"`
+    after 1.2 s, or immediately when the user prefers reduced motion).
+  - **State panel**: a fixed, collapsible panel lists the page's states, has an ES/EN switch and
+    shows the page's story and requirement IDs. It is labelled "Prototipo – no forma parte del
+    producto". `?panel=0` hides it for participants, and that choice is kept for the session in
+    `sessionStorage` (no personal data). Error branches for facilitators ("Simular": network
+    error, limit reached, upload failure) are the states listed in the manifest entry's
+    `simulate` field, shown as links in a separate group of the same panel.
+- **Rationale**: This satisfies FR-050 (query parameter *and* visible toggle) with one mechanism.
+  Every state has a shareable link for reviews, and facilitators reach error branches without
+  scripted wrong paths.
+- **Alternatives considered**: One HTML file per state: about 150 files, and shared markup would
+  drift. A hash (`#state`): conflicts with in-page anchors and skip links.
 
-### R-13 · Language switching
+### R-07 · Serving at `/prototype`
 
-- **Decision**: `LanguageSwitcher` on the sign-in screen and in each role's account menu. Spanish
-  is the default. In the prototype, switching the language means switching the Figma variable mode.
-- **Rationale**: FR-002 requires that users can switch language. Putting it on sign-in lets
-  someone who reads only English get started.
-- **Alternatives considered**: Choosing by browser locale only: there's nothing to show in the
-  prototype, and users can't override it.
+- **Decision**: Files in `public/prototype/` are served by Next.js. A non-permanent redirect in
+  `next.config.ts` sends `/prototype` and `/prototype/` to `/prototype/index.html`. A rewrite would
+  serve the index at `/prototype` (no trailing slash), where relative asset paths resolve against
+  `/` and break. Links between pages are relative
+  and include `.html`.
+- **Rationale**: Next.js does not serve `index.html` for a `public/` folder on its own. With
+  relative links the prototype also works under any preview URL.
+- **Alternatives considered**: A separate static host: more setup, and no Vercel previews per PR.
 
-### R-14 · Plurals, dates and numbers in copy
+### R-08 · Responsive approach
 
-- **Decision**: Plurals use separate keys (`…_one`, `…_other`), which map to standard plural
-  categories. Dates and numbers are written per locale in each mode.
-- **Rationale**: Figma string variables can't compute plurals. Separate keys match the future
-  i18n format (Constitution VIII).
-- **Alternatives considered**: "mensaje(s)": poor readability and not correct i18n.
+- **Decision**: Design priority is desktop-first (constitution). Each page is built once and
+  responsive, with Tailwind's standard breakpoints, where unprefixed utilities apply to the
+  smallest width and `md:`/`lg:` apply from there up. This is the same convention the React app
+  will use. Every page is reviewed at 1440 px and, where marked "M", at 390 px. At 390 px:
+  - `CitationSheet` is a bottom sheet;
+  - shells switch to a compact header with a menu;
+  - primary student actions are at least 44×44 px.
+- **Rationale**: CSS authoring direction is an implementation convention, and the design
+  priority stays as the constitution says. One page per screen keeps the "one page per screen"
+  rule (FR-050) at both widths.
+- **Alternatives considered**: Separate mobile pages: these double the files and drift.
 
-### R-15 · Triggering error and limit states during sessions
+### R-09 · Copy files and sample content
 
-- **Decision**: Each flow's start frame has a small, facilitator-only "Simular" panel with
-  hotspots: network error, limit reached, upload failure. It is visually separated from the UI
-  and labelled as not part of the product.
-- **Rationale**: Participants can reach error branches without a scripted false path, and
-  facilitators can run any branch on demand.
-- **Alternatives considered**: Separate flows for every error: too many starting points for
-  participants to navigate.
+- **Decision**:
+  - **Files**: `assets/messages/{es,en}.json` hold nested keys (`student.chat.limitReached`) in
+    the format the app's i18n library will load. `assets/sample/{es,en}.json` hold `sample.*`
+    content, kept apart so it never enters the app's keys.
+  - **Plurals**: `key_one` / `key_other`, chosen with `Intl.PluralRules(locale)`.
+  - **Interpolation**: `{name}`.
+  - **Missing keys**: shown as `⟦key⟧`, so they are visible on the page and also fail the
+    key-parity test.
+  - **Language**: kept in `localStorage` (`docentai.prototype.lang`), a preference and not
+    personal data.
+- **Rationale**: Constitution VIII: no hardcoded text, and missing keys fail CI. Switching
+  language changes the whole page, including the conversation, so the EN check is real.
+- **Alternatives considered**: Spanish text inline as a fallback: two sources of truth.
+  Per-page message files: shared keys get duplicated.
+- **Note**: the app's i18n library is not chosen yet. If it uses ICU plurals instead of suffixes,
+  the `_one`/`_other` pairs convert mechanically.
 
-## Validation
+### R-10 · IMFAHE and DocentAI logos
 
-### R-16 · Participants and recording
+- **Decision**: Use the official IMFAHE logo file supplied by IMFAHE or by the grant documents,
+  stored in `assets/img/`, with alt text from `common.imfahe.logoAlt`. Until it is received, use a
+  clearly labelled placeholder ("Logo IMFAHE – pendiente") so no logo is invented or traced. The
+  acknowledgement text stays the draft "Proyecto financiado por la Fundación IMFAHE" until it is
+  confirmed (spec Assumptions).
+- **Rationale**: FR-005 and SC-007. A third party's brand mark has to come from them.
+- **Alternatives considered**: Recreating the logo from a web image: risks an incorrect or
+  unlicensed mark.
 
-- **Decision**: At least 5 students (adults, on their own phones) and at least 3 teachers, from
-  the team's network. The sessions are moderated and remote or in person, 45–60 min, think-aloud.
-  Recordings are made only with written consent, stored in the team's private institutional
-  storage, and deleted after the findings are written. Findings use participant codes (P-S01,
-  P-T01).
-- **Rationale**: These numbers are the spec's SC-001 minimum. Five users per role find most
-  usability issues. Constitution VII and GDPR: recordings are personal data, kept only as long
-  as needed.
-- **Alternatives considered**: Unmoderated testing tools: these add a third-party processor and
-  cost, and give less insight with a clickable Figma prototype. Using pilot participants: would
-  contaminate the study.
+### R-11 · Verification tooling
 
-### R-17 · How findings change the spec and Figma
+- **Decision**:
+  - **Vitest + `@testing-library/dom` with jsdom**, for:
+    - `i18n.js`, `state.js` and `include.js`, each written test-first;
+    - static checks over the files: ES/EN key parity; every `data-i18n` key exists; no `#hex`,
+      `rgb(` or `-[` arbitrary values in pages or partials; every `pages.json` entry has a file;
+      `data-component` names are known.
+  - **Playwright + `@axe-core/playwright`**, for:
+    - one sweep over every page × state × {390, 1440} in ES, with WCAG 2.2 A/AA tags (plus EN on
+      P1 pages);
+    - one test per acceptance scenario, titled with its ID (e.g. `US-01 AS3 citation opens`) and
+      grouped in a serial `test.describe` per flow F1–F15, as Constitution V requires.
 
-- **Decision**: Findings are rated by severity (critical / major / minor / cosmetic). Findings
-  that change behavior update `spec.md` first, through `/speckit-clarify` or a reviewed spec
-  edit, and Figma second. Visual-only findings update Figma directly. Every change is logged on
-  the Validation Notes page with the spec revision it relates to.
-- **Rationale**: The constitution's development workflow says behavior changes go into the spec
-  first, and Constitution IV makes the spec the source of truth for behavior.
-- **Alternatives considered**: Fixing Figma during the sessions: the spec drifts and the
-  decision isn't recorded.
+  The server is `next dev`. Scripts: `npm test` and `npm run test:e2e`.
+- **Rationale**: Constitution III (axe blocks merge) and V (Vitest, Testing Library, Playwright).
+  axe checks contrast on rendered pages, which replaces the hand-made contrast table, and SC-005's
+  "100% pass" becomes a test result. Flow tests make the FR-051 traceability checkable.
+- **Alternatives considered**: `node:test`: no new dependency, but the constitution names Vitest.
+  Manual checks only: they do not scale to about 150 states × 2 widths.
+- **Limits**: axe does not judge focus order or whether copy is understandable. Those stay manual:
+  a keyboard pass on every P1 page and the pedagogy review.
+
+## Interaction patterns (carried over)
+
+### R-12 · Citation display (S1)
+
+- **Decision**: A row of `SourceCitation` chips under each grounded answer ("Tema 3 · p. 12").
+  Tapping one opens `CitationSheet` (bottom sheet at 390 px, side panel at 1440 px) with the
+  document name, the page or section and the quoted passage. Excluded documents show "Documento
+  ya no disponible" and cannot be activated.
+- **Rationale**: Chips are tappable, labelled in text and keep the student in the chat (AS3).
+- **Alternatives considered**: Superscript numbers (too small to tap); always-expanded quotes
+  (long on mobile); opening the PDF (leaves the chat).
+
+### R-13 · "No validated source" answer (S2)
+
+- **Decision**: `ChatMessage` variant `tutor-no-source`. It uses `NoSourceNotice`: an info icon,
+  info color (not red), the heading "El material del curso no cubre esta pregunta", and actions
+  "Reformular la pregunta" and "Preguntar al profesor/a". It has no citations, and the same notice
+  is reused in hints, feedback and explanations.
+- **Rationale**: SC-003 needs it to be clearly different, without relying on color. Red would
+  suggest a malfunction.
+- **Alternatives considered**: Plain text (indistinguishable); warning styling (implies an error).
+
+### R-14 · Daily message limit
+
+- **Decision**: `MessageAllowance` always shows the remaining count ("Te quedan 12 mensajes
+  hoy"). At 5 or fewer it switches to the low state, with an icon and text. When the limit is
+  reached, `LimitReachedBanner` replaces the composer: it shows the reset time ("Podrás escribir
+  de nuevo a las 00:00"), keeps the draft and leaves the history readable. Failed messages are
+  marked as not counted.
+- **Rationale**: Showing the limit early avoids a surprise (AS5), and with no modal the history
+  can still be read (AS6).
+- **Alternatives considered**: Telling the student only at the limit; a blocking modal; a bar
+  only.
+
+### R-15 · AI disclosure
+
+- **Decision**: Three layers:
+  - a first-use `AIDisclosure` dialog that the student must acknowledge;
+  - a persistent header label ("Tutor IA · tu profesor/a puede revisar esta conversación");
+  - an "IA" tag on every tutor message.
+- **Rationale**: FR-010, FR-011 and SC-002 recall. A one-time notice alone is easily forgotten.
+- **Alternatives considered**: Mentioning it only in the consent text; a banner on every message.
+
+### R-16 · Guided mode hints (S3)
+
+- **Decision**: `tutor-hint` messages labelled "Pista 1", "Pista 2", and so on, with quick
+  replies "Otra pista" and "Intentarlo yo". After the last hint, either "Ver solución" (if
+  allowed) or a note that the teacher chose hints only. `GuidedModeIndicator` in the header.
+- **Rationale**: It stays in the chat, numbered hints show progress, and quick replies keep
+  mobile typing short.
+- **Alternatives considered**: An accordion of all hints; a separate exercise mode.
+
+### R-17 · Accessibility specifics
+
+- **Decision**:
+  - **Focus**: a 2 px `outline-focus` ring with a 2 px offset (`focus-visible:`), ≥3:1 contrast.
+  - **Targets**: ≥24×24 px, and ≥44×44 px for primary student mobile actions.
+  - **Skip link**: "Saltar al contenido" on every page.
+  - **Dialogs**: native `<dialog>` with focus return.
+  - **Live updates**: `aria-live="polite"` for the tutor-writing indicator and toasts.
+  - **Motion**: transitions only through `motion-safe:`.
+  - **Focus order**: the DOM order. Every P1 page gets a keyboard pass, recorded in
+    `validation.md`.
+- **Rationale**: WCAG 2.2 AA (2.4.7, 2.4.11, 2.5.8, 1.4.3, 1.4.11, 4.1.3) and Constitution III.
+  In HTML, focus order is the real DOM order, so no separate annotation is needed.
+- **Alternatives considered**: Leaving focus states for the app: they get skipped and cannot be
+  validated.
+
+## Validation (carried over)
+
+### R-18 · Participants and recording
+
+- **Decision**: At least 5 students (adults, own phones, using the Vercel preview URL) and at
+  least 3 teachers, from the team's network. Sessions are moderated, 45–60 min, think-aloud.
+  Recordings are made only with written consent, kept in private institutional storage and
+  deleted after the findings are written. Findings use participant codes (P-S01, P-T01).
+- **Rationale**: SC-001 minimums, Constitution VII and GDPR.
+- **Alternatives considered**: Unmoderated tools (a third-party processor); pilot participants
+  (would contaminate the study).
+
+### R-19 · How findings change the spec and the prototype
+
+- **Decision**: Rate each finding critical / major / minor / cosmetic. A finding that changes
+  behavior updates `spec.md` first (`/speckit-clarify` or a reviewed edit), then the prototype.
+  Visual-only findings update the prototype directly. Every change is logged in
+  `validation.md` with the spec revision it relates to.
+- **Rationale**: The constitution's workflow puts the spec first for behavior.
+- **Alternatives considered**: Editing the prototype during sessions, which leaves the spec
+  behind.
