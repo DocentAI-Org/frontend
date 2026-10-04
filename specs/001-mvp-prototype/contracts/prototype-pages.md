@@ -72,6 +72,8 @@ Rules:
 | `data-switch` | `role="switch"` button | Toggles `aria-checked`. In the nearest `[data-switch-scope]`, `[data-switch-on]` content shows when checked and `[data-switch-off]` when not. |
 | `data-checked-in="<stateId> …"` | radio or checkbox | Checked when the current state is one of the listed IDs (so each state shows the right selection). A radio with `data-goto` keeps its native check. |
 | `data-leave-guard="<stateId> …"` + `data-leave-state="<stateId>"` | page container | While the current state is guarded, links to other pages open the leave state (e.g. an unsaved-changes dialog) instead; `[data-leave-link]` inside it gets the link's target. |
+| `data-route` (+ `data-route-field`, `data-routes`, `data-route-default`, `data-route-empty`, `data-route-empty-target`) | `<form>` | On submit, picks the next state or page: if all `data-route-empty` fields are empty → the empty target; otherwise the `data-route-field` value is looked up (trimmed, case-insensitive) in the `data-routes` JSON, else the default. A target is a state ID, `?state=…`, `@next` (the `?next` parameter) or a page URL (keeps `lang` and `panel`). |
+| `data-invalid-in="<stateId> …"` | form control | `aria-invalid="true"` only in the listed states. |
 | `data-set-lang="es\|en"` | button (`LanguageSwitcher`, state panel) | Switches the language without reloading; `aria-pressed` marks the current one. |
 | `data-nav` | navigation container | Links inside it that point to the current page get `aria-current="page"`. |
 | `data-component="<Name>"` | component root | The future React component's name (plan.md › Components). `data-variant` is optional. |
@@ -99,7 +101,7 @@ states below.
 | 13 | `student/profile.html` | default, loading, error, revoke-confirm, revoked |
 | 14 | `teacher/courses.html` | default, empty, loading, error |
 | 15 | `teacher/course-new.html` | default, validation-error, loading |
-| 16 | `teacher/course.html` | default, no-students, loading, error, code-copied, code-disabled, regenerate-confirm |
+| 16 | `teacher/course.html` | default, no-students, loading, error, code-copied, code-disabled, regenerate-confirm, code-regenerated |
 | 17 | `teacher/material.html` | default, empty, loading, error, uploading, processing, file-error, all-excluded, duplicate |
 | 18 | `teacher/fragments.html` | default, loading, error, search-results, search-empty |
 | 19 | `teacher/tutor-settings.html` | default, loading, load-error, hints-only, preview, unsaved, saved, save-failed |

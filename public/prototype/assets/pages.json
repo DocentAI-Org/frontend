@@ -30,6 +30,58 @@
     ]
   },
   {
+    "path": "student/courses.html",
+    "screen": [
+      6
+    ],
+    "role": "student",
+    "titleKey": "student.courses.pageTitle",
+    "stories": [
+      "US-04"
+    ],
+    "requirements": [
+      "T1",
+      "FR-030"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default",
+      "empty",
+      "loading",
+      "error",
+      "several-courses"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "student/join.html",
+    "screen": [
+      7
+    ],
+    "role": "student",
+    "titleKey": "student.join.pageTitle",
+    "stories": [
+      "US-04"
+    ],
+    "requirements": [
+      "T1",
+      "FR-030"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default",
+      "loading",
+      "invalid-code",
+      "expired-code",
+      "disabled-code",
+      "confirm"
+    ]
+  },
+  {
     "path": "student/chat.html",
     "screen": [
       8,
@@ -69,6 +121,85 @@
       "failed",
       "limit-reached",
       "load-error"
+    ]
+  },
+  {
+    "path": "teacher/courses.html",
+    "screen": [
+      14
+    ],
+    "role": "teacher",
+    "titleKey": "teacher.courses.pageTitle",
+    "stories": [
+      "US-04"
+    ],
+    "requirements": [
+      "T1",
+      "FR-020"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default",
+      "empty",
+      "loading",
+      "error"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "teacher/course-new.html",
+    "screen": [
+      15
+    ],
+    "role": "teacher",
+    "titleKey": "teacher.courseNew.pageTitle",
+    "stories": [
+      "US-04"
+    ],
+    "requirements": [
+      "T1",
+      "FR-020"
+    ],
+    "priority": "P1",
+    "mobile": false,
+    "states": [
+      "default",
+      "validation-error",
+      "loading"
+    ]
+  },
+  {
+    "path": "teacher/course.html",
+    "screen": [
+      16
+    ],
+    "role": "teacher",
+    "titleKey": "teacher.course.pageTitle",
+    "stories": [
+      "US-04"
+    ],
+    "requirements": [
+      "T1",
+      "FR-020",
+      "FR-043"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default",
+      "no-students",
+      "loading",
+      "error",
+      "code-copied",
+      "code-disabled",
+      "regenerate-confirm",
+      "code-regenerated"
+    ],
+    "simulate": [
+      "error"
     ]
   },
   {

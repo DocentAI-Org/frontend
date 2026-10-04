@@ -33,6 +33,11 @@ One row per page reviewed in both languages at 1440 px (and 390 px where the man
 | teacher/material.html (all 9 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
 | teacher/fragments.html (all 5 states) | 2026-10-04 | 1440 | Pass (ES, EN) | None. |
 | teacher/tutor-settings.html (all 8 states) | 2026-10-04 | 1440 | Pass (ES, EN) | Radio names included the explanation text; each radio is now named by its option only and described by the explanation (also fixed in the design system RadioGroup). |
+| teacher/courses.html (4 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
+| teacher/course-new.html (3 states) | 2026-10-04 | 1440 | Pass (ES, EN) | None. |
+| teacher/course.html (8 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | "Copiar enlace" wrapped onto two lines at 1440 px; copy buttons no longer shrink or wrap. |
+| student/courses.html (5 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
+| student/join.html (6 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | Opening an error state directly shows an empty code field (the typed code is only kept when arriving by submitting). Accepted for the prototype. |
 
 ## Keyboard pass log
 
@@ -46,6 +51,11 @@ return it to the opener.
 | teacher/material.html | 2026-10-04 | Pass | Shell nav → back link → upload → per document: include switch, review-fragments link (its name includes the document). Duplicate dialog: focus starts on Cancelar and stays inside. |
 | teacher/fragments.html | 2026-10-04 | Pass | Back link → search field → search button → footer. |
 | teacher/tutor-settings.html | 2026-10-04 | Pass | Back link → policy, level, tone radio groups (arrow keys within a group) → example, discard, save. Unsaved dialog: focus starts on "Seguir editando"; Esc returns to the form with the change kept. |
+| teacher/courses.html | 2026-10-04 | Pass | Create course → course cards (one link each). |
+| teacher/course-new.html | 2026-10-04 | Pass | Back → name → description → Cancel → Create. Empty name: error summary plus field error, the field is marked aria-invalid and its error is part of its description. |
+| teacher/course.html | 2026-10-04 | Pass | Tabs (Students is aria-current) → copy code → link field → copy link → regenerate → disable. Regenerate dialog: focus on Cancelar first. |
+| student/courses.html | 2026-10-04 | Pass | Join → per course a labelled group of four actions. |
+| student/join.html | 2026-10-04 | Pass | Code field → Continue; errors are announced through the field description. |
 
 ## Session plan
 
@@ -66,6 +76,8 @@ To be filled before the first session (quickstart.md B1).
 | 2026-10-04 | Added an `error` state to teacher/material.html. The contract listed none, but FR-001 and Constitution VI require one for every data-driven page. | Implementation of T049 | contract §4 updated |
 | 2026-10-04 | The upload empty state lists "PDF, DOCX, Markdown" (spec US-02 AS1 wording) rather than "PDF, DOCX, MD" (task T049). | Implementation of T049 | none |
 | 2026-10-04 | Tutor settings keep the "saved" confirmation and the hint example visible together, so US-03 AS2 (confirmation plus example after saving) is one state. | Implementation of T054 | none |
+| 2026-10-04 | Added a `code-regenerated` state to teacher/course.html (new code ALG-9Q2M and a note that the old code no longer works), so US-04 AS4 "the screen shows the new state" is visible. | Implementation of T060 | contract §4, plan pages table |
+| 2026-10-04 | Creating a course leads to the course page in `no-students` state (a new course has no students yet). Join codes for the prototype: ALG-7K3P valid, ALG-4X2B expired, ALG-8M1D disabled, anything else invalid. | Implementation of T059, T062 | none |
 
 ## Success criteria results
 

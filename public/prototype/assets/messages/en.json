@@ -104,6 +104,11 @@
         "toast": "Settings saved",
         "toastTitle": "Toast"
       },
+      "course": {
+        "code": "Class code",
+        "lead": "Class code and invitation (T1).",
+        "title": "Courses"
+      },
       "focus": {
         "ringBody": "A 2 px outline in --color-focus with a 2 px offset, on focus-visible only. Contrast ≥3:1 against its surroundings.",
         "ringTitle": "Focus ring",
@@ -229,7 +234,10 @@
         "weights": "Weights"
       },
       "v": {
+        "active": "Active",
+        "copied": "Copied",
         "default": "Default",
+        "disabled": "Disabled",
         "error": "Error",
         "excluded": "Excluded",
         "included": "Included",
@@ -394,6 +402,37 @@
       "whoBody": "Your teacher may review your conversations. The research team only sees data without your name.",
       "whoTitle": "Who sees it"
     },
+    "courses": {
+      "actionsLabel": "Actions for {course}",
+      "emptyBody": "Ask your teacher for the class code or the invitation link.",
+      "emptyTitle": "You're not in any course yet",
+      "exercise": "Submit an exercise",
+      "join": "Join a course",
+      "loadError": "Couldn't load your courses",
+      "openChat": "Ask the tutor",
+      "pageTitle": "My courses",
+      "progress": "My progress",
+      "quiz": "Take a quiz",
+      "teacher": "Teacher: {teacher}",
+      "title": "My courses"
+    },
+    "join": {
+      "code": "Class code",
+      "codeHelp": "It looks like this: ALG-7K3P.",
+      "confirm": "Join the course",
+      "confirmTitle": "Join this course?",
+      "continue": "Continue",
+      "disabled": "Your teacher has disabled this code. Ask them for a new one.",
+      "expired": "This code has expired. Ask your teacher for a new code.",
+      "invalid": "This code doesn't match any course. Check it or ask your teacher for a new code.",
+      "lead": "Enter the code your teacher gave you. If you received a link, open it and you'll arrive here with the code filled in.",
+      "notThis": "Not this course",
+      "pageTitle": "Join a course",
+      "privacy": "When you join, your teacher will see your name or pseudonym and may review your conversations with the tutor.",
+      "searching": "Looking for the course…",
+      "teacher": "Teacher",
+      "title": "Join a course"
+    },
     "shell": {
       "aiLabel": "AI tutor",
       "nav": {
@@ -406,6 +445,74 @@
     }
   },
   "teacher": {
+    "course": {
+      "back": "Back to my courses",
+      "code": {
+        "copied": "Copied",
+        "copy": "Copy code",
+        "copyLink": "Copy link",
+        "disable": "Disable code",
+        "disabled": "Disabled",
+        "disabledBody": "Nobody can join with this code. Students already in the course aren't affected.",
+        "enable": "Enable again",
+        "label": "Class code",
+        "linkLabel": "Invitation link",
+        "regenerate": "Generate a new code",
+        "regenerated": "New code generated. The previous code no longer works."
+      },
+      "invite": {
+        "lead": "Share the code or the link. Students will see the course name and yours before they join.",
+        "title": "Invite students"
+      },
+      "loadError": "Couldn't load the course",
+      "pageTitle": "Course",
+      "regenBody": "Code {code} will stop working. Students already in the course won't be affected.",
+      "regenTitle": "Generate a new code?",
+      "students": {
+        "emptyBody": "Share code {code} or the invitation link so your students can join.",
+        "emptyTitle": "No students yet",
+        "joined": "Joined {date}",
+        "pseudonym": "Pseudonym",
+        "showing": "Showing {shown} of {total}",
+        "title": "Students"
+      },
+      "tab": {
+        "conversations": "Conversations",
+        "material": "Material",
+        "settings": "Tutor settings",
+        "students": "Students"
+      },
+      "tabs": "Course sections"
+    },
+    "courseNew": {
+      "back": "Back to my courses",
+      "creating": "Creating the course…",
+      "description": "Description",
+      "descriptionHelp": "One sentence about what the course covers.",
+      "errorSummary": "Check the highlighted field to create the course.",
+      "lead": "You can upload material and configure the tutor afterwards.",
+      "name": "Course name",
+      "nameError": "Enter a name for the course (1 to 80 characters).",
+      "nameHelp": "Between 1 and 80 characters. Your students will see it when they join.",
+      "namePlaceholder": "For example, Year 9 Maths – Algebra",
+      "optional": "(optional)",
+      "pageTitle": "Create course",
+      "submit": "Create course",
+      "title": "Create a course"
+    },
+    "courses": {
+      "create": "Create course",
+      "created": "Created {date}",
+      "emptyBody": "When you create it you'll get a code and a link for your students to join.",
+      "emptyTitle": "Create your first course",
+      "lead": "The courses you've created. Only you can see them.",
+      "listLabel": "Courses",
+      "loadError": "Couldn't load your courses",
+      "pageTitle": "My courses",
+      "students_one": "{count} student",
+      "students_other": "{count} students",
+      "title": "My courses"
+    },
     "fragments": {
       "backToMaterial": "Back to the material",
       "clear": "Show all fragments",

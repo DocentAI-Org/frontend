@@ -18,12 +18,19 @@
     "course": {
       "code": "ALG-7K3P",
       "description": "Ecuaciones, sistemas, polinomios y factorización.",
+      "disabledCode": "ALG-8M1D",
+      "expiredCode": "ALG-4X2B",
       "link": "docentai.example.org/unirse/ALG-7K3P",
-      "name": "Matemáticas 3º ESO – Álgebra"
+      "name": "Matemáticas 3º ESO – Álgebra",
+      "newCode": "ALG-9Q2M",
+      "newLink": "docentai.example.org/unirse/ALG-9Q2M"
     },
     "courses": {
       "second": "Física 3º ESO – Movimiento",
-      "secondTeacher": "Prof. Marta Gil Soler"
+      "secondDescription": "Velocidad, aceleración y gráficas de movimiento.",
+      "secondTeacher": "Prof. Marta Gil Soler",
+      "third": "Matemáticas 4º ESO – Funciones",
+      "thirdDescription": "Funciones lineales, cuadráticas y sus gráficas."
     },
     "documents": {
       "polinomios": "Ejercicios resueltos – Polinomios.md",

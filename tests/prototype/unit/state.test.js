@@ -7,7 +7,8 @@ import {
   decorateLinks,
   isPanelHidden,
   renderPanel,
-  resolveState
+  resolveState,
+  setNavigator
 } from "../../../public/prototype/assets/js/state.js";
 
 const entry = {
@@ -184,6 +185,23 @@ describe("modal dialogs", () => {
     spy.mockRestore();
   });
 
+  it("stays on the target state when a button inside the dialog changes state, even if close fires later", async () => {
+    document.getElementById("dlg").insertAdjacentHTML("beforeend", '<button id="go-other" data-goto="other">Otro</button>');
+    const e = { ...dialogEntry, states: ["default", "dialog", "other"] };
+    const realClose = HTMLDialogElement.prototype.close;
+    HTMLDialogElement.prototype.close = function () {
+      this.open = false;
+      setTimeout(() => this.dispatchEvent(new Event("close")), 0);
+    };
+    setUrl("?state=dialog");
+    applyState(document.body, e);
+    bindNavigation(document.body);
+    document.getElementById("go-other").click();
+    await new Promise((r) => setTimeout(r, 5));
+    expect(new URL(window.location.href).searchParams.get("state")).toBe("other");
+    HTMLDialogElement.prototype.close = realClose;
+  });
+
   it("goes to data-close-state when the dialog closes and returns focus to the opener", () => {
     applyState(document.body, dialogEntry);
     bindNavigation(document.body);
@@ -298,5 +316,73 @@ describe("leave guard", () => {
     const click = new MouseEvent("click", { bubbles: true, cancelable: true });
     document.getElementById("away").dispatchEvent(click);
     expect(click.defaultPrevented).toBe(false);
+  });
+});
+
+describe("form routing", () => {
+  const e4 = { ...entry, states: ["default", "confirm", "invalid-code", "validation-error"] };
+  let navigated;
+
+  beforeEach(() => {
+    navigated = null;
+    setNavigator((url) => (navigated = url));
+    document.body.innerHTML = `
+      <form id="f" data-route data-route-field="#code" data-route-default="invalid-code"
+            data-routes='{"ALG-7K3P":"confirm","ALG-HOME":"courses.html"}'
+            data-route-empty="#code" data-route-empty-target="validation-error">
+        <input id="code" /><button type="submit">Continuar</button>
+      </form>`;
+    applyState(document.body, e4);
+    bindNavigation(document.body);
+  });
+
+  const submit = (value) => {
+    document.getElementById("code").value = value;
+    document.getElementById("f").requestSubmit();
+  };
+
+  it("goes to the state mapped to the field value (case-insensitive, trimmed)", () => {
+    submit("  alg-7k3p ");
+    expect(new URL(window.location.href).searchParams.get("state")).toBe("confirm");
+  });
+
+  it("uses the default target when nothing matches", () => {
+    submit("XYZ-0000");
+    expect(new URL(window.location.href).searchParams.get("state")).toBe("invalid-code");
+  });
+
+  it("goes to the empty target when the required fields are empty", () => {
+    submit("");
+    expect(new URL(window.location.href).searchParams.get("state")).toBe("validation-error");
+  });
+
+  it("navigates to a page target, keeping lang and panel", () => {
+    setUrl("?lang=en&panel=0");
+    submit("ALG-HOME");
+    const url = new URL(navigated);
+    expect(url.pathname).toBe("/prototype/student/courses.html");
+    expect(url.searchParams.get("lang")).toBe("en");
+    expect(url.searchParams.get("panel")).toBe("0");
+  });
+
+  it("resolves @next from the ?next parameter", () => {
+    document.getElementById("f").setAttribute("data-route-default", "@next");
+    setUrl("?state=default&next=chat.html%3Fstate%3Danswer");
+    submit("anything");
+    expect(new URL(navigated).pathname).toBe("/prototype/student/chat.html");
+    expect(new URL(navigated).searchParams.get("state")).toBe("answer");
+  });
+});
+
+describe("data-invalid-in", () => {
+  it("sets aria-invalid only in the listed states", () => {
+    document.body.innerHTML = '<input id="i" data-invalid-in="invalid-code" />';
+    const e5 = { ...entry, states: ["default", "invalid-code"] };
+    setUrl("?state=invalid-code");
+    applyState(document.body, e5);
+    expect(document.getElementById("i").getAttribute("aria-invalid")).toBe("true");
+    setUrl("");
+    applyState(document.body, e5);
+    expect(document.getElementById("i").hasAttribute("aria-invalid")).toBe(false);
   });
 });

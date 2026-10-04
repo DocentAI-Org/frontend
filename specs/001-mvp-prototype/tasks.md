@@ -355,26 +355,26 @@ Read these once. Every page task assumes them.
 
 **Independent Test**: Create a course, copy the code, then as a student enter an invalid code, then "ALG-7K3P", confirm, and see the course in the list (flow F6)
 
-- [ ] T056 [P] [US4] Write tests/prototype/e2e/flow-f06.spec.js with one `test()` per acceptance scenario, titled with its ID, in a serial `test.describe`:
+- [X] T056 [P] [US4] Write tests/prototype/e2e/flow-f06.spec.js with one `test()` per acceptance scenario, titled with its ID, in a serial `test.describe`:
   - `US-04 AS1` teacher courses empty state;
   - `US-04 AS2` creating a course shows the code "ALG-7K3P" and the link with copy actions and "Copiado";
   - `US-04 AS3` the students tab, or its empty state, points to the code;
   - `US-04 AS4` regenerate-confirm and code-disabled;
   - `US-04 AS5` a student enters a valid code, sees the course and teacher, confirms, and the course appears in `student/courses.html`;
   - `US-04 AS6` invalid, expired and disabled codes each show a specific message suggesting to ask the teacher.
-- [ ] T057 [US4] Add `ClassCode` (active, copied, disabled) to public/prototype/design-system.html
-- [ ] T058 [P] [US4] Build public/prototype/teacher/courses.html (#14) with the states `default`, `empty`, `loading` and `error`. Course cards show the name, student count and created date (`data-i18n-date`). Add its manifest entry
-- [ ] T059 [P] [US4] Build public/prototype/teacher/course-new.html (#15) with the states `default`, `validation-error` and `loading`. Fields: name (validation: "name is required (1–80 characters)", with the error shown under the field) and an optional description. Add its manifest entry
-- [ ] T060 [US4] Build public/prototype/teacher/course.html (#16) with the states `default`, `no-students`, `loading`, `error`, `code-copied`, `code-disabled` and `regenerate-confirm`:
+- [X] T057 [US4] Add `ClassCode` (active, copied, disabled) to public/prototype/design-system.html
+- [X] T058 [P] [US4] Build public/prototype/teacher/courses.html (#14) with the states `default`, `empty`, `loading` and `error`. Course cards show the name, student count and created date (`data-i18n-date`). Add its manifest entry
+- [X] T059 [P] [US4] Build public/prototype/teacher/course-new.html (#15) with the states `default`, `validation-error` and `loading`. Fields: name (validation: "name is required (1–80 characters)", with the error shown under the field) and an optional description. Add its manifest entry
+- [X] T060 [US4] Build public/prototype/teacher/course.html (#16) with the states `default`, `no-students`, `loading`, `error`, `code-copied`, `code-disabled` and `regenerate-confirm`:
   - `ClassCode` "ALG-7K3P" and the invitation link `…/unirse/ALG-7K3P`;
   - the students list shows display names and pseudonyms ("Estudiante-07");
   - tabs: Material → material.html, Configuración del tutor → tutor-settings.html, Estudiantes, Conversaciones.
 
   Add its manifest entry
-- [ ] T061 [P] [US4] Build public/prototype/student/courses.html (#6) with the states `default`, `empty` ("Unirse a un curso"), `loading`, `error` and `several-courses` (course switcher; allowance per T008). Add its manifest entry
-- [ ] T062 [P] [US4] Build public/prototype/student/join.html (#7) with the states `default`, `loading`, `invalid-code`, `expired-code`, `disabled-code` and `confirm` (shows the course name and "Prof. Elena Ruiz Navarro"). Add its manifest entry
-- [ ] T063 [US4] Add the `teacher.courses.*`, `teacher.course.*`, `teacher.courseNew.*`, `student.courses.*` and `student.join.*` keys (ES/EN), wire flow F6 and run `npm run test:e2e -- flow-f06 a11y-sweep`
-- [ ] T064 [US4] Do the ES/EN review and keyboard pass for the five US4 pages and log them in specs/001-mvp-prototype/validation.md
+- [X] T061 [P] [US4] Build public/prototype/student/courses.html (#6) with the states `default`, `empty` ("Unirse a un curso"), `loading`, `error` and `several-courses` (course switcher; allowance per T008). Add its manifest entry
+- [X] T062 [P] [US4] Build public/prototype/student/join.html (#7) with the states `default`, `loading`, `invalid-code`, `expired-code`, `disabled-code` and `confirm` (shows the course name and "Prof. Elena Ruiz Navarro"). Add its manifest entry
+- [X] T063 [US4] Add the `teacher.courses.*`, `teacher.course.*`, `teacher.courseNew.*`, `student.courses.*` and `student.join.*` keys (ES/EN), wire flow F6 and run `npm run test:e2e -- flow-f06 a11y-sweep`
+- [X] T064 [US4] Do the ES/EN review and keyboard pass for the five US4 pages and log them in specs/001-mvp-prototype/validation.md
 
 ---
 

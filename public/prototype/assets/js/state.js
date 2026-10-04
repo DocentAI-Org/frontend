@@ -6,6 +6,12 @@ const ADVANCE_MS = 1200;
 let current = { root: null, entry: null };
 let advanceTimer = null;
 let lastOpener = null;
+let navigator = (url) => window.location.assign(url);
+
+/** Replace how page-to-page navigation happens (tests use this to observe it). */
+export function setNavigator(fn) {
+  navigator = fn;
+}
 
 export function resolveState(entry, search = window.location.search) {
   const requested = new URLSearchParams(search).get("state");
@@ -26,6 +32,10 @@ export function applyState(root, entry, search = window.location.search) {
   root.querySelectorAll("[data-state]").forEach((el) => {
     const states = el.getAttribute("data-state").split(/\s+/).filter(Boolean);
     el.hidden = !states.includes(state);
+  });
+  root.querySelectorAll("[data-invalid-in]").forEach((input) => {
+    if (input.getAttribute("data-invalid-in").split(/\s+/).includes(state)) input.setAttribute("aria-invalid", "true");
+    else input.removeAttribute("aria-invalid");
   });
   root.querySelectorAll("[data-checked-in]").forEach((input) => {
     input.checked = input.getAttribute("data-checked-in").split(/\s+/).includes(state);
@@ -55,7 +65,12 @@ function syncDialogs(root) {
         if (dialog.getAttribute("data-dismissible") === "false") event.preventDefault();
       });
       dialog.addEventListener("close", () => {
-        if (dialog.dataset.syncing) return;
+        // A close caused by a state change (syncing) must not navigate again. The close event can fire
+        // asynchronously, so the flag is cleared here rather than right after close().
+        if (dialog.dataset.syncing) {
+          delete dialog.dataset.syncing;
+          return;
+        }
         const target = dialog.getAttribute("data-close-state");
         if (target) goto(target);
         if (lastOpener?.isConnected) lastOpener.focus();
@@ -68,7 +83,6 @@ function syncDialogs(root) {
     } else if (!visible && dialog.open) {
       dialog.dataset.syncing = "true";
       dialog.close();
-      delete dialog.dataset.syncing;
     }
   });
 }
@@ -109,8 +123,52 @@ function guardLeave(link, event) {
   return true;
 }
 
+function keepParams(target) {
+  const url = new URL(target, window.location.href);
+  const here = new URLSearchParams(window.location.search);
+  for (const k of ["lang", "panel"]) if (here.has(k) && !url.searchParams.has(k)) url.searchParams.set(k, here.get(k));
+  return url.href;
+}
+
+function routeTo(form, target) {
+  if (target === "@next") target = new URLSearchParams(window.location.search).get("next") || form.getAttribute("data-route-next-fallback") || "";
+  if (!target) return;
+  if (target.startsWith("?")) {
+    goto(new URLSearchParams(target).get("state"));
+  } else if (current.entry?.states.includes(target)) {
+    goto(target);
+  } else {
+    navigator(keepParams(target));
+  }
+}
+
+// <form data-route>: on submit, data-route-empty fields all empty → data-route-empty-target; otherwise the
+// value of data-route-field is looked up (trimmed, case-insensitive) in data-routes, else data-route-default.
+// A target is a state ID, "?state=…", "@next" (the ?next parameter) or a page URL.
+function onRouteSubmit(event) {
+  const form = event.target instanceof Element ? event.target.closest("form[data-route]") : null;
+  if (!form) return;
+  event.preventDefault();
+  const fields = (selectors) => (selectors ? selectors.split(",").map((sel) => form.querySelector(sel.trim())).filter(Boolean) : []);
+  const isEmpty = (el) => (el.type === "file" ? el.files.length === 0 : el.value.trim() === "");
+  const empties = fields(form.getAttribute("data-route-empty"));
+  if (empties.length && empties.every(isEmpty)) return routeTo(form, form.getAttribute("data-route-empty-target"));
+  const [field] = fields(form.getAttribute("data-route-field"));
+  const routes = Object.fromEntries(
+    Object.entries(JSON.parse(form.getAttribute("data-routes") || "{}")).map(([k, v]) => [k.trim().toUpperCase(), v])
+  );
+  const key = field ? field.value.trim().toUpperCase() : "";
+  routeTo(form, routes[key] ?? form.getAttribute("data-route-default"));
+}
+
+const boundRoots = new WeakSet();
+
 export function bindNavigation(root = document.body) {
   root.querySelectorAll("[data-switch]").forEach(syncSwitch);
+  // Listeners are delegated, so binding a root once is enough (and calling again must not double them).
+  if (boundRoots.has(root)) return;
+  boundRoots.add(root);
+  root.addEventListener("submit", onRouteSubmit);
 
   root.addEventListener("click", (event) => {
     const target = event.target instanceof Element ? event.target : null;

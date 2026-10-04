@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Crear curso · DocentAI (prototipo)</title>
+    <style>
+      [data-cloak] { visibility: hidden; }
+      [data-cloak] *, [data-cloak] *::before, [data-cloak] *::after { transition: none !important; }
+      summary::-webkit-details-marker { display: none; }
+    </style>
+    <script type="module" src="../assets/js/prototype.js"></script>
+  </head>
+  <body data-cloak class="flex min-h-dvh flex-col bg-surface font-sans text-fg antialiased">
+    <a href="#main" class="sr-only rounded-lg bg-primary-700 px-4 py-2 text-fg-inverse focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50" data-i18n="common.a11y.skipToContent"></a>
+    <div data-include="partials/shell-teacher.html"></div>
+    <main id="main" tabindex="-1" class="mx-auto w-full max-w-6xl flex-1 px-4 py-6 sm:px-6 lg:py-10">
+      <div class="mx-auto flex w-full max-w-2xl flex-col gap-6">
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"><div class="min-w-0"><a href="courses.html" class="mb-3 inline-flex items-center gap-1 text-sm font-medium text-primary-700 hover:text-primary-800 rounded-sm text-primary-700 underline underline-offset-2 hover:text-primary-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"><svg class="size-4 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#chevron-left"/></svg><span data-i18n="teacher.courseNew.back"></span></a><h1 class="text-2xl font-bold text-fg sm:text-3xl" data-i18n="teacher.courseNew.title"></h1><p class="mt-1 max-w-3xl text-fg-muted" data-i18n="teacher.courseNew.lead"></p></div></div>
+        <form novalidate data-route data-route-empty="#course-name" data-route-empty-target="validation-error"
+              data-route-default="course.html?state=no-students" class="rounded-xl border border-border bg-surface-raised shadow-sm flex flex-col gap-5 p-6">
+          <div data-state="validation-error"><div role="alert" class="flex items-start gap-3 rounded-xl border border-danger-200 bg-danger-50 p-4"><svg class="mt-0.5 size-5 text-danger-700 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#triangle-alert"/></svg><div class="flex min-w-0 flex-1 flex-col gap-1"><p class="text-danger-700" data-i18n="teacher.courseNew.errorSummary"></p></div></div></div>
+          <div class="flex flex-col gap-1.5" data-component="TextField"><label for="course-name" class="text-sm font-medium text-fg" data-i18n="teacher.courseNew.name"></label><input id="course-name" type="text" maxlength="80" class="min-h-11 w-full rounded-lg border border-border-strong bg-surface-raised px-3 text-base text-fg placeholder:text-fg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:bg-surface-sunken disabled:text-fg-muted aria-invalid:border-danger-600" data-invalid-in="validation-error" aria-describedby="course-name-help course-name-error" data-i18n-attr="placeholder:teacher.courseNew.namePlaceholder" /><p class="text-sm text-fg-muted" data-i18n="teacher.courseNew.nameHelp" id="course-name-help"></p><p id="course-name-error" class="text-sm text-danger-700"><span data-state="validation-error" class="flex items-center gap-1.5"><svg class="size-4 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#triangle-alert"/></svg><span data-i18n="teacher.courseNew.nameError"></span></span></p></div>
+          <div class="flex flex-col gap-1.5" data-component="TextArea"><label for="course-desc" class="text-sm font-medium text-fg"><span data-i18n="teacher.courseNew.description"></span> <span class="font-normal text-fg-muted" data-i18n="teacher.courseNew.optional"></span></label><textarea id="course-desc" rows="3" class="min-h-11 w-full rounded-lg border border-border-strong bg-surface-raised px-3 text-base text-fg placeholder:text-fg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:bg-surface-sunken disabled:text-fg-muted aria-invalid:border-danger-600 py-2" aria-describedby="course-desc-help" ></textarea><p class="text-sm text-fg-muted" data-i18n="teacher.courseNew.descriptionHelp" id="course-desc-help"></p></div>
+          <div class="flex flex-col-reverse gap-2 border-t border-border pt-5 sm:flex-row sm:justify-end">
+            <a href="courses.html" class="inline-flex items-center justify-center gap-2 rounded-lg font-semibold motion-safe:transition-colors motion-safe:duration-150 motion-safe:ease-standard focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:border-transparent disabled:bg-neutral-200 disabled:text-neutral-600 disabled:shadow-none min-h-11 px-4 text-sm text-primary-700 hover:bg-primary-50" data-component="Button" data-variant="ghost"><span data-i18n="common.actions.cancel"></span></a>
+            <span data-state="default validation-error"><button type="submit" class="inline-flex items-center justify-center gap-2 rounded-lg font-semibold motion-safe:transition-colors motion-safe:duration-150 motion-safe:ease-standard focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:border-transparent disabled:bg-neutral-200 disabled:text-neutral-600 disabled:shadow-none min-h-11 px-4 text-sm bg-primary-600 text-fg-inverse shadow-sm hover:bg-primary-700" data-component="Button" data-variant="primary"><svg class="size-4 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#check"/></svg><span data-i18n="teacher.courseNew.submit"></span></button></span>
+            <span data-state="loading"><button type="button" disabled aria-busy="true" class="inline-flex items-center justify-center gap-2 rounded-lg font-semibold motion-safe:transition-colors motion-safe:duration-150 motion-safe:ease-standard focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:border-transparent disabled:bg-neutral-200 disabled:text-neutral-600 disabled:shadow-none min-h-11 px-4 text-sm bg-primary-600 text-fg-inverse shadow-sm hover:bg-primary-700"><svg class="size-4 motion-safe:animate-spin shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#refresh-cw"/></svg><span data-i18n="teacher.courseNew.creating"></span></button></span>
+          </div>
+        </form>
+      </div>
+    </main>
+    <div data-include="partials/footer.html"></div>
+  </body>
+</html>

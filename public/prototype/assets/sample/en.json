@@ -18,12 +18,19 @@
     "course": {
       "code": "ALG-7K3P",
       "description": "Equations, systems, polynomials and factorisation.",
+      "disabledCode": "ALG-8M1D",
+      "expiredCode": "ALG-4X2B",
       "link": "docentai.example.org/join/ALG-7K3P",
-      "name": "Year 9 Maths – Algebra"
+      "name": "Year 9 Maths – Algebra",
+      "newCode": "ALG-9Q2M",
+      "newLink": "docentai.example.org/join/ALG-9Q2M"
     },
     "courses": {
       "second": "Year 9 Physics – Motion",
-      "secondTeacher": "Ms Marta Gil Soler"
+      "secondDescription": "Speed, acceleration and motion graphs.",
+      "secondTeacher": "Ms Marta Gil Soler",
+      "third": "Year 10 Maths – Functions",
+      "thirdDescription": "Linear and quadratic functions and their graphs."
     },
     "documents": {
       "polinomios": "Worked examples – Polynomials.md",

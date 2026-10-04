@@ -104,6 +104,11 @@
         "toast": "Configuración guardada",
         "toastTitle": "Aviso temporal"
       },
+      "course": {
+        "code": "Código de clase",
+        "lead": "Código de clase e invitación (T1).",
+        "title": "Cursos"
+      },
       "focus": {
         "ringBody": "Contorno de 2 px en --color-focus, separado 2 px, solo con focus-visible. Contraste ≥3:1 con lo que lo rodea.",
         "ringTitle": "Anillo de foco",
@@ -229,7 +234,10 @@
         "weights": "Pesos"
       },
       "v": {
+        "active": "Activo",
+        "copied": "Copiado",
         "default": "Normal",
+        "disabled": "Desactivado",
         "error": "Error",
         "excluded": "Excluido",
         "included": "Incluido",
@@ -394,6 +402,37 @@
       "whoBody": "Tu profesor/a puede revisar tus conversaciones. El equipo de investigación solo ve datos sin tu nombre.",
       "whoTitle": "Quién lo ve"
     },
+    "courses": {
+      "actionsLabel": "Acciones del curso {course}",
+      "emptyBody": "Pide a tu profesor/a el código de clase o el enlace de invitación.",
+      "emptyTitle": "Todavía no estás en ningún curso",
+      "exercise": "Enviar un ejercicio",
+      "join": "Unirse a un curso",
+      "loadError": "No se han podido cargar tus cursos",
+      "openChat": "Preguntar al tutor",
+      "pageTitle": "Mis cursos",
+      "progress": "Mi progreso",
+      "quiz": "Hacer un cuestionario",
+      "teacher": "Profesor/a: {teacher}",
+      "title": "Mis cursos"
+    },
+    "join": {
+      "code": "Código de clase",
+      "codeHelp": "Tiene este formato: ALG-7K3P.",
+      "confirm": "Unirme al curso",
+      "confirmTitle": "¿Unirte a este curso?",
+      "continue": "Continuar",
+      "disabled": "Tu profesor/a ha desactivado este código. Pídele uno nuevo.",
+      "expired": "Este código ha caducado. Pide a tu profesor/a un código nuevo.",
+      "invalid": "Este código no corresponde a ningún curso. Revísalo o pide a tu profesor/a un código nuevo.",
+      "lead": "Escribe el código que te ha dado tu profesor/a. Si te ha enviado un enlace, ábrelo y llegarás aquí con el código ya puesto.",
+      "notThis": "No es este curso",
+      "pageTitle": "Unirse a un curso",
+      "privacy": "Al unirte, tu profesor/a verá tu nombre o seudónimo y podrá revisar tus conversaciones con el tutor.",
+      "searching": "Buscando el curso…",
+      "teacher": "Profesor/a",
+      "title": "Unirse a un curso"
+    },
     "shell": {
       "aiLabel": "Tutor IA",
       "nav": {
@@ -406,6 +445,74 @@
     }
   },
   "teacher": {
+    "course": {
+      "back": "Volver a mis cursos",
+      "code": {
+        "copied": "Copiado",
+        "copy": "Copiar código",
+        "copyLink": "Copiar enlace",
+        "disable": "Desactivar código",
+        "disabled": "Desactivado",
+        "disabledBody": "Nadie puede unirse con este código. Los estudiantes que ya están en el curso no se ven afectados.",
+        "enable": "Activar de nuevo",
+        "label": "Código de clase",
+        "linkLabel": "Enlace de invitación",
+        "regenerate": "Generar código nuevo",
+        "regenerated": "Código nuevo generado. El código anterior ya no funciona."
+      },
+      "invite": {
+        "lead": "Comparte el código o el enlace. Al usarlo, cada estudiante verá el nombre del curso y el tuyo antes de unirse.",
+        "title": "Invitar a estudiantes"
+      },
+      "loadError": "No se ha podido cargar el curso",
+      "pageTitle": "Curso",
+      "regenBody": "El código {code} dejará de funcionar. Los estudiantes que ya están en el curso no se verán afectados.",
+      "regenTitle": "¿Generar un código nuevo?",
+      "students": {
+        "emptyBody": "Comparte el código {code} o el enlace de invitación para que tus estudiantes se unan.",
+        "emptyTitle": "Todavía no hay estudiantes",
+        "joined": "Se unió el {date}",
+        "pseudonym": "Seudónimo",
+        "showing": "Mostrando {shown} de {total}",
+        "title": "Estudiantes"
+      },
+      "tab": {
+        "conversations": "Conversaciones",
+        "material": "Material",
+        "settings": "Configuración del tutor",
+        "students": "Estudiantes"
+      },
+      "tabs": "Secciones del curso"
+    },
+    "courseNew": {
+      "back": "Volver a mis cursos",
+      "creating": "Creando el curso…",
+      "description": "Descripción",
+      "descriptionHelp": "Una frase sobre qué se trabaja en el curso.",
+      "errorSummary": "Revisa el campo marcado para poder crear el curso.",
+      "lead": "Después podrás subir el material y configurar el tutor.",
+      "name": "Nombre del curso",
+      "nameError": "Escribe un nombre para el curso (entre 1 y 80 caracteres).",
+      "nameHelp": "Entre 1 y 80 caracteres. Tus estudiantes lo verán al unirse.",
+      "namePlaceholder": "Por ejemplo, Matemáticas 3º ESO – Álgebra",
+      "optional": "(opcional)",
+      "pageTitle": "Crear curso",
+      "submit": "Crear curso",
+      "title": "Crear un curso"
+    },
+    "courses": {
+      "create": "Crear curso",
+      "created": "Creado el {date}",
+      "emptyBody": "Al crearlo obtendrás un código y un enlace para que tus estudiantes se unan.",
+      "emptyTitle": "Crea tu primer curso",
+      "lead": "Los cursos que has creado. Solo tú los ves.",
+      "listLabel": "Cursos",
+      "loadError": "No se han podido cargar tus cursos",
+      "pageTitle": "Mis cursos",
+      "students_one": "{count} estudiante",
+      "students_other": "{count} estudiantes",
+      "title": "Mis cursos"
+    },
     "fragments": {
       "backToMaterial": "Volver al material",
       "clear": "Ver todos los fragmentos",
