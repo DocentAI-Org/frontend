@@ -56,6 +56,9 @@ Expected result: both pass. The flow tests report each acceptance scenario by ID
 
 ## B1. Before the first session (once)
 
+Links per flow, task cards, a consent-form draft and blank session sheets are in
+[session-kit.md](session-kit.md).
+
 - [ ] Flows F1–F5 at least are complete, and `npm test` and `npm run test:e2e` pass on the
       preview deployment's commit.
 - [ ] The cover page (`/prototype`) shows status "En validación" with version and date.

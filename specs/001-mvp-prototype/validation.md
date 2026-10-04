@@ -19,9 +19,28 @@ details are stored here.
 | Item | Owner | Status |
 |---|---|---|
 | Sample names re-checked against participants once they are recruited (T103 checked only the names this repository knows). | Team | Pending |
+| T105: deploy a Vercel preview and confirm on a real phone over mobile data that `/prototype` loads in under 2 s. Local substitute done (see Performance). | Team | Pending |
+| T107: preview URL, Deployment Protection check, ethics approval of the consent draft, private recording storage, then cover status "En validación". Kit ready in session-kit.md. | Team | Pending |
 | Official IMFAHE logo file. The prototype shows an HTML placeholder ("Logo IMFAHE – pendiente") until IMFAHE supplies the file (research R-10). | Team | Pending |
 | IMFAHE acknowledgement wording. Draft: "Proyecto financiado por la Fundación IMFAHE" (spec Assumptions). | Team | Pending confirmation |
 | `npm run lint` failed: typescript-eslint does not support TypeScript 7.0. Fixed by running TS side by side: `typescript` → `@typescript/typescript6` (API for tools), `typescript7` → `typescript@7.0.2` (the `tsc` used by `npm run typecheck`). | Team | Resolved 2026-10-04 |
+
+## Performance (local substitute for T105)
+
+Production build (`next build` + `next start`), Chromium with 390×844 mobile emulation, cache
+disabled, Tailwind fetched from jsDelivr, 3 runs per page. Time until the page is usable
+(styles generated, copy and state applied). Median (min–max), 2026-10-04:
+
+| Page | Slow 4G (150 ms RTT, 1.6 Mbps, CPU ×4) | Typical 4G (40 ms RTT, 9 Mbps, CPU ×2) |
+|---|---|---|
+| auth/sign-in.html | 1.45 s (1.45–1.59) | 0.52 s (0.44–0.53) |
+| student/courses.html | 1.51 s (1.49–1.54) | 0.48 s (0.45–0.56) |
+| student/chat.html | 1.50 s (1.50–1.52) | 0.47 s (0.44–0.49) |
+| student/exercise.html | 1.50 s (1.48–1.51) | 0.53 s (0.41–0.54) |
+| teacher/material.html | 1.51 s (1.51–1.52) | 0.58 s (0.52–0.63) |
+
+All under the 2 s goal, even on slow 4G. This is emulation on a laptop: the real-phone check on
+a Vercel preview (T105) is still required.
 
 ## ES/EN review log
 
