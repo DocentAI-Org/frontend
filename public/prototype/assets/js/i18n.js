@@ -87,6 +87,9 @@ function resolveVar(dict, value, lang) {
   if (value.startsWith("sample.")) return lookup(dict, value) ?? `⟦${value}⟧`;
   if (value.startsWith("date:")) return formatDate(value.slice(5), lang);
   if (value.startsWith("number:")) return formatNumber(value.slice(7), lang);
+  if (value.startsWith("percent:")) {
+    return new Intl.NumberFormat(lang, { style: "percent", maximumFractionDigits: 0 }).format(Number(value.slice(8)));
+  }
   return value;
 }
 

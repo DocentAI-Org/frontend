@@ -149,6 +149,13 @@
         "title": "Iconos"
       },
       "lead": "Tokens y componentes compartidos por el prototipo y la futura app React. Los nombres coinciden uno a uno con las variables de @theme y con los componentes de React (Constitución IV).",
+      "material": {
+        "fragment": "Fragmento",
+        "lead": "Subida, procesamiento e inclusión de documentos (T2).",
+        "row": "Fila de documento",
+        "title": "Material del curso",
+        "upload": "Archivo en subida"
+      },
       "motion": {
         "body": "Transiciones de color de 150 ms con --ease-standard, siempre con motion-safe:. Con «reducir movimiento» no hay animación y los estados de carga avanzan al instante.",
         "title": "Movimiento"
@@ -220,6 +227,16 @@
         "sample": "El material del curso no cubre esta pregunta",
         "title": "Tipografía",
         "weights": "Pesos"
+      },
+      "v": {
+        "default": "Normal",
+        "error": "Error",
+        "excluded": "Excluido",
+        "included": "Incluido",
+        "match": "Coincide con la búsqueda",
+        "processing": "Procesando",
+        "ready": "Listo",
+        "uploading": "Subiendo"
       },
       "variant": {
         "danger": "Peligro",
@@ -389,6 +406,65 @@
     }
   },
   "teacher": {
+    "fragments": {
+      "backToMaterial": "Volver al material",
+      "clear": "Ver todos los fragmentos",
+      "lead": "Así se ha dividido el documento. El tutor cita estos fragmentos en sus respuestas.",
+      "listLabel": "Fragmentos en orden",
+      "loadError": "No se han podido cargar los fragmentos",
+      "matchLabel": "coincidencia",
+      "meta": "{fragments} fragmentos · {pages} páginas",
+      "noResultsBody": "Prueba con otra palabra o revisa la ortografía.",
+      "noResultsTitle": "Ningún fragmento contiene «{query}»",
+      "number": "Fragmento {n}",
+      "pageTitle": "Revisión de fragmentos",
+      "results_one": "{count} fragmento contiene «{query}»",
+      "results_other": "{count} fragmentos contienen «{query}»",
+      "searchLabel": "Buscar en los fragmentos",
+      "searchPlaceholder": "Por ejemplo, «despejar»",
+      "title": "Revisión de fragmentos"
+    },
+    "material": {
+      "allExcludedBody": "Ningún documento está incluido. Mientras sea así, el tutor dirá a tus estudiantes que el material no cubre sus preguntas.",
+      "allExcludedTitle": "El tutor no tiene material",
+      "backToCourse": "Volver al curso",
+      "documentsTitle": "Documentos del curso",
+      "dropzone": "Arrastra archivos aquí o selecciona archivos",
+      "dropzoneButton": "Selecciona archivos",
+      "duplicateBody": "«{name}» ya está en el material del curso. ¿Quieres reemplazarlo o conservar los dos?",
+      "duplicateTitle": "Ya existe un documento con este nombre",
+      "emptyBody": "El tutor solo responde con el material que subas y valides. Sin material, dirá que no puede responder.",
+      "emptyTitle": "Todavía no has subido material",
+      "error": {
+        "format": "Formato no admitido. Usa PDF, DOCX o Markdown.",
+        "noText": "No se ha encontrado texto legible. Si es un escaneo, sube una versión con texto.",
+        "size": "Supera el tamaño máximo de 20 MB."
+      },
+      "formats": "Formatos: PDF, DOCX, Markdown · Tamaño máximo: 20 MB por archivo",
+      "include": "Incluir en la base de conocimiento",
+      "keepBoth": "Conservar ambos",
+      "lead": "El tutor solo responde con los documentos que incluyes aquí. Revisa cómo se ha dividido cada uno antes de incluirlo.",
+      "loadError": "No se ha podido cargar el material",
+      "meta": "{pages} páginas · {fragments} fragmentos · subido el {date}",
+      "metaNoPages": "{fragments} fragmentos · subido el {date}",
+      "pageTitle": "Material del curso",
+      "rejectedTitle": "No se han subido",
+      "replace": "Reemplazar",
+      "reviewFragments": "Revisar fragmentos",
+      "status": {
+        "error": "Error",
+        "excluded": "Excluido",
+        "included": "Incluido",
+        "processing": "Procesando… separando el documento en fragmentos",
+        "ready": "Listo",
+        "uploading": "Subiendo {percent}"
+      },
+      "title": "Material del curso",
+      "upload": "Subir archivos",
+      "uploadsTitle": "Subidas en curso",
+      "usingCount": "El tutor usa {used} de {total} documentos.",
+      "usingNone": "El tutor no usa ningún documento."
+    },
     "shell": {
       "nav": {
         "conversations": "Conversaciones",

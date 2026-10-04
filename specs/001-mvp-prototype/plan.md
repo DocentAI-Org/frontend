@@ -129,7 +129,7 @@ reached · NS no validated source · AI AI disclosure · SC source citations. "M
 | 14 | Teacher | My courses | `teacher/courses.html` | US-04 | T1 | P1 | D, E, L, Er | ✓ |
 | 15 | Teacher | Create course | `teacher/course-new.html` | US-04 | T1 | P1 | D, Er validation, L | — |
 | 16 | Teacher | Course overview | `teacher/course.html` | US-04 | T1 | P1 | D, E (no students), L, Er, code copied, code disabled, regenerate confirm | ✓ |
-| 17 | Teacher | Material list & upload | `teacher/material.html` | US-02 | T2 | P1 | E, L, D, uploading, processing, file error, all excluded, duplicate dialog | ✓ |
+| 17 | Teacher | Material list & upload | `teacher/material.html` | US-02 | T2 | P1 | E, L, Er, D, uploading, processing, file error, all excluded, duplicate dialog | ✓ |
 | 18 | Teacher | Fragment review | `teacher/fragments.html` | US-02 | T2 | P1 | D, L, Er, search results, search no results | — |
 | 19 | Teacher | Tutor settings | `teacher/tutor-settings.html` | US-03 | T3, S3 | P1 | D (defaults), L, Er (load), preview, unsaved dialog, saved, Er (save failed) | — |
 | 20 | Admin | Users | `admin/users.html` | US-07 | P1 | P1 | D, E, L, Er | ✓ |

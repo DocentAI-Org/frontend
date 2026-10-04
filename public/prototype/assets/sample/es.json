@@ -27,10 +27,12 @@
     },
     "documents": {
       "polinomios": "Ejercicios resueltos – Polinomios.md",
+      "presentation": "Presentación – Tema 3.pptx",
       "scanned": "Hoja de ejercicios escaneada.pdf",
       "sistemas": "Apuntes – Sistemas de ecuaciones.docx",
       "tema3": "Tema 3 – Ecuaciones de primer grado.pdf",
-      "tema3Short": "Tema 3"
+      "tema3Short": "Tema 3",
+      "textbook": "Libro de texto completo.pdf"
     },
     "exercise": {
       "statement": "Resuelve 2(x − 3) = 4x + 2",
@@ -38,6 +40,20 @@
       "step2": "2x − 4x = 2 − 6",
       "step3": "−2x = −4",
       "step4": "x = 2"
+    },
+    "fragments": {
+      "f11": "Una ecuación de primer grado es una igualdad con una incógnita cuyo exponente es 1. Por ejemplo, 3x + 5 = 20.",
+      "f11loc": "p. 11",
+      "f12loc": "p. 12",
+      "f13": "Despejar la incógnita significa dejarla sola en uno de los miembros. Lo que suma pasa restando y lo que multiplica pasa dividiendo.",
+      "f13loc": "§ 3.2 Despejar la incógnita",
+      "f14": "Si hay paréntesis, primero se eliminan aplicando la propiedad distributiva: 2(x − 3) = 2x − 6.",
+      "f14loc": "p. 13",
+      "m1a": "Para ",
+      "m1b": " la incógnita se aplican las mismas operaciones en los dos miembros.",
+      "m2b": " la incógnita significa dejarla sola en uno de los miembros.",
+      "matchWord": "Despejar",
+      "matchWordLower": "despejar"
     },
     "people": {
       "admin": "Admin DocentAI",
@@ -55,6 +71,10 @@
       "covered": "¿Cómo despejo x en 3x + 5 = 20?",
       "guided": "¿Cómo resuelvo 2x − 4 = 10?",
       "notCovered": "¿Quién inventó el álgebra?"
+    },
+    "search": {
+      "noResults": "logaritmo",
+      "query": "despejar"
     },
     "topics": {
       "factorisation": "Factorización",

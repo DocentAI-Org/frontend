@@ -63,12 +63,13 @@ Rules:
 | `data-i18n="<key>"` | element | Sets `textContent` from the message files. |
 | `data-i18n-attr="attr:key;attr:key"` | element | Sets attributes (`aria-label`, `alt`, `placeholder`, `title`). |
 | `data-i18n-count="<n>"` | element with `data-i18n` | Picks `key_one` / `key_other` and fills `{count}`. |
-| `data-i18n-vars='{"name":"…"}'` | element with `data-i18n` | Fills interpolation variables. A value may be a `sample.*` key, `date:2026-10-06T10:42` or `number:2.4` (formatted for the current language). |
+| `data-i18n-vars='{"name":"…"}'` | element with `data-i18n` | Fills interpolation variables. A value may be a `sample.*` key, `date:2026-10-06T10:42`, `number:2.4` or `percent:0.45` (formatted for the current language). |
 | `data-i18n-date="2026-10-04"` / `data-i18n-number="2.4"` | element | Formats with `Intl` for the current language. |
 | `data-include="partials/<file>.html"` | empty element | Replaced by the partial's markup before copy and state are applied. Inside partials, `href`/`src` values starting with `~/` resolve from the prototype root, so one partial works at any folder depth. |
 | `data-modal` + `data-close-state="<stateId>"` | `<dialog>` that has a `data-state` | Opened with `showModal()` while its state is current (focus trap, Esc). Closing it goes to `data-close-state`, and focus returns to the element that opened it. |
 | `data-dismissible="false"` | `<dialog data-modal>` | Esc does not close it (used when an acknowledgement is required). |
 | `data-focus="<selector>"` | button | Moves focus to the matching element (e.g. "Reformular la pregunta" → the composer). |
+| `data-switch` | `role="switch"` button | Toggles `aria-checked`. In the nearest `[data-switch-scope]`, `[data-switch-on]` content shows when checked and `[data-switch-off]` when not. |
 | `data-set-lang="es\|en"` | button (`LanguageSwitcher`, state panel) | Switches the language without reloading; `aria-pressed` marks the current one. |
 | `data-nav` | navigation container | Links inside it that point to the current page get `aria-current="page"`. |
 | `data-component="<Name>"` | component root | The future React component's name (plan.md › Components). `data-variant` is optional. |
@@ -97,7 +98,7 @@ states below.
 | 14 | `teacher/courses.html` | default, empty, loading, error |
 | 15 | `teacher/course-new.html` | default, validation-error, loading |
 | 16 | `teacher/course.html` | default, no-students, loading, error, code-copied, code-disabled, regenerate-confirm |
-| 17 | `teacher/material.html` | default, empty, loading, uploading, processing, file-error, all-excluded, duplicate |
+| 17 | `teacher/material.html` | default, empty, loading, error, uploading, processing, file-error, all-excluded, duplicate |
 | 18 | `teacher/fragments.html` | default, loading, error, search-results, search-empty |
 | 19 | `teacher/tutor-settings.html` | default, loading, load-error, hints-only, preview, unsaved, saved, save-failed |
 | 20 | `admin/users.html` | default, empty, loading, error |

@@ -149,6 +149,13 @@
         "title": "Icons"
       },
       "lead": "Tokens and components shared by the prototype and the future React app. Names match the @theme variables and the React components one to one (Constitution IV).",
+      "material": {
+        "fragment": "Fragment",
+        "lead": "Uploading, processing and including documents (T2).",
+        "row": "Document row",
+        "title": "Course material",
+        "upload": "File upload item"
+      },
       "motion": {
         "body": "150 ms color transitions with --ease-standard, always behind motion-safe:. With reduced motion there is no animation, and loading states advance at once.",
         "title": "Motion"
@@ -220,6 +227,16 @@
         "sample": "The course material doesn't cover this question",
         "title": "Typography",
         "weights": "Weights"
+      },
+      "v": {
+        "default": "Default",
+        "error": "Error",
+        "excluded": "Excluded",
+        "included": "Included",
+        "match": "Search match",
+        "processing": "Processing",
+        "ready": "Ready",
+        "uploading": "Uploading"
       },
       "variant": {
         "danger": "Danger",
@@ -389,6 +406,65 @@
     }
   },
   "teacher": {
+    "fragments": {
+      "backToMaterial": "Back to the material",
+      "clear": "Show all fragments",
+      "lead": "This is how the document was split. The tutor cites these fragments in its answers.",
+      "listLabel": "Fragments in order",
+      "loadError": "Couldn't load the fragments",
+      "matchLabel": "match",
+      "meta": "{fragments} fragments · {pages} pages",
+      "noResultsBody": "Try another word or check the spelling.",
+      "noResultsTitle": "No fragment contains \"{query}\"",
+      "number": "Fragment {n}",
+      "pageTitle": "Fragment review",
+      "results_one": "{count} fragment contains \"{query}\"",
+      "results_other": "{count} fragments contain \"{query}\"",
+      "searchLabel": "Search the fragments",
+      "searchPlaceholder": "For example, \"solve\"",
+      "title": "Fragment review"
+    },
+    "material": {
+      "allExcludedBody": "No document is included. Until you include one, the tutor will tell your students that the material doesn't cover their questions.",
+      "allExcludedTitle": "The tutor has no material",
+      "backToCourse": "Back to the course",
+      "documentsTitle": "Course documents",
+      "dropzone": "Drag files here or select files",
+      "dropzoneButton": "Select files",
+      "duplicateBody": "\"{name}\" is already in the course material. Do you want to replace it or keep both?",
+      "duplicateTitle": "A document with this name already exists",
+      "emptyBody": "The tutor only answers from the material you upload and approve. Without material, it will say it can't answer.",
+      "emptyTitle": "You haven't uploaded any material yet",
+      "error": {
+        "format": "Unsupported format. Use PDF, DOCX or Markdown.",
+        "noText": "No readable text was found. If it's a scan, upload a version with text.",
+        "size": "It's larger than the 20 MB limit."
+      },
+      "formats": "Formats: PDF, DOCX, Markdown · Maximum size: 20 MB per file",
+      "include": "Include in the knowledge base",
+      "keepBoth": "Keep both",
+      "lead": "The tutor only answers from the documents you include here. Check how each one was split before including it.",
+      "loadError": "Couldn't load the material",
+      "meta": "{pages} pages · {fragments} fragments · uploaded {date}",
+      "metaNoPages": "{fragments} fragments · uploaded {date}",
+      "pageTitle": "Course material",
+      "rejectedTitle": "Not uploaded",
+      "replace": "Replace",
+      "reviewFragments": "Review fragments",
+      "status": {
+        "error": "Error",
+        "excluded": "Excluded",
+        "included": "Included",
+        "processing": "Processing… splitting the document into fragments",
+        "ready": "Ready",
+        "uploading": "Uploading {percent}"
+      },
+      "title": "Course material",
+      "upload": "Upload files",
+      "uploadsTitle": "Uploads in progress",
+      "usingCount": "The tutor uses {used} of {total} documents.",
+      "usingNone": "The tutor uses no documents."
+    },
     "shell": {
       "nav": {
         "conversations": "Conversations",

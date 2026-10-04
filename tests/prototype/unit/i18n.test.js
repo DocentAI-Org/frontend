@@ -74,6 +74,14 @@ describe("translate", () => {
   });
 });
 
+describe("percent values", () => {
+  it("formats percent: values per locale", () => {
+    const d = { up: "Subiendo {p}" };
+    expect(translate(d, "up", { vars: { p: "percent:0.45" } }, "es").replace(/\s/g, " ")).toBe("Subiendo 45 %");
+    expect(translate(d, "up", { vars: { p: "percent:0.45" } }, "en")).toBe("Subiendo 45%");
+  });
+});
+
 describe("formatDate", () => {
   it("formats per locale without shifting the day", () => {
     expect(formatDate("2026-10-04", "es")).toBe("4 oct 2026");

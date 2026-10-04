@@ -219,3 +219,28 @@ describe("non-dismissible dialogs", () => {
     expect(cancel.defaultPrevented).toBe(true);
   });
 });
+
+describe("switches", () => {
+  beforeEach(() => {
+    document.body.innerHTML = `
+      <div data-switch-scope>
+        <button id="sw" type="button" role="switch" aria-checked="true" data-switch>Incluir</button>
+        <span id="on" data-switch-on>Incluido</span>
+        <span id="off" data-switch-off>Excluido</span>
+      </div>`;
+    applyState(document.body, entry);
+    bindNavigation(document.body);
+  });
+
+  it("shows the 'on' content initially when checked", () => {
+    expect(document.getElementById("on").hidden).toBe(false);
+    expect(document.getElementById("off").hidden).toBe(true);
+  });
+
+  it("flips aria-checked and the content on click", () => {
+    document.getElementById("sw").click();
+    expect(document.getElementById("sw").getAttribute("aria-checked")).toBe("false");
+    expect(document.getElementById("on").hidden).toBe(true);
+    expect(document.getElementById("off").hidden).toBe(false);
+  });
+});

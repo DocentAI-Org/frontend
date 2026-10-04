@@ -300,7 +300,7 @@ Read these once. Every page task assumes them.
 
 ### Tests for User Story 2 ⚠️
 
-- [ ] T047 [P] [US2] Write tests/prototype/e2e/flow-f01.spec.js (starting at `teacher/material.html?state=empty`; the tests from My courses are added in T099) with one `test()` per acceptance scenario, titled with its ID, in a serial `test.describe`:
+- [X] T047 [P] [US2] Write tests/prototype/e2e/flow-f01.spec.js (starting at `teacher/material.html?state=empty`; the tests from My courses are added in T099) with one `test()` per acceptance scenario, titled with its ID, in a serial `test.describe`:
   - `US-02 AS1` the empty state lists "PDF, DOCX, Markdown" and "20 MB";
   - `US-02 AS2` uploading shows per-file "Subiendo 45 %", then "Procesando", then "Listo";
   - `US-02 AS3` the scanned PDF shows "No se ha encontrado texto legible" with "Eliminar" and "Reintentar";
@@ -310,20 +310,20 @@ Read these once. Every page task assumes them.
 
 ### Implementation for User Story 2
 
-- [ ] T048 [US2] Add these to public/prototype/design-system.html:
+- [X] T048 [US2] Add these to public/prototype/design-system.html:
   - `FileUploadItem`: uploading with % in a `<progress>` with a label, processing, ready, and error with a reason;
   - `DocumentRow`: included, excluded, processing and error, with the include `Toggle`;
   - `FragmentItem`: default and search-match, with the match highlighted by `<mark>`.
-- [ ] T049 [US2] Build public/prototype/teacher/material.html (#17) with the teacher shell and the states `default`, `empty`, `loading`, `uploading`, `processing`, `file-error`, `all-excluded` and `duplicate`:
+- [X] T049 [US2] Build public/prototype/teacher/material.html (#17) with the teacher shell and the states `default`, `empty`, `loading`, `uploading`, `processing`, `file-error`, `all-excluded` and `duplicate`:
   - **empty**: accepted types "PDF, DOCX, MD", max size "20 MB" (illustrative), and an upload drop zone that is also a button.
   - **file-error**: the reasons unsupported format / too large / no readable text.
   - **duplicate**: a `Dialog` offering "Reemplazar" or "Conservar ambos" ("Uploading a file with an existing name prompts replace or keep both").
   - **all-excluded**: the warning banner.
 
   Use the documents from `sample.documents.*`. Add its manifest entry
-- [ ] T050 [P] [US2] Build public/prototype/teacher/fragments.html (#18) with the states `default`, `loading`, `error`, `search-results` and `search-empty`. Show the ordered fragments of "Tema 3" with location labels "p. 12" and "§ 3.2 Despejar la incógnita", and a search field. Add its manifest entry
-- [ ] T051 [US2] Add the `teacher.material.*` and `teacher.fragments.*` keys (ES/EN), wire flow F1 between material.html and fragments.html, and run `npm run test:e2e -- flow-f01 a11y-sweep`
-- [ ] T052 [US2] Do the ES/EN review and keyboard pass for material.html and fragments.html, and log them in specs/001-mvp-prototype/validation.md
+- [X] T050 [P] [US2] Build public/prototype/teacher/fragments.html (#18) with the states `default`, `loading`, `error`, `search-results` and `search-empty`. Show the ordered fragments of "Tema 3" with location labels "p. 12" and "§ 3.2 Despejar la incógnita", and a search field. Add its manifest entry
+- [X] T051 [US2] Add the `teacher.material.*` and `teacher.fragments.*` keys (ES/EN), wire flow F1 between material.html and fragments.html, and run `npm run test:e2e -- flow-f01 a11y-sweep`
+- [X] T052 [US2] Do the ES/EN review and keyboard pass for material.html and fragments.html, and log them in specs/001-mvp-prototype/validation.md
 
 ---
 

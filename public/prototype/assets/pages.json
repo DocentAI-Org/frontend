@@ -70,5 +70,64 @@
       "limit-reached",
       "load-error"
     ]
+  },
+  {
+    "path": "teacher/material.html",
+    "screen": [
+      17
+    ],
+    "role": "teacher",
+    "titleKey": "teacher.material.pageTitle",
+    "stories": [
+      "US-02"
+    ],
+    "requirements": [
+      "T2",
+      "FR-021"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default",
+      "empty",
+      "loading",
+      "error",
+      "uploading",
+      "processing",
+      "file-error",
+      "all-excluded",
+      "duplicate"
+    ],
+    "simulate": [
+      "file-error",
+      "error"
+    ]
+  },
+  {
+    "path": "teacher/fragments.html",
+    "screen": [
+      18
+    ],
+    "role": "teacher",
+    "titleKey": "teacher.fragments.pageTitle",
+    "stories": [
+      "US-02"
+    ],
+    "requirements": [
+      "T2",
+      "FR-021"
+    ],
+    "priority": "P1",
+    "mobile": false,
+    "states": [
+      "default",
+      "loading",
+      "error",
+      "search-results",
+      "search-empty"
+    ],
+    "simulate": [
+      "error"
+    ]
   }
 ]

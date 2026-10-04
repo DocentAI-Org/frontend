@@ -27,10 +27,12 @@
     },
     "documents": {
       "polinomios": "Worked examples – Polynomials.md",
+      "presentation": "Slides – Unit 3.pptx",
       "scanned": "Scanned exercise sheet.pdf",
       "sistemas": "Notes – Systems of equations.docx",
       "tema3": "Unit 3 – Linear equations.pdf",
-      "tema3Short": "Unit 3"
+      "tema3Short": "Unit 3",
+      "textbook": "Full textbook.pdf"
     },
     "exercise": {
       "statement": "Solve 2(x − 3) = 4x + 2",
@@ -38,6 +40,20 @@
       "step2": "2x − 4x = 2 − 6",
       "step3": "−2x = −4",
       "step4": "x = 2"
+    },
+    "fragments": {
+      "f11": "A linear equation is an equality with one unknown whose exponent is 1. For example, 3x + 5 = 20.",
+      "f11loc": "p. 11",
+      "f12loc": "p. 12",
+      "f13": "Solving for the unknown means getting it on its own on one side. What is added moves across as a subtraction; what multiplies moves across as a division.",
+      "f13loc": "§ 3.2 Solving for the unknown",
+      "f14": "If there are brackets, remove them first using the distributive property: 2(x − 3) = 2x − 6.",
+      "f14loc": "p. 13",
+      "m1a": "To ",
+      "m1b": " for the unknown, apply the same operations to both sides.",
+      "m2b": " for the unknown means getting it on its own on one side.",
+      "matchWord": "Solve",
+      "matchWordLower": "solve"
     },
     "people": {
       "admin": "DocentAI Admin",
@@ -55,6 +71,10 @@
       "covered": "How do I solve for x in 3x + 5 = 20?",
       "guided": "How do I solve 2x − 4 = 10?",
       "notCovered": "Who invented algebra?"
+    },
+    "search": {
+      "noResults": "logarithm",
+      "query": "solve"
     },
     "topics": {
       "factorisation": "Factorisation",

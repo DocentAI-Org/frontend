@@ -83,10 +83,28 @@ function isSamePageStateLink(a) {
   return href !== null && href.startsWith("?");
 }
 
+// A role="switch" button with data-switch toggles aria-checked; inside its nearest
+// [data-switch-scope], [data-switch-on] content shows when checked and [data-switch-off] when not.
+function syncSwitch(button) {
+  const scope = button.closest("[data-switch-scope]") ?? button.parentElement;
+  const on = button.getAttribute("aria-checked") === "true";
+  scope.querySelectorAll("[data-switch-on]").forEach((el) => (el.hidden = !on));
+  scope.querySelectorAll("[data-switch-off]").forEach((el) => (el.hidden = on));
+}
+
 export function bindNavigation(root = document.body) {
+  root.querySelectorAll("[data-switch]").forEach(syncSwitch);
+
   root.addEventListener("click", (event) => {
     const target = event.target instanceof Element ? event.target : null;
     if (!target) return;
+
+    const toggle = target.closest("[data-switch]");
+    if (toggle && root.contains(toggle)) {
+      toggle.setAttribute("aria-checked", String(toggle.getAttribute("aria-checked") !== "true"));
+      syncSwitch(toggle);
+      return;
+    }
 
     const focuser = target.closest("[data-focus]");
     if (focuser && root.contains(focuser)) {
