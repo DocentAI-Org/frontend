@@ -40,6 +40,10 @@ export function applyState(root, entry, search = window.location.search) {
   root.querySelectorAll("[data-checked-in]").forEach((input) => {
     input.checked = input.getAttribute("data-checked-in").split(/\s+/).includes(state);
   });
+  root.querySelectorAll("[data-mirror]").forEach((el) => {
+    const value = document.querySelector(el.getAttribute("data-mirror"))?.value?.trim();
+    if (value) el.textContent = value;
+  });
   document.documentElement.dataset.state = state;
   syncDialogs(root);
 

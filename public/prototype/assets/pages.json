@@ -163,6 +163,69 @@
     ]
   },
   {
+    "path": "student/exercise.html",
+    "screen": [
+      11
+    ],
+    "role": "student",
+    "titleKey": "student.exercise.pageTitle",
+    "stories": [
+      "US-06"
+    ],
+    "requirements": [
+      "S4",
+      "FR-010",
+      "FR-011",
+      "FR-014",
+      "FR-033"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default",
+      "review",
+      "loading",
+      "empty-submission",
+      "unreadable-photo",
+      "limit-reached"
+    ],
+    "simulate": [
+      "unreadable-photo",
+      "limit-reached"
+    ]
+  },
+  {
+    "path": "student/exercise-feedback.html",
+    "screen": [
+      12
+    ],
+    "role": "student",
+    "titleKey": "student.feedback.pageTitle",
+    "stories": [
+      "US-06"
+    ],
+    "requirements": [
+      "S4",
+      "S1",
+      "S2",
+      "FR-012",
+      "FR-013",
+      "FR-033"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default",
+      "pending",
+      "citation",
+      "no-source",
+      "error"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
     "path": "teacher/courses.html",
     "screen": [
       14

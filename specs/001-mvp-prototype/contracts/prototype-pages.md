@@ -74,6 +74,7 @@ Rules:
 | `data-leave-guard="<stateId> …"` + `data-leave-state="<stateId>"` | page container | While the current state is guarded, links to other pages open the leave state (e.g. an unsaved-changes dialog) instead; `[data-leave-link]` inside it gets the link's target. |
 | `data-route` (+ `data-route-field`, `data-routes`, `data-route-default`, `data-route-empty`, `data-route-empty-target`) | `<form>` | On submit, picks the next state or page: if all `data-route-empty` fields are empty → the empty target; otherwise the `data-route-field` value is looked up (trimmed, case-insensitive) in the `data-routes` JSON, else the default. A target is a state ID, `?state=…`, `@next` (the `?next` parameter) or a page URL (keeps `lang` and `panel`). |
 | `data-invalid-in="<stateId> …"` | form control | `aria-invalid="true"` only in the listed states. |
+| `data-mirror="<selector>"` | element | On each state change, shows the value typed in the matching field (keeps its own text when the field is empty). Used by review steps. |
 | `data-set-lang="es\|en"` | button (`LanguageSwitcher`, state panel) | Switches the language without reloading; `aria-pressed` marks the current one. |
 | `data-nav` | navigation container | Links inside it that point to the current page get `aria-current="page"`. |
 | `data-component="<Name>"` | component root | The future React component's name (plan.md › Components). `data-variant` is optional. |
@@ -97,7 +98,7 @@ states below.
 | 8–9 | `student/chat.html` | default, loading, load-error, first-use, tutor-writing, answer, citation, citation-unavailable, no-source, low-allowance, limit-reached, failed |
 | 10 | `student/chat-guided.html` | default, loading, load-error, hint-1, hint-2, citation, hints-done-solution, hints-done-hints-only, solution, no-source, limit-reached |
 | 11 | `student/exercise.html` | default, review, loading, empty-submission, unreadable-photo, limit-reached |
-| 12 | `student/exercise-feedback.html` | default, pending, no-source, error, repeated-mistake |
+| 12 | `student/exercise-feedback.html` | default, pending, citation, no-source, error, repeated-mistake |
 | 13 | `student/profile.html` | default, loading, error, revoke-confirm, revoked |
 | 14 | `teacher/courses.html` | default, empty, loading, error |
 | 15 | `teacher/course-new.html` | default, validation-error, loading |

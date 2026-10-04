@@ -31,4 +31,13 @@ test.describe("F4 · Daily limit", () => {
     await chip.focus();
     await expect(chip).toBeFocused();
   });
+
+  scenario("US-06 AS6", "at the limit, exercise submission shows the same limit message and is blocked", async ({ page }) => {
+    await gotoState(page, "student/exercise.html", "limit-reached");
+    const banner = page.locator('[data-component="LimitReachedBanner"][data-variant="exercise"]');
+    await expect(banner).toBeVisible();
+    await expect(banner).toContainText("Has usado tus 30 mensajes de hoy");
+    await expect(banner).toContainText("00:00");
+    await expect(page.getByRole("button", { name: "Revisar antes de enviar" })).toBeDisabled();
+  });
 });

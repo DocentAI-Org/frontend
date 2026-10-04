@@ -401,3 +401,18 @@ describe("data-close-state=@back", () => {
     back.mockRestore();
   });
 });
+
+describe("data-mirror", () => {
+  it("shows the typed value, or keeps the existing text when the field is empty", () => {
+    document.body.innerHTML = `
+      <textarea id="steps"></textarea>
+      <p id="out" data-mirror="#steps" data-state="review">Ejemplo</p>`;
+    const e6 = { ...entry, states: ["default", "review"] };
+    setUrl("?state=review");
+    applyState(document.body, e6);
+    expect(document.getElementById("out").textContent).toBe("Ejemplo");
+    document.getElementById("steps").value = "x = 2";
+    applyState(document.body, e6);
+    expect(document.getElementById("out").textContent).toBe("x = 2");
+  });
+});

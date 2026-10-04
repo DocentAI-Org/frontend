@@ -42,11 +42,18 @@
       "textbook": "Libro de texto completo.pdf"
     },
     "exercise": {
+      "photo": "foto-ejercicio.jpg",
       "statement": "Resuelve 2(x − 3) = 4x + 2",
       "step1": "2x − 6 = 4x + 2",
       "step2": "2x − 4x = 2 − 6",
       "step3": "−2x = −4",
-      "step4": "x = 2"
+      "step4": "x = 2",
+      "stepsAll": "2x − 6 = 4x + 2\n2x − 4x = 2 − 6\n−2x = −4\nx = 2"
+    },
+    "feedback": {
+      "explanation": "Al pasar el −6 del lado izquierdo al derecho, cambia de signo: lo que resta pasa sumando. Por eso en el paso 2 debería quedar 2 + 6, no 2 − 6. Los pasos siguientes arrastran ese error.",
+      "good": "Has quitado bien los paréntesis en el paso 1.",
+      "loc": "§ 3.2"
     },
     "fragments": {
       "f11": "Una ecuación de primer grado es una igualdad con una incógnita cuyo exponente es 1. Por ejemplo, 3x + 5 = 20.",

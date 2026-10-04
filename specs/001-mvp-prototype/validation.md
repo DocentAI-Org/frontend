@@ -39,6 +39,8 @@ One row per page reviewed in both languages at 1440 px (and 390 px where the man
 | student/courses.html (5 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
 | student/join.html (6 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | Opening an error state directly shows an empty code field (the typed code is only kept when arriving by submitting). Accepted for the prototype. |
 | student/chat-guided.html (11 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | The indicator icon wrapped onto its own line at 390 px; icon and text now stay together. |
+| student/exercise.html (6 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | In unreadable-photo the native file field says no file is selected (a static page cannot pre-fill it); the attached file name is shown under the field. Accepted for the prototype. |
+| student/exercise-feedback.html (5 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
 
 ## Keyboard pass log
 
@@ -58,6 +60,8 @@ return it to the opener.
 | student/courses.html | 2026-10-04 | Pass | Join → per course a labelled group of four actions. |
 | student/join.html | 2026-10-04 | Pass | Code field → Continue; errors are announced through the field description. |
 | student/chat-guided.html | 2026-10-04 | Pass | Citation chip → "Otra pista" → "Intentarlo yo" (moves focus to the composer) → composer → send. The citation sheet returns to the hint state it was opened from, with focus back on the chip. |
+| student/exercise.html | 2026-10-04 | Pass | Statement → steps → photo → review. Errors are announced (role alert) and fields are aria-invalid. Review: Edit → Send. |
+| student/exercise-feedback.html | 2026-10-04 | Pass | Citation chip (opens the sheet, focus returns on close) → ask the tutor → fix and resend. |
 
 ## Session plan
 
@@ -81,6 +85,7 @@ To be filled before the first session (quickstart.md B1).
 | 2026-10-04 | Added a `code-regenerated` state to teacher/course.html (new code ALG-9Q2M and a note that the old code no longer works), so US-04 AS4 "the screen shows the new state" is visible. | Implementation of T060 | contract §4, plan pages table |
 | 2026-10-04 | Creating a course leads to the course page in `no-students` state (a new course has no students yet). Join codes for the prototype: ALG-7K3P valid, ALG-4X2B expired, ALG-8M1D disabled, anything else invalid. | Implementation of T059, T062 | none |
 | 2026-10-04 | Added a `citation` state to student/chat-guided.html so hint citations open the citation sheet (US-05 AS4, S1). The sheet uses `data-close-state="@back"` to return to the hint the student was on. | Implementation of T067 | contract §3, §4 |
+| 2026-10-04 | Added a `citation` state to student/exercise-feedback.html so its citation opens the passage (FR-012). Added `data-mirror` so the review step shows what the student typed. | Implementation of T070, T071 | contract §3, §4 |
 
 ## Success criteria results
 

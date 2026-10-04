@@ -42,11 +42,18 @@
       "textbook": "Full textbook.pdf"
     },
     "exercise": {
+      "photo": "exercise-photo.jpg",
       "statement": "Solve 2(x − 3) = 4x + 2",
       "step1": "2x − 6 = 4x + 2",
       "step2": "2x − 4x = 2 − 6",
       "step3": "−2x = −4",
-      "step4": "x = 2"
+      "step4": "x = 2",
+      "stepsAll": "2x − 6 = 4x + 2\n2x − 4x = 2 − 6\n−2x = −4\nx = 2"
+    },
+    "feedback": {
+      "explanation": "When you move −6 from the left-hand side to the right, its sign changes: what is subtracted becomes added. So step 2 should have 2 + 6, not 2 − 6. The following steps carry that mistake.",
+      "good": "You removed the brackets correctly in step 1.",
+      "loc": "§ 3.2"
     },
     "fragments": {
       "f11": "A linear equation is an equality with one unknown whose exponent is 1. For example, 3x + 5 = 20.",

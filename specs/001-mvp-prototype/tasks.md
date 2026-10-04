@@ -401,7 +401,7 @@ Read these once. Every page task assumes them.
 
 **Independent Test**: Submit "2(x − 3) = 4x + 2" and read feedback pointing to "Paso 2" (flow F9); at the limit, submission is blocked (F4 exercise branch)
 
-- [ ] T069 [P] [US6] Write tests/prototype/e2e/flow-f09.spec.js with one `test()` per acceptance scenario, titled with its ID, in a serial `test.describe`:
+- [X] T069 [P] [US6] Write tests/prototype/e2e/flow-f09.spec.js with one `test()` per acceptance scenario, titled with its ID, in a serial `test.describe`:
   - `US-06 AS1` review before sending;
   - `US-06 AS2` the pending state says the student can leave and come back;
   - `US-06 AS3` the feedback gives the verdict, "Paso 2", an explanation with citations, and no full solution;
@@ -409,14 +409,14 @@ Read these once. Every page task assumes them.
   - `US-06 AS5` empty-submission and unreadable-photo show specific fix-it messages.
 
   Also add a test `US-06 AS6` to tests/prototype/e2e/flow-f04.spec.js: on `student/exercise.html?state=limit-reached` the same `LimitReachedBanner` (exercise variant) blocks submission
-- [ ] T070 [US6] Build public/prototype/student/exercise.html (#11) with the states `default`, `review`, `loading`, `empty-submission`, `unreadable-photo` and `limit-reached`:
+- [X] T070 [US6] Build public/prototype/student/exercise.html (#11) with the states `default`, `review`, `loading`, `empty-submission`, `unreadable-photo` and `limit-reached`:
   - problem statement and worked-steps `TextArea`s, and an optional photo upload (JPG/PNG);
   - validation: "problem and answer required unless a readable photo is attached".
 
   Add its manifest entry
-- [ ] T071 [US6] Build public/prototype/student/exercise-feedback.html (#12) with the states `default`, `pending` (`data-advance="default"`), `no-source` and `error`. Default shows the verdict "Incorrecta", the mistake location "Paso 2", the explanation of the sign error with citation chips, and no full solution. Add its manifest entry. The `repeated-mistake` state is added in US12
-- [ ] T072 [US6] Add the `student.exercise.*` keys (ES/EN), wire flow F9 and the F4 exercise branch, and run `npm run test:e2e -- flow-f09 flow-f04 a11y-sweep`
-- [ ] T073 [US6] Do the ES/EN review and keyboard pass for exercise.html and exercise-feedback.html and log them in specs/001-mvp-prototype/validation.md
+- [X] T071 [US6] Build public/prototype/student/exercise-feedback.html (#12) with the states `default`, `pending` (`data-advance="default"`), `no-source` and `error`. Default shows the verdict "Incorrecta", the mistake location "Paso 2", the explanation of the sign error with citation chips, and no full solution. Add its manifest entry. The `repeated-mistake` state is added in US12
+- [X] T072 [US6] Add the `student.exercise.*` keys (ES/EN), wire flow F9 and the F4 exercise branch, and run `npm run test:e2e -- flow-f09 flow-f04 a11y-sweep`
+- [X] T073 [US6] Do the ES/EN review and keyboard pass for exercise.html and exercise-feedback.html and log them in specs/001-mvp-prototype/validation.md
 
 ---
 
