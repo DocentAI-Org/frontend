@@ -84,6 +84,11 @@
       "sol3": "Check: 2 · 7 − 4 = 10 ✓",
       "solIntro": "Here's the full solution:"
     },
+    "patterns": {
+      "distributive": "Misapplying the distributive property",
+      "sign": "Sign error when removing brackets",
+      "transpose": "Moving a term without changing its sign"
+    },
     "people": {
       "admin": "DocentAI Admin",
       "adminEmail": "admin@example.org",

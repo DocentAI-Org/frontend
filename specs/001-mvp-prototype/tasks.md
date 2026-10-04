@@ -481,11 +481,11 @@ Read these once. Every page task assumes them.
 
 **Independent Test**: Switch the grouping, open an at-risk student to see why (flow F12)
 
-- [ ] T089 [P] [US9] Write tests/prototype/e2e/flow-f12.spec.js with one `test()` per acceptance scenario, titled with its ID, in a serial `test.describe`:
+- [X] T089 [P] [US9] Write tests/prototype/e2e/flow-f12.spec.js with one `test()` per acceptance scenario, titled with its ID, in a serial `test.describe`:
   - `US-09 AS1` by-topic ↔ by-student with counts and a time range;
   - `US-09 AS2` the at-risk detail shows "Sin actividad en 7 días" and "Tasa de error 60%", an activity series and example errors;
   - `US-09 AS3` not-enough-data.
-- [ ] T090 [US9] Build public/prototype/teacher/dashboard.html (#26: `default` by topic, `by-student`, `not-enough-data`, `loading`, `error`) and public/prototype/teacher/student-risk.html (#27: `default`, `loading`, `error`). Charts are simple HTML/SVG bars that use text labels and values, so color is never the only signal. Add the manifest entries and the `teacher.dashboard.*` keys, wire flow F12, and run `npm run test:e2e -- flow-f12 a11y-sweep`
+- [X] T090 [US9] Build public/prototype/teacher/dashboard.html (#26: `default` by topic, `by-student`, `not-enough-data`, `loading`, `error`) and public/prototype/teacher/student-risk.html (#27: `default`, `loading`, `error`). Charts are simple HTML/SVG bars that use text labels and values, so color is never the only signal. Add the manifest entries and the `teacher.dashboard.*` keys, wire flow F12, and run `npm run test:e2e -- flow-f12 a11y-sweep`
 
 ---
 

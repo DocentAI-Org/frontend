@@ -739,6 +739,35 @@
       "students_other": "{count} estudiantes",
       "title": "Mis cursos"
     },
+    "dashboard": {
+      "all": "Todo el curso",
+      "atRiskBasis": "Se marcan por falta de actividad o una tasa de error alta. No es una nota.",
+      "atRiskTitle": "Estudiantes que pueden necesitar ayuda",
+      "byStudent": "Por estudiante",
+      "byTopic": "Por tema",
+      "chartLabel": "{label}: {value}",
+      "emptyBody": "Aparecerán datos cuando tus estudiantes hayan enviado al menos 20 mensajes o 5 ejercicios.",
+      "emptyTitle": "El panel necesita más actividad",
+      "errorsBasis": "Errores detectados en ejercicios y cuestionarios en los últimos 30 días.",
+      "errorsTitleStudent": "Errores repetidos por estudiante",
+      "errorsTitleTopic": "Errores repetidos por tema",
+      "errors_one": "{count} error",
+      "errors_other": "{count} errores",
+      "groupLabel": "Agrupar errores",
+      "last30": "Últimos 30 días",
+      "last7": "Últimos 7 días",
+      "lead": "Errores que se repiten y estudiantes que pueden necesitar ayuda. Cada dato muestra en qué se basa.",
+      "loadError": "No se ha podido cargar el panel",
+      "pageTitle": "Panel",
+      "period": "Periodo",
+      "reason": {
+        "errorRate": "Tasa de error {rate}",
+        "inactive": "Sin actividad en {days} días"
+      },
+      "title": "Panel del curso",
+      "topPattern": "Más frecuente: {pattern}",
+      "why": "Ver por qué"
+    },
     "flags": {
       "category": "Motivo",
       "comment": "Comentario",
@@ -825,6 +854,23 @@
       "uploadsTitle": "Subidas en curso",
       "usingCount": "El tutor usa {used} de {total} documentos.",
       "usingNone": "El tutor no usa ningún documento."
+    },
+    "risk": {
+      "activityBasis": "Mensajes al tutor y ejercicios enviados.",
+      "activityTitle": "Actividad por semana",
+      "back": "Volver al panel",
+      "examplesTitle": "Errores de ejemplo",
+      "inactiveDetail": "Su última actividad fue el {date}.",
+      "items_one": "{count} actividad",
+      "items_other": "{count} actividades",
+      "lastSeen": "Visto por última vez el {date}",
+      "loadError": "No se han podido cargar los datos",
+      "openConversation": "Ver sus conversaciones",
+      "pageTitle": "Estudiante que puede necesitar ayuda",
+      "rateDetail": "6 de 10 ejercicios con errores en las dos últimas semanas.",
+      "times": "{count} veces",
+      "week": "Semana del {date}",
+      "whyTitle": "Por qué aparece aquí"
     },
     "shell": {
       "nav": {

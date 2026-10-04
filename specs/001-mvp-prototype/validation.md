@@ -52,6 +52,8 @@ One row per page reviewed in both languages at 1440 px (and 390 px where the man
 | teacher/conversations.html (6 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
 | teacher/conversation.html (5 states) | 2026-10-04 | 1440 | Pass (ES, EN) | The flag badge stretched to full width; now sized to its content. |
 | teacher/flags.html (4 states) | 2026-10-04 | 1440 | Pass (ES, EN) | None. |
+| teacher/dashboard.html (5 states) | 2026-10-04 | 1440 | Pass (ES, EN) | "Ver por qué" wrapped inside its button; fixed. Bars carry their value as text and a row label, so colour is never the only signal. |
+| teacher/student-risk.html (3 states) | 2026-10-04 | 1440 | Pass (ES, EN) | None. |
 
 ## Keyboard pass log
 
@@ -80,6 +82,7 @@ return it to the opener.
 | teacher/conversations.html | 2026-10-04 | Pass | Flags link → three labelled filters → apply → one "open" link per conversation, described by the student name. |
 | teacher/conversation.html | 2026-10-04 | Pass | Flag buttons after each tutor answer. Flag dialog: radio group (arrows) → comment → cancel → save; focus stays inside. |
 | teacher/flags.html | 2026-10-04 | Pass | One "view the message" link per flag, named with the student. |
+| teacher/dashboard.html, teacher/student-risk.html | 2026-10-04 | Pass | Period select → topic/student toggle (current marked with aria-current) → "see why" links (described by the student). Detail: back → conversations. |
 
 ## Session plan
 
@@ -109,6 +112,7 @@ To be filled before the first session (quickstart.md B1).
 | 2026-10-04 | Browser tests serve the pinned Tailwind browser build from node_modules instead of jsDelivr: hundreds of CDN loads per run caused intermittent unstyled pages and flaky accessibility results. The prototype itself still uses the CDN. | Phase 9 test runs | plan.md dependency note |
 | 2026-10-04 | In the teacher conversation view, citations are shown as non-interactive chips and the no-source reply has no student actions; the teacher reviews but does not act as the student. | Implementation of T087 | none |
 | 2026-10-04 | Playwright runs with 4 workers locally and 2 on CI, a 60 s test timeout and a 10 s assertion timeout: with ~500 page loads, uncapped parallelism made the timed state changes and WebKit axe runs flaky. | Phase 10 test runs | none |
+| 2026-10-04 | Dashboard charts are single-series horizontal bar lists in one hue with the value written beside each bar (no legend, no hover layer since every value is visible). Spanish percentages follow locale typography ("60 %"). | Implementation of T090 | none |
 
 ## Success criteria results
 

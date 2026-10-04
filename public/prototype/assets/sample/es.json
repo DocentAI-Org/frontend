@@ -84,6 +84,11 @@
       "sol3": "Comprobación: 2 · 7 − 4 = 10 ✓",
       "solIntro": "Aquí tienes la solución completa:"
     },
+    "patterns": {
+      "distributive": "Aplicar mal la propiedad distributiva",
+      "sign": "Error de signo al quitar paréntesis",
+      "transpose": "Pasar un término sin cambiar de signo"
+    },
     "people": {
       "admin": "Admin DocentAI",
       "adminEmail": "admin@example.org",

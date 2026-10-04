@@ -739,6 +739,35 @@
       "students_other": "{count} students",
       "title": "My courses"
     },
+    "dashboard": {
+      "all": "Whole course",
+      "atRiskBasis": "Flagged for low activity or a high error rate. It isn't a grade.",
+      "atRiskTitle": "Students who may need help",
+      "byStudent": "By student",
+      "byTopic": "By topic",
+      "chartLabel": "{label}: {value}",
+      "emptyBody": "Data will appear once your students have sent at least 20 messages or 5 exercises.",
+      "emptyTitle": "The dashboard needs more activity",
+      "errorsBasis": "Mistakes found in exercises and quizzes in the last 30 days.",
+      "errorsTitleStudent": "Recurring mistakes by student",
+      "errorsTitleTopic": "Recurring mistakes by topic",
+      "errors_one": "{count} mistake",
+      "errors_other": "{count} mistakes",
+      "groupLabel": "Group mistakes",
+      "last30": "Last 30 days",
+      "last7": "Last 7 days",
+      "lead": "Recurring mistakes and students who may need help. Every figure shows what it's based on.",
+      "loadError": "Couldn't load the dashboard",
+      "pageTitle": "Dashboard",
+      "period": "Period",
+      "reason": {
+        "errorRate": "Error rate {rate}",
+        "inactive": "No activity in {days} days"
+      },
+      "title": "Course dashboard",
+      "topPattern": "Most frequent: {pattern}",
+      "why": "See why"
+    },
     "flags": {
       "category": "Reason",
       "comment": "Comment",
@@ -825,6 +854,23 @@
       "uploadsTitle": "Uploads in progress",
       "usingCount": "The tutor uses {used} of {total} documents.",
       "usingNone": "The tutor uses no documents."
+    },
+    "risk": {
+      "activityBasis": "Messages to the tutor and exercises submitted.",
+      "activityTitle": "Activity per week",
+      "back": "Back to the dashboard",
+      "examplesTitle": "Example mistakes",
+      "inactiveDetail": "Their last activity was on {date}.",
+      "items_one": "{count} activity",
+      "items_other": "{count} activities",
+      "lastSeen": "Last seen on {date}",
+      "loadError": "Couldn't load the data",
+      "openConversation": "See their conversations",
+      "pageTitle": "Student who may need help",
+      "rateDetail": "6 of 10 exercises with mistakes in the last two weeks.",
+      "times": "{count} times",
+      "week": "Week of {date}",
+      "whyTitle": "Why they're listed"
     },
     "shell": {
       "nav": {

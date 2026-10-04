@@ -676,5 +676,57 @@
     "simulate": [
       "error"
     ]
+  },
+  {
+    "path": "teacher/dashboard.html",
+    "screen": [
+      26
+    ],
+    "role": "teacher",
+    "titleKey": "teacher.dashboard.pageTitle",
+    "stories": [
+      "US-09"
+    ],
+    "requirements": [
+      "T5",
+      "FR-024"
+    ],
+    "priority": "P2",
+    "mobile": false,
+    "states": [
+      "default",
+      "by-student",
+      "not-enough-data",
+      "loading",
+      "error"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "teacher/student-risk.html",
+    "screen": [
+      27
+    ],
+    "role": "teacher",
+    "titleKey": "teacher.risk.pageTitle",
+    "stories": [
+      "US-09"
+    ],
+    "requirements": [
+      "T5",
+      "FR-024"
+    ],
+    "priority": "P2",
+    "mobile": false,
+    "states": [
+      "default",
+      "loading",
+      "error"
+    ],
+    "simulate": [
+      "error"
+    ]
   }
 ]
