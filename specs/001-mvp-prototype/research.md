@@ -154,7 +154,8 @@ with only their wording changed.
 ### R-10 · IMFAHE and DocentAI logos
 
 - **Decision**: Use the official IMFAHE logo file supplied by IMFAHE or by the grant documents,
-  stored in `assets/img/`, with alt text from `common.imfahe.logoAlt`. Until it is received, use a
+  stored in `assets/img/` (originals `imfahe.logo.webp` and `docentai-logo.png`; pages use transparent derivatives).
+  Both logos always appear next to text that names them, so their images have empty alt text. Until it is received, use a
   clearly labelled placeholder ("Logo IMFAHE – pendiente") so no logo is invented or traced. The
   acknowledgement text stays the draft "Proyecto financiado por la Fundación IMFAHE" until it is
   confirmed (spec Assumptions).

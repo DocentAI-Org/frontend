@@ -130,7 +130,6 @@
       "signingIn": "Entrando…"
     },
     "brand": {
-      "markAlt": "DocentAI",
       "name": "DocentAI"
     },
     "errors": {
@@ -148,9 +147,7 @@
     },
     "imfahe": {
       "aboutLink": "Acerca de DocentAI",
-      "acknowledgement": "Proyecto financiado por la Fundación IMFAHE",
-      "logoAlt": "Logotipo de la Fundación IMFAHE",
-      "logoPending": "Logo IMFAHE – pendiente"
+      "acknowledgement": "Proyecto financiado por la Fundación IMFAHE"
     },
     "language": {
       "en": "English",
@@ -258,7 +255,7 @@
       },
       "global": {
         "imfahe": "Reconocimiento IMFAHE",
-        "imfaheNote": "El logotipo oficial de IMFAHE está pendiente; hasta recibirlo se muestra este marcador. No se recrea ni se calca el logotipo.",
+        "imfaheNote": "Logotipo oficial de la Fundación IMFAHE. Siempre va junto al texto de reconocimiento, por eso la imagen tiene un texto alternativo vacío.",
         "lang": "Selector de idioma",
         "langNote": "Cambia el idioma de toda la página, incluido el contenido de ejemplo. Los nombres de idioma se muestran siempre en su propio idioma.",
         "title": "Idioma e IMFAHE",

@@ -21,7 +21,7 @@ details are stored here.
 | Sample names re-checked against participants once they are recruited (T103 checked only the names this repository knows). | Team | Pending |
 | T105: deploy a Vercel preview and confirm on a real phone over mobile data that `/prototype` loads in under 2 s. Local substitute done (see Performance). | Team | Pending |
 | T107: preview URL, Deployment Protection check, ethics approval of the consent draft, private recording storage, then cover status "En validación". Kit ready in session-kit.md. | Team | Pending |
-| Official IMFAHE logo file. The prototype shows an HTML placeholder ("Logo IMFAHE – pendiente") until IMFAHE supplies the file (research R-10). | Team | Pending |
+| Official IMFAHE logo file (research R-10). Originals added by the team: `assets/img/imfahe.logo.webp` and `assets/img/docentai-logo.png` (kept unchanged). The pages use derivatives with the off-white background made transparent: `imfahe-logo-transparent.webp`, `docentai-logo-96.png`, `docentai-logo-144.png`. | Team | Resolved 2026-10-04 |
 | IMFAHE acknowledgement wording. Draft: "Proyecto financiado por la Fundación IMFAHE" (spec Assumptions). | Team | Pending confirmation |
 | `npm run lint` failed: typescript-eslint does not support TypeScript 7.0. Fixed by running TS side by side: `typescript` → `@typescript/typescript6` (API for tools), `typescript7` → `typescript@7.0.2` (the `tsc` used by `npm run typecheck`). | Team | Resolved 2026-10-04 |
 

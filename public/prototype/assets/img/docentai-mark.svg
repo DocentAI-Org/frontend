@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <!-- DocentAI mark (prototype): a speech bubble holding an open book. Colored by currentColor.
-       Use: <svg class="size-8"><use href="assets/img/docentai-mark.svg#mark"/></svg> -->
-  <symbol id="mark" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M6 4h20a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H14l-6 5v-5H6a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3z"/>
-    <path d="M16 10.5c-1.6-1.2-3.6-1.5-6-1.5v9c2.4 0 4.4.3 6 1.5 1.6-1.2 3.6-1.5 6-1.5V9c-2.4 0-4.4.3-6 1.5z"/>
-    <path d="M16 10.5v9"/>
-  </symbol>
-</svg>
