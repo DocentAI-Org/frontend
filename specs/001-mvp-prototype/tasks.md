@@ -543,12 +543,12 @@ Read these once. Every page task assumes them.
 
 **Independent Test**: Open "Mi progreso" and see per-topic progress with its basis in text (flow F15, second part)
 
-- [ ] T097 [P] [US13] Add the US13 tests to tests/prototype/e2e/flow-f15.spec.js:
+- [X] T097 [P] [US13] Add the US13 tests to tests/prototype/e2e/flow-f15.spec.js:
   - `US-13 AS1` each topic shows a text basis such as "6 de 10 ejercicios correctos";
   - `US-13 AS2` the empty state invites the student to start with the tutor or a quiz.
 
   This edits the same file as T095, so run it after T095 when both are in progress
-- [ ] T098 [US13] Add `ProgressByTopic` (a bar with a text label) to public/prototype/design-system.html, then build public/prototype/student/progress.html (#32: `default`, `empty`, `loading`, `error`). Add its manifest entry and the `student.progress.*` keys, and run `npm run test:e2e -- flow-f15 a11y-sweep`
+- [X] T098 [US13] Add `ProgressByTopic` (a bar with a text label) to public/prototype/design-system.html, then build public/prototype/student/progress.html (#32: `default`, `empty`, `loading`, `error`). Add its manifest entry and the `student.progress.*` keys, and run `npm run test:e2e -- flow-f15 a11y-sweep`
 
 ---
 

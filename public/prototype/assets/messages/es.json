@@ -287,6 +287,11 @@
         "body": "Transiciones de color de 150 ms con --ease-standard, siempre con motion-safe:. Con «reducir movimiento» no hay animación y los estados de carga avanzan al instante.",
         "title": "Movimiento"
       },
+      "progress": {
+        "item": "Progreso por tema",
+        "lead": "Progreso por tema con su base en texto, nunca solo color (S7).",
+        "title": "Progreso"
+      },
       "quiz": {
         "lead": "Revisión por el profesorado (T7) y respuesta del estudiante con corrección inmediata (S6).",
         "question": "Pregunta",
@@ -370,11 +375,13 @@
         "error": "Error",
         "excluded": "Excluido",
         "improve": "Mejorable",
+        "inProgress": "En curso",
         "included": "Incluido",
         "incorrect": "Incorrecta",
         "incorrectAnswer": "Incorrecta",
         "match": "Coincide con la búsqueda",
         "none": "Sin marca",
+        "notStarted": "Sin empezar",
         "on": "Activado",
         "processing": "Procesando",
         "ready": "Listo",
@@ -661,6 +668,22 @@
       "revokeTitle": "¿Retirar tu consentimiento?",
       "revokedNotice": "Has retirado tu consentimiento. No puedes usar el tutor hasta que vuelvas a darlo.",
       "title": "Tu perfil"
+    },
+    "progress": {
+      "ask": "Preguntar al tutor",
+      "basis": "{right} de {total} ejercicios correctos",
+      "emptyBody": "Tu progreso aparecerá cuando preguntes al tutor, envíes ejercicios o hagas cuestionarios.",
+      "emptyTitle": "Todavía no hay actividad",
+      "lead": "Tu progreso en cada tema, calculado solo con tu propia actividad. Nadie más ve esta página.",
+      "listLabel": "Progreso por tema",
+      "loadError": "No se ha podido cargar tu progreso",
+      "notStarted": "Todavía no has trabajado este tema",
+      "pageTitle": "Mi progreso",
+      "percent": "{value}",
+      "quiz": "Hacer un cuestionario",
+      "quizzes_one": "{count} cuestionario hecho",
+      "quizzes_other": "{count} cuestionarios hechos",
+      "title": "Mi progreso"
     },
     "quiz": {
       "adaptive": "La dificultad se adapta a tus respuestas. No cuenta para la nota.",

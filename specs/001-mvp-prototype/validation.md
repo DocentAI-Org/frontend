@@ -59,6 +59,7 @@ One row per page reviewed in both languages at 1440 px (and 390 px where the man
 | student/quiz-summary.html (3 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
 | student/exercise-feedback.html (repeated-mistake) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
 | student/practice.html (5 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
+| student/progress.html (4 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
 
 ## Keyboard pass log
 
@@ -91,6 +92,7 @@ return it to the opener.
 | teacher/questions.html | 2026-10-04 | Pass | Status tabs (current marked) → per question approve, edit, reject (each described by the question text). Edit mode: statement → options → correct answer → cancel → save and approve. |
 | student/quiz.html, student/quiz-summary.html | 2026-10-04 | Pass | Radio group (arrows; an answer is required) → check. Feedback: citation (opens the sheet) → next / summary. Summary: three next-step links. |
 | student/practice.html | 2026-10-04 | Pass | Back → citation (opens the sheet) → one "solve" link per exercise, described by the exercise. Notice on feedback: explanation → practise → "Ahora no" (stays dismissed for the session). |
+| student/progress.html | 2026-10-04 | Pass | No interactive content besides the shell; each progress bar is a labelled progressbar described by its basis. Empty state: ask the tutor → take a quiz. |
 
 ## Session plan
 

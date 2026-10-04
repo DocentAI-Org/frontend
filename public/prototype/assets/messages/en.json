@@ -287,6 +287,11 @@
         "body": "150 ms color transitions with --ease-standard, always behind motion-safe:. With reduced motion there is no animation, and loading states advance at once.",
         "title": "Motion"
       },
+      "progress": {
+        "item": "Progress by topic",
+        "lead": "Progress by topic with its basis in text, never colour alone (S7).",
+        "title": "Progress"
+      },
       "quiz": {
         "lead": "Teacher review (T7) and the student's answer with immediate feedback (S6).",
         "question": "Question",
@@ -370,11 +375,13 @@
         "error": "Error",
         "excluded": "Excluded",
         "improve": "Could be better",
+        "inProgress": "In progress",
         "included": "Included",
         "incorrect": "Incorrect",
         "incorrectAnswer": "Incorrect",
         "match": "Search match",
         "none": "Not flagged",
+        "notStarted": "Not started",
         "on": "On",
         "processing": "Processing",
         "ready": "Ready",
@@ -661,6 +668,22 @@
       "revokeTitle": "Withdraw your consent?",
       "revokedNotice": "You've withdrawn your consent. You can't use the tutor until you give it again.",
       "title": "Your profile"
+    },
+    "progress": {
+      "ask": "Ask the tutor",
+      "basis": "{right} of {total} exercises correct",
+      "emptyBody": "Your progress will appear once you ask the tutor, submit exercises or take quizzes.",
+      "emptyTitle": "No activity yet",
+      "lead": "Your progress in each topic, based only on your own activity. Nobody else sees this page.",
+      "listLabel": "Progress by topic",
+      "loadError": "Couldn't load your progress",
+      "notStarted": "You haven't worked on this topic yet",
+      "pageTitle": "My progress",
+      "percent": "{value}",
+      "quiz": "Take a quiz",
+      "quizzes_one": "{count} quiz done",
+      "quizzes_other": "{count} quizzes done",
+      "title": "My progress"
     },
     "quiz": {
       "adaptive": "The difficulty adapts to your answers. It doesn't count toward your grade.",

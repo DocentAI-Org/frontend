@@ -34,3 +34,21 @@ test.describe("F15 · Repeated mistakes", () => {
     await expect(page.locator("[data-repeated-notice]")).toBeHidden();
   });
 });
+
+test.describe("F15 · Progress by topic", () => {
+  scenario("US-13 AS1", "each topic shows progress with its basis in text", async ({ page }) => {
+    await gotoState(page, "student/progress.html");
+    const items = page.locator('[data-component="ProgressByTopic"]:visible');
+    await expect(items).toHaveCount(4);
+    await expect(items.first()).toContainText("6 de 10 ejercicios correctos");
+    await expect(items.first().getByRole("progressbar")).toHaveAttribute("aria-valuenow", "60");
+  });
+
+  scenario("US-13 AS2", "with no activity yet, an empty state invites the student to start", async ({ page }) => {
+    await gotoState(page, "student/progress.html", "empty");
+    const empty = page.locator('[data-component="EmptyState"]:visible');
+    await expect(empty).toContainText("Todavía no hay actividad");
+    await expect(empty.getByRole("link", { name: "Preguntar al tutor" })).toBeVisible();
+    await expect(empty.getByRole("link", { name: "Hacer un cuestionario" })).toBeVisible();
+  });
+});

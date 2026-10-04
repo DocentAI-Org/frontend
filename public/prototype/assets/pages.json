@@ -846,5 +846,31 @@
     "simulate": [
       "error"
     ]
+  },
+  {
+    "path": "student/progress.html",
+    "screen": [
+      32
+    ],
+    "role": "student",
+    "titleKey": "student.progress.pageTitle",
+    "stories": [
+      "US-13"
+    ],
+    "requirements": [
+      "S7",
+      "FR-036"
+    ],
+    "priority": "P3",
+    "mobile": true,
+    "states": [
+      "default",
+      "empty",
+      "loading",
+      "error"
+    ],
+    "simulate": [
+      "error"
+    ]
   }
 ]
