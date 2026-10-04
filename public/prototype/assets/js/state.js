@@ -72,7 +72,8 @@ function syncDialogs(root) {
           return;
         }
         const target = dialog.getAttribute("data-close-state");
-        if (target) goto(target);
+        if (target === "@back") window.history.back();
+        else if (target) goto(target);
         if (lastOpener?.isConnected) lastOpener.focus();
       });
     }

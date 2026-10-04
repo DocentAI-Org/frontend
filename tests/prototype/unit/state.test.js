@@ -386,3 +386,18 @@ describe("data-invalid-in", () => {
     expect(document.getElementById("i").hasAttribute("aria-invalid")).toBe(false);
   });
 });
+
+describe("data-close-state=@back", () => {
+  it("goes back in history when the dialog closes", () => {
+    document.body.innerHTML = `<dialog id="b" data-modal data-state="sheet" data-close-state="@back"></dialog>`;
+    HTMLDialogElement.prototype.showModal ??= function () { this.open = true; };
+    const back = vi.spyOn(window.history, "back").mockImplementation(() => {});
+    setUrl("?state=sheet");
+    applyState(document.body, { ...entry, states: ["default", "sheet"] });
+    const dlg = document.getElementById("b");
+    dlg.open = false;
+    dlg.dispatchEvent(new Event("close"));
+    expect(back).toHaveBeenCalledTimes(1);
+    back.mockRestore();
+  });
+});

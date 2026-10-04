@@ -149,6 +149,11 @@
         "vFooter": "Pie de página",
         "vSignIn": "Inicio de sesión"
       },
+      "guided": {
+        "indicator": "Indicador",
+        "lead": "Indicador del modo guiado con contador de pistas (S3).",
+        "title": "Modo guiado"
+      },
       "icons": {
         "lead": "Lucide (licencia ISC), copiados sin modificar en assets/img/icons.svg. Los iconos decorativos llevan aria-hidden; los que transmiten significado llevan un aria-label traducido.",
         "title": "Iconos"
@@ -236,12 +241,14 @@
       "v": {
         "active": "Activo",
         "copied": "Copiado",
+        "counter": "Con contador",
         "default": "Normal",
         "disabled": "Desactivado",
         "error": "Error",
         "excluded": "Excluido",
         "included": "Incluido",
         "match": "Coincide con la búsqueda",
+        "on": "Activado",
         "processing": "Procesando",
         "ready": "Listo",
         "uploading": "Subiendo"
@@ -415,6 +422,20 @@
       "quiz": "Hacer un cuestionario",
       "teacher": "Profesor/a: {teacher}",
       "title": "Mis cursos"
+    },
+    "guided": {
+      "anotherHint": "Otra pista",
+      "counter": "Pista {n} de {total}",
+      "hintsOnly": "Era la última pista. Tu profesor/a ha elegido que el tutor solo dé pistas en este curso, así que no verás la solución completa. ¡Inténtalo con lo que tienes!",
+      "indicator": "Modo guiado",
+      "indicatorBody": "El tutor te dará pistas antes que la solución.",
+      "lastHint": "Era la última pista. Puedes intentarlo tú o ver la solución.",
+      "loadError": "No se ha podido cargar la conversación",
+      "nextSteps": "¿Qué quieres hacer?",
+      "pageTitle": "Chat del curso – modo guiado",
+      "showSolution": "Ver solución",
+      "tryMyself": "Intentarlo yo",
+      "welcome": "Hola. En este curso trabajo en modo guiado: te ayudo a resolver los problemas paso a paso con pistas, citando el material de tu profesor/a."
     },
     "join": {
       "code": "Código de clase",

@@ -66,7 +66,7 @@ Rules:
 | `data-i18n-vars='{"name":"…"}'` | element with `data-i18n` | Fills interpolation variables. A value may be a `sample.*` key, `date:2026-10-06T10:42`, `number:2.4` or `percent:0.45` (formatted for the current language). |
 | `data-i18n-date="2026-10-04"` / `data-i18n-number="2.4"` | element | Formats with `Intl` for the current language. |
 | `data-include="partials/<file>.html"` | empty element | Replaced by the partial's markup before copy and state are applied. Inside partials, `href`/`src` values starting with `~/` resolve from the prototype root, so one partial works at any folder depth. |
-| `data-modal` + `data-close-state="<stateId>"` | `<dialog>` that has a `data-state` | Opened with `showModal()` while its state is current (focus trap, Esc). Closing it goes to `data-close-state`, and focus returns to the element that opened it. |
+| `data-modal` + `data-close-state="<stateId>"` | `<dialog>` that has a `data-state` | Opened with `showModal()` while its state is current (focus trap, Esc). Closing it goes to `data-close-state` (`@back` goes back one step in history, to whichever state opened it), and focus returns to the element that opened it. |
 | `data-dismissible="false"` | `<dialog data-modal>` | Esc does not close it (used when an acknowledgement is required). |
 | `data-focus="<selector>"` | button | Moves focus to the matching element (e.g. "Reformular la pregunta" → the composer). |
 | `data-switch` | `role="switch"` button | Toggles `aria-checked`. In the nearest `[data-switch-scope]`, `[data-switch-on]` content shows when checked and `[data-switch-off]` when not. |
@@ -95,7 +95,7 @@ states below.
 | 6 | `student/courses.html` | default, empty, loading, error, several-courses |
 | 7 | `student/join.html` | default, loading, invalid-code, expired-code, disabled-code, confirm |
 | 8–9 | `student/chat.html` | default, loading, load-error, first-use, tutor-writing, answer, citation, citation-unavailable, no-source, low-allowance, limit-reached, failed |
-| 10 | `student/chat-guided.html` | default, loading, load-error, hint-1, hint-2, hints-done-solution, hints-done-hints-only, solution, no-source, limit-reached |
+| 10 | `student/chat-guided.html` | default, loading, load-error, hint-1, hint-2, citation, hints-done-solution, hints-done-hints-only, solution, no-source, limit-reached |
 | 11 | `student/exercise.html` | default, review, loading, empty-submission, unreadable-photo, limit-reached |
 | 12 | `student/exercise-feedback.html` | default, pending, no-source, error, repeated-mistake |
 | 13 | `student/profile.html` | default, loading, error, revoke-confirm, revoked |

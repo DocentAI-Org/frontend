@@ -384,14 +384,14 @@ Read these once. Every page task assumes them.
 
 **Independent Test**: In the guided chat get hint 1, ask for another, reach the end in both policy variants (flow F8)
 
-- [ ] T065 [P] [US5] Write tests/prototype/e2e/flow-f08.spec.js with one `test()` per acceptance scenario, titled with its ID, in a serial `test.describe`:
+- [X] T065 [P] [US5] Write tests/prototype/e2e/flow-f08.spec.js with one `test()` per acceptance scenario, titled with its ID, in a serial `test.describe`:
   - `US-05 AS1` the "Modo guiado" indicator explains hints before solutions;
   - `US-05 AS2` the reply is labelled "Pista 1" and offers "Otra pista" and "Intentarlo yo";
   - `US-05 AS3` hints-done-solution shows "Ver solución", and hints-done-hints-only explains that the teacher chose hints only;
   - `US-05 AS4` hints carry citation chips.
-- [ ] T066 [US5] Add `GuidedModeIndicator` (on, with a hint counter) to public/prototype/design-system.html
-- [ ] T067 [US5] Build public/prototype/student/chat-guided.html (#10) with the states `default`, `loading`, `load-error`, `hint-1`, `hint-2`, `hints-done-solution`, `hints-done-hints-only`, `solution`, `no-source` and `limit-reached`. It reuses the chat.html markup and the `tutor-hint` `ChatMessage` variant for "2x − 4 = 10". Add its manifest entry and the `student.guided.*` keys
-- [ ] T068 [US5] Wire flow F8, run `npm run test:e2e -- flow-f08 a11y-sweep`, then do the ES/EN review and keyboard pass and log them in specs/001-mvp-prototype/validation.md
+- [X] T066 [US5] Add `GuidedModeIndicator` (on, with a hint counter) to public/prototype/design-system.html
+- [X] T067 [US5] Build public/prototype/student/chat-guided.html (#10) with the states `default`, `loading`, `load-error`, `hint-1`, `hint-2`, `hints-done-solution`, `hints-done-hints-only`, `solution`, `no-source` and `limit-reached`. It reuses the chat.html markup and the `tutor-hint` `ChatMessage` variant for "2x − 4 = 10". Add its manifest entry and the `student.guided.*` keys
+- [X] T068 [US5] Wire flow F8, run `npm run test:e2e -- flow-f08 a11y-sweep`, then do the ES/EN review and keyboard pass and log them in specs/001-mvp-prototype/validation.md
 
 ---
 

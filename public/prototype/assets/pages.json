@@ -124,6 +124,45 @@
     ]
   },
   {
+    "path": "student/chat-guided.html",
+    "screen": [
+      10
+    ],
+    "role": "student",
+    "titleKey": "student.guided.pageTitle",
+    "stories": [
+      "US-05"
+    ],
+    "requirements": [
+      "S3",
+      "S1",
+      "FR-010",
+      "FR-011",
+      "FR-013",
+      "FR-014",
+      "FR-032"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default",
+      "loading",
+      "load-error",
+      "hint-1",
+      "hint-2",
+      "citation",
+      "hints-done-solution",
+      "hints-done-hints-only",
+      "solution",
+      "no-source",
+      "limit-reached"
+    ],
+    "simulate": [
+      "limit-reached",
+      "load-error"
+    ]
+  },
+  {
     "path": "teacher/courses.html",
     "screen": [
       14

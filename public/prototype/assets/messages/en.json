@@ -149,6 +149,11 @@
         "vFooter": "Footer",
         "vSignIn": "Sign-in"
       },
+      "guided": {
+        "indicator": "Indicator",
+        "lead": "Guided-mode indicator with a hint counter (S3).",
+        "title": "Guided mode"
+      },
       "icons": {
         "lead": "Lucide (ISC license), copied unmodified into assets/img/icons.svg. Decorative icons get aria-hidden; meaningful ones get a translated aria-label.",
         "title": "Icons"
@@ -236,12 +241,14 @@
       "v": {
         "active": "Active",
         "copied": "Copied",
+        "counter": "With counter",
         "default": "Default",
         "disabled": "Disabled",
         "error": "Error",
         "excluded": "Excluded",
         "included": "Included",
         "match": "Search match",
+        "on": "On",
         "processing": "Processing",
         "ready": "Ready",
         "uploading": "Uploading"
@@ -415,6 +422,20 @@
       "quiz": "Take a quiz",
       "teacher": "Teacher: {teacher}",
       "title": "My courses"
+    },
+    "guided": {
+      "anotherHint": "Another hint",
+      "counter": "Hint {n} of {total}",
+      "hintsOnly": "That was the last hint. Your teacher has chosen hints only for this course, so you won't see the full solution. Give it a go with what you have!",
+      "indicator": "Guided mode",
+      "indicatorBody": "The tutor will give you hints before the solution.",
+      "lastHint": "That was the last hint. You can try it yourself or see the solution.",
+      "loadError": "Couldn't load the conversation",
+      "nextSteps": "What would you like to do?",
+      "pageTitle": "Course chat – guided mode",
+      "showSolution": "Show solution",
+      "tryMyself": "I'll try myself",
+      "welcome": "Hi. In this course I work in guided mode: I help you solve problems step by step with hints, citing your teacher's material."
     },
     "join": {
       "code": "Class code",

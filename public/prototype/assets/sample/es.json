@@ -62,6 +62,16 @@
       "matchWord": "Despejar",
       "matchWordLower": "despejar"
     },
+    "guided": {
+      "h1": "Fíjate en el lado izquierdo: al 2x le están restando 4. ¿Qué operación deshace una resta? Aplícala en los dos lados.",
+      "h2": "Si sumas 4 en los dos lados te queda 2x = 14. Ahora la x está multiplicada por 2: ¿cómo la dejas sola?",
+      "h3": "Divide los dos lados entre el número que multiplica a la x. Después, comprueba tu resultado sustituyéndolo en la ecuación original.",
+      "loc13": "§ 3.2",
+      "sol1": "2x − 4 + 4 = 10 + 4  →  2x = 14",
+      "sol2": "x = 14 ÷ 2 = 7",
+      "sol3": "Comprobación: 2 · 7 − 4 = 10 ✓",
+      "solIntro": "Aquí tienes la solución completa:"
+    },
     "people": {
       "admin": "Admin DocentAI",
       "adminEmail": "admin@example.org",

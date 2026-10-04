@@ -38,6 +38,7 @@ One row per page reviewed in both languages at 1440 px (and 390 px where the man
 | teacher/course.html (8 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | "Copiar enlace" wrapped onto two lines at 1440 px; copy buttons no longer shrink or wrap. |
 | student/courses.html (5 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
 | student/join.html (6 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | Opening an error state directly shows an empty code field (the typed code is only kept when arriving by submitting). Accepted for the prototype. |
+| student/chat-guided.html (11 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | The indicator icon wrapped onto its own line at 390 px; icon and text now stay together. |
 
 ## Keyboard pass log
 
@@ -56,6 +57,7 @@ return it to the opener.
 | teacher/course.html | 2026-10-04 | Pass | Tabs (Students is aria-current) → copy code → link field → copy link → regenerate → disable. Regenerate dialog: focus on Cancelar first. |
 | student/courses.html | 2026-10-04 | Pass | Join → per course a labelled group of four actions. |
 | student/join.html | 2026-10-04 | Pass | Code field → Continue; errors are announced through the field description. |
+| student/chat-guided.html | 2026-10-04 | Pass | Citation chip → "Otra pista" → "Intentarlo yo" (moves focus to the composer) → composer → send. The citation sheet returns to the hint state it was opened from, with focus back on the chip. |
 
 ## Session plan
 
@@ -78,6 +80,7 @@ To be filled before the first session (quickstart.md B1).
 | 2026-10-04 | Tutor settings keep the "saved" confirmation and the hint example visible together, so US-03 AS2 (confirmation plus example after saving) is one state. | Implementation of T054 | none |
 | 2026-10-04 | Added a `code-regenerated` state to teacher/course.html (new code ALG-9Q2M and a note that the old code no longer works), so US-04 AS4 "the screen shows the new state" is visible. | Implementation of T060 | contract §4, plan pages table |
 | 2026-10-04 | Creating a course leads to the course page in `no-students` state (a new course has no students yet). Join codes for the prototype: ALG-7K3P valid, ALG-4X2B expired, ALG-8M1D disabled, anything else invalid. | Implementation of T059, T062 | none |
+| 2026-10-04 | Added a `citation` state to student/chat-guided.html so hint citations open the citation sheet (US-05 AS4, S1). The sheet uses `data-close-state="@back"` to return to the hint the student was on. | Implementation of T067 | contract §3, §4 |
 
 ## Success criteria results
 
