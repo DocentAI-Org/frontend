@@ -159,6 +159,17 @@
     "privacy": {
       "link": "Privacidad"
     },
+    "quiz": {
+      "approve": "Aprobar",
+      "correctAnswer": "Respuesta correcta",
+      "counter": "Pregunta {n} de {total}",
+      "easy": "Fácil",
+      "edit": "Editar",
+      "hard": "Difícil",
+      "medium": "Media",
+      "reject": "Rechazar",
+      "yourAnswer": "Tu respuesta"
+    },
     "states": {
       "empty": "Todavía no hay nada aquí.",
       "errorBody": "Ha habido un problema de conexión. Comprueba tu conexión a internet y vuelve a intentarlo.",
@@ -276,6 +287,11 @@
         "body": "Transiciones de color de 150 ms con --ease-standard, siempre con motion-safe:. Con «reducir movimiento» no hay animación y los estados de carga avanzan al instante.",
         "title": "Movimiento"
       },
+      "quiz": {
+        "lead": "Revisión por el profesorado (T7) y respuesta del estudiante con corrección inmediata (S6).",
+        "question": "Pregunta",
+        "title": "Preguntas de cuestionario"
+      },
       "radius": {
         "shadows": "Sombras",
         "title": "Radios y sombras"
@@ -347,6 +363,7 @@
       "v": {
         "active": "Activo",
         "copied": "Copiado",
+        "correct": "Correcta",
         "counter": "Con contador",
         "default": "Normal",
         "disabled": "Desactivado",
@@ -355,11 +372,14 @@
         "improve": "Mejorable",
         "included": "Incluido",
         "incorrect": "Incorrecta",
+        "incorrectAnswer": "Incorrecta",
         "match": "Coincide con la búsqueda",
         "none": "Sin marca",
         "on": "Activado",
         "processing": "Procesando",
         "ready": "Listo",
+        "teacherReview": "Revisión del profesorado",
+        "unanswered": "Sin responder",
         "uploading": "Subiendo"
       },
       "variant": {
@@ -854,6 +874,30 @@
       "uploadsTitle": "Subidas en curso",
       "usingCount": "El tutor usa {used} de {total} documentos.",
       "usingNone": "El tutor no usa ningún documento."
+    },
+    "questions": {
+      "approved": "Aprobadas",
+      "approvedToast": "Pregunta aprobada. Ya está disponible para tus estudiantes.",
+      "correct": "Respuesta correcta",
+      "editTitle": "Editar pregunta",
+      "emptyBody": "Pide al tutor preguntas nuevas sobre un tema. Las revisarás aquí antes de que lleguen a tus estudiantes.",
+      "emptyTitle": "No hay preguntas pendientes",
+      "generating": "Generando preguntas nuevas…",
+      "lead": "El tutor propone preguntas a partir del material. Solo las que apruebes llegarán a tus estudiantes.",
+      "loadError": "No se han podido cargar las preguntas",
+      "option": "Opción {n}",
+      "pageTitle": "Preguntas",
+      "pending": "Pendientes",
+      "rejected": "Rechazadas",
+      "rejectedNote": "Rechazada el {date}",
+      "rejectedReason": "Motivo: no se basa en el material del curso.",
+      "rejectedToast": "Pregunta rechazada. No se mostrará a tus estudiantes.",
+      "request": "Pedir preguntas nuevas",
+      "saveApprove": "Guardar y aprobar",
+      "statement": "Enunciado",
+      "tabsLabel": "Estado de las preguntas",
+      "title": "Preguntas de cuestionario",
+      "topic": "Tema"
     },
     "risk": {
       "activityBasis": "Mensajes al tutor y ejercicios enviados.",

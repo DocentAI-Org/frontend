@@ -54,6 +54,7 @@ One row per page reviewed in both languages at 1440 px (and 390 px where the man
 | teacher/flags.html (4 states) | 2026-10-04 | 1440 | Pass (ES, EN) | None. |
 | teacher/dashboard.html (5 states) | 2026-10-04 | 1440 | Pass (ES, EN) | "Ver por qué" wrapped inside its button; fixed. Bars carry their value as text and a row label, so colour is never the only signal. |
 | teacher/student-risk.html (3 states) | 2026-10-04 | 1440 | Pass (ES, EN) | None. |
+| teacher/questions.html (7 states) | 2026-10-04 | 1440 | Pass (ES, EN) | None. |
 
 ## Keyboard pass log
 
@@ -83,6 +84,7 @@ return it to the opener.
 | teacher/conversation.html | 2026-10-04 | Pass | Flag buttons after each tutor answer. Flag dialog: radio group (arrows) → comment → cancel → save; focus stays inside. |
 | teacher/flags.html | 2026-10-04 | Pass | One "view the message" link per flag, named with the student. |
 | teacher/dashboard.html, teacher/student-risk.html | 2026-10-04 | Pass | Period select → topic/student toggle (current marked with aria-current) → "see why" links (described by the student). Detail: back → conversations. |
+| teacher/questions.html | 2026-10-04 | Pass | Status tabs (current marked) → per question approve, edit, reject (each described by the question text). Edit mode: statement → options → correct answer → cancel → save and approve. |
 
 ## Session plan
 
@@ -113,6 +115,7 @@ To be filled before the first session (quickstart.md B1).
 | 2026-10-04 | In the teacher conversation view, citations are shown as non-interactive chips and the no-source reply has no student actions; the teacher reviews but does not act as the student. | Implementation of T087 | none |
 | 2026-10-04 | Playwright runs with 4 workers locally and 2 on CI, a 60 s test timeout and a 10 s assertion timeout: with ~500 page loads, uncapped parallelism made the timed state changes and WebKit axe runs flaky. | Phase 10 test runs | none |
 | 2026-10-04 | Dashboard charts are single-series horizontal bar lists in one hue with the value written beside each bar (no legend, no hover layer since every value is visible). Spanish percentages follow locale typography ("60 %"). | Implementation of T090 | none |
+| 2026-10-04 | Question review states each show the result of one action from the pending list (approve: 2/13/2, reject: 2/12/3), so counters are consistent within each state. | Implementation of T092 | none |
 
 ## Success criteria results
 

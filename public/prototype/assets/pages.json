@@ -728,5 +728,34 @@
     "simulate": [
       "error"
     ]
+  },
+  {
+    "path": "teacher/questions.html",
+    "screen": [
+      28
+    ],
+    "role": "teacher",
+    "titleKey": "teacher.questions.pageTitle",
+    "stories": [
+      "US-10"
+    ],
+    "requirements": [
+      "T7",
+      "FR-025"
+    ],
+    "priority": "P2",
+    "mobile": false,
+    "states": [
+      "default",
+      "editing",
+      "approved",
+      "rejected",
+      "empty",
+      "loading",
+      "error"
+    ],
+    "simulate": [
+      "error"
+    ]
   }
 ]

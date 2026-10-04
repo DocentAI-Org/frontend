@@ -113,6 +113,26 @@
       "guided": "¿Cómo resuelvo 2x − 4 = 10?",
       "notCovered": "¿Quién inventó el álgebra?"
     },
+    "quiz": {
+      "q1": "¿Cuál es la solución de 3x + 5 = 20?",
+      "q1a": "x = 3",
+      "q1b": "x = 5",
+      "q1c": "x = 15",
+      "q2": "¿Qué se obtiene al quitar los paréntesis en 2(x − 3)?",
+      "q2a": "2x − 3",
+      "q2b": "2x − 6",
+      "q2c": "x − 6",
+      "q3": "Resuelve el sistema x + y = 5, x − y = 1",
+      "q3a": "x = 3, y = 2",
+      "q3b": "x = 2, y = 3",
+      "q3c": "x = 4, y = 1",
+      "q4": "¿Cuál es la solución de 2(x − 1) = x + 4?",
+      "q4a": "x = 3",
+      "q4b": "x = 5",
+      "q4c": "x = 6",
+      "sysDoc": "Apuntes – Sistemas",
+      "sysLoc": "§ 2"
+    },
     "search": {
       "noResults": "logaritmo",
       "query": "despejar"

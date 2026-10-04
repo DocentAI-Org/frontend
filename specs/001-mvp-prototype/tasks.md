@@ -495,11 +495,11 @@ Read these once. Every page task assumes them.
 
 **Independent Test**: Edit one pending question, approve one, reject one (flow F13)
 
-- [ ] T091 [P] [US10] Write tests/prototype/e2e/flow-f13.spec.js with one `test()` per acceptance scenario, titled with its ID, in a serial `test.describe`:
+- [X] T091 [P] [US10] Write tests/prototype/e2e/flow-f13.spec.js with one `test()` per acceptance scenario, titled with its ID, in a serial `test.describe`:
   - `US-10 AS1` each question shows text, options and answer, difficulty, topic and citation;
   - `US-10 AS2` approve, edit-and-approve and reject move the question between tabs and update the counters;
   - `US-10 AS3` the empty state offers to request questions for a topic.
-- [ ] T092 [US10] Add `QuizQuestion` (unanswered, correct, incorrect, teacher-review) to public/prototype/design-system.html, then build public/prototype/teacher/questions.html (#28) with the states `default` (pending), `editing`, `approved`, `rejected`, `empty`, `loading` and `error`. Tabs show counters. Add its manifest entry and the `teacher.questions.*` keys, wire flow F13, and run `npm run test:e2e -- flow-f13 a11y-sweep`
+- [X] T092 [US10] Add `QuizQuestion` (unanswered, correct, incorrect, teacher-review) to public/prototype/design-system.html, then build public/prototype/teacher/questions.html (#28) with the states `default` (pending), `editing`, `approved`, `rejected`, `empty`, `loading` and `error`. Tabs show counters. Add its manifest entry and the `teacher.questions.*` keys, wire flow F13, and run `npm run test:e2e -- flow-f13 a11y-sweep`
 
 ---
 

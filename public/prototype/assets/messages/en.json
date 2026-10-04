@@ -159,6 +159,17 @@
     "privacy": {
       "link": "Privacy"
     },
+    "quiz": {
+      "approve": "Approve",
+      "correctAnswer": "Correct answer",
+      "counter": "Question {n} of {total}",
+      "easy": "Easy",
+      "edit": "Edit",
+      "hard": "Hard",
+      "medium": "Medium",
+      "reject": "Reject",
+      "yourAnswer": "Your answer"
+    },
     "states": {
       "empty": "Nothing here yet.",
       "errorBody": "There was a connection problem. Check your internet connection and try again.",
@@ -276,6 +287,11 @@
         "body": "150 ms color transitions with --ease-standard, always behind motion-safe:. With reduced motion there is no animation, and loading states advance at once.",
         "title": "Motion"
       },
+      "quiz": {
+        "lead": "Teacher review (T7) and the student's answer with immediate feedback (S6).",
+        "question": "Question",
+        "title": "Quiz questions"
+      },
       "radius": {
         "shadows": "Shadows",
         "title": "Radius and shadows"
@@ -347,6 +363,7 @@
       "v": {
         "active": "Active",
         "copied": "Copied",
+        "correct": "Correct",
         "counter": "With counter",
         "default": "Default",
         "disabled": "Disabled",
@@ -355,11 +372,14 @@
         "improve": "Could be better",
         "included": "Included",
         "incorrect": "Incorrect",
+        "incorrectAnswer": "Incorrect",
         "match": "Search match",
         "none": "Not flagged",
         "on": "On",
         "processing": "Processing",
         "ready": "Ready",
+        "teacherReview": "Teacher review",
+        "unanswered": "Unanswered",
         "uploading": "Uploading"
       },
       "variant": {
@@ -854,6 +874,30 @@
       "uploadsTitle": "Uploads in progress",
       "usingCount": "The tutor uses {used} of {total} documents.",
       "usingNone": "The tutor uses no documents."
+    },
+    "questions": {
+      "approved": "Approved",
+      "approvedToast": "Question approved. It's now available to your students.",
+      "correct": "Correct answer",
+      "editTitle": "Edit question",
+      "emptyBody": "Ask the tutor for new questions on a topic. You'll review them here before they reach your students.",
+      "emptyTitle": "No pending questions",
+      "generating": "Generating new questions…",
+      "lead": "The tutor drafts questions from the material. Only the ones you approve reach your students.",
+      "loadError": "Couldn't load the questions",
+      "option": "Option {n}",
+      "pageTitle": "Questions",
+      "pending": "Pending",
+      "rejected": "Rejected",
+      "rejectedNote": "Rejected on {date}",
+      "rejectedReason": "Reason: it isn't based on the course material.",
+      "rejectedToast": "Question rejected. It won't be shown to your students.",
+      "request": "Request new questions",
+      "saveApprove": "Save and approve",
+      "statement": "Question text",
+      "tabsLabel": "Question status",
+      "title": "Quiz questions",
+      "topic": "Topic"
     },
     "risk": {
       "activityBasis": "Messages to the tutor and exercises submitted.",
