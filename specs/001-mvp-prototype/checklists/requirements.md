@@ -32,7 +32,8 @@
 ## Notes
 
 - Iteration 1: removed two implementation-flavoured phrases from Edge Cases ("offline-cached", "paginated or virtualised"). All items pass.
-- "Figma" is named because the prototype itself is the deliverable, not as an implementation choice for the product.
+- "Figma" was named because the prototype itself is the deliverable, not as an implementation choice for the product.
+- Iteration 2 (2026-10-04, constitution 2.1.0): deliverable changed from a Figma prototype to a static HTML prototype. Rewrote the Deliverable line, FR-050 to FR-052, and the "Figma frames" table (now "Prototype pages"); replaced "frames" with pages/states in FR-004, SC-005 and Assumptions. "Static HTML pages" and "query parameter" are named because the deliverable's format is mandated by Constitution IV, not as product implementation choices. User stories, other requirements and states are unchanged. All items pass.
 - Open decisions documented as Assumptions, not clarification markers: daily limit value, exercise photo upload, evaluation topic, IMFAHE wording.
 - Constitution deviations to resolve before `/speckit-plan`: student mobile-first (vs. "desktop-first for both roles"), Spanish-only prototype (vs. Principle VIII bilingual), admin as a third role (vs. Principle II "two roles").
 - Items marked incomplete require spec updates before `/speckit-clarify` or `/speckit-plan`

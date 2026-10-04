@@ -4,17 +4,23 @@
 
 **Created**: 2026-10-04
 
-**Status**: Draft — revised 2026-10-04 to comply with constitution 2.0.0 (desktop-first for all roles; Spanish + English)
+**Status**: Draft — revised 2026-10-04 to comply with constitution 2.0.0 (desktop-first for all roles; Spanish + English); revised 2026-10-04 for constitution 2.1.0 (deliverable is a static HTML prototype instead of Figma)
 
 **Input**: User description: "Frontend UI requirements for the DocentAI MVP. Source of truth for product requirements: docs/proposal/requirements.md — reference its IDs (T1–T7, S1–S7, P1) in every user story. Describe only what each user sees and does in the UI; backend concerns (RAG, logging, cost control, data export) are out of scope except for their visible effects. The deliverable of this feature is a validated Figma prototype, not code. Priorities follow the M/S/C column: P1 = all M requirements (T1, T2, T3, S1, S2, S3, S4, P1), P2 = S requirements (T4, T5, T6, T7, S5, S6), P3 = C (S7). Include for every screen: empty, loading and error states; AI disclosure to students; daily message limit reached; 'material does not cover this' answer (S2); source citations (S1). Roles: admin (minimal), teacher (desktop-first), student (mobile-first). UI language: Spanish. Include IMFAHE logo/acknowledgement."
 
 **Requirements source**: `knowledge-base/docs/requirements.md` (the path `docs/proposal/requirements.md` given in the input does not exist; the file was found here). IDs below (T#, S#, P#) refer to §3 of that document.
 
-**Deliverable**: a validated, clickable Figma prototype covering every screen and state in this spec. No production code is produced by this feature; later features implement these frames.
+**Deliverable**: a validated, clickable static HTML prototype covering every screen and state in this spec: one page per screen, with each state reachable from that page. No production code is produced by this feature; later features implement these pages (Constitution IV, 2.1.0).
+
+## Clarifications
+
+### Session 2026-10-04
+
+- Q: Does the daily message limit apply per student across all their courses, or per student per course? → A: One allowance per student, shared across all their courses (requirements §4.3 "per-student daily message limit").
 
 ## User Scenarios & Testing *(mandatory)*
 
-> Every story states its **role** (Constitution II) and the **requirement IDs** it covers. "Prototype test" means a moderated click-through of the Figma prototype with a representative participant.
+> Every story states its **role** (Constitution II) and the **requirement IDs** it covers. "Prototype test" means a moderated click-through of the HTML prototype with a representative participant.
 
 ### User Story 1 — Student asks the tutor and sees where each answer comes from (Priority: P1)
 
@@ -278,7 +284,7 @@ The student sees their progress per topic of the course, based on their own acti
 - **Partial citation**: an answer draws on a document the teacher later excludes — the citation shows "Documento ya no disponible" instead of a broken link.
 - **Material changes during a conversation**: the teacher excludes all material — the student sees the "material does not cover" answer, never an unsourced answer.
 - **Student belongs to no course**: their home shows an empty state with "Unirse a un curso" (enter code).
-- **Student in several courses**: course switcher; each chat, limit indicator and progress is scoped to the selected course.
+- **Student in several courses**: course switcher; each chat and progress is scoped to the selected course. The daily message allowance is shared across all the student's courses, and the limit indicator says so ("hoy, en todos tus cursos").
 - **Teacher with many students/conversations**: lists stay usable with search and filters, and show loading placeholders while content loads.
 - **Long answers and math notation**: long answers stay readable on a 390 px wide screen; formulas render as formatted notation if the chosen subject is STEM.
 - **Slow connection**: loading states appear within one second of any action; the student can still read messages already shown.
@@ -297,7 +303,7 @@ The student sees their progress per topic of the course, based on their own acti
 - **FR-001**: Every data-driven screen MUST be designed in four states: populated, empty, loading and error. Error states MUST explain the problem in plain language and offer a recovery action (retry, go back, or contact).
 - **FR-002**: All interface text MUST exist in Spanish and English (Constitution VIII), written in plain language suitable for adult students, and kept as separable text (no text baked into images). Spanish is the default language for the pilot; users MUST be able to switch language.
 - **FR-003**: All screens MUST be designed desktop-first (reference width 1440 px) for all three roles. Every student screen, and the key teacher and admin screens, MUST also be designed at mobile width (390 px), fully usable with no horizontal scroll, because students will mostly use their phones (requirements §4.6).
-- **FR-004**: All frames MUST meet WCAG 2.2 AA at design level: text and UI contrast, visible focus states, minimum touch target sizes, information not conveyed by colour alone, and a defined keyboard/focus order for each screen.
+- **FR-004**: All prototype pages, in every state, MUST meet WCAG 2.2 AA at design level: text and UI contrast, visible focus states, minimum touch target sizes, information not conveyed by colour alone, and a defined keyboard/focus order for each screen.
 - **FR-005**: The IMFAHE logo and an acknowledgement of IMFAHE as funding organisation MUST appear on the sign-in screen, on a public "Acerca de" page, and in the footer or "about" area reachable from every role's navigation.
 - **FR-006**: The prototype MUST use a shared component library and named design tokens (colour, type, spacing, radius) so that component and token names can be reused in code (Constitution IV).
 
@@ -338,14 +344,14 @@ The student sees their progress per topic of the course, based on their own acti
 
 #### Prototype deliverable
 
-- **FR-050**: The Figma file MUST contain one frame per screen × state listed in the Screen Inventory below, at the reference widths in FR-003.
-- **FR-051**: The Figma prototype MUST include clickable flows for every P1 user story's acceptance scenarios, and for P2/P3 stories at least their main happy path.
-- **FR-052**: Each frame MUST be labelled with the user story and requirement IDs it covers, and the spec's "Figma frames" table MUST be updated with links once frames exist (Constitution IV).
-- **FR-053**: The prototype is "validated" when it has passed the usability and review criteria in Success Criteria SC-001 to SC-006.
+- **FR-050**: The prototype MUST be a set of static HTML pages with one page per screen in the Screen Inventory below. Every state listed for a screen MUST be reachable on that screen's page, both through a query parameter in the page address (so each state has its own shareable link) and through a visible state toggle. Each page MUST work at the reference widths in FR-003.
+- **FR-051**: The prototype MUST include clickable flows, made of links and actions between pages and states, for every P1 user story's acceptance scenarios, and for P2/P3 stories at least their main happy path.
+- **FR-052**: Each page MUST state the user story and requirement IDs it covers, and the spec's "Prototype pages" table MUST be updated with links to each page once pages exist (Constitution IV).
+- **FR-053**: The prototype is "validated" when it has passed the usability and review criteria in Success Criteria SC-001 to SC-007.
 
 ### Screen Inventory
 
-Every screen below needs populated, empty (where applicable), loading and error states.
+Every screen below needs populated, empty (where applicable), loading and error states. Rows group related screens; the plan splits them into one prototype page per screen (e.g. "Course chat" becomes a chat page and a guided-mode chat page), and FR-050's "one page per screen" applies to those individual screens.
 
 | Role | Screen | Stories | Extra states |
 |---|---|---|---|
@@ -368,11 +374,25 @@ Every screen below needs populated, empty (where applicable), loading and error 
 | Teacher | Quiz question review | US10 | no pending questions |
 | Admin | Users, create teacher, courses | US7 | no users |
 
-### Figma frames
+### Prototype pages
 
-| Story | Frames |
-|---|---|
-| US1–US13 | _To be linked once the Figma file exists (FR-052)._ |
+Links are added once pages exist (FR-052). Each link points to the screen's page; a state is opened by adding its query parameter.
+
+| Story | Screens | Pages |
+|---|---|---|
+| US1 | Consent & AI transparency, Course chat, Citation sheet | _To be linked_ |
+| US2 | Material list & upload, Fragment review | _To be linked_ |
+| US3 | Tutor settings | _To be linked_ |
+| US4 | Teacher my courses, Create course, Course overview, Student my courses, Join course | _To be linked_ |
+| US5 | Course chat – guided mode | _To be linked_ |
+| US6 | Submit exercise, Exercise feedback | _To be linked_ |
+| US7 | Sign-in, Password recovery, Access denied / not found, Acerca de, Profile & consent, Admin users, Create teacher, Admin courses | _To be linked_ |
+| US8 | Conversations list, Conversation detail, Flags list | _To be linked_ |
+| US9 | Dashboard, At-risk student detail | _To be linked_ |
+| US10 | Quiz question review | _To be linked_ |
+| US11 | Quiz, Quiz summary | _To be linked_ |
+| US12 | Exercise feedback (repeated-mistake notice), Targeted explanation / practice | _To be linked_ |
+| US13 | My progress | _To be linked_ |
 
 ### Key Entities
 
@@ -387,7 +407,7 @@ Every screen below needs populated, empty (where applicable), loading and error 
 - **Exercise submission / Feedback**: a student's worked answer and the feedback identifying the mistake.
 - **Error pattern**: a recurring mistake type for a student and topic.
 - **Quiz question**: AI-drafted question with topic, difficulty, source and approval status.
-- **Daily message allowance**: per-student count of messages used and remaining, with reset time.
+- **Daily message allowance**: per-student count of messages used and remaining, shared across all of the student's courses, with reset time.
 - **Consent record**: whether and when a student accepted, and whether they revoked it.
 
 ## Success Criteria *(mandatory)*
@@ -398,14 +418,14 @@ Every screen below needs populated, empty (where applicable), loading and error 
 - **SC-002**: At least 90% of student participants, when asked after the test, correctly state that the tutor is an AI and that their teacher may review conversations.
 - **SC-003**: At least 90% of student participants can find the document and page an answer came from, and can tell a "not covered by the material" reply apart from a normal answer.
 - **SC-004**: A teacher can create a course, upload one document and configure the tutor in under 10 minutes in the prototype; a student can go from receiving a class code to sending a first question in under 2 minutes.
-- **SC-005**: 100% of screens in the Screen Inventory have populated, empty, loading and error frames, and 100% of frames pass a contrast check at WCAG 2.2 AA.
+- **SC-005**: 100% of screens in the Screen Inventory have populated, empty, loading and error states in the prototype, and 100% of those states pass a contrast check at WCAG 2.2 AA.
 - **SC-006**: The pedagogy team (educational stream) signs off the student-facing copy and the guided-mode flow, and every P1 story's acceptance scenarios are traceable to at least one prototype flow.
 - **SC-007**: The IMFAHE logo and acknowledgement are visible on the sign-in screen and reachable in at most one tap/click from every role's home.
 
 ## Assumptions
 
 - **Participants are adults** (over 18, per requirements §2), so copy targets adult university-level students. The constitution's "possible minors" wording is more restrictive and does not conflict with this design.
-- **Layout is desktop-first for all roles** (constitution 2.0.0). Because students mostly use phones (requirements §4.6), every student screen also gets a 390 px frame and student flows are tested on a phone.
+- **Layout is desktop-first for all roles** (constitution 2.0.0). Because students mostly use phones (requirements §4.6), every student screen is also designed at 390 px and student flows are tested on a phone.
 - **Prototype is bilingual (ES/EN)** per Constitution VIII, which applies to prototypes too. Spanish is the pilot language and the default.
 - **Admin role is minimal** (users, create teacher, courses), as defined by Constitution II "Role Separation".
 - **Sign-in is email + password** with password recovery; students may use a team-assigned code/pseudonym email where the team manages enrolment (§4.1).
