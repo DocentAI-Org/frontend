@@ -4,7 +4,7 @@
 
 **Created**: 2026-10-04
 
-**Status**: Draft
+**Status**: Draft — revised 2026-10-04 to comply with constitution 2.0.0 (desktop-first for all roles; Spanish + English)
 
 **Input**: User description: "Frontend UI requirements for the DocentAI MVP. Source of truth for product requirements: docs/proposal/requirements.md — reference its IDs (T1–T7, S1–S7, P1) in every user story. Describe only what each user sees and does in the UI; backend concerns (RAG, logging, cost control, data export) are out of scope except for their visible effects. The deliverable of this feature is a validated Figma prototype, not code. Priorities follow the M/S/C column: P1 = all M requirements (T1, T2, T3, S1, S2, S3, S4, P1), P2 = S requirements (T4, T5, T6, T7, S5, S6), P3 = C (S7). Include for every screen: empty, loading and error states; AI disclosure to students; daily message limit reached; 'material does not cover this' answer (S2); source citations (S1). Roles: admin (minimal), teacher (desktop-first), student (mobile-first). UI language: Spanish. Include IMFAHE logo/acknowledgement."
 
@@ -18,9 +18,9 @@
 
 ### User Story 1 — Student asks the tutor and sees where each answer comes from (Priority: P1)
 
-**Role**: Student · **Covers**: S1, S2 · **Device**: mobile-first
+**Role**: Student · **Covers**: S1, S2 · **Device**: desktop-first, with mobile frames (students mostly use phones)
 
-A student opens their course on their phone and asks the tutor a question in Spanish. The tutor answers using only the teacher's material. Each answer shows its sources (document name and page or section); tapping a source shows the cited passage. When the material does not cover the question, the tutor clearly says so instead of answering, and suggests rephrasing or asking the teacher. The student always knows they are talking to an AI and how many messages they have left today.
+A student opens their course (often on their phone) and asks the tutor a question. The tutor answers using only the teacher's material. Each answer shows its sources (document name and page or section); tapping a source shows the cited passage. When the material does not cover the question, the tutor clearly says so instead of answering, and suggests rephrasing or asking the teacher. The student always knows they are talking to an AI and how many messages they have left today.
 
 **Why this priority**: This is the core value of DocentAI — a tutor the teacher controls, grounded in the teacher's material (S1, S2 are M).
 
@@ -34,7 +34,7 @@ A student opens their course on their phone and asks the tutor a question in Spa
 4. **Given** the chat is open, **When** the student asks something the material does not cover, **Then** the answer is visually distinct (not styled as a normal answer), says explicitly that the course material does not cover it (e.g. "El material del curso no cubre esta pregunta"), shows no citations, and offers next steps (rephrase, ask the teacher).
 5. **Given** the student has messages left today, **When** they view the chat, **Then** the remaining count is visible; **When** it drops to a low threshold, **Then** a warning appears.
 6. **Given** the student has used their daily message limit, **When** they open or are in the chat, **Then** the input is disabled, a message explains the limit has been reached and when it resets, and previous conversation remains readable.
-7. **Given** the answer fails to arrive (network or service error), **When** the error occurs, **Then** the failed message is marked, an error explains what happened in plain Spanish, and a "Reintentar" action is available; a failed attempt is shown as not counting toward the limit.
+7. **Given** the answer fails to arrive (network or service error), **When** the error occurs, **Then** the failed message is marked, an error explains what happened in plain language, and a "Reintentar" action is available; a failed attempt is shown as not counting toward the limit.
 
 ---
 
@@ -71,7 +71,7 @@ The teacher sets the course level, the tutor's tone, and whether the tutor may g
 
 **Acceptance Scenarios**:
 
-1. **Given** a new course, **When** the teacher opens "Configuración del tutor", **Then** sensible defaults are pre-selected and each option has a one-line explanation in plain Spanish.
+1. **Given** a new course, **When** the teacher opens "Configuración del tutor", **Then** sensible defaults are pre-selected and each option has a one-line explanation in plain language.
 2. **Given** the teacher selects "Solo pistas (modo guiado)", **When** they save, **Then** a confirmation appears and an example exchange illustrates step-by-step hints instead of a direct solution.
 3. **Given** the teacher has unsaved changes, **When** they try to leave the page, **Then** they are warned before losing them.
 4. **Given** saving fails, **When** the error occurs, **Then** the changes are kept on screen and a retry action is shown.
@@ -80,7 +80,7 @@ The teacher sets the course level, the tutor's tone, and whether the tutor may g
 
 ### User Story 4 — Teacher creates a course and students join it (Priority: P1)
 
-**Role**: Teacher, Student · **Covers**: T1 · **Device**: teacher desktop-first; student mobile-first
+**Role**: Teacher, Student · **Covers**: T1 · **Device**: desktop-first; mobile frames for the student join flow
 
 A teacher creates a course and gets a class code and a shareable link. A student uses the code or link to join the course.
 
@@ -101,7 +101,7 @@ A teacher creates a course and gets a class code and a shareable link. A student
 
 ### User Story 5 — Student works through a problem in guided (Socratic) mode (Priority: P1)
 
-**Role**: Student · **Covers**: S3 · **Device**: mobile-first
+**Role**: Student · **Covers**: S3 · **Device**: desktop-first, with mobile frames (students mostly use phones)
 
 When the teacher has enabled guided mode, the tutor responds to problem-type questions with step-by-step hints. The student can ask for the next hint and, only if the teacher allows it, see the solution after the hints.
 
@@ -120,7 +120,7 @@ When the teacher has enabled guided mode, the tutor responds to problem-type que
 
 ### User Story 6 — Student submits a worked exercise and gets feedback on the mistake (Priority: P1)
 
-**Role**: Student · **Covers**: S4 · **Device**: mobile-first
+**Role**: Student · **Covers**: S4 · **Device**: desktop-first, with mobile frames (students mostly use phones)
 
 A student submits their worked answer to an exercise and receives feedback that points to the specific step or mistake, with an explanation grounded in the material.
 
@@ -141,7 +141,7 @@ A student submits their worked answer to an exercise and receives feedback that 
 
 ### User Story 7 — Everyone signs in and sees only what their role allows; admin manages accounts (Priority: P1)
 
-**Role**: Admin, Teacher, Student · **Covers**: P1 · **Device**: admin and teacher desktop-first; student mobile-first
+**Role**: Admin, Teacher, Student · **Covers**: P1 · **Device**: desktop-first; mobile frames for sign-in and student screens
 
 Users sign in and land on a home appropriate to their role. Students see only their own courses and conversations; teachers see only their own courses. A minimal admin area lets the admin create teacher accounts and see the list of users and courses.
 
@@ -219,7 +219,7 @@ The teacher reviews quiz questions the AI drafted from the material, edits them,
 
 ### User Story 11 — Student practises with adaptive quizzes (Priority: P2)
 
-**Role**: Student · **Covers**: S6 · **Device**: mobile-first
+**Role**: Student · **Covers**: S6 · **Device**: desktop-first, with mobile frames (students mostly use phones)
 
 The student takes a short quiz; each answer gets immediate feedback, and the difficulty of the next question follows their performance.
 
@@ -239,7 +239,7 @@ The student takes a short quiz; each answer gets immediate feedback, and the dif
 
 ### User Story 12 — Student receives targeted help for repeated mistakes (Priority: P2)
 
-**Role**: Student · **Covers**: S5 · **Device**: mobile-first
+**Role**: Student · **Covers**: S5 · **Device**: desktop-first, with mobile frames (students mostly use phones)
 
 When the student repeats the same type of mistake, they get a notice naming the pattern and are offered a targeted explanation or practice.
 
@@ -257,7 +257,7 @@ When the student repeats the same type of mistake, they get a notice naming the 
 
 ### User Story 13 — Student views their own progress by topic (Priority: P3)
 
-**Role**: Student · **Covers**: S7 · **Device**: mobile-first
+**Role**: Student · **Covers**: S7 · **Device**: desktop-first, with mobile frames (students mostly use phones)
 
 The student sees their progress per topic of the course, based on their own activity only.
 
@@ -280,7 +280,7 @@ The student sees their progress per topic of the course, based on their own acti
 - **Student belongs to no course**: their home shows an empty state with "Unirse a un curso" (enter code).
 - **Student in several courses**: course switcher; each chat, limit indicator and progress is scoped to the selected course.
 - **Teacher with many students/conversations**: lists stay usable with search and filters, and show loading placeholders while content loads.
-- **Long answers and math notation**: long answers stay readable on a 360 px wide screen; formulas render as formatted notation if the chosen subject is STEM.
+- **Long answers and math notation**: long answers stay readable on a 390 px wide screen; formulas render as formatted notation if the chosen subject is STEM.
 - **Slow connection**: loading states appear within one second of any action; the student can still read messages already shown.
 - **Consent revoked**: the student loses access to the tutor and sees what revocation means and how to re-consent.
 - **Duplicate upload**: uploading a file with the same name asks whether to replace or keep both.
@@ -294,9 +294,9 @@ The student sees their progress per topic of the course, based on their own acti
 
 #### Cross-cutting (apply to every screen)
 
-- **FR-001**: Every data-driven screen MUST be designed in four states: populated, empty, loading and error. Error states MUST explain the problem in plain Spanish and offer a recovery action (retry, go back, or contact).
-- **FR-002**: All interface text MUST be in Spanish, written in plain language suitable for adult university-level students, and kept as separable text (no text baked into images) so it can later be translated.
-- **FR-003**: Student screens MUST be designed mobile-first (reference width 360–390 px) and also shown at desktop width; teacher and admin screens MUST be designed desktop-first (reference width 1280–1440 px) and also shown at mobile width without horizontal scroll.
+- **FR-001**: Every data-driven screen MUST be designed in four states: populated, empty, loading and error. Error states MUST explain the problem in plain language and offer a recovery action (retry, go back, or contact).
+- **FR-002**: All interface text MUST exist in Spanish and English (Constitution VIII), written in plain language suitable for adult students, and kept as separable text (no text baked into images). Spanish is the default language for the pilot; users MUST be able to switch language.
+- **FR-003**: All screens MUST be designed desktop-first (reference width 1440 px) for all three roles. Every student screen, and the key teacher and admin screens, MUST also be designed at mobile width (390 px), fully usable with no horizontal scroll, because students will mostly use their phones (requirements §4.6).
 - **FR-004**: All frames MUST meet WCAG 2.2 AA at design level: text and UI contrast, visible focus states, minimum touch target sizes, information not conveyed by colour alone, and a defined keyboard/focus order for each screen.
 - **FR-005**: The IMFAHE logo and an acknowledgement of IMFAHE as funding organisation MUST appear on the sign-in screen, on a public "Acerca de" page, and in the footer or "about" area reachable from every role's navigation.
 - **FR-006**: The prototype MUST use a shared component library and named design tokens (colour, type, spacing, radius) so that component and token names can be reused in code (Constitution IV).
@@ -405,13 +405,13 @@ Every screen below needs populated, empty (where applicable), loading and error 
 ## Assumptions
 
 - **Participants are adults** (over 18, per requirements §2), so copy targets adult university-level students. The constitution's "possible minors" wording is more restrictive and does not conflict with this design.
-- **Student layout is mobile-first** as requested and as required by requirements §4.6 ("students will mostly use their phones"). This deviates from the constitution's Technical Constraints ("desktop-first for both roles"); the constitution should be amended before `/speckit-plan`, or the deviation justified in the plan.
-- **Prototype language is Spanish only.** The constitution (VIII) requires Spanish and English before code merges; English copy is deferred to implementation features. FR-002 keeps text separable so translation is straightforward.
-- **Admin role is minimal** (users, create teacher, courses). The constitution names only teacher and student; admin is added because P1 requires it.
+- **Layout is desktop-first for all roles** (constitution 2.0.0). Because students mostly use phones (requirements §4.6), every student screen also gets a 390 px frame and student flows are tested on a phone.
+- **Prototype is bilingual (ES/EN)** per Constitution VIII, which applies to prototypes too. Spanish is the pilot language and the default.
+- **Admin role is minimal** (users, create teacher, courses), as defined by Constitution II "Role Separation".
 - **Sign-in is email + password** with password recovery; students may use a team-assigned code/pseudonym email where the team manages enrolment (§4.1).
 - **Daily message limit value is not fixed**; the prototype shows an illustrative value (e.g. 30 messages/day, reset at midnight local time). The real value is set with the cost model.
 - **Exercise submission** accepts typed text with an optional photo; if the evaluation topic (still undecided) makes photos unnecessary, the photo option can be dropped without changing the flow.
-- **Evaluation topic is undecided** (§2); the prototype uses neutral sample content and includes one math-notation example in case the subject is STEM.
+- **Evaluation topic is undecided** (§2); the prototype uses fictitious secondary-school algebra content (ES/EN), which also exercises math notation.
 - **Exact IMFAHE acknowledgement wording** follows the grant term sheet ("acknowledge IMFAHE as a funding organisation"); a draft such as "Proyecto financiado por la Fundación IMFAHE" is used until confirmed.
 - **Out of scope**: retrieval, logging, cost control, data export, pre/post-tests (P3) and questionnaires (P4) — except for their visible effects listed above (citations, not-covered replies, limits).
 - **Usability test participants** for validation can be recruited from the team's network before the formal pilot; this is not the study pilot itself.
