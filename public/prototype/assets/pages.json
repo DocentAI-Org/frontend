@@ -757,5 +757,61 @@
     "simulate": [
       "error"
     ]
+  },
+  {
+    "path": "student/quiz.html",
+    "screen": [
+      29
+    ],
+    "role": "student",
+    "titleKey": "student.quiz.pageTitle",
+    "stories": [
+      "US-11"
+    ],
+    "requirements": [
+      "S6",
+      "S1",
+      "FR-035"
+    ],
+    "priority": "P2",
+    "mobile": true,
+    "states": [
+      "default",
+      "correct",
+      "citation",
+      "incorrect",
+      "difficulty-up",
+      "empty",
+      "loading",
+      "error"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "student/quiz-summary.html",
+    "screen": [
+      30
+    ],
+    "role": "student",
+    "titleKey": "student.quiz.summaryPageTitle",
+    "stories": [
+      "US-11"
+    ],
+    "requirements": [
+      "S6",
+      "FR-035"
+    ],
+    "priority": "P2",
+    "mobile": true,
+    "states": [
+      "default",
+      "loading",
+      "error"
+    ],
+    "simulate": [
+      "error"
+    ]
   }
 ]

@@ -115,6 +115,8 @@
     },
     "quiz": {
       "q1": "¿Cuál es la solución de 3x + 5 = 20?",
+      "q1Right": "Restas 5 en los dos lados (3x = 15) y divides entre 3: x = 5.",
+      "q1Wrong": "Si x = 3, entonces 3 · 3 + 5 = 14, no 20. Resta 5 en los dos lados y después divide entre 3.",
       "q1a": "x = 3",
       "q1b": "x = 5",
       "q1c": "x = 15",

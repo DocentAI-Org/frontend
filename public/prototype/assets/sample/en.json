@@ -115,6 +115,8 @@
     },
     "quiz": {
       "q1": "What is the solution of 3x + 5 = 20?",
+      "q1Right": "Subtract 5 from both sides (3x = 15) and divide by 3: x = 5.",
+      "q1Wrong": "If x = 3, then 3 · 3 + 5 = 14, not 20. Subtract 5 from both sides, then divide by 3.",
       "q1a": "x = 3",
       "q1b": "x = 5",
       "q1c": "x = 15",

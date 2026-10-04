@@ -511,13 +511,13 @@ Read these once. Every page task assumes them.
 
 **Depends on**: T092 (`QuizQuestion`)
 
-- [ ] T093 [P] [US11] Write tests/prototype/e2e/flow-f14.spec.js with one `test()` per acceptance scenario, titled with its ID, in a serial `test.describe`:
+- [X] T093 [P] [US11] Write tests/prototype/e2e/flow-f14.spec.js with one `test()` per acceptance scenario, titled with its ID, in a serial `test.describe`:
   - `US-11 AS1` the question count and topic are shown;
   - `US-11 AS2` correct and incorrect feedback with an explanation and citation;
   - `US-11 AS3` difficulty-up "Subimos el nivel";
   - `US-11 AS4` the summary shows score by topic and next steps;
   - `US-11 AS5` the empty state says the teacher has not published questions.
-- [ ] T094 [US11] Build public/prototype/student/quiz.html (#29: `default`, `correct`, `incorrect`, `difficulty-up`, `empty`, `loading`, `error`) and public/prototype/student/quiz-summary.html (#30: `default`, `loading`, `error`). Add the manifest entries and the `student.quiz.*` keys, wire flow F14, and run `npm run test:e2e -- flow-f14 a11y-sweep`
+- [X] T094 [US11] Build public/prototype/student/quiz.html (#29: `default`, `correct`, `incorrect`, `difficulty-up`, `empty`, `loading`, `error`) and public/prototype/student/quiz-summary.html (#30: `default`, `loading`, `error`). Add the manifest entries and the `student.quiz.*` keys, wire flow F14, and run `npm run test:e2e -- flow-f14 a11y-sweep`
 
 ---
 

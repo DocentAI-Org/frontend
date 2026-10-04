@@ -116,7 +116,7 @@ states below.
 | 26 | `teacher/dashboard.html` | default (by topic), by-student, not-enough-data, loading, error |
 | 27 | `teacher/student-risk.html` | default, loading, error |
 | 28 | `teacher/questions.html` | default (pending), editing, approved, rejected, empty, loading, error |
-| 29 | `student/quiz.html` | default, correct, incorrect, difficulty-up, empty, loading, error |
+| 29 | `student/quiz.html` | default, correct, citation, incorrect, difficulty-up, empty, loading, error |
 | 30 | `student/quiz-summary.html` | default, loading, error |
 | 31 | `student/practice.html` | default, no-source, loading, error |
 | 32 | `student/progress.html` | default, empty, loading, error |
