@@ -1,0 +1,292 @@
+// Page states, in-page navigation and the facilitator state panel (contract §1, §3; research R-06).
+
+export const PANEL_KEY = "docentai.prototype.panel";
+const ADVANCE_MS = 1200;
+
+let current = { root: null, entry: null };
+let advanceTimer = null;
+let lastOpener = null;
+
+export function resolveState(entry, search = window.location.search) {
+  const requested = new URLSearchParams(search).get("state");
+  if (!requested) return { state: "default", unknown: null };
+  if (entry.states.includes(requested)) return { state: requested, unknown: null };
+  return { state: "default", unknown: requested };
+}
+
+function prefersReducedMotion() {
+  return typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+export function applyState(root, entry, search = window.location.search) {
+  current = { root, entry };
+  const result = resolveState(entry, search);
+  const { state } = result;
+
+  root.querySelectorAll("[data-state]").forEach((el) => {
+    const states = el.getAttribute("data-state").split(/\s+/).filter(Boolean);
+    el.hidden = !states.includes(state);
+  });
+  document.documentElement.dataset.state = state;
+  syncDialogs(root);
+
+  clearTimeout(advanceTimer);
+  const advancing = [...root.querySelectorAll("[data-advance]")].find((el) => !el.closest("[hidden]"));
+  if (advancing) {
+    const target = advancing.getAttribute("data-advance");
+    advanceTimer = setTimeout(() => goto(target, { replace: true }), prefersReducedMotion() ? 0 : ADVANCE_MS);
+  }
+
+  syncPanel(state);
+  document.dispatchEvent(new CustomEvent("prototype:state", { detail: result }));
+  return result;
+}
+
+// A <dialog data-modal> that belongs to the current state opens with showModal() (focus trap,
+// Esc to close). Closing it goes to its data-close-state and returns focus to the opener.
+function syncDialogs(root) {
+  root.querySelectorAll("dialog[data-modal]").forEach((dialog) => {
+    if (!dialog.dataset.bound) {
+      dialog.dataset.bound = "true";
+      dialog.addEventListener("cancel", (event) => {
+        if (dialog.getAttribute("data-dismissible") === "false") event.preventDefault();
+      });
+      dialog.addEventListener("close", () => {
+        if (dialog.dataset.syncing) return;
+        const target = dialog.getAttribute("data-close-state");
+        if (target) goto(target);
+        if (lastOpener?.isConnected) lastOpener.focus();
+      });
+    }
+    const visible = !dialog.hidden;
+    if (visible && !dialog.open && typeof dialog.showModal === "function") {
+      dialog.removeAttribute("hidden");
+      dialog.showModal();
+    } else if (!visible && dialog.open) {
+      dialog.dataset.syncing = "true";
+      dialog.close();
+      delete dialog.dataset.syncing;
+    }
+  });
+}
+
+export function goto(stateId, { replace = false } = {}) {
+  const url = new URL(window.location.href);
+  url.searchParams.set("state", stateId);
+  if (replace) window.history.replaceState(null, "", url);
+  else window.history.pushState(null, "", url);
+  if (current.root && current.entry) applyState(current.root, current.entry);
+}
+
+function isSamePageStateLink(a) {
+  const href = a.getAttribute("href");
+  return href !== null && href.startsWith("?");
+}
+
+export function bindNavigation(root = document.body) {
+  root.addEventListener("click", (event) => {
+    const target = event.target instanceof Element ? event.target : null;
+    if (!target) return;
+
+    const focuser = target.closest("[data-focus]");
+    if (focuser && root.contains(focuser)) {
+      event.preventDefault();
+      document.querySelector(focuser.getAttribute("data-focus"))?.focus();
+      return;
+    }
+
+    const button = target.closest("[data-goto]");
+    if (button && root.contains(button)) {
+      event.preventDefault();
+      if (!button.closest("dialog")) lastOpener = button;
+      goto(button.getAttribute("data-goto"));
+      return;
+    }
+
+    const link = target.closest("a[href]");
+    if (link && root.contains(link) && isSamePageStateLink(link)) {
+      const state = new URLSearchParams(link.getAttribute("href")).get("state");
+      if (state) {
+        event.preventDefault();
+        if (!link.closest("dialog")) lastOpener = link;
+        goto(state);
+      }
+    }
+  });
+
+  window.addEventListener("popstate", () => {
+    if (current.root && current.entry) applyState(current.root, current.entry);
+  });
+}
+
+function isRelative(href) {
+  return href && !/^([a-z][a-z0-9+.-]*:|#|\/\/)/i.test(href);
+}
+
+export function decorateLinks(root = document.body, search = window.location.search) {
+  const params = new URLSearchParams(search);
+  const keep = ["lang", "panel"].filter((k) => params.has(k));
+  if (!keep.length) return;
+  root.querySelectorAll("a[href]").forEach((a) => {
+    const href = a.getAttribute("href");
+    if (!isRelative(href) || href.startsWith("?")) return;
+    const url = new URL(href, window.location.href);
+    for (const k of keep) if (!url.searchParams.has(k)) url.searchParams.set(k, params.get(k));
+    a.setAttribute("href", url.href);
+  });
+}
+
+export function isPanelHidden(search = window.location.search) {
+  const value = new URLSearchParams(search).get("panel");
+  try {
+    if (value === "0") sessionStorage.setItem(PANEL_KEY, "0");
+    if (value === "1") sessionStorage.removeItem(PANEL_KEY);
+    if (value !== null) return value === "0";
+    return sessionStorage.getItem(PANEL_KEY) === "0";
+  } catch {
+    return value === "0";
+  }
+}
+
+function el(tag, attrs = {}, children = []) {
+  const node = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (v === undefined || v === null || v === false) continue;
+    node.setAttribute(k, v === true ? "" : String(v));
+  }
+  for (const child of [].concat(children)) {
+    node.append(typeof child === "string" ? document.createTextNode(child) : child);
+  }
+  return node;
+}
+
+function stateLinks(states, active) {
+  return el(
+    "ul",
+    { class: "flex flex-wrap gap-1" },
+    states.map((s) =>
+      el("li", {}, [
+        el(
+          "a",
+          {
+            href: `?state=${s}`,
+            "aria-current": s === active ? "true" : null,
+            "data-active": s === active ? true : null,
+            class:
+              "inline-flex min-h-6 items-center rounded-md border border-border-strong px-2 py-0.5 font-mono text-xs text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus data-active:border-primary-700 data-active:bg-primary-700 data-active:text-fg-inverse"
+          },
+          s
+        )
+      ])
+    )
+  );
+}
+
+export function renderPanel(entry, { state, unknown } = resolveState(entry)) {
+  document.getElementById("prototype-panel")?.remove();
+
+  const heading = (key) => el("h2", { class: "text-xs font-semibold text-fg-muted", "data-i18n": key });
+  const langButton = (lang) =>
+    el("button", {
+      type: "button",
+      "data-set-lang": lang,
+      class:
+        "min-h-6 rounded-md border border-border-strong px-2 text-xs text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus",
+      "data-i18n": `common.language.${lang}`
+    });
+
+  const body = el("div", { class: "flex w-72 max-w-full flex-col gap-3 p-3" }, [
+    el("p", {
+      class: "rounded-md bg-warning-100 px-2 py-1 text-xs font-medium text-fg",
+      "data-i18n": "prototype.panel.notProduct"
+    }),
+    unknown
+      ? el("p", {
+          role: "alert",
+          class: "rounded-md bg-danger-50 px-2 py-1 text-xs text-danger-700",
+          "data-i18n": "prototype.panel.unknownState",
+          "data-i18n-vars": JSON.stringify({ state: unknown })
+        })
+      : "",
+    el("dl", { class: "flex flex-col gap-1 text-xs text-fg" }, [
+      el("div", { class: "flex gap-2" }, [
+        el("dt", { class: "font-semibold", "data-i18n": "prototype.panel.stories" }),
+        el("dd", {}, entry.stories.join(", "))
+      ]),
+      el("div", { class: "flex gap-2" }, [
+        el("dt", { class: "font-semibold", "data-i18n": "prototype.panel.requirements" }),
+        el("dd", {}, entry.requirements.join(", "))
+      ])
+    ]),
+    el("section", { "data-panel-group": "states", class: "flex flex-col gap-1" }, [
+      heading("prototype.panel.states"),
+      stateLinks(entry.states, state)
+    ]),
+    entry.simulate?.length
+      ? el("section", { "data-panel-group": "simulate", class: "flex flex-col gap-1" }, [
+          heading("prototype.panel.simulate"),
+          stateLinks(entry.simulate, state)
+        ])
+      : "",
+    el("section", { class: "flex flex-wrap items-center gap-1" }, [
+      heading("prototype.panel.language"),
+      langButton("es"),
+      langButton("en")
+    ]),
+    el("a", {
+      href: "?panel=0",
+      "data-panel-hide": true,
+      class: "text-xs text-primary-700 underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus",
+      "data-i18n": "prototype.panel.hide"
+    })
+  ]);
+
+  const panel = el(
+    "aside",
+    {
+      id: "prototype-panel",
+      "data-prototype-panel": true,
+      "aria-labelledby": "prototype-panel-title",
+      class:
+        "fixed top-2 left-1/2 z-50 max-h-96 max-w-72 -translate-x-1/2 overflow-auto rounded-lg border border-border-strong bg-surface-raised text-fg shadow-lg print:hidden lg:top-auto lg:right-2 lg:bottom-2 lg:left-auto lg:translate-x-0"
+    },
+    [
+      el("details", {}, [
+        el("summary", {
+          id: "prototype-panel-title",
+          class:
+            "cursor-pointer rounded-lg px-3 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus",
+          "data-i18n": "prototype.panel.title"
+        }),
+        body
+      ])
+    ]
+  );
+
+  panel.addEventListener("click", (event) => {
+    const hide = event.target.closest?.("[data-panel-hide]");
+    if (hide) {
+      event.preventDefault();
+      isPanelHidden("?panel=0");
+      panel.remove();
+    }
+  });
+
+  document.body.append(panel);
+  return panel;
+}
+
+function syncPanel(state) {
+  const panel = document.getElementById("prototype-panel");
+  if (!panel) return;
+  panel.querySelectorAll("a[href^='?state=']").forEach((a) => {
+    const s = new URLSearchParams(a.getAttribute("href")).get("state");
+    if (s === state) {
+      a.setAttribute("aria-current", "true");
+      a.setAttribute("data-active", "");
+    } else {
+      a.removeAttribute("aria-current");
+      a.removeAttribute("data-active");
+    }
+  });
+}

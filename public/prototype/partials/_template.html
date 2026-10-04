@@ -1,0 +1,31 @@
+<!doctype html>
+<!--
+  Page skeleton (tasks.md › Conventions). Copy it to a role folder (auth/, admin/, teacher/, student/).
+  - Paths below are for a page one folder deep; for a root page drop the "../".
+  - Use the role's shell: partials/shell-student.html, shell-teacher.html or shell-admin.html
+    (sign-in and other public pages have no shell).
+  - Add the page to assets/pages.json; mark state markup with data-state="…" (contract §3).
+-->
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DocentAI (prototipo)</title>
+    <style>
+      [data-cloak] { visibility: hidden; }
+      [data-cloak] *, [data-cloak] *::before, [data-cloak] *::after { transition: none !important; }
+      summary::-webkit-details-marker { display: none; }
+    </style>
+    <script type="module" src="../assets/js/prototype.js"></script>
+  </head>
+  <body data-cloak class="flex min-h-dvh flex-col bg-surface font-sans text-fg antialiased">
+    <a href="#main" class="sr-only rounded-lg bg-primary-700 px-4 py-2 text-fg-inverse focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50" data-i18n="common.a11y.skipToContent"></a>
+    <div data-include="partials/shell-student.html"></div>
+    <main id="main" tabindex="-1" class="mx-auto w-full max-w-6xl flex-1 px-4 py-6 sm:px-6 lg:py-10">
+      <!-- Page content. One block per state, e.g.:
+      <section data-state="default">…</section>
+      <section data-state="loading">…</section> -->
+    </main>
+    <div data-include="partials/footer.html"></div>
+  </body>
+</html>

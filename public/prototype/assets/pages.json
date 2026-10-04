@@ -1,0 +1,74 @@
+[
+  {
+    "path": "student/consent.html",
+    "screen": [
+      5
+    ],
+    "role": "student",
+    "titleKey": "student.consent.pageTitle",
+    "stories": [
+      "US-01",
+      "US-07"
+    ],
+    "requirements": [
+      "S1",
+      "P1",
+      "FR-010",
+      "FR-011",
+      "FR-015"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default",
+      "ai-disclosure",
+      "error",
+      "revoked"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "student/chat.html",
+    "screen": [
+      8,
+      9
+    ],
+    "role": "student",
+    "titleKey": "student.chat.pageTitle",
+    "stories": [
+      "US-01"
+    ],
+    "requirements": [
+      "S1",
+      "S2",
+      "FR-010",
+      "FR-011",
+      "FR-012",
+      "FR-013",
+      "FR-014"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default",
+      "loading",
+      "load-error",
+      "first-use",
+      "tutor-writing",
+      "answer",
+      "citation",
+      "citation-unavailable",
+      "no-source",
+      "low-allowance",
+      "limit-reached",
+      "failed"
+    ],
+    "simulate": [
+      "failed",
+      "limit-reached",
+      "load-error"
+    ]
+  }
+]

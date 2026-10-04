@@ -1,0 +1,402 @@
+{
+  "admin": {
+    "shell": {
+      "nav": {
+        "courses": "Courses",
+        "users": "Users"
+      },
+      "role": "Administration"
+    }
+  },
+  "common": {
+    "a11y": {
+      "closeMenu": "Close menu",
+      "homeLink": "DocentAI, home",
+      "language": "Language",
+      "mainNav": "Main navigation",
+      "openMenu": "Open menu",
+      "required": "required",
+      "skipToContent": "Skip to content",
+      "userMenu": "User menu"
+    },
+    "actions": {
+      "accept": "Accept",
+      "back": "Back",
+      "cancel": "Cancel",
+      "close": "Close",
+      "confirm": "Confirm",
+      "continue": "Continue",
+      "copied": "Copied",
+      "copy": "Copy",
+      "delete": "Delete",
+      "menu": "Menu",
+      "retry": "Try again",
+      "save": "Save",
+      "search": "Search",
+      "send": "Send",
+      "signOut": "Sign out"
+    },
+    "brand": {
+      "markAlt": "DocentAI",
+      "name": "DocentAI"
+    },
+    "errors": {
+      "generic": "Something went wrong. Please try again in a moment.",
+      "network": "You're offline. Check your internet connection and try again.",
+      "sessionExpired": "Your session has expired. Sign in again to continue."
+    },
+    "imfahe": {
+      "aboutLink": "About DocentAI",
+      "acknowledgement": "Project funded by the IMFAHE Foundation",
+      "logoAlt": "IMFAHE Foundation logo",
+      "logoPending": "IMFAHE logo – pending"
+    },
+    "language": {
+      "en": "English",
+      "es": "Español"
+    },
+    "privacy": {
+      "link": "Privacy"
+    },
+    "states": {
+      "empty": "Nothing here yet.",
+      "errorBody": "There was a connection problem. Check your internet connection and try again.",
+      "errorTitle": "Couldn't load this",
+      "loading": "Loading…"
+    }
+  },
+  "prototype": {
+    "ds": {
+      "buttons": {
+        "iconButton": "Icon button",
+        "iconMobile": "Primary on mobile (44 px)",
+        "iconNote": "Always with a translated aria-label: the icon has no visible text.",
+        "lead": "Minimum target 24×24 px; the md size is 44 px tall for primary mobile actions.",
+        "sizes": "Sizes",
+        "title": "Buttons"
+      },
+      "color": {
+        "contrast": "Contrast checked: text ≥4.5:1 and UI parts ≥3:1 on the surfaces. The axe sweep verifies every page and state.",
+        "lead": "Palettes in oklch. Tailwind's own colors are removed with --color-*: initial, so only DocentAI colors exist. Components use the semantic aliases where one exists.",
+        "palette": {
+          "danger": "Danger",
+          "info": "Info",
+          "neutral": "Neutral",
+          "primary": "Primary",
+          "success": "Success",
+          "warning": "Warning"
+        },
+        "semantic": "Semantic aliases",
+        "title": "Color"
+      },
+      "containers": {
+        "card": "Card",
+        "cardBody": "24 students · created Oct 4, 2026",
+        "cardTitle": "Year 9 Maths – Algebra",
+        "dialog": "Dialog",
+        "dialogBody": "You have unsaved changes to the tutor settings. If you leave now, they will be lost.",
+        "dialogLeave": "Leave without saving",
+        "dialogNote": "Pages use <dialog data-modal> with showModal(): it traps focus, closes with Esc and returns focus to its opener.",
+        "dialogStay": "Keep editing",
+        "dialogTitle": "Leave without saving?",
+        "interactive": "Interactive (link)",
+        "title": "Cards, dialogs and toasts",
+        "toast": "Settings saved",
+        "toastTitle": "Toast"
+      },
+      "focus": {
+        "ringBody": "A 2 px outline in --color-focus with a 2 px offset, on focus-visible only. Contrast ≥3:1 against its surroundings.",
+        "ringTitle": "Focus ring",
+        "title": "Focus and motion"
+      },
+      "forms": {
+        "email": "Email",
+        "emailBad": "lucas.herrera",
+        "emailError": "Enter an email like name@domain.",
+        "emailHelp": "Use the email your school gave you.",
+        "emailPlaceholder": "name@example.org",
+        "lead": "Every field has a visible label. Help and errors are linked with aria-describedby; an error adds aria-invalid and an icon, not just color.",
+        "radio1": "Direct solutions allowed",
+        "radio1Help": "The tutor may give the full solution when asked.",
+        "radio2": "Hints first, then solution",
+        "radio2Help": "The tutor gives hints and shows the solution only at the end.",
+        "radio3": "Hints only (guided mode)",
+        "radio3Help": "The tutor never gives the full solution.",
+        "radioGroup": "Radio group",
+        "radioLegend": "Solution policy",
+        "select": "Select",
+        "selectLabel": "Topic",
+        "textArea": "Text area",
+        "textField": "Text field",
+        "textareaHelp": "Write each step on its own line.",
+        "textareaLabel": "Your solution, step by step",
+        "title": "Forms",
+        "toggle": "Toggle",
+        "toggleLabel": "Include in the knowledge base"
+      },
+      "global": {
+        "imfahe": "IMFAHE acknowledgement",
+        "imfaheNote": "The official IMFAHE logo is pending; this placeholder is shown until it arrives. The logo is not recreated or traced.",
+        "lang": "Language switcher",
+        "langNote": "Switches the whole page, including sample content. Language names always appear in their own language.",
+        "title": "Language and IMFAHE",
+        "vAbout": "About",
+        "vFooter": "Footer",
+        "vSignIn": "Sign-in"
+      },
+      "icons": {
+        "lead": "Lucide (ISC license), copied unmodified into assets/img/icons.svg. Decorative icons get aria-hidden; meaningful ones get a translated aria-label.",
+        "title": "Icons"
+      },
+      "lead": "Tokens and components shared by the prototype and the future React app. Names match the @theme variables and the React components one to one (Constitution IV).",
+      "motion": {
+        "body": "150 ms color transitions with --ease-standard, always behind motion-safe:. With reduced motion there is no animation, and loading states advance at once.",
+        "title": "Motion"
+      },
+      "radius": {
+        "shadows": "Shadows",
+        "title": "Radius and shadows"
+      },
+      "size": {
+        "md": "Medium (md)",
+        "sm": "Small (sm)"
+      },
+      "spacing": {
+        "lead": "A single 4 px base unit (--spacing). p-4 is 16 px.",
+        "title": "Spacing"
+      },
+      "state": {
+        "default": "Default",
+        "disabled": "Disabled",
+        "error": "Error",
+        "focus": "Focus",
+        "hover": "Hover",
+        "loading": "Loading",
+        "off": "Off",
+        "on": "On"
+      },
+      "states": {
+        "denied": "Access denied",
+        "deniedAction": "Go to my home",
+        "deniedBody": "This page belongs to another role or to a course you are not in. Go back to your home to continue.",
+        "deniedTitle": "You don't have access to this page",
+        "empty": "Empty",
+        "emptyAction": "Upload material",
+        "emptyBody": "The tutor only answers from the material you upload and approve.",
+        "emptyTitle": "You haven't uploaded any material yet",
+        "error": "Error",
+        "lead": "Every data-driven view is designed empty, loading and with an error (FR-001, Constitution VI).",
+        "loading": "Loading",
+        "title": "Screen states"
+      },
+      "title": "Design system",
+      "toc": "On this page",
+      "tutor": {
+        "allowance": "Message allowance",
+        "citation": "Source citation",
+        "composer": "Composer",
+        "disabledByLimit": "Disabled by the limit",
+        "disclosure": "AI disclosure",
+        "firstUse": "First-use dialog",
+        "headerLabel": "Persistent header label",
+        "hintBody": "Look at which operation goes with x. What is the inverse operation?",
+        "hintLabel": "Hint 1",
+        "lead": "Student chat patterns: cited sources (S1), no-source reply (S2), AI disclosure and the daily limit (research R-12 to R-15).",
+        "limit": "Limit reached",
+        "low": "Low (≤5)",
+        "messages": "Messages",
+        "notice": "No-source notice",
+        "noticeNote": "Info color, never error: the tutor is working correctly. Reused in hints, feedback and explanations.",
+        "sending": "Sending",
+        "sheet": "Citation sheet",
+        "sheetNote": "Bottom sheet below lg; right side panel from lg. The chat stays underneath and focus returns to the chip on close.",
+        "title": "Tutor components",
+        "unavailable": "Document withdrawn",
+        "vChat": "Chat",
+        "vExercise": "Exercise"
+      },
+      "type": {
+        "lead": "System fonts, no web-font downloads. Each size carries its own line height.",
+        "sample": "The course material doesn't cover this question",
+        "title": "Typography",
+        "weights": "Weights"
+      },
+      "variant": {
+        "danger": "Danger",
+        "ghost": "Ghost",
+        "primary": "Primary",
+        "secondary": "Secondary"
+      }
+    },
+    "index": {
+      "flows": {
+        "f1": "F1 · Upload and validate the course material",
+        "f10": "F10 · Sign-in errors and session",
+        "f11": "F11 · Review conversations and flag answers",
+        "f12": "F12 · Dashboard and at-risk students",
+        "f13": "F13 · Review quiz questions",
+        "f14": "F14 · Adaptive quiz",
+        "f15": "F15 · Help with repeated mistakes and progress",
+        "f2": "F2 · Ask the tutor and see the sources",
+        "f3": "F3 · The material doesn't cover the question",
+        "f4": "F4 · Daily message limit",
+        "f5": "F5 · Minimal admin tasks",
+        "f6": "F6 · Create a course and join it",
+        "f7": "F7 · Configure the tutor",
+        "f8": "F8 · Guided mode",
+        "f9": "F9 · Exercise feedback",
+        "lead": "End-to-end journeys. Flows whose pages don't exist yet are shown disabled.",
+        "pending": "Pending",
+        "start": "Start",
+        "title": "Flows"
+      },
+      "lead": "Clickable prototype of the admin, teacher and student screens. All data is fictitious.",
+      "links": {
+        "designSystem": "Design system",
+        "spec": "Specification (spec.md)"
+      },
+      "pages": {
+        "lead": "Each page has one link per state. Pages marked P1 are required for the MVP.",
+        "mobile": "Also reviewed at 390 px",
+        "none": "No pages for this role yet.",
+        "states_one": "{count} state",
+        "states_other": "{count} states",
+        "title": "Pages"
+      },
+      "role": {
+        "admin": "Administration",
+        "all": "All roles",
+        "student": "Student",
+        "teacher": "Teachers"
+      },
+      "status": {
+        "draft": "Draft",
+        "label": "Status",
+        "validated": "Validated",
+        "validating": "In validation"
+      },
+      "title": "DocentAI – MVP prototype",
+      "updated": "Updated {date}",
+      "version": "Version {version}"
+    },
+    "panel": {
+      "hide": "Hide this panel for the session",
+      "language": "Language",
+      "notProduct": "Prototype – not part of the product",
+      "requirements": "Requirements",
+      "simulate": "Simulate",
+      "states": "States",
+      "stories": "Stories",
+      "title": "Prototype",
+      "unknownState": "This page has no \"{state}\" state. Showing the default state."
+    },
+    "titleSuffix": "DocentAI (prototype)"
+  },
+  "student": {
+    "chat": {
+      "aiTag": "AI",
+      "aiTagLabel": "Answer generated by artificial intelligence",
+      "citation": {
+        "chip": "{doc} · {loc}",
+        "chipLabel": "View source: {doc} · {loc}",
+        "passageLabel": "Cited passage",
+        "sheetTitle": "Cited source",
+        "unavailable": "Document no longer available",
+        "validated": "From the material your teacher approved."
+      },
+      "composer": {
+        "label": "Type your question",
+        "placeholder": "Ask about the course material…"
+      },
+      "conversation": "Conversation with the tutor",
+      "courseLabel": "Course",
+      "disclosure": {
+        "ack": "I've read and understand how the tutor works",
+        "ai": "You'll be talking to an artificial intelligence tutor, not a person.",
+        "limit": "You have {limit} messages a day in total, across all your courses.",
+        "material": "It answers only from the material your teacher has approved and shows where each answer comes from.",
+        "review": "Keep in mind that your teacher may review your conversations.",
+        "start": "Start",
+        "title": "Before you start"
+      },
+      "failed": {
+        "body": "The connection failed and the answer didn't arrive. This attempt doesn't count toward your limit.",
+        "title": "Not sent"
+      },
+      "followUp": "You could also ask:",
+      "limit": {
+        "body": "You can write again at {time}. Meanwhile, you can reread the whole conversation.",
+        "draftLabel": "Your draft is saved:",
+        "exerciseBody": "You can't submit exercises until {time}. The limit is shared with the chat.",
+        "title": "You've used your {limit} messages for today"
+      },
+      "loadError": "Couldn't load the conversation",
+      "lowWarning": "They reset at {time}.",
+      "noSource": {
+        "askTeacher": "Ask your teacher",
+        "body": "I couldn't find anything about this in the material your teacher has approved, so I won't give you an answer without a source.",
+        "heading": "The course material doesn't cover this question",
+        "iconLabel": "Information",
+        "rephrase": "Rephrase the question"
+      },
+      "pageTitle": "Course chat",
+      "remaining_one": "You have {count} message left today, across all your courses.",
+      "remaining_other": "You have {count} messages left today, across all your courses.",
+      "sources": "Sources",
+      "suggestionsTitle": "You could start with…",
+      "switchCourse": "Switch course",
+      "teacherLine": "Teacher: {teacher}",
+      "tutorName": "Tutor",
+      "welcome": "Hi. I'm the AI tutor for this course. I only answer from the material your teacher has approved, and I tell you where each answer comes from.",
+      "writing": "Writing an answer…",
+      "you": "You:"
+    },
+    "consent": {
+      "accept": "I've read this information and agree to take part",
+      "back": "Back",
+      "continue": "Continue",
+      "dataBody": "Your messages to the tutor, the exercises you submit and your quiz answers.",
+      "dataTitle": "What is stored",
+      "error": "We couldn't save your answer. Check your connection and try again.",
+      "giveAgain": "Give my consent again",
+      "howIntro": "Keep these four things in mind every time you use it:",
+      "howTitle": "How the tutor works",
+      "intro": "DocentAI is part of a study on learning with the help of artificial intelligence. Read this information and decide whether you want to take part.",
+      "pageTitle": "Consent",
+      "privacyLink": "More about privacy",
+      "purposeBody": "The tutor helps you study with your course material. How you use it helps us improve the tool.",
+      "purposeTitle": "What it's for",
+      "revokedAgain": "You can give it again whenever you like.",
+      "revokedBody": "Until you give it again, you can't use the tutor or submit exercises.",
+      "revokedTitle": "You've withdrawn your consent",
+      "rightsBody": "You can withdraw your consent at any time from your profile, without giving a reason.",
+      "rightsTitle": "Your rights",
+      "step": "Step {step} of {total}",
+      "title": "Before you use the tutor",
+      "understood": "Got it, continue",
+      "whoBody": "Your teacher may review your conversations. The research team only sees data without your name.",
+      "whoTitle": "Who sees it"
+    },
+    "shell": {
+      "aiLabel": "AI tutor",
+      "nav": {
+        "courses": "My courses",
+        "profile": "Profile",
+        "progress": "My progress"
+      },
+      "role": "Student",
+      "teacherReview": "your teacher may review your conversations"
+    }
+  },
+  "teacher": {
+    "shell": {
+      "nav": {
+        "conversations": "Conversations",
+        "courses": "My courses",
+        "dashboard": "Dashboard",
+        "questions": "Questions"
+      },
+      "role": "Teacher"
+    }
+  }
+}

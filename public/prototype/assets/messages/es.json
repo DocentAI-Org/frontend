@@ -1,0 +1,402 @@
+{
+  "admin": {
+    "shell": {
+      "nav": {
+        "courses": "Cursos",
+        "users": "Usuarios"
+      },
+      "role": "Administración"
+    }
+  },
+  "common": {
+    "a11y": {
+      "closeMenu": "Cerrar menú",
+      "homeLink": "DocentAI, inicio",
+      "language": "Idioma",
+      "mainNav": "Navegación principal",
+      "openMenu": "Abrir menú",
+      "required": "obligatorio",
+      "skipToContent": "Saltar al contenido",
+      "userMenu": "Menú de usuario"
+    },
+    "actions": {
+      "accept": "Aceptar",
+      "back": "Volver",
+      "cancel": "Cancelar",
+      "close": "Cerrar",
+      "confirm": "Confirmar",
+      "continue": "Continuar",
+      "copied": "Copiado",
+      "copy": "Copiar",
+      "delete": "Eliminar",
+      "menu": "Menú",
+      "retry": "Reintentar",
+      "save": "Guardar",
+      "search": "Buscar",
+      "send": "Enviar",
+      "signOut": "Cerrar sesión"
+    },
+    "brand": {
+      "markAlt": "DocentAI",
+      "name": "DocentAI"
+    },
+    "errors": {
+      "generic": "Algo ha fallado. Vuelve a intentarlo dentro de un momento.",
+      "network": "No hay conexión. Comprueba tu conexión a internet y vuelve a intentarlo.",
+      "sessionExpired": "Tu sesión ha caducado. Vuelve a iniciar sesión para continuar."
+    },
+    "imfahe": {
+      "aboutLink": "Acerca de DocentAI",
+      "acknowledgement": "Proyecto financiado por la Fundación IMFAHE",
+      "logoAlt": "Logotipo de la Fundación IMFAHE",
+      "logoPending": "Logo IMFAHE – pendiente"
+    },
+    "language": {
+      "en": "English",
+      "es": "Español"
+    },
+    "privacy": {
+      "link": "Privacidad"
+    },
+    "states": {
+      "empty": "Todavía no hay nada aquí.",
+      "errorBody": "Ha habido un problema de conexión. Comprueba tu conexión a internet y vuelve a intentarlo.",
+      "errorTitle": "No se ha podido cargar",
+      "loading": "Cargando…"
+    }
+  },
+  "prototype": {
+    "ds": {
+      "buttons": {
+        "iconButton": "Botón de icono",
+        "iconMobile": "Principal en móvil (44 px)",
+        "iconNote": "Siempre con aria-label traducido: el icono no tiene texto visible.",
+        "lead": "Objetivo táctil mínimo de 24×24 px; el tamaño md mide 44 px de alto para las acciones principales en móvil.",
+        "sizes": "Tamaños",
+        "title": "Botones"
+      },
+      "color": {
+        "contrast": "Contraste comprobado: texto ≥4,5:1 y componentes de interfaz ≥3:1 sobre las superficies. El barrido axe verifica cada página y estado.",
+        "lead": "Paletas en oklch. Tailwind no aporta colores propios: --color-*: initial deja solo los de DocentAI. Los componentes usan los alias semánticos cuando existe uno.",
+        "palette": {
+          "danger": "Peligro",
+          "info": "Información",
+          "neutral": "Neutro",
+          "primary": "Principal",
+          "success": "Éxito",
+          "warning": "Aviso"
+        },
+        "semantic": "Alias semánticos",
+        "title": "Color"
+      },
+      "containers": {
+        "card": "Tarjeta",
+        "cardBody": "24 estudiantes · creado el 4 oct 2026",
+        "cardTitle": "Matemáticas 3º ESO – Álgebra",
+        "dialog": "Diálogo",
+        "dialogBody": "Tienes cambios sin guardar en la configuración del tutor. Si sales ahora, se perderán.",
+        "dialogLeave": "Salir sin guardar",
+        "dialogNote": "En las páginas se usa <dialog data-modal> con showModal(): atrapa el foco, se cierra con Esc y devuelve el foco a quien lo abrió.",
+        "dialogStay": "Seguir editando",
+        "dialogTitle": "¿Salir sin guardar?",
+        "interactive": "Interactiva (enlace)",
+        "title": "Tarjetas, diálogos y avisos",
+        "toast": "Configuración guardada",
+        "toastTitle": "Aviso temporal"
+      },
+      "focus": {
+        "ringBody": "Contorno de 2 px en --color-focus, separado 2 px, solo con focus-visible. Contraste ≥3:1 con lo que lo rodea.",
+        "ringTitle": "Anillo de foco",
+        "title": "Foco y movimiento"
+      },
+      "forms": {
+        "email": "Correo electrónico",
+        "emailBad": "lucas.herrera",
+        "emailError": "Escribe un correo con el formato nombre@dominio.",
+        "emailHelp": "Usa el correo que te dio tu centro.",
+        "emailPlaceholder": "nombre@example.org",
+        "lead": "Cada campo tiene una etiqueta visible. La ayuda y los errores se enlazan con aria-describedby; un error añade aria-invalid y un icono, no solo color.",
+        "radio1": "Soluciones directas permitidas",
+        "radio1Help": "El tutor puede dar la solución completa si se la piden.",
+        "radio2": "Primero pistas, luego solución",
+        "radio2Help": "El tutor da pistas y solo muestra la solución al final.",
+        "radio3": "Solo pistas (modo guiado)",
+        "radio3Help": "El tutor nunca da la solución completa.",
+        "radioGroup": "Grupo de opciones",
+        "radioLegend": "Política de soluciones",
+        "select": "Selector",
+        "selectLabel": "Tema",
+        "textArea": "Área de texto",
+        "textField": "Campo de texto",
+        "textareaHelp": "Escribe cada paso en una línea.",
+        "textareaLabel": "Tu solución, paso a paso",
+        "title": "Formularios",
+        "toggle": "Interruptor",
+        "toggleLabel": "Incluir en la base de conocimiento"
+      },
+      "global": {
+        "imfahe": "Reconocimiento IMFAHE",
+        "imfaheNote": "El logotipo oficial de IMFAHE está pendiente; hasta recibirlo se muestra este marcador. No se recrea ni se calca el logotipo.",
+        "lang": "Selector de idioma",
+        "langNote": "Cambia el idioma de toda la página, incluido el contenido de ejemplo. Los nombres de idioma se muestran siempre en su propio idioma.",
+        "title": "Idioma e IMFAHE",
+        "vAbout": "Acerca de",
+        "vFooter": "Pie de página",
+        "vSignIn": "Inicio de sesión"
+      },
+      "icons": {
+        "lead": "Lucide (licencia ISC), copiados sin modificar en assets/img/icons.svg. Los iconos decorativos llevan aria-hidden; los que transmiten significado llevan un aria-label traducido.",
+        "title": "Iconos"
+      },
+      "lead": "Tokens y componentes compartidos por el prototipo y la futura app React. Los nombres coinciden uno a uno con las variables de @theme y con los componentes de React (Constitución IV).",
+      "motion": {
+        "body": "Transiciones de color de 150 ms con --ease-standard, siempre con motion-safe:. Con «reducir movimiento» no hay animación y los estados de carga avanzan al instante.",
+        "title": "Movimiento"
+      },
+      "radius": {
+        "shadows": "Sombras",
+        "title": "Radios y sombras"
+      },
+      "size": {
+        "md": "Mediano (md)",
+        "sm": "Pequeño (sm)"
+      },
+      "spacing": {
+        "lead": "Una sola unidad base de 4 px (--spacing). p-4 equivale a 16 px.",
+        "title": "Espaciado"
+      },
+      "state": {
+        "default": "Normal",
+        "disabled": "Desactivado",
+        "error": "Error",
+        "focus": "Foco",
+        "hover": "Hover",
+        "loading": "Cargando",
+        "off": "Desactivado",
+        "on": "Activado"
+      },
+      "states": {
+        "denied": "Acceso denegado",
+        "deniedAction": "Ir a mi inicio",
+        "deniedBody": "Esta página pertenece a otro rol o a un curso en el que no estás. Vuelve a tu inicio para continuar.",
+        "deniedTitle": "No tienes acceso a esta página",
+        "empty": "Vacío",
+        "emptyAction": "Subir material",
+        "emptyBody": "El tutor solo responde con el material que subas y valides.",
+        "emptyTitle": "Todavía no has subido material",
+        "error": "Error",
+        "lead": "Toda vista con datos se diseña vacía, cargando y con error (FR-001, Constitución VI).",
+        "loading": "Cargando",
+        "title": "Estados de pantalla"
+      },
+      "title": "Sistema de diseño",
+      "toc": "En esta página",
+      "tutor": {
+        "allowance": "Mensajes restantes",
+        "citation": "Fuente citada",
+        "composer": "Caja de mensaje",
+        "disabledByLimit": "Desactivada por el límite",
+        "disclosure": "Divulgación de IA",
+        "firstUse": "Diálogo del primer uso",
+        "headerLabel": "Etiqueta fija en la cabecera",
+        "hintBody": "Fíjate en qué operación acompaña a la x. ¿Cuál es la operación inversa?",
+        "hintLabel": "Pista 1",
+        "lead": "Patrones del chat del estudiante: fuentes citadas (S1), respuesta sin fuente (S2), divulgación de IA y límite diario (research R-12 a R-15).",
+        "limit": "Límite alcanzado",
+        "low": "Pocos (≤5)",
+        "messages": "Mensajes",
+        "notice": "Aviso sin fuente",
+        "noticeNote": "Color de información, nunca de error: el tutor está funcionando bien. Se reutiliza en pistas, correcciones y explicaciones.",
+        "sending": "Enviando",
+        "sheet": "Hoja de la fuente",
+        "sheetNote": "Hoja inferior por debajo de lg; panel lateral derecho a partir de lg. El chat sigue debajo y el foco vuelve a la fuente al cerrar.",
+        "title": "Componentes del tutor",
+        "unavailable": "Documento retirado",
+        "vChat": "Chat",
+        "vExercise": "Ejercicio"
+      },
+      "type": {
+        "lead": "Fuentes del sistema, sin descargas de fuentes web. Cada tamaño lleva su interlineado.",
+        "sample": "El material del curso no cubre esta pregunta",
+        "title": "Tipografía",
+        "weights": "Pesos"
+      },
+      "variant": {
+        "danger": "Peligro",
+        "ghost": "Fantasma",
+        "primary": "Principal",
+        "secondary": "Secundario"
+      }
+    },
+    "index": {
+      "flows": {
+        "f1": "F1 · Subir y validar el material del curso",
+        "f10": "F10 · Errores de acceso y sesión",
+        "f11": "F11 · Revisar conversaciones y marcar respuestas",
+        "f12": "F12 · Panel y estudiantes en riesgo",
+        "f13": "F13 · Revisar preguntas de cuestionario",
+        "f14": "F14 · Cuestionario adaptativo",
+        "f15": "F15 · Ayuda con errores repetidos y progreso",
+        "f2": "F2 · Preguntar al tutor y ver las fuentes",
+        "f3": "F3 · El material no cubre la pregunta",
+        "f4": "F4 · Límite diario de mensajes",
+        "f5": "F5 · Tareas mínimas de administración",
+        "f6": "F6 · Crear un curso y unirse",
+        "f7": "F7 · Configurar el tutor",
+        "f8": "F8 · Modo guiado",
+        "f9": "F9 · Corrección de un ejercicio",
+        "lead": "Recorridos de principio a fin. Los flujos cuyas páginas aún no existen aparecen desactivados.",
+        "pending": "Pendiente",
+        "start": "Empezar",
+        "title": "Flujos"
+      },
+      "lead": "Prototipo navegable de las pantallas de administración, profesorado y estudiantes. Todos los datos son ficticios.",
+      "links": {
+        "designSystem": "Sistema de diseño",
+        "spec": "Especificación (spec.md)"
+      },
+      "pages": {
+        "lead": "Cada página tiene un enlace por estado. Las marcadas con P1 son imprescindibles para el MVP.",
+        "mobile": "Revisada también a 390 px",
+        "none": "Todavía no hay páginas para este rol.",
+        "states_one": "{count} estado",
+        "states_other": "{count} estados",
+        "title": "Páginas"
+      },
+      "role": {
+        "admin": "Administración",
+        "all": "Todos los roles",
+        "student": "Estudiante",
+        "teacher": "Profesorado"
+      },
+      "status": {
+        "draft": "Borrador",
+        "label": "Estado",
+        "validated": "Validado",
+        "validating": "En validación"
+      },
+      "title": "DocentAI – Prototipo del MVP",
+      "updated": "Actualizado el {date}",
+      "version": "Versión {version}"
+    },
+    "panel": {
+      "hide": "Ocultar este panel durante la sesión",
+      "language": "Idioma",
+      "notProduct": "Prototipo – no forma parte del producto",
+      "requirements": "Requisitos",
+      "simulate": "Simular",
+      "states": "Estados",
+      "stories": "Historias",
+      "title": "Prototipo",
+      "unknownState": "El estado «{state}» no existe en esta página. Se muestra el estado por defecto."
+    },
+    "titleSuffix": "DocentAI (prototipo)"
+  },
+  "student": {
+    "chat": {
+      "aiTag": "IA",
+      "aiTagLabel": "Respuesta generada por inteligencia artificial",
+      "citation": {
+        "chip": "{doc} · {loc}",
+        "chipLabel": "Ver fuente: {doc} · {loc}",
+        "passageLabel": "Fragmento citado",
+        "sheetTitle": "Fuente citada",
+        "unavailable": "Documento ya no disponible",
+        "validated": "Del material validado por tu profesor/a."
+      },
+      "composer": {
+        "label": "Escribe tu pregunta",
+        "placeholder": "Pregunta sobre el material del curso…"
+      },
+      "conversation": "Conversación con el tutor",
+      "courseLabel": "Curso",
+      "disclosure": {
+        "ack": "He leído y entiendo cómo funciona el tutor",
+        "ai": "Vas a hablar con un tutor de inteligencia artificial, no con una persona.",
+        "limit": "Tienes {limit} mensajes al día en total, sumando todos tus cursos.",
+        "material": "Responde solo con el material que ha validado tu profesor/a y te muestra de dónde sale cada respuesta.",
+        "review": "Ten en cuenta que tu profesor/a puede revisar tus conversaciones.",
+        "start": "Empezar",
+        "title": "Antes de empezar"
+      },
+      "failed": {
+        "body": "Ha fallado la conexión y la respuesta no ha llegado. Este intento no cuenta para tu límite.",
+        "title": "No se ha enviado"
+      },
+      "followUp": "También puedes preguntar:",
+      "limit": {
+        "body": "Podrás escribir de nuevo a las {time}. Mientras tanto, puedes releer toda la conversación.",
+        "draftLabel": "Tu borrador está guardado:",
+        "exerciseBody": "No puedes enviar ejercicios hasta las {time}. El límite es el mismo que el del chat.",
+        "title": "Has usado tus {limit} mensajes de hoy"
+      },
+      "loadError": "No se ha podido cargar la conversación",
+      "lowWarning": "Se renuevan a las {time}.",
+      "noSource": {
+        "askTeacher": "Preguntar al profesor/a",
+        "body": "No he encontrado nada sobre esto en el material que ha validado tu profesor/a, así que no te doy una respuesta sin fuente.",
+        "heading": "El material del curso no cubre esta pregunta",
+        "iconLabel": "Información",
+        "rephrase": "Reformular la pregunta"
+      },
+      "pageTitle": "Chat del curso",
+      "remaining_one": "Te queda {count} mensaje hoy, en todos tus cursos.",
+      "remaining_other": "Te quedan {count} mensajes hoy, en todos tus cursos.",
+      "sources": "Fuentes",
+      "suggestionsTitle": "Puedes empezar por…",
+      "switchCourse": "Cambiar de curso",
+      "teacherLine": "Profesor/a: {teacher}",
+      "tutorName": "Tutor",
+      "welcome": "Hola. Soy el tutor IA de este curso. Respondo solo con el material que ha validado tu profesor/a y te indico de dónde sale cada respuesta.",
+      "writing": "Escribiendo una respuesta…",
+      "you": "Tú:"
+    },
+    "consent": {
+      "accept": "He leído esta información y acepto participar",
+      "back": "Volver",
+      "continue": "Continuar",
+      "dataBody": "Tus mensajes al tutor, los ejercicios que envías y tus respuestas a los cuestionarios.",
+      "dataTitle": "Qué se guarda",
+      "error": "No hemos podido guardar tu respuesta. Comprueba tu conexión y vuelve a intentarlo.",
+      "giveAgain": "Volver a dar mi consentimiento",
+      "howIntro": "Recuerda estas cuatro cosas cada vez que lo uses:",
+      "howTitle": "Cómo funciona el tutor",
+      "intro": "DocentAI forma parte de un estudio sobre el aprendizaje con ayuda de inteligencia artificial. Lee esta información y decide si quieres participar.",
+      "pageTitle": "Consentimiento",
+      "privacyLink": "Más información sobre privacidad",
+      "purposeBody": "El tutor te ayuda a estudiar con el material de tu curso. Tu forma de usarlo nos ayuda a mejorar la herramienta.",
+      "purposeTitle": "Para qué es",
+      "revokedAgain": "Puedes volver a darlo cuando quieras.",
+      "revokedBody": "Mientras no vuelvas a darlo, no puedes usar el tutor ni enviar ejercicios.",
+      "revokedTitle": "Has retirado tu consentimiento",
+      "rightsBody": "Puedes retirar tu consentimiento cuando quieras desde tu perfil, sin dar explicaciones.",
+      "rightsTitle": "Tus derechos",
+      "step": "Paso {step} de {total}",
+      "title": "Antes de usar el tutor",
+      "understood": "Entendido, continuar",
+      "whoBody": "Tu profesor/a puede revisar tus conversaciones. El equipo de investigación solo ve datos sin tu nombre.",
+      "whoTitle": "Quién lo ve"
+    },
+    "shell": {
+      "aiLabel": "Tutor IA",
+      "nav": {
+        "courses": "Mis cursos",
+        "profile": "Perfil",
+        "progress": "Mi progreso"
+      },
+      "role": "Estudiante",
+      "teacherReview": "tu profesor/a puede revisar tus conversaciones"
+    }
+  },
+  "teacher": {
+    "shell": {
+      "nav": {
+        "conversations": "Conversaciones",
+        "courses": "Mis cursos",
+        "dashboard": "Panel",
+        "questions": "Preguntas"
+      },
+      "role": "Profesor/a"
+    }
+  }
+}

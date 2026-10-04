@@ -1,0 +1,66 @@
+{
+  "_note": "Fictitious sample content. Not i18n keys.",
+  "sample": {
+    "chat": {
+      "answerIntro": "Para despejar x tienes que dejarla sola en un lado del igual. Hazlo en dos pasos y luego comprueba el resultado:",
+      "check": "Comprueba sustituyendo x por 5:",
+      "draft": "¿Y si la x está en los dos lados?",
+      "eq1": "3x + 5 − 5 = 20 − 5  →  3x = 15",
+      "eq2": "x = 15 ÷ 3 = 5",
+      "eq3": "3 · 5 + 5 = 20 ✓",
+      "failedQuestion": "¿Puedo comprobar la solución con la calculadora?",
+      "loc": "p. 12",
+      "passage": "Para resolver una ecuación de primer grado se aplican las mismas operaciones en los dos miembros hasta dejar la incógnita sola. Ejemplo: en 3x + 5 = 20 restamos 5 en ambos miembros (3x = 15) y después dividimos entre 3 (x = 5).",
+      "step1": "Resta 5 en los dos lados de la ecuación:",
+      "step2": "Divide los dos lados entre 3:",
+      "tip": "Si la ecuación tiene paréntesis, quítalos primero: 2(x − 3) = 2x − 6. Y si aparece x², ya no es de primer grado: eso lo verás en el tema de polinomios."
+    },
+    "course": {
+      "code": "ALG-7K3P",
+      "description": "Ecuaciones, sistemas, polinomios y factorización.",
+      "link": "docentai.example.org/unirse/ALG-7K3P",
+      "name": "Matemáticas 3º ESO – Álgebra"
+    },
+    "courses": {
+      "second": "Física 3º ESO – Movimiento",
+      "secondTeacher": "Prof. Marta Gil Soler"
+    },
+    "documents": {
+      "polinomios": "Ejercicios resueltos – Polinomios.md",
+      "scanned": "Hoja de ejercicios escaneada.pdf",
+      "sistemas": "Apuntes – Sistemas de ecuaciones.docx",
+      "tema3": "Tema 3 – Ecuaciones de primer grado.pdf",
+      "tema3Short": "Tema 3"
+    },
+    "exercise": {
+      "statement": "Resuelve 2(x − 3) = 4x + 2",
+      "step1": "2x − 6 = 4x + 2",
+      "step2": "2x − 4x = 2 − 6",
+      "step3": "−2x = −4",
+      "step4": "x = 2"
+    },
+    "people": {
+      "admin": "Admin DocentAI",
+      "adminEmail": "admin@example.org",
+      "aisha": "Aisha Benali",
+      "lucas": "Lucas Herrera",
+      "lucasEmail": "lucas.herrera@example.org",
+      "mateo": "Mateo Ortega",
+      "pseudonym07": "Estudiante-07",
+      "pseudonym12": "Estudiante-12",
+      "teacher": "Prof. Elena Ruiz Navarro",
+      "teacherEmail": "elena.ruiz@example.org"
+    },
+    "questions": {
+      "covered": "¿Cómo despejo x en 3x + 5 = 20?",
+      "guided": "¿Cómo resuelvo 2x − 4 = 10?",
+      "notCovered": "¿Quién inventó el álgebra?"
+    },
+    "topics": {
+      "factorisation": "Factorización",
+      "linear": "Ecuaciones de primer grado",
+      "polynomials": "Polinomios",
+      "systems": "Sistemas de ecuaciones"
+    }
+  }
+}
