@@ -76,6 +76,7 @@ Rules:
 | `data-invalid-in="<stateId> …"` | form control | `aria-invalid="true"` only in the listed states. |
 | `data-mirror="<selector>"` | element | On each state change, shows the value typed in the matching field (keeps its own text when the field is empty). Used by review steps. |
 | `data-href-param="<name>"` | link | Uses the relative URL in the `?<name>=` parameter as its target when present (e.g. access denied → the visitor's home). |
+| `data-dismissible-key="<key>"` + `data-dismiss="<key>"` | element + button | The button hides the element and keeps it hidden for the browser session (`sessionStorage`, no personal data). |
 | `data-set-lang="es\|en"` | button (`LanguageSwitcher`, state panel) | Switches the language without reloading; `aria-pressed` marks the current one. |
 | `data-nav` | navigation container | Links inside it that point to the current page get `aria-current="page"`. |
 | `data-component="<Name>"` | component root | The future React component's name (plan.md › Components). `data-variant` is optional. |
@@ -118,7 +119,7 @@ states below.
 | 28 | `teacher/questions.html` | default (pending), editing, approved, rejected, empty, loading, error |
 | 29 | `student/quiz.html` | default, correct, citation, incorrect, difficulty-up, empty, loading, error |
 | 30 | `student/quiz-summary.html` | default, loading, error |
-| 31 | `student/practice.html` | default, no-source, loading, error |
+| 31 | `student/practice.html` | default, citation, no-source, loading, error |
 | 32 | `student/progress.html` | default, empty, loading, error |
 
 On `student/exercise-feedback.html`, `default` is the feedback-ready view. Flows arrive at

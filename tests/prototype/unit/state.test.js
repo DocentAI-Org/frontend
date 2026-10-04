@@ -432,3 +432,33 @@ describe("data-href-param", () => {
     expect(document.getElementById("home").getAttribute("href")).toBe("../student/courses.html");
   });
 });
+
+describe("session dismissal", () => {
+  const e7 = { ...entry, states: ["default", "repeated"] };
+
+  beforeEach(() => {
+    sessionStorage.clear();
+    document.body.innerHTML = `
+      <section id="notice" data-state="repeated" data-dismissible-key="pattern-sign">
+        <button id="dismiss" data-dismiss="pattern-sign">Ahora no</button>
+      </section>`;
+  });
+
+  it("hides the element and remembers it for the session", () => {
+    setUrl("?state=repeated");
+    applyState(document.body, e7);
+    bindNavigation(document.body);
+    expect(document.getElementById("notice").hidden).toBe(false);
+    document.getElementById("dismiss").click();
+    expect(document.getElementById("notice").hidden).toBe(true);
+    applyState(document.body, e7);
+    expect(document.getElementById("notice").hidden).toBe(true);
+  });
+
+  it("stays hidden on a later page load in the same session", () => {
+    sessionStorage.setItem("docentai.prototype.dismissed.pattern-sign", "1");
+    setUrl("?state=repeated");
+    applyState(document.body, e7);
+    expect(document.getElementById("notice").hidden).toBe(true);
+  });
+});

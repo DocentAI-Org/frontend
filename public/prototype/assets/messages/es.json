@@ -552,6 +552,24 @@
       "teacher": "Profesor/a: {teacher}",
       "title": "Mis cursos"
     },
+    "errorPatterns": {
+      "back": "Volver a la corrección",
+      "dismiss": "Ahora no",
+      "dismissLabel": "Ocultar este aviso durante la sesión",
+      "exampleTitle": "Un ejemplo resuelto",
+      "explain": "Ver explicación",
+      "eyebrow": "Repaso de un error frecuente",
+      "lead": "Es un error frecuente y tiene arreglo. Te proponemos repasarlo con el material.",
+      "loadError": "No se ha podido cargar la explicación",
+      "noSourceBody": "No he encontrado una explicación de este error en el material de tu profesor/a. Pregúntale directamente o pide ayuda al tutor con un ejemplo concreto.",
+      "pageTitle": "Repaso de un error",
+      "practice": "Practicar",
+      "practiceLead": "Resuelve estos dos ejercicios y envíalos para que el tutor los revise.",
+      "practiceTitle": "Practica",
+      "solve": "Resolver",
+      "times": "Has cometido este error {count} veces",
+      "whatTitle": "Qué está pasando"
+    },
     "exercise": {
       "edit": "Editar",
       "emptyError": "Escribe el enunciado y tu solución, o adjunta una foto de tu trabajo.",

@@ -298,15 +298,18 @@
     "role": "student",
     "titleKey": "student.feedback.pageTitle",
     "stories": [
-      "US-06"
+      "US-06",
+      "US-12"
     ],
     "requirements": [
       "S4",
+      "S5",
       "S1",
       "S2",
       "FR-012",
       "FR-013",
-      "FR-033"
+      "FR-033",
+      "FR-034"
     ],
     "priority": "P1",
     "mobile": true,
@@ -315,7 +318,8 @@
       "pending",
       "citation",
       "no-source",
-      "error"
+      "error",
+      "repeated-mistake"
     ],
     "simulate": [
       "error"
@@ -807,6 +811,35 @@
     "mobile": true,
     "states": [
       "default",
+      "loading",
+      "error"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "student/practice.html",
+    "screen": [
+      31
+    ],
+    "role": "student",
+    "titleKey": "student.errorPatterns.pageTitle",
+    "stories": [
+      "US-12"
+    ],
+    "requirements": [
+      "S5",
+      "S1",
+      "S2",
+      "FR-034"
+    ],
+    "priority": "P2",
+    "mobile": true,
+    "states": [
+      "default",
+      "citation",
+      "no-source",
       "loading",
       "error"
     ],

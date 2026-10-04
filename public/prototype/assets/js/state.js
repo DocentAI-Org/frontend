@@ -13,6 +13,25 @@ export function setNavigator(fn) {
   navigator = fn;
 }
 
+const DISMISS_PREFIX = "docentai.prototype.dismissed.";
+
+function isDismissed(key) {
+  try {
+    return sessionStorage.getItem(DISMISS_PREFIX + key) === "1";
+  } catch {
+    return false;
+  }
+}
+
+function dismiss(key) {
+  try {
+    sessionStorage.setItem(DISMISS_PREFIX + key, "1");
+  } catch {
+    // Without storage the notice is still hidden for this page view.
+  }
+  document.querySelectorAll(`[data-dismissible-key="${key}"]`).forEach((el) => (el.hidden = true));
+}
+
 export function resolveState(entry, search = window.location.search) {
   const requested = new URLSearchParams(search).get("state");
   if (!requested) return { state: "default", unknown: null };
@@ -36,6 +55,9 @@ export function applyState(root, entry, search = window.location.search) {
   root.querySelectorAll("[data-invalid-in]").forEach((input) => {
     if (input.getAttribute("data-invalid-in").split(/\s+/).includes(state)) input.setAttribute("aria-invalid", "true");
     else input.removeAttribute("aria-invalid");
+  });
+  root.querySelectorAll("[data-dismissible-key]").forEach((el) => {
+    if (isDismissed(el.getAttribute("data-dismissible-key"))) el.hidden = true;
   });
   root.querySelectorAll("[data-checked-in]").forEach((input) => {
     input.checked = input.getAttribute("data-checked-in").split(/\s+/).includes(state);
@@ -178,6 +200,13 @@ export function bindNavigation(root = document.body) {
   root.addEventListener("click", (event) => {
     const target = event.target instanceof Element ? event.target : null;
     if (!target) return;
+
+    const dismisser = target.closest("[data-dismiss]");
+    if (dismisser && root.contains(dismisser)) {
+      event.preventDefault();
+      dismiss(dismisser.getAttribute("data-dismiss"));
+      return;
+    }
 
     const toggle = target.closest("[data-switch]");
     if (toggle && root.contains(toggle)) {

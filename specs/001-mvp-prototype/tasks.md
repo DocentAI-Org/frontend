@@ -529,11 +529,11 @@ Read these once. Every page task assumes them.
 
 **Depends on**: T071 (exercise-feedback.html)
 
-- [ ] T095 [P] [US12] Write the US12 part of tests/prototype/e2e/flow-f15.spec.js with one `test()` per acceptance scenario, titled with its ID, in a serial `test.describe`:
+- [X] T095 [P] [US12] Write the US12 part of tests/prototype/e2e/flow-f15.spec.js with one `test()` per acceptance scenario, titled with its ID, in a serial `test.describe`:
   - `US-12 AS1` the notice names "Error de signo al quitar paréntesis" and offers "Ver explicación" and "Practicar";
   - `US-12 AS2` the explanation has citations;
   - `US-12 AS3` the dismissed notice is hidden and stays hidden after navigating away and back (dismissal kept in `sessionStorage` for the session).
-- [ ] T096 [US12] Add the `repeated-mistake` state to public/prototype/student/exercise-feedback.html and to its manifest entry, then build public/prototype/student/practice.html (#31: `default` with citations, `no-source`, `loading`, `error`). Add its manifest entry and the `student.errorPatterns.*` keys, and run `npm run test:e2e -- flow-f15 a11y-sweep`
+- [X] T096 [US12] Add the `repeated-mistake` state to public/prototype/student/exercise-feedback.html and to its manifest entry, then build public/prototype/student/practice.html (#31: `default` with citations, `no-source`, `loading`, `error`). Add its manifest entry and the `student.errorPatterns.*` keys, and run `npm run test:e2e -- flow-f15 a11y-sweep`
 
 ---
 

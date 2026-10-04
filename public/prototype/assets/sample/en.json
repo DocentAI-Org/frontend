@@ -107,6 +107,13 @@
       "teacher": "Ms Elena Ruiz Navarro",
       "teacherEmail": "elena.ruiz@example.org"
     },
+    "practice": {
+      "ex1": "−3(x − 2) = −3x + 6",
+      "ex2": "2x − 6 = 4  →  2x = 4 + 6",
+      "p1": "Solve 5 − 2(x + 1) = 9",
+      "p2": "Solve 3(x − 4) = x − 2",
+      "what": "When a negative number multiplies a bracket, it changes the sign of everything inside. And when you move a term to the other side of the equals sign, its sign changes too."
+    },
     "privacyEmail": "privacy@example.org",
     "questions": {
       "covered": "How do I solve for x in 3x + 5 = 20?",

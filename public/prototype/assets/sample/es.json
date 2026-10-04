@@ -107,6 +107,13 @@
       "teacher": "Prof. Elena Ruiz Navarro",
       "teacherEmail": "elena.ruiz@example.org"
     },
+    "practice": {
+      "ex1": "−3(x − 2) = −3x + 6",
+      "ex2": "2x − 6 = 4  →  2x = 4 + 6",
+      "p1": "Resuelve 5 − 2(x + 1) = 9",
+      "p2": "Resuelve 3(x − 4) = x − 2",
+      "what": "Cuando un número negativo multiplica a un paréntesis, cambia el signo de todo lo que hay dentro. Y cuando pasas un término al otro lado del igual, también cambia de signo."
+    },
     "privacyEmail": "privacidad@example.org",
     "questions": {
       "covered": "¿Cómo despejo x en 3x + 5 = 20?",

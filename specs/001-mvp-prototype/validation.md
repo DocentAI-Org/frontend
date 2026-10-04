@@ -57,6 +57,8 @@ One row per page reviewed in both languages at 1440 px (and 390 px where the man
 | teacher/questions.html (7 states) | 2026-10-04 | 1440 | Pass (ES, EN) | None. |
 | student/quiz.html (8 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
 | student/quiz-summary.html (3 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
+| student/exercise-feedback.html (repeated-mistake) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
+| student/practice.html (5 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
 
 ## Keyboard pass log
 
@@ -88,6 +90,7 @@ return it to the opener.
 | teacher/dashboard.html, teacher/student-risk.html | 2026-10-04 | Pass | Period select → topic/student toggle (current marked with aria-current) → "see why" links (described by the student). Detail: back → conversations. |
 | teacher/questions.html | 2026-10-04 | Pass | Status tabs (current marked) → per question approve, edit, reject (each described by the question text). Edit mode: statement → options → correct answer → cancel → save and approve. |
 | student/quiz.html, student/quiz-summary.html | 2026-10-04 | Pass | Radio group (arrows; an answer is required) → check. Feedback: citation (opens the sheet) → next / summary. Summary: three next-step links. |
+| student/practice.html | 2026-10-04 | Pass | Back → citation (opens the sheet) → one "solve" link per exercise, described by the exercise. Notice on feedback: explanation → practise → "Ahora no" (stays dismissed for the session). |
 
 ## Session plan
 
@@ -120,6 +123,7 @@ To be filled before the first session (quickstart.md B1).
 | 2026-10-04 | Dashboard charts are single-series horizontal bar lists in one hue with the value written beside each bar (no legend, no hover layer since every value is visible). Spanish percentages follow locale typography ("60 %"). | Implementation of T090 | none |
 | 2026-10-04 | Question review states each show the result of one action from the pending list (approve: 2/13/2, reject: 2/12/3), so counters are consistent within each state. | Implementation of T092 | none |
 | 2026-10-04 | Added a `citation` state to student/quiz.html so feedback citations open the passage (FR-012). The quiz shows question 1, its correct/incorrect feedback, and a later question after the level change; any answer to that one leads to the summary. | Implementation of T094 | contract §4 |
+| 2026-10-04 | Added a `citation` state to student/practice.html (FR-012). The repeated-mistake dismissal is kept in sessionStorage under a pattern key (no personal data). | Implementation of T096 | contract §3, §4 |
 
 ## Success criteria results
 

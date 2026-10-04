@@ -552,6 +552,24 @@
       "teacher": "Teacher: {teacher}",
       "title": "My courses"
     },
+    "errorPatterns": {
+      "back": "Back to the feedback",
+      "dismiss": "Not now",
+      "dismissLabel": "Hide this notice for this session",
+      "exampleTitle": "A worked example",
+      "explain": "See explanation",
+      "eyebrow": "Review of a frequent mistake",
+      "lead": "It's a common mistake and easy to fix. We suggest going over it with the material.",
+      "loadError": "Couldn't load the explanation",
+      "noSourceBody": "I couldn't find an explanation of this mistake in your teacher's material. Ask them directly, or ask the tutor about a specific example.",
+      "pageTitle": "Mistake review",
+      "practice": "Practise",
+      "practiceLead": "Solve these two exercises and send them for the tutor to check.",
+      "practiceTitle": "Practise",
+      "solve": "Solve",
+      "times": "You've made this mistake {count} times",
+      "whatTitle": "What's going on"
+    },
     "exercise": {
       "edit": "Edit",
       "emptyError": "Write the statement and your solution, or attach a photo of your work.",
