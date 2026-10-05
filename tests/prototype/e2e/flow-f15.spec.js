@@ -7,7 +7,7 @@ test.describe("F15 · Repeated mistakes", () => {
   scenario("US-12 AS1", "feedback names the repeated pattern and offers an explanation and practice", async ({ page }) => {
     await gotoState(page, "student/exercise-feedback.html", "repeated-mistake");
     const notice = page.locator("[data-repeated-notice]");
-    await expect(notice).toContainText("Has cometido este error 3 veces");
+    await expect(notice).toContainText("Este error te ha salido 3 veces");
     await expect(notice).toContainText("Error de signo al quitar paréntesis");
     await expect(notice.getByRole("link", { name: "Ver explicación" })).toBeVisible();
     await expect(notice.getByRole("link", { name: "Practicar" })).toBeVisible();

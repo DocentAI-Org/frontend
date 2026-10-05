@@ -45,7 +45,7 @@ test.describe("F13 · Question review", () => {
   scenario("US-10 AS3", "with nothing pending, the empty state offers to request questions for a topic", async ({ page }) => {
     await gotoState(page, "teacher/questions.html", "empty");
     const empty = page.locator('[data-component="EmptyState"]:visible');
-    await expect(empty).toContainText("No hay preguntas pendientes");
+    await expect(empty).toContainText("no hay preguntas pendientes");
     await expect(empty.getByRole("combobox", { name: "Tema" })).toBeVisible();
     await expect(empty.getByRole("button", { name: "Pedir preguntas nuevas" })).toBeVisible();
   });

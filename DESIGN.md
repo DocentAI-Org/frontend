@@ -2,97 +2,86 @@
 name: DocentAI
 description: Teacher-guided AI tutor whose every answer shows its source.
 colors:
-  logo-indigo: "oklch(0.515 0.215 279)"
-  logo-indigo-deep: "oklch(0.455 0.2 280)"
-  logo-indigo-ink: "oklch(0.395 0.165 281)"
-  logo-indigo-wash: "oklch(0.972 0.012 277)"
-  logo-indigo-edge: "oklch(0.89 0.05 277)"
-  tutor-teal-wash: "oklch(0.984 0.019 200)"
+  accent: "oklch(0.515 0.215 279)"
+  accent-deep: "oklch(0.455 0.2 280)"
+  accent-ink: "oklch(0.395 0.165 281)"
+  accent-wash: "oklch(0.972 0.012 277)"
+  accent-edge: "oklch(0.81 0.09 277)"
+  ink: "#1a1a1a"
+  ink-muted: "oklch(0.5 0.009 70)"
+  canvas: "oklch(1 0 0)"
+  paper: "oklch(1 0 0)"
+  sunken: "oklch(0.966 0.004 75)"
+  hairline: "oklch(0.926 0.006 75)"
+  hairline-hover: "oklch(0.872 0.008 75)"
+  hairline-strong: "oklch(0.63 0.01 75)"
   tutor-teal-tint: "oklch(0.956 0.045 203)"
-  tutor-teal-edge: "oklch(0.917 0.08 205)"
   tutor-teal-ink: "oklch(0.4 0.075 224)"
   hint-amber-wash: "oklch(0.987 0.022 95)"
-  hint-amber-tint: "oklch(0.962 0.059 95)"
-  hint-amber-edge: "oklch(0.879 0.169 91)"
   hint-amber-ink: "oklch(0.41 0.105 46)"
   success-green: "oklch(0.52 0.12 163)"
-  success-green-wash: "oklch(0.979 0.021 166)"
-  success-green-ink: "oklch(0.4 0.088 166)"
   danger-red: "oklch(0.53 0.2 27)"
-  danger-red-ink: "oklch(0.47 0.18 27)"
-  ink: "oklch(0.21 0.024 277)"
-  ink-muted: "oklch(0.445 0.024 277)"
-  canvas: "oklch(0.983 0.004 277)"
-  paper: "oklch(0.996 0.002 277)"
-  sunken: "oklch(0.963 0.007 277)"
-  hairline: "oklch(0.918 0.01 277)"
-  hairline-strong: "oklch(0.635 0.02 277)"
-  scrim: "oklch(0.16 0.02 277)"
+  scrim: "oklch(0.15 0.003 70)"
 typography:
+  display:
+    fontFamily: "Plus Jakarta Sans, Plus Jakarta Sans Fallback, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "2.5rem"
+    fontWeight: 700
+    lineHeight: "3rem"
+    letterSpacing: "-0.03em"
   headline:
-    fontFamily: "Figtree, Figtree Fallback, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
+    fontFamily: "Plus Jakarta Sans, Plus Jakarta Sans Fallback, ui-sans-serif, system-ui, sans-serif"
     fontSize: "2rem"
     fontWeight: 700
-    lineHeight: "2.4rem"
-    letterSpacing: "-0.024em"
-  headline-compact:
-    fontFamily: "Figtree, Figtree Fallback, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
-    fontSize: "1.5rem"
-    fontWeight: 700
-    lineHeight: "1.9rem"
-    letterSpacing: "-0.018em"
+    lineHeight: "2.5rem"
+    letterSpacing: "-0.026em"
   title:
-    fontFamily: "Figtree, Figtree Fallback, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
+    fontFamily: "Plus Jakarta Sans, Plus Jakarta Sans Fallback, ui-sans-serif, system-ui, sans-serif"
     fontSize: "1.125rem"
-    fontWeight: 600
+    fontWeight: 700
     lineHeight: "1.75rem"
     letterSpacing: "-0.005em"
   body:
-    fontFamily: "Figtree, Figtree Fallback, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
+    fontFamily: "Plus Jakarta Sans, Plus Jakarta Sans Fallback, ui-sans-serif, system-ui, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
     lineHeight: "1.5rem"
   body-small:
-    fontFamily: "Figtree, Figtree Fallback, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
+    fontFamily: "Plus Jakarta Sans, Plus Jakarta Sans Fallback, ui-sans-serif, system-ui, sans-serif"
     fontSize: "0.875rem"
     fontWeight: 500
     lineHeight: "1.25rem"
   label:
-    fontFamily: "Figtree, Figtree Fallback, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
+    fontFamily: "Plus Jakarta Sans, Plus Jakarta Sans Fallback, ui-sans-serif, system-ui, sans-serif"
     fontSize: "0.75rem"
     fontWeight: 600
     lineHeight: "1rem"
     letterSpacing: "0.025em"
-  mono:
-    fontFamily: "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
-    fontSize: "0.875rem"
-    fontWeight: 400
-    lineHeight: "1.25rem"
 rounded:
-  sm: "0.3125rem"
+  sm: "0.375rem"
   md: "0.5rem"
   lg: "0.625rem"
-  xl: "0.875rem"
-  2xl: "1.125rem"
+  xl: "0.75rem"
+  2xl: "1rem"
   full: "9999px"
 spacing:
   "1": "0.25rem"
   "2": "0.5rem"
-  "3": "0.75rem"
   "4": "1rem"
-  "5": "1.25rem"
   "6": "1.5rem"
+  "8": "2rem"
   "10": "2.5rem"
+  "12": "3rem"
 components:
   button-primary:
-    backgroundColor: "{colors.logo-indigo}"
+    backgroundColor: "{colors.accent}"
     textColor: "{colors.canvas}"
     typography: "{typography.body-small}"
     rounded: "{rounded.lg}"
     padding: "0 1rem"
     height: "2.75rem"
   button-primary-hover:
-    backgroundColor: "{colors.logo-indigo-deep}"
+    backgroundColor: "{colors.accent-deep}"
   button-secondary:
     backgroundColor: "{colors.paper}"
     textColor: "{colors.ink}"
@@ -102,272 +91,164 @@ components:
     height: "2.75rem"
   button-secondary-hover:
     backgroundColor: "{colors.sunken}"
-  button-ghost:
-    textColor: "{colors.logo-indigo-deep}"
-    typography: "{typography.body-small}"
-    rounded: "{rounded.lg}"
-    padding: "0 1rem"
-    height: "2.75rem"
-  button-ghost-hover:
-    backgroundColor: "{colors.logo-indigo-wash}"
-  text-field:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.ink}"
-    typography: "{typography.body}"
-    rounded: "{rounded.lg}"
-    padding: "0 0.75rem"
-    height: "2.75rem"
   card:
     backgroundColor: "{colors.paper}"
     rounded: "{rounded.xl}"
-    padding: "1.25rem"
+    padding: "1.5rem"
   source-citation:
-    backgroundColor: "{colors.logo-indigo-wash}"
-    textColor: "{colors.logo-indigo-ink}"
+    backgroundColor: "{colors.accent-wash}"
+    textColor: "{colors.accent-ink}"
     typography: "{typography.body-small}"
     rounded: "{rounded.full}"
-    padding: "0 0.75rem"
+    padding: "0 1rem"
     height: "2.75rem"
   chat-bubble-student:
-    backgroundColor: "{colors.logo-indigo}"
+    backgroundColor: "{colors.ink}"
     textColor: "{colors.canvas}"
     typography: "{typography.body}"
     rounded: "{rounded.2xl}"
-    padding: "0.75rem 1rem"
+    padding: "1rem"
   chat-bubble-tutor:
     backgroundColor: "{colors.paper}"
     textColor: "{colors.ink}"
     typography: "{typography.body}"
     rounded: "{rounded.2xl}"
     padding: "1rem"
-  no-source-notice:
-    backgroundColor: "{colors.tutor-teal-wash}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.2xl}"
-    padding: "1rem"
-  ai-tag:
-    backgroundColor: "{colors.tutor-teal-tint}"
-    textColor: "{colors.tutor-teal-ink}"
-    typography: "{typography.label}"
-    rounded: "{rounded.full}"
-    padding: "0.125rem 0.5rem"
-  hint-tag:
-    backgroundColor: "{colors.hint-amber-tint}"
-    textColor: "{colors.hint-amber-ink}"
-    typography: "{typography.label}"
-    rounded: "{rounded.full}"
-    padding: "0.125rem 0.5rem"
-  nav-link:
-    textColor: "{colors.ink-muted}"
-    typography: "{typography.body-small}"
-    rounded: "{rounded.lg}"
-    padding: "0 0.75rem"
-    height: "2.5rem"
   nav-link-current:
-    backgroundColor: "{colors.logo-indigo-deep}"
+    backgroundColor: "{colors.ink}"
     textColor: "{colors.canvas}"
 ---
 
 # Design System: DocentAI
 
-> **Source of truth.** `public/prototype/assets/theme.css` holds every token as `light-dark(light, dark)` in OKLCH and is imported unchanged by the React app (`src/app/globals.css`). The frontmatter above lists the **light-scheme** values under descriptive names. Code uses the Tailwind token names (`primary-600`, `info-50`, `fg-muted`, …), and the sidecar maps each descriptive name back to its token. When the two disagree, `theme.css` wins.
+> **Source of truth.** `public/prototype/assets/theme.css` holds every token as `light-dark(light, dark)` and is imported unchanged by the React app (`src/app/globals.css`). The frontmatter lists **light-scheme** values under descriptive names; code uses the Tailwind token names (`primary-600`, `neutral-900`, `fg-muted`, …). When the two disagree, `theme.css` wins.
 
 ## Overview
 
-**Creative North Star: "The Glass Classroom"**
+**Style: friendly but polished.** The clean, confident base of products like Airbnb and Uber, with a little warmth and play. White canvas, near-black ink, warm grays and **one** vivid accent. Content leads: data, sources and the student's own work carry the screen, and decoration stays minimal.
 
-Nothing in DocentAI happens behind the student's back or the teacher's. The interface works like a classroom with glass walls: the AI is always labelled as AI, the student can always see that their teacher may read the conversation, every answer shows the passage it came from, and every flag a teacher sees shows the data behind it. The visual system serves that transparency, not decoration. Surfaces stay quiet and near-white with a faint indigo tint, so colour is free to *mean* something. Indigo is the product and the source, teal is the AI speaking, amber is pedagogy at work (hints, guided mode, low allowance), and green and red report outcomes.
+The product promise still shapes everything ("The Glass Classroom"). The AI is always labelled as AI, students can always see that their teacher may read the conversation, every answer shows the passage it came from, and every flag a teacher sees shows the data behind it.
 
-The feel is **calm and precise**. Surfaces are flat, crisp hairlines carry structure, and soft shadows appear only where something is raised or interactive. Density is moderate. Teacher screens are scannable lists and cards on a 1440 px desktop, and student screens are a single readable column that works at 390 px with 44 px touch targets. The type is a single humanist sans (Figtree) with a short, practical scale. Hierarchy comes from weight and spacing, not size jumps.
-
-The light and dark schemes are equal citizens. Every colour token carries both values, and the dark ramps mirror the light ones, so the same pairings keep their contrast in both. The header goes translucent, with blur and saturation, over scrolling content, and falls back to solid when the user asks for reduced transparency.
-
-**Key Characteristics:**
-- Colour is semantic, never decorative. Each hue family has one job.
-- The tutor's voice is visibly distinct: a teal avatar, an "IA" tag, and a teal surface when the material does not cover the question.
-- Citations are first-class objects: indigo pills that open the exact passage.
-- Flat, hairline-structured surfaces with tinted, low-contrast shadows.
-- One sans family, a compact type scale and an uppercase micro-label for section captions.
-- WCAG 2.2 AA in both schemes: 3:1 control borders, a visible 2 px focus ring and no meaning carried by colour alone.
+**Key characteristics:**
+- Mostly neutral: white, `#1a1a1a` ink and a warm gray ramp. No gradients.
+- One accent (brand indigo from the logo), used sparingly for primary actions and key highlights: primary buttons, source citations, the class code, the focus ring and the celebration badge.
+- Selected and current states (nav, segmented controls, tabs, chosen answers) use **near-black**, not the accent.
+- Plus Jakarta Sans with a strong hierarchy: large 700 headings, 400–500 body, mid-gray secondary text.
+- Generous whitespace on an 8 px spacing scale.
+- Cards are a 1 px hairline at rest; a very soft shadow appears only on hover.
+- Fast, subtle motion (150–200 ms), plus one small celebration when a student finishes a quiz.
+- WCAG 2.2 AA in both light and dark: 3:1 control borders, a visible 2 px focus ring, and colour never the only signal.
 
 ## Colors
 
-The palette is a cool, indigo-tinted neutral field with five semantic hue families (primary, info, warning, success and danger), each a 10-step OKLCH ramp with mirrored dark values.
+### Neutral (most of the UI)
+A warm gray ramp (hue ≈ 70–75, very low chroma) from pure white to `#1a1a1a`. Dark mode mirrors it.
+- **Ink** (`neutral-900` → `fg`): `#1a1a1a`. Primary text, the student's chat bubbles, selected/current states and the tutor avatar.
+- **Ink Muted** (`neutral-600` → `fg-muted`): the mid gray for secondary text, helper text, captions and inactive nav (≈ 6:1 on white).
+- **Canvas / Paper** (`surface`, `surface-raised`): both white in light mode. Cards are defined by their border, not by a tint. In dark mode the canvas is darker than the raised paper.
+- **Sunken** (`surface-sunken`): hover fills, icon tiles, the AI disclosure strip, inline equations and quoted passages.
+- **Hairline** (`border`): 1 px resting borders on cards and dividers. Interactive cards shift to `neutral-300` on hover.
+- **Hairline Strong** (`border-strong`): control borders (inputs, secondary buttons, dashed empty states), tuned to 3:1.
 
-### Primary
-- **Logo Indigo** (`primary-600`): the brand hue, sampled between the logo's sky blue and violet. Used for primary buttons, the student's own chat bubbles, the focus ring, form accent and caret, and the left rule of a cited passage.
-- **Logo Indigo Deep** (`primary-700`): primary hover, ghost-button text, the brand wordmark link and the selected state of segmented controls.
-- **Logo Indigo Ink** (`primary-800`): text on indigo washes, as in citation chips and the current navigation item.
-- **Logo Indigo Wash / Edge** (`primary-50` / `primary-200`): the fill and border of citation chips, current navigation, ghost hover and text selection.
+### Accent
+- **Accent** (`primary-600`, hover `primary-700`): primary buttons, the send button, the focus ring, caret and form accent, and the celebration badge.
+- **Accent Wash / Ink** (`primary-50` + `primary-800`, edge `primary-300`): SourceCitation chips and the class code, the two things the product most wants you to notice.
 
-### Secondary
-- **Tutor Teal** (`info` ramp: wash `info-50`, tint `info-100`, edge `info-200`, ink `info-800`): the AI's identity. It covers the tutor avatar, the "IA" tag, the persistent AI-disclosure strip in the chat header, and the whole **not covered by the material** notice. Teal sits deliberately apart from indigo, so the AI never borrows the product's or the teacher's authority colour.
-
-### Tertiary
-- **Hint Amber** (`warning` ramp: wash `warning-50`, tint `warning-100`, edge `warning-300`, ink `warning-800`): the colour of pedagogy at work and of caution. It marks the guided-mode indicator, the "Pista 1 de N" hint tag, the low message-allowance warning and other non-blocking warnings.
-
-### Status
-- **Success Green** (`success-600`, wash `success-50`, ink `success-800`): confirmations, toasts, "listo" processing status and correct quiz answers.
-- **Danger Red** (`danger-600`, ink `danger-700`): failed messages (2 px border), errors, invalid fields and destructive confirmations.
-
-### Neutral
-- **Ink** (`neutral-900` → `fg`): primary text.
-- **Ink Muted** (`neutral-600` → `fg-muted`): secondary text, helper text, inactive navigation and captions.
-- **Canvas** (`neutral-50` → `surface`): the page background. It also serves as the inverse text colour on indigo (`fg-inverse`).
-- **Paper** (`neutral-0` → `surface-raised`): cards, tutor bubbles, dialogs, inputs and the header.
-- **Sunken** (`neutral-100` → `surface-sunken`): hover fills, inline equations, quoted passages and disabled fields.
-- **Hairline** (`neutral-200` → `border`): resting borders on cards and dividers.
-- **Hairline Strong** (`neutral-450` → `border-strong`): control borders (inputs, secondary buttons and dashed empty states), tuned to 3:1 on both canvas and paper.
-- **Scrim** (fixed `oklch(0.16 0.02 277)`): the dialog backdrop at 50–60%, dark in both schemes.
+### Semantic (kept small)
+- **Tutor Teal** (`info`): only the small **IA** tag and notices about the AI itself (such as the no-source notice). It is no longer a header band or avatar colour.
+- **Hint Amber** (`warning`): guided mode, hint tags, the low allowance warning and other non-blocking cautions.
+- **Success Green / Danger Red**: outcomes (correct answers, confirmations; errors, invalid fields, failed messages).
 
 ### Named Rules
-**The One Job Rule.** Each hue family means one thing: indigo is the product and its sources, teal is the AI, amber is hints and caution, green is done or correct, red is failed or wrong. Never use a hue for decoration, and never let teal stand in for indigo, or the reverse.
+**The One Accent Rule.** If it's not a primary action or a key highlight, it is neutral. Never use the accent for selection, navigation, icons in tiles, eyebrows or text links.
 
-**The Meaning-Not-Category Rule.** Colour follows what a value *means*, never which feature it belongs to.
-- **Bars:** wrong answers and errors use Danger (`danger-500`), correct answers and progress built from correct work use Success (`success-600`), and plain activity or volume uses neutral ink (`neutral-500`). Every bar keeps its numeric label beside it, so colour is never the only code.
-- **Difficulty** (Fácil / Media / Difícil) is ordinal, not a judgement. It is a neutral tag (`border-strong` on Paper) with a three-step ascending meter (filled `neutral-700`, empty `neutral-300`) plus the word. It never borrows green, teal or amber, which would collide with "correct", "the AI" and "hint" on the same card.
-- **Search matches** use the selection pairing (`primary-200` + `primary-900`), because a match is something found and selected, not a caution.
-- **Non-AI notices** never use teal. A session that expired is a caution (amber). The "hints only" end-of-hints notice is pedagogy (amber, lightbulb icon). Teal stays for notices about the AI itself, such as revoked AI consent.
+**The Meaning-Not-Category Rule.** Bars and badges are coloured by what the value means. Correct work is `success-600`. Error *volume* on the teacher dashboard is neutral ink (`neutral-800`), because it's data to read, not an alarm. Every bar keeps its number beside it.
 
-**The Full-Strength Signal Rule.** Where a hue carries the product's core promise, it runs at its `600`/`700` step as a solid fill with Canvas text, not as a wash: the AI-disclosure strip and tutor avatar (teal), the current navigation item and selected segments (indigo). Washes stay for supporting surfaces (citation chips, notices, tags) so the solid signals remain few and legible.
+**The Semantic Alias Rule.** Use the role aliases (`fg`, `fg-muted`, `surface*`, `border*`, `focus`) wherever a role exists. Raw colours exist only in `theme.css`, and Tailwind's default palette is erased.
 
-**The Semantic Alias Rule.** Components reach for the role aliases (`fg`, `fg-muted`, `surface`, `surface-raised`, `surface-sunken`, `border`, `border-strong`, `focus`) wherever a role exists, and use ramp steps only for tinted pairings. Raw colour values exist only in `theme.css`. Tailwind's default palette is erased (`--color-*: initial`).
-
-**The Mirrored Pair Rule.** Pair washes with inks across the ramp (`*-50` fill + `*-800` text, `*-600` fill + `fg-inverse` text). The dark ramps are mirrored, so these pairings hold AA in both schemes without a `dark:` override.
+**The Mirrored Pair Rule.** `neutral-900` + `fg-inverse` and `*-50` + `*-800` keep AA in both schemes without a `dark:` override.
 
 ## Typography
 
-**Body Font:** Figtree (self-hosted variable woff2, latin + latin-ext). While it loads, a metric-matched **Figtree Fallback** (local Arial with `size-adjust: 99.28%` and Figtree's ascent and descent) holds the same line breaks and line heights, so the swap does not reflow the page. `ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto` follow as the last resort.
-**Mono Font:** `ui-monospace, SFMono-Regular, Menlo, Consolas`, used for inline equations and token names.
-
-**Character:** a friendly, geometric-humanist sans that reads clearly at small sizes on phones and stays neutral enough for a teacher's dashboard. A single family carries all hierarchy through weight (400 / 500 / 600 / 700) and slight negative tracking on larger sizes.
+**Font:** Plus Jakarta Sans (variable, OFL, self-hosted woff2, latin + latin-ext). A metric-matched **Plus Jakarta Sans Fallback** (local Arial at `size-adjust: 109.3%` with matching ascent/descent) holds line breaks while it loads.
 
 ### Hierarchy
-- **Headline** (700, 2rem / 2.4rem, −0.024em): the page `h1` at ≥640 px. It steps down to 1.5rem on phones (`text-2xl sm:text-3xl`).
-- **Headline Compact** (700, 1.5rem / 1.9rem, −0.018em): the mobile `h1`, and section titles on documentation pages.
-- **Title** (600, 1.125rem / 1.75rem, −0.005em): `h2` card and section headings, the most common heading on every screen.
-- **Prompt** (600, 1.25rem / 1.75rem, −0.01em): the one thing the student must answer or is talking about. It is used for the quiz question and the course title in the chat header (`text-xl`, stepping to `text-2xl` from `sm` in the chat). Use it nowhere else.
-- **Body** (400, 1rem / 1.5rem): chat answers, passages and form input text. Tutor bubbles cap at `max-w-prose` (65ch).
-- **Body Small** (500–600, 0.875rem / 1.25rem): buttons, navigation, chips, helper and meta text.
-- **Label** (600, 0.75rem / 1rem, 0.025em, UPPERCASE): micro-captions such as "Fuentes", "Fragmento citado" and state names. Use them sparingly, as section captions inside a component.
+- **Display** (700, 2.5rem / 3rem, −0.03em): the page `h1` from `sm` up (`text-3xl sm:text-4xl`). A quiz score can go to `text-5xl`.
+- **Headline** (700, 2rem / 2.5rem, −0.026em): the mobile `h1`.
+- **Title** (700, 1.125rem): `h2`/`h3` card and section headings. All headings are 700.
+- **Body** (400, 1rem / 1.5rem): answers, passages, inputs.
+- **Body Small** (500–600, 0.875rem): buttons (600), navigation, chips and meta text (500).
+- **Label** (600, 0.75rem, uppercase, tracked, `fg-muted`): micro-captions such as "Fuentes". Use them sparingly.
 
-### Named Rules
-**The Weight-Not-Size Rule.** The scale tops out at 2rem. Build hierarchy with weight, colour (`fg` vs `fg-muted`) and space, never with display sizes. There is no hero type in the product UI.
+**The Tabular Data Rule.** Anything that renders a count, number, percentage, date or time sets `tabular-nums`.
 
-**The Tabular Data Rule.** Every element that renders a count, number, percentage, date or time (anything carrying `data-i18n-count`, `data-i18n-number`, or a `number:`, `percent:`, `date:` or `time:` variable) sets `tabular-nums`. Figtree's default figures are proportional (the 1 is a third narrower than the 0), so without it counts, scores and timestamps jitter and fail to line up in lists. Long prose paragraphs (`max-w-*`) keep proportional figures.
-
-**The Balanced Heading Rule.** Headings use `text-wrap: balance` and paragraphs use `text-wrap: pretty`. Long Spanish compounds and German-length English strings must wrap gracefully at 390 px.
+**The Balanced Heading Rule.** Headings `text-wrap: balance`, paragraphs `text-wrap: pretty`.
 
 ## Layout
 
-- **Spacing:** Tailwind's single 4 px base unit (`--spacing: 0.25rem`). The working rhythm is 8 / 12 / 16 px gaps inside components (`gap-2`, `gap-3`, `gap-4`), 16–20 px card padding (`p-4`, `p-5`) and 40 px between major sections.
-- **Page header rhythm:** the `h1` and its context line (the course or document name, `mt-0.5`, never above the heading) form one tight group. The lead follows at `mt-2`, and the whole header is separated from the content by 32 px on phones and 40 px from `sm` (`pb-2 sm:pb-4` on top of the 24 px page gap). Sibling sections inside the content keep the 24 px gap, so the header reads as its own band. One exception: when tabs are the page's own sub-navigation (the course page), they stay on the 24 px gap, close to the header they belong to.
-- **Containers:** role shells are centred at `max-w-6xl` (72rem) with 16 px gutters (24 px from `sm`). Reading surfaces such as chat threads and documentation narrow to `max-w-3xl`. Single-task forms and auth screens narrow to `max-w-md`, and tutor text caps at `max-w-prose`.
-- **Breakpoints:** Tailwind defaults. `sm` (640px) widens gutters and type, `md` (768px) swaps the mobile menu for inline navigation and shrinks chip touch heights to 36 px, and `lg` (1024px) reveals side tables of contents.
-- **Responsive stance:** desktop-first composition (1440 px reference), fully functional at 390 px with no horizontal scroll. On phones, navigation collapses into a 44 px menu button that opens a dropdown sheet. Citation sheets gain a grab handle and dock as bottom sheets.
-- **Header:** sticky, 64 px tall, translucent paper (`surface-raised/85`) with `backdrop-blur-lg` and saturation.
+- **Spacing: 8 px scale.** The Tailwind unit stays 4 px, but spacing uses even steps only: `2` (8), `4` (16), `6` (24), `8` (32), `10` (40), `12` (48). `1` (4 px) is the single half-step, for icon-to-label gaps and tight badges. Odd steps (`3`, `5`, `0.5`, `1.5`…) are not used for padding, margin or gaps.
+- **Cards** pad 24 px (`p-6`), 16 px for dense list rows (`p-4`).
+- **Containers:** shells at `max-w-6xl` with 16 px gutters (24 px from `sm`). Reading surfaces at `max-w-3xl`, single-task forms at `max-w-md`.
+- **Header:** sticky, 64 px, translucent white with blur. The current nav item is a near-black pill.
+- **The 44 px Rule.** Every touch target is at least 44 px tall (`min-h-11`, `size-11`). Dense desktop contexts may drop to 36–40 px from `md` up.
 
-### Named Rules
-**The 44 px Rule.** Every interactive target is at least 44 px tall on touch layouts (`min-h-11`, `size-11`). Dense desktop contexts may drop to 36–40 px only from `md` up.
+## Elevation, Shape & Motion
 
-## Elevation & Depth
-
-The system is a **hybrid that is flat by default**. Hairline borders carry resting structure, and shadows are small, soft and tinted with the indigo-neutral ink (never pure black), so raised things feel lifted rather than floating. In dark mode, the shadows deepen in opacity rather than changing colour.
-
-### Shadow Vocabulary
-- **Rest** (`shadow-sm`: `0 1px 2px 0` ink at 5%): cards, tutor bubbles and primary buttons, a whisper of lift on top of the border.
-- **Hover** (`shadow-md`: `0 6px 16px -6px` at 14% + `0 2px 4px -2px` at 6%): interactive cards on hover, paired with a border shift to `border-strong`, and toasts.
-- **Overlay** (`shadow-lg`: `0 18px 40px -12px` at 22% + `0 4px 10px -4px` at 8%): dialogs, sheets and menus, always over a scrim or above content.
-
-### Named Rules
-**The Border-First Rule.** Resting elevation comes from a hairline border, not a shadow. A shadow without a border is reserved for overlays.
-
-**The State-Only Lift Rule.** A surface moves from `shadow-sm` to `shadow-md` only in response to hover on something clickable. Static containers never animate their shadow.
-
-## Shapes
-
-The corners are gently rounded and step up with the size of the container: badges and inner bits use `sm` (5px) and `md` (8px), controls such as buttons, inputs, icon buttons and nav items use `lg` (10px), cards, toasts and dialogs use `xl` (14px), and large panels, chat bubbles and the AI-disclosure dialog use `2xl` (18px). Pills (`full`) are reserved for chips: citations, AI and hint tags, status badges and avatars.
-
-Chat bubbles signal who is speaking through their silhouette as well as their colour. The corner nearest the speaker tightens to `sm` (`rounded-tl-sm` on the tutor's left, `rounded-tr-sm` on the student's right). Quoted passages use a 4 px Logo Indigo left rule with the right corners rounded. Dashed borders (`border-strong`, dashed) mean *absence*: empty states and the "document no longer available" citation.
-
-### Named Rules
-**The Dashed-Means-Missing Rule.** A dashed border signals that something is not there yet or no longer exists. Never use it decoratively.
+- **Rest:** a 1 px hairline, no shadow, on cards, bubbles and panels.
+- **Hover** (`shadow-md`, very soft warm ink): interactive cards only (`<a>` cards and `data-component="Card"`), with the border moving to `neutral-300` over 200 ms.
+- **Overlay** (`shadow-lg`): menus, dialogs, sheets and toasts.
+- **Radius:** `sm` 6 px (badges), `md` 8 px (small controls), `lg` **10 px buttons** and inputs, `xl` **12 px cards**, `2xl` 16 px dialogs and chat bubbles, `full` for chips and avatars.
+- **Press:** buttons scale to 0.98 over 80 ms, on press.
+- **Transitions:** 150 ms `cubic-bezier(0.23, 1, 0.32, 1)` for colour, border and shadow. Menus reveal in 180 ms. Everything sits behind `prefers-reduced-motion: no-preference`.
+- **The celebration** (`assets/js/celebrate.js`): when the quiz summary appears, the accent check badge pops (420 ms spring), ten small accent and gray dots burst once, and the supportive line rises in. It runs once per page view and not at all with reduced motion. **One moment only.** Don't add celebrations elsewhere without replacing this one.
+- **Dashed borders** mean absence (empty states, unavailable citations), never decoration.
 
 ## Components
 
 ### Buttons
-Quiet and exact. A button reads as a button because of its fill or its 3:1 border, not because of shadow or gradient.
-- **Shape:** gently rounded (10px), 44 px minimum height, 16 px horizontal padding, 600-weight Body Small with an optional leading 16 px icon and an 8 px gap.
-- **Primary:** Logo Indigo fill with Canvas text and `shadow-sm`. Hover deepens it to Logo Indigo Deep.
-- **Secondary:** Paper fill, Hairline Strong border and Ink text. Hover sinks the fill to Sunken.
-- **Ghost:** no fill, with Logo Indigo Deep text. Hover adds a Logo Indigo Wash.
-- **Compact:** a 36 px tall variant with 12 px padding, for actions inside messages (Rephrase, Retry).
-- **Focus:** a 2 px Logo Indigo outline with a 2 px offset on every interactive element.
-- **Press:** scales to 0.98 over 80 ms, with feedback on press, not on release. Disabled buttons drop to a `neutral-200` fill with `neutral-600` text and no shadow.
+- **Primary:** solid accent, `fg-inverse` text, 10 px radius, 44 px tall, 600 weight. Hover deepens to `primary-700`. No shadow.
+- **Secondary:** white with a `border-strong` border and ink text. Hover sinks to Sunken.
+- **Ghost / text links:** ink text. Inline links are underlined with a `neutral-400` decoration that darkens on hover. Back links are muted and go to ink on hover.
+- **Focus:** 2 px accent outline, 2 px offset, on every interactive element.
 
-### Chips
-- **SourceCitation:** a pill with a Logo Indigo Wash fill, a `primary-300` border, 600-weight Logo Indigo Ink text and a leading file icon in Logo Indigo, labelled "document · page/section". It is 44 px tall on touch and 36 px from `md`, and hover deepens it to `primary-100` with a `primary-400` border. The **unavailable** variant is dashed, sunken and muted, and disabled.
-- **Tags:** small pills (2 px × 8 px padding, Label type, not uppercase). The **IA** tag is Tutor Teal tint on ink, and the **hint** tag is Hint Amber tint on ink.
+### Selection
+Segmented controls (language, theme, dashboard view), current nav and active tabs use **near-black** (`neutral-900` + `fg-inverse`, or a `neutral-900` underline for tabs). Selected answer cards get a near-black border plus a 1 px ring and a Sunken fill.
 
-### Cards / Containers
-- **Corner Style:** 14px (`xl`).
-- **Background:** Paper on Canvas.
-- **Shadow Strategy:** Rest at rest. The interactive variant shifts its border to Hairline Strong and moves to Hover.
-- **Border:** a 1 px Hairline.
-- **Internal Padding:** 20px (`p-5`), 16px for dense list items.
+### Cards
+White, 1 px hairline, 12 px radius, 24 px padding, shadow on hover only. Icon tiles inside cards are neutral (Sunken circle, ink icon).
 
-### Inputs / Fields
-- **Style:** a Paper fill with a 1 px Hairline Strong border, 10 px radius, 44 px minimum height, 12 px horizontal padding and 16 px text (never smaller, so iOS does not zoom). A 500-weight Body Small label sits above, and muted helper text sits below with `aria-describedby`.
-- **Focus:** the shared 2 px Logo Indigo outline with a 2 px offset.
-- **Error / Disabled:** `aria-invalid` turns the border Danger Red, with a specific message below. Disabled fields sink to Sunken with muted text.
-- **Toggle, RadioGroup, Select and TextArea** follow the same border, radius and focus language. Each radio is named by its option and described by its explanation.
+### ChatMessage
+- **Student:** right-aligned near-black bubble with `fg-inverse` text, 16 px radius, a tight top-right corner.
+- **Tutor:** a near-black sparkles avatar and a white bubble with a hairline border. The header shows the tutor name and the teal **IA** tag. A **Fuentes** footer holds the accent SourceCitation chips.
+- **Failed:** a white bubble with a 2 px danger border, a plain explanation and Retry.
 
-### Sign-in
-At `lg` the sign-in screen splits in two: the heading, lead and an inert, `aria-hidden` specimen of the student chat (the solid teal disclosure strip, tutor bubbles with the **IA** tag, a student bubble and a cited answer) on the left; the form, demo access, IMFAHE acknowledgement and privacy link on the right. Below `lg` the specimen is hidden and the page is the single centred `max-w-md` column. The specimen uses only real components and existing copy; it shows the product's transparency instead of describing it.
+### NoSourceNotice
+When the material doesn't cover a question, the tutor says so in a teal-wash bubble with no citations. Same pattern everywhere it occurs.
 
-### Navigation
-- **AppShell:** one per role (student, teacher, admin, public). It has a sticky translucent header at 64 px, with the logo at 32 px and the "DocentAI" wordmark in 700 Ink.
-- **Links:** Body Small 500 in Ink Muted on a 40 px tall pill (`lg` radius). Hover fills them with Sunken and Ink. The **current** link carries `data-current` and a solid Logo Indigo Deep fill with 600-weight Canvas text, the same "selected" treatment as segmented controls, so wayfinding reads at a glance.
-- **Mobile:** below `md`, a 44 px menu button opens a Paper dropdown (`xl`, Overlay shadow) with 44 px links in Body. The account menu groups the language and theme switchers as segmented controls, whose selected segment takes a Logo Indigo Deep fill.
+### AIDisclosure
+A first-use dialog, plus a persistent Sunken strip under every student header ("Tutor IA · your teacher may review your conversations"). It's quiet but always there.
 
-### ChatMessage (signature)
-The heart of the Glass Classroom: who is speaking and where the answer came from are never ambiguous.
-- **Student:** a right-aligned Logo Indigo bubble with Canvas text, `2xl` radius and a tight top-right corner, capped at `max-w-md`.
-- **Tutor answer:** a solid Tutor Teal sparkles avatar (32 px `info-600` circle with Canvas icon) beside a Paper bubble with a Hairline border, Rest shadow, `2xl` radius and a tight top-left corner. A header line shows the tutor name and the **IA** tag. A divided **Fuentes** footer, captioned in Logo Indigo Ink, holds the SourceCitation chips. Equations sit in Sunken mono blocks.
-- **Tutor hint:** the same as a tutor answer, plus a Hint Amber "Pista n de N" tag. It still carries citations.
-- **Failed:** the student bubble on Paper with a 2 px Danger Red border, a red alert line, a plain explanation and a compact Retry button.
-- **Writing:** three bouncing neutral dots plus "El tutor está escribiendo". The dots only bounce under `motion-safe`.
+### States
+Every data view has populated, empty, loading and error states. Empty states are a dashed panel with one clear action. Toasts are a success wash with the overlay shadow.
 
-### NoSourceNotice (signature)
-When the material is silent, the tutor says so in a distinct voice. It is a tutor bubble rebuilt in Tutor Teal wash with a teal edge and no shadow. It has an info icon, a bold heading ("El material del curso no cubre esta pregunta"), plain body text, compact secondary actions (Rephrase / Ask the teacher) and **no citations**. The same pattern is reused in guided mode, exercise feedback and explanations.
+## Copy
 
-### CitationSheet
-A Paper dialog with `2xl` radius and the Overlay shadow. It docks as a bottom sheet with a grab handle on phones. It shows a document icon tile, the document name and location, a "Fragmento citado" caption, and the passage as a Sunken blockquote with a 4 px Logo Indigo left rule. It ends with a validated-by-teacher check line.
-
-### Status surfaces
-- **MessageAllowance:** muted inline text at normal levels. It becomes a Hint Amber wash strip when the allowance runs low, and gives way to LimitReachedBanner when the limit is reached.
-- **GuidedModeIndicator:** a Hint Amber wash strip with an `xl` radius, explaining hints before solutions.
-- **AIDisclosure:** a first-use modal dialog (`2xl`, cannot be dismissed without acknowledging) and a persistent header strip in solid Tutor Teal (`info-600` fill, Canvas text) that sits under every student header and cannot be mistaken for decoration.
-- **EmptyState:** a centred dashed `border-strong` panel on Paper with an icon, a heading, an explanation and one clear action.
-- **Skeleton / ErrorState / Toast:** every data view ships populated, empty, loading and error states. Toasts are a Success wash with the Hover shadow, announced politely.
+Short, clear and warm, never childish. Use verbs on buttons. Errors say what happened and what to do, without blame ("We couldn't load your courses. Try again in a moment."). Empty states invite ("Upload your first document"). Exclamation marks only in success and celebration moments. No emojis or slang. Spanish (tú for students) and English say the same thing.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** take every colour from `theme.css` tokens and prefer the role aliases (`fg`, `surface-raised`, `border-strong`, `focus`) over ramp steps.
-- **Do** keep each hue on its one job: indigo for the product and its sources, teal for the AI, amber for hints and caution, green and red for outcomes.
-- **Do** label every tutor message with the teal avatar and the **IA** tag, and give every grounded answer its SourceCitation chips.
-- **Do** render "not covered by the material" with the NoSourceNotice pattern, everywhere it occurs.
-- **Do** give every interactive element a 44 px touch target and the 2 px Logo Indigo focus ring with a 2 px offset.
-- **Do** check every pairing in both light and dark. Use mirrored wash/ink pairs so no `dark:` override is needed.
-- **Do** put motion behind `prefers-reduced-motion: no-preference`, at 150 ms with `ease-out` (`cubic-bezier(0.23, 1, 0.32, 1)`) for state changes.
-- **Do** name new components identically in the HTML prototype (`data-component`) and in React.
+- **Do** take every colour from `theme.css` tokens and prefer the role aliases.
+- **Do** keep the accent for primary actions, citations and the class code.
+- **Do** keep layout spacing on even steps (8 px scale).
+- **Do** check every pairing in light and dark.
+- **Do** name components identically in the prototype (`data-component`) and in React.
 
 ### Don't:
-- **Don't** write hex, rgb or raw oklch values, arbitrary `[..]` utilities or raw pixel spacing outside `theme.css`.
-- **Don't** style a "not covered" reply like a normal answer, or show citations on it.
-- **Don't** use teal for brand actions or indigo for the AI's voice.
-- **Don't** convey state by colour alone. Pair it with an icon, a label or text (for example "Pista 1 de 3" or "Excluido").
-- **Don't** add display-size type, gradients, glows or decorative illustration to product screens.
-- **Don't** use dashed borders except for missing or empty things.
-- **Don't** redraw, recolour or crop the DocentAI logo, and don't drop the IMFAHE acknowledgement from the sign-in screen, the About page or the role footers.
+- **Don't** use gradients, glows, decorative illustration or extra accent colours.
+- **Don't** put a shadow on a resting card.
+- **Don't** use the accent for selected/current states. Use ink.
+- **Don't** write raw colours, arbitrary `[..]` utilities or raw pixel spacing outside `theme.css`.
+- **Don't** style a "not covered" reply like a normal answer or show citations on it.
+- **Don't** convey state by colour alone.
+- **Don't** redraw or recolour the DocentAI logo, or drop the IMFAHE acknowledgement.

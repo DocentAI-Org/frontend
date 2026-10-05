@@ -83,7 +83,7 @@ test.describe("F16 · Course topics", () => {
 
   scenario("US-14 AS5", "if suggestions cannot be loaded, topics can still be assigned by hand", async ({ page }) => {
     await gotoState(page, "teacher/topic-assignment.html", "suggestions-error");
-    await expect(page.getByRole("alert")).toContainText("No se han podido cargar las sugerencias");
+    await expect(page.getByRole("alert")).toContainText("No hemos podido cargar las sugerencias");
     const select = page.locator('[data-component="TopicAssignmentRow"]:visible').first().getByRole("combobox");
     await expect(select).toBeEnabled();
     await select.selectOption({ label: "Ecuaciones de primer grado" });
