@@ -67,7 +67,7 @@ test.describe("F6 · Create a course and join it", () => {
 
   scenario("US-04 AS6", "invalid, expired and disabled codes explain the problem", async ({ page }) => {
     const cases = [
-      ["XYZ-0000", "invalid-code", "no corresponde a ningún curso"],
+      ["XYZ-0000", "invalid-code", "No encontramos ningún curso con este código"],
       ["ALG-4X2B", "expired-code", "ha caducado"],
       ["ALG-8M1D", "disabled-code", "ha desactivado"]
     ];

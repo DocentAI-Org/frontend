@@ -306,7 +306,7 @@ function stateLinks(states, active) {
             "aria-current": s === active ? "true" : null,
             "data-active": s === active ? true : null,
             class:
-              "inline-flex min-h-6 items-center rounded-md border border-border-strong px-2 py-0.5 font-mono text-xs text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus data-active:border-primary-700 data-active:bg-primary-700 data-active:text-fg-inverse"
+              "inline-flex min-h-6 items-center rounded-md border border-border-strong px-2 py-1 font-mono text-xs text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus data-active:border-neutral-900 data-active:bg-neutral-900 data-active:text-fg-inverse"
           },
           s
         )
@@ -328,7 +328,7 @@ export function renderPanel(entry, { state, unknown } = resolveState(entry)) {
       "data-i18n": `common.language.${lang}`
     });
 
-  const body = el("div", { class: "flex w-full flex-col gap-3 px-4 pb-3 lg:w-72 lg:p-3" }, [
+  const body = el("div", { class: "flex w-full flex-col gap-4 px-4 pb-4 lg:w-72 lg:p-4" }, [
     el("p", {
       class: "rounded-md bg-warning-100 px-2 py-1 text-xs font-medium text-fg",
       "data-i18n": "prototype.panel.notProduct"
@@ -390,7 +390,7 @@ export function renderPanel(entry, { state, unknown } = resolveState(entry)) {
         el("summary", {
           id: "prototype-panel-title",
           class:
-            "cursor-pointer px-4 py-2 text-xs font-semibold text-warning-900 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus lg:rounded-xl lg:px-3 lg:text-sm lg:text-fg",
+            "cursor-pointer px-4 py-2 text-xs font-semibold text-warning-900 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus lg:rounded-xl lg:px-4 lg:text-sm lg:text-fg",
           "data-i18n": "prototype.panel.title"
         }),
         body

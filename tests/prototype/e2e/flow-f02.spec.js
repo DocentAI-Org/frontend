@@ -90,7 +90,7 @@ test.describe("F2 · Ask the tutor and see the sources", () => {
 
   scenario("US-01 AS7", "a failed message explains the error, offers a retry and does not count", async ({ page }) => {
     await gotoState(page, "student/chat.html", "failed");
-    await expect(page.getByText("No se ha enviado")).toBeVisible();
+    await expect(page.getByText("No se ha podido enviar")).toBeVisible();
     await expect(page.getByText(/no cuenta para tu límite/)).toBeVisible();
     await page.getByRole("button", { name: "Reintentar" }).click();
     await expect(page).toHaveURL(/state=tutor-writing|state=answer/);

@@ -2,6 +2,7 @@
 // Loads the shared @theme, then the pinned Tailwind browser build, then runs
 // include → i18n → state, and finally reveals the page.
 
+import { bindCelebration, celebrate } from "./celebrate.js";
 import { applyIncludes, markCurrentLinks } from "./include.js";
 import { LANGS, applyI18n, getLang, setLang, translate } from "./i18n.js";
 import { THEMES, applyTheme, getTheme, setTheme, syncThemeSwitchers } from "./theme.js";
@@ -16,14 +17,14 @@ function reveal() {
   document.body.removeAttribute("data-cloak");
 }
 
-// Self-hosted Figtree: preload the Latin file so text paints in the brand face on first reveal.
+// Self-hosted Plus Jakarta Sans: preload the Latin file so text paints in the brand face on first reveal.
 function loadFonts() {
   const preload = document.createElement("link");
   preload.rel = "preload";
   preload.as = "font";
   preload.type = "font/woff2";
   preload.crossOrigin = "anonymous";
-  preload.href = new URL("fonts/figtree-latin-wght-normal.woff2", ASSETS_URL).href;
+  preload.href = new URL("fonts/plus-jakarta-sans-latin-wght-normal.woff2", ASSETS_URL).href;
   const sheet = document.createElement("link");
   sheet.rel = "stylesheet";
   sheet.href = new URL("fonts/fonts.css", ASSETS_URL).href;
@@ -144,6 +145,9 @@ async function start() {
   await stylesReady();
   clearTimeout(fallback);
   reveal();
+  // After reveal, so the moment is actually seen; later state switches can trigger it too.
+  bindCelebration(document.body);
+  celebrate(document.body);
 }
 
 start();

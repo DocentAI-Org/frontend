@@ -61,9 +61,9 @@ with only their wording changed.
 
 ### R-04 · Fonts and icons
 
-- **Decision** (revised 2026-10-05): Figtree (variable, SIL OFL 1.1) self-hosted from
+- **Decision** (revised 2026-10-05, redesign): Plus Jakarta Sans (variable, SIL OFL 1.1) self-hosted from
   `assets/fonts/` and declared in `assets/fonts/fonts.css`, with the system font stack as fallback in
-  `--font-sans`. Only the Latin file (~20 KB) is preloaded; Latin Extended loads on demand through
+  `--font-sans`. Only the Latin file (~27 KB) is preloaded; Latin Extended loads on demand through
   `unicode-range`. There is still no third-party font request. Icons are an inline
   SVG sprite (`assets/img/icons.svg`) of [Lucide](https://lucide.dev) icons (ISC license), used
   with `<svg><use href="…#name"/></svg>`. Decorative icons get `aria-hidden="true"`, and

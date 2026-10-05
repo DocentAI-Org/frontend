@@ -45,7 +45,7 @@ test.describe("F11 · Conversations and flags", () => {
 
   scenario("US-08 AS4", "without conversations, an empty state explains when they appear", async ({ page }) => {
     await gotoState(page, "teacher/conversations.html", "empty");
-    await expect(page.locator('[data-component="EmptyState"]:visible')).toContainText("cuando tus estudiantes usen el tutor");
+    await expect(page.locator('[data-component="EmptyState"]:visible')).toContainText("cuando tus estudiantes empiecen a usar el tutor");
   });
 
   scenario("US-08 AS5", "students see a persistent reminder that the teacher may review conversations", async ({ page }) => {

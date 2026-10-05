@@ -11,21 +11,22 @@
   /* Remove Tailwind's default palette: only DocentAI colors exist. */
   --color-*: initial;
 
-  /* Neutral (cool gray, tinted toward the brand indigo) */
-  --color-neutral-0: light-dark(oklch(0.996 0.002 277), oklch(0.218 0.014 277));
-  --color-neutral-50: light-dark(oklch(0.983 0.004 277), oklch(0.178 0.012 277));
-  --color-neutral-100: light-dark(oklch(0.963 0.007 277), oklch(0.258 0.016 277));
-  --color-neutral-200: light-dark(oklch(0.918 0.01 277), oklch(0.305 0.018 277));
-  --color-neutral-300: light-dark(oklch(0.865 0.014 277), oklch(0.37 0.02 277));
-  --color-neutral-400: light-dark(oklch(0.7 0.018 277), oklch(0.5 0.02 277));
-  --color-neutral-450: light-dark(oklch(0.635 0.02 277), oklch(0.565 0.02 277));
-  --color-neutral-500: light-dark(oklch(0.55 0.022 277), oklch(0.665 0.018 277));
-  --color-neutral-600: light-dark(oklch(0.445 0.024 277), oklch(0.765 0.015 277));
-  --color-neutral-700: light-dark(oklch(0.37 0.025 277), oklch(0.84 0.012 277));
-  --color-neutral-800: light-dark(oklch(0.28 0.025 277), oklch(0.905 0.008 277));
-  --color-neutral-900: light-dark(oklch(0.21 0.024 277), oklch(0.965 0.005 277));
+  /* Neutral: warm grays from white to near-black ink (#1a1a1a). Dark mirrors light. */
+  --color-neutral-0: light-dark(oklch(1 0 0), oklch(0.215 0.004 70));
+  --color-neutral-50: light-dark(oklch(0.985 0.002 75), oklch(0.175 0.003 70));
+  --color-neutral-100: light-dark(oklch(0.966 0.004 75), oklch(0.252 0.005 70));
+  --color-neutral-200: light-dark(oklch(0.926 0.006 75), oklch(0.3 0.006 70));
+  --color-neutral-300: light-dark(oklch(0.872 0.008 75), oklch(0.365 0.007 70));
+  --color-neutral-400: light-dark(oklch(0.72 0.01 75), oklch(0.49 0.008 70));
+  --color-neutral-450: light-dark(oklch(0.63 0.01 75), oklch(0.56 0.008 70));
+  --color-neutral-500: light-dark(oklch(0.545 0.01 72), oklch(0.66 0.008 70));
+  --color-neutral-600: light-dark(oklch(0.5 0.009 70), oklch(0.75 0.007 70));
+  --color-neutral-700: light-dark(oklch(0.37 0.007 70), oklch(0.84 0.005 70));
+  --color-neutral-800: light-dark(oklch(0.285 0.004 70), oklch(0.905 0.003 70));
+  --color-neutral-900: light-dark(#1a1a1a, oklch(0.968 0.002 75));
 
-  /* Primary (brand indigo, sampled from the DocentAI logo between its sky blue and violet) */
+  /* Primary: the single vivid accent (brand indigo from the DocentAI logo). Reserved for primary
+   * actions and key highlights; everything else is neutral. */
   --color-primary-50: light-dark(oklch(0.972 0.012 277), oklch(0.245 0.04 279));
   --color-primary-100: light-dark(oklch(0.94 0.028 277), oklch(0.285 0.056 279));
   --color-primary-200: light-dark(oklch(0.89 0.05 277), oklch(0.345 0.08 279));
@@ -89,28 +90,30 @@
   --color-fg: var(--color-neutral-900);
   --color-fg-muted: var(--color-neutral-600);
   --color-fg-inverse: var(--color-neutral-50);
-  --color-surface: var(--color-neutral-50);
+  --color-surface: light-dark(oklch(1 0 0), oklch(0.175 0.003 70)); /* white canvas */
   --color-surface-raised: var(--color-neutral-0);
   --color-surface-sunken: var(--color-neutral-100);
   --color-border: var(--color-neutral-200);
   --color-border-strong: var(--color-neutral-450); /* 3:1 on raised and canvas surfaces (WCAG 1.4.11) */
   --color-focus: var(--color-primary-600);
   /* Dialog backdrop: dark in both schemes. */
-  --color-scrim: oklch(0.16 0.02 277);
+  --color-scrim: oklch(0.15 0.003 70);
 
-  /* Spacing: Tailwind v4 single base unit (4 px) */
+  /* Spacing: 8 px scale. The unit stays 4 px so utilities read naturally, but layout spacing uses even
+   * steps only (2 = 8 px, 4 = 16, 6 = 24, 8 = 32, 10 = 40, 12 = 48); 1 (4 px) is the one half-step,
+   * kept for icon-to-label gaps. */
   --spacing: 0.25rem;
 
-  /* Radius */
-  /* Radius: controls 10 px (lg), cards 14 px (xl), large panels 18 px (2xl), pills full. */
-  --radius-sm: 0.3125rem;
+  /* Radius: small 6 px (sm), inputs 8 px (md), buttons 10 px (lg), cards 12 px (xl),
+   * dialogs and chat bubbles 16 px (2xl), pills full. */
+  --radius-sm: 0.375rem;
   --radius-md: 0.5rem;
   --radius-lg: 0.625rem;
-  --radius-xl: 0.875rem;
-  --radius-2xl: 1.125rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
 
-  /* Typography: self-hosted Figtree (assets/fonts/fonts.css), system fonts as fallback (research R-04) */
-  --font-sans: "Figtree", "Figtree Fallback", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  /* Typography: self-hosted Plus Jakarta Sans (assets/fonts/fonts.css), metric-matched fallback. */
+  --font-sans: "Plus Jakarta Sans", "Plus Jakarta Sans Fallback", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   --text-xs: 0.75rem;
@@ -124,29 +127,39 @@
   --text-lg--letter-spacing: -0.005em;
   --text-xl: 1.25rem;
   --text-xl--line-height: 1.75rem;
-  --text-xl--letter-spacing: -0.01em;
+  --text-xl--letter-spacing: -0.012em;
   --text-2xl: 1.5rem;
-  --text-2xl--line-height: 1.9rem;
-  --text-2xl--letter-spacing: -0.018em;
+  --text-2xl--line-height: 2rem;
+  --text-2xl--letter-spacing: -0.02em;
   --text-3xl: 2rem;
-  --text-3xl--line-height: 2.4rem;
-  --text-3xl--letter-spacing: -0.024em;
+  --text-3xl--line-height: 2.5rem;
+  --text-3xl--letter-spacing: -0.026em;
+  --text-4xl: 2.5rem;
+  --text-4xl--line-height: 3rem;
+  --text-4xl--letter-spacing: -0.03em;
+  --text-5xl: 3.5rem;
+  --text-5xl--line-height: 4rem;
+  --text-5xl--letter-spacing: -0.035em;
 
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
-  /* Shadows: tinted with the neutral ink, soft offset blur; borders carry resting elevation. */
-  --shadow-sm: 0 1px 2px 0 light-dark(oklch(0.21 0.024 277 / 0.05), oklch(0.08 0.01 277 / 0.3));
-  --shadow-md: 0 6px 16px -6px light-dark(oklch(0.21 0.024 277 / 0.14), oklch(0.08 0.01 277 / 0.5)),
-    0 2px 4px -2px light-dark(oklch(0.21 0.024 277 / 0.06), oklch(0.08 0.01 277 / 0.3));
-  --shadow-lg: 0 18px 40px -12px light-dark(oklch(0.21 0.024 277 / 0.22), oklch(0.08 0.01 277 / 0.6)),
-    0 4px 10px -4px light-dark(oklch(0.21 0.024 277 / 0.08), oklch(0.08 0.01 277 / 0.35));
+  /* Shadows: warm ink, very soft. Resting cards carry only their 1px border; shadow-md appears on hover.
+   * shadow-lg is for floating layers (menus, dialogs, toasts). */
+  --shadow-sm: 0 1px 2px 0 light-dark(oklch(0.2 0.004 70 / 0.04), oklch(0.05 0 0 / 0.3));
+  --shadow-md: 0 8px 24px -10px light-dark(oklch(0.2 0.004 70 / 0.14), oklch(0.05 0 0 / 0.55)),
+    0 2px 6px -2px light-dark(oklch(0.2 0.004 70 / 0.05), oklch(0.05 0 0 / 0.3));
+  --shadow-lg: 0 16px 40px -12px light-dark(oklch(0.2 0.004 70 / 0.18), oklch(0.05 0 0 / 0.6)),
+    0 4px 12px -4px light-dark(oklch(0.2 0.004 70 / 0.06), oklch(0.05 0 0 / 0.35));
 
   /* Motion */
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --default-transition-duration: 150ms;
+  --default-transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 /* Color scheme: follow the system unless the user picked one (assets/js/theme.js). */
@@ -221,10 +234,18 @@
       transition-timing-function: var(--ease-out);
     }
 
+    /* Cards: the hover shadow eases in a touch slower than color changes so it reads as a lift. */
+    [data-component="Card"] {
+      transition-property: border-color, box-shadow, transform;
+      transition-duration: 200ms;
+      transition-timing-function: var(--ease-out);
+    }
+
     /* Feedback on press, not on release. */
     button:not(:disabled):active,
     summary:active,
-    [data-component="Button"]:active {
+    [data-component="Button"]:active,
+    [data-component="IconButton"]:active {
       transform: scale(0.98);
       transition-duration: 80ms;
     }
@@ -233,12 +254,54 @@
     details[open] > :not(summary) {
       animation: dai-reveal 180ms var(--ease-out);
     }
+
+    /* Celebration (assets/js/celebrate.js): the badge pops, a few accent dots burst out once. */
+    [data-celebrate].is-celebrating [data-celebrate-badge] {
+      animation: dai-pop 420ms var(--ease-spring) both;
+    }
+    [data-celebrate].is-celebrating [data-celebrate-text] {
+      animation: dai-rise 320ms var(--ease-out) 160ms both;
+    }
+    [data-celebrate-dot] {
+      animation: dai-burst 640ms var(--ease-out) both;
+    }
   }
 
   @keyframes dai-reveal {
     from {
       opacity: 0;
       translate: 0 -4px;
+    }
+  }
+
+  @keyframes dai-pop {
+    0% {
+      opacity: 0;
+      scale: 0.6;
+    }
+    100% {
+      opacity: 1;
+      scale: 1;
+    }
+  }
+
+  @keyframes dai-rise {
+    from {
+      opacity: 0;
+      translate: 0 6px;
+    }
+  }
+
+  @keyframes dai-burst {
+    0% {
+      opacity: 1;
+      translate: 0 0;
+      scale: 1;
+    }
+    100% {
+      opacity: 0;
+      translate: var(--dx) var(--dy);
+      scale: 0.4;
     }
   }
 }

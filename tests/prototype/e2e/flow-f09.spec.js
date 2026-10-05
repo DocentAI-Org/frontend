@@ -54,7 +54,7 @@ test.describe("F9 · Exercise feedback", () => {
     await expect(page.getByRole("textbox", { name: "Enunciado del ejercicio" })).toHaveAttribute("aria-invalid", "true");
 
     await gotoState(page, "student/exercise.html", "unreadable-photo");
-    await expect(page.getByRole("alert")).toContainText("No se puede leer la foto");
+    await expect(page.getByRole("alert")).toContainText("No podemos leer la foto");
     await expect(page.getByLabel(/Foto de tu trabajo/)).toHaveAttribute("aria-invalid", "true");
   });
 });

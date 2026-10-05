@@ -40,7 +40,7 @@ test.describe("F7 · Configure the tutor", () => {
 
   scenario("US-03 AS4", "a failed save keeps the changes and offers a retry", async ({ page }) => {
     await gotoState(page, "teacher/tutor-settings.html", "save-failed");
-    await expect(page.getByRole("alert").filter({ hasText: "No se han podido guardar" })).toBeVisible();
+    await expect(page.getByRole("alert").filter({ hasText: "No hemos podido guardar" })).toBeVisible();
     await expect(page.getByRole("radio", { name: "Solo pistas (modo guiado)" })).toBeChecked();
     await page.getByRole("button", { name: "Reintentar" }).click();
     await expect(page).toHaveURL(/state=saved/);
