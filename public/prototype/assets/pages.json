@@ -186,16 +186,24 @@
     "role": "student",
     "titleKey": "student.chat.pageTitle",
     "stories": [
-      "US-01"
+      "US-01",
+      "US-16"
     ],
     "requirements": [
       "S1",
       "S2",
+      "T3",
+      "T6",
       "FR-010",
       "FR-011",
       "FR-012",
       "FR-013",
-      "FR-014"
+      "FR-014",
+      "FR-022",
+      "FR-023",
+      "S8",
+      "FR-016",
+      "FR-037"
     ],
     "priority": "P1",
     "mobile": true,
@@ -211,7 +219,11 @@
       "no-source",
       "low-allowance",
       "limit-reached",
-      "failed"
+      "failed",
+      "corrected",
+      "tutor-info",
+      "adapted",
+      "adapted-basis"
     ],
     "simulate": [
       "failed",
@@ -227,7 +239,8 @@
     "role": "student",
     "titleKey": "student.guided.pageTitle",
     "stories": [
-      "US-05"
+      "US-05",
+      "US-16"
     ],
     "requirements": [
       "S3",
@@ -236,7 +249,9 @@
       "FR-011",
       "FR-013",
       "FR-014",
-      "FR-032"
+      "FR-032",
+      "S8",
+      "FR-037"
     ],
     "priority": "P1",
     "mobile": true,
@@ -251,7 +266,8 @@
       "hints-done-hints-only",
       "solution",
       "no-source",
-      "limit-reached"
+      "limit-reached",
+      "adapted-hint"
     ],
     "simulate": [
       "limit-reached",
@@ -302,12 +318,14 @@
       "US-12"
     ],
     "requirements": [
-      "S4",
-      "S5",
       "S1",
       "S2",
+      "S4",
+      "S5",
+      "T6",
       "FR-012",
       "FR-013",
+      "FR-023",
       "FR-033",
       "FR-034"
     ],
@@ -319,7 +337,8 @@
       "citation",
       "no-source",
       "error",
-      "repeated-mistake"
+      "repeated-mistake",
+      "corrected"
     ],
     "simulate": [
       "error"
@@ -455,8 +474,14 @@
       "uploading",
       "processing",
       "file-error",
-      "all-excluded",
-      "duplicate"
+      "no-validated",
+      "duplicate",
+      "pending-validation",
+      "validate-confirm",
+      "validated",
+      "exclude-confirm",
+      "document-excluded",
+      "unassigned-topics"
     ],
     "simulate": [
       "file-error",
@@ -484,7 +509,8 @@
       "loading",
       "error",
       "search-results",
-      "search-empty"
+      "search-empty",
+      "fragment-excluded"
     ],
     "simulate": [
       "error"
@@ -611,7 +637,7 @@
       "T4",
       "FR-023"
     ],
-    "priority": "P2",
+    "priority": "P1",
     "mobile": true,
     "states": [
       "default",
@@ -633,25 +659,34 @@
     "role": "teacher",
     "titleKey": "teacher.conversations.detailPageTitle",
     "stories": [
-      "US-08"
+      "US-08",
+      "US-16"
     ],
     "requirements": [
       "T4",
       "T6",
       "S1",
       "S2",
-      "FR-023"
+      "FR-023",
+      "S8",
+      "FR-037"
     ],
-    "priority": "P2",
+    "priority": "P1",
     "mobile": false,
     "states": [
       "default",
       "loading",
       "error",
       "flag-dialog",
-      "flagged"
+      "flagged",
+      "correction-preview",
+      "correction-editing",
+      "remove-correction-confirm",
+      "save-failed",
+      "adapted"
     ],
     "simulate": [
+      "save-failed",
       "error"
     ]
   },
@@ -669,7 +704,7 @@
       "T6",
       "FR-023"
     ],
-    "priority": "P2",
+    "priority": "P1",
     "mobile": false,
     "states": [
       "default",
@@ -709,23 +744,29 @@
     ]
   },
   {
-    "path": "teacher/student-risk.html",
+    "path": "teacher/student.html",
     "screen": [
       27
     ],
     "role": "teacher",
-    "titleKey": "teacher.risk.pageTitle",
+    "titleKey": "teacher.student.pageTitle",
     "stories": [
-      "US-09"
+      "US-09",
+      "US-15"
     ],
     "requirements": [
       "T5",
+      "T8",
+      "FR-016",
       "FR-024"
     ],
     "priority": "P2",
     "mobile": false,
     "states": [
       "default",
+      "at-risk",
+      "error-type",
+      "empty",
       "loading",
       "error"
     ],
@@ -787,7 +828,8 @@
       "difficulty-up",
       "empty",
       "loading",
-      "error"
+      "error",
+      "difficulty-down"
     ],
     "simulate": [
       "error"
@@ -859,17 +901,80 @@
     ],
     "requirements": [
       "S7",
+      "S4",
+      "FR-016",
       "FR-036"
     ],
-    "priority": "P3",
+    "priority": "P2",
     "mobile": true,
     "states": [
       "default",
+      "topic-detail",
+      "mastery-basis",
       "empty",
       "loading",
       "error"
     ],
     "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "teacher/topics.html",
+    "screen": [
+      33
+    ],
+    "role": "teacher",
+    "titleKey": "teacher.topics.pageTitle",
+    "stories": [
+      "US-14"
+    ],
+    "requirements": [
+      "T9",
+      "FR-026"
+    ],
+    "priority": "P1",
+    "mobile": false,
+    "states": [
+      "default",
+      "empty",
+      "loading",
+      "error",
+      "added",
+      "editing",
+      "reordered",
+      "delete-confirm",
+      "unassigned"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "teacher/topic-assignment.html",
+    "screen": [
+      34
+    ],
+    "role": "teacher",
+    "titleKey": "teacher.topicAssignment.pageTitle",
+    "stories": [
+      "US-14"
+    ],
+    "requirements": [
+      "T9",
+      "FR-026"
+    ],
+    "priority": "P1",
+    "mobile": false,
+    "states": [
+      "default",
+      "confirmed",
+      "suggestions-error",
+      "loading",
+      "error"
+    ],
+    "simulate": [
+      "suggestions-error",
       "error"
     ]
   }

@@ -1,4 +1,4 @@
-// F12 · Teacher dashboard and at-risk students (US9). Tasks T089. Desktop pages.
+// F12 · Teacher dashboard and at-risk students (US9). Tasks T089, T142 (student detail, 2026-10-06). Desktop pages.
 import { expect, gotoState, scenario, test, waitForReady } from "./helpers.js";
 
 test.describe.configure({ mode: "serial" });
@@ -21,7 +21,7 @@ test.describe("F12 · Dashboard and at-risk students", () => {
   scenario("US-09 AS2", "an at-risk student shows the data behind the flag", async ({ page }) => {
     await gotoState(page, "teacher/dashboard.html");
     await page.locator("[data-at-risk]").filter({ hasText: "Estudiante-07" }).getByRole("link").click();
-    await expect(page).toHaveURL(/teacher\/student-risk\.html/);
+    await expect(page).toHaveURL(/teacher\/student\.html\?.*state=at-risk/);
     await waitForReady(page);
     const main = page.locator("main");
     await expect(main).toContainText("Sin actividad en 7 días");
@@ -33,5 +33,14 @@ test.describe("F12 · Dashboard and at-risk students", () => {
   scenario("US-09 AS3", "with too little data, an empty state says what is needed", async ({ page }) => {
     await gotoState(page, "teacher/dashboard.html", "not-enough-data");
     await expect(page.locator('[data-component="EmptyState"]:visible')).toContainText("necesita más actividad");
+  });
+
+  scenario("US-09 AS4", "any student in the by-student view opens their detail page", async ({ page }) => {
+    await gotoState(page, "teacher/dashboard.html", "by-student");
+    await page.locator("[data-student-row]:visible").filter({ hasText: "Lucas Herrera" }).getByRole("link").click();
+    await expect(page).toHaveURL(/teacher\/student\.html/);
+    await expect(page).not.toHaveURL(/state=at-risk/);
+    await waitForReady(page);
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Lucas Herrera");
   });
 });

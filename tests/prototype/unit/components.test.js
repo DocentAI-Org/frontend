@@ -8,7 +8,10 @@ export const COMPONENTS = [
   "ImfaheAcknowledgement", "ChatMessage", "ChatComposer", "SourceCitation", "CitationSheet",
   "NoSourceNotice", "AIDisclosure", "MessageAllowance", "LimitReachedBanner", "GuidedModeIndicator",
   "FileUploadItem", "DocumentRow", "FragmentItem", "ClassCode", "FlagControl", "QuizQuestion",
-  "ProgressByTopic", "ThemeSwitcher"
+  "ProgressByTopic", "ThemeSwitcher",
+  // Revision 2026-10-06 (T115, plan.md › Components)
+  "TeacherCorrection", "ValidationStatus", "AdaptedBadge", "AdaptationSheet", "DecisionReason", "ErrorTypeTag",
+  "ErrorTypeList", "MasteryLevel", "ProgressTimeline", "TopicList", "TopicAssignmentRow"
 ];
 
 describe("data-component names", () => {

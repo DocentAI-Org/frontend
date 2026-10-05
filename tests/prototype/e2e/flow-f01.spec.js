@@ -1,4 +1,4 @@
-// F1 · Teacher uploads and validates material (US2). Tasks T047; starts from My courses after T099.
+// F1 · Teacher uploads and validates material (US2). Tasks T047, T121 (validation, 2026-10-06); starts from My courses after T099.
 import { expect, gotoState, scenario, test, waitForReady } from "./helpers.js";
 
 test.describe.configure({ mode: "serial" });
@@ -57,17 +57,50 @@ test.describe("F1 · Upload and validate the course material", () => {
     await expect(page.locator("mark").first()).toBeVisible();
   });
 
-  scenario("US-02 AS5", "turning inclusion off marks the document as excluded at once", async ({ page }) => {
-    await gotoState(page, "teacher/material.html");
+  scenario("US-02 AS5", "a processed document waits for validation, and validating it records who and when", async ({ page }) => {
+    await gotoState(page, "teacher/material.html", "pending-validation");
     const row = page.locator('[data-component="DocumentRow"]:visible').filter({ hasText: "Tema 3" });
-    await expect(row).toContainText("Incluido");
-    await row.getByRole("switch", { name: /Incluir en la base de conocimiento/ }).click();
-    await expect(row).toContainText("Excluido");
-    await expect(row.getByRole("switch")).toHaveAttribute("aria-checked", "false");
+    await expect(row.locator('[data-component="ValidationStatus"]')).toHaveText("Pendiente de validar");
+    await expect(row).toContainText("El tutor no lo usa hasta que lo valides");
+    await row.getByRole("button", { name: /^Validar/ }).click();
+    await expect(page).toHaveURL(/state=validate-confirm/);
+    const dialog = page.getByRole("dialog");
+    await expect(dialog).toContainText("El tutor empezará a usar este documento");
+    await dialog.getByRole("button", { name: "Validar documento" }).click();
+    await expect(page).toHaveURL(/state=validated/);
+    const validated = page.locator('[data-component="DocumentRow"]:visible').filter({ hasText: "Tema 3" });
+    await expect(validated.locator('[data-component="ValidationStatus"]')).toHaveText("Validado");
+    await expect(validated).toContainText("Prof. Elena Ruiz Navarro");
+    await expect(validated).toContainText("6 oct 2026");
+    await expect(page.locator("main")).toContainText("El tutor usa 2 de 3 documentos");
   });
 
-  scenario("US-02 AS6", "with everything excluded, a warning says the tutor has no material", async ({ page }) => {
-    await gotoState(page, "teacher/material.html", "all-excluded");
-    await expect(page.getByRole("alert").filter({ hasText: "El tutor no tiene material" })).toBeVisible();
+  scenario("US-02 AS6", "excluding a fragment marks it, offers to include it again and counts it", async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name === "mobile", "fragment review is a desktop page");
+    await gotoState(page, "teacher/fragments.html");
+    const first = page.locator('[data-component="FragmentItem"]:visible').first();
+    await first.getByRole("switch", { name: /Excluir fragmento/ }).click();
+    await expect(page).toHaveURL(/state=fragment-excluded/);
+    const excluded = page.locator('[data-component="FragmentItem"][data-variant="excluded"]:visible').first();
+    await expect(excluded).toContainText("Excluido");
+    await expect(excluded.getByRole("switch", { name: /Excluir fragmento/ })).toHaveAttribute("aria-checked", "true");
+    await expect(page.locator("main")).toContainText("3 fragmentos excluidos");
+  });
+
+  scenario("US-02 AS7", "excluding a whole document asks first and can be undone by validating again", async ({ page }) => {
+    await gotoState(page, "teacher/material.html");
+    const row = page.locator('[data-component="DocumentRow"]:visible').filter({ hasText: "Tema 3" });
+    await row.getByRole("button", { name: /Excluir documento/ }).click();
+    await expect(page).toHaveURL(/state=exclude-confirm/);
+    await page.getByRole("dialog").getByRole("button", { name: "Excluir documento" }).click();
+    await expect(page).toHaveURL(/state=document-excluded/);
+    const excluded = page.locator('[data-component="DocumentRow"]:visible').filter({ hasText: "Tema 3" });
+    await expect(excluded.locator('[data-component="ValidationStatus"]')).toHaveText("Excluido");
+    await expect(excluded.getByRole("button", { name: /^Validar/ })).toBeVisible();
+  });
+
+  scenario("US-02 AS8", "with no validated material, a warning says the tutor has none", async ({ page }) => {
+    await gotoState(page, "teacher/material.html", "no-validated");
+    await expect(page.getByRole("alert").filter({ hasText: "El tutor no tiene material validado" })).toBeVisible();
   });
 });

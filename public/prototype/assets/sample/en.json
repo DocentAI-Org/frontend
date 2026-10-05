@@ -151,6 +151,37 @@
       "linear": "Linear equations",
       "polynomials": "Polynomials",
       "systems": "Systems of equations"
+    },
+    "validation": {
+      "date": "6 Oct 2026"
+    },
+    "corrections": {
+      "chatQuestion": "Is 2(x − 3) the same as 2x − 3?",
+      "chatWrong": "Yes: removing the brackets gives 2x − 3.",
+      "chat": "No: the 2 multiplies both terms inside the brackets, so 2(x − 3) = 2x − 6. Review the distributive property in Unit 3.",
+      "feedback": "Step 2 is correctly flagged. To add: −6 moves to the other side as +6, so step 2 should be 2x − 4x = 2 + 6. Finish the next steps yourself."
+    },
+    "adaptation": {
+      "reason": "I'm explaining it step by step because this week you moved a term without changing its sign 3 times."
+    },
+    "record": {
+      "lucasEvent1": "Linear equations moved to “In progress” after 3 correct exercises in a row",
+      "lucasEvent2": "Linear equations quiz: 3 out of 5",
+      "lucasEvent3": "Started Linear equations",
+      "systemsEvent1": "Started Systems of equations",
+      "riskEvent1": "Sign error when removing brackets for the third time",
+      "riskEvent2": "Linear equations dropped to “Getting started”",
+      "mistake1": "Solve 2(x − 3) = 4x + 2 · step 2",
+      "mistake2": "Solve 5x − 4 = 2x + 8 · step 1"
+    },
+    "topicAssignment": {
+      "s31": "§ 3.1 What an equation is",
+      "s32": "§ 3.2 Isolating the unknown",
+      "s33": "§ 3.3 Equations with brackets",
+      "s34": "§ 3.4 Word problems with equations",
+      "polyUnassigned": "§ 4 Factorising trinomials",
+      "newTopic": "Inequalities",
+      "polyDeleted": "§ 1 What a polynomial is, § 2 Operations with polynomials"
     }
   }
 }

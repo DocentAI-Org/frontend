@@ -178,6 +178,33 @@
       "system": "System theme",
       "light": "Light theme",
       "dark": "Dark theme"
+    },
+    "decision": {
+      "why": "Why?",
+      "hide": "Hide explanation"
+    },
+    "record": {
+      "errorTypeLabel": "Error type:",
+      "topicLabel": "Topic:",
+      "saved": "Saved to your progress",
+      "times_one": "{count} time",
+      "times_other": "{count} times",
+      "seeExample": "See an example",
+      "levelLabel": "Mastery level:",
+      "level": {
+        "start": "Getting started",
+        "progress": "In progress",
+        "mastered": "Mastered"
+      },
+      "masteryBasis": "Because you solved {right} of your last {total} exercises on this topic correctly.",
+      "masteryBasisTeacher": "Because they solved {right} of their last {total} exercises on this topic correctly."
+    },
+    "correction": {
+      "reviewed": "Reviewed by your teacher",
+      "date": "Reviewed on {date}",
+      "correctedTag": "Corrected",
+      "edit": "Edit correction",
+      "remove": "Remove correction"
     }
   },
   "prototype": {
@@ -284,7 +311,8 @@
         "lead": "Uploading, processing and including documents (T2).",
         "row": "Document row",
         "title": "Course material",
-        "upload": "File upload item"
+        "upload": "File upload item",
+        "status": "Validation status"
       },
       "motion": {
         "body": "150 ms color transitions with --ease-standard, always behind motion-safe:. With reduced motion there is no animation, and loading states advance at once.",
@@ -292,7 +320,7 @@
       },
       "progress": {
         "item": "Progress by topic",
-        "lead": "Progress by topic with its basis in text, never colour alone (S7).",
+        "lead": "Mastery level per topic, how it changed and its basis in text, never colour alone (S7, R-26).",
         "title": "Progress"
       },
       "quiz": {
@@ -390,20 +418,57 @@
         "ready": "Ready",
         "teacherReview": "Teacher review",
         "unanswered": "Unanswered",
-        "uploading": "Uploading"
+        "uploading": "Uploading",
+        "inline": "Inline",
+        "disclosureClosed": "Disclosure, closed",
+        "disclosureOpen": "Disclosure, open",
+        "studentView": "Student view",
+        "teacherView": "Teacher view",
+        "levelStart": "Getting started",
+        "levelProgress": "In progress",
+        "levelMastered": "Mastered",
+        "validated": "Validated",
+        "pending": "Pending validation",
+        "fragmentUnavailable": "Fragment unavailable",
+        "correctionField": "Correction field",
+        "suggestedRow": "Suggested",
+        "confirmedRow": "Confirmed",
+        "interactive": "Student (opens the basis)",
+        "static": "Teacher (read only)"
       },
       "variant": {
         "danger": "Danger",
         "ghost": "Ghost",
         "primary": "Primary",
         "secondary": "Secondary"
+      },
+      "record": {
+        "title": "Learning record and decisions",
+        "lead": "How classified mistakes, progress, teacher corrections and the reason for each decision are shown (R-22, R-24, R-26, R-27).",
+        "decision": "Reason for a decision",
+        "errorTag": "Classified mistake",
+        "errorList": "Error types",
+        "mastery": "Mastery level",
+        "timeline": "Over time",
+        "correction": "Teacher correction"
+      },
+      "topics": {
+        "title": "Topics",
+        "lead": "Course topics and their assignment to documents and sections (R-25).",
+        "list": "Topic list",
+        "row": "Topic assignment"
+      },
+      "adapted": {
+        "title": "Adapted explanation",
+        "badge": "Adaptation label",
+        "sheet": "Basis of the adaptation"
       }
     },
     "index": {
       "flows": {
         "f1": "F1 · Upload and validate the course material",
         "f10": "F10 · Sign-in errors and session",
-        "f11": "F11 · Review conversations and flag answers",
+        "f11": "F11 · Review conversations and correct answers",
         "f12": "F12 · Dashboard and at-risk students",
         "f13": "F13 · Review quiz questions",
         "f14": "F14 · Adaptive quiz",
@@ -419,7 +484,10 @@
         "lead": "End-to-end journeys. Flows whose pages don't exist yet are shown disabled.",
         "pending": "Pending",
         "start": "Start",
-        "title": "Flows"
+        "title": "Flows",
+        "f16": "F16 · Define the course topics",
+        "f17": "F17 · A student's learning record",
+        "f18": "F18 · Adapted explanations"
       },
       "lead": "Clickable prototype of the admin, teacher and student screens. All data is fictitious.",
       "links": {
@@ -473,7 +541,8 @@
         "passageLabel": "Cited passage",
         "sheetTitle": "Cited source",
         "unavailable": "Document no longer available",
-        "validated": "From the material your teacher approved."
+        "validated": "From the material your teacher approved.",
+        "fragmentUnavailable": "Fragment no longer available"
       },
       "composer": {
         "label": "Type your question",
@@ -520,7 +589,27 @@
       "tutorName": "Tutor",
       "welcome": "Hi. I'm the AI tutor for this course. I only answer from the material your teacher has approved, and I tell you where each answer comes from.",
       "writing": "Writing an answer…",
-      "you": "You:"
+      "you": "You:",
+      "tutorInfo": {
+        "open": "How the tutor answers",
+        "title": "How the tutor answers in this course",
+        "lead": "Your teacher chose these settings for this course.",
+        "levelLabel": "Level",
+        "level": "Intermediate",
+        "toneLabel": "Tone",
+        "tone": "Friendly",
+        "policyLabel": "Solutions",
+        "policy": "It can give you the solution directly when you ask for it.",
+        "ok": "Got it"
+      },
+      "adapted": {
+        "badge": "Adapted for you",
+        "sheetTitle": "Why this answer was adapted",
+        "lead": "The tutor took this from your learning record into account:",
+        "entry": "{count} times this week",
+        "progress": "See my progress",
+        "teacherSees": "Your teacher sees the same explanation."
+      }
     },
     "consent": {
       "accept": "I've read this information and agree to take part",
@@ -677,7 +766,7 @@
       "basis": "{right} of {total} exercises correct",
       "emptyBody": "Your progress will appear once you ask the tutor, submit exercises or take quizzes.",
       "emptyTitle": "No activity yet",
-      "lead": "Your progress in each topic, based only on your own activity. Nobody else sees this page.",
+      "lead": "Your progress on each topic, based only on your own activity and updated after every exercise and quiz. Your teacher can see it too.",
       "listLabel": "Progress by topic",
       "loadError": "Couldn't load your progress",
       "notStarted": "You haven't worked on this topic yet",
@@ -686,7 +775,11 @@
       "quiz": "Take a quiz",
       "quizzes_one": "{count} quiz done",
       "quizzes_other": "{count} quizzes done",
-      "title": "My progress"
+      "title": "My progress",
+      "updated": "Updated on {date}",
+      "errors": "See my mistakes",
+      "detailTitle": "Most frequent mistakes on this topic",
+      "backToAll": "Back to all topics"
     },
     "quiz": {
       "adaptive": "The difficulty adapts to your answers. It doesn't count toward your grade.",
@@ -714,7 +807,10 @@
       "summaryLoadError": "Couldn't load the summary",
       "summaryPageTitle": "Quiz summary",
       "summaryTitle": "Quiz summary",
-      "title": "Quiz"
+      "title": "Quiz",
+      "reasonUp": "We're raising the level because you got 3 right in a row.",
+      "reasonDown": "We're lowering the level because you got 2 wrong in a row.",
+      "levelDown": "You got 2 wrong in a row: we're lowering the level."
     },
     "shell": {
       "aiLabel": "AI tutor",
@@ -761,7 +857,10 @@
       "student": "Student",
       "studentLabel": "Student",
       "title": "Conversations",
-      "topic": "Topic"
+      "topic": "Topic",
+      "exercise": "Exercise",
+      "corrected": "Corrected",
+      "correctedLabel": "Includes answers you corrected"
     },
     "course": {
       "back": "Back to my courses",
@@ -798,7 +897,8 @@
         "conversations": "Conversations",
         "material": "Material",
         "settings": "Tutor settings",
-        "students": "Students"
+        "students": "Students",
+        "topics": "Topics"
       },
       "tabs": "Course sections"
     },
@@ -863,8 +963,8 @@
     "flags": {
       "category": "Reason",
       "comment": "Comment",
-      "dialogLead": "Your flag helps improve the tutor. The student won't see it.",
-      "dialogTitle": "Flag the tutor's answer",
+      "dialogLead": "Write the correction your student will see under the answer. Only you see the reason for the flag, and it also helps improve the tutor.",
+      "dialogTitle": "Flag and correct the tutor's answer",
       "emptyBody": "When a tutor answer is incorrect or could be better, flag it from the conversation.",
       "emptyTitle": "You haven't flagged any answers",
       "flag": "Flag answer",
@@ -876,7 +976,7 @@
       "improveHelp": "It's correct but confusing, incomplete or not well suited.",
       "incorrect": "Incorrect",
       "incorrectHelp": "The answer has a content error.",
-      "lead": "The tutor answers you've flagged. The team reviews them to improve the tutor.",
+      "lead": "The tutor answers you corrected. Your students see each correction; the team uses the flags to improve the tutor.",
       "listLabel": "Flagged answers",
       "loadError": "Couldn't load the flags",
       "meta": "{student} · {date}",
@@ -885,8 +985,22 @@
       "pending": "Awaiting review",
       "reviewed": "Reviewed",
       "save": "Save flag",
-      "saved": "Flag saved.",
-      "title": "Flagged answers"
+      "saved": "Correction saved. Your student can see it now.",
+      "title": "Flagged answers",
+      "correction": "Correction for the student",
+      "correctionHelp": "Required. Up to 1000 characters. Your student will see it marked “Reviewed by your teacher”.",
+      "preview": "Preview",
+      "previewTitle": "This is what your student will see",
+      "previewLead": "Your student will see the correction under the tutor's answer. They won't see the reason for the flag.",
+      "saveCorrection": "Save correction",
+      "backToEdit": "Back to editing",
+      "saveFailed": "The correction couldn't be saved. Your text is kept; try again.",
+      "editTitle": "Edit the correction",
+      "saveChanges": "Save changes",
+      "removeTitle": "Remove the correction?",
+      "removeBody": "Your student will no longer see the correction or the “Reviewed by your teacher” mark.",
+      "removeConfirm": "Remove correction",
+      "correctionLabel": "Correction:"
     },
     "fragments": {
       "backToMaterial": "Back to the material",
@@ -904,11 +1018,13 @@
       "results_other": "{count} fragments contain \"{query}\"",
       "searchLabel": "Search the fragments",
       "searchPlaceholder": "For example, \"solve\"",
-      "title": "Fragment review"
+      "title": "Fragment review",
+      "excludeFragment": "Exclude fragment",
+      "excludedTag": "Excluded: the tutor doesn't use this fragment",
+      "excludedCount_one": "{count} excluded fragment",
+      "excludedCount_other": "{count} excluded fragments"
     },
     "material": {
-      "allExcludedBody": "No document is included. Until you include one, the tutor will tell your students that the material doesn't cover their questions.",
-      "allExcludedTitle": "The tutor has no material",
       "backToCourse": "Back to the course",
       "documentsTitle": "Course documents",
       "dropzone": "Drag files here or select files",
@@ -925,7 +1041,7 @@
       "formats": "Formats: PDF, DOCX, Markdown · Maximum size: 20 MB per file",
       "include": "Include in the knowledge base",
       "keepBoth": "Keep both",
-      "lead": "The tutor only answers from the documents you include here. Check how each one was split before including it.",
+      "lead": "The tutor only answers from the documents you validate here. Check how each one was split before validating it.",
       "loadError": "Couldn't load the material",
       "meta": "{pages} pages · {fragments} fragments · uploaded {date}",
       "metaNoPages": "{fragments} fragments · uploaded {date}",
@@ -939,13 +1055,36 @@
         "included": "Included",
         "processing": "Processing… splitting the document into fragments",
         "ready": "Ready",
-        "uploading": "Uploading {percent}"
+        "uploading": "Uploading {percent}",
+        "validated": "Validated",
+        "pending": "Pending validation"
       },
       "title": "Course material",
       "upload": "Upload files",
       "uploadsTitle": "Uploads in progress",
       "usingCount": "The tutor uses {used} of {total} documents.",
-      "usingNone": "The tutor uses no documents."
+      "usingNone": "The tutor uses no documents.",
+      "noValidatedTitle": "The tutor has no validated material",
+      "noValidatedBody": "No document is validated. Until one is, the tutor will tell your students that the material doesn't cover their questions.",
+      "validatedBy": "by {name} · {date}",
+      "pendingNote": "The tutor won't use it until you validate it.",
+      "excludedNote": "The tutor doesn't use this document.",
+      "validate": "Validate",
+      "excludeDocument": "Exclude document",
+      "validateTitle": "Validate “{name}”?",
+      "validateBody": "The tutor will start using this document in its answers, except for any fragments you excluded.",
+      "validateConfirm": "Validate document",
+      "excludeTitle": "Exclude “{name}”?",
+      "excludeBody": "The tutor will stop using this document. You can validate it again at any time.",
+      "excludeConfirm": "Exclude document",
+      "validatedToast": "“{name}” is validated. The tutor can now use it.",
+      "excludedToast": "“{name}” is excluded. The tutor no longer uses it.",
+      "excludedFragments_one": "{count} excluded fragment",
+      "excludedFragments_other": "{count} excluded fragments",
+      "topicsLabel": "Topics:",
+      "assignTopics": "Assign topics",
+      "unassignedSection_one": "{count} section with no topic",
+      "unassignedSection_other": "{count} sections with no topic"
     },
     "questions": {
       "approved": "Approved",
@@ -1049,6 +1188,77 @@
         "neutralHelp": "Direct, without colloquial expressions."
       },
       "unsaved": "You have unsaved changes."
+    },
+    "student": {
+      "pageTitle": "Student",
+      "subtitle": "Student · {course}",
+      "period": "Period",
+      "activityTitle": "Activity",
+      "progressTitle": "Progress by topic",
+      "errorsTitle": "Most frequent error types",
+      "sessions_one": "{count} session",
+      "sessions_other": "{count} sessions",
+      "exercises_one": "{count} exercise",
+      "exercises_other": "{count} exercises",
+      "quizzes_one": "{count} quiz",
+      "quizzes_other": "{count} quizzes",
+      "atRiskReason": "Listed here because they have had no activity for 7 days and 6 of their last 10 exercises have mistakes.",
+      "errorTypeTitle": "“{type}” mistakes",
+      "errorTypeLead": "Each mistake links to the exercise or conversation where it happened.",
+      "where": "See where it happened",
+      "backToRecord": "Back to the record",
+      "emptyTitle": "{name} has no activity yet",
+      "emptyBody": "Once they use the tutor, submit exercises or take quizzes, you'll see their progress and mistakes here.",
+      "loadError": "The student's data couldn't be loaded",
+      "notStarted": "No activity on this topic yet."
+    },
+    "topics": {
+      "pageTitle": "Course topics",
+      "title": "Course topics",
+      "back": "Back to the course",
+      "lead": "Topics are the course's learning objectives. Mistakes, quizzes, the dashboard and progress are grouped by these topics.",
+      "listLabel": "Topics, in order",
+      "sections_one": "{count} section assigned",
+      "sections_other": "{count} sections assigned",
+      "up": "Move up",
+      "down": "Move down",
+      "rename": "Rename",
+      "delete": "Delete",
+      "newLabel": "New topic",
+      "nameLabel": "Topic name",
+      "nameHelp": "1 to 60 characters. It can't repeat a topic the course already has.",
+      "add": "Add topic",
+      "addFirst": "Add the first topic",
+      "saveName": "Save name",
+      "added": "“{name}” was added. Assign sections to it from the material.",
+      "reordered": "“{name}” moved up one place.",
+      "emptyTitle": "No topics yet",
+      "emptyBody": "Topics are the course's learning objectives. Create the first one, then assign each document or section to its topics.",
+      "deleteTitle": "Delete “{name}”?",
+      "deleteBody": "{count} sections will have no topic. Mistakes already recorded keep the topic's name, marked as deleted.",
+      "deleteConfirm": "Delete topic",
+      "loadError": "The topics couldn't be loaded",
+      "unassignedTitle": "Some sections have no topic",
+      "unassignedBody": "Assign them a topic so their mistakes and progress are grouped correctly.",
+      "assign": "Assign topics",
+      "manage": "Manage topics",
+      "deletedSuffix": "they belonged to the deleted topic “{name}”"
+    },
+    "topicAssignment": {
+      "pageTitle": "Assign topics",
+      "title": "Assign topics",
+      "lead": "Check each section's topic. Suggested topics don't count until you confirm them.",
+      "topicFor": "Section topic",
+      "none": "No topic",
+      "suggested": "Suggested",
+      "confirmed": "Confirmed",
+      "confirmLabel": "Confirmed",
+      "confirmAll": "Confirm all",
+      "save": "Save topics",
+      "saved": "Topics saved. Only confirmed topics count.",
+      "suggestionsError": "The suggestions couldn't be loaded. You can assign the topics by hand.",
+      "loadError": "The sections couldn't be loaded",
+      "listLabel": "Document sections"
     }
   }
 }

@@ -35,7 +35,10 @@ test.describe("F14 · Adaptive quiz", () => {
     await gotoState(page, "student/quiz.html", "correct");
     await page.getByRole("button", { name: "Siguiente pregunta" }).click();
     await expect(page).toHaveURL(/state=difficulty-up/);
-    await expect(page.getByRole("status").filter({ hasText: "Subimos el nivel" })).toBeVisible();
+    await expect(page.getByRole("status").filter({ hasText: "Subimos el nivel porque has acertado 3 seguidas" })).toBeVisible();
+    await gotoState(page, "student/quiz.html", "difficulty-down");
+    await expect(page.getByRole("status").filter({ hasText: "Bajamos el nivel porque has fallado 2 seguidas" })).toBeVisible();
+    await expect(page.locator('[data-component="DecisionReason"]:visible')).toHaveCount(1);
   });
 
   scenario("US-11 AS4", "the summary shows the score by topic and next steps", async ({ page }) => {

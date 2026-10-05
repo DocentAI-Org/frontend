@@ -35,6 +35,10 @@ test.describe("F9 · Exercise feedback", () => {
     await expect(main.locator('[data-mistake="true"]')).toContainText("Paso 2");
     await expect(main.locator('[data-component="SourceCitation"]').first()).toBeVisible();
     await expect(main).not.toContainText(/(?<![\d−])x = −4/);
+    const tag = main.locator('[data-component="ErrorTypeTag"]');
+    await expect(tag).toContainText("Error de signo al quitar paréntesis");
+    await expect(tag).toContainText("Ecuaciones de primer grado");
+    await expect(tag.getByRole("link", { name: "Guardado en tu progreso" })).toHaveAttribute("href", /student\/progress\.html/);
     await main.getByRole("button", { name: /Ver fuente/ }).first().click();
     await expect(page.getByRole("dialog", { name: "Fuente citada" })).toContainText("§ 3.2");
   });
@@ -56,5 +60,13 @@ test.describe("F9 · Exercise feedback", () => {
     await gotoState(page, "student/exercise.html", "unreadable-photo");
     await expect(page.getByRole("alert")).toContainText("No se puede leer la foto");
     await expect(page.getByLabel(/Foto de tu trabajo/)).toHaveAttribute("aria-invalid", "true");
+  });
+
+  scenario("US-06 AS7", "feedback the teacher corrected shows the teacher's correction", async ({ page }) => {
+    await gotoState(page, "student/exercise-feedback.html", "corrected");
+    const correction = page.locator('[data-component="TeacherCorrection"]:visible');
+    await expect(correction).toContainText("Revisado por tu profesor/a");
+    await expect(correction).toContainText("2x − 4x = 2 + 6");
+    await expect(page.locator("main")).toContainText("Corregida");
   });
 });

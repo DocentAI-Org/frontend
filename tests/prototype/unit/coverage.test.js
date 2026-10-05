@@ -29,9 +29,9 @@ describe("coverage against the contract and plan", () => {
   const contract = contractStates();
   const mobile = planMobile();
 
-  it("finds all 31 pages in the contract and the plan", () => {
-    expect(Object.keys(contract)).toHaveLength(31);
-    expect(Object.keys(mobile)).toHaveLength(31);
+  it("finds all 33 pages in the contract and the plan", () => {
+    expect(Object.keys(contract)).toHaveLength(33);
+    expect(Object.keys(mobile)).toHaveLength(33);
   });
 
   it("has a manifest entry for every contract page", () => {

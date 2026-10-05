@@ -1,11 +1,30 @@
 # Contract: Prototype Pages
 
-**Feature**: [spec.md](../spec.md) · **Plan**: [plan.md](../plan.md) · **Date**: 2026-10-04
+**Feature**: [spec.md](../spec.md) · **Plan**: [plan.md](../plan.md) · **Date**: 2026-10-04 · **Revised**: 2026-10-06
 
 This is the interface the prototype offers to its users: reviewers, facilitators, the spec's
 "Prototype pages" table and the test suite. Links in the spec and in `validation.md` depend on
 it. A change to a page path or a state ID is a breaking change: update the spec links and the
 tests in the same commit.
+
+**Revision 2026-10-06** (research R-21 to R-28). Breaking changes, each to be made in one commit
+with its spec links and tests:
+- page `teacher/student-risk.html` → `teacher/student.html` (#27, now every student's detail);
+- state `all-excluded` → `no-validated` on `teacher/material.html` (#17).
+
+Added: pages #33 `teacher/topics.html` and #34 `teacher/topic-assignment.html`, and these states:
+- #8 `student/chat.html`: corrected, adapted, adapted-basis, tutor-info;
+- #10 `student/chat-guided.html`: adapted-hint;
+- #12 `student/exercise-feedback.html`: corrected;
+- #17 `teacher/material.html`: pending-validation, validate-confirm, validated, exclude-confirm,
+  document-excluded, no-validated (replaces all-excluded), unassigned-topics;
+- #18 `teacher/fragments.html`: fragment-excluded;
+- #24 `teacher/conversation.html`: correction-preview, correction-editing,
+  remove-correction-confirm, save-failed, adapted;
+- #27 `teacher/student.html`: at-risk, error-type, empty;
+- #29 `student/quiz.html`: difficulty-down;
+- #32 `student/progress.html`: topic-detail, mastery-basis.
+- #33 `teacher/topics.html` and #34 `teacher/topic-assignment.html`: all states are new.
 
 ## 1. URLs
 
@@ -33,12 +52,13 @@ There is one entry per page, and the index, state panel and tests read only this
   "screen": [8, 9],
   "role": "student",
   "titleKey": "student.chat.pageTitle",
-  "stories": ["US-01"],
-  "requirements": ["S1", "S2", "FR-010", "FR-011", "FR-012", "FR-013", "FR-014"],
+  "stories": ["US-01", "US-16"],
+  "requirements": ["S1", "S2", "S8", "T6", "FR-010", "FR-011", "FR-012", "FR-013", "FR-014", "FR-016", "FR-037"],
   "priority": "P1",
   "mobile": true,
   "states": ["default", "loading", "load-error", "first-use", "tutor-writing", "answer", "citation",
-             "citation-unavailable", "no-source", "low-allowance", "limit-reached", "failed"],
+             "citation-unavailable", "no-source", "low-allowance", "limit-reached", "failed",
+             "corrected", "adapted", "adapted-basis", "tutor-info"],
   "simulate": ["failed", "limit-reached", "load-error"]
 }
 ```
@@ -97,32 +117,37 @@ states below.
 | 5 | `student/consent.html` | default, ai-disclosure, error, revoked |
 | 6 | `student/courses.html` | default, empty, loading, error, several-courses |
 | 7 | `student/join.html` | default, loading, invalid-code, expired-code, disabled-code, confirm |
-| 8–9 | `student/chat.html` | default, loading, load-error, first-use, tutor-writing, answer, citation, citation-unavailable, no-source, low-allowance, limit-reached, failed |
-| 10 | `student/chat-guided.html` | default, loading, load-error, hint-1, hint-2, citation, hints-done-solution, hints-done-hints-only, solution, no-source, limit-reached |
+| 8–9 | `student/chat.html` | default, loading, load-error, first-use, tutor-writing, answer, citation, citation-unavailable, no-source, low-allowance, limit-reached, failed, corrected, adapted, adapted-basis, tutor-info |
+| 10 | `student/chat-guided.html` | default, loading, load-error, hint-1, hint-2, citation, hints-done-solution, hints-done-hints-only, solution, no-source, limit-reached, adapted-hint |
 | 11 | `student/exercise.html` | default, review, loading, empty-submission, unreadable-photo, limit-reached |
-| 12 | `student/exercise-feedback.html` | default, pending, citation, no-source, error, repeated-mistake |
+| 12 | `student/exercise-feedback.html` | default, pending, citation, no-source, error, repeated-mistake, corrected |
 | 13 | `student/profile.html` | default, loading, error, revoke-confirm, revoked |
 | 14 | `teacher/courses.html` | default, empty, loading, error |
 | 15 | `teacher/course-new.html` | default, validation-error, loading |
 | 16 | `teacher/course.html` | default, no-students, loading, error, code-copied, code-disabled, regenerate-confirm, code-regenerated |
-| 17 | `teacher/material.html` | default, empty, loading, error, uploading, processing, file-error, all-excluded, duplicate |
-| 18 | `teacher/fragments.html` | default, loading, error, search-results, search-empty |
+| 17 | `teacher/material.html` | default, empty, loading, error, uploading, processing, file-error, pending-validation, validate-confirm, validated, exclude-confirm, document-excluded, no-validated (was all-excluded), unassigned-topics, duplicate |
+| 18 | `teacher/fragments.html` | default, loading, error, search-results, search-empty, fragment-excluded |
 | 19 | `teacher/tutor-settings.html` | default, loading, load-error, hints-only, preview, unsaved, saved, save-failed |
 | 20 | `admin/users.html` | default, empty, loading, error |
 | 21 | `admin/teacher-new.html` | default, validation-error, loading, created |
 | 22 | `admin/courses.html` | default, empty, loading, error |
-| 23 | `teacher/conversations.html` | default, empty, loading, error, filtered, no-results |
-| 24 | `teacher/conversation.html` | default, loading, error, flag-dialog, flagged |
-| 25 | `teacher/flags.html` | default, empty, loading, error |
+| 23 | `teacher/conversations.html` | default (includes exercise feedback and a corrected marker), empty, loading, error, filtered, no-results |
+| 24 | `teacher/conversation.html` | default, loading, error, flag-dialog (with correction field), correction-preview, flagged (with correction), correction-editing, remove-correction-confirm, save-failed, adapted |
+| 25 | `teacher/flags.html` | default (each flag shows its correction), empty, loading, error |
 | 26 | `teacher/dashboard.html` | default (by topic), by-student, not-enough-data, loading, error |
-| 27 | `teacher/student-risk.html` | default, loading, error |
+| 27 | `teacher/student.html` | default (not at risk), at-risk, error-type, empty, loading, error |
 | 28 | `teacher/questions.html` | default (pending), editing, approved, rejected, empty, loading, error |
-| 29 | `student/quiz.html` | default, correct, citation, incorrect, difficulty-up, empty, loading, error |
+| 29 | `student/quiz.html` | default, correct, citation, incorrect, difficulty-up (with reason), difficulty-down, empty, loading, error |
 | 30 | `student/quiz-summary.html` | default, loading, error |
 | 31 | `student/practice.html` | default, citation, no-source, loading, error |
-| 32 | `student/progress.html` | default, empty, loading, error |
+| 32 | `student/progress.html` | default (mastery and timeline per topic; last updated), topic-detail, mastery-basis, empty, loading, error |
+| 33 | `teacher/topics.html` | default, empty, loading, error, added, editing, reordered, delete-confirm, unassigned |
+| 34 | `teacher/topic-assignment.html` | default (with suggestions), confirmed, suggestions-error, loading, error |
 
-On `student/exercise-feedback.html`, `default` is the feedback-ready view. Flows arrive at
+Page #27 was `teacher/student-risk.html` until 2026-10-06. The states added on 2026-10-06 are
+listed in the revision note at the top of this contract. On `student/exercise-feedback.html`, `default` is the
+feedback-ready view, and since 2026-10-06 it includes the `ErrorTypeTag` and "Guardado en tu
+progreso" (US6 AS3). Flows arrive at
 `?state=pending` after a submission, and it advances to `default`.
 
 ## 5. Copy keys
@@ -142,7 +167,7 @@ On `student/exercise-feedback.html`, `default` is the feedback-ready view. Flows
 | Guarantee | Test |
 |---|---|
 | Every manifest state renders with no axe violations (WCAG 2.2 A/AA) at 1440 px, and at 390 px when `mobile` | `e2e/a11y-sweep` |
-| Each flow F1–F15 can be clicked through, and every acceptance scenario it covers is its own `test()` titled with its ID | `e2e/flow-f01` … `flow-f15` |
+| Each flow F1–F18 can be clicked through, and every acceptance scenario it covers is its own `test()` titled with its ID | `e2e/flow-f01` … `flow-f18` |
 | ES/EN key parity; no missing keys | `unit/messages` |
 | No hex/rgb or arbitrary `[..]` values outside `theme.css` | `unit/no-hardcoded-values` |
 | Manifest ↔ files consistent; every `data-state` value is a declared state; every declared state has markup | `unit/manifest` |

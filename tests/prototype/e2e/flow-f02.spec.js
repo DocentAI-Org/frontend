@@ -45,7 +45,7 @@ test.describe("F2 · Ask the tutor and see the sources", () => {
     const dialog = page.getByRole("dialog", { name: /Antes de empezar/ });
     await expect(dialog).toBeVisible();
     await expect(dialog).toContainText("inteligencia artificial");
-    await expect(dialog).toContainText("solo con el material");
+    await expect(dialog).toContainText("solo con el material que ha validado tu profesor/a");
     await expect(dialog).toContainText("tu profesor/a puede revisar");
     await expect(page.locator("dialog:modal")).toHaveCount(1);
     await expect(page.getByRole("button", { name: "Enviar" }).click({ trial: true, timeout: 1000 })).rejects.toThrow();
@@ -94,5 +94,19 @@ test.describe("F2 · Ask the tutor and see the sources", () => {
     await expect(page.getByText(/no cuenta para tu límite/)).toBeVisible();
     await page.getByRole("button", { name: "Reintentar" }).click();
     await expect(page).toHaveURL(/state=tutor-writing|state=answer/);
+  });
+
+  scenario("US-01 AS9", "the chat header shows the level, tone and solution policy the teacher chose", async ({ page }) => {
+    await gotoState(page, "student/chat.html", "answer");
+    await page.getByRole("button", { name: "Cómo responde el tutor" }).click();
+    await expect(page).toHaveURL(/state=tutor-info/);
+    const dialog = page.getByRole("dialog");
+    await expect(dialog).toContainText("Tu profesor/a ha elegido");
+    await expect(dialog).toContainText("Intermedio");
+    await expect(dialog).toContainText("Cercano");
+    await expect(dialog).toContainText("la solución");
+    await dialog.getByRole("button", { name: "Entendido" }).click();
+    await expect(dialog).toBeHidden();
+    await expect(page.getByRole("button", { name: "Cómo responde el tutor" })).toBeFocused();
   });
 });

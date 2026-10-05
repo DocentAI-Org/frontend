@@ -151,6 +151,37 @@
       "linear": "Ecuaciones de primer grado",
       "polynomials": "Polinomios",
       "systems": "Sistemas de ecuaciones"
+    },
+    "validation": {
+      "date": "6 oct 2026"
+    },
+    "corrections": {
+      "chatQuestion": "¿2(x − 3) es lo mismo que 2x − 3?",
+      "chatWrong": "Sí: al quitar el paréntesis queda 2x − 3.",
+      "chat": "No: el 2 multiplica a los dos términos del paréntesis, así que 2(x − 3) = 2x − 6. Repasa la propiedad distributiva en el Tema 3.",
+      "feedback": "Bien señalado el paso 2. Añado: el −6 pasa al otro lado como +6, así que el paso 2 debe ser 2x − 4x = 2 + 6. Termina tú los pasos siguientes."
+    },
+    "adaptation": {
+      "reason": "Te lo explico paso a paso porque esta semana has pasado 3 veces un término sin cambiarle el signo."
+    },
+    "record": {
+      "lucasEvent1": "Ecuaciones de primer grado pasó a «En progreso» tras 3 ejercicios correctos seguidos",
+      "lucasEvent2": "Quiz de Ecuaciones de primer grado: 3 de 5",
+      "lucasEvent3": "Empezó Ecuaciones de primer grado",
+      "systemsEvent1": "Empezó Sistemas de ecuaciones",
+      "riskEvent1": "Error de signo al quitar paréntesis por tercera vez",
+      "riskEvent2": "Ecuaciones de primer grado bajó a «Empezando»",
+      "mistake1": "Resuelve 2(x − 3) = 4x + 2 · paso 2",
+      "mistake2": "Resuelve 5x − 4 = 2x + 8 · paso 1"
+    },
+    "topicAssignment": {
+      "s31": "§ 3.1 Qué es una ecuación",
+      "s32": "§ 3.2 Despejar la incógnita",
+      "s33": "§ 3.3 Ecuaciones con paréntesis",
+      "s34": "§ 3.4 Problemas con ecuaciones",
+      "polyUnassigned": "§ 4 Factorizar trinomios",
+      "newTopic": "Inecuaciones",
+      "polyDeleted": "§ 1 Qué es un polinomio, § 2 Operaciones con polinomios"
     }
   }
 }

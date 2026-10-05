@@ -16,8 +16,13 @@ plan.md › Constitution Check). Unit tests are written and seen failing before 
 Each story's Playwright flow tests are written before its pages and fail until they exist. Every acceptance scenario is its own `test()`, titled with its ID (e.g. `US-01 AS3 citation opens`), inside a serial `test.describe` per flow, so each scenario has at least one E2E test (Constitution V). The axe
 sweep (Phase 2) covers every page and state as soon as it appears in the manifest.
 
-**Organization**: Tasks are grouped by user story (US1 … US13, as numbered in spec.md) so each
+**Organization**: Tasks are grouped by user story (US1 … US16, as numbered in spec.md) so each
 story's pages and flows can be built and reviewed on their own.
+
+**Revision 2026-10-06**: Phases 17–28 (T115–T156) add the spec revision of 2026-10-06 (plan.md ›
+Revision, research R-21 to R-28) to the built prototype. Done tasks T001–T104 and T114 are kept
+as they were. The open tasks T105–T113 now run **after** Phase 28, and T106, T108, T109 and T113
+were updated for the revision.
 
 ## Format: `[ID] [P?] [Story] Description`
 
@@ -143,7 +148,7 @@ Read these once. Every page task assumes them.
   - every `data-state` value used in a page is one of that page's states;
   - every entry has `stories`, `requirements`, `priority` and `mobile`;
   - every ID in the optional `simulate` array is one of the entry's states.
-- [X] T021 [P] Write tests/prototype/unit/components.test.js. Every `data-component` value in `public/prototype/**/*.html` must be in the list from plan.md › Components (Button, IconButton, TextField, TextArea, Select, Toggle, RadioGroup, Card, Dialog, Toast, EmptyState, ErrorState, Skeleton, AccessDenied, AppShell, LanguageSwitcher, ImfaheAcknowledgement, ChatMessage, ChatComposer, SourceCitation, CitationSheet, NoSourceNotice, AIDisclosure, MessageAllowance, LimitReachedBanner, GuidedModeIndicator, FileUploadItem, DocumentRow, FragmentItem, ClassCode, FlagControl, QuizQuestion, ProgressByTopic)
+- [X] T021 [P] (Component list extended on 2026-10-06 by T115.) Write tests/prototype/unit/components.test.js. Every `data-component` value in `public/prototype/**/*.html` must be in the list from plan.md › Components (Button, IconButton, TextField, TextArea, Select, Toggle, RadioGroup, Card, Dialog, Toast, EmptyState, ErrorState, Skeleton, AccessDenied, AppShell, LanguageSwitcher, ImfaheAcknowledgement, ChatMessage, ChatComposer, SourceCitation, CitationSheet, NoSourceNotice, AIDisclosure, MessageAllowance, LimitReachedBanner, GuidedModeIndicator, FileUploadItem, DocumentRow, FragmentItem, ClassCode, FlagControl, QuizQuestion, ProgressByTopic)
 
 ### Manifest, copy and assets
 
@@ -455,7 +460,7 @@ Read these once. Every page task assumes them.
 
 ---
 
-## Phase 10: User Story 8 — Teacher reviews conversations and flags answers (Priority: P2)
+## Phase 10: User Story 8 — Teacher reviews conversations and flags answers (Priority: P2; P1 since 2026-10-06, see Phase 21)
 
 **Goal**: Conversation review and flagging (T4, T6)
 
@@ -537,7 +542,7 @@ Read these once. Every page task assumes them.
 
 ---
 
-## Phase 15: User Story 13 — Student views progress by topic (Priority: P3)
+## Phase 15: User Story 13 — Student views progress by topic (Priority: P3; P2 since 2026-10-06, see Phase 26)
 
 **Goal**: Progress per topic from the student's own activity (S7)
 
@@ -557,21 +562,228 @@ Read these once. Every page task assumes them.
 **Purpose**: Cross-story flows, coverage audits, usability validation and spec traceability
 
 - [X] T099 Extend tests/prototype/e2e/flow-f02.spec.js to start at `auth/sign-in.html` and add the tests `US-07 AS1` and `US-07 AS2` (student link → consent → courses → chat). Point the "Entendido, continuar" link in public/prototype/student/consent.html to `courses.html` (it goes to `chat.html?state=first-use` until the US4 pages exist). Extend tests/prototype/e2e/flow-f01.spec.js to start at `teacher/courses.html` → course.html → material.html. Wire any missing links and run `npm run test:e2e`
-- [X] T100 [P] Coverage audit: compare pages.json with the contract §4 state table and plan.md › Pages and states (31 pages, every listed state, `mobile` matches "M"), then fix any gaps in public/prototype/ (SC-005)
+- [X] T100 [P] Coverage audit (superseded on 2026-10-06 by T116 and T153, 33 pages): compare pages.json with the contract §4 state table and plan.md › Pages and states (31 pages, every listed state, `mobile` matches "M"), then fix any gaps in public/prototype/ (SC-005)
 - [X] T101 [P] Check that `ImfaheAcknowledgement` is on sign-in.html and about.html, and reachable in ≤1 click/tap from every role's home through the footer partial (SC-007). Add a test for this to tests/prototype/e2e/flow-f05.spec.js
 - [X] T102 [P] Check that every chat, guided-chat and exercise page shows the AI label, the teacher-review notice and `MessageAllowance` (FR-010, FR-011, FR-014). Add an assertion over those pages to tests/prototype/e2e/a11y-sweep.spec.js or a new tests/prototype/e2e/student-shell.spec.js
 - [X] T103 [P] Check that no sample name matches a team member or participant and that every email uses `example.org`, in public/prototype/assets/sample/es.json and en.json. Record the check in specs/001-mvp-prototype/validation.md
 - [X] T104 [P] Do the ES/EN review (1440 px, and 390 px where `mobile`) and the keyboard-only pass (Tab order follows the visual order, visible focus, dialog focus trap and return) for every P2/P3 page (US8–US13), and log the results in specs/001-mvp-prototype/validation.md (FR-004)
 - [ ] T105 Run `npm run lint`, `npm run typecheck`, `npm test`, `npm run test:e2e` and `npm run build`; all must pass. Then deploy a Vercel preview and confirm that `/prototype` loads on a phone over mobile data in under 2 s
-- [ ] T106 **(Team)** Get the pedagogy team's review of the student-facing copy (ES/EN) and of the guided-mode flow, and record the sign-off for SC-006 in specs/001-mvp-prototype/validation.md
+- [ ] T106 **(Team)** Get the pedagogy team's review of the student-facing copy (ES/EN), the guided-mode flow, and the wording of adaptation reasons, difficulty-change reasons and teacher corrections (SC-006 as revised 2026-10-06), and record the sign-off in specs/001-mvp-prototype/validation.md
 - [ ] T107 **(Team)** Check whether the Vercel preview has Deployment Protection enabled; if so, create a shareable preview link or protection bypass for the session deployment so participants can open it without a Vercel login. Then prepare the sessions per quickstart.md B1: participant links (`?panel=0`) and facilitator links per flow, consent form, private recording storage, and session sheets (materials outside the repo); then set the cover status in public/prototype/index.html to "En validación"
-- [ ] T108 **(Team)** Run ≥5 student sessions (own phone) with tasks S-1 to S-5 and the comprehension questions, per specs/001-mvp-prototype/quickstart.md B3–B5
-- [ ] T109 [P] **(Team)** Run ≥3 teacher sessions (desktop) with tasks T-1 to T-3, plus 1 admin run (A-1), per specs/001-mvp-prototype/quickstart.md
+- [ ] T108 **(Team)** Run ≥5 student sessions (own phone) with tasks S-1 to S-6 and comprehension questions 1–6 (questions 5–6 measure SC-008), per specs/001-mvp-prototype/quickstart.md B3–B5
+- [ ] T109 [P] **(Team)** Run ≥3 teacher sessions (desktop) with tasks T-1 to T-6 (T-6 measures SC-008), plus 1 admin run (A-1), per specs/001-mvp-prototype/quickstart.md
 - [ ] T110 **(Team)** Write anonymised findings in specs/001-mvp-prototype/validation.md within 24 h of each session (participant codes, page + state link, severity, spec IDs), then delete the recordings and note the deletion date
 - [ ] T111 Apply the critical and major findings: behavior changes go into specs/001-mvp-prototype/spec.md first, then public/prototype/; log each decision with its spec revision in specs/001-mvp-prototype/validation.md; keep `npm test` and `npm run test:e2e` green
 - [ ] T112 **(Team)** If any critical finding was fixed, re-test the changed P1 flows with ≥2 new participants (quickstart.md B8)
-- [ ] T113 Fill in the SC-001 to SC-007 results table in specs/001-mvp-prototype/validation.md. When all pass, set the cover status in public/prototype/index.html to "Validado" with the date and version
+- [ ] T113 Fill in the SC-001 to SC-008 results table in specs/001-mvp-prototype/validation.md. When all pass, set the cover status in public/prototype/index.html to "Validado" with the date and version
 - [X] T114 Fill the "Prototype pages" table in specs/001-mvp-prototype/spec.md with links (`/prototype/<page>.html`) per user story (FR-052)
+
+---
+
+## Phase 17: Revision foundation (2026-10-06)
+
+**Purpose**: Shared checks, sample data, components and the two breaking renames that the
+revision's story phases build on. Contract and plan already describe 33 pages, so the coverage
+test (T116) stays red until Phase 28; every other unit test must stay green.
+
+- [X] T115 [P] Extend `COMPONENTS` in tests/prototype/unit/components.test.js with the new names from plan.md › Components: `TeacherCorrection`, `ValidationStatus`, `AdaptedBadge`, `AdaptationSheet`, `DecisionReason`, `ErrorTypeTag`, `ErrorTypeList`, `MasteryLevel`, `ProgressTimeline`, `TopicList`, `TopicAssignmentRow`. Run `npm test -- components` (passes: none is used yet)
+- [X] T116 [P] Change tests/prototype/unit/coverage.test.js from 31 to 33 pages (title and both `toHaveLength`). Run `npm test -- coverage` and confirm it fails only on the pages and states added on 2026-10-06 (contract revision note); it must pass at T153
+- [X] T117 [P] Add the 2026-10-06 sample content from plan.md › Sample Content to public/prototype/assets/sample/es.json and en.json: validation (validator and date for "Tema 3", "Apuntes – Sistemas" pending, 3 excluded fragments), the ordered topic list and the unassigned section, the three error types, the learning records of Lucas (not at risk), Estudiante-07 (at risk, the existing at-risk sample, "Error de signo…" ×5) and Mateo (no activity), the two corrections and the adaptation reason. Keep every name fictitious and every email on `example.org`; run `npm test -- sample-data messages`
+- [X] T118 Add these shared components to public/prototype/design-system.html, each with its `data-component` and ES/EN keys under `common.*`:
+  - `DecisionReason` (R-24): info icon + one sentence; inline variant, and a "¿Por qué?" disclosure variant (`button` with `aria-expanded`, `aria-controls`);
+  - `ErrorTypeTag` (R-27): "Tipo de error: … · Tema: …" plus "Guardado en tu progreso" link;
+  - `ErrorTypeList` (R-26): error type, count (`_one`/`_other`), link to an example;
+  - `MasteryLevel` (R-26): "Empezando", "En progreso", "Dominado" as text plus a three-segment indicator that is `aria-hidden`;
+  - `ProgressTimeline` (R-26): an ordered list of dated entries (`data-i18n-date`);
+  - `TeacherCorrection` (R-22): student view (teacher icon, "Revisado por tu profesor/a", date, correction text; the corrected answer gets a "Corregida" tag, no strikethrough) and teacher view (adds the flag category and "Editar corrección" / "Quitar corrección").
+
+  Run `npm test` (except coverage) and `npm run test:e2e -- a11y-sweep`
+- [X] T119 Breaking rename, in **one commit** (contract revision note, R-28): `git mv public/prototype/teacher/student-risk.html public/prototype/teacher/student.html`; update its entry in public/prototype/assets/pages.json (path, `titleKey`, stories `US-09`, `US-15`, requirements `T5`, `T8`); update every link to it in public/prototype/teacher/dashboard.html and any other page (`grep -rn student-risk public tests`); update tests/prototype/e2e/flow-f12.spec.js; update the US9 row of the "Prototype pages" table in specs/001-mvp-prototype/spec.md to `teacher/student.html`. Leave historical mentions in validation.md as they are. Run `npm run test:e2e -- flow-f12 a11y-sweep`
+- [X] T120 Breaking rename, in **one commit**: state `all-excluded` → `no-validated` on public/prototype/teacher/material.html (`data-state` values, any `href="?state=…"` and `data-goto`), its pages.json entry, and tests/prototype/e2e/flow-f01.spec.js. Rename the copy key to `teacher.material.noValidated` (ES/EN) with the new wording: "El tutor no tiene material validado y responderá que el material no cubre las preguntas". Run `npm run test:e2e -- flow-f01 a11y-sweep`
+
+---
+
+## Phase 18: User Story 2 — Teacher validates material (revision, Priority: P1)
+
+**Goal**: Validation as an explicit, recorded act; fragment and document exclusion (T2, R-21)
+
+**Independent Test**: Exclude a fragment, validate a document, exclude another (flow F1)
+
+**Depends on**: T117, T120
+
+- [X] T121 [US2] Update tests/prototype/e2e/flow-f01.spec.js (tests fail until T125):
+  - `US-02 AS5` a processed document shows "Pendiente de validar" and "the tutor does not use it yet"; "Validar" → confirm → "Validado" with "Prof. Elena Ruiz Navarro" and the date;
+  - `US-02 AS6` in fragments.html, excluding a fragment shows the "Excluido" tag, an include-again action and the excluded count;
+  - `US-02 AS7` "Excluir documento" → confirm → "Excluido"; the row offers "Validar" again;
+  - `US-02 AS8` `no-validated` shows the no-validated-material warning.
+- [X] T122 [US2] In public/prototype/design-system.html, add `ValidationStatus` (pending validation: warning tone; validated: success tone with "por {name} · {date}"; excluded: neutral; each with icon and text), and update `DocumentRow` (status badge, validator and date, actions "Validar" and "Excluir documento") and `FragmentItem` (excluded variant: "Excluido" tag in text, an "Excluir fragmento" `Toggle`)
+- [X] T123 [US2] In public/prototype/teacher/material.html, add the states `pending-validation`, `validate-confirm` (`Dialog` with `data-modal`: "El tutor empezará a usar este documento en sus respuestas"), `validated`, `exclude-confirm`, `document-excluded` and keep `no-validated` (T120). The `default` state shows "Tema 3" validated and "Apuntes – Sistemas" pending, with a line stating which documents the tutor uses. Update the pages.json states to match contract §4
+- [X] T124 [P] [US2] In public/prototype/teacher/fragments.html, add the state `fragment-excluded`: each `FragmentItem` has the "Excluir fragmento" switch; the excluded fragment shows the "Excluido" tag and "Volver a incluir"; the header shows "3 fragmentos excluidos" (`_one`/`_other`). Update pages.json
+- [X] T125 [US2] Add the `teacher.material.*` and `teacher.fragments.*` keys (ES/EN), wire flow F1 through the new states, run `npm run test:e2e -- flow-f01 a11y-sweep`, then do the ES/EN review and keyboard pass (confirm dialogs trap and return focus) and log them in specs/001-mvp-prototype/validation.md
+
+---
+
+## Phase 19: User Story 1 — Validated material and the teacher's settings in the chat (revision, Priority: P1)
+
+**Goal**: Disclosure names validated material; students can see the teacher's settings; corrected answers (US1 AS8, tested in F11) (S1, T3)
+
+**Independent Test**: Open the tutor information in the chat header and read level, tone and solution policy (flow F2)
+
+**Depends on**: T118
+
+- [X] T126 [US1] Update tests/prototype/e2e/flow-f02.spec.js (tests fail until T127): `US-01 AS1` expects the disclosure to say the tutor answers from "material validado por tu profesor/a"; add `US-01 AS9` the chat header's tutor information (`?state=tutor-info`) lists level "Intermedio", tone "Cercano", and the solution policy, and says the teacher chose them
+- [X] T127 [US1] In public/prototype/student/chat.html, add the states `tutor-info` (header `IconButton` "Cómo responde el tutor" opens a `Dialog` listing the three settings in plain language, "Lo ha elegido tu profesor/a") and `corrected` (the second tutor answer carries `TeacherCorrection`, student view, with the correction from sample data). Update the `AIDisclosure` copy (first-use and consent.html) to "material validado por tu profesor/a", and add the "Fragmento ya no disponible" text to the unavailable `SourceCitation` variant on design-system.html. Update pages.json, add the `student.chat.*` keys (ES/EN), and run `npm run test:e2e -- flow-f02 a11y-sweep student-shell`
+
+---
+
+## Phase 20: User Story 6 — Classified mistake and corrected feedback (revision, Priority: P1)
+
+**Goal**: Feedback names the error type and topic and links to the learning record; teacher corrections show on feedback (S4, T6)
+
+**Independent Test**: Submit, read the error type and "Guardado en tu progreso", open the corrected variant (flow F9)
+
+**Depends on**: T118
+
+- [X] T128 [US6] Update tests/prototype/e2e/flow-f09.spec.js (tests fail until T129): `US-06 AS3` the feedback shows "Error de signo al quitar paréntesis", "Ecuaciones de primer grado" and a "Guardado en tu progreso" link to `progress.html`; add `US-06 AS7` `?state=corrected` shows "Revisado por tu profesor/a" with the correction
+- [X] T129 [US6] In public/prototype/student/exercise-feedback.html, add `ErrorTypeTag` to `default` (under the verdict), and the state `corrected` with `TeacherCorrection` (student view). Update pages.json, add the `student.exercise.*` keys (ES/EN), run `npm run test:e2e -- flow-f09 a11y-sweep`, and log the ES/EN review in validation.md
+
+---
+
+## Phase 21: User Story 8 — Teacher corrects answers (revision, Priority: P1)
+
+**Goal**: A flag requires a correction that the student sees; edit, remove, save failure; exercise feedback in the list (T4, T6, R-22)
+
+**Independent Test**: Flag an answer, write a correction, preview it, save; the student chat shows it (flow F11)
+
+**Depends on**: T118, T127, T129
+
+- [X] T130 [US8] Rewrite tests/prototype/e2e/flow-f11.spec.js (tests fail until T134):
+  - `US-08 AS1` the list includes exercise-feedback rows and a "Corregida" marker;
+  - `US-08 AS2` the flag dialog's save stays blocked with an error while the correction is empty; with text, the preview shows "Revisado por tu profesor/a"; after saving, the message shows the flag and the correction;
+  - `US-08 AS3` the flags list shows type, correction, date and a link back;
+  - `US-08 AS4` empty state; `US-08 AS5` the student chat's teacher-review label (unchanged);
+  - `US-08 AS6` "Editar corrección" opens `correction-editing`; "Quitar corrección" → `remove-correction-confirm` → the marker is gone;
+  - `US-08 AS7` `save-failed` keeps the typed text and offers "Reintentar";
+  - `US-01 AS8` (student side) `student/chat.html?state=corrected` shows the marker and the correction, and the original answer is still readable.
+- [X] T131 [US8] Update `FlagControl` on public/prototype/design-system.html: the dialog has the category (`RadioGroup`: "Incorrecta", "Mejorable"), a required `TextArea` "Corrección para el estudiante" (validation from data-model.md: "correction required (1–1000 characters)", with `aria-invalid` and an error message), and a live student-view preview using `TeacherCorrection`
+- [X] T132 [US8] In public/prototype/teacher/conversation.html, update `flag-dialog` (with the correction field) and `flagged` (flag plus `TeacherCorrection` teacher view), and add the states `correction-preview`, `correction-editing`, `remove-correction-confirm` and `save-failed` (dialog stays open with the text and a "Reintentar" action). Update pages.json
+- [X] T133 [P] [US8] In public/prototype/teacher/conversations.html, add exercise-feedback rows (type "Ejercicio") and a "Corregida" marker to `default`; in public/prototype/teacher/flags.html, show flag type, an excerpt of the correction, the date and the link back in `default`
+- [X] T134 [US8] Add the `teacher.conversations.*`, `teacher.conversation.*` and `teacher.flags.*` keys (ES/EN), wire flow F11, run `npm run test:e2e -- flow-f11 a11y-sweep`, then do the ES/EN review and keyboard pass and log them in validation.md
+
+---
+
+## Phase 22: User Story 14 — Teacher defines course topics (Priority: P1)
+
+**Goal**: Topic list and confirmed topic assignments (T9, R-25)
+
+**Independent Test**: Add and rename a topic, confirm one suggestion and change another, see unassigned documents (flow F16)
+
+**Depends on**: T117
+
+- [X] T135 [US14] Write tests/prototype/e2e/flow-f16.spec.js with one `test()` per acceptance scenario, titled with its ID, in a serial `test.describe` (fails until T139):
+  - `US-14 AS1` `teacher/topics.html?state=empty` explains topics and offers to add the first one;
+  - `US-14 AS2` add, rename, "Subir"/"Bajar" reorder, and delete with a confirmation that states how many assignments become unassigned;
+  - `US-14 AS3` `teacher/topic-assignment.html` marks suggestions "Sugerido"; confirming one removes the tag; changing another updates its select;
+  - `US-14 AS4` the unassigned warning lists "Ejercicios resueltos – Polinomios" on topics.html and on material.html (`?state=unassigned-topics`);
+  - `US-14 AS5` `suggestions-error` explains the failure and the selects still work.
+- [X] T136 [US14] Add `TopicList` (row, editing row, "Subir"/"Bajar" `IconButton`s, delete) and `TopicAssignmentRow` (section label, topic `Select`, "Sugerido" tag, "Confirmar") to public/prototype/design-system.html
+- [X] T137 [US14] Build public/prototype/teacher/topics.html (#33) with the teacher shell and the states `default`, `empty`, `loading`, `error`, `added`, `editing`, `reordered`, `delete-confirm` and `unassigned` (`added` and `reordered` were added to the contract during implementation so that adding and reordering visibly update the list). Name validation from data-model.md: "name required, 1–60 characters, unique within the course" (show the error in `editing`). Add its pages.json entry (`mobile: false`, P1, stories `US-14`, requirements `T9`, `FR-026`)
+- [X] T138 [P] [US14] Build public/prototype/teacher/topic-assignment.html (#34) with the states `default` (sections of "Tema 3" with suggestions and "Confirmar todas"), `confirmed`, `suggestions-error`, `loading` and `error`. Add its pages.json entry (`mobile: false`, P1)
+- [X] T139 [US14] In public/prototype/teacher/material.html, show each document's confirmed topics with a link to topic-assignment.html, and add the state `unassigned-topics`. Add a "Temas" tab to the course navigation in public/prototype/teacher/course.html, between "Material" and "Configuración del tutor" (the course tabs live there, not in the shell). Add the `teacher.topics.*` and `teacher.topicAssignment.*` keys (ES/EN), wire flow F16, run `npm run test:e2e -- flow-f16 flow-f01 a11y-sweep`, then do the ES/EN review and keyboard pass (reorder works without dragging) and log them in validation.md
+
+---
+
+## Phase 23: User Story 15 — Teacher views a student's learning record (Priority: P2)
+
+**Goal**: One detail page for every student, with the at-risk state (T8, R-26)
+
+**Independent Test**: Open a student not at risk and one at risk, and read progress, error types and activity (flow F17)
+
+**Depends on**: T117, T118, T119
+
+- [X] T140 [US15] Write tests/prototype/e2e/flow-f17.spec.js with one `test()` per acceptance scenario, titled with its ID, in a serial `test.describe` (fails until T141):
+  - `US-15 AS1` Lucas's page shows mastery per topic, a timeline, error types with counts and activity, with a period `Select`;
+  - `US-15 AS2` `?state=at-risk` (Estudiante-07) shows the at-risk indicators and a `DecisionReason`;
+  - `US-15 AS3` selecting an error type (`error-type`) lists that student's mistakes with links to exercise feedback or a conversation;
+  - `US-15 AS4` `empty` (Mateo) says there is no activity;
+  - `US-15 AS5` only the display name or pseudonym is shown (no email).
+- [X] T141 [US15] Rebuild public/prototype/teacher/student.html (#27) with the states `default` (not at risk), `at-risk` (keep the existing indicators, activity series and example errors, plus `DecisionReason`), `error-type`, `empty`, `loading` and `error`, using `ProgressByTopic`, `MasteryLevel`, `ProgressTimeline` and `ErrorTypeList`. Update pages.json, add the `teacher.student.*` keys (ES/EN), wire flow F17, run `npm run test:e2e -- flow-f17 a11y-sweep`, and log the ES/EN review in validation.md
+
+---
+
+## Phase 24: User Story 9 — Dashboard opens every student (revision, Priority: P2)
+
+**Goal**: Every student in the dashboard opens the detail page (T5, T8)
+
+**Independent Test**: Dashboard by student → any student → detail (flow F12)
+
+**Depends on**: T141
+
+- [X] T142 [US9] Update tests/prototype/e2e/flow-f12.spec.js (fails until T143): `US-09 AS2` the at-risk item opens `student.html?state=at-risk`; add `US-09 AS4` a student who is not at risk in `by-student` opens `student.html`
+- [X] T143 [US9] In public/prototype/teacher/dashboard.html, link every row of `by-student` to student.html (at-risk rows to `?state=at-risk`) and the at-risk list to `?state=at-risk`. Run `npm run test:e2e -- flow-f12 a11y-sweep`
+
+---
+
+## Phase 25: User Story 11 — Reason for each difficulty change (revision, Priority: P2)
+
+**Goal**: Difficulty up and down, each with its reason (S6, FR-016)
+
+**Independent Test**: Reach both difficulty changes and read their reasons (flow F14)
+
+**Depends on**: T118
+
+- [X] T144 [US11] Update tests/prototype/e2e/flow-f14.spec.js (fails until T145): `US-11 AS3` `difficulty-up` shows "Subimos el nivel porque has acertado 3 seguidas" and `difficulty-down` shows "Bajamos el nivel porque has fallado 2 seguidas"
+- [X] T145 [US11] In public/prototype/student/quiz.html, add `DecisionReason` to `difficulty-up` and add the state `difficulty-down`. Update pages.json, add the `student.quiz.*` keys (ES/EN), and run `npm run test:e2e -- flow-f14 a11y-sweep`
+
+---
+
+## Phase 26: User Story 13 — Progress over time (revision, Priority: P2)
+
+**Goal**: Mastery per topic over time, error types per topic, the basis of each level (S7, S4, R-26)
+
+**Independent Test**: Open "Mi progreso", a topic and a mastery basis (flow F15, second part)
+
+**Depends on**: T117, T118
+
+- [X] T146 [US13] Replace the US13 tests in tests/prototype/e2e/flow-f15.spec.js (fail until T147):
+  - `US-13 AS1` each topic shows a `MasteryLevel` in text, a timeline and a text basis;
+  - `US-13 AS2` the empty state (unchanged);
+  - `US-13 AS3` `topic-detail` lists the most frequent error types with links to an example;
+  - `US-13 AS4` `default` shows when the page was last updated;
+  - `US-13 AS5` `mastery-basis` expands the "¿Por qué?" disclosure with one sentence.
+- [X] T147 [US13] Update `ProgressByTopic` on public/prototype/design-system.html to contain `MasteryLevel` and `ProgressTimeline`, then update public/prototype/student/progress.html: `default` (all topics, last updated), and the new states `topic-detail` and `mastery-basis`; keep `empty`, `loading` and `error`. Set the pages.json priority to P2, add the `student.progress.*` keys (ES/EN), run `npm run test:e2e -- flow-f15 flow-f09 a11y-sweep`, and log the ES/EN review in validation.md
+
+---
+
+## Phase 27: User Story 16 — Adapted explanations (Priority: P2)
+
+**Goal**: "Adaptado para ti" with a reason and its basis, for students and teachers (S8, R-23)
+
+**Independent Test**: Read an adapted answer and open its basis; see the same label in the teacher's conversation detail (flow F18)
+
+**Depends on**: T118, T127, T132
+
+- [X] T148 [US16] Write tests/prototype/e2e/flow-f18.spec.js with one `test()` per acceptance scenario, titled with its ID, in a serial `test.describe` (fails until T150):
+  - `US-16 AS1` `student/chat.html?state=adapted` shows "Adaptado para ti", the reason sentence and citations;
+  - `US-16 AS2` activating the badge opens `adapted-basis` (bottom sheet at 390 px, side panel at 1440 px) with error type, count and topic and a link to "Mi progreso"; closing returns focus to the badge;
+  - `US-16 AS3` the `answer` state has no badge;
+  - `US-16 AS4` `student/chat-guided.html?state=adapted-hint` shows the badge on a hint and no "Ver solución" when the setting is hints only;
+  - `US-16 AS5` `teacher/conversation.html?state=adapted` shows the same badge and reason.
+- [X] T149 [US16] Add `AdaptedBadge` (chip + `DecisionReason` inline) and `AdaptationSheet` (the `CitationSheet` layout and behaviour) to public/prototype/design-system.html
+- [X] T150 [US16] Add the states `adapted` and `adapted-basis` to public/prototype/student/chat.html, `adapted-hint` to public/prototype/student/chat-guided.html, and `adapted` to public/prototype/teacher/conversation.html. Update pages.json, add the `student.chat.adapted*` and `teacher.conversation.adapted*` keys (ES/EN), wire flow F18, run `npm run test:e2e -- flow-f18 a11y-sweep student-shell`, and log the ES/EN review and keyboard pass in validation.md
+
+---
+
+## Phase 28: Revision polish
+
+**Purpose**: Coverage, cover page, traceability and full gates for the revision. T105–T113 follow.
+
+- [X] T151 Update public/prototype/index.html: list pages #33 and #34 and the renamed #27, and add start links for flows F16, F17 and F18; keep the status "Borrador"
+- [X] T152 [P] Update the "Prototype pages" table in specs/001-mvp-prototype/spec.md: links for US14 (`teacher/topics.html`, `teacher/topic-assignment.html`), US15 (`teacher/student.html`) and US16 (`student/chat.html?state=adapted`, `student/chat-guided.html?state=adapted-hint`, `teacher/conversation.html?state=adapted`); remove "Not built yet" and the sentence about states not built yet (FR-052)
+- [X] T153 Coverage audit for the revision (SC-005): `npm test -- coverage` must now pass (33 pages, every contract state, `mobile` matching "M"); fix any gaps in public/prototype/
+- [X] T154 [P] Do the ES/EN review (1440 px, and 390 px where `mobile`) and keyboard-only pass for every page changed or added in Phases 17–27 that a story task did not already log, and record the revision in the Status table of specs/001-mvp-prototype/validation.md (version 0.2.0, 2026-10-06)
+- [X] T155 [P] Check that the new sample content (T117) has no name matching a team member or participant and that every email uses `example.org`; record it in validation.md
+- [X] T156 Run `npm run lint`, `npm run typecheck`, `npm test`, `npm run test:e2e` and `npm run build` locally; all must pass. Then continue with T105
 
 ---
 
@@ -591,10 +803,12 @@ Read these once. Every page task assumes them.
 
   Recommended order is by priority: US1 → US2 → US3 → US4 → US5 → US6 → US7 (P1), then US8–US12 (P2), then US13 (P3).
 - **Polish (Phase 16)**: T099 needs US1, US2, US4 and US7. The sessions (T108/T109) need all P1 phases (flows F1–F10). T113/T114 need T111/T112.
+- **Revision (Phases 17–28, 2026-10-06)**: Phase 17 first; T119 and T120 are breaking renames and each is one commit. Then, by priority: Phase 18 (US2), 19 (US1), 20 (US6), 21 (US8, needs T127 and T129), 22 (US14) for P1; then 23 (US15, needs T119), 24 (US9, needs T141), 25 (US11), 26 (US13), 27 (US16, needs T127 and T132) for P2; then Phase 28. **T105–T113 run after T156**, so the sessions test the revised prototype (R-28).
 
 ### Shared files (run edits to them in sequence)
 
-- `public/prototype/design-system.html`: T027–T030, T041, T048, T057, T066, T087, T092, T098.
+- `public/prototype/design-system.html`: T027–T030, T041, T048, T057, T066, T087, T092, T098; revision: T118, T122, T127, T131, T136, T147, T149.
+- `public/prototype/student/chat.html`: T127, T150. `public/prototype/teacher/conversation.html`: T132, T150. `public/prototype/teacher/material.html`: T120, T123, T139. `tests/prototype/e2e/flow-f01.spec.js`: T120, T121. `tests/prototype/e2e/flow-f12.spec.js`: T119, T142.
 - `public/prototype/assets/pages.json` and `assets/messages/{es,en}.json`: every page task adds to them. When working in parallel, add entries in separate commits and rebase; the files are JSON, so keep keys sorted to make conflicts trivial.
 
 ### Within each story
@@ -622,6 +836,20 @@ Task: "T040 [US1] flow-f04.spec.js (limit, chat part)"
 Task: "T041 [US1] Student AI components on design-system.html"
 Task: "T042 [US1] consent.html"   # [P] alongside T043 once T041 is done
 Task: "T043 [US1] chat.html"
+```
+
+## Parallel Example: Revision
+
+```text
+# Phase 17, together:
+Task: "T115 components.test.js list"
+Task: "T116 coverage.test.js 33 pages"
+Task: "T117 sample data ES/EN"
+
+# After Phase 17, different people:
+Task: "Phase 18 (US2) material and fragments"     # teacher material
+Task: "Phase 19–20 (US1, US6) student pages"      # student chat and feedback
+Task: "Phase 22 (US14) topics pages"              # new teacher pages
 ```
 
 ## Parallel Example: User Story 7
@@ -653,6 +881,13 @@ Task: "T083 [US7] admin/courses.html"
 3. Add the P2 stories (US8–US12) as happy paths, and validate them with teachers in the same round
    or a later one.
 4. Add US13 (P3) last, if time allows before the progress report due December 1st, 2026.
+
+### Revision delivery (2026-10-06)
+
+1. Phase 17, then the P1 revision phases (18–22). Stop and check flows F1, F2, F9, F11 and F16.
+2. The P2 revision phases (23–27), then Phase 28.
+3. Only then T105 (preview) and the validation sessions T106–T113, with the revised tasks and
+   SC-008.
 
 ---
 

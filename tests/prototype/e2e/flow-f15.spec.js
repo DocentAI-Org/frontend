@@ -36,12 +36,14 @@ test.describe("F15 · Repeated mistakes", () => {
 });
 
 test.describe("F15 · Progress by topic", () => {
-  scenario("US-13 AS1", "each topic shows progress with its basis in text", async ({ page }) => {
+  scenario("US-13 AS1", "each topic shows its mastery level, a timeline and a text basis", async ({ page }) => {
     await gotoState(page, "student/progress.html");
     const items = page.locator('[data-component="ProgressByTopic"]:visible');
     await expect(items).toHaveCount(4);
+    await expect(items.first().locator('[data-component="MasteryLevel"]')).toContainText("En progreso");
+    await expect(items.first().locator('[data-component="ProgressTimeline"] li')).toHaveCount(3);
     await expect(items.first()).toContainText("6 de 10 ejercicios correctos");
-    await expect(items.first().getByRole("progressbar")).toHaveAttribute("aria-valuenow", "60");
+    await expect(page.locator("main")).toContainText("Tu profesor/a también");
   });
 
   scenario("US-13 AS2", "with no activity yet, an empty state invites the student to start", async ({ page }) => {
@@ -50,5 +52,29 @@ test.describe("F15 · Progress by topic", () => {
     await expect(empty).toContainText("Todavía no hay actividad");
     await expect(empty.getByRole("link", { name: "Preguntar al tutor" })).toBeVisible();
     await expect(empty.getByRole("link", { name: "Hacer un cuestionario" })).toBeVisible();
+  });
+
+  scenario("US-13 AS3", "a topic lists the student's most frequent error types, each with an example", async ({ page }) => {
+    await gotoState(page, "student/progress.html");
+    await page.getByRole("button", { name: /Ver mis errores/ }).first().click();
+    await expect(page).toHaveURL(/state=topic-detail/);
+    const list = page.locator('[data-component="ErrorTypeList"]:visible');
+    await expect(list).toContainText("Pasar un término sin cambiar de signo");
+    await expect(list.getByRole("link", { name: /Ver un ejemplo/ }).first()).toHaveAttribute("href", /exercise-feedback\.html/);
+  });
+
+  scenario("US-13 AS4", "the page says when it was last updated", async ({ page }) => {
+    await gotoState(page, "student/progress.html");
+    await expect(page.locator("main")).toContainText("Actualizado el 12 oct 2026");
+  });
+
+  scenario("US-13 AS5", "a mastery level explains its basis in one sentence", async ({ page }) => {
+    await gotoState(page, "student/progress.html");
+    const why = page.getByRole("button", { name: "¿Por qué?" }).first();
+    await expect(why).toHaveAttribute("aria-expanded", "false");
+    await why.click();
+    await expect(page).toHaveURL(/state=mastery-basis/);
+    await expect(page.locator('[data-component="DecisionReason"]:visible').first()).toContainText("Porque has resuelto bien 6 de los últimos 8 ejercicios");
+    await expect(page.getByRole("button", { name: "Ocultar explicación" })).toHaveAttribute("aria-expanded", "true");
   });
 });

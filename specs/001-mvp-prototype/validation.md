@@ -11,8 +11,8 @@ details are stored here.
 | Field | Value |
 |---|---|
 | Prototype status | Borrador (Draft) |
-| Version | 0.1.0 |
-| Last updated | 2026-10-04 |
+| Version | 0.2.0 (revision of 2026-10-06: validation, corrections, topics, learning record, adapted explanations) |
+| Last updated | 2026-10-06 |
 
 ## Open items
 
@@ -23,6 +23,10 @@ details are stored here.
 | T107: preview URL, Deployment Protection check, ethics approval of the consent draft, private recording storage, then cover status "En validación". Kit ready in session-kit.md. | Team | Pending |
 | Official IMFAHE logo file (research R-10). Originals added by the team: `assets/img/imfahe.logo.webp` and `assets/img/docentai-logo.png` (kept unchanged). The pages use derivatives with the off-white background made transparent: `imfahe-logo-transparent.webp`, `docentai-logo-96.png`, `docentai-logo-144.png`. | Team | Resolved 2026-10-04 |
 | IMFAHE acknowledgement wording. Draft: "Proyecto financiado por la Fundación IMFAHE" (spec Assumptions). | Team | Pending confirmation |
+| Revision 0.2.0 needs a manual keyboard-only pass by a person on the new and changed states (T154). The agent only checked focus behaviour that the flow tests assert (see Keyboard pass log). | Team | Pending |
+| Pedagogy review (T106): the exercise in the feedback page fails by moving −6 across without changing its sign, but the existing sample labels it "Error de signo al quitar paréntesis" (the repeated-mistake notice and practice page use the same label). The error type tag added in T129 keeps that label for consistency; the pedagogy team should decide the right taxonomy entry. | Pedagogy team | Pending |
+| Prototype simplifications in 0.2.0: in topics.html only "Subir: Polinomios", "Renombrar: Factorización" and "Eliminar: Polinomios" lead to a state, and other reorder/rename/delete buttons do nothing; the student detail page shows three sample students (Lucas = default, Estudiante-07 = at risk, Mateo = no activity), so other dashboard rows open Lucas's record; in progress.html only the first topic's "¿Por qué?" opens. Facilitators should steer participants to the scripted paths. | Team | Accepted for the prototype |
+| Intermittent axe failure seen once while running a subset of tests in parallel: the footer `LanguageSwitcher` caught mid colour transition (contrast 1.13) on `student/quiz.html?state=correct` at 390 px. Not reproduced in the full run (1122 passed) or in 54 repeated runs; pre-existing, unrelated to the revision. CI retries once. | Team | Watch |
 | `npm run lint` failed: typescript-eslint does not support TypeScript 7.0. Fixed by running TS side by side: `typescript` → `@typescript/typescript6` (API for tools), `typescript7` → `typescript@7.0.2` (the `tsc` used by `npm run typecheck`). | Team | Resolved 2026-10-04 |
 
 ## Performance (local substitute for T105)
@@ -80,6 +84,18 @@ One row per page reviewed in both languages at 1440 px (and 390 px where the man
 | student/exercise-feedback.html (repeated-mistake) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
 | student/practice.html (5 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
 | student/progress.html (4 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
+| **Revision 0.2.0 (2026-10-06)**: rows below are agent checks: axe sweep of every state (ES and EN, light and dark, 1440 and 390 where `mobile`), the flow tests, and screenshots of the listed states. | | | | |
+| teacher/material.html (validation states, unassigned-topics) | 2026-10-06 | 1440, 390 | Pass (ES, EN) | Re-running the page builder duplicated the exclude dialog once; removed. Button names include the document (`Validar : Tema 3…`). Screenshots: validated (1440), pending-validation (390, EN), validate-confirm (390). |
+| teacher/fragments.html (fragment-excluded) | 2026-10-06 | 1440 | Pass (ES, EN) | Screenshot: fragment-excluded (EN). |
+| student/chat.html (corrected, tutor-info, adapted, adapted-basis) | 2026-10-06 | 1440, 390 | Pass (ES, EN) | An arbitrary `grid-cols-[auto_1fr]` in the tutor information was caught by the hardcoded-values test and replaced. Screenshots: corrected (390), tutor-info (390, EN), adapted-basis (390), adapted (1440). |
+| student/chat-guided.html (adapted-hint) | 2026-10-06 | 1440, 390 | Pass (ES, EN) | Axe and flow F18 only. |
+| student/exercise-feedback.html (error type, corrected) | 2026-10-06 | 1440, 390 | Pass (ES, EN) | See the open item about the error type label. |
+| teacher/conversation.html, conversations.html, flags.html (corrections) | 2026-10-06 | 1440 (list also 390) | Pass (ES, EN) | The flagged answer showed the flag badge twice and the first answer lost its flag button; both fixed. Screenshots: flagged, save-failed, flags. |
+| teacher/topics.html, teacher/topic-assignment.html (new) | 2026-10-06 | 1440 | Pass (ES, EN) | Screenshots: default of both, editing (EN). |
+| teacher/student.html (renamed, rebuilt) | 2026-10-06 | 1440 | Pass (ES, EN) | The period select did not fill its column and the at-risk progress card was squeezed into one grid column; both fixed. Screenshots: default, at-risk (EN). |
+| teacher/dashboard.html (links) | 2026-10-06 | 1440 | Pass (ES, EN) | Every student row now opens the detail page. |
+| student/quiz.html (difficulty reasons) | 2026-10-06 | 1440, 390 | Pass (ES, EN) | Axe and flow F14 only. |
+| student/progress.html (rebuilt) | 2026-10-06 | 1440, 390 | Pass (ES, EN) | Copy said "Nadie más ve esta página", which contradicted S4 (the teacher sees the learning record); changed to "Tu profesor/a también lo ve". Screenshots: mastery-basis (390), topic-detail (390, EN). |
 
 ## Keyboard pass log
 
@@ -113,6 +129,7 @@ return it to the opener.
 | student/quiz.html, student/quiz-summary.html | 2026-10-04 | Pass | Radio group (arrows; an answer is required) → check. Feedback: citation (opens the sheet) → next / summary. Summary: three next-step links. |
 | student/practice.html | 2026-10-04 | Pass | Back → citation (opens the sheet) → one "solve" link per exercise, described by the exercise. Notice on feedback: explanation → practise → "Ahora no" (stays dismissed for the session). |
 | student/progress.html | 2026-10-04 | Pass | No interactive content besides the shell; each progress bar is a labelled progressbar described by its basis. Empty state: ask the tutor → take a quiz. |
+| **Revision 0.2.0 (2026-10-06)**, agent check, not a manual pass | 2026-10-06 | Partial | Verified by flow tests only: the tutor-information dialog and the adaptation sheet return focus to their opener; the correction field and the new-topic field block submission while empty (native validation); topic reordering uses buttons, not dragging (WCAG 2.5.7); every new switch and dialog has an accessible name (axe). A person still needs to do the Tab-order pass (open item). |
 
 ## Session plan
 
@@ -147,6 +164,7 @@ To be filled before the first session (quickstart.md B1).
 | 2026-10-04 | Added a `citation` state to student/quiz.html so feedback citations open the passage (FR-012). The quiz shows question 1, its correct/incorrect feedback, and a later question after the level change; any answer to that one leads to the summary. | Implementation of T094 | contract §4 |
 | 2026-10-04 | Added a `citation` state to student/practice.html (FR-012). The repeated-mistake dismissal is kept in sessionStorage under a pattern key (no personal data). | Implementation of T096 | contract §3, §4 |
 | 2026-10-04 | T103: no sample name matches the repository author or any word in the project proposal (including its team section); every email in sample and message files is @example.org (enforced by unit/sample-data). Participant names are not known yet; recheck before sessions. | T103 | none |
+| 2026-10-06 | T155: the 0.2.0 sample content (validation, corrections, topics, learning records, adaptation reason) adds no new people and no email addresses; it reuses Lucas Herrera, Estudiante-07, Mateo Ortega and Prof. Elena Ruiz Navarro. `npm test -- sample-data` passes (every email uses example.org). The check against recruited participants stays open. | T155 | none |
 | 2026-10-04 | T104: ES/EN review and keyboard pass done for every P2/P3 page (rows above, US8–US13). | T104 | none |
 | 2026-10-04 | T100 is now a permanent unit test (unit/coverage) that parses contract §4 and the plan pages table and checks the manifest: 31 pages, every state, mobile flag. | T100 | none |
 
@@ -161,3 +179,4 @@ To be filled before the first session (quickstart.md B1).
 | SC-005 states and contrast coverage | 100% (axe sweep green) | 31 pages, every contract state present (unit/coverage); axe WCAG 2.2 A/AA sweep green on every state at 1440 px and, for "M" pages, 390 px (2026-10-04) | Yes |
 | SC-006 pedagogy sign-off and traceability | signed; flow tests green | Traceability: every acceptance scenario of US1–US13 has its own named E2E test, all green. Pedagogy sign-off: pending (T106) | Pending |
 | SC-007 IMFAHE visible, ≤1 tap/click | yes | Acknowledgement on sign-in and about; in the footer of every role home (0 clicks), about page 1 click (e2e F5 › SC-007). Official logo still pending | Yes (placeholder logo) |
+| SC-008 reasons understood, correction recognised / teacher finds error type | ≥80% of students / ≥67% of teachers, at least 2 | Needs usability sessions (T108, T109) | Pending |

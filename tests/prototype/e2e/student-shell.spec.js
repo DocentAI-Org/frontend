@@ -14,7 +14,7 @@ for (const path of ["student/chat.html", "student/chat-guided.html", "student/ex
 
 test("cover page: every flow has a start link and none is pending", async ({ page }) => {
   await page.goto("/prototype/index.html?panel=0");
-  await expect(page.locator("#flow-list li")).toHaveCount(15);
+  await expect(page.locator("#flow-list li")).toHaveCount(18);
   await expect(page.locator("#flow-list").getByText("Pendiente")).toHaveCount(0);
-  await expect(page.locator("#flow-list").getByRole("link", { name: "Empezar" })).toHaveCount(15);
+  await expect(page.locator("#flow-list").getByRole("link", { name: "Empezar" })).toHaveCount(18);
 });
