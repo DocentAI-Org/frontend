@@ -1,5 +1,6 @@
 /*
- * DocentAI design tokens — the single source of truth (Constitution IV).
+ * DocentAI design tokens — the single source of truth (Constitution IV). Direction: "Cuadrícula", the
+ * annotated notebook (DESIGN.md).
  * Every color token holds its light and dark value: light-dark(light, dark). The active scheme comes
  * from the system preference, or from data-theme="light|dark" on <html> when the user picks one.
  * Dark scales mirror the light ones (50 is the darkest tint, 900 the lightest), so a pairing such as
@@ -11,56 +12,71 @@
   /* Remove Tailwind's default palette: only DocentAI colors exist. */
   --color-*: initial;
 
-  /* Neutral: warm grays from white to near-black ink (#1a1a1a). Dark mirrors light. */
-  --color-neutral-0: light-dark(oklch(1 0 0), oklch(0.215 0.004 70));
-  --color-neutral-50: light-dark(oklch(0.985 0.002 75), oklch(0.175 0.003 70));
-  --color-neutral-100: light-dark(oklch(0.966 0.004 75), oklch(0.252 0.005 70));
-  --color-neutral-200: light-dark(oklch(0.926 0.006 75), oklch(0.3 0.006 70));
-  --color-neutral-300: light-dark(oklch(0.872 0.008 75), oklch(0.365 0.007 70));
-  --color-neutral-400: light-dark(oklch(0.72 0.01 75), oklch(0.49 0.008 70));
-  --color-neutral-450: light-dark(oklch(0.63 0.01 75), oklch(0.56 0.008 70));
-  --color-neutral-500: light-dark(oklch(0.545 0.01 72), oklch(0.66 0.008 70));
-  --color-neutral-600: light-dark(oklch(0.5 0.009 70), oklch(0.75 0.007 70));
-  --color-neutral-700: light-dark(oklch(0.37 0.007 70), oklch(0.84 0.005 70));
-  --color-neutral-800: light-dark(oklch(0.285 0.004 70), oklch(0.905 0.003 70));
-  --color-neutral-900: light-dark(#1a1a1a, oklch(0.968 0.002 75));
+  /* Neutral: cool paper to blue-black ink (#1D2433), like a squared school notebook. Dark mirrors light
+   * ("night study": #141925 paper, #E6EAF2 ink). */
+  --color-neutral-0: light-dark(oklch(0.998 0.001 262), oklch(0.24 0.026 266));
+  --color-neutral-50: light-dark(oklch(0.991 0.003 265), oklch(0.214 0.025 267));
+  --color-neutral-100: light-dark(oklch(0.962 0.008 262), oklch(0.265 0.028 266));
+  --color-neutral-200: light-dark(oklch(0.925 0.016 262), oklch(0.305 0.03 266));
+  --color-neutral-300: light-dark(oklch(0.862 0.026 263), oklch(0.375 0.032 265));
+  --color-neutral-400: light-dark(oklch(0.72 0.03 263), oklch(0.49 0.032 265));
+  --color-neutral-450: light-dark(oklch(0.62 0.032 263), oklch(0.57 0.03 264));
+  --color-neutral-500: light-dark(oklch(0.56 0.033 264), oklch(0.65 0.029 264));
+  --color-neutral-600: light-dark(oklch(0.502 0.034 264), oklch(0.735 0.026 264));
+  --color-neutral-700: light-dark(oklch(0.39 0.033 264), oklch(0.83 0.018 264));
+  --color-neutral-800: light-dark(oklch(0.315 0.032 265), oklch(0.895 0.014 265));
+  --color-neutral-900: light-dark(oklch(0.261 0.03 265), oklch(0.936 0.012 265));
 
-  /* Primary: the single vivid accent (brand indigo from the DocentAI logo). Reserved for primary
-   * actions and key highlights; everything else is neutral. */
-  --color-primary-50: light-dark(oklch(0.972 0.012 277), oklch(0.245 0.04 279));
-  --color-primary-100: light-dark(oklch(0.94 0.028 277), oklch(0.285 0.056 279));
-  --color-primary-200: light-dark(oklch(0.89 0.05 277), oklch(0.345 0.08 279));
-  --color-primary-300: light-dark(oklch(0.81 0.09 277), oklch(0.43 0.112 279));
-  --color-primary-400: light-dark(oklch(0.705 0.14 277), oklch(0.53 0.144 279));
-  --color-primary-500: light-dark(oklch(0.6 0.2 278), oklch(0.63 0.16 279));
-  --color-primary-600: light-dark(oklch(0.515 0.215 279), oklch(0.72 0.147 279));
-  --color-primary-700: light-dark(oklch(0.455 0.2 280), oklch(0.79 0.103 279));
-  --color-primary-800: light-dark(oklch(0.395 0.165 281), oklch(0.865 0.063 279));
-  --color-primary-900: light-dark(oklch(0.33 0.125 282), oklch(0.935 0.028 279));
+  /* Primary: pen violet, the logo's violet end. Reserved for primary actions, the send button, focus and
+   * the celebration; everything else is ink or neutral. */
+  --color-primary-50: light-dark(oklch(0.972 0.014 283), oklch(0.25 0.045 288));
+  --color-primary-100: light-dark(oklch(0.94 0.032 283), oklch(0.29 0.062 288));
+  --color-primary-200: light-dark(oklch(0.89 0.058 283), oklch(0.35 0.088 288));
+  --color-primary-300: light-dark(oklch(0.81 0.1 283), oklch(0.44 0.118 288));
+  --color-primary-400: light-dark(oklch(0.7 0.155 283), oklch(0.54 0.145 288));
+  --color-primary-500: light-dark(oklch(0.6 0.2 283), oklch(0.64 0.158 289));
+  --color-primary-600: light-dark(oklch(0.499 0.221 283), oklch(0.729 0.151 290));
+  --color-primary-700: light-dark(oklch(0.44 0.2 283), oklch(0.8 0.11 290));
+  --color-primary-800: light-dark(oklch(0.39 0.165 284), oklch(0.87 0.066 290));
+  --color-primary-900: light-dark(oklch(0.33 0.125 285), oklch(0.935 0.03 290));
 
-  /* Success (green) */
-  --color-success-50: light-dark(oklch(0.979 0.021 166), oklch(0.245 0.033 164));
-  --color-success-100: light-dark(oklch(0.95 0.052 163), oklch(0.285 0.045 164));
-  --color-success-200: light-dark(oklch(0.905 0.093 164), oklch(0.345 0.065 164));
-  --color-success-300: light-dark(oklch(0.845 0.143 164), oklch(0.43 0.091 164));
-  --color-success-400: light-dark(oklch(0.765 0.177 163), oklch(0.53 0.112 164));
-  --color-success-500: light-dark(oklch(0.65 0.15 162), oklch(0.63 0.13 164));
-  --color-success-600: light-dark(oklch(0.52 0.12 163), oklch(0.72 0.123 164));
-  --color-success-700: light-dark(oklch(0.46 0.105 165), oklch(0.79 0.104 164));
-  --color-success-800: light-dark(oklch(0.4 0.088 166), oklch(0.865 0.072 164));
-  --color-success-900: light-dark(oklch(0.34 0.07 168), oklch(0.935 0.039 164));
+  /* Teacher: the green ink of the teacher's hand. Sources, citations, the margin rule, teacher
+   * corrections and validation. Never used for the AI or the student. */
+  --color-teacher-50: light-dark(oklch(0.977 0.014 168), oklch(0.245 0.03 168));
+  --color-teacher-100: light-dark(oklch(0.95 0.03 168), oklch(0.285 0.042 168));
+  --color-teacher-200: light-dark(oklch(0.9 0.052 168), oklch(0.345 0.058 167));
+  --color-teacher-300: light-dark(oklch(0.82 0.075 167), oklch(0.43 0.074 166));
+  --color-teacher-400: light-dark(oklch(0.7 0.09 166), oklch(0.54 0.09 165));
+  --color-teacher-500: light-dark(oklch(0.6 0.094 166), oklch(0.66 0.105 164));
+  --color-teacher-600: light-dark(oklch(0.486 0.088 166), oklch(0.784 0.11 164));
+  --color-teacher-700: light-dark(oklch(0.44 0.08 166), oklch(0.83 0.09 164));
+  --color-teacher-800: light-dark(oklch(0.385 0.068 167), oklch(0.885 0.062 164));
+  --color-teacher-900: light-dark(oklch(0.33 0.055 168), oklch(0.94 0.032 164));
 
-  /* Warning (amber) */
-  --color-warning-50: light-dark(oklch(0.987 0.022 95), oklch(0.245 0.035 80));
-  --color-warning-100: light-dark(oklch(0.962 0.059 95), oklch(0.285 0.049 80));
-  --color-warning-200: light-dark(oklch(0.924 0.12 95), oklch(0.345 0.07 80));
-  --color-warning-300: light-dark(oklch(0.879 0.169 91), oklch(0.43 0.088 80));
-  --color-warning-400: light-dark(oklch(0.828 0.189 84), oklch(0.53 0.106 80));
-  --color-warning-500: light-dark(oklch(0.72 0.17 70), oklch(0.63 0.13 80));
-  --color-warning-600: light-dark(oklch(0.53 0.14 55), oklch(0.72 0.133 80));
-  --color-warning-700: light-dark(oklch(0.47 0.125 49), oklch(0.79 0.112 80));
-  --color-warning-800: light-dark(oklch(0.41 0.105 46), oklch(0.865 0.077 80));
-  --color-warning-900: light-dark(oklch(0.36 0.085 46), oklch(0.935 0.042 80));
+  /* Success (leaf green, kept yellower than the teacher's ink; always paired with a check icon). */
+  --color-success-50: light-dark(oklch(0.979 0.022 148), oklch(0.245 0.035 148));
+  --color-success-100: light-dark(oklch(0.95 0.05 148), oklch(0.285 0.048 148));
+  --color-success-200: light-dark(oklch(0.905 0.09 148), oklch(0.345 0.068 148));
+  --color-success-300: light-dark(oklch(0.845 0.13 148), oklch(0.43 0.092 148));
+  --color-success-400: light-dark(oklch(0.765 0.16 148), oklch(0.53 0.115 148));
+  --color-success-500: light-dark(oklch(0.65 0.15 148), oklch(0.63 0.135 148));
+  --color-success-600: light-dark(oklch(0.52 0.13 148), oklch(0.73 0.14 148));
+  --color-success-700: light-dark(oklch(0.46 0.115 148), oklch(0.8 0.12 148));
+  --color-success-800: light-dark(oklch(0.4 0.095 149), oklch(0.87 0.08 148));
+  --color-success-900: light-dark(oklch(0.34 0.075 150), oklch(0.935 0.042 148));
+
+  /* Warning: highlighter yellow. warning-200 + warning-900 is the hint mark; also guided mode, the low
+   * allowance warning and other non-blocking cautions. */
+  --color-warning-50: light-dark(oklch(0.985 0.03 98), oklch(0.245 0.035 99));
+  --color-warning-100: light-dark(oklch(0.96 0.07 98), oklch(0.29 0.048 99));
+  --color-warning-200: light-dark(oklch(0.917 0.113 98), oklch(0.377 0.065 99));
+  --color-warning-300: light-dark(oklch(0.88 0.15 95), oklch(0.45 0.082 99));
+  --color-warning-400: light-dark(oklch(0.83 0.17 88), oklch(0.55 0.1 99));
+  --color-warning-500: light-dark(oklch(0.72 0.16 72), oklch(0.65 0.118 99));
+  --color-warning-600: light-dark(oklch(0.55 0.13 58), oklch(0.74 0.13 99));
+  --color-warning-700: light-dark(oklch(0.48 0.115 55), oklch(0.8 0.13 99));
+  --color-warning-800: light-dark(oklch(0.42 0.1 60), oklch(0.86 0.125 99));
+  --color-warning-900: light-dark(oklch(0.36 0.08 70), oklch(0.893 0.136 99));
 
   /* Danger (red) */
   --color-danger-50: light-dark(oklch(0.971 0.013 17), oklch(0.245 0.043 24));
@@ -74,46 +90,51 @@
   --color-danger-800: light-dark(oklch(0.41 0.15 26), oklch(0.865 0.068 24));
   --color-danger-900: light-dark(oklch(0.36 0.12 25), oklch(0.935 0.031 24));
 
-  /* Info (teal-cyan, distinct from primary) */
-  --color-info-50: light-dark(oklch(0.984 0.019 200), oklch(0.245 0.028 212));
-  --color-info-100: light-dark(oklch(0.956 0.045 203), oklch(0.285 0.038 212));
-  --color-info-200: light-dark(oklch(0.917 0.08 205), oklch(0.345 0.055 212));
-  --color-info-300: light-dark(oklch(0.865 0.127 207), oklch(0.43 0.072 212));
-  --color-info-400: light-dark(oklch(0.789 0.154 211), oklch(0.53 0.089 212));
-  --color-info-500: light-dark(oklch(0.67 0.13 215), oklch(0.63 0.11 212));
-  --color-info-600: light-dark(oklch(0.52 0.1 221), oklch(0.72 0.104 212));
-  --color-info-700: light-dark(oklch(0.46 0.09 223), oklch(0.79 0.088 212));
-  --color-info-800: light-dark(oklch(0.4 0.075 224), oklch(0.865 0.061 212));
-  --color-info-900: light-dark(oklch(0.34 0.06 227), oklch(0.935 0.033 212));
+  /* Info: ink blue for notices about the AI itself (the IA tag, the no-source notice). */
+  --color-info-50: light-dark(oklch(0.975 0.012 245), oklch(0.245 0.03 245));
+  --color-info-100: light-dark(oklch(0.95 0.025 245), oklch(0.285 0.04 245));
+  --color-info-200: light-dark(oklch(0.9 0.045 245), oklch(0.345 0.055 245));
+  --color-info-300: light-dark(oklch(0.82 0.07 245), oklch(0.43 0.07 245));
+  --color-info-400: light-dark(oklch(0.7 0.09 245), oklch(0.53 0.085 245));
+  --color-info-500: light-dark(oklch(0.6 0.1 245), oklch(0.63 0.095 245));
+  --color-info-600: light-dark(oklch(0.5 0.1 245), oklch(0.72 0.095 245));
+  --color-info-700: light-dark(oklch(0.45 0.09 245), oklch(0.79 0.08 245));
+  --color-info-800: light-dark(oklch(0.39 0.08 245), oklch(0.865 0.055 245));
+  --color-info-900: light-dark(oklch(0.33 0.065 245), oklch(0.935 0.03 245));
 
   /* Semantic aliases: components use these where a role exists (research R-03). */
   --color-fg: var(--color-neutral-900);
   --color-fg-muted: var(--color-neutral-600);
   --color-fg-inverse: var(--color-neutral-50);
-  --color-surface: light-dark(oklch(1 0 0), oklch(0.175 0.003 70)); /* white canvas */
-  --color-surface-raised: var(--color-neutral-0);
+  --color-surface: var(--color-neutral-50); /* the notebook paper */
+  --color-surface-raised: var(--color-neutral-0); /* loose sheets: cards, menus, dialogs */
   --color-surface-sunken: var(--color-neutral-100);
   --color-border: var(--color-neutral-200);
   --color-border-strong: var(--color-neutral-450); /* 3:1 on raised and canvas surfaces (WCAG 1.4.11) */
   --color-focus: var(--color-primary-600);
+  --color-grid: light-dark(oklch(0.948 0.012 262), oklch(0.245 0.026 266)); /* the 4 mm squares */
+  --color-margin: var(--color-teacher-600); /* the margin rule where sources live */
+  --color-highlight: var(--color-warning-200);
   /* Dialog backdrop: dark in both schemes. */
-  --color-scrim: oklch(0.15 0.003 70);
+  --color-scrim: oklch(0.17 0.02 266);
 
   /* Spacing: 8 px scale. The unit stays 4 px so utilities read naturally, but layout spacing uses even
    * steps only (2 = 8 px, 4 = 16, 6 = 24, 8 = 32, 10 = 40, 12 = 48); 1 (4 px) is the one half-step,
-   * kept for icon-to-label gaps. */
+   * kept for icon-to-label gaps. The paper grid is 16 px, so layout edges land on its lines. */
   --spacing: 0.25rem;
 
-  /* Radius: small 6 px (sm), inputs 8 px (md), buttons 10 px (lg), cards 12 px (xl),
-   * dialogs and chat bubbles 16 px (2xl), pills full. */
-  --radius-sm: 0.375rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.625rem;
-  --radius-xl: 0.75rem;
-  --radius-2xl: 1rem;
+  /* Radius: paper corners are nearly square. sm 3 px (badges), md 4 px (small controls), lg 6 px
+   * (buttons, inputs), xl 8 px (cards), 2xl 12 px (dialogs, sheets), pills full. */
+  --radius-sm: 0.1875rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.375rem;
+  --radius-xl: 0.5rem;
+  --radius-2xl: 0.75rem;
 
-  /* Typography: self-hosted Plus Jakarta Sans (assets/fonts/fonts.css), metric-matched fallback. */
-  --font-sans: "Plus Jakarta Sans", "Plus Jakarta Sans Fallback", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  /* Typography (assets/fonts/fonts.css): Literata is the page voice (headings, tutor answers, quoted
+   * material); Atkinson Hyperlegible Next is the interface and the student's voice. */
+  --font-sans: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible Next Fallback", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Literata", "Literata Fallback", Georgia, ui-serif, serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   --text-xs: 0.75rem;
@@ -124,35 +145,33 @@
   --text-base--line-height: 1.5rem;
   --text-lg: 1.125rem;
   --text-lg--line-height: 1.75rem;
-  --text-lg--letter-spacing: -0.005em;
   --text-xl: 1.25rem;
   --text-xl--line-height: 1.75rem;
-  --text-xl--letter-spacing: -0.012em;
   --text-2xl: 1.5rem;
   --text-2xl--line-height: 2rem;
-  --text-2xl--letter-spacing: -0.02em;
+  --text-2xl--letter-spacing: -0.005em;
   --text-3xl: 2rem;
   --text-3xl--line-height: 2.5rem;
-  --text-3xl--letter-spacing: -0.026em;
+  --text-3xl--letter-spacing: -0.01em;
   --text-4xl: 2.5rem;
   --text-4xl--line-height: 3rem;
-  --text-4xl--letter-spacing: -0.03em;
+  --text-4xl--letter-spacing: -0.015em;
   --text-5xl: 3.5rem;
   --text-5xl--line-height: 4rem;
-  --text-5xl--letter-spacing: -0.035em;
+  --text-5xl--letter-spacing: -0.02em;
 
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
-  /* Shadows: warm ink, very soft. Resting cards carry only their 1px border; shadow-md appears on hover.
-   * shadow-lg is for floating layers (menus, dialogs, toasts). */
-  --shadow-sm: 0 1px 2px 0 light-dark(oklch(0.2 0.004 70 / 0.04), oklch(0.05 0 0 / 0.3));
-  --shadow-md: 0 8px 24px -10px light-dark(oklch(0.2 0.004 70 / 0.14), oklch(0.05 0 0 / 0.55)),
-    0 2px 6px -2px light-dark(oklch(0.2 0.004 70 / 0.05), oklch(0.05 0 0 / 0.3));
-  --shadow-lg: 0 16px 40px -12px light-dark(oklch(0.2 0.004 70 / 0.18), oklch(0.05 0 0 / 0.6)),
-    0 4px 12px -4px light-dark(oklch(0.2 0.004 70 / 0.06), oklch(0.05 0 0 / 0.35));
+  /* Shadows: blue-black ink, very soft. Resting sheets carry only their 1px border; shadow-md appears on
+   * hover. shadow-lg is for floating layers (menus, dialogs, toasts). */
+  --shadow-sm: 0 1px 2px 0 light-dark(oklch(0.26 0.03 265 / 0.05), oklch(0.08 0.01 266 / 0.35));
+  --shadow-md: 0 8px 20px -10px light-dark(oklch(0.26 0.03 265 / 0.16), oklch(0.08 0.01 266 / 0.6)),
+    0 2px 6px -2px light-dark(oklch(0.26 0.03 265 / 0.06), oklch(0.08 0.01 266 / 0.35));
+  --shadow-lg: 0 16px 36px -12px light-dark(oklch(0.26 0.03 265 / 0.2), oklch(0.08 0.01 266 / 0.65)),
+    0 4px 12px -4px light-dark(oklch(0.26 0.03 265 / 0.07), oklch(0.08 0.01 266 / 0.4));
 
   /* Motion */
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
@@ -160,6 +179,19 @@
   --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
   --default-transition-duration: 150ms;
   --default-transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Paper: the 16 px squared grid. On <body> by default (base layer below); add bg-grid to any other
+ * surface that should read as notebook paper. Reading text sits on solid paper, never on the grid. */
+@utility bg-grid {
+  background-image: linear-gradient(var(--color-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
+  background-size: 1rem 1rem;
+  background-position: -1px -1px;
+}
+
+@utility bg-plain {
+  background-image: none;
 }
 
 /* Color scheme: follow the system unless the user picked one (assets/js/theme.js). */
@@ -203,9 +235,19 @@
     color: var(--color-primary-900);
   }
 
+  /* The notebook paper behind every page. */
+  body {
+    background-image: linear-gradient(var(--color-grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
+    background-size: 1rem 1rem;
+    background-position: -1px -1px;
+  }
+
+  /* Headings speak in the page voice (Literata); utilities can still switch a heading to font-sans. */
   h1,
   h2,
   h3 {
+    font-family: var(--font-serif);
     text-wrap: balance;
   }
 
@@ -232,6 +274,12 @@
       transition-property: color, background-color, border-color, box-shadow, transform;
       transition-duration: 150ms;
       transition-timing-function: var(--ease-out);
+    }
+
+    /* Pressed toggles (language, theme) get their state while the page loads; a colour transition
+     * there only shows a half-pressed button, so they switch instantly. */
+    button[aria-pressed] {
+      transition-property: transform;
     }
 
     /* Cards: the hover shadow eases in a touch slower than color changes so it reads as a lift. */
@@ -302,6 +350,36 @@
       opacity: 0;
       translate: var(--dx) var(--dy);
       scale: 0.4;
+    }
+  }
+}
+
+/*
+ * App shells (partials/shell-*.html). Student phones get a bottom tab bar, so the page keeps room for it
+ * and sticky bottom elements sit above it (bottom-tabbar). Teacher and admin desktops get a fixed
+ * contents sidebar on the left.
+ */
+@utility bottom-tabbar {
+  bottom: 0;
+  @media (width < 48rem) {
+    bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+@utility pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@layer base {
+  @media (width < 48rem) {
+    body:has([data-component="AppShell"][data-variant="student"]) {
+      padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
+    }
+  }
+
+  @media (width >= 64rem) {
+    body:has([data-component="AppShell"][data-variant="teacher"], [data-component="AppShell"][data-variant="admin"]) {
+      padding-inline-start: 16rem;
     }
   }
 }

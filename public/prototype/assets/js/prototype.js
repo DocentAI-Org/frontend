@@ -17,18 +17,22 @@ function reveal() {
   document.body.removeAttribute("data-cloak");
 }
 
-// Self-hosted Plus Jakarta Sans: preload the Latin file so text paints in the brand face on first reveal.
+// Self-hosted Literata and Atkinson Hyperlegible Next: preload the Latin files so text paints in the
+// brand faces on first reveal.
 function loadFonts() {
-  const preload = document.createElement("link");
-  preload.rel = "preload";
-  preload.as = "font";
-  preload.type = "font/woff2";
-  preload.crossOrigin = "anonymous";
-  preload.href = new URL("fonts/plus-jakarta-sans-latin-wght-normal.woff2", ASSETS_URL).href;
+  const preloads = ["literata-latin-opsz-normal.woff2", "atkinson-hyperlegible-next-latin-wght-normal.woff2"].map((file) => {
+    const preload = document.createElement("link");
+    preload.rel = "preload";
+    preload.as = "font";
+    preload.type = "font/woff2";
+    preload.crossOrigin = "anonymous";
+    preload.href = new URL(`fonts/${file}`, ASSETS_URL).href;
+    return preload;
+  });
   const sheet = document.createElement("link");
   sheet.rel = "stylesheet";
   sheet.href = new URL("fonts/fonts.css", ASSETS_URL).href;
-  document.head.append(preload, sheet);
+  document.head.append(...preloads, sheet);
 }
 
 async function loadTheme() {
