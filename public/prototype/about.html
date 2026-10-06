@@ -15,22 +15,24 @@
   <body data-cloak class="flex min-h-dvh flex-col bg-surface font-sans text-fg antialiased">
     <a href="#main" class="sr-only rounded-lg bg-primary-700 px-4 py-2 text-fg-inverse focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50" data-i18n="common.a11y.skipToContent"></a>
     <div data-include="partials/header-public.html"></div>
-    <main id="main" tabindex="-1" class="mx-auto w-full max-w-6xl flex-1 px-4 py-6 sm:px-6 lg:py-10">
-      <div class="mx-auto flex w-full max-w-3xl flex-col gap-8">
-        <div class="flex flex-col gap-4">
-          <a href="auth/sign-in.html" class="rounded-sm text-fg underline underline-offset-2 hover:decoration-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus inline-flex items-center gap-1 self-start text-sm decoration-neutral-400"><svg class="size-4 shrink-0" aria-hidden="true"><use href="assets/img/icons.svg#chevron-left"/></svg><span data-i18n="about.back"></span></a>
-          <h1 class="text-3xl font-bold text-fg sm:text-4xl" data-i18n="about.title"></h1>
-          <p class="text-lg text-fg-muted" data-i18n="about.lead"></p>
-        </div>
-        <section aria-labelledby="funding-title" class="flex flex-col gap-4">
-          <h2 class="text-xl font-bold text-fg" data-i18n="about.fundingTitle" id="funding-title"></h2>
-          <div class="flex flex-col items-start gap-4 rounded-xl border border-border bg-surface-raised p-6 sm:flex-row sm:items-center" data-component="ImfaheAcknowledgement" data-variant="about"><img src="assets/img/imfahe-logo-transparent.webp" alt="" width="145" height="64" class="h-16 w-auto shrink-0 dark:invert dark:hue-rotate-180" /><p class="text-base text-fg" data-i18n="common.imfahe.acknowledgement"></p></div>
-        </section>
-        <section id="privacy" aria-labelledby="privacy-title" class="flex scroll-mt-24 flex-col gap-4">
-          <h2 class="text-xl font-bold text-fg" data-i18n="about.privacyTitle" id="privacy-title"></h2>
-          <ul class="flex list-disc flex-col gap-2 pl-6 text-fg"><li data-i18n="about.privacy1"></li><li data-i18n="about.privacy2"></li><li data-i18n="about.privacy3"></li></ul>
-          <p class="text-fg-muted" data-i18n="about.contact" data-i18n-vars='{"email": "sample.privacyEmail"}'></p>
-        </section>
+    <main id="main" tabindex="-1" class="mx-auto w-full max-w-6xl flex-1 px-4 py-8 sm:px-6 lg:py-16">
+      <div class="mx-auto flex w-full max-w-3xl flex-col gap-6">
+        <a href="auth/sign-in.html" class="inline-flex w-fit items-center gap-1 rounded-sm bg-surface text-sm font-semibold text-fg-muted hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"><svg class="size-4 shrink-0" aria-hidden="true"><use href="assets/img/icons.svg#chevron-left"/></svg><span data-i18n="about.back"></span></a>
+        <article class="flex flex-col gap-10 rounded-xl border border-border bg-surface-raised p-6 sm:p-10">
+          <header class="border-b-2 border-neutral-900 pb-6">
+            <h1 class="text-4xl font-semibold text-fg sm:text-5xl" data-i18n="about.title"></h1>
+            <p class="mt-4 max-w-prose font-serif text-xl text-fg" data-i18n="about.lead"></p>
+          </header>
+          <section aria-labelledby="funding-title" class="flex flex-col gap-4">
+            <h2 class="text-2xl font-semibold text-fg" data-i18n="about.fundingTitle" id="funding-title"></h2>
+            <div class="flex flex-col items-start gap-6 border-y border-border py-6 sm:flex-row sm:items-center" data-component="ImfaheAcknowledgement" data-variant="about"><img src="assets/img/imfahe-logo-transparent.webp" alt="" width="145" height="64" class="h-16 w-auto shrink-0 dark:invert dark:hue-rotate-180" /><p class="font-serif text-lg text-fg" data-i18n="common.imfahe.acknowledgement"></p></div>
+          </section>
+          <section id="privacy" aria-labelledby="privacy-title" class="flex scroll-mt-24 flex-col gap-4">
+            <h2 class="text-2xl font-semibold text-fg" data-i18n="about.privacyTitle" id="privacy-title"></h2>
+            <ul class="flex max-w-prose list-disc flex-col gap-2 pl-6 font-serif text-lg text-fg marker:text-fg-muted"><li data-i18n="about.privacy1"></li><li data-i18n="about.privacy2"></li><li data-i18n="about.privacy3"></li></ul>
+            <p class="max-w-prose text-fg-muted" data-i18n="about.contact" data-i18n-vars='{"email": "sample.privacyEmail"}'></p>
+          </section>
+        </article>
       </div>
     </main>
     <div data-include="partials/footer.html"></div>

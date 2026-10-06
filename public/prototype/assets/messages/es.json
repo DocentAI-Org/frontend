@@ -219,14 +219,15 @@
       },
       "color": {
         "contrast": "Contraste comprobado: texto ≥4,5:1 y componentes de interfaz ≥3:1 sobre las superficies. El barrido axe verifica cada página y estado.",
-        "lead": "Paletas en oklch. Tailwind no aporta colores propios: --color-*: initial deja solo los de DocentAI. Los componentes usan los alias semánticos cuando existe uno.",
+        "lead": "Paletas en oklch, en claro y oscuro. Tailwind no aporta colores propios: --color-*: initial deja solo los de DocentAI. Los componentes usan los alias semánticos cuando existe uno.",
         "palette": {
           "danger": "Peligro",
           "info": "Información",
           "neutral": "Neutro",
           "primary": "Principal",
           "success": "Éxito",
-          "warning": "Aviso"
+          "warning": "Aviso",
+          "teacher": "Profesor/a (tinta verde)"
         },
         "semantic": "Alias semánticos",
         "title": "Color"
@@ -391,10 +392,13 @@
         "vExercise": "Ejercicio"
       },
       "type": {
-        "lead": "Fuentes del sistema, sin descargas de fuentes web. Cada tamaño lleva su interlineado.",
+        "lead": "Dos voces, alojadas en el propio proyecto. Literata es la voz de la página: títulos, respuestas del tutor y pasajes del material. Atkinson Hyperlegible Next es la interfaz y lo que escribe el estudiante. Cada tamaño lleva su interlineado.",
         "sample": "El material del curso no cubre esta pregunta",
         "title": "Tipografía",
-        "weights": "Pesos"
+        "weights": "Pesos",
+        "families": "Familias",
+        "serifRole": "Títulos, respuestas del tutor y pasajes citados",
+        "sansRole": "Interfaz, datos y mensajes del estudiante"
       },
       "v": {
         "active": "Activo",
@@ -462,6 +466,21 @@
         "title": "Explicación adaptada",
         "badge": "Etiqueta de adaptación",
         "sheet": "Base de la adaptación"
+      },
+      "paper": {
+        "title": "Cuaderno",
+        "lead": "La interfaz es un cuaderno de cuadrícula anotado. El papel, el margen y cada tinta tienen un significado fijo.",
+        "grid": "Papel cuadriculado",
+        "gridNote": "Cuadros de 16 px, sobre el fondo de cada página (bg-grid). El texto de lectura va siempre sobre papel liso; la cuadrícula solo asoma entre bloques y en las operaciones.",
+        "margin": "Margen",
+        "marginNote": "La regla verde separa la respuesta de sus fuentes. En el margen solo escribe el profesor/a: fuentes citadas y correcciones. Si el material no cubre la pregunta, el margen queda vacío tras una regla discontinua.",
+        "inks": "Tintas",
+        "ink": {
+          "fg": "Tinta azul oscuro: texto, estados seleccionados y actuales.",
+          "pen": "Violeta: lo que hace el estudiante. Acciones principales, envío, foco y sus propios mensajes.",
+          "teacher": "Verde: la mano del profesor/a. Fuentes, margen, correcciones y validaciones.",
+          "highlight": "Fluorescente: pistas, modo guiado y avisos que no bloquean."
+        }
       }
     },
     "index": {
@@ -542,7 +561,8 @@
         "sheetTitle": "Fuente citada",
         "unavailable": "Documento ya no disponible",
         "validated": "Del material validado por tu profesor/a.",
-        "fragmentUnavailable": "Fragmento ya no disponible"
+        "fragmentUnavailable": "Fragmento ya no disponible",
+        "open": "Ver el pasaje"
       },
       "composer": {
         "label": "Escribe tu pregunta",
@@ -960,7 +980,11 @@
       },
       "title": "Panel del curso",
       "topPattern": "Más frecuente: {pattern}",
-      "why": "Ver por qué"
+      "why": "Ver por qué",
+      "colTopic": "Tema",
+      "colStudent": "Estudiante",
+      "colErrors": "Errores",
+      "colShare": "Proporción"
     },
     "flags": {
       "category": "Motivo",

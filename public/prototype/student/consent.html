@@ -15,18 +15,18 @@
   <body data-cloak class="flex min-h-dvh flex-col bg-surface font-sans text-fg antialiased">
     <a href="#main" class="sr-only rounded-lg bg-primary-700 px-4 py-2 text-fg-inverse focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50" data-i18n="common.a11y.skipToContent"></a>
     <div data-include="partials/header-public.html"></div>
-    <main id="main" tabindex="-1" class="mx-auto w-full max-w-6xl flex-1 px-4 py-6 sm:px-6 lg:py-10">
-      <div class="mx-auto flex w-full max-w-2xl flex-col gap-6">
-        <section data-state="default error" aria-labelledby="consent-title" class="rounded-2xl border border-border bg-surface-raised p-6 sm:p-8">
-          <p class="text-sm font-medium text-primary-700 tabular-nums" data-i18n="student.consent.step" data-i18n-vars='{"step": "number:1", "total": "number:2"}'></p>
-          <h1 id="consent-title" class="mt-1 text-3xl font-bold text-fg" data-i18n="student.consent.title"></h1>
+    <main id="main" tabindex="-1" class="mx-auto w-full max-w-6xl flex-1 px-4 py-8 sm:px-6 lg:py-12">
+      <div class="mx-auto flex w-full max-w-2xl flex-col gap-8">
+        <section data-state="default error" aria-labelledby="consent-title" class="rounded-xl border border-border bg-surface-raised p-6 sm:p-8">
+          <p class="text-sm font-semibold text-fg-muted tabular-nums" data-i18n="student.consent.step" data-i18n-vars='{"step": "number:1", "total": "number:2"}'></p>
+          <h1 id="consent-title" class="mt-1 text-3xl font-semibold text-fg" data-i18n="student.consent.title"></h1>
           <p class="mt-2 text-fg-muted" data-i18n="student.consent.intro"></p>
           <p data-state="error" role="alert" class="mt-4 flex items-start gap-2 rounded-lg border border-danger-200 bg-danger-50 p-4 text-danger-700"><svg class="mt-1 size-5 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#triangle-alert"/></svg><span data-i18n="student.consent.error"></span></p>
           <ul class="mt-6 flex flex-col gap-6">
-            <li class="flex gap-4"><span class="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-surface-sunken text-fg"><svg class="size-5 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#lightbulb"/></svg></span><div><h2 class="font-bold text-fg" data-i18n="student.consent.purposeTitle"></h2><p class="mt-1 text-fg-muted" data-i18n="student.consent.purposeBody"></p></div></li>
-            <li class="flex gap-4"><span class="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-surface-sunken text-fg"><svg class="size-5 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#file-text"/></svg></span><div><h2 class="font-bold text-fg" data-i18n="student.consent.dataTitle"></h2><p class="mt-1 text-fg-muted" data-i18n="student.consent.dataBody"></p></div></li>
-            <li class="flex gap-4"><span class="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-surface-sunken text-fg"><svg class="size-5 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#eye"/></svg></span><div><h2 class="font-bold text-fg" data-i18n="student.consent.whoTitle"></h2><p class="mt-1 text-fg-muted" data-i18n="student.consent.whoBody"></p></div></li>
-            <li class="flex gap-4"><span class="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-surface-sunken text-fg"><svg class="size-5 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#lock"/></svg></span><div><h2 class="font-bold text-fg" data-i18n="student.consent.rightsTitle"></h2><p class="mt-1 text-fg-muted" data-i18n="student.consent.rightsBody"></p></div></li>
+            <li class="flex gap-4"><span class="inline-flex size-10 shrink-0 items-center justify-center rounded-full text-fg border border-border-strong bg-surface"><svg class="size-5 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#lightbulb"/></svg></span><div><h2 class="font-semibold text-fg" data-i18n="student.consent.purposeTitle"></h2><p class="mt-1 text-fg-muted" data-i18n="student.consent.purposeBody"></p></div></li>
+            <li class="flex gap-4"><span class="inline-flex size-10 shrink-0 items-center justify-center rounded-full text-fg border border-border-strong bg-surface"><svg class="size-5 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#file-text"/></svg></span><div><h2 class="font-semibold text-fg" data-i18n="student.consent.dataTitle"></h2><p class="mt-1 text-fg-muted" data-i18n="student.consent.dataBody"></p></div></li>
+            <li class="flex gap-4"><span class="inline-flex size-10 shrink-0 items-center justify-center rounded-full text-fg border border-border-strong bg-surface"><svg class="size-5 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#eye"/></svg></span><div><h2 class="font-semibold text-fg" data-i18n="student.consent.whoTitle"></h2><p class="mt-1 text-fg-muted" data-i18n="student.consent.whoBody"></p></div></li>
+            <li class="flex gap-4"><span class="inline-flex size-10 shrink-0 items-center justify-center rounded-full text-fg border border-border-strong bg-surface"><svg class="size-5 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#lock"/></svg></span><div><h2 class="font-semibold text-fg" data-i18n="student.consent.rightsTitle"></h2><p class="mt-1 text-fg-muted" data-i18n="student.consent.rightsBody"></p></div></li>
           </ul>
           <a href="../about.html#privacy" class="mt-6 inline-block rounded-sm text-fg underline underline-offset-2 hover:decoration-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus decoration-neutral-400" data-i18n="student.consent.privacyLink"></a>
           <form action="consent.html" method="get" class="mt-6 flex flex-col gap-4 border-t border-border pt-6">
@@ -41,15 +41,15 @@
           </form>
         </section>
 
-        <section data-state="ai-disclosure" aria-labelledby="how-title" class="rounded-2xl border border-border bg-surface-raised p-6 sm:p-8" data-component="AIDisclosure" data-variant="consent-step">
-          <p class="text-sm font-medium text-primary-700 tabular-nums" data-i18n="student.consent.step" data-i18n-vars='{"step": "number:2", "total": "number:2"}'></p>
-          <h1 id="how-title" class="mt-1 text-3xl font-bold text-fg" data-i18n="student.consent.howTitle"></h1>
+        <section data-state="ai-disclosure" aria-labelledby="how-title" class="rounded-xl border border-border bg-surface-raised p-6 sm:p-8" data-component="AIDisclosure" data-variant="consent-step">
+          <p class="text-sm font-semibold text-fg-muted tabular-nums" data-i18n="student.consent.step" data-i18n-vars='{"step": "number:2", "total": "number:2"}'></p>
+          <h1 id="how-title" class="mt-1 text-3xl font-semibold text-fg" data-i18n="student.consent.howTitle"></h1>
           <p class="mt-2 text-fg-muted" data-i18n="student.consent.howIntro"></p>
           <ul class="mt-6 flex flex-col gap-4">
-            <li class="flex gap-4"><span class="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-neutral-900 text-fg-inverse"><svg class="size-5 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#sparkles"/></svg></span><span class="pt-2 text-fg" data-i18n="student.chat.disclosure.ai"></span></li>
-            <li class="flex gap-4"><span class="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-neutral-900 text-fg-inverse"><svg class="size-5 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#book-open"/></svg></span><span class="pt-2 text-fg" data-i18n="student.chat.disclosure.material"></span></li>
-            <li class="flex gap-4"><span class="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-neutral-900 text-fg-inverse"><svg class="size-5 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#eye"/></svg></span><span class="pt-2 text-fg" data-i18n="student.chat.disclosure.review"></span></li>
-            <li class="flex gap-4"><span class="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-neutral-900 text-fg-inverse"><svg class="size-5 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#message-circle"/></svg></span><span class="pt-2 text-fg tabular-nums" data-i18n="student.chat.disclosure.limit" data-i18n-vars='{"limit": "number:30"}'></span></li>
+            <li class="flex gap-4"><span class="inline-flex size-10 shrink-0 items-center justify-center rounded-full border border-border-strong text-fg"><svg class="size-5 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#sparkles"/></svg></span><span class="pt-2 text-fg" data-i18n="student.chat.disclosure.ai"></span></li>
+            <li class="flex gap-4"><span class="inline-flex size-10 shrink-0 items-center justify-center rounded-full border border-border-strong text-fg"><svg class="size-5 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#book-open"/></svg></span><span class="pt-2 text-fg" data-i18n="student.chat.disclosure.material"></span></li>
+            <li class="flex gap-4"><span class="inline-flex size-10 shrink-0 items-center justify-center rounded-full border border-border-strong text-fg"><svg class="size-5 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#eye"/></svg></span><span class="pt-2 text-fg" data-i18n="student.chat.disclosure.review"></span></li>
+            <li class="flex gap-4"><span class="inline-flex size-10 shrink-0 items-center justify-center rounded-full border border-border-strong text-fg"><svg class="size-5 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#message-circle"/></svg></span><span class="pt-2 text-fg tabular-nums" data-i18n="student.chat.disclosure.limit" data-i18n-vars='{"limit": "number:30"}'></span></li>
           </ul>
           <div class="mt-8 flex flex-col-reverse gap-4 border-t border-border pt-6 sm:flex-row sm:justify-between">
             <a href="?state=default" class="inline-flex items-center justify-center gap-2 rounded-lg font-semibold motion-safe:transition-colors motion-safe:duration-150 motion-safe:ease-standard focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:border-transparent disabled:bg-neutral-200 disabled:text-neutral-600 disabled:shadow-none min-h-11 px-4 text-sm text-fg hover:bg-surface-sunken"><svg class="size-4 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#chevron-left"/></svg><span data-i18n="student.consent.back"></span></a>
@@ -57,9 +57,9 @@
           </div>
         </section>
 
-        <section data-state="revoked" aria-labelledby="revoked-title" class="flex flex-col items-center gap-4 rounded-2xl border border-border bg-surface-raised p-8 text-center">
-          <span class="inline-flex size-12 items-center justify-center rounded-full bg-surface-sunken text-fg"><svg class="size-6 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#lock"/></svg></span>
-          <h1 id="revoked-title" class="text-3xl font-bold text-fg" data-i18n="student.consent.revokedTitle"></h1>
+        <section data-state="revoked" aria-labelledby="revoked-title" class="flex flex-col items-center gap-4 rounded-xl border border-border bg-surface-raised p-8 text-center">
+          <span class="inline-flex size-12 items-center justify-center rounded-full text-fg border border-border-strong bg-surface"><svg class="size-6 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#lock"/></svg></span>
+          <h1 id="revoked-title" class="text-3xl font-semibold text-fg" data-i18n="student.consent.revokedTitle"></h1>
           <p class="max-w-md text-fg" data-i18n="student.consent.revokedBody"></p>
           <p class="max-w-md text-fg-muted" data-i18n="student.consent.revokedAgain"></p>
           <a href="?state=default" class="inline-flex items-center justify-center gap-2 rounded-lg font-semibold motion-safe:transition-colors motion-safe:duration-150 motion-safe:ease-standard focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:border-transparent disabled:bg-neutral-200 disabled:text-neutral-600 disabled:shadow-none min-h-11 px-4 text-sm bg-primary-600 text-fg-inverse hover:bg-primary-700 mt-2"><span data-i18n="student.consent.giveAgain"></span></a>

@@ -219,14 +219,15 @@
       },
       "color": {
         "contrast": "Contrast checked: text ≥4.5:1 and UI parts ≥3:1 on the surfaces. The axe sweep verifies every page and state.",
-        "lead": "Palettes in oklch. Tailwind's own colors are removed with --color-*: initial, so only DocentAI colors exist. Components use the semantic aliases where one exists.",
+        "lead": "Palettes in oklch, light and dark. Tailwind brings no colors of its own: --color-*: initial leaves only DocentAI's. Components use the semantic aliases where one exists.",
         "palette": {
           "danger": "Danger",
           "info": "Info",
           "neutral": "Neutral",
           "primary": "Primary",
           "success": "Success",
-          "warning": "Warning"
+          "warning": "Warning",
+          "teacher": "Teacher (green ink)"
         },
         "semantic": "Semantic aliases",
         "title": "Color"
@@ -391,10 +392,13 @@
         "vExercise": "Exercise"
       },
       "type": {
-        "lead": "System fonts, no web-font downloads. Each size carries its own line height.",
+        "lead": "Two voices, self-hosted. Literata is the page voice: headings, tutor answers and passages from the material. Atkinson Hyperlegible Next is the interface and what the student writes. Each size carries its line height.",
         "sample": "The course material doesn't cover this question",
         "title": "Typography",
-        "weights": "Weights"
+        "weights": "Weights",
+        "families": "Families",
+        "serifRole": "Headings, tutor answers and quoted passages",
+        "sansRole": "Interface, data and the student's messages"
       },
       "v": {
         "active": "Active",
@@ -462,6 +466,21 @@
         "title": "Adapted explanation",
         "badge": "Adaptation label",
         "sheet": "Basis of the adaptation"
+      },
+      "paper": {
+        "title": "Notebook",
+        "lead": "The interface is an annotated squared notebook. The paper, the margin and each ink have a fixed meaning.",
+        "grid": "Squared paper",
+        "gridNote": "16 px squares behind every page (bg-grid). Reading text always sits on plain paper; the grid only shows between blocks and in worked maths.",
+        "margin": "Margin",
+        "marginNote": "The green rule separates an answer from its sources. Only the teacher writes in the margin: cited sources and corrections. When the material does not cover a question, the margin stays empty behind a dashed rule.",
+        "inks": "Inks",
+        "ink": {
+          "fg": "Blue-black ink: text, selected and current states.",
+          "pen": "Violet: what the student does. Primary actions, send, focus and their own messages.",
+          "teacher": "Green: the teacher's hand. Sources, the margin, corrections and validation.",
+          "highlight": "Highlighter: hints, guided mode and non-blocking warnings."
+        }
       }
     },
     "index": {
@@ -542,7 +561,8 @@
         "sheetTitle": "Cited source",
         "unavailable": "Document no longer available",
         "validated": "From the material your teacher approved.",
-        "fragmentUnavailable": "Fragment no longer available"
+        "fragmentUnavailable": "Fragment no longer available",
+        "open": "Show the passage"
       },
       "composer": {
         "label": "Type your question",
@@ -960,7 +980,11 @@
       },
       "title": "Course dashboard",
       "topPattern": "Most frequent: {pattern}",
-      "why": "See why"
+      "why": "See why",
+      "colTopic": "Topic",
+      "colStudent": "Student",
+      "colErrors": "Errors",
+      "colShare": "Share"
     },
     "flags": {
       "category": "Reason",
