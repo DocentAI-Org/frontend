@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Acceso denegado · DocentAI (prototipo)</title>
+    <style>
+      :root { color-scheme: light dark; }
+      [data-cloak] { visibility: hidden; }
+      [data-cloak] *, [data-cloak] *::before, [data-cloak] *::after { transition: none !important; }
+      summary::-webkit-details-marker { display: none; }
+    </style>
+    <script type="module" src="../assets/js/prototype.js"></script>
+  </head>
+  <body data-cloak class="flex min-h-dvh flex-col bg-surface font-sans text-fg antialiased">
+    <a href="#main" class="sr-only rounded-lg bg-primary-700 px-4 py-2 text-fg-inverse focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50" data-i18n="common.a11y.skipToContent"></a>
+    <div data-include="partials/header-public.html"></div>
+    <main id="main" tabindex="-1" class="mx-auto w-full max-w-6xl flex-1 px-4 py-10 sm:px-6 lg:py-16">
+      <div class="mx-auto flex w-full max-w-xl flex-col gap-6">
+        <section data-state="default" class="flex flex-col items-start gap-4 rounded-xl border border-border bg-surface-raised p-6 sm:p-10" data-component="AccessDenied">
+          <span class="inline-flex size-12 items-center justify-center rounded-full border border-border-strong text-fg"><svg class="size-6 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#lock"/></svg></span>
+          <h1 class="text-3xl font-semibold text-fg sm:text-4xl" data-i18n="common.errors.deniedTitle"></h1>
+          <p class="max-w-prose font-serif text-lg text-fg" data-i18n="common.errors.deniedBody"></p>
+          <a href="../student/courses.html" data-href-param="home" class="mt-2 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-primary-600 px-4 text-sm font-semibold text-fg-inverse hover:bg-primary-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" data-component="Button" data-variant="primary"><svg class="size-4 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#chevron-left"/></svg><span data-i18n="common.errors.goHome"></span></a>
+        </section>
+        <section data-state="not-found" class="flex flex-col items-start gap-4 rounded-xl border border-dashed border-border-strong bg-surface-raised p-6 sm:p-10" data-component="AccessDenied">
+          <span class="inline-flex size-12 items-center justify-center rounded-full border border-border-strong text-fg"><svg class="size-6 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#search"/></svg></span>
+          <h1 class="text-3xl font-semibold text-fg sm:text-4xl" data-i18n="common.errors.notFoundTitle"></h1>
+          <p class="max-w-prose font-serif text-lg text-fg" data-i18n="common.errors.notFoundBody"></p>
+          <a href="../student/courses.html" data-href-param="home" class="mt-2 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-primary-600 px-4 text-sm font-semibold text-fg-inverse hover:bg-primary-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" data-component="Button" data-variant="primary"><svg class="size-4 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#chevron-left"/></svg><span data-i18n="common.errors.goHome"></span></a>
+        </section>
+        <section data-state="course-removed" class="flex flex-col items-start gap-4 rounded-xl border border-dashed border-border-strong bg-surface-raised p-6 sm:p-10" data-component="AccessDenied">
+          <span class="inline-flex size-12 items-center justify-center rounded-full border border-border-strong text-fg"><svg class="size-6 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#book-open"/></svg></span>
+          <h1 class="text-3xl font-semibold text-fg sm:text-4xl" data-i18n="common.errors.courseRemovedTitle"></h1>
+          <p class="max-w-prose font-serif text-lg text-fg" data-i18n="common.errors.courseRemovedBody"></p>
+          <a href="../student/courses.html" data-href-param="home" class="mt-2 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-primary-600 px-4 text-sm font-semibold text-fg-inverse hover:bg-primary-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" data-component="Button" data-variant="primary"><svg class="size-4 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#chevron-left"/></svg><span data-i18n="common.errors.goHome"></span></a>
+        </section>
+      </div>
+    </main>
+    <div data-include="partials/footer.html"></div>
+  </body>
+</html>

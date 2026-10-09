@@ -1,0 +1,716 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-04T22:56:09.919Z",
+  "title": "Design System: DocentAI",
+  "extensions": {
+    "source": "public/prototype/assets/theme.css (light-dark() OKLCH tokens; imported by src/app/globals.css)",
+    "colorMeta": {
+      "logo-indigo": {
+        "role": "primary",
+        "displayName": "Logo Indigo",
+        "token": "--color-primary-600",
+        "canonical": "oklch(0.515 0.215 279)",
+        "dark": "oklch(0.72 0.147 279)",
+        "tonalRamp": [
+          "oklch(0.33 0.125 282)",
+          "oklch(0.395 0.165 281)",
+          "oklch(0.455 0.2 280)",
+          "oklch(0.515 0.215 279)",
+          "oklch(0.6 0.2 278)",
+          "oklch(0.705 0.14 277)",
+          "oklch(0.89 0.05 277)",
+          "oklch(0.972 0.012 277)"
+        ]
+      },
+      "logo-indigo-deep": {
+        "role": "primary",
+        "displayName": "Logo Indigo Deep",
+        "token": "--color-primary-700",
+        "canonical": "oklch(0.455 0.2 280)",
+        "dark": "oklch(0.79 0.103 279)",
+        "tonalRamp": [
+          "oklch(0.33 0.125 282)",
+          "oklch(0.395 0.165 281)",
+          "oklch(0.455 0.2 280)",
+          "oklch(0.515 0.215 279)",
+          "oklch(0.6 0.2 278)",
+          "oklch(0.705 0.14 277)",
+          "oklch(0.89 0.05 277)",
+          "oklch(0.972 0.012 277)"
+        ]
+      },
+      "logo-indigo-ink": {
+        "role": "primary",
+        "displayName": "Logo Indigo Ink",
+        "token": "--color-primary-800",
+        "canonical": "oklch(0.395 0.165 281)",
+        "dark": "oklch(0.865 0.063 279)",
+        "tonalRamp": [
+          "oklch(0.33 0.125 282)",
+          "oklch(0.395 0.165 281)",
+          "oklch(0.455 0.2 280)",
+          "oklch(0.515 0.215 279)",
+          "oklch(0.6 0.2 278)",
+          "oklch(0.705 0.14 277)",
+          "oklch(0.89 0.05 277)",
+          "oklch(0.972 0.012 277)"
+        ]
+      },
+      "logo-indigo-wash": {
+        "role": "primary",
+        "displayName": "Logo Indigo Wash",
+        "token": "--color-primary-50",
+        "canonical": "oklch(0.972 0.012 277)",
+        "dark": "oklch(0.245 0.04 279)",
+        "tonalRamp": [
+          "oklch(0.33 0.125 282)",
+          "oklch(0.395 0.165 281)",
+          "oklch(0.455 0.2 280)",
+          "oklch(0.515 0.215 279)",
+          "oklch(0.6 0.2 278)",
+          "oklch(0.705 0.14 277)",
+          "oklch(0.89 0.05 277)",
+          "oklch(0.972 0.012 277)"
+        ]
+      },
+      "logo-indigo-edge": {
+        "role": "primary",
+        "displayName": "Logo Indigo Edge",
+        "token": "--color-primary-200",
+        "canonical": "oklch(0.89 0.05 277)",
+        "dark": "oklch(0.345 0.08 279)",
+        "tonalRamp": [
+          "oklch(0.33 0.125 282)",
+          "oklch(0.395 0.165 281)",
+          "oklch(0.455 0.2 280)",
+          "oklch(0.515 0.215 279)",
+          "oklch(0.6 0.2 278)",
+          "oklch(0.705 0.14 277)",
+          "oklch(0.89 0.05 277)",
+          "oklch(0.972 0.012 277)"
+        ]
+      },
+      "tutor-teal-wash": {
+        "role": "secondary",
+        "displayName": "Tutor Teal Wash",
+        "token": "--color-info-50",
+        "canonical": "oklch(0.984 0.019 200)",
+        "dark": "oklch(0.245 0.028 212)",
+        "tonalRamp": [
+          "oklch(0.34 0.06 227)",
+          "oklch(0.4 0.075 224)",
+          "oklch(0.46 0.09 223)",
+          "oklch(0.52 0.1 221)",
+          "oklch(0.67 0.13 215)",
+          "oklch(0.789 0.154 211)",
+          "oklch(0.917 0.08 205)",
+          "oklch(0.984 0.019 200)"
+        ]
+      },
+      "tutor-teal-tint": {
+        "role": "secondary",
+        "displayName": "Tutor Teal Tint",
+        "token": "--color-info-100",
+        "canonical": "oklch(0.956 0.045 203)",
+        "dark": "oklch(0.285 0.038 212)",
+        "tonalRamp": [
+          "oklch(0.34 0.06 227)",
+          "oklch(0.4 0.075 224)",
+          "oklch(0.46 0.09 223)",
+          "oklch(0.52 0.1 221)",
+          "oklch(0.67 0.13 215)",
+          "oklch(0.789 0.154 211)",
+          "oklch(0.917 0.08 205)",
+          "oklch(0.984 0.019 200)"
+        ]
+      },
+      "tutor-teal-edge": {
+        "role": "secondary",
+        "displayName": "Tutor Teal Edge",
+        "token": "--color-info-200",
+        "canonical": "oklch(0.917 0.08 205)",
+        "dark": "oklch(0.345 0.055 212)",
+        "tonalRamp": [
+          "oklch(0.34 0.06 227)",
+          "oklch(0.4 0.075 224)",
+          "oklch(0.46 0.09 223)",
+          "oklch(0.52 0.1 221)",
+          "oklch(0.67 0.13 215)",
+          "oklch(0.789 0.154 211)",
+          "oklch(0.917 0.08 205)",
+          "oklch(0.984 0.019 200)"
+        ]
+      },
+      "tutor-teal-ink": {
+        "role": "secondary",
+        "displayName": "Tutor Teal Ink",
+        "token": "--color-info-800",
+        "canonical": "oklch(0.4 0.075 224)",
+        "dark": "oklch(0.865 0.061 212)",
+        "tonalRamp": [
+          "oklch(0.34 0.06 227)",
+          "oklch(0.4 0.075 224)",
+          "oklch(0.46 0.09 223)",
+          "oklch(0.52 0.1 221)",
+          "oklch(0.67 0.13 215)",
+          "oklch(0.789 0.154 211)",
+          "oklch(0.917 0.08 205)",
+          "oklch(0.984 0.019 200)"
+        ]
+      },
+      "hint-amber-wash": {
+        "role": "tertiary",
+        "displayName": "Hint Amber Wash",
+        "token": "--color-warning-50",
+        "canonical": "oklch(0.987 0.022 95)",
+        "dark": "oklch(0.245 0.035 80)",
+        "tonalRamp": [
+          "oklch(0.36 0.085 46)",
+          "oklch(0.41 0.105 46)",
+          "oklch(0.47 0.125 49)",
+          "oklch(0.53 0.14 55)",
+          "oklch(0.72 0.17 70)",
+          "oklch(0.828 0.189 84)",
+          "oklch(0.924 0.12 95)",
+          "oklch(0.987 0.022 95)"
+        ]
+      },
+      "hint-amber-tint": {
+        "role": "tertiary",
+        "displayName": "Hint Amber Tint",
+        "token": "--color-warning-100",
+        "canonical": "oklch(0.962 0.059 95)",
+        "dark": "oklch(0.285 0.049 80)",
+        "tonalRamp": [
+          "oklch(0.36 0.085 46)",
+          "oklch(0.41 0.105 46)",
+          "oklch(0.47 0.125 49)",
+          "oklch(0.53 0.14 55)",
+          "oklch(0.72 0.17 70)",
+          "oklch(0.828 0.189 84)",
+          "oklch(0.924 0.12 95)",
+          "oklch(0.987 0.022 95)"
+        ]
+      },
+      "hint-amber-edge": {
+        "role": "tertiary",
+        "displayName": "Hint Amber Edge",
+        "token": "--color-warning-300",
+        "canonical": "oklch(0.879 0.169 91)",
+        "dark": "oklch(0.43 0.088 80)",
+        "tonalRamp": [
+          "oklch(0.36 0.085 46)",
+          "oklch(0.41 0.105 46)",
+          "oklch(0.47 0.125 49)",
+          "oklch(0.53 0.14 55)",
+          "oklch(0.72 0.17 70)",
+          "oklch(0.828 0.189 84)",
+          "oklch(0.924 0.12 95)",
+          "oklch(0.987 0.022 95)"
+        ]
+      },
+      "hint-amber-ink": {
+        "role": "tertiary",
+        "displayName": "Hint Amber Ink",
+        "token": "--color-warning-800",
+        "canonical": "oklch(0.41 0.105 46)",
+        "dark": "oklch(0.865 0.077 80)",
+        "tonalRamp": [
+          "oklch(0.36 0.085 46)",
+          "oklch(0.41 0.105 46)",
+          "oklch(0.47 0.125 49)",
+          "oklch(0.53 0.14 55)",
+          "oklch(0.72 0.17 70)",
+          "oklch(0.828 0.189 84)",
+          "oklch(0.924 0.12 95)",
+          "oklch(0.987 0.022 95)"
+        ]
+      },
+      "success-green": {
+        "role": "status",
+        "displayName": "Success Green",
+        "token": "--color-success-600",
+        "canonical": "oklch(0.52 0.12 163)",
+        "dark": "oklch(0.72 0.123 164)",
+        "tonalRamp": [
+          "oklch(0.34 0.07 168)",
+          "oklch(0.4 0.088 166)",
+          "oklch(0.46 0.105 165)",
+          "oklch(0.52 0.12 163)",
+          "oklch(0.65 0.15 162)",
+          "oklch(0.765 0.177 163)",
+          "oklch(0.905 0.093 164)",
+          "oklch(0.979 0.021 166)"
+        ]
+      },
+      "success-green-wash": {
+        "role": "status",
+        "displayName": "Success Green Wash",
+        "token": "--color-success-50",
+        "canonical": "oklch(0.979 0.021 166)",
+        "dark": "oklch(0.245 0.033 164)",
+        "tonalRamp": [
+          "oklch(0.34 0.07 168)",
+          "oklch(0.4 0.088 166)",
+          "oklch(0.46 0.105 165)",
+          "oklch(0.52 0.12 163)",
+          "oklch(0.65 0.15 162)",
+          "oklch(0.765 0.177 163)",
+          "oklch(0.905 0.093 164)",
+          "oklch(0.979 0.021 166)"
+        ]
+      },
+      "success-green-ink": {
+        "role": "status",
+        "displayName": "Success Green Ink",
+        "token": "--color-success-800",
+        "canonical": "oklch(0.4 0.088 166)",
+        "dark": "oklch(0.865 0.072 164)",
+        "tonalRamp": [
+          "oklch(0.34 0.07 168)",
+          "oklch(0.4 0.088 166)",
+          "oklch(0.46 0.105 165)",
+          "oklch(0.52 0.12 163)",
+          "oklch(0.65 0.15 162)",
+          "oklch(0.765 0.177 163)",
+          "oklch(0.905 0.093 164)",
+          "oklch(0.979 0.021 166)"
+        ]
+      },
+      "danger-red": {
+        "role": "status",
+        "displayName": "Danger Red",
+        "token": "--color-danger-600",
+        "canonical": "oklch(0.53 0.2 27)",
+        "dark": "oklch(0.72 0.162 24)",
+        "tonalRamp": [
+          "oklch(0.36 0.12 25)",
+          "oklch(0.41 0.15 26)",
+          "oklch(0.47 0.18 27)",
+          "oklch(0.53 0.2 27)",
+          "oklch(0.62 0.22 25)",
+          "oklch(0.704 0.191 22)",
+          "oklch(0.885 0.062 18)",
+          "oklch(0.971 0.013 17)"
+        ]
+      },
+      "danger-red-ink": {
+        "role": "status",
+        "displayName": "Danger Red Ink",
+        "token": "--color-danger-700",
+        "canonical": "oklch(0.47 0.18 27)",
+        "dark": "oklch(0.79 0.121 24)",
+        "tonalRamp": [
+          "oklch(0.36 0.12 25)",
+          "oklch(0.41 0.15 26)",
+          "oklch(0.47 0.18 27)",
+          "oklch(0.53 0.2 27)",
+          "oklch(0.62 0.22 25)",
+          "oklch(0.704 0.191 22)",
+          "oklch(0.885 0.062 18)",
+          "oklch(0.971 0.013 17)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "token": "--color-neutral-900",
+        "canonical": "oklch(0.21 0.024 277)",
+        "dark": "oklch(0.965 0.005 277)",
+        "tonalRamp": [
+          "oklch(0.21 0.024 277)",
+          "oklch(0.28 0.025 277)",
+          "oklch(0.37 0.025 277)",
+          "oklch(0.445 0.024 277)",
+          "oklch(0.55 0.022 277)",
+          "oklch(0.7 0.018 277)",
+          "oklch(0.918 0.01 277)",
+          "oklch(0.983 0.004 277)"
+        ],
+        "alias": "--color-fg"
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Ink Muted",
+        "token": "--color-neutral-600",
+        "canonical": "oklch(0.445 0.024 277)",
+        "dark": "oklch(0.765 0.015 277)",
+        "tonalRamp": [
+          "oklch(0.21 0.024 277)",
+          "oklch(0.28 0.025 277)",
+          "oklch(0.37 0.025 277)",
+          "oklch(0.445 0.024 277)",
+          "oklch(0.55 0.022 277)",
+          "oklch(0.7 0.018 277)",
+          "oklch(0.918 0.01 277)",
+          "oklch(0.983 0.004 277)"
+        ],
+        "alias": "--color-fg-muted"
+      },
+      "canvas": {
+        "role": "neutral",
+        "displayName": "Canvas",
+        "token": "--color-neutral-50",
+        "canonical": "oklch(0.983 0.004 277)",
+        "dark": "oklch(0.178 0.012 277)",
+        "tonalRamp": [
+          "oklch(0.21 0.024 277)",
+          "oklch(0.28 0.025 277)",
+          "oklch(0.37 0.025 277)",
+          "oklch(0.445 0.024 277)",
+          "oklch(0.55 0.022 277)",
+          "oklch(0.7 0.018 277)",
+          "oklch(0.918 0.01 277)",
+          "oklch(0.983 0.004 277)"
+        ],
+        "alias": "--color-surface / --color-fg-inverse"
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "token": "--color-neutral-0",
+        "canonical": "oklch(0.996 0.002 277)",
+        "dark": "oklch(0.218 0.014 277)",
+        "tonalRamp": [
+          "oklch(0.21 0.024 277)",
+          "oklch(0.28 0.025 277)",
+          "oklch(0.37 0.025 277)",
+          "oklch(0.445 0.024 277)",
+          "oklch(0.55 0.022 277)",
+          "oklch(0.7 0.018 277)",
+          "oklch(0.918 0.01 277)",
+          "oklch(0.983 0.004 277)"
+        ],
+        "alias": "--color-surface-raised"
+      },
+      "sunken": {
+        "role": "neutral",
+        "displayName": "Sunken",
+        "token": "--color-neutral-100",
+        "canonical": "oklch(0.963 0.007 277)",
+        "dark": "oklch(0.258 0.016 277)",
+        "tonalRamp": [
+          "oklch(0.21 0.024 277)",
+          "oklch(0.28 0.025 277)",
+          "oklch(0.37 0.025 277)",
+          "oklch(0.445 0.024 277)",
+          "oklch(0.55 0.022 277)",
+          "oklch(0.7 0.018 277)",
+          "oklch(0.918 0.01 277)",
+          "oklch(0.983 0.004 277)"
+        ],
+        "alias": "--color-surface-sunken"
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "token": "--color-neutral-200",
+        "canonical": "oklch(0.918 0.01 277)",
+        "dark": "oklch(0.305 0.018 277)",
+        "tonalRamp": [
+          "oklch(0.21 0.024 277)",
+          "oklch(0.28 0.025 277)",
+          "oklch(0.37 0.025 277)",
+          "oklch(0.445 0.024 277)",
+          "oklch(0.55 0.022 277)",
+          "oklch(0.7 0.018 277)",
+          "oklch(0.918 0.01 277)",
+          "oklch(0.983 0.004 277)"
+        ],
+        "alias": "--color-border"
+      },
+      "hairline-strong": {
+        "role": "neutral",
+        "displayName": "Hairline Strong",
+        "token": "--color-neutral-450",
+        "canonical": "oklch(0.635 0.02 277)",
+        "dark": "oklch(0.565 0.02 277)",
+        "tonalRamp": [
+          "oklch(0.21 0.024 277)",
+          "oklch(0.28 0.025 277)",
+          "oklch(0.37 0.025 277)",
+          "oklch(0.445 0.024 277)",
+          "oklch(0.55 0.022 277)",
+          "oklch(0.7 0.018 277)",
+          "oklch(0.918 0.01 277)",
+          "oklch(0.983 0.004 277)"
+        ],
+        "alias": "--color-border-strong"
+      },
+      "scrim": {
+        "role": "neutral",
+        "displayName": "Scrim",
+        "token": "--color-scrim",
+        "canonical": "oklch(0.16 0.02 277)",
+        "dark": "oklch(0.16 0.02 277)",
+        "tonalRamp": [
+          "oklch(0.21 0.024 277)",
+          "oklch(0.28 0.025 277)",
+          "oklch(0.37 0.025 277)",
+          "oklch(0.445 0.024 277)",
+          "oklch(0.55 0.022 277)",
+          "oklch(0.7 0.018 277)",
+          "oklch(0.918 0.01 277)",
+          "oklch(0.983 0.004 277)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Page h1 from sm up (text-3xl bold)."
+      },
+      "headline-compact": {
+        "displayName": "Headline Compact",
+        "purpose": "Mobile h1 (text-2xl bold)."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "h2 card and section headings (text-lg semibold)."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Chat answers, passages, input text; tutor text capped at 65ch."
+      },
+      "body-small": {
+        "displayName": "Body Small",
+        "purpose": "Buttons, nav, chips, helper and meta text."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Uppercase micro-captions inside components (Fuentes, Fragmento citado)."
+      },
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "Inline equations and token names."
+      }
+    },
+    "shadows": [
+      {
+        "name": "shadow-sm",
+        "value": "0 1px 2px 0 light-dark(oklch(0.21 0.024 277 / 0.05), oklch(0.08 0.01 277 / 0.3))",
+        "purpose": "Rest: cards, tutor bubbles, primary buttons."
+      },
+      {
+        "name": "shadow-md",
+        "value": "0 6px 16px -6px light-dark(oklch(0.21 0.024 277 / 0.14), oklch(0.08 0.01 277 / 0.5)), 0 2px 4px -2px light-dark(oklch(0.21 0.024 277 / 0.06), oklch(0.08 0.01 277 / 0.3))",
+        "purpose": "Hover on interactive cards; toasts."
+      },
+      {
+        "name": "shadow-lg",
+        "value": "0 18px 40px -12px light-dark(oklch(0.21 0.024 277 / 0.22), oklch(0.08 0.01 277 / 0.6)), 0 4px 10px -4px light-dark(oklch(0.21 0.024 277 / 0.08), oklch(0.08 0.01 277 / 0.35))",
+        "purpose": "Overlay: dialogs, sheets, menus."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-standard",
+        "value": "cubic-bezier(0.2, 0, 0, 1)",
+        "purpose": "Button colour transitions."
+      },
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "Default 150ms state transitions on interactive elements."
+      },
+      {
+        "name": "press",
+        "value": "scale(0.98) over 80ms",
+        "purpose": "Feedback on press for buttons and summaries."
+      },
+      {
+        "name": "reveal",
+        "value": "opacity 0→1, translate 0 -4px→0 over 180ms ease-out",
+        "purpose": "Disclosure and menu contents growing from their trigger."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "all motion gated behind prefers-reduced-motion: no-preference",
+        "purpose": "Accessibility (WCAG 2.2 AA)."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "reference-mobile",
+        "value": "390px"
+      },
+      {
+        "name": "reference-desktop",
+        "value": "1440px"
+      }
+    ],
+    "focusRing": "2px solid var(--color-focus) with 2px offset on every interactive element"
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main action per view; Logo Indigo fill.",
+      "html": "<button class=\"ds-btn-primary\">Crear curso</button>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;min-height:2.75rem;padding:0 1rem;border-radius:var(--radius-lg,0.625rem);font-family:var(--font-sans);font-size:0.875rem;line-height:1.25rem;font-weight:600;cursor:pointer;transition:background-color 150ms cubic-bezier(0.23,1,0.32,1),border-color 150ms,transform 80ms;border:none;background:var(--color-primary-600);color:var(--color-fg-inverse);box-shadow:var(--shadow-sm);} .ds-btn-primary:hover{background:var(--color-primary-700);} .ds-btn-primary:focus-visible{outline: 2px solid var(--color-focus); outline-offset: 2px;} .ds-btn-primary:active{transform:scale(0.98);}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Default for non-primary actions; 3:1 border on paper.",
+      "html": "<button class=\"ds-btn-secondary\">Reintentar</button>",
+      "css": ".ds-btn-secondary{display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;min-height:2.75rem;padding:0 1rem;border-radius:var(--radius-lg,0.625rem);font-family:var(--font-sans);font-size:0.875rem;line-height:1.25rem;font-weight:600;cursor:pointer;transition:background-color 150ms cubic-bezier(0.23,1,0.32,1),border-color 150ms,transform 80ms;background:var(--color-surface-raised);color:var(--color-fg);border:1px solid var(--color-border-strong);} .ds-btn-secondary:hover{background:var(--color-surface-sunken);} .ds-btn-secondary:focus-visible{outline: 2px solid var(--color-focus); outline-offset: 2px;} .ds-btn-secondary:active{transform:scale(0.98);}"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Low-emphasis navigation-like actions.",
+      "html": "<button class=\"ds-btn-ghost\">Ver todos</button>",
+      "css": ".ds-btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;min-height:2.75rem;padding:0 1rem;border-radius:var(--radius-lg,0.625rem);font-family:var(--font-sans);font-size:0.875rem;line-height:1.25rem;font-weight:600;cursor:pointer;transition:background-color 150ms cubic-bezier(0.23,1,0.32,1),border-color 150ms,transform 80ms;border:none;background:transparent;color:var(--color-primary-700);} .ds-btn-ghost:hover{background:var(--color-primary-50);} .ds-btn-ghost:focus-visible{outline: 2px solid var(--color-focus); outline-offset: 2px;}"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "text-field",
+      "description": "Labelled input with helper text; 16px text, 44px tall.",
+      "html": "<div class=\"ds-field\"><label class=\"ds-field-label\" for=\"ds-email\">Correo electrónico</label><input id=\"ds-email\" class=\"ds-field-input\" placeholder=\"nombre@universidad.es\" /><p class=\"ds-field-help\">Usa el correo con el que te inscribiste.</p></div>",
+      "css": ".ds-field{display:flex;flex-direction:column;gap:0.375rem;font-family:var(--font-sans);max-width:22rem;} .ds-field-label{font-size:0.875rem;font-weight:500;color:var(--color-fg);} .ds-field-input{min-height:2.75rem;padding:0 0.75rem;border-radius:0.625rem;border:1px solid var(--color-border-strong);background:var(--color-surface-raised);color:var(--color-fg);font:inherit;font-size:1rem;} .ds-field-input::placeholder{color:var(--color-neutral-500);} .ds-field-input:focus-visible{outline: 2px solid var(--color-focus); outline-offset: 2px;} .ds-field-input[aria-invalid=true]{border-color:var(--color-danger-600);} .ds-field-help{margin:0;font-size:0.875rem;color:var(--color-fg-muted);}"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Role shell header nav; current item on solid indigo.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link\" aria-current=\"page\" href=\"#\">Mis cursos</a><a class=\"ds-nav-link\" href=\"#\">Mi progreso</a><a class=\"ds-nav-link\" href=\"#\">Perfil</a></nav>",
+      "css": ".ds-nav{display:flex;gap:0.25rem;font-family:var(--font-sans);padding:0.75rem;background:var(--color-surface-raised);border-bottom:1px solid var(--color-border);} .ds-nav-link{display:inline-flex;align-items:center;min-height:2.5rem;padding:0 0.75rem;border-radius:0.625rem;font-size:0.875rem;font-weight:500;color:var(--color-fg-muted);text-decoration:none;transition:background-color 150ms,color 150ms;} .ds-nav-link:hover{background:var(--color-surface-sunken);color:var(--color-fg);} .ds-nav-link[aria-current=page]{background:var(--color-primary-700);color:var(--color-fg-inverse);font-weight:600;} .ds-nav-link:focus-visible{outline: 2px solid var(--color-focus); outline-offset: 2px;}"
+    },
+    {
+      "name": "Source Citation",
+      "kind": "chip",
+      "refersTo": "source-citation",
+      "description": "Pill that opens the exact cited passage; dashed when the document is gone.",
+      "html": "<div class=\"ds-cite-row\"><button class=\"ds-cite\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z\"/><path d=\"M14 2v4a2 2 0 0 0 2 2h4\"/><path d=\"M10 9H8\"/><path d=\"M16 13H8\"/><path d=\"M16 17H8\"/></svg><span>Tema 3 · p. 12</span></button><button class=\"ds-cite ds-cite-off\" disabled><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z\"/><path d=\"M14 2v4a2 2 0 0 0 2 2h4\"/><path d=\"M10 9H8\"/><path d=\"M16 13H8\"/><path d=\"M16 17H8\"/></svg><span>Documento ya no disponible</span></button></div>",
+      "css": ".ds-cite-row{display:flex;flex-wrap:wrap;gap:0.5rem;font-family:var(--font-sans);} .ds-cite{display:inline-flex;align-items:center;gap:0.5rem;min-height:2.75rem;padding:0 0.75rem;border-radius:9999px;border:1px solid var(--color-primary-200);background:var(--color-primary-50);color:var(--color-primary-800);font:inherit;font-size:0.875rem;font-weight:500;cursor:pointer;transition:background-color 150ms;} .ds-cite:hover{background:var(--color-primary-100);} .ds-cite:focus-visible{outline: 2px solid var(--color-focus); outline-offset: 2px;} .ds-cite-off{border-style:dashed;border-color:var(--color-border-strong);background:var(--color-surface-sunken);color:var(--color-fg-muted);font-weight:400;cursor:not-allowed;} .ds-cite-off:hover{background:var(--color-surface-sunken);}"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Interactive course card; border shifts and lifts on hover.",
+      "html": "<a class=\"ds-card\" href=\"#\"><h3 class=\"ds-card-title\">Álgebra · Grupo A</h3><p class=\"ds-card-meta\">24 estudiantes · 3 documentos</p></a>",
+      "css": ".ds-card{display:flex;flex-direction:column;gap:0.75rem;max-width:20rem;padding:1.25rem;border-radius:0.875rem;border:1px solid var(--color-border);background:var(--color-surface-raised);box-shadow:var(--shadow-sm);text-decoration:none;font-family:var(--font-sans);transition:box-shadow 150ms,border-color 150ms;} .ds-card:hover{border-color:var(--color-border-strong);box-shadow:var(--shadow-md);} .ds-card:focus-visible{outline: 2px solid var(--color-focus); outline-offset: 2px;} .ds-card-title{margin:0;font-size:1.125rem;line-height:1.75rem;font-weight:600;color:var(--color-fg);} .ds-card-meta{margin:0;font-size:0.875rem;color:var(--color-fg-muted);}"
+    },
+    {
+      "name": "Tutor Answer",
+      "kind": "custom",
+      "refersTo": "chat-bubble-tutor",
+      "description": "Signature: AI-labelled tutor bubble with its Fuentes footer.",
+      "html": "<div class=\"ds-msg\"><span class=\"ds-avatar\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M9.94 14.06 4 20M12 3l1.9 5.8L20 11l-6.1 2.2L12 19l-1.9-5.8L4 11l6.1-2.2Z\"/></svg></span><div class=\"ds-bubble\"><p class=\"ds-who\">Tutor <abbr class=\"ds-ai\">IA</abbr></p><p class=\"ds-text\">Para despejar x, resta 3 en ambos lados y divide entre 2.</p><div class=\"ds-sources\"><p class=\"ds-cap\">Fuentes</p><span class=\"ds-cite-mini\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z\"/><path d=\"M14 2v4a2 2 0 0 0 2 2h4\"/><path d=\"M10 9H8\"/><path d=\"M16 13H8\"/><path d=\"M16 17H8\"/></svg>Tema 3 · p. 12</span></div></div></div>",
+      "css": ".ds-msg{display:flex;gap:0.75rem;font-family:var(--font-sans);max-width:36rem;} .ds-avatar{display:inline-flex;flex-shrink:0;align-items:center;justify-content:center;width:2rem;height:2rem;margin-top:0.25rem;border-radius:9999px;background:var(--color-info-600);color:var(--color-fg-inverse);} .ds-bubble{flex:1;padding:1rem;border-radius:1.125rem 1.125rem 1.125rem 1.125rem;border-top-left-radius:0.3125rem;border:1px solid var(--color-border);background:var(--color-surface-raised);box-shadow:var(--shadow-sm);} .ds-who{display:flex;align-items:center;gap:0.5rem;margin:0 0 0.5rem;font-size:0.875rem;font-weight:600;color:var(--color-fg);} .ds-ai{padding:0.125rem 0.5rem;border-radius:9999px;background:var(--color-info-100);color:var(--color-info-800);font-size:0.75rem;text-decoration:none;} .ds-text{margin:0;color:var(--color-fg);line-height:1.5rem;} .ds-sources{margin-top:1rem;padding-top:0.75rem;border-top:1px solid var(--color-border);} .ds-cap{margin:0 0 0.5rem;font-size:0.75rem;font-weight:600;letter-spacing:0.025em;text-transform:uppercase;color:var(--color-primary-800);} .ds-cite-mini{display:inline-flex;align-items:center;gap:0.5rem;min-height:2.25rem;padding:0 0.75rem;border-radius:9999px;border:1px solid var(--color-primary-300);background:var(--color-primary-50);color:var(--color-primary-800);font-size:0.875rem;font-weight:600;}"
+    },
+    {
+      "name": "No-Source Notice",
+      "kind": "custom",
+      "refersTo": "no-source-notice",
+      "description": "Signature: the honest \"not covered by the material\" reply; teal, no citations.",
+      "html": "<div class=\"ds-nosrc\"><span class=\"ds-nosrc-icon\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 16v-4\"/><path d=\"M12 8h.01\"/></svg></span><div><p class=\"ds-nosrc-h\">El material del curso no cubre esta pregunta</p><p class=\"ds-nosrc-b\">Prueba a reformularla o pregunta a tu profesor/a.</p></div></div>",
+      "css": ".ds-nosrc{display:flex;gap:0.75rem;max-width:32rem;padding:1rem;border-radius:1.125rem;border-top-left-radius:0.3125rem;border:1px solid var(--color-info-200);background:var(--color-info-50);font-family:var(--font-sans);} .ds-nosrc-icon{color:var(--color-info-700);margin-top:0.125rem;} .ds-nosrc-icon svg{width:24px;height:24px;} .ds-nosrc-h{margin:0;font-weight:600;color:var(--color-fg);} .ds-nosrc-b{margin:0.25rem 0 0;color:var(--color-fg);}"
+    },
+    {
+      "name": "Guided Mode Indicator",
+      "kind": "custom",
+      "refersTo": "hint-tag",
+      "description": "Amber strip explaining hints come before solutions.",
+      "html": "<div class=\"ds-guided\"><strong>Modo guiado</strong><span>El tutor te dará pistas antes de la solución.</span></div>",
+      "css": ".ds-guided{display:flex;flex-wrap:wrap;align-items:center;gap:0.25rem 0.75rem;padding:0.5rem 1rem;border-radius:0.875rem;border:1px solid var(--color-warning-300);background:var(--color-warning-50);color:var(--color-warning-800);font-family:var(--font-sans);font-size:0.875rem;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Glass Classroom",
+    "overview": "Nothing in DocentAI happens behind the student's back or the teacher's. The interface works like a classroom with glass walls: the AI is always labelled as AI, the student can always see that their teacher may read the conversation, every answer shows the passage it came from, and every flag a teacher sees shows the data behind it. The visual system serves that transparency, not decoration. Surfaces stay quiet and near-white with a faint indigo tint, so colour is free to *mean* something. Indigo is the product and the source, teal is the AI speaking, amber is pedagogy at work (hints, guided mode, low allowance), and green and red report outcomes.\n\nThe feel is **calm and precise**. Surfaces are flat, crisp hairlines carry structure, and soft shadows appear only where something is raised or interactive. Density is moderate. Teacher screens are scannable lists and cards on a 1440 px desktop, and student screens are a single readable column that works at 390 px with 44 px touch targets. The type is a single humanist sans (Figtree) with a short, practical scale. Hierarchy comes from weight and spacing, not size jumps.\n\nThe light and dark schemes are equal citizens. Every colour token carries both values, and the dark ramps mirror the light ones, so the same pairings keep their contrast in both. The header goes translucent, with blur and saturation, over scrolling content, and falls back to solid when the user asks for reduced transparency.",
+    "keyCharacteristics": [
+      "Colour is semantic, never decorative. Each hue family has one job.",
+      "The tutor's voice is visibly distinct: a teal avatar, an \"IA\" tag, and a teal surface when the material does not cover the question.",
+      "Citations are first-class objects: indigo pills that open the exact passage.",
+      "Flat, hairline-structured surfaces with tinted, low-contrast shadows.",
+      "One sans family, a compact type scale and an uppercase micro-label for section captions.",
+      "WCAG 2.2 AA in both schemes: 3:1 control borders, a visible 2 px focus ring and no meaning carried by colour alone."
+    ],
+    "rules": [
+      {
+        "name": "The One Job Rule",
+        "body": "Each hue family means one thing: indigo is the product and its sources, teal is the AI, amber is hints and caution, green is done or correct, red is failed or wrong. Never use a hue for decoration, and never let teal stand in for indigo, or the reverse.",
+        "section": "colors"
+      },
+      {
+        "name": "The Semantic Alias Rule",
+        "body": "Components reach for the role aliases (`fg`, `fg-muted`, `surface`, `surface-raised`, `surface-sunken`, `border`, `border-strong`, `focus`) wherever a role exists, and use ramp steps only for tinted pairings. Raw colour values exist only in `theme.css`. Tailwind's default palette is erased (`--color-*: initial`).",
+        "section": "colors"
+      },
+      {
+        "name": "The Mirrored Pair Rule",
+        "body": "Pair washes with inks across the ramp (`*-50` fill + `*-800` text, `*-600` fill + `fg-inverse` text). The dark ramps are mirrored, so these pairings hold AA in both schemes without a `dark:` override.",
+        "section": "colors"
+      },
+      {
+        "name": "The Weight-Not-Size Rule",
+        "body": "The scale tops out at 2rem. Build hierarchy with weight, colour (`fg` vs `fg-muted`) and space, never with display sizes. There is no hero type in the product UI.",
+        "section": "typography"
+      },
+      {
+        "name": "The Balanced Heading Rule",
+        "body": "Headings use `text-wrap: balance` and paragraphs use `text-wrap: pretty`. Long Spanish compounds and German-length English strings must wrap gracefully at 390 px.",
+        "section": "typography"
+      },
+      {
+        "name": "The 44 px Rule",
+        "body": "Every interactive target is at least 44 px tall on touch layouts (`min-h-11`, `size-11`). Dense desktop contexts may drop to 36–40 px only from `md` up.",
+        "section": "layout"
+      },
+      {
+        "name": "The Border-First Rule",
+        "body": "Resting elevation comes from a hairline border, not a shadow. A shadow without a border is reserved for overlays.",
+        "section": "elevation"
+      },
+      {
+        "name": "The State-Only Lift Rule",
+        "body": "A surface moves from `shadow-sm` to `shadow-md` only in response to hover on something clickable. Static containers never animate their shadow.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Dashed-Means-Missing Rule",
+        "body": "A dashed border signals that something is not there yet or no longer exists. Never use it decoratively.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "**Do** take every colour from `theme.css` tokens and prefer the role aliases (`fg`, `surface-raised`, `border-strong`, `focus`) over ramp steps.",
+      "**Do** keep each hue on its one job: indigo for the product and its sources, teal for the AI, amber for hints and caution, green and red for outcomes.",
+      "**Do** label every tutor message with the teal avatar and the **IA** tag, and give every grounded answer its SourceCitation chips.",
+      "**Do** render \"not covered by the material\" with the NoSourceNotice pattern, everywhere it occurs.",
+      "**Do** give every interactive element a 44 px touch target and the 2 px Logo Indigo focus ring with a 2 px offset.",
+      "**Do** check every pairing in both light and dark. Use mirrored wash/ink pairs so no `dark:` override is needed.",
+      "**Do** put motion behind `prefers-reduced-motion: no-preference`, at 150 ms with `ease-out` (`cubic-bezier(0.23, 1, 0.32, 1)`) for state changes.",
+      "**Do** name new components identically in the HTML prototype (`data-component`) and in React."
+    ],
+    "donts": [
+      "**Don't** write hex, rgb or raw oklch values, arbitrary `[..]` utilities or raw pixel spacing outside `theme.css`.",
+      "**Don't** style a \"not covered\" reply like a normal answer, or show citations on it.",
+      "**Don't** use teal for brand actions or indigo for the AI's voice.",
+      "**Don't** convey state by colour alone. Pair it with an icon, a label or text (for example \"Pista 1 de 3\" or \"Excluido\").",
+      "**Don't** add display-size type, gradients, glows or decorative illustration to product screens.",
+      "**Don't** use dashed borders except for missing or empty things.",
+      "**Don't** redraw, recolour or crop the DocentAI logo, and don't drop the IMFAHE acknowledgement from the sign-in screen, the About page or the role footers."
+    ]
+  }
+}

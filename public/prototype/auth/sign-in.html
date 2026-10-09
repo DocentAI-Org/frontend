@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Iniciar sesión · DocentAI (prototipo)</title>
+    <style>
+      :root { color-scheme: light dark; }
+      [data-cloak] { visibility: hidden; }
+      [data-cloak] *, [data-cloak] *::before, [data-cloak] *::after { transition: none !important; }
+      summary::-webkit-details-marker { display: none; }
+    </style>
+    <script type="module" src="../assets/js/prototype.js"></script>
+  </head>
+  <body data-cloak class="flex min-h-dvh flex-col bg-surface font-sans text-fg antialiased">
+    <a href="#main" class="sr-only rounded-lg bg-primary-700 px-4 py-2 text-fg-inverse focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50" data-i18n="common.a11y.skipToContent"></a>
+    <div data-include="partials/header-public.html"></div>
+    <main id="main" tabindex="-1" class="mx-auto w-full max-w-6xl flex-1 px-4 py-8 sm:px-6 lg:py-16">
+      <div class="mx-auto grid w-full max-w-md gap-10 lg:max-w-none lg:grid-cols-2 lg:items-start lg:gap-16">
+
+        <!-- Notebook cover: the subject on top, a page of the notebook underneath. -->
+        <div class="flex flex-col gap-8">
+          <div class="flex flex-col gap-4 border-b-2 border-neutral-900 pb-6">
+            <img src="../assets/img/docentai-logo-144.png" alt="" width="56" height="56" class="size-14 shrink-0" />
+            <h1 class="text-3xl font-semibold text-fg sm:text-4xl lg:text-5xl" data-i18n="common.auth.signInTitle"></h1>
+            <p class="w-fit bg-surface text-lg text-fg-muted" data-i18n="common.auth.signInLead"></p>
+          </div>
+          <div class="hidden grid-cols-12 gap-x-4 rounded-xl border border-border bg-surface-raised p-6 lg:grid" aria-hidden="true">
+            <div class="col-span-8 flex flex-col gap-4">
+              <p class="ml-auto max-w-xs rounded-r-md border-l-4 border-primary-600 bg-surface-raised px-4 py-2 text-sm text-fg shadow-sm" data-i18n="sample.questions.covered"></p>
+              <div>
+                <p class="mb-2 flex items-center gap-2 text-sm font-semibold text-fg-muted"><span data-i18n="student.chat.tutorName"></span><span class="rounded-sm border border-info-300 px-1 text-xs font-bold text-info-800" data-i18n="student.chat.aiTag"></span></p>
+                <p class="font-serif text-fg"><span data-i18n="sample.chat.answerIntro"></span><sup class="ml-1 font-sans text-xs font-bold text-teacher-700">1</sup></p>
+                <p class="bg-grid mt-2 rounded-md border border-border px-4 py-2 font-serif text-fg italic" data-i18n="sample.chat.eq1"></p>
+              </div>
+            </div>
+            <div class="col-span-4 flex flex-col gap-1 border-l-2 border-margin pl-4">
+              <p class="text-xs font-bold text-teacher-700" data-i18n="student.chat.sources"></p>
+              <p class="text-sm font-semibold text-teacher-700"><sup class="text-xs font-bold">1</sup> <span data-i18n="student.chat.citation.chip" data-i18n-vars='{"doc": "sample.documents.tema3Short", "loc": "sample.chat.loc"}'></span></p>
+              <p class="line-clamp-4 font-serif text-sm text-fg-muted italic" data-i18n="sample.chat.passage"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-6">
+          <div class="flex flex-col gap-4 rounded-xl border border-border bg-surface-raised p-6 sm:p-8">
+            <div data-state="invalid-credentials"><div role="alert" class="flex items-start gap-4 rounded-lg border border-danger-200 bg-danger-50 p-4"><svg class="mt-0.5 size-5 shrink-0 text-danger-700" aria-hidden="true"><use href="../assets/img/icons.svg#triangle-alert"/></svg><div class="flex min-w-0 flex-1 flex-col gap-1"><p class="text-danger-700" data-i18n="common.auth.invalid"></p></div></div></div>
+            <div data-state="session-expired"><div role="alert" class="flex items-start gap-4 rounded-lg bg-warning-200 p-4"><svg class="mt-0.5 size-5 shrink-0 text-warning-900" aria-hidden="true"><use href="../assets/img/icons.svg#clock"/></svg><div class="flex min-w-0 flex-1 flex-col gap-1"><p class="text-warning-900" data-i18n="common.auth.expired"></p></div></div></div>
+            <form data-state="default loading invalid-credentials" novalidate data-route data-route-field="#si-email" data-routes='{"lucas.herrera@example.org":"../student/consent.html","elena.ruiz@example.org":"../teacher/courses.html","admin@example.org":"../admin/users.html"}' data-route-default="invalid-credentials" data-route-next-fallback="../student/courses.html" class="flex flex-col gap-4"><div class="flex flex-col gap-2" data-component="TextField"><label for="si-email" class="text-sm font-semibold text-fg" data-i18n="common.auth.email"></label><input id="si-email" type="email" class="min-h-11 w-full rounded-lg border border-border-strong bg-surface-raised px-4 text-base text-fg placeholder:text-fg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:bg-surface-sunken disabled:text-fg-muted aria-invalid:border-danger-600" autocomplete="username" data-i18n-attr="placeholder:common.auth.emailPlaceholder" /></div><div class="flex flex-col gap-2" data-component="TextField"><label for="si-password" class="text-sm font-semibold text-fg" data-i18n="common.auth.password"></label><input id="si-password" type="password" class="min-h-11 w-full rounded-lg border border-border-strong bg-surface-raised px-4 text-base text-fg placeholder:text-fg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:bg-surface-sunken disabled:text-fg-muted aria-invalid:border-danger-600" autocomplete="current-password" /></div><a href="password-recovery.html" class="self-start rounded-sm text-sm text-fg underline decoration-neutral-400 underline-offset-2 hover:decoration-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" data-i18n="common.auth.forgot"></a><span data-state="default invalid-credentials"><button type="submit" class="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-primary-600 px-4 text-sm font-semibold text-fg-inverse hover:bg-primary-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:bg-neutral-200 disabled:text-neutral-600" data-component="Button" data-variant="primary"><span data-i18n="common.auth.signIn"></span></button></span><span data-state="loading"><button type="button" disabled aria-busy="true" class="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-primary-600 px-4 text-sm font-semibold text-fg-inverse hover:bg-primary-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:bg-neutral-200 disabled:text-neutral-600" data-component="Button" data-variant="primary"><svg class="size-4 shrink-0 motion-safe:animate-spin" aria-hidden="true"><use href="../assets/img/icons.svg#refresh-cw"/></svg><span data-i18n="common.auth.signingIn"></span></button></span></form>
+            <form data-state="session-expired" novalidate data-route data-route-field="#se-email" data-routes='{}' data-route-default="@next" data-route-next-fallback="../student/courses.html" class="flex flex-col gap-4"><div class="flex flex-col gap-2" data-component="TextField"><label for="se-email" class="text-sm font-semibold text-fg" data-i18n="common.auth.email"></label><input id="se-email" type="email" class="min-h-11 w-full rounded-lg border border-border-strong bg-surface-raised px-4 text-base text-fg placeholder:text-fg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:bg-surface-sunken disabled:text-fg-muted aria-invalid:border-danger-600" autocomplete="username" data-i18n-attr="placeholder:common.auth.emailPlaceholder" /></div><div class="flex flex-col gap-2" data-component="TextField"><label for="se-password" class="text-sm font-semibold text-fg" data-i18n="common.auth.password"></label><input id="se-password" type="password" class="min-h-11 w-full rounded-lg border border-border-strong bg-surface-raised px-4 text-base text-fg placeholder:text-fg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:bg-surface-sunken disabled:text-fg-muted aria-invalid:border-danger-600" autocomplete="current-password" /></div><a href="password-recovery.html" class="self-start rounded-sm text-sm text-fg underline decoration-neutral-400 underline-offset-2 hover:decoration-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" data-i18n="common.auth.forgot"></a><span data-state="session-expired"><button type="submit" class="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-primary-600 px-4 text-sm font-semibold text-fg-inverse hover:bg-primary-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" data-component="Button" data-variant="primary"><span data-i18n="common.auth.signIn"></span></button></span></form>
+          </div>
+
+          <!-- Prototype-only shortcuts, marked like a highlighted note. -->
+          <section aria-labelledby="demo-title" class="flex flex-col gap-4 rounded-xl border border-warning-300 bg-warning-50 p-4">
+            <div><h2 class="font-sans text-sm font-bold text-fg" data-i18n="common.auth.demoTitle" id="demo-title"></h2><p class="text-sm text-fg-muted" data-i18n="common.auth.demoNote"></p></div>
+            <div class="grid gap-2 sm:grid-cols-3 lg:grid-cols-1">
+              <a href="../student/consent.html" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-border-strong bg-surface-raised px-4 text-sm font-semibold text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" data-component="Button" data-variant="secondary"><svg class="size-4 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#graduation-cap"/></svg><span data-i18n="common.auth.asStudent"></span></a>
+              <a href="../teacher/courses.html" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-border-strong bg-surface-raised px-4 text-sm font-semibold text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" data-component="Button" data-variant="secondary"><svg class="size-4 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#book-open"/></svg><span data-i18n="common.auth.asTeacher"></span></a>
+              <a href="../admin/users.html" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-border-strong bg-surface-raised px-4 text-sm font-semibold text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" data-component="Button" data-variant="secondary"><svg class="size-4 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#settings"/></svg><span data-i18n="common.auth.asAdmin"></span></a>
+            </div>
+          </section>
+
+          <div class="flex flex-wrap items-center justify-between gap-4 border-t border-border pt-4 text-sm text-fg-muted">
+            <div class="flex items-center gap-4" data-component="ImfaheAcknowledgement" data-variant="sign-in"><img src="../assets/img/imfahe-logo-transparent.webp" alt="" width="90" height="40" class="h-10 w-auto shrink-0 dark:invert dark:hue-rotate-180" /><p class="bg-surface" data-i18n="common.imfahe.acknowledgement"></p></div>
+            <a href="../about.html#privacy" class="rounded-sm bg-surface text-fg underline decoration-neutral-400 underline-offset-2 hover:decoration-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" data-i18n="common.privacy.link"></a>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div data-include="partials/footer.html"></div>
+  </body>
+</html>

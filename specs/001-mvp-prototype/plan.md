@@ -1,0 +1,403 @@
+# Implementation Plan: DocentAI MVP Prototype (Frontend UI)
+
+**Branch**: `001-mvp-prototype` | **Date**: 2026-10-04, revised 2026-10-06 | **Spec**: [spec.md](spec.md)
+
+**Input**: Feature specification from `/specs/001-mvp-prototype/spec.md`
+
+**Note**: Revised 2026-10-04 for constitution 2.1.0. The deliverable is a **validated static HTML
+prototype**, not a Figma file and not product code. "Implementation" means building the
+prototype pages and running validation sessions.
+
+**Revision 2026-10-06**: the spec was revised to follow `requirements.md` after the requirements
+audit (spec Status line). This plan adds the resulting increment to the prototype that is already
+built (tasks T001–T104 and T114 done; T105–T113 open, validation sessions not started):
+- changed pages #8, #10, #12, #17, #18, #23–#27, #29, #32, and new pages #33 and #34;
+- flows F1, F9, F11, F12, F14 and F15 extended, and new flows F16–F18;
+- research R-21 to R-28; data-model, contract and quickstart revised.
+
+The increment is built **before** the validation sessions (R-28). Its tasks are T115–T156 in
+[tasks.md](tasks.md) (Phases 17–28).
+
+## Summary
+
+Build and validate a clickable, bilingual (ES default, EN) static HTML prototype for all three
+roles (admin, teacher, student). It has one page per screen; every state in the Screen Inventory
+can be reached by a `?state=` query parameter and from a visible state panel. Pages use plain
+HTML styled with Tailwind v4 through the `@tailwindcss/browser` CDN build, and a small vanilla JS
+runtime handles includes, copy, state and language switching. There is no build step. The
+prototype lives in `public/prototype/`, so Next.js serves it at `/prototype` locally and on every
+Vercel preview. Design tokens live in one `@theme` file that both the prototype and the React app
+load (Constitution IV). Copy lives in ES/EN message files whose keys are the future i18n keys
+(Constitution VIII). Validation runs moderated sessions with teachers and students; findings go
+into `spec.md` first, then the prototype.
+
+The 2026-10-06 increment makes the proposal's differentiators visible in the prototype:
+- teachers validate material and exclude fragments (R-21);
+- a teacher's correction appears on the student's message (R-22);
+- teachers define course topics and confirm suggested assignments (R-25);
+- students and teachers see the same learning record (R-26, R-27);
+- adapted answers say they were adapted and why (R-23);
+- every decision about a student states its basis in one sentence (R-24).
+
+It uses the same runtime, tokens and contract mechanisms, and adds no dependencies.
+
+## Technical Context
+
+**Language/Version**: HTML5, CSS (Tailwind v4.3.3 syntax), JavaScript (ES2022 modules, no
+transpiling). Copy in Spanish (default) and English.
+
+**Primary Dependencies**: `@tailwindcss/browser@4.3.3` loaded from jsDelivr with the version
+pinned to match the app's `tailwindcss` 4.3.3 (research R-01). No runtime npm dependency.
+Dev-only, for verification: `vitest`, `jsdom`, `@testing-library/dom`, `@playwright/test`,
+`@axe-core/playwright` (R-11; all are tools the constitution already requires for the app).
+
+**Storage**: Static files in the repo: pages, a page manifest, ES/EN message files, sample-data
+files, and the shared `@theme` token file. `localStorage` holds only the language and
+state-panel preferences, never personal data (Constitution VII). Session recordings are never
+stored in the repo.
+
+**Testing**: Vitest + Testing Library (jsdom) for the prototype runtime modules and for static
+checks: ES/EN key parity, no hardcoded visual values, manifest consistency. Playwright for:
+- an axe sweep (WCAG 2.2 AA) of every page × state at 390 px and 1440 px;
+- one test per acceptance scenario, titled with its ID and grouped in a serial `describe` per
+  flow (F1–F18), so every scenario has at least one E2E test (Constitution V).
+
+Moderated usability sessions ([quickstart.md](quickstart.md)) remain the validation that decides
+"validated" (SC-001–SC-008).
+
+**Target Platform**: Last 2 versions of Chrome, Edge, Firefox and Safari. Desktop at 1440 px
+(primary for all roles) and mobile at 390 px (every student page, and the key teacher/admin pages
+marked "M" in the inventory). Students test on their own phones through the Vercel preview URL.
+
+**Project Type**: Design deliverable (static UI prototype) inside the existing Next.js web app
+repository.
+
+**Performance Goals**: A page is usable in under 2 s on a phone over 4G. Loading states appear
+within 1 s of an action (spec Edge Cases). These are prototype goals, not product targets.
+
+**Constraints**: No build step for the prototype. WCAG 2.2 AA (contrast ≥4.5:1 text, ≥3:1 large
+text and UI parts, visible focus, targets ≥24×24 px and 44×44 px for primary student mobile
+actions). Light and dark themes (system preference by default, manual switch; R-20). Only fictitious people and data. No hex/rgb or arbitrary `[..]`
+values outside the token file. Desktop-first design for all roles; no horizontal scroll at 390 px.
+
+**Scale/Scope**: 34 screens from the Screen Inventory below, implemented as 33 pages (the citation
+sheet #9 is an overlay state of the chat page #8). About 185 page states in total (about 35 added
+on 2026-10-06), 16 user stories, 18 flows (F1–F18).
+
+## Constitution Check
+
+*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
+
+Constitution version: **2.1.0**. Re-checked on 2026-10-06 for the revision; the additions are
+noted after "Revision:" in each row.
+
+| Principle | Applies | Status | How this plan complies |
+|---|---|---|---|
+| I. Teacher Control & Transparency | Full | ✅ Pass | `SourceCitation` on every grounded answer. One shared `NoSourceNotice` (S2) reused in chat, hints, exercise feedback and explanations. Material review pages (T2). At-risk and error items show their data (T5). **Revision:** strengthens this principle. Material is used only after explicit validation, with validator and date shown (R-21). Teacher corrections reach the student (R-22). Every decision about a student shows its basis (`DecisionReason`, R-24). |
+| II. Role Separation | Full | ✅ Pass | Separate folders, shells and navigation per role (`admin/`, `teacher/`, `student/`). Access-denied page. No page shows another student's data or another teacher's course. Route groups apply to the later React app. **Revision:** the student detail page (#27) and the topic pages (#33, #34) are teacher-only. A student sees a teacher correction only on their own messages, never the flag category (R-22). The learning record is shown to its student and to that student's teacher only. |
+| III. Accessibility WCAG 2.2 AA | Full | ✅ Pass | Semantic HTML and visible focus ring. Targets ≥24 px (44 px for primary mobile actions). Reduced-motion respected. An axe sweep runs on every page × state at both widths (R-11), and failures block merge. Manual keyboard and focus-order check on every P1 page. **Revision:** topics are reordered with buttons, not dragging only (WCAG 2.5.7, R-25). Mastery and progress are text-first: a timeline list instead of a chart (R-26). Status badges carry text. `AdaptationSheet` reuses the accessible `CitationSheet` behaviour. |
+| IV. Design System First | Full | ✅ Pass | One `@theme` file is loaded by both the prototype and `src/app/globals.css`, so tokens are identical by construction (R-02). Tailwind's default palette is cleared, so only DocentAI tokens exist. A static check forbids hex/rgb and arbitrary values in pages. Component names in `data-component` match the future React names. The spec "Prototype pages" table gets linked (FR-052). **Revision:** new components are listed under Components and shown on `design-system.html`, and they use existing tokens only. |
+| V. Test-First | Applies to the runtime JS and flows | ✅ Pass | Unit tests for `assets/js/*` modules are written and seen failing before each module. The Playwright flow tests for a story are written before its pages, and fail until the pages exist. |
+| VI. Typed Backend Contract | One clause | ✅ Pass | No API calls. Loading, empty and error states are designed in the prototype for every data-driven page (FR-001). `data-model.md` is input for the future OpenAPI contract. |
+| VII. Privacy by Design | Full | ✅ Pass | Fictitious data only (`example.org` emails). Consent and revocation designed. No personal data in `localStorage`. No analytics in the prototype. Session recordings are kept outside the repo and deleted after analysis. Findings use participant codes. The jsDelivr request is noted in R-01. **Revision:** the learning record and corrections use fictitious sample data only. |
+| VIII. Bilingual from the MVP | Full | ✅ Pass | All copy, alt text and `aria-label`s come from `messages/es.json` and `messages/en.json`, and a test fails on a missing key in either locale. Dates and numbers use `Intl` per locale. Plurals use `_one`/`_other` keys. Language switcher on sign-in and in every shell. **Revision:** every new string (statuses, reasons, corrections, topics) is added to both locales. |
+| IX. Simplicity | Full | ✅ Pass | No runtime dependency and no build step. Dev dependencies are justified below and are already mandated for the app. A component is extracted into a partial only if it is used on ≥2 pages and its markup is identical. The Server Components clause is N/A (no React). **Revision:** no new dependency (R-26 rejects a chart library). Topic pages and the student detail page reuse existing runtime attributes. |
+
+**Dependency justification (IX)**: `vitest`, `@testing-library/dom` and `jsdom` (unit tests,
+Constitution V), `@playwright/test` and `@axe-core/playwright` (E2E and axe, Constitutions III and
+V). All five are needed by the React app later, so adding them now costs nothing extra. Nothing is
+added to `dependencies`. `@tailwindcss/browser` (dev only, pinned to the same 4.3.3 the prototype
+loads) is served to the browser tests in place of the jsDelivr URL: hundreds of page loads per run
+made the CDN a source of flaky failures. The prototype itself still loads the CDN build.
+
+**Gate result (pre-research)**: PASS.
+
+**Gate result (post-design)**: PASS. Re-checked after research.md, data-model.md,
+contracts/ and quickstart.md:
+- R-02 changes `src/app/globals.css` to import the shared token file. The app's current ad-hoc
+  tokens (`ink`, `paper`, `accent`, `success`) and the hardcoded body colors are replaced by
+  DocentAI tokens. This fixes an existing Principle IV violation rather than adding one.
+- R-07 adds one redirect to `next.config.ts` so `/prototype` opens the index.
+
+**Gate result (revision 2026-10-06)**: PASS, before and after the revised research, data-model,
+contract and quickstart. No new violation and no Complexity Tracking entry. The two renames in
+R-28 are contract changes, not constitution issues.
+
+**User input reconciled with the constitution**: the request asked for "mobile-first student
+screens" and a "Spanish UI". The user chose to comply with the constitution instead: student
+pages are designed desktop-first and verified at 390 px, and the UI is ES + EN with Spanish as
+the default.
+
+## Prototype Structure
+
+### Pages and states
+
+Each page appears once in `public/prototype/assets/pages.json` (see
+[contracts/prototype-pages.md](contracts/prototype-pages.md)). That manifest drives the index, the
+state panel and the test sweep. Legend: D default · E empty · L loading · Er error · LR limit
+reached · NS no validated source · AI AI disclosure · SC source citations. "M" = verified at 390 px
+(all pages are responsive; M marks the widths that are tested and reviewed).
+
+| # | Role | Screen | Page (`/prototype/…`) | Story | Req IDs | Prio | States | M |
+|---|---|---|---|---|---|---|---|---|
+| 1 | All | Sign-in | `auth/sign-in.html` | US-07 | P1, FR-005 | P1 | D, L, Er (invalid credentials), session expired | ✓ |
+| 2 | All | Password recovery | `auth/password-recovery.html` | US-07 | P1 | P1 | D, L, Er, sent | ✓ |
+| 3 | All | Access denied / not found | `auth/access-denied.html` | US-07 | P1 | P1 | access denied, not found, removed course | ✓ |
+| 4 | All | About (IMFAHE, privacy) | `about.html` | US-07 | FR-005 | P1 | D | ✓ |
+| 5 | Student | Consent & AI transparency | `student/consent.html` | US-01, US-07 | S1, P1 | P1 | D, AI, Er, revoked | ✓ |
+| 6 | Student | My courses | `student/courses.html` | US-04 | T1 | P1 | D, E, L, Er, several courses | ✓ |
+| 7 | Student | Join course (code / link) | `student/join.html` | US-04 | T1 | P1 | D, L, Er invalid / expired / disabled, confirm | ✓ |
+| 8 | Student | Course chat | `student/chat.html` | US-01, US-16 | S1, S2, T6, S8 | P1 | D, E + AI (first use), L (history), Er (history load), tutor writing, SC, NS, low allowance, LR, failed message, document unavailable, corrected, adapted, adapted basis, tutor information | ✓ |
+| 9 | Student | Citation sheet | `student/chat.html?state=citation` | US-01 | S1 | P1 | citation (overlay of #8), citation-unavailable | ✓ |
+| 10 | Student | Course chat – guided mode | `student/chat-guided.html` | US-05, US-16 | S3, S8 | P1 | D, L, Er, hint N, all hints (solution allowed), all hints (hints only), NS, LR, adapted hint | ✓ |
+| 11 | Student | Submit exercise | `student/exercise.html` | US-06 | S4 | P1 | D, review, L, Er empty, Er unreadable photo, LR | ✓ |
+| 12 | Student | Exercise feedback | `student/exercise-feedback.html` | US-06, US-12 | S4, S5, T6 | P1 | L (pending), D (SC, error type and topic, saved to progress), NS, Er, repeated-mistake notice, corrected | ✓ |
+| 13 | Student | Profile & consent | `student/profile.html` | US-07 | P1, FR-015 | P1 | D, L, Er, revoke confirm, revoked | ✓ |
+| 14 | Teacher | My courses | `teacher/courses.html` | US-04 | T1 | P1 | D, E, L, Er | ✓ |
+| 15 | Teacher | Create course | `teacher/course-new.html` | US-04 | T1 | P1 | D, Er validation, L | — |
+| 16 | Teacher | Course overview | `teacher/course.html` | US-04 | T1 | P1 | D, E (no students), L, Er, code copied, code disabled, regenerate confirm, code regenerated | ✓ |
+| 17 | Teacher | Material list & upload | `teacher/material.html` | US-02, US-14 | T2, T9 | P1 | E, L, Er, D, uploading, processing, file error, pending validation, validate confirm, validated, exclude confirm, document excluded, no validated material, unassigned topics, duplicate dialog | ✓ |
+| 18 | Teacher | Fragment review | `teacher/fragments.html` | US-02 | T2 | P1 | D, L, Er, search results, search no results, fragment excluded | — |
+| 19 | Teacher | Tutor settings | `teacher/tutor-settings.html` | US-03 | T3, S3 | P1 | D (defaults), L, Er (load), preview, unsaved dialog, saved, Er (save failed) | — |
+| 20 | Admin | Users | `admin/users.html` | US-07 | P1 | P1 | D, E, L, Er | ✓ |
+| 21 | Admin | Create teacher | `admin/teacher-new.html` | US-07 | P1 | P1 | D, Er validation, L, created | — |
+| 22 | Admin | Courses | `admin/courses.html` | US-07 | P1 | P1 | D, E, L, Er | — |
+| 23 | Teacher | Conversations list | `teacher/conversations.html` | US-08 | T4 | P1 | D (with exercise feedback and corrected marker), E, L, Er, filtered, no results | ✓ |
+| 24 | Teacher | Conversation detail | `teacher/conversation.html` | US-08, US-16 | T4, T6, S1, S2, S8 | P1 | D (SC, NS message), L, Er, flag dialog with correction, correction preview, flagged with correction, correction editing, remove-correction confirm, save failed, adapted | — |
+| 25 | Teacher | Flags list | `teacher/flags.html` | US-08 | T6 | P1 | D (with corrections), E, L, Er | — |
+| 26 | Teacher | Dashboard | `teacher/dashboard.html` | US-09 | T5 | P2 | by topic, by student (every row opens #27), E (not enough data), L, Er | — |
+| 27 | Teacher | Student detail (learning record; was `student-risk.html`, R-28) | `teacher/student.html` | US-09, US-15 | T5, T8 | P2 | D (not at risk), at risk, error type, E (no activity), L, Er | — |
+| 28 | Teacher | Quiz question review | `teacher/questions.html` | US-10 | T7 | P2 | pending, approved, rejected, edit, E, L, Er | — |
+| 29 | Student | Quiz | `student/quiz.html` | US-11 | S6, FR-016 | P2 | D, correct, incorrect (SC), difficulty up with reason, difficulty down with reason, E, L, Er | ✓ |
+| 30 | Student | Quiz summary | `student/quiz-summary.html` | US-11 | S6 | P2 | D, L, Er | ✓ |
+| 31 | Student | Targeted explanation / practice | `student/practice.html` | US-12 | S5 | P2 | D (SC), NS, L, Er | ✓ |
+| 32 | Student | My progress | `student/progress.html` | US-13 | S7, S4 | P2 | D (mastery, timeline, last updated), topic detail (error types), mastery basis, E, L, Er | ✓ |
+| 33 | Teacher | Course topics | `teacher/topics.html` | US-14 | T9 | P1 | D, E, L, Er, added, editing, reordered, delete confirm, unassigned | — |
+| 34 | Teacher | Topic assignment | `teacher/topic-assignment.html` | US-14 | T9 | P1 | D (suggestions), confirmed, suggestions error, L, Er | — |
+
+The full state IDs (kebab-case values for `?state=`) are fixed in the contract; the IDs added on
+2026-10-06 are listed in its revision note. Every
+data-driven page has loading and error states (FR-001, Constitution VI). An empty state is
+omitted only where the page cannot be empty: profile (#13), conversation detail (#24) and quiz
+summary (#30) always have content, and the chat's empty state is its first-use state. The student shell
+always shows the AI label, the teacher-review notice and the message allowance (FR-010, FR-011,
+FR-014), so these appear on every chat and exercise page.
+
+Two support pages are not product screens: `index.html` (cover: status, version, page and flow
+index, IMFAHE acknowledgement) and `design-system.html` (tokens, type scale, every component in
+every variant and state, focus ring, motion spec, icon set).
+
+### Flows
+
+Flows are chains of links and actions between pages and states. Each flow has a start link on
+`index.html`, and its error branches can be reached from the state panel ("Simular", R-06).
+
+| Flow | Role | Width | Steps | Covers |
+|---|---|---|---|---|
+| F1 Teacher uploads and validates material | Teacher | 1440 | My courses → Course → Material (E) → upload → uploading → processing → one file error → pending validation → Fragment review → exclude a fragment → validate confirm → validated → exclude document → no-validated warning | US-02 AS1–8 |
+| F2 Student asks and sees cited sources | Student | 390 (+1440) | Sign-in → Consent → My courses → Chat (E + AI) → ask → tutor writing → SC answer → citation sheet → back | US-01 AS1–3, AS7; US-07 AS1–2, AS4 |
+| F3 Material does not cover this | Student | 390 | Chat → off-topic question → NS → next step | US-01 AS4 |
+| F4 Daily limit | Student | 390 | Chat (low allowance) → send → LR (input disabled, reset time, history readable) → exercise also blocked | US-01 AS5–6; US-06 AS6 |
+| F5 Admin minimal tasks | Admin | 1440 | Sign-in → Users (E → D) → Create teacher → created → Courses; access denied on a teacher page | US-07 AS2, AS5–6 |
+| F6 Course creation and join | Teacher → Student | 1440 / 390 | Create course → code copied → (student) Join → invalid code → valid code → confirm → course in list | US-04 AS1–6 |
+| F7 Tutor settings | Teacher | 1440 | Settings → hints only → preview → unsaved dialog → save → save failed → retry → saved | US-03 AS1–4 |
+| F8 Guided mode | Student | 390 | Guided chat → hint 1 → another hint → all hints → solution-allowed / hints-only variants | US-05 AS1–4 |
+| F9 Exercise feedback | Student | 390 | Submit → review → pending → feedback (Paso 2, SC, error type and topic, saved to progress) → corrected variant → NS variant → unreadable photo | US-06 AS1–5, AS7 |
+| F10 Sign-in errors and session | All | 390 / 1440 | Invalid credentials → recovery → sent → session expired → back to the same page | US-07 AS3, AS7 |
+| F11 Conversations and corrections | Teacher → Student | 1440 / 390 | Conversations → filter → detail → flag with correction → preview → save failed → retry → flagged → edit → flags list → (student) chat `corrected` | US-08 AS1–7; US-01 AS8 |
+| F12 Dashboard and at-risk | Teacher | 1440 | Dashboard by topic → by student → student detail (at risk) | US-09 AS1–4 |
+| F13 Question review | Teacher | 1440 | Pending → edit → approve → reject → counters | US-10 AS1–3 |
+| F14 Adaptive quiz | Student | 390 | Quiz → correct → difficulty up with reason → incorrect → difficulty down with reason → summary | US-11 AS1–5 |
+| F15 Repeated mistake and progress | Student | 390 | Feedback with notice → explanation → practice; My progress → topic detail → mastery basis | US-12 AS1–3; US-13 AS1–5 |
+| F16 Course topics | Teacher | 1440 | Course → Temas (E) → add topics → reorder → Material → topic assignment → confirm one suggestion, change another → suggestions error → unassigned warning → delete topic confirm | US-14 AS1–5 |
+| F17 Student learning record | Teacher | 1440 | Dashboard by student → student (not at risk) → error type → back → at-risk student → no-activity student | US-15 AS1–5 |
+| F18 Adapted explanation | Student → Teacher | 390 / 1440 | Chat → adapted answer → basis sheet → Mi progreso; guided chat adapted hint; (teacher) conversation detail adapted | US-16 AS1–5 |
+
+F1–F5 are the required minimum. F6–F11 and F16 complete "every P1 acceptance scenario" (FR-051),
+and F12–F15, F17 and F18 are the P2 happy paths.
+
+## Design System
+
+### Tokens (`public/prototype/assets/theme.css` → shared `@theme`)
+
+Tailwind v4 namespaces are used directly, so a token name is its CSS variable and the utilities
+follow from it (`--color-primary-600` → `bg-primary-600`).
+
+| Group | Tokens | Notes |
+|---|---|---|
+| Reset | `--color-*: initial;` | Removes Tailwind's default palette so only DocentAI colors exist. |
+| Palettes | `--color-{neutral,primary,success,warning,danger,info}-{50,100,…,900}` | Steps chosen so that text pairs meet AA (checked by axe on real pages). |
+| Semantic colors | `--color-fg`, `--color-fg-muted`, `--color-fg-inverse`, `--color-surface`, `--color-surface-raised`, `--color-surface-sunken`, `--color-border`, `--color-border-strong`, `--color-focus` | Alias palette steps with `var()`. Components use these, not palette steps, where a semantic role exists (R-03). |
+| Spacing | `--spacing: 0.25rem` | Tailwind v4's single base unit (4 px). `p-4` = 16 px. |
+| Radius | `--radius-{sm,md,lg,xl}` (plus Tailwind's `rounded-full`) | |
+| Type | `--font-sans`, `--font-mono`, `--text-{xs,sm,base,lg,xl,2xl,3xl}` with `--text-*--line-height`, `--font-weight-{normal,medium,semibold,bold}` | Self-hosted Figtree with a system fallback; no third-party font request (R-04). |
+| Shadow | `--shadow-{sm,md,lg}` | A real token now, unlike Figma. |
+| Motion | `--ease-standard`, `--animate-*` as needed | Every animation has a `motion-reduce:` alternative. |
+
+### Components
+
+Names match the future React components. In pages, each instance carries
+`data-component="<Name>"` (plus `data-variant` where useful), so a reviewer or a script can find
+every use. A component is a **partial** (`partials/*.html`, injected at load) only when its markup
+is identical on every page, as with shells and the footer. Otherwise its canonical markup lives on
+`design-system.html` and pages copy it (R-05).
+
+| Component | Variants / states | Used by |
+|---|---|---|
+| `Button`, `IconButton` | primary, secondary, ghost, danger × sm/md × default/hover/focus/disabled/loading | All |
+| `TextField`, `TextArea`, `Select`, `Toggle`, `RadioGroup` | default, focus, error, disabled, helper text | All |
+| `Card`, `Dialog`, `Toast` | default, interactive | All |
+| `EmptyState`, `ErrorState`, `Skeleton`, `AccessDenied` | generic states | All |
+| `AppShell` (partials per role) | admin, teacher, student; desktop nav and mobile nav | All |
+| `LanguageSwitcher` | ES/EN | All |
+| `ImfaheAcknowledgement` | footer, sign-in, about | All (FR-005) |
+| `ChatMessage`, `ChatComposer` | student, tutor-answer, tutor-hint, tutor-no-source, failed; composer default/sending/disabled-by-limit | US1, US5, US8 |
+| `SourceCitation`, `CitationSheet` | chip, unavailable; bottom sheet (390) / side panel (1440) | US1, US5, US6, US8, US10–12 |
+| `NoSourceNotice` | shared S2 pattern | US1, US5, US6, US12 |
+| `AIDisclosure` | first-use dialog, header label | US1, US7 |
+| `MessageAllowance`, `LimitReachedBanner` | normal, low, reached; chat, exercise | US1, US6 |
+| `GuidedModeIndicator` | on with hint counter | US5 |
+| `FileUploadItem`, `DocumentRow`, `FragmentItem` | per plan states; `FragmentItem` excluded | US2 |
+| `ClassCode` | active, copied, disabled | US4 |
+| `FlagControl` | none, incorrect, needs improvement; dialog with required correction and student preview | US8 |
+| `TeacherCorrection` | student view ("Revisado por tu profesor/a"), teacher view (with category, edit, remove) | US1, US6, US8 (R-22) |
+| `ValidationStatus` | pending validation, validated (by, date), excluded | US2 (R-21) |
+| `AdaptedBadge`, `AdaptationSheet` | chip with reason; bottom sheet (390) / side panel (1440) | US16, US8 (R-23) |
+| `DecisionReason` | inline sentence; "¿Por qué?" disclosure | US9, US11, US12, US13, US15, US16 (R-24) |
+| `ErrorTypeTag`, `ErrorTypeList` | tag in feedback; list with counts and example links | US6, US13, US15 (R-27) |
+| `MasteryLevel`, `ProgressTimeline` | three levels with text; dated text list | US13, US15 (R-26) |
+| `TopicList`, `TopicAssignmentRow` | editing, reorder buttons, delete confirm; suggested / confirmed | US14 (R-25) |
+| `QuizQuestion` | unanswered, correct, incorrect, teacher review | US10, US11 |
+| `ProgressByTopic` | per-topic row containing `MasteryLevel` and `ProgressTimeline` | US13, US15 |
+| `ThemeSwitcher` | system / light / dark, footer | R-20 |
+
+## Bilingual Copy
+
+- Every visible string, `alt` and `aria-label` uses `data-i18n` (and `data-i18n-attr` for
+  attributes). Keys follow `role.screen.element` (`student.chat.limitReached`); shared strings
+  use `common.*`. The files are nested JSON (`messages/es.json`, `messages/en.json`) in the shape
+  the future app's message files will use.
+- Sample content (course, documents, people, questions and answers) lives in `sample/es.json` and
+  `sample/en.json` under `sample.*`. These keys are **not** future i18n keys (R-09).
+- Plurals use `key_one` / `key_other`, chosen with `Intl.PluralRules`. Dates and numbers are
+  formatted with `Intl.DateTimeFormat` and `Intl.NumberFormat` (`4 oct 2026` / `Oct 4, 2026`).
+- `?lang=en` or the `LanguageSwitcher` changes the language and updates `<html lang>`. Spanish is
+  the default.
+- **Check**: a unit test fails on any key missing in either locale or used in a page but not
+  defined. Every P1 page is reviewed in both languages at both widths, and breakages are logged.
+
+## Sample Content
+
+All sample content is fictitious and exists in ES and EN (unchanged from the previous plan).
+
+- **Course**: "Matemáticas 3º ESO – Álgebra" / "Year 9 Maths – Algebra". Topics: linear equations,
+  systems of equations, polynomials, factorisation.
+- **Documents**: `Tema 3 – Ecuaciones de primer grado.pdf` (24 pages),
+  `Apuntes – Sistemas de ecuaciones.docx`, `Ejercicios resueltos – Polinomios.md`, and one
+  scanned PDF that fails processing.
+- **Questions**: "¿Cómo despejo x en 3x + 5 = 20?" (covered; citation Tema 3, p. 12); "¿Quién
+  inventó el álgebra?" (not covered → NS); worked exercise "2(x − 3) = 4x + 2" with a sign error in
+  step 2.
+- **People**: teacher "Prof. Elena Ruiz Navarro"; students "Lucas Herrera", "Aisha Benali", "Mateo
+  Ortega", pseudonyms "Estudiante-07", "Estudiante-12"; admin "Admin DocentAI". Emails use
+  `example.org`.
+- **Numbers**: daily limit 30 messages (illustrative), reset 00:00 local time; dates in
+  October–November 2026.
+- **Added 2026-10-06** (ES/EN, fictitious):
+  - Validation: "Tema 3" validated by Prof. Elena Ruiz Navarro on 6 oct 2026; "Apuntes – Sistemas"
+    pending validation; 3 excluded fragments in "Tema 3".
+  - Topics: the four course topics above, in that order. "Ejercicios resueltos – Polinomios" has
+    one section without a topic, which triggers the unassigned warning.
+  - Error types: the existing error patterns "Error de signo al quitar paréntesis", "Pasar un
+    término sin cambiar de signo" and "Aplicar mal la propiedad distributiva".
+  - Learning records: Lucas is not at risk, with linear equations "En progreso" since 12 oct.
+    Estudiante-07 is at risk (the existing at-risk sample), with "Error de signo…" 5 times.
+    Mateo has no activity.
+  - Corrections: one on a tutor answer to Lucas ("La respuesta correcta es x = 5; revisa el paso
+    en que restas 5 a ambos lados"). One on an exercise feedback.
+  - Adapted answer reason: "Te lo explico paso a paso porque esta semana has fallado al despejar
+    variables".
+- Before validation, check that no sample name matches a team member or participant.
+
+## Validation Protocol (summary)
+
+Full procedure in [quickstart.md](quickstart.md). The protocol is unchanged from the Figma
+version, except that participants open the Vercel preview URL (students on their own phone) and
+facilitators trigger branches from the state panel.
+
+- **Participants**: ≥5 students (adults, own phone) and ≥3 teachers (desktop); 1 admin run by a
+  team member. They come from the team's network and are not pilot participants.
+- **Success criteria**: SC-001 to SC-008 (tasks and questions in quickstart B4–B5).
+- **Recording**: only with signed consent; stored in the team's private storage; deleted once
+  findings are written; findings use participant codes.
+- **Findings**: behavior changes go into `spec.md` first, then the prototype. Findings and the
+  decision log live in `specs/001-mvp-prototype/validation.md` (anonymised).
+
+## Project Structure
+
+### Documentation (this feature)
+
+```text
+specs/001-mvp-prototype/
+├── spec.md
+├── plan.md                    # This file
+├── research.md                # Phase 0
+├── data-model.md              # Phase 1: information each screen displays
+├── quickstart.md              # Phase 1: run the prototype, run a validation session
+├── contracts/
+│   └── prototype-pages.md     # Phase 1: URL, state, language and markup contract
+├── checklists/requirements.md
+├── validation.md              # Created during validation: findings, decision log, SC results
+└── tasks.md                   # Phase 2 (/speckit-tasks)
+```
+
+### Source Code (repository root)
+
+```text
+public/prototype/
+├── index.html                 # Cover: status, version, page index, flow starts, IMFAHE
+├── design-system.html         # Tokens, components × variants × states, focus, motion, icons
+├── about.html
+├── auth/                      # sign-in, password-recovery, access-denied
+├── admin/                     # users, teacher-new, courses
+├── teacher/                   # courses, course-new, course, material, fragments,
+│                              # tutor-settings, conversations, conversation, flags,
+│                              # dashboard, student (was student-risk), questions,
+│                              # topics, topic-assignment
+├── student/                   # consent, courses, join, chat, chat-guided, exercise,
+│                              # exercise-feedback, profile, quiz, quiz-summary,
+│                              # practice, progress
+├── partials/                  # shell-admin, shell-teacher, shell-student, footer, _template
+└── assets/
+    ├── theme.css              # The single @theme token file (also imported by the app)
+    ├── pages.json             # Page manifest: path, screen #, story, req IDs, states, widths
+    ├── js/
+    │   ├── prototype.js       # Entry: loads theme + Tailwind, then runs the modules below
+    │   ├── i18n.js            # Key lookup, plurals, Intl dates/numbers, language switch
+    │   ├── state.js           # ?state= parsing, show/hide, auto-advance, state panel
+    │   └── include.js         # data-include partial injection
+    ├── messages/{es,en}.json  # Future i18n keys
+    ├── sample/{es,en}.json    # Fictitious content, not i18n keys
+    └── img/                   # DocentAI mark, IMFAHE logo (official file), icon sprite
+
+src/app/globals.css            # Changed: @import of the shared theme; ad-hoc tokens removed
+next.config.ts                 # Changed: redirect /prototype → /prototype/index.html
+
+tests/prototype/
+├── unit/                      # Vitest + Testing Library (jsdom): i18n, state, include,
+│                              # static checks (key parity, no hardcoded values, manifest)
+└── e2e/                       # Playwright: axe sweep, flows F1–F18 tagged by AS ID
+
+vitest.config.ts, playwright.config.ts   # New (dev tooling)
+.github/workflows/ci.yml       # New: CI gates (lint, typecheck, test, test:e2e, build)
+package.json                   # New devDependencies and scripts: typecheck, test, test:e2e
+```
+
+**Structure Decision**: the prototype is static content in `public/prototype/`, so Next.js serves
+it on every local and preview URL with no extra hosting or build step. The only app files touched
+are `globals.css` (shared tokens) and `next.config.ts` (index redirect). Tests live in `tests/` at
+the root, where the app's own tests will also go.
+
+## Complexity Tracking
+
+No Constitution Check violations; table not needed.

@@ -1,0 +1,182 @@
+# Validation Notes: DocentAI MVP Prototype
+
+**Feature**: [spec.md](spec.md) · **Plan**: [plan.md](plan.md) · **Run guide**: [quickstart.md](quickstart.md)
+
+Anonymised record of prototype checks, usability findings and the decisions they caused
+(research R-18, R-19). Participant codes only (P-S01…, P-T01…). No names, recordings or contact
+details are stored here.
+
+## Status
+
+| Field | Value |
+|---|---|
+| Prototype status | Borrador (Draft) |
+| Version | 0.2.0 (revision of 2026-10-06: validation, corrections, topics, learning record, adapted explanations) |
+| Last updated | 2026-10-06 |
+
+## Open items
+
+| Item | Owner | Status |
+|---|---|---|
+| Sample names re-checked against participants once they are recruited (T103 checked only the names this repository knows). | Team | Pending |
+| T105: deploy a Vercel preview and confirm on a real phone over mobile data that `/prototype` loads in under 2 s. Local substitute done (see Performance). | Team | Pending |
+| T107: preview URL, Deployment Protection check, ethics approval of the consent draft, private recording storage, then cover status "En validación". Kit ready in session-kit.md. | Team | Pending |
+| Official IMFAHE logo file (research R-10). Originals added by the team: `assets/img/imfahe.logo.webp` and `assets/img/docentai-logo.png` (kept unchanged). The pages use derivatives with the off-white background made transparent: `imfahe-logo-transparent.webp`, `docentai-logo-96.png`, `docentai-logo-144.png`. | Team | Resolved 2026-10-04 |
+| IMFAHE acknowledgement wording. Draft: "Proyecto financiado por la Fundación IMFAHE" (spec Assumptions). | Team | Pending confirmation |
+| Revision 0.2.0 needs a manual keyboard-only pass by a person on the new and changed states (T154). The agent only checked focus behaviour that the flow tests assert (see Keyboard pass log). | Team | Pending |
+| Pedagogy review (T106): the exercise in the feedback page fails by moving −6 across without changing its sign, but the existing sample labels it "Error de signo al quitar paréntesis" (the repeated-mistake notice and practice page use the same label). The error type tag added in T129 keeps that label for consistency; the pedagogy team should decide the right taxonomy entry. | Pedagogy team | Pending |
+| Prototype simplifications in 0.2.0: in topics.html only "Subir: Polinomios", "Renombrar: Factorización" and "Eliminar: Polinomios" lead to a state, and other reorder/rename/delete buttons do nothing; the student detail page shows three sample students (Lucas = default, Estudiante-07 = at risk, Mateo = no activity), so other dashboard rows open Lucas's record; in progress.html only the first topic's "¿Por qué?" opens. Facilitators should steer participants to the scripted paths. | Team | Accepted for the prototype |
+| Intermittent axe failure seen once while running a subset of tests in parallel: the footer `LanguageSwitcher` caught mid colour transition (contrast 1.13) on `student/quiz.html?state=correct` at 390 px. Not reproduced in the full run (1122 passed) or in 54 repeated runs; pre-existing, unrelated to the revision. CI retries once. | Team | Watch |
+| `npm run lint` failed: typescript-eslint does not support TypeScript 7.0. Fixed by running TS side by side: `typescript` → `@typescript/typescript6` (API for tools), `typescript7` → `typescript@7.0.2` (the `tsc` used by `npm run typecheck`). | Team | Resolved 2026-10-04 |
+
+## Performance (local substitute for T105)
+
+Production build (`next build` + `next start`), Chromium with 390×844 mobile emulation, cache
+disabled, Tailwind fetched from jsDelivr, 3 runs per page. Time until the page is usable
+(styles generated, copy and state applied). Median (min–max), 2026-10-04:
+
+| Page | Slow 4G (150 ms RTT, 1.6 Mbps, CPU ×4) | Typical 4G (40 ms RTT, 9 Mbps, CPU ×2) |
+|---|---|---|
+| auth/sign-in.html | 1.45 s (1.45–1.59) | 0.52 s (0.44–0.53) |
+| student/courses.html | 1.51 s (1.49–1.54) | 0.48 s (0.45–0.56) |
+| student/chat.html | 1.50 s (1.50–1.52) | 0.47 s (0.44–0.49) |
+| student/exercise.html | 1.50 s (1.48–1.51) | 0.53 s (0.41–0.54) |
+| teacher/material.html | 1.51 s (1.51–1.52) | 0.58 s (0.52–0.63) |
+
+All under the 2 s goal, even on slow 4G. This is emulation on a laptop: the real-phone check on
+a Vercel preview (T105) is still required.
+
+## ES/EN review log
+
+One row per page reviewed in both languages at 1440 px (and 390 px where the manifest says `mobile`).
+
+| Page | Date | Widths | Result | Breakages and fixes |
+|---|---|---|---|---|
+| student/consent.html (all 4 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
+| student/chat.html (all 12 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | The prototype state panel covered the send button at 390 px; it now starts collapsed as a small pill (top centre on mobile, bottom right on desktop). Button colours briefly faded in after load, which axe caught as low contrast; transitions are now off until the page is revealed. |
+| teacher/material.html (all 9 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
+| teacher/fragments.html (all 5 states) | 2026-10-04 | 1440 | Pass (ES, EN) | None. |
+| teacher/tutor-settings.html (all 8 states) | 2026-10-04 | 1440 | Pass (ES, EN) | Radio names included the explanation text; each radio is now named by its option only and described by the explanation (also fixed in the design system RadioGroup). |
+| teacher/courses.html (4 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
+| teacher/course-new.html (3 states) | 2026-10-04 | 1440 | Pass (ES, EN) | None. |
+| teacher/course.html (8 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | "Copiar enlace" wrapped onto two lines at 1440 px; copy buttons no longer shrink or wrap. |
+| student/courses.html (5 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
+| student/join.html (6 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | Opening an error state directly shows an empty code field (the typed code is only kept when arriving by submitting). Accepted for the prototype. |
+| student/chat-guided.html (11 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | The indicator icon wrapped onto its own line at 390 px; icon and text now stay together. |
+| student/exercise.html (6 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | In unreadable-photo the native file field says no file is selected (a static page cannot pre-fill it); the attached file name is shown under the field. Accepted for the prototype. |
+| student/exercise-feedback.html (5 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
+| auth/sign-in.html (4 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
+| auth/password-recovery.html (4 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
+| auth/access-denied.html (3 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
+| about.html | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
+| student/profile.html (5 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
+| admin/users.html (4 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | Table at 1440 px; stacked list at 390 px. |
+| admin/teacher-new.html (4 states) | 2026-10-04 | 1440 | Pass (ES, EN) | None. |
+| admin/courses.html (4 states) | 2026-10-04 | 1440 | Pass (ES, EN) | None. |
+| teacher/conversations.html (6 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
+| teacher/conversation.html (5 states) | 2026-10-04 | 1440 | Pass (ES, EN) | The flag badge stretched to full width; now sized to its content. |
+| teacher/flags.html (4 states) | 2026-10-04 | 1440 | Pass (ES, EN) | None. |
+| teacher/dashboard.html (5 states) | 2026-10-04 | 1440 | Pass (ES, EN) | "Ver por qué" wrapped inside its button; fixed. Bars carry their value as text and a row label, so colour is never the only signal. |
+| teacher/student-risk.html (3 states) | 2026-10-04 | 1440 | Pass (ES, EN) | None. |
+| teacher/questions.html (7 states) | 2026-10-04 | 1440 | Pass (ES, EN) | None. |
+| student/quiz.html (8 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
+| student/quiz-summary.html (3 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
+| student/exercise-feedback.html (repeated-mistake) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
+| student/practice.html (5 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
+| student/progress.html (4 states) | 2026-10-04 | 1440, 390 | Pass (ES, EN) | None. |
+| **Revision 0.2.0 (2026-10-06)**: rows below are agent checks: axe sweep of every state (ES and EN, light and dark, 1440 and 390 where `mobile`), the flow tests, and screenshots of the listed states. | | | | |
+| teacher/material.html (validation states, unassigned-topics) | 2026-10-06 | 1440, 390 | Pass (ES, EN) | Re-running the page builder duplicated the exclude dialog once; removed. Button names include the document (`Validar : Tema 3…`). Screenshots: validated (1440), pending-validation (390, EN), validate-confirm (390). |
+| teacher/fragments.html (fragment-excluded) | 2026-10-06 | 1440 | Pass (ES, EN) | Screenshot: fragment-excluded (EN). |
+| student/chat.html (corrected, tutor-info, adapted, adapted-basis) | 2026-10-06 | 1440, 390 | Pass (ES, EN) | An arbitrary `grid-cols-[auto_1fr]` in the tutor information was caught by the hardcoded-values test and replaced. Screenshots: corrected (390), tutor-info (390, EN), adapted-basis (390), adapted (1440). |
+| student/chat-guided.html (adapted-hint) | 2026-10-06 | 1440, 390 | Pass (ES, EN) | Axe and flow F18 only. |
+| student/exercise-feedback.html (error type, corrected) | 2026-10-06 | 1440, 390 | Pass (ES, EN) | See the open item about the error type label. |
+| teacher/conversation.html, conversations.html, flags.html (corrections) | 2026-10-06 | 1440 (list also 390) | Pass (ES, EN) | The flagged answer showed the flag badge twice and the first answer lost its flag button; both fixed. Screenshots: flagged, save-failed, flags. |
+| teacher/topics.html, teacher/topic-assignment.html (new) | 2026-10-06 | 1440 | Pass (ES, EN) | Screenshots: default of both, editing (EN). |
+| teacher/student.html (renamed, rebuilt) | 2026-10-06 | 1440 | Pass (ES, EN) | The period select did not fill its column and the at-risk progress card was squeezed into one grid column; both fixed. Screenshots: default, at-risk (EN). |
+| teacher/dashboard.html (links) | 2026-10-06 | 1440 | Pass (ES, EN) | Every student row now opens the detail page. |
+| student/quiz.html (difficulty reasons) | 2026-10-06 | 1440, 390 | Pass (ES, EN) | Axe and flow F14 only. |
+| student/progress.html (rebuilt) | 2026-10-06 | 1440, 390 | Pass (ES, EN) | Copy said "Nadie más ve esta página", which contradicted S4 (the teacher sees the learning record); changed to "Tu profesor/a también lo ve". Screenshots: mastery-basis (390), topic-detail (390, EN). |
+
+## Keyboard pass log
+
+Keyboard only: Tab order follows the visual order, focus always visible, dialogs trap focus and
+return it to the opener.
+
+| Page | Date | Result | Notes |
+|---|---|---|---|
+| student/consent.html | 2026-10-04 | Pass | Skip link → language switcher → privacy link → checkbox → Continuar. Continuing without the checkbox is blocked by native validation. |
+| student/chat.html | 2026-10-04 | Pass | Order: skip link, shell nav, user menu, switch course, citation chip, suggestion, composer, send, footer. First-use dialog: focus stays inside, Esc does not close it (acknowledgement required). Citation sheet: Enter opens it with focus on Close; Esc closes it and focus returns to the chip. |
+| teacher/material.html | 2026-10-04 | Pass | Shell nav → back link → upload → per document: include switch, review-fragments link (its name includes the document). Duplicate dialog: focus starts on Cancelar and stays inside. |
+| teacher/fragments.html | 2026-10-04 | Pass | Back link → search field → search button → footer. |
+| teacher/tutor-settings.html | 2026-10-04 | Pass | Back link → policy, level, tone radio groups (arrow keys within a group) → example, discard, save. Unsaved dialog: focus starts on "Seguir editando"; Esc returns to the form with the change kept. |
+| teacher/courses.html | 2026-10-04 | Pass | Create course → course cards (one link each). |
+| teacher/course-new.html | 2026-10-04 | Pass | Back → name → description → Cancel → Create. Empty name: error summary plus field error, the field is marked aria-invalid and its error is part of its description. |
+| teacher/course.html | 2026-10-04 | Pass | Tabs (Students is aria-current) → copy code → link field → copy link → regenerate → disable. Regenerate dialog: focus on Cancelar first. |
+| student/courses.html | 2026-10-04 | Pass | Join → per course a labelled group of four actions. |
+| student/join.html | 2026-10-04 | Pass | Code field → Continue; errors are announced through the field description. |
+| student/chat-guided.html | 2026-10-04 | Pass | Citation chip → "Otra pista" → "Intentarlo yo" (moves focus to the composer) → composer → send. The citation sheet returns to the hint state it was opened from, with focus back on the chip. |
+| student/exercise.html | 2026-10-04 | Pass | Statement → steps → photo → review. Errors are announced (role alert) and fields are aria-invalid. Review: Edit → Send. |
+| student/exercise-feedback.html | 2026-10-04 | Pass | Citation chip (opens the sheet, focus returns on close) → ask the tutor → fix and resend. |
+| auth/sign-in.html | 2026-10-04 | Pass | Language → email → password → forgot → sign in → three demo links → privacy. |
+| student/profile.html | 2026-10-04 | Pass | Review consent → withdraw. Dialog: focus starts on Cancelar. |
+| admin/teacher-new.html | 2026-10-04 | Pass | Name → email → cancel → send. Errors: summary alert plus per-field errors in the field descriptions. |
+| auth/password-recovery.html, auth/access-denied.html, about.html, admin/users.html, admin/courses.html | 2026-10-04 | Pass | Linear order; tables use row headers and a caption. |
+| teacher/conversations.html | 2026-10-04 | Pass | Flags link → three labelled filters → apply → one "open" link per conversation, described by the student name. |
+| teacher/conversation.html | 2026-10-04 | Pass | Flag buttons after each tutor answer. Flag dialog: radio group (arrows) → comment → cancel → save; focus stays inside. |
+| teacher/flags.html | 2026-10-04 | Pass | One "view the message" link per flag, named with the student. |
+| teacher/dashboard.html, teacher/student-risk.html | 2026-10-04 | Pass | Period select → topic/student toggle (current marked with aria-current) → "see why" links (described by the student). Detail: back → conversations. |
+| teacher/questions.html | 2026-10-04 | Pass | Status tabs (current marked) → per question approve, edit, reject (each described by the question text). Edit mode: statement → options → correct answer → cancel → save and approve. |
+| student/quiz.html, student/quiz-summary.html | 2026-10-04 | Pass | Radio group (arrows; an answer is required) → check. Feedback: citation (opens the sheet) → next / summary. Summary: three next-step links. |
+| student/practice.html | 2026-10-04 | Pass | Back → citation (opens the sheet) → one "solve" link per exercise, described by the exercise. Notice on feedback: explanation → practise → "Ahora no" (stays dismissed for the session). |
+| student/progress.html | 2026-10-04 | Pass | No interactive content besides the shell; each progress bar is a labelled progressbar described by its basis. Empty state: ask the tutor → take a quiz. |
+| **Revision 0.2.0 (2026-10-06)**, agent check, not a manual pass | 2026-10-06 | Partial | Verified by flow tests only: the tutor-information dialog and the adaptation sheet return focus to their opener; the correction field and the new-topic field block submission while empty (native validation); topic reordering uses buttons, not dragging (WCAG 2.5.7); every new switch and dialog has an accessible name (axe). A person still needs to do the Tab-order pass (open item). |
+
+## Session plan
+
+To be filled before the first session (quickstart.md B1).
+
+| Session | Date | Participant | Role | Device | Flows |
+|---|---|---|---|---|---|
+
+## Findings
+
+| # | Participant | Page + state (link) | Finding | Severity | Spec IDs | Decision |
+|---|---|---|---|---|---|---|
+
+## Decision log
+
+| Date | Decision | Caused by | Spec revision |
+|---|---|---|---|
+| 2026-10-04 | Added an `error` state to teacher/material.html. The contract listed none, but FR-001 and Constitution VI require one for every data-driven page. | Implementation of T049 | contract §4 updated |
+| 2026-10-04 | The upload empty state lists "PDF, DOCX, Markdown" (spec US-02 AS1 wording) rather than "PDF, DOCX, MD" (task T049). | Implementation of T049 | none |
+| 2026-10-04 | Tutor settings keep the "saved" confirmation and the hint example visible together, so US-03 AS2 (confirmation plus example after saving) is one state. | Implementation of T054 | none |
+| 2026-10-04 | Added a `code-regenerated` state to teacher/course.html (new code ALG-9Q2M and a note that the old code no longer works), so US-04 AS4 "the screen shows the new state" is visible. | Implementation of T060 | contract §4, plan pages table |
+| 2026-10-04 | Creating a course leads to the course page in `no-students` state (a new course has no students yet). Join codes for the prototype: ALG-7K3P valid, ALG-4X2B expired, ALG-8M1D disabled, anything else invalid. | Implementation of T059, T062 | none |
+| 2026-10-04 | Added a `citation` state to student/chat-guided.html so hint citations open the citation sheet (US-05 AS4, S1). The sheet uses `data-close-state="@back"` to return to the hint the student was on. | Implementation of T067 | contract §3, §4 |
+| 2026-10-04 | Added a `citation` state to student/exercise-feedback.html so its citation opens the passage (FR-012). Added `data-mirror` so the review step shows what the student typed. | Implementation of T070, T071 | contract §3, §4 |
+| 2026-10-04 | Role separation (Constitution II, FR-041) checked on all 31 pages: student pages show only the signed-in student; teacher pages only the teacher’s own courses and students; only admin pages list all users and courses. | T085 | none |
+| 2026-10-04 | Demo sign-in links read "Entrar como profesor/a" (gender-neutral, as in the spec) rather than "profesora" (task T076). The access-denied home link takes the role home from `?home=` (default: student courses). | Implementation of T076, T078 | contract §3 |
+| 2026-10-04 | Browser tests serve the pinned Tailwind browser build from node_modules instead of jsDelivr: hundreds of CDN loads per run caused intermittent unstyled pages and flaky accessibility results. The prototype itself still uses the CDN. | Phase 9 test runs | plan.md dependency note |
+| 2026-10-04 | In the teacher conversation view, citations are shown as non-interactive chips and the no-source reply has no student actions; the teacher reviews but does not act as the student. | Implementation of T087 | none |
+| 2026-10-04 | Playwright runs with 4 workers locally and 2 on CI, a 60 s test timeout and a 10 s assertion timeout: with ~500 page loads, uncapped parallelism made the timed state changes and WebKit axe runs flaky. | Phase 10 test runs | none |
+| 2026-10-04 | Dashboard charts are single-series horizontal bar lists in one hue with the value written beside each bar (no legend, no hover layer since every value is visible). Spanish percentages follow locale typography ("60 %"). | Implementation of T090 | none |
+| 2026-10-04 | Question review states each show the result of one action from the pending list (approve: 2/13/2, reject: 2/12/3), so counters are consistent within each state. | Implementation of T092 | none |
+| 2026-10-04 | Added a `citation` state to student/quiz.html so feedback citations open the passage (FR-012). The quiz shows question 1, its correct/incorrect feedback, and a later question after the level change; any answer to that one leads to the summary. | Implementation of T094 | contract §4 |
+| 2026-10-04 | Added a `citation` state to student/practice.html (FR-012). The repeated-mistake dismissal is kept in sessionStorage under a pattern key (no personal data). | Implementation of T096 | contract §3, §4 |
+| 2026-10-04 | T103: no sample name matches the repository author or any word in the project proposal (including its team section); every email in sample and message files is @example.org (enforced by unit/sample-data). Participant names are not known yet; recheck before sessions. | T103 | none |
+| 2026-10-06 | T155: the 0.2.0 sample content (validation, corrections, topics, learning records, adaptation reason) adds no new people and no email addresses; it reuses Lucas Herrera, Estudiante-07, Mateo Ortega and Prof. Elena Ruiz Navarro. `npm test -- sample-data` passes (every email uses example.org). The check against recruited participants stays open. | T155 | none |
+| 2026-10-04 | T104: ES/EN review and keyboard pass done for every P2/P3 page (rows above, US8–US13). | T104 | none |
+| 2026-10-04 | T100 is now a permanent unit test (unit/coverage) that parses contract §4 and the plan pages table and checks the manifest: 31 pages, every state, mobile flag. | T100 | none |
+
+## Success criteria results
+
+| Criterion | Target | Result | Pass? |
+|---|---|---|---|
+| SC-001 unaided P1 task completion | ≥80% per task | Needs usability sessions (T108, T109) | Pending |
+| SC-002 AI and teacher-review recall | ≥90% of students | Needs usability sessions (T108) | Pending |
+| SC-003 find source / tell no-source apart | ≥90% of students | Needs usability sessions (T108) | Pending |
+| SC-004 setup time / time to first question | <10 min / <2 min | Needs usability sessions (T108, T109) | Pending |
+| SC-005 states and contrast coverage | 100% (axe sweep green) | 31 pages, every contract state present (unit/coverage); axe WCAG 2.2 A/AA sweep green on every state at 1440 px and, for "M" pages, 390 px (2026-10-04) | Yes |
+| SC-006 pedagogy sign-off and traceability | signed; flow tests green | Traceability: every acceptance scenario of US1–US13 has its own named E2E test, all green. Pedagogy sign-off: pending (T106) | Pending |
+| SC-007 IMFAHE visible, ≤1 tap/click | yes | Acknowledgement on sign-in and about; in the footer of every role home (0 clicks), about page 1 click (e2e F5 › SC-007). Official logo still pending | Yes (placeholder logo) |
+| SC-008 reasons understood, correction recognised / teacher finds error type | ≥80% of students / ≥67% of teachers, at least 2 | Needs usability sessions (T108, T109) | Pending |

@@ -1,0 +1,52 @@
+<div data-component="AppShell" data-variant="admin">
+  <header class="sticky top-0 z-40 border-b border-border-strong bg-surface-raised lg:hidden">
+    <div class="mx-auto flex h-16 max-w-6xl items-center gap-4 px-4 sm:px-6">
+      <a href="~/admin/users.html" class="flex items-center gap-2 rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" data-i18n-attr="aria-label:common.a11y.homeLink">
+        <img src="~/assets/img/docentai-logo-96.png" alt="" width="32" height="32" class="size-8 shrink-0" />
+        <span class="font-serif text-xl font-semibold text-fg" data-i18n="common.brand.name"></span>
+      </a>
+      <details class="relative ml-auto">
+        <summary class="flex size-11 cursor-pointer list-none items-center justify-center rounded-lg text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" data-i18n-attr="aria-label:common.a11y.openMenu">
+          <svg class="size-6 shrink-0" aria-hidden="true"><use href="~/assets/img/icons.svg#menu"/></svg>
+        </summary>
+        <div class="absolute right-0 mt-2 w-72 rounded-xl border border-border bg-surface-raised p-2 shadow-lg">
+          <nav data-i18n-attr="aria-label:common.a11y.mainNav">
+            <ul class="flex flex-col gap-1" data-nav>
+          <li><a href="~/admin/users.html" class="flex min-h-11 items-center gap-2 rounded-lg px-4 text-base font-medium text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus data-current:bg-neutral-900 data-current:font-semibold data-current:text-fg-inverse"><svg class="size-5 shrink-0" aria-hidden="true"><use href="~/assets/img/icons.svg#users"/></svg><span data-i18n="admin.shell.nav.users"></span></a></li>
+          <li><a href="~/admin/courses.html" class="flex min-h-11 items-center gap-2 rounded-lg px-4 text-base font-medium text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus data-current:bg-neutral-900 data-current:font-semibold data-current:text-fg-inverse"><svg class="size-5 shrink-0" aria-hidden="true"><use href="~/assets/img/icons.svg#book-open"/></svg><span data-i18n="admin.shell.nav.courses"></span></a></li>
+            </ul>
+          </nav>
+          <div class="my-2 border-t border-border"></div>
+          <p class="px-4 font-semibold text-fg" data-i18n="sample.people.admin"></p>
+          <p class="px-4 pb-2 text-sm text-fg-muted" data-i18n="admin.shell.role"></p>
+          <div role="group" class="mx-1 mb-2 flex rounded-lg border border-border-strong p-1" data-component="LanguageSwitcher" data-i18n-attr="aria-label:common.a11y.language">
+          <button type="button" data-set-lang="es" lang="es" aria-pressed="false" class="min-h-9 flex-1 rounded-md px-4 text-sm font-medium text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus aria-pressed:bg-neutral-900 aria-pressed:text-fg-inverse" data-i18n="common.language.es"></button>
+          <button type="button" data-set-lang="en" lang="en" aria-pressed="false" class="min-h-9 flex-1 rounded-md px-4 text-sm font-medium text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus aria-pressed:bg-neutral-900 aria-pressed:text-fg-inverse" data-i18n="common.language.en"></button>
+        </div>
+          <a href="~/auth/sign-in.html" class="flex min-h-11 w-full items-center gap-2 rounded-lg px-4 text-sm text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"><svg class="size-4 shrink-0" aria-hidden="true"><use href="~/assets/img/icons.svg#log-out"/></svg><span data-i18n="common.actions.signOut"></span></a>
+        </div>
+      </details>
+    </div>
+  </header>
+  <aside class="fixed inset-y-0 left-0 z-40 hidden w-64 flex-col border-r border-border-strong bg-surface-raised lg:flex">
+    <div class="flex h-16 shrink-0 items-center px-6">
+      <a href="~/admin/users.html" class="flex items-center gap-2 rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" data-i18n-attr="aria-label:common.a11y.homeLink">
+        <img src="~/assets/img/docentai-logo-96.png" alt="" width="32" height="32" class="size-8 shrink-0" />
+        <span class="font-serif text-xl font-semibold text-fg" data-i18n="common.brand.name"></span>
+      </a>
+    </div>
+    <nav class="flex-1 overflow-y-auto px-4 py-4" data-i18n-attr="aria-label:common.a11y.mainNav">
+      <ul class="flex flex-col gap-1" data-nav>
+          <li><a href="~/admin/users.html" class="relative flex min-h-11 items-center gap-2 rounded-lg px-4 text-sm font-medium text-fg-muted hover:bg-surface-sunken hover:text-fg focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus before:absolute before:inset-y-2 before:-left-4 before:w-1 before:rounded-r-sm before:bg-neutral-900 before:opacity-0 data-current:bg-surface data-current:font-semibold data-current:text-fg data-current:before:opacity-100"><svg class="size-4 shrink-0" aria-hidden="true"><use href="~/assets/img/icons.svg#users"/></svg><span data-i18n="admin.shell.nav.users"></span></a></li>
+          <li><a href="~/admin/courses.html" class="relative flex min-h-11 items-center gap-2 rounded-lg px-4 text-sm font-medium text-fg-muted hover:bg-surface-sunken hover:text-fg focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus before:absolute before:inset-y-2 before:-left-4 before:w-1 before:rounded-r-sm before:bg-neutral-900 before:opacity-0 data-current:bg-surface data-current:font-semibold data-current:text-fg data-current:before:opacity-100"><svg class="size-4 shrink-0" aria-hidden="true"><use href="~/assets/img/icons.svg#book-open"/></svg><span data-i18n="admin.shell.nav.courses"></span></a></li>
+      </ul>
+    </nav>
+    <div class="flex flex-col gap-2 border-t border-border p-4">
+      <div class="px-2">
+        <p class="font-semibold text-fg" data-i18n="sample.people.admin"></p>
+        <p class="text-sm text-fg-muted" data-i18n="admin.shell.role"></p>
+      </div>
+      <a href="~/auth/sign-in.html" class="flex min-h-11 w-full items-center gap-2 rounded-lg px-4 text-sm text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"><svg class="size-4 shrink-0" aria-hidden="true"><use href="~/assets/img/icons.svg#log-out"/></svg><span data-i18n="common.actions.signOut"></span></a>
+    </div>
+  </aside>
+</div>

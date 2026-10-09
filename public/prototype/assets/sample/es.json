@@ -1,0 +1,187 @@
+{
+  "_note": "Fictitious sample content. Not i18n keys.",
+  "sample": {
+    "chat": {
+      "answerIntro": "Para despejar x tienes que dejarla sola en un lado del igual. Hazlo en dos pasos y luego comprueba el resultado:",
+      "check": "Comprueba sustituyendo x por 5:",
+      "draft": "¿Y si la x está en los dos lados?",
+      "eq1": "3x + 5 − 5 = 20 − 5  →  3x = 15",
+      "eq2": "x = 15 ÷ 3 = 5",
+      "eq3": "3 · 5 + 5 = 20 ✓",
+      "failedQuestion": "¿Puedo comprobar la solución con la calculadora?",
+      "loc": "p. 12",
+      "passage": "Para resolver una ecuación de primer grado se aplican las mismas operaciones en los dos miembros hasta dejar la incógnita sola. Ejemplo: en 3x + 5 = 20 restamos 5 en ambos miembros (3x = 15) y después dividimos entre 3 (x = 5).",
+      "step1": "Resta 5 en los dos lados de la ecuación:",
+      "step2": "Divide los dos lados entre 3:",
+      "tip": "Si la ecuación tiene paréntesis, quítalos primero: 2(x − 3) = 2x − 6. Y si aparece x², ya no es de primer grado: eso lo verás en el tema de polinomios."
+    },
+    "course": {
+      "code": "ALG-7K3P",
+      "description": "Ecuaciones, sistemas, polinomios y factorización.",
+      "disabledCode": "ALG-8M1D",
+      "expiredCode": "ALG-4X2B",
+      "link": "docentai.example.org/unirse/ALG-7K3P",
+      "name": "Matemáticas 3º ESO – Álgebra",
+      "newCode": "ALG-9Q2M",
+      "newLink": "docentai.example.org/unirse/ALG-9Q2M"
+    },
+    "courses": {
+      "second": "Física 3º ESO – Movimiento",
+      "secondDescription": "Velocidad, aceleración y gráficas de movimiento.",
+      "secondTeacher": "Prof. Marta Gil Soler",
+      "third": "Matemáticas 4º ESO – Funciones",
+      "thirdDescription": "Funciones lineales, cuadráticas y sus gráficas."
+    },
+    "documents": {
+      "polinomios": "Ejercicios resueltos – Polinomios.md",
+      "presentation": "Presentación – Tema 3.pptx",
+      "scanned": "Hoja de ejercicios escaneada.pdf",
+      "sistemas": "Apuntes – Sistemas de ecuaciones.docx",
+      "tema3": "Tema 3 – Ecuaciones de primer grado.pdf",
+      "tema3Short": "Tema 3",
+      "textbook": "Libro de texto completo.pdf"
+    },
+    "exercise": {
+      "photo": "foto-ejercicio.jpg",
+      "statement": "Resuelve 2(x − 3) = 4x + 2",
+      "step1": "2x − 6 = 4x + 2",
+      "step2": "2x − 4x = 2 − 6",
+      "step3": "−2x = −4",
+      "step4": "x = 2",
+      "stepsAll": "2x − 6 = 4x + 2\n2x − 4x = 2 − 6\n−2x = −4\nx = 2"
+    },
+    "feedback": {
+      "explanation": "Al pasar el −6 del lado izquierdo al derecho, cambia de signo: lo que resta pasa sumando. Por eso en el paso 2 debería quedar 2 + 6, no 2 − 6. Los pasos siguientes arrastran ese error.",
+      "good": "Has quitado bien los paréntesis en el paso 1.",
+      "loc": "§ 3.2"
+    },
+    "flags": {
+      "answerExcerpt": "Para despejar x tienes que dejarla sola…",
+      "comment1": "Falta comprobar el resultado sustituyendo en la ecuación.",
+      "comment2": "Usa «miembros» sin explicarlo; mejor «lados»."
+    },
+    "fragments": {
+      "f11": "Una ecuación de primer grado es una igualdad con una incógnita cuyo exponente es 1. Por ejemplo, 3x + 5 = 20.",
+      "f11loc": "p. 11",
+      "f12loc": "p. 12",
+      "f13": "Despejar la incógnita significa dejarla sola en uno de los miembros. Lo que suma pasa restando y lo que multiplica pasa dividiendo.",
+      "f13loc": "§ 3.2 Despejar la incógnita",
+      "f14": "Si hay paréntesis, primero se eliminan aplicando la propiedad distributiva: 2(x − 3) = 2x − 6.",
+      "f14loc": "p. 13",
+      "m1a": "Para ",
+      "m1b": " la incógnita se aplican las mismas operaciones en los dos miembros.",
+      "m2b": " la incógnita significa dejarla sola en uno de los miembros.",
+      "matchWord": "Despejar",
+      "matchWordLower": "despejar"
+    },
+    "guided": {
+      "h1": "Fíjate en el lado izquierdo: al 2x le están restando 4. ¿Qué operación deshace una resta? Aplícala en los dos lados.",
+      "h2": "Si sumas 4 en los dos lados te queda 2x = 14. Ahora la x está multiplicada por 2: ¿cómo la dejas sola?",
+      "h3": "Divide los dos lados entre el número que multiplica a la x. Después, comprueba tu resultado sustituyéndolo en la ecuación original.",
+      "loc13": "§ 3.2",
+      "sol1": "2x − 4 + 4 = 10 + 4  →  2x = 14",
+      "sol2": "x = 14 ÷ 2 = 7",
+      "sol3": "Comprobación: 2 · 7 − 4 = 10 ✓",
+      "solIntro": "Aquí tienes la solución completa:"
+    },
+    "patterns": {
+      "distributive": "Aplicar mal la propiedad distributiva",
+      "sign": "Error de signo al quitar paréntesis",
+      "transpose": "Pasar un término sin cambiar de signo"
+    },
+    "people": {
+      "admin": "Admin DocentAI",
+      "adminEmail": "admin@example.org",
+      "aisha": "Aisha Benali",
+      "aishaEmail": "aisha.benali@example.org",
+      "lucas": "Lucas Herrera",
+      "lucasEmail": "lucas.herrera@example.org",
+      "mateo": "Mateo Ortega",
+      "mateoEmail": "mateo.ortega@example.org",
+      "newTeacher": "Prof. Nuria Campos Vidal",
+      "newTeacherEmail": "nuria.campos@example.org",
+      "pseudonym07": "Estudiante-07",
+      "pseudonym07Email": "estudiante07@example.org",
+      "pseudonym12": "Estudiante-12",
+      "secondTeacherEmail": "marta.gil@example.org",
+      "teacher": "Prof. Elena Ruiz Navarro",
+      "teacherEmail": "elena.ruiz@example.org"
+    },
+    "practice": {
+      "ex1": "−3(x − 2) = −3x + 6",
+      "ex2": "2x − 6 = 4  →  2x = 4 + 6",
+      "p1": "Resuelve 5 − 2(x + 1) = 9",
+      "p2": "Resuelve 3(x − 4) = x − 2",
+      "what": "Cuando un número negativo multiplica a un paréntesis, cambia el signo de todo lo que hay dentro. Y cuando pasas un término al otro lado del igual, también cambia de signo."
+    },
+    "privacyEmail": "privacidad@example.org",
+    "questions": {
+      "covered": "¿Cómo despejo x en 3x + 5 = 20?",
+      "guided": "¿Cómo resuelvo 2x − 4 = 10?",
+      "notCovered": "¿Quién inventó el álgebra?"
+    },
+    "quiz": {
+      "q1": "¿Cuál es la solución de 3x + 5 = 20?",
+      "q1Right": "Restas 5 en los dos lados (3x = 15) y divides entre 3: x = 5.",
+      "q1Wrong": "Si x = 3, entonces 3 · 3 + 5 = 14, no 20. Resta 5 en los dos lados y después divide entre 3.",
+      "q1a": "x = 3",
+      "q1b": "x = 5",
+      "q1c": "x = 15",
+      "q2": "¿Qué se obtiene al quitar los paréntesis en 2(x − 3)?",
+      "q2a": "2x − 3",
+      "q2b": "2x − 6",
+      "q2c": "x − 6",
+      "q3": "Resuelve el sistema x + y = 5, x − y = 1",
+      "q3a": "x = 3, y = 2",
+      "q3b": "x = 2, y = 3",
+      "q3c": "x = 4, y = 1",
+      "q4": "¿Cuál es la solución de 2(x − 1) = x + 4?",
+      "q4a": "x = 3",
+      "q4b": "x = 5",
+      "q4c": "x = 6",
+      "sysDoc": "Apuntes – Sistemas",
+      "sysLoc": "§ 2"
+    },
+    "search": {
+      "noResults": "logaritmo",
+      "query": "despejar"
+    },
+    "topics": {
+      "factorisation": "Factorización",
+      "linear": "Ecuaciones de primer grado",
+      "polynomials": "Polinomios",
+      "systems": "Sistemas de ecuaciones"
+    },
+    "validation": {
+      "date": "6 oct 2026"
+    },
+    "corrections": {
+      "chatQuestion": "¿2(x − 3) es lo mismo que 2x − 3?",
+      "chatWrong": "Sí: al quitar el paréntesis queda 2x − 3.",
+      "chat": "No: el 2 multiplica a los dos términos del paréntesis, así que 2(x − 3) = 2x − 6. Repasa la propiedad distributiva en el Tema 3.",
+      "feedback": "Bien señalado el paso 2. Añado: el −6 pasa al otro lado como +6, así que el paso 2 debe ser 2x − 4x = 2 + 6. Termina tú los pasos siguientes."
+    },
+    "adaptation": {
+      "reason": "Te lo explico paso a paso porque esta semana has pasado 3 veces un término sin cambiarle el signo."
+    },
+    "record": {
+      "lucasEvent1": "Ecuaciones de primer grado pasó a «En progreso» tras 3 ejercicios correctos seguidos",
+      "lucasEvent2": "Quiz de Ecuaciones de primer grado: 3 de 5",
+      "lucasEvent3": "Empezó Ecuaciones de primer grado",
+      "systemsEvent1": "Empezó Sistemas de ecuaciones",
+      "riskEvent1": "Error de signo al quitar paréntesis por tercera vez",
+      "riskEvent2": "Ecuaciones de primer grado bajó a «Empezando»",
+      "mistake1": "Resuelve 2(x − 3) = 4x + 2 · paso 2",
+      "mistake2": "Resuelve 5x − 4 = 2x + 8 · paso 1"
+    },
+    "topicAssignment": {
+      "s31": "§ 3.1 Qué es una ecuación",
+      "s32": "§ 3.2 Despejar la incógnita",
+      "s33": "§ 3.3 Ecuaciones con paréntesis",
+      "s34": "§ 3.4 Problemas con ecuaciones",
+      "polyUnassigned": "§ 4 Factorizar trinomios",
+      "newTopic": "Inecuaciones",
+      "polyDeleted": "§ 1 Qué es un polinomio, § 2 Operaciones con polinomios"
+    }
+  }
+}

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Panel · DocentAI (prototipo)</title>
+    <style>
+      :root { color-scheme: light dark; }
+      [data-cloak] { visibility: hidden; }
+      [data-cloak] *, [data-cloak] *::before, [data-cloak] *::after { transition: none !important; }
+      summary::-webkit-details-marker { display: none; }
+    </style>
+    <script type="module" src="../assets/js/prototype.js"></script>
+  </head>
+  <body data-cloak class="flex min-h-dvh flex-col bg-surface font-sans text-fg antialiased">
+    <a href="#main" class="sr-only rounded-lg bg-primary-700 px-4 py-2 text-fg-inverse focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50" data-i18n="common.a11y.skipToContent"></a>
+    <div data-include="partials/shell-teacher.html"></div>
+    <main id="main" tabindex="-1" class="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-8 px-4 py-8 sm:px-6 lg:px-10 lg:py-12">
+      <div class="flex flex-col gap-4 border-b-2 border-neutral-900 pb-4 sm:flex-row sm:items-end sm:justify-between">
+        <div class="min-w-0 flex-1">
+          <p class="text-sm font-semibold text-fg-muted" data-i18n="sample.course.name"></p>
+          <h1 class="mt-1 text-3xl font-semibold text-fg sm:text-4xl" data-i18n="teacher.dashboard.title"></h1>
+          <p class="mt-2 max-w-2xl text-fg-muted" data-i18n="teacher.dashboard.lead"></p>
+        </div>
+        <div class="flex flex-col gap-2" data-component="Select"><label for="period" class="text-sm font-semibold text-fg" data-i18n="teacher.dashboard.period"></label><div class="relative"><select id="period" class="min-h-11 appearance-none rounded-lg border border-border-strong bg-surface-raised pr-10 pl-4 text-base text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"><option data-i18n="teacher.dashboard.last30" selected></option><option data-i18n="teacher.dashboard.last7"></option><option data-i18n="teacher.dashboard.all"></option></select><svg class="pointer-events-none absolute top-1/2 right-3 size-5 -translate-y-1/2 rotate-90 text-fg-muted" aria-hidden="true"><use href="../assets/img/icons.svg#chevron-right"/></svg></div></div>
+      </div>
+
+      <div data-state="loading" class="rounded-xl border border-border bg-surface-raised p-6" data-component="Skeleton"><p role="status" class="sr-only" data-i18n="common.states.loading"></p><div class="flex flex-col gap-4 motion-safe:animate-pulse" aria-hidden="true"><div class="h-6 w-1/3 rounded-sm bg-neutral-200"></div><div class="h-4 w-full rounded-sm bg-neutral-200"></div><div class="h-4 w-5/6 rounded-sm bg-neutral-200"></div><div class="h-20 w-full rounded-sm bg-neutral-200"></div><div class="h-4 w-2/3 rounded-sm bg-neutral-200"></div></div></div>
+      <div data-state="error" role="alert" class="flex flex-col items-center gap-4 rounded-xl border border-danger-200 bg-danger-50 px-6 py-12 text-center" data-component="ErrorState"><span class="inline-flex size-12 items-center justify-center rounded-full bg-neutral-0 text-danger-700"><svg class="size-6 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#triangle-alert"/></svg></span><h2 class="text-xl font-semibold text-fg" data-i18n="teacher.dashboard.loadError"></h2><p class="max-w-md text-fg" data-i18n="common.states.errorBody"></p><button type="button" data-goto="default" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-border-strong bg-surface-raised px-4 text-sm font-semibold text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" data-component="Button" data-variant="secondary"><svg class="size-4 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#refresh-cw"/></svg><span data-i18n="common.actions.retry"></span></button></div>
+      <div data-state="not-enough-data" class="flex flex-col items-center gap-4 rounded-xl border border-dashed border-border-strong bg-surface px-6 py-12 text-center" data-component="EmptyState"><span class="inline-flex size-12 items-center justify-center rounded-full border border-border-strong text-fg"><svg class="size-6 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#chart-column"/></svg></span><h2 class="text-xl font-semibold text-fg" data-i18n="teacher.dashboard.emptyTitle"></h2><p class="max-w-md text-fg-muted" data-i18n="teacher.dashboard.emptyBody"></p></div>
+
+      <div data-state="default by-student" class="grid gap-8 xl:grid-cols-5">
+        <section aria-labelledby="errors-title" class="flex min-w-0 flex-col gap-6 rounded-xl border border-border bg-surface-raised p-6 xl:col-span-3">
+          <div class="flex flex-wrap items-start justify-between gap-4">
+            <div class="min-w-0">
+              <h2 id="errors-title" class="text-xl font-semibold text-fg"><span data-state="default" data-i18n="teacher.dashboard.errorsTitleTopic"></span><span data-state="by-student" data-i18n="teacher.dashboard.errorsTitleStudent"></span></h2>
+              <p class="mt-1 text-sm text-fg-muted" data-i18n="teacher.dashboard.errorsBasis"></p>
+            </div>
+            <span data-state="default"><div role="group" class="inline-flex rounded-lg border border-border-strong bg-surface-raised p-1" data-i18n-attr="aria-label:teacher.dashboard.groupLabel"><a href="?state=default" aria-current="true" class="inline-flex min-h-9 items-center rounded-md px-4 text-sm font-semibold bg-neutral-900 text-fg-inverse focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"><span data-i18n="teacher.dashboard.byTopic"></span></a><a href="?state=by-student" class="inline-flex min-h-9 items-center rounded-md px-4 text-sm font-semibold text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"><span data-i18n="teacher.dashboard.byStudent"></span></a></div></span><span data-state="by-student"><div role="group" class="inline-flex rounded-lg border border-border-strong bg-surface-raised p-1" data-i18n-attr="aria-label:teacher.dashboard.groupLabel"><a href="?state=default" class="inline-flex min-h-9 items-center rounded-md px-4 text-sm font-semibold text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"><span data-i18n="teacher.dashboard.byTopic"></span></a><a href="?state=by-student" aria-current="true" class="inline-flex min-h-9 items-center rounded-md px-4 text-sm font-semibold bg-neutral-900 text-fg-inverse focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"><span data-i18n="teacher.dashboard.byStudent"></span></a></div></span>
+          </div>
+          <div data-state="default">
+              <table data-chart="errors" class="w-full border-collapse">
+                <thead><tr class="border-b-2 border-neutral-900"><th scope="col" class="pb-2 text-left text-sm font-semibold text-fg-muted" data-i18n="teacher.dashboard.colTopic"></th><th scope="col" class="pr-4 pb-2 text-right text-sm font-semibold text-fg-muted" data-i18n="teacher.dashboard.colErrors"></th><th scope="col" class="hidden pb-2 sm:table-cell"><span class="sr-only" data-i18n="teacher.dashboard.colShare"></span></th></tr></thead>
+                <tbody>
+                  <tr class="border-b border-border last:border-b-0">
+                    <th scope="row" class="py-4 pr-4 text-left align-top font-normal"><span class="flex flex-col gap-1"><span class="font-semibold text-fg" data-i18n="sample.topics.linear"></span><span class="text-sm text-fg-muted" data-i18n="teacher.dashboard.topPattern" data-i18n-vars='{"pattern": "sample.patterns.sign"}'></span></span></th>
+                    <td class="py-4 pr-4 text-right align-top text-sm font-semibold whitespace-nowrap text-fg tabular-nums" data-value data-i18n="teacher.dashboard.errors" data-i18n-count="18"></td>
+                    <td class="hidden w-2/5 py-4 align-top sm:table-cell"><span class="mt-2 block"><span class="block h-2 rounded-sm bg-surface-sunken" aria-hidden="true"><span class="block h-2 w-full rounded-sm bg-neutral-800"></span></span></span></td>
+                  </tr>
+                  <tr class="border-b border-border last:border-b-0">
+                    <th scope="row" class="py-4 pr-4 text-left align-top font-normal"><span class="flex flex-col gap-1"><span class="font-semibold text-fg" data-i18n="sample.topics.systems"></span><span class="text-sm text-fg-muted" data-i18n="teacher.dashboard.topPattern" data-i18n-vars='{"pattern": "sample.patterns.transpose"}'></span></span></th>
+                    <td class="py-4 pr-4 text-right align-top text-sm font-semibold whitespace-nowrap text-fg tabular-nums" data-value data-i18n="teacher.dashboard.errors" data-i18n-count="12"></td>
+                    <td class="hidden w-2/5 py-4 align-top sm:table-cell"><span class="mt-2 block"><span class="block h-2 rounded-sm bg-surface-sunken" aria-hidden="true"><span class="block h-2 w-2/3 rounded-sm bg-neutral-800"></span></span></span></td>
+                  </tr>
+                  <tr class="border-b border-border last:border-b-0">
+                    <th scope="row" class="py-4 pr-4 text-left align-top font-normal"><span class="flex flex-col gap-1"><span class="font-semibold text-fg" data-i18n="sample.topics.polynomials"></span><span class="text-sm text-fg-muted" data-i18n="teacher.dashboard.topPattern" data-i18n-vars='{"pattern": "sample.patterns.distributive"}'></span></span></th>
+                    <td class="py-4 pr-4 text-right align-top text-sm font-semibold whitespace-nowrap text-fg tabular-nums" data-value data-i18n="teacher.dashboard.errors" data-i18n-count="7"></td>
+                    <td class="hidden w-2/5 py-4 align-top sm:table-cell"><span class="mt-2 block"><span class="block h-2 rounded-sm bg-surface-sunken" aria-hidden="true"><span class="block h-2 w-5/12 rounded-sm bg-neutral-800"></span></span></span></td>
+                  </tr>
+                  <tr class="border-b border-border last:border-b-0">
+                    <th scope="row" class="py-4 pr-4 text-left align-top font-normal"><span class="flex flex-col gap-1"><span class="font-semibold text-fg" data-i18n="sample.topics.factorisation"></span></span></th>
+                    <td class="py-4 pr-4 text-right align-top text-sm font-semibold whitespace-nowrap text-fg tabular-nums" data-value data-i18n="teacher.dashboard.errors" data-i18n-count="3"></td>
+                    <td class="hidden w-2/5 py-4 align-top sm:table-cell"><span class="mt-2 block"><span class="block h-2 rounded-sm bg-surface-sunken" aria-hidden="true"><span class="block h-2 w-1/6 rounded-sm bg-neutral-800"></span></span></span></td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+          <div data-state="by-student">
+              <table data-chart="errors" class="w-full border-collapse">
+                <thead><tr class="border-b-2 border-neutral-900"><th scope="col" class="pb-2 text-left text-sm font-semibold text-fg-muted" data-i18n="teacher.dashboard.colStudent"></th><th scope="col" class="pr-4 pb-2 text-right text-sm font-semibold text-fg-muted" data-i18n="teacher.dashboard.colErrors"></th><th scope="col" class="hidden pb-2 sm:table-cell"><span class="sr-only" data-i18n="teacher.dashboard.colShare"></span></th></tr></thead>
+                <tbody>
+                  <tr data-student-row class="border-b border-border last:border-b-0">
+                    <th scope="row" class="py-4 pr-4 text-left font-normal"><a href="student.html?state=at-risk" class="rounded-sm font-semibold text-fg underline decoration-neutral-400 underline-offset-2 hover:decoration-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" data-i18n="sample.people.pseudonym07"></a></th>
+                    <td class="py-4 pr-4 text-right text-sm font-semibold whitespace-nowrap text-fg tabular-nums" data-value data-i18n="teacher.dashboard.errors" data-i18n-count="11"></td>
+                    <td class="hidden w-2/5 py-4 sm:table-cell"><span class="block h-2 rounded-sm bg-surface-sunken" aria-hidden="true"><span class="block h-2 w-full rounded-sm bg-neutral-800"></span></span></td>
+                  </tr>
+                  <tr data-student-row class="border-b border-border last:border-b-0">
+                    <th scope="row" class="py-4 pr-4 text-left font-normal"><a href="student.html?state=empty" class="rounded-sm font-semibold text-fg underline decoration-neutral-400 underline-offset-2 hover:decoration-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" data-i18n="sample.people.mateo"></a></th>
+                    <td class="py-4 pr-4 text-right text-sm font-semibold whitespace-nowrap text-fg tabular-nums" data-value data-i18n="teacher.dashboard.errors" data-i18n-count="9"></td>
+                    <td class="hidden w-2/5 py-4 sm:table-cell"><span class="block h-2 rounded-sm bg-surface-sunken" aria-hidden="true"><span class="block h-2 w-5/6 rounded-sm bg-neutral-800"></span></span></td>
+                  </tr>
+                  <tr data-student-row class="border-b border-border last:border-b-0">
+                    <th scope="row" class="py-4 pr-4 text-left font-normal"><a href="student.html" class="rounded-sm font-semibold text-fg underline decoration-neutral-400 underline-offset-2 hover:decoration-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" data-i18n="sample.people.lucas"></a></th>
+                    <td class="py-4 pr-4 text-right text-sm font-semibold whitespace-nowrap text-fg tabular-nums" data-value data-i18n="teacher.dashboard.errors" data-i18n-count="6"></td>
+                    <td class="hidden w-2/5 py-4 sm:table-cell"><span class="block h-2 rounded-sm bg-surface-sunken" aria-hidden="true"><span class="block h-2 w-7/12 rounded-sm bg-neutral-800"></span></span></td>
+                  </tr>
+                  <tr data-student-row class="border-b border-border last:border-b-0">
+                    <th scope="row" class="py-4 pr-4 text-left font-normal"><a href="student.html" class="rounded-sm font-semibold text-fg underline decoration-neutral-400 underline-offset-2 hover:decoration-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" data-i18n="sample.people.aisha"></a></th>
+                    <td class="py-4 pr-4 text-right text-sm font-semibold whitespace-nowrap text-fg tabular-nums" data-value data-i18n="teacher.dashboard.errors" data-i18n-count="4"></td>
+                    <td class="hidden w-2/5 py-4 sm:table-cell"><span class="block h-2 rounded-sm bg-surface-sunken" aria-hidden="true"><span class="block h-2 w-1/3 rounded-sm bg-neutral-800"></span></span></td>
+                  </tr>
+                  <tr data-student-row class="border-b border-border last:border-b-0">
+                    <th scope="row" class="py-4 pr-4 text-left font-normal"><a href="student.html" class="rounded-sm font-semibold text-fg underline decoration-neutral-400 underline-offset-2 hover:decoration-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" data-i18n="sample.people.pseudonym12"></a></th>
+                    <td class="py-4 pr-4 text-right text-sm font-semibold whitespace-nowrap text-fg tabular-nums" data-value data-i18n="teacher.dashboard.errors" data-i18n-count="3"></td>
+                    <td class="hidden w-2/5 py-4 sm:table-cell"><span class="block h-2 rounded-sm bg-surface-sunken" aria-hidden="true"><span class="block h-2 w-1/4 rounded-sm bg-neutral-800"></span></span></td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+        </section>
+
+        <section aria-labelledby="risk-title" class="flex min-w-0 flex-col gap-4 rounded-xl border border-border bg-surface-raised p-6 xl:col-span-2">
+          <div>
+            <h2 class="text-xl font-semibold text-fg" data-i18n="teacher.dashboard.atRiskTitle" id="risk-title"></h2>
+            <p class="mt-1 text-sm text-fg-muted" data-i18n="teacher.dashboard.atRiskBasis"></p>
+          </div>
+          <ul class="flex flex-col border-t-2 border-neutral-900">
+            <li data-at-risk class="flex flex-col gap-2 border-b border-border py-4 last:border-b-0 sm:flex-row sm:items-center sm:justify-between">
+              <div class="flex flex-col gap-2"><p class="font-semibold text-fg" id="risk-0" data-i18n="sample.people.pseudonym07"></p><ul class="flex flex-wrap gap-2"><li class="inline-flex items-center gap-1 rounded-sm bg-warning-200 px-2 py-1 text-xs font-semibold text-warning-900"><svg class="size-4 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#clock"/></svg><span class="tabular-nums" data-i18n="teacher.dashboard.reason.inactive" data-i18n-vars='{"days": "number:7"}'></span></li><li class="inline-flex items-center gap-1 rounded-sm bg-warning-200 px-2 py-1 text-xs font-semibold text-warning-900"><svg class="size-4 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#triangle-alert"/></svg><span class="tabular-nums" data-i18n="teacher.dashboard.reason.errorRate" data-i18n-vars='{"rate": "percent:0.6"}'></span></li></ul></div>
+              <a href="student.html?state=at-risk" aria-describedby="risk-0" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-border-strong bg-surface-raised px-4 text-sm font-semibold text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus shrink-0 whitespace-nowrap md:min-h-9" data-component="Button" data-variant="secondary"><span data-i18n="teacher.dashboard.why"></span><svg class="size-4 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#chevron-right"/></svg></a>
+            </li>
+            <li data-at-risk class="flex flex-col gap-2 border-b border-border py-4 last:border-b-0 sm:flex-row sm:items-center sm:justify-between">
+              <div class="flex flex-col gap-2"><p class="font-semibold text-fg" id="risk-1" data-i18n="sample.people.mateo"></p><ul class="flex flex-wrap gap-2"><li class="inline-flex items-center gap-1 rounded-sm bg-warning-200 px-2 py-1 text-xs font-semibold text-warning-900"><svg class="size-4 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#triangle-alert"/></svg><span class="tabular-nums" data-i18n="teacher.dashboard.reason.errorRate" data-i18n-vars='{"rate": "percent:0.55"}'></span></li></ul></div>
+              <a href="student.html?state=empty" aria-describedby="risk-1" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-border-strong bg-surface-raised px-4 text-sm font-semibold text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus shrink-0 whitespace-nowrap md:min-h-9" data-component="Button" data-variant="secondary"><span data-i18n="teacher.dashboard.why"></span><svg class="size-4 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#chevron-right"/></svg></a>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </main>
+    <div data-include="partials/footer.html"></div>
+  </body>
+</html>

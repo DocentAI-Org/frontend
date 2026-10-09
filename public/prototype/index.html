@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title data-i18n="prototype.index.title">DocentAI</title>
+    <style>
+      :root { color-scheme: light dark; }
+      [data-cloak] { visibility: hidden; }
+      [data-cloak] *, [data-cloak] *::before, [data-cloak] *::after { transition: none !important; }
+      summary::-webkit-details-marker { display: none; }
+    </style>
+    <script type="module" src="assets/js/prototype.js"></script>
+  </head>
+  <body data-cloak class="flex min-h-dvh flex-col bg-surface font-sans text-fg antialiased">
+    <a href="#main" class="sr-only rounded-lg bg-primary-700 px-4 py-2 text-fg-inverse focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50" data-i18n="common.a11y.skipToContent"></a>
+
+    <header class="border-b border-border-strong bg-surface-raised">
+      <div class="mx-auto flex h-16 max-w-6xl items-center gap-2 px-4 sm:px-6">
+        <img src="assets/img/docentai-logo-96.png" alt="" width="32" height="32" class="size-8 shrink-0" />
+        <span class="font-serif text-xl font-semibold text-fg" data-i18n="common.brand.name"></span>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1" class="mx-auto w-full max-w-6xl flex-1 px-4 py-10 sm:px-6 lg:py-16">
+      <!-- Cover: the notebook's front page. -->
+      <section aria-labelledby="cover-title" class="flex flex-col gap-6 border-b-2 border-neutral-900 pb-8 lg:flex-row lg:items-end lg:justify-between">
+        <div class="max-w-2xl">
+          <h1 id="cover-title" class="text-4xl font-semibold text-fg sm:text-5xl" data-i18n="prototype.index.title"></h1>
+          <p class="mt-4 w-fit bg-surface text-lg text-fg-muted" data-i18n="prototype.index.lead"></p>
+          <ul class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-fg-muted">
+            <li class="flex items-center gap-2">
+              <span data-i18n="prototype.index.status.label"></span>
+              <span class="inline-flex items-center gap-1 rounded-sm bg-warning-200 px-2 py-1 font-semibold text-warning-900"><svg class="size-4" aria-hidden="true"><use href="assets/img/icons.svg#clock"/></svg><span data-i18n="prototype.index.status.draft"></span></span>
+            </li>
+            <li class="bg-surface" data-i18n="prototype.index.version" data-i18n-vars='{"version":"0.3.0"}'></li>
+            <li class="bg-surface tabular-nums" data-i18n="prototype.index.updated" data-i18n-vars='{"date":"date:2026-10-06"}'></li>
+          </ul>
+        </div>
+        <div class="flex shrink-0 flex-wrap gap-2">
+          <a href="design-system.html" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-border-strong bg-surface-raised px-4 text-sm font-semibold text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" data-component="Button" data-variant="secondary">
+            <svg class="size-4" aria-hidden="true"><use href="assets/img/icons.svg#sparkles"/></svg><span data-i18n="prototype.index.links.designSystem"></span>
+          </a>
+          <a href="https://github.com/DocentAI-Org/frontend/blob/001-mvp-prototype/specs/001-mvp-prototype/spec.md" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-border-strong bg-surface-raised px-4 text-sm font-semibold text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" data-component="Button" data-variant="secondary">
+            <svg class="size-4" aria-hidden="true"><use href="assets/img/icons.svg#file-text"/></svg><span data-i18n="prototype.index.links.spec"></span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Flows: a table of contents, one line per flow with a dotted leader to its start. -->
+      <section aria-labelledby="flows-title" class="mt-12 rounded-xl border border-border bg-surface-raised p-6 sm:p-8">
+        <h2 id="flows-title" class="text-3xl font-semibold text-fg" data-i18n="prototype.index.flows.title"></h2>
+        <p class="mt-2 text-fg-muted" data-i18n="prototype.index.flows.lead"></p>
+        <ul id="flow-list" class="mt-6 grid gap-x-12 lg:grid-cols-2"></ul>
+      </section>
+
+      <!-- Pages: one chapter per role. -->
+      <section aria-labelledby="pages-title" class="mt-12">
+        <h2 id="pages-title" class="w-fit bg-surface text-3xl font-semibold text-fg" data-i18n="prototype.index.pages.title"></h2>
+        <p class="mt-2 w-fit bg-surface text-fg-muted" data-i18n="prototype.index.pages.lead"></p>
+        <div id="page-groups" class="mt-8 flex flex-col gap-10"></div>
+      </section>
+    </main>
+
+    <div data-include="partials/footer.html"></div>
+
+    <script type="module">
+      // Build the flow list and the page index from assets/pages.json (T034).
+      import { applyI18n } from "./assets/js/i18n.js";
+
+      const FOCUS = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus";
+      const FLOWS = [
+        ["f1", ["teacher/courses.html", "teacher/material.html?state=empty"]],
+        ["f2", ["auth/sign-in.html", "student/consent.html"]],
+        ["f3", ["student/chat.html"]],
+        ["f4", ["student/chat.html?state=low-allowance"]],
+        ["f5", ["auth/sign-in.html"]],
+        ["f6", ["teacher/course-new.html"]],
+        ["f7", ["teacher/tutor-settings.html"]],
+        ["f8", ["student/chat-guided.html"]],
+        ["f9", ["student/exercise.html"]],
+        ["f10", ["auth/sign-in.html?state=invalid-credentials"]],
+        ["f11", ["teacher/conversations.html"]],
+        ["f12", ["teacher/dashboard.html"]],
+        ["f13", ["teacher/questions.html"]],
+        ["f14", ["student/quiz.html"]],
+        ["f15", ["student/exercise-feedback.html?state=repeated-mistake"]],
+        ["f16", ["teacher/course.html", "teacher/topics.html"]],
+        ["f17", ["teacher/dashboard.html?state=by-student", "teacher/student.html"]],
+        ["f18", ["student/chat.html?state=adapted"]]
+      ];
+      const ROLES = ["all", "student", "teacher", "admin"];
+
+      const h = (html) => {
+        const t = document.createElement("template");
+        t.innerHTML = html.trim();
+        return t.content.firstElementChild;
+      };
+
+      const pages = await (await fetch(new URL("assets/pages.json", import.meta.url))).json();
+      const known = new Set(pages.map((p) => p.path));
+
+      const flowList = document.getElementById("flow-list");
+      for (const [id, starts] of FLOWS) {
+        const start = starts.find((s) => known.has(s.split("?")[0]));
+        flowList.append(
+          h(`<li class="flex min-h-12 items-baseline gap-2 border-b border-border py-2">
+              <span class="text-fg" data-i18n="prototype.index.flows.${id}"></span>
+              <span class="min-w-4 flex-1 border-b-2 border-dotted border-neutral-300" aria-hidden="true"></span>
+              ${start
+                ? `<a href="${start}" class="inline-flex min-h-10 shrink-0 items-center gap-1 rounded-md px-2 text-sm font-semibold text-fg underline decoration-neutral-400 underline-offset-2 hover:decoration-fg ${FOCUS}"><span data-i18n="prototype.index.flows.start"></span><svg class="size-4" aria-hidden="true"><use href="assets/img/icons.svg#chevron-right"/></svg></a>`
+                : `<span class="shrink-0 rounded-sm border border-dashed border-border-strong px-2 py-1 text-xs font-medium text-fg-muted" data-i18n="prototype.index.flows.pending"></span>`}
+            </li>`)
+        );
+      }
+
+      const groups = document.getElementById("page-groups");
+      for (const role of ROLES) {
+        const rolePages = pages.filter((p) => p.role === role).sort((a, b) => a.screen[0] - b.screen[0]);
+        const section = h(`<section aria-labelledby="role-${role}" class="flex flex-col gap-4">
+            <h3 id="role-${role}" class="w-fit bg-surface text-2xl font-semibold text-fg" data-i18n="prototype.index.role.${role}"></h3>
+          </section>`);
+        if (!rolePages.length) {
+          section.append(h(`<p class="text-sm text-fg-muted" data-i18n="prototype.index.pages.none"></p>`));
+        }
+        const list = h(`<ul class="grid gap-x-8 rounded-xl border border-border bg-surface-raised px-6 lg:grid-cols-2"></ul>`);
+        for (const page of rolePages) {
+          const states = page.states
+            .map((s) => `<li><a href="${page.path}?state=${s}" class="inline-flex min-h-6 items-center rounded-sm border border-border-strong px-2 text-xs text-fg hover:bg-surface-sunken ${FOCUS}">${s}</a></li>`)
+            .join("");
+          list.append(
+            h(`<li class="flex flex-col gap-2 border-b border-border py-4">
+                <div class="flex flex-wrap items-baseline gap-2">
+                  <span class="text-sm text-fg-muted tabular-nums">${page.screen.join("–")}</span>
+                  <a href="${page.path}" class="rounded-sm font-serif text-lg font-semibold text-fg underline decoration-neutral-400 underline-offset-2 hover:decoration-fg ${FOCUS}" data-i18n="${page.titleKey}"></a>
+                  ${page.priority === "P1" ? `<span class="rounded-sm bg-primary-50 px-2 py-0.5 text-xs font-semibold text-primary-800">P1</span>` : `<span class="rounded-sm bg-surface-sunken px-2 py-0.5 text-xs font-semibold text-fg-muted">${page.priority}</span>`}
+                  ${page.mobile ? `<span class="inline-flex items-center gap-1 text-xs text-fg-muted"><svg class="size-4" aria-hidden="true"><use href="assets/img/icons.svg#check"/></svg><span data-i18n="prototype.index.pages.mobile"></span></span>` : ""}
+                </div>
+                <p class="text-xs text-fg-muted">${page.stories.join(", ")}; ${page.requirements.join(", ")}; <span class="tabular-nums" data-i18n="prototype.index.pages.states" data-i18n-count="${page.states.length}"></span></p>
+                <ul class="flex flex-wrap gap-1">${states}</ul>
+              </li>`)
+          );
+        }
+        if (rolePages.length) section.append(list);
+        groups.append(section);
+      }
+
+      await applyI18n(document.getElementById("main"));
+      document.addEventListener("click", (event) => {
+        if (event.target.closest?.("[data-set-lang]")) setTimeout(() => applyI18n(document.getElementById("main")), 0);
+      });
+    </script>
+  </body>
+</html>

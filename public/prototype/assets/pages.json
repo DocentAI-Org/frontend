@@ -1,0 +1,981 @@
+[
+  {
+    "path": "auth/sign-in.html",
+    "screen": [
+      1
+    ],
+    "role": "all",
+    "titleKey": "common.auth.signInPageTitle",
+    "stories": [
+      "US-07"
+    ],
+    "requirements": [
+      "P1",
+      "FR-005",
+      "FR-040",
+      "FR-041"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default",
+      "loading",
+      "invalid-credentials",
+      "session-expired"
+    ],
+    "simulate": [
+      "session-expired"
+    ]
+  },
+  {
+    "path": "auth/password-recovery.html",
+    "screen": [
+      2
+    ],
+    "role": "all",
+    "titleKey": "common.auth.recoveryPageTitle",
+    "stories": [
+      "US-07"
+    ],
+    "requirements": [
+      "P1",
+      "FR-040"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default",
+      "loading",
+      "error",
+      "sent"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "auth/access-denied.html",
+    "screen": [
+      3
+    ],
+    "role": "all",
+    "titleKey": "common.errors.deniedPageTitle",
+    "stories": [
+      "US-07"
+    ],
+    "requirements": [
+      "P1",
+      "FR-040",
+      "FR-041"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default",
+      "not-found",
+      "course-removed"
+    ]
+  },
+  {
+    "path": "about.html",
+    "screen": [
+      4
+    ],
+    "role": "all",
+    "titleKey": "about.pageTitle",
+    "stories": [
+      "US-07"
+    ],
+    "requirements": [
+      "FR-005"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default"
+    ]
+  },
+  {
+    "path": "student/consent.html",
+    "screen": [
+      5
+    ],
+    "role": "student",
+    "titleKey": "student.consent.pageTitle",
+    "stories": [
+      "US-01",
+      "US-07"
+    ],
+    "requirements": [
+      "S1",
+      "P1",
+      "FR-010",
+      "FR-011",
+      "FR-015"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default",
+      "ai-disclosure",
+      "error",
+      "revoked"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "student/courses.html",
+    "screen": [
+      6
+    ],
+    "role": "student",
+    "titleKey": "student.courses.pageTitle",
+    "stories": [
+      "US-04"
+    ],
+    "requirements": [
+      "T1",
+      "FR-030"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default",
+      "empty",
+      "loading",
+      "error",
+      "several-courses"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "student/join.html",
+    "screen": [
+      7
+    ],
+    "role": "student",
+    "titleKey": "student.join.pageTitle",
+    "stories": [
+      "US-04"
+    ],
+    "requirements": [
+      "T1",
+      "FR-030"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default",
+      "loading",
+      "invalid-code",
+      "expired-code",
+      "disabled-code",
+      "confirm"
+    ]
+  },
+  {
+    "path": "student/chat.html",
+    "screen": [
+      8,
+      9
+    ],
+    "role": "student",
+    "titleKey": "student.chat.pageTitle",
+    "stories": [
+      "US-01",
+      "US-16"
+    ],
+    "requirements": [
+      "S1",
+      "S2",
+      "T3",
+      "T6",
+      "FR-010",
+      "FR-011",
+      "FR-012",
+      "FR-013",
+      "FR-014",
+      "FR-022",
+      "FR-023",
+      "S8",
+      "FR-016",
+      "FR-037"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default",
+      "loading",
+      "load-error",
+      "first-use",
+      "tutor-writing",
+      "answer",
+      "citation",
+      "citation-unavailable",
+      "no-source",
+      "low-allowance",
+      "limit-reached",
+      "failed",
+      "corrected",
+      "tutor-info",
+      "adapted",
+      "adapted-basis"
+    ],
+    "simulate": [
+      "failed",
+      "limit-reached",
+      "load-error"
+    ]
+  },
+  {
+    "path": "student/chat-guided.html",
+    "screen": [
+      10
+    ],
+    "role": "student",
+    "titleKey": "student.guided.pageTitle",
+    "stories": [
+      "US-05",
+      "US-16"
+    ],
+    "requirements": [
+      "S3",
+      "S1",
+      "FR-010",
+      "FR-011",
+      "FR-013",
+      "FR-014",
+      "FR-032",
+      "S8",
+      "FR-037"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default",
+      "loading",
+      "load-error",
+      "hint-1",
+      "hint-2",
+      "citation",
+      "hints-done-solution",
+      "hints-done-hints-only",
+      "solution",
+      "no-source",
+      "limit-reached",
+      "adapted-hint"
+    ],
+    "simulate": [
+      "limit-reached",
+      "load-error"
+    ]
+  },
+  {
+    "path": "student/exercise.html",
+    "screen": [
+      11
+    ],
+    "role": "student",
+    "titleKey": "student.exercise.pageTitle",
+    "stories": [
+      "US-06"
+    ],
+    "requirements": [
+      "S4",
+      "FR-010",
+      "FR-011",
+      "FR-014",
+      "FR-033"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default",
+      "review",
+      "loading",
+      "empty-submission",
+      "unreadable-photo",
+      "limit-reached"
+    ],
+    "simulate": [
+      "unreadable-photo",
+      "limit-reached"
+    ]
+  },
+  {
+    "path": "student/exercise-feedback.html",
+    "screen": [
+      12
+    ],
+    "role": "student",
+    "titleKey": "student.feedback.pageTitle",
+    "stories": [
+      "US-06",
+      "US-12"
+    ],
+    "requirements": [
+      "S1",
+      "S2",
+      "S4",
+      "S5",
+      "T6",
+      "FR-012",
+      "FR-013",
+      "FR-023",
+      "FR-033",
+      "FR-034"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default",
+      "pending",
+      "citation",
+      "no-source",
+      "error",
+      "repeated-mistake",
+      "corrected"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "student/profile.html",
+    "screen": [
+      13
+    ],
+    "role": "student",
+    "titleKey": "student.profile.pageTitle",
+    "stories": [
+      "US-07"
+    ],
+    "requirements": [
+      "P1",
+      "FR-015"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default",
+      "loading",
+      "error",
+      "revoke-confirm",
+      "revoked"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "teacher/courses.html",
+    "screen": [
+      14
+    ],
+    "role": "teacher",
+    "titleKey": "teacher.courses.pageTitle",
+    "stories": [
+      "US-04"
+    ],
+    "requirements": [
+      "T1",
+      "FR-020"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default",
+      "empty",
+      "loading",
+      "error"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "teacher/course-new.html",
+    "screen": [
+      15
+    ],
+    "role": "teacher",
+    "titleKey": "teacher.courseNew.pageTitle",
+    "stories": [
+      "US-04"
+    ],
+    "requirements": [
+      "T1",
+      "FR-020"
+    ],
+    "priority": "P1",
+    "mobile": false,
+    "states": [
+      "default",
+      "validation-error",
+      "loading"
+    ]
+  },
+  {
+    "path": "teacher/course.html",
+    "screen": [
+      16
+    ],
+    "role": "teacher",
+    "titleKey": "teacher.course.pageTitle",
+    "stories": [
+      "US-04"
+    ],
+    "requirements": [
+      "T1",
+      "FR-020",
+      "FR-043"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default",
+      "no-students",
+      "loading",
+      "error",
+      "code-copied",
+      "code-disabled",
+      "regenerate-confirm",
+      "code-regenerated"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "teacher/material.html",
+    "screen": [
+      17
+    ],
+    "role": "teacher",
+    "titleKey": "teacher.material.pageTitle",
+    "stories": [
+      "US-02"
+    ],
+    "requirements": [
+      "T2",
+      "FR-021"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default",
+      "empty",
+      "loading",
+      "error",
+      "uploading",
+      "processing",
+      "file-error",
+      "no-validated",
+      "duplicate",
+      "pending-validation",
+      "validate-confirm",
+      "validated",
+      "exclude-confirm",
+      "document-excluded",
+      "unassigned-topics"
+    ],
+    "simulate": [
+      "file-error",
+      "error"
+    ]
+  },
+  {
+    "path": "teacher/fragments.html",
+    "screen": [
+      18
+    ],
+    "role": "teacher",
+    "titleKey": "teacher.fragments.pageTitle",
+    "stories": [
+      "US-02"
+    ],
+    "requirements": [
+      "T2",
+      "FR-021"
+    ],
+    "priority": "P1",
+    "mobile": false,
+    "states": [
+      "default",
+      "loading",
+      "error",
+      "search-results",
+      "search-empty",
+      "fragment-excluded"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "teacher/tutor-settings.html",
+    "screen": [
+      19
+    ],
+    "role": "teacher",
+    "titleKey": "teacher.tutorSettings.pageTitle",
+    "stories": [
+      "US-03"
+    ],
+    "requirements": [
+      "T3",
+      "S3",
+      "FR-022"
+    ],
+    "priority": "P1",
+    "mobile": false,
+    "states": [
+      "default",
+      "loading",
+      "load-error",
+      "hints-only",
+      "preview",
+      "unsaved",
+      "saved",
+      "save-failed"
+    ],
+    "simulate": [
+      "save-failed",
+      "load-error"
+    ]
+  },
+  {
+    "path": "admin/users.html",
+    "screen": [
+      20
+    ],
+    "role": "admin",
+    "titleKey": "admin.users.pageTitle",
+    "stories": [
+      "US-07"
+    ],
+    "requirements": [
+      "P1",
+      "FR-042"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default",
+      "empty",
+      "loading",
+      "error"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "admin/teacher-new.html",
+    "screen": [
+      21
+    ],
+    "role": "admin",
+    "titleKey": "admin.teacherNew.pageTitle",
+    "stories": [
+      "US-07"
+    ],
+    "requirements": [
+      "P1",
+      "FR-042"
+    ],
+    "priority": "P1",
+    "mobile": false,
+    "states": [
+      "default",
+      "validation-error",
+      "loading",
+      "created"
+    ]
+  },
+  {
+    "path": "admin/courses.html",
+    "screen": [
+      22
+    ],
+    "role": "admin",
+    "titleKey": "admin.courses.pageTitle",
+    "stories": [
+      "US-07"
+    ],
+    "requirements": [
+      "P1",
+      "FR-042"
+    ],
+    "priority": "P1",
+    "mobile": false,
+    "states": [
+      "default",
+      "empty",
+      "loading",
+      "error"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "teacher/conversations.html",
+    "screen": [
+      23
+    ],
+    "role": "teacher",
+    "titleKey": "teacher.conversations.pageTitle",
+    "stories": [
+      "US-08"
+    ],
+    "requirements": [
+      "T4",
+      "FR-023"
+    ],
+    "priority": "P1",
+    "mobile": true,
+    "states": [
+      "default",
+      "empty",
+      "loading",
+      "error",
+      "filtered",
+      "no-results"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "teacher/conversation.html",
+    "screen": [
+      24
+    ],
+    "role": "teacher",
+    "titleKey": "teacher.conversations.detailPageTitle",
+    "stories": [
+      "US-08",
+      "US-16"
+    ],
+    "requirements": [
+      "T4",
+      "T6",
+      "S1",
+      "S2",
+      "FR-023",
+      "S8",
+      "FR-037"
+    ],
+    "priority": "P1",
+    "mobile": false,
+    "states": [
+      "default",
+      "loading",
+      "error",
+      "flag-dialog",
+      "flagged",
+      "correction-preview",
+      "correction-editing",
+      "remove-correction-confirm",
+      "save-failed",
+      "adapted"
+    ],
+    "simulate": [
+      "save-failed",
+      "error"
+    ]
+  },
+  {
+    "path": "teacher/flags.html",
+    "screen": [
+      25
+    ],
+    "role": "teacher",
+    "titleKey": "teacher.flags.pageTitle",
+    "stories": [
+      "US-08"
+    ],
+    "requirements": [
+      "T6",
+      "FR-023"
+    ],
+    "priority": "P1",
+    "mobile": false,
+    "states": [
+      "default",
+      "empty",
+      "loading",
+      "error"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "teacher/dashboard.html",
+    "screen": [
+      26
+    ],
+    "role": "teacher",
+    "titleKey": "teacher.dashboard.pageTitle",
+    "stories": [
+      "US-09"
+    ],
+    "requirements": [
+      "T5",
+      "FR-024"
+    ],
+    "priority": "P2",
+    "mobile": false,
+    "states": [
+      "default",
+      "by-student",
+      "not-enough-data",
+      "loading",
+      "error"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "teacher/student.html",
+    "screen": [
+      27
+    ],
+    "role": "teacher",
+    "titleKey": "teacher.student.pageTitle",
+    "stories": [
+      "US-09",
+      "US-15"
+    ],
+    "requirements": [
+      "T5",
+      "T8",
+      "FR-016",
+      "FR-024"
+    ],
+    "priority": "P2",
+    "mobile": false,
+    "states": [
+      "default",
+      "at-risk",
+      "error-type",
+      "empty",
+      "loading",
+      "error"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "teacher/questions.html",
+    "screen": [
+      28
+    ],
+    "role": "teacher",
+    "titleKey": "teacher.questions.pageTitle",
+    "stories": [
+      "US-10"
+    ],
+    "requirements": [
+      "T7",
+      "FR-025"
+    ],
+    "priority": "P2",
+    "mobile": false,
+    "states": [
+      "default",
+      "editing",
+      "approved",
+      "rejected",
+      "empty",
+      "loading",
+      "error"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "student/quiz.html",
+    "screen": [
+      29
+    ],
+    "role": "student",
+    "titleKey": "student.quiz.pageTitle",
+    "stories": [
+      "US-11"
+    ],
+    "requirements": [
+      "S6",
+      "S1",
+      "FR-035"
+    ],
+    "priority": "P2",
+    "mobile": true,
+    "states": [
+      "default",
+      "correct",
+      "citation",
+      "incorrect",
+      "difficulty-up",
+      "empty",
+      "loading",
+      "error",
+      "difficulty-down"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "student/quiz-summary.html",
+    "screen": [
+      30
+    ],
+    "role": "student",
+    "titleKey": "student.quiz.summaryPageTitle",
+    "stories": [
+      "US-11"
+    ],
+    "requirements": [
+      "S6",
+      "FR-035"
+    ],
+    "priority": "P2",
+    "mobile": true,
+    "states": [
+      "default",
+      "loading",
+      "error"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "student/practice.html",
+    "screen": [
+      31
+    ],
+    "role": "student",
+    "titleKey": "student.errorPatterns.pageTitle",
+    "stories": [
+      "US-12"
+    ],
+    "requirements": [
+      "S5",
+      "S1",
+      "S2",
+      "FR-034"
+    ],
+    "priority": "P2",
+    "mobile": true,
+    "states": [
+      "default",
+      "citation",
+      "no-source",
+      "loading",
+      "error"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "student/progress.html",
+    "screen": [
+      32
+    ],
+    "role": "student",
+    "titleKey": "student.progress.pageTitle",
+    "stories": [
+      "US-13"
+    ],
+    "requirements": [
+      "S7",
+      "S4",
+      "FR-016",
+      "FR-036"
+    ],
+    "priority": "P2",
+    "mobile": true,
+    "states": [
+      "default",
+      "topic-detail",
+      "mastery-basis",
+      "empty",
+      "loading",
+      "error"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "teacher/topics.html",
+    "screen": [
+      33
+    ],
+    "role": "teacher",
+    "titleKey": "teacher.topics.pageTitle",
+    "stories": [
+      "US-14"
+    ],
+    "requirements": [
+      "T9",
+      "FR-026"
+    ],
+    "priority": "P1",
+    "mobile": false,
+    "states": [
+      "default",
+      "empty",
+      "loading",
+      "error",
+      "added",
+      "editing",
+      "reordered",
+      "delete-confirm",
+      "unassigned"
+    ],
+    "simulate": [
+      "error"
+    ]
+  },
+  {
+    "path": "teacher/topic-assignment.html",
+    "screen": [
+      34
+    ],
+    "role": "teacher",
+    "titleKey": "teacher.topicAssignment.pageTitle",
+    "stories": [
+      "US-14"
+    ],
+    "requirements": [
+      "T9",
+      "FR-026"
+    ],
+    "priority": "P1",
+    "mobile": false,
+    "states": [
+      "default",
+      "confirmed",
+      "suggestions-error",
+      "loading",
+      "error"
+    ],
+    "simulate": [
+      "suggestions-error",
+      "error"
+    ]
+  }
+]

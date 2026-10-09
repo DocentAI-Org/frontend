@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Unirse a un curso · DocentAI (prototipo)</title>
+    <style>
+      :root { color-scheme: light dark; }
+      [data-cloak] { visibility: hidden; }
+      [data-cloak] *, [data-cloak] *::before, [data-cloak] *::after { transition: none !important; }
+      summary::-webkit-details-marker { display: none; }
+    </style>
+    <script type="module" src="../assets/js/prototype.js"></script>
+  </head>
+  <body data-cloak class="flex min-h-dvh flex-col bg-surface font-sans text-fg antialiased">
+    <a href="#main" class="sr-only rounded-lg bg-primary-700 px-4 py-2 text-fg-inverse focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50" data-i18n="common.a11y.skipToContent"></a>
+    <div data-include="partials/shell-student.html"></div>
+    <main id="main" tabindex="-1" class="mx-auto w-full max-w-6xl flex-1 px-4 py-8 sm:px-6 lg:py-12">
+      <div class="mx-auto flex w-full max-w-md flex-col gap-8">
+        <div class="border-b-2 border-neutral-900 pb-4">
+          <h1 class="text-3xl font-semibold text-fg sm:text-4xl" data-i18n="student.join.title"></h1>
+          <p class="mt-2 w-fit bg-surface text-fg-muted" data-i18n="student.join.lead"></p>
+        </div>
+        <form data-state="default loading invalid-code expired-code disabled-code" novalidate data-route data-route-field="#join-code" data-routes='{"ALG-7K3P":"confirm","ALG-4X2B":"expired-code","ALG-8M1D":"disabled-code"}' data-route-default="invalid-code" data-route-empty="#join-code" data-route-empty-target="invalid-code" class="flex flex-col gap-6 rounded-xl border border-border bg-surface-raised p-6 sm:p-8"><div class="flex flex-col gap-2" data-component="TextField"><label for="join-code" class="font-serif text-xl font-semibold text-fg" data-i18n="student.join.code"></label><input id="join-code" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" class="min-h-16 w-full rounded-lg border border-border-strong bg-grid px-4 py-2 text-center font-serif text-3xl tracking-widest text-fg italic uppercase placeholder:text-fg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:text-fg-muted aria-invalid:border-danger-600" data-invalid-in="invalid-code expired-code disabled-code" aria-describedby="join-code-help join-code-error" /><p class="text-sm text-fg-muted" data-i18n="student.join.codeHelp" id="join-code-help"></p><p id="join-code-error" class="text-sm text-danger-700"><span data-state="invalid-code" class="flex items-start gap-2"><svg class="mt-1 size-4 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#triangle-alert"/></svg><span data-i18n="student.join.invalid"></span></span><span data-state="expired-code" class="flex items-start gap-2"><svg class="mt-1 size-4 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#triangle-alert"/></svg><span data-i18n="student.join.expired"></span></span><span data-state="disabled-code" class="flex items-start gap-2"><svg class="mt-1 size-4 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#triangle-alert"/></svg><span data-i18n="student.join.disabled"></span></span></p></div><div class="flex flex-col"><span data-state="default invalid-code expired-code disabled-code"><button type="submit" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-4 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:bg-neutral-200 disabled:text-neutral-600 bg-primary-600 text-fg-inverse hover:bg-primary-700 w-full" data-component="Button" data-variant="primary"><span data-i18n="student.join.continue"></span><svg class="size-4 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#chevron-right"/></svg></button></span><span data-state="loading" class="w-full"><button type="button" disabled aria-busy="true" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-4 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:bg-neutral-200 disabled:text-neutral-600 bg-primary-600 text-fg-inverse hover:bg-primary-700 w-full"><svg class="size-4 motion-safe:animate-spin shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#refresh-cw"/></svg><span data-i18n="student.join.searching"></span></button></span></div></form>
+        <section data-state="confirm" aria-labelledby="confirm-title" class="flex flex-col gap-6 rounded-xl border border-border bg-surface-raised p-6 sm:p-8">
+          <h2 class="text-sm font-semibold text-fg-muted" data-i18n="student.join.confirmTitle" id="confirm-title"></h2>
+          <div class="flex flex-col gap-2 border-l-2 border-margin pl-4">
+            <p class="font-serif text-2xl font-semibold text-fg" data-i18n="sample.course.name"></p>
+            <p class="flex items-center gap-2 text-sm text-teacher-700"><svg class="size-4 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#graduation-cap"/></svg><span><span data-i18n="student.join.teacher"></span>: <span data-i18n="sample.people.teacher"></span></span></p>
+            <p class="font-serif text-lg text-fg" data-i18n="sample.course.description"></p>
+          </div>
+          <p class="text-sm text-fg-muted" data-i18n="student.join.privacy"></p>
+          <div class="flex flex-col gap-2">
+            <a href="courses.html" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-4 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus bg-primary-600 text-fg-inverse hover:bg-primary-700" data-component="Button" data-variant="primary"><svg class="size-4 shrink-0" aria-hidden="true"><use href="../assets/img/icons.svg#check"/></svg><span data-i18n="student.join.confirm"></span></a>
+            <a href="?state=default" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-4 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus text-fg hover:bg-surface-sunken" data-component="Button" data-variant="ghost"><span data-i18n="student.join.notThis"></span></a>
+          </div>
+        </section>
+      </div>
+    </main>
+    <div data-include="partials/footer.html"></div>
+  </body>
+</html>

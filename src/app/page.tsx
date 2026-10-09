@@ -1,5 +1,5 @@
 export default function Home() {
   return (
-    <main className="min-h-screen bg-paper" aria-hidden="true" />
+    <main className="min-h-screen bg-surface" aria-hidden="true" />
   );
 }
