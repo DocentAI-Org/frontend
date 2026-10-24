@@ -21,8 +21,8 @@ accounts) is first added to the prototype.
 (justified in [research.md R10](research.md#r10-new-dependencies-constitution-ix)).
 
 **Backend contract (pinned, Constitution VI)**: `contracts/backend-openapi.json`, copied from
-`DocentAI-Org/backend` at `002-consent-and-flags` (commit `d9875e0`, API v1 + consent and flags).
-To be re-pinned to the `main` merge commit once backend PR 002 is merged.
+`DocentAI-Org/backend` `main` at `d8df95b` (merge of PR #3: API v1 + consent and flags; same
+`openapi.json` as `d9875e0`).
 
 **Storage**: none in the browser beyond the HttpOnly session cookies and the `NEXT_LOCALE`
 cookie; no personal data in `localStorage`/`sessionStorage` (Constitution VII).

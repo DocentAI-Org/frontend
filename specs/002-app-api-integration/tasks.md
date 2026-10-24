@@ -92,11 +92,11 @@ test with axe, titled with its ID (e.g. `001-US2-AS5`, `002-US3-AS1`).
 
 ## Phase 8: US6 — Student chat and guided mode (P1)
 
-- [ ] T029 [US6] E2E: 001-US1-AS1…AS9, 001-US5-AS1…AS4 (deviation D6), 002-US6-AS1…AS5 in
+- [x] T029 [US6] E2E: 001-US1-AS1…AS9, 001-US5-AS1…AS4 (deviation D6), 002-US6-AS1…AS5 in
   `tests/app/e2e/us6-chat.spec.ts`
-- [ ] T030 [US6] `src/lib/api/chat.ts`; chat route with conversation list, disclosure dialog,
+- [x] T030 [US6] `src/lib/api/chat.ts`; chat route with conversation list, disclosure dialog,
   tutor-information panel, allowance banner (normal/low/reached)
-- [ ] T031 [US6] Chat components with tests: `MessageList`, `TutorMessage` (answer/hint/no-source,
+- [x] T031 [US6] Chat components with tests: `MessageList`, `TutorMessage` (answer/hint/no-source,
   correction), `SourceCitation` + citation sheet (available/unavailable), `Composer` (pending,
   failed + retry, "Otra pista", "Ver solución" by policy)
 
@@ -131,7 +131,7 @@ test with axe, titled with its ID (e.g. `001-US2-AS5`, `002-US3-AS1`).
 
 - [ ] T041 [P] Role-separation E2E over every route × role (SC-006)
 - [ ] T042 [P] Mobile pass at 390 px for every student page and the key teacher/admin pages
-- [ ] T043 Re-pin `backend-openapi.json` to the backend `main` merge commit; regenerate types
+- [x] T043 Re-pin `backend-openapi.json` to the backend `main` merge commit; regenerate types
 - [ ] T044 Run quickstart B + C against the real local stack; record `validation.md`
 - [ ] T045 [P] Update `README.md` (app setup, scripts) and the 001 prototype index (#35)
 
