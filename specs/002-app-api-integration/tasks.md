@@ -129,7 +129,7 @@ test with axe, titled with its ID (e.g. `001-US2-AS5`, `002-US3-AS1`).
 
 ## Phase 13: Polish
 
-- [ ] T041 [P] Role-separation E2E over every route × role (SC-006)
+- [x] T041 [P] Role-separation E2E over every route × role (SC-006)
 - [ ] T042 [P] Mobile pass at 390 px for every student page and the key teacher/admin pages
 - [x] T043 Re-pin `backend-openapi.json` to the backend `main` merge commit; regenerate types
 - [ ] T044 Run quickstart B + C against the real local stack; record `validation.md`
