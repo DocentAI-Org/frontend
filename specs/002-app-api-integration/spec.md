@@ -219,6 +219,7 @@ follows:
 | D4 | Topic filter in the conversation list (US8 AS1) | Deferred: conversations have no topic. The flags list (#25) and the "corrected" marker are implemented with the backend feature 002 |
 | D5 | AI-suggested topic assignments (US14) | Manual assignment only; no suggestions area |
 | D6 | Hint "Pista N de M" (US5 AS2) | "Pista N": the API does not know the total |
+| D7 | See the course and teacher, then confirm joining (US4 AS5) | The API joins on the code directly, so the course and teacher are shown after joining, with a link to the course. A preview endpoint would restore the confirmation step |
 
 ### User Story 9 — Admin creates pseudonymous student accounts (Priority: P1)
 
