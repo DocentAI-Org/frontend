@@ -732,7 +732,8 @@
       "excludeFragment": "Excluir fragmento",
       "excludedTag": "Excluido: el tutor no usa este fragmento",
       "results": "{count, plural, one {# fragmento contiene «{query}»} other {# fragmentos contienen «{query}»}}",
-      "excludedCount": "{count, plural, one {# fragmento excluido} other {# fragmentos excluidos}}"
+      "excludedCount": "{count, plural, one {# fragmento excluido} other {# fragmentos excluidos}}",
+      "include": "Incluir fragmento"
     },
     "material": {
       "backToCourse": "Volver al curso",
@@ -746,7 +747,10 @@
       "error": {
         "format": "Formato no admitido. Usa PDF, DOCX o Markdown.",
         "noText": "No se ha encontrado texto legible. Si es un escaneo, sube una versión con texto.",
-        "size": "Supera el tamaño máximo de 20 MB."
+        "size": "Supera el tamaño máximo de 20 MB.",
+        "failed": "No se ha podido procesar. Elimínalo y vuelve a subirlo.",
+        "interrupted": "El procesamiento se interrumpió. Elimínalo y vuelve a subirlo.",
+        "upload": "No se ha podido subir. Inténtalo de nuevo."
       },
       "formats": "Formatos: PDF, DOCX, Markdown · Tamaño máximo: 20 MB por archivo",
       "include": "Incluir en la base de conocimiento",
@@ -792,7 +796,11 @@
       "topicsLabel": "Temas:",
       "assignTopics": "Asignar temas",
       "excludedFragments": "{count, plural, one {# fragmento excluido} other {# fragmentos excluidos}}",
-      "unassignedSection": "{count, plural, one {# sección sin tema} other {# secciones sin tema}}"
+      "unassignedSection": "{count, plural, one {# sección sin tema} other {# secciones sin tema}}",
+      "delete": "Eliminar",
+      "deleteTitle": "¿Eliminar «{name}»?",
+      "deleteBody": "Se borrarán el archivo y sus fragmentos. No se puede deshacer.",
+      "openOriginal": "Ver original"
     },
     "questions": {
       "approved": "Aprobadas",

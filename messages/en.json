@@ -732,7 +732,8 @@
       "excludeFragment": "Exclude fragment",
       "excludedTag": "Excluded: the tutor doesn't use this fragment",
       "results": "{count, plural, one {# fragment contains \"{query}\"} other {# fragments contain \"{query}\"}}",
-      "excludedCount": "{count, plural, one {# excluded fragment} other {# excluded fragments}}"
+      "excludedCount": "{count, plural, one {# excluded fragment} other {# excluded fragments}}",
+      "include": "Include fragment"
     },
     "material": {
       "backToCourse": "Back to the course",
@@ -746,7 +747,10 @@
       "error": {
         "format": "Unsupported format. Use PDF, DOCX or Markdown.",
         "noText": "No readable text was found. If it's a scan, upload a version with text.",
-        "size": "It's larger than the 20 MB limit."
+        "size": "It's larger than the 20 MB limit.",
+        "failed": "It could not be processed. Delete it and upload it again.",
+        "interrupted": "Processing was interrupted. Delete it and upload it again.",
+        "upload": "It could not be uploaded. Please try again."
       },
       "formats": "Formats: PDF, DOCX, Markdown · Maximum size: 20 MB per file",
       "include": "Include in the knowledge base",
@@ -792,7 +796,11 @@
       "topicsLabel": "Topics:",
       "assignTopics": "Assign topics",
       "excludedFragments": "{count, plural, one {# excluded fragment} other {# excluded fragments}}",
-      "unassignedSection": "{count, plural, one {# section with no topic} other {# sections with no topic}}"
+      "unassignedSection": "{count, plural, one {# section with no topic} other {# sections with no topic}}",
+      "delete": "Delete",
+      "deleteTitle": "Delete «{name}»?",
+      "deleteBody": "The file and its fragments will be deleted. This cannot be undone.",
+      "openOriginal": "View original"
     },
     "questions": {
       "approved": "Approved",

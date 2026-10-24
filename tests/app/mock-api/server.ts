@@ -7,6 +7,7 @@ import { authRoutes, subjectOf } from "./routes/auth.ts";
 import { adminRoutes } from "./routes/admin.ts";
 import { consentRoutes } from "./routes/consent.ts";
 import { courseRoutes } from "./routes/courses.ts";
+import { documentRoutes } from "./routes/documents.ts";
 import { meRoutes } from "./routes/me.ts";
 import { seed, state } from "./state.ts";
 
@@ -30,7 +31,7 @@ const testRoutes: Route[] = [
   }
 ];
 
-const routes = [...testRoutes, ...authRoutes, ...meRoutes, ...consentRoutes, ...courseRoutes, ...adminRoutes].map((route) => ({
+const routes = [...testRoutes, ...authRoutes, ...meRoutes, ...consentRoutes, ...courseRoutes, ...documentRoutes, ...adminRoutes].map((route) => ({
   ...route,
   matcher: compile(route.path)
 }));

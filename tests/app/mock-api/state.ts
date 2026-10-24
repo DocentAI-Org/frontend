@@ -38,10 +38,37 @@ export type Enrolment = {
   disclosure_acknowledged_at: string | null;
 };
 
+export type Doc = {
+  id: string;
+  course_id: string;
+  file_name: string;
+  file_type: "pdf" | "docx" | "markdown";
+  size_bytes: number;
+  page_count: number | null;
+  processing_status: "processing" | "ready" | "error";
+  error_reason: S["Document"]["error_reason"];
+  validation_status: "pending_validation" | "validated" | "excluded";
+  validated_by: string | null;
+  validated_at: string | null;
+  uploaded_at: string;
+};
+
+export type Frag = {
+  id: string;
+  document_id: string;
+  position: number;
+  section: string;
+  location_label: string;
+  text: string;
+  excluded: boolean;
+};
+
 export type State = {
   users: User[];
   courses: Course[];
   enrolments: Enrolment[];
+  documents: Doc[];
+  fragments: Frag[];
   consent: { student_id: string; action: "given" | "revoked"; version: string; created_at: string }[];
   /** Messages used today per student (shared across courses). */
   usage: Map<string, number>;
@@ -88,6 +115,8 @@ export function seed(): State {
     ],
     courses: [],
     enrolments: [],
+    documents: [],
+    fragments: [],
     consent: [],
     usage: new Map(),
     faults: new Set()
