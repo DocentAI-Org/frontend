@@ -17,31 +17,31 @@ test with axe, titled with its ID (e.g. `001-US2-AS5`, `002-US3-AS1`).
 
 ## Phase 1: Setup
 
-- [ ] T001 Add the dependencies of research R10 and scripts `api:types`, `api:check`,
+- [x] T001 Add the dependencies of research R10 and scripts `api:types`, `api:check`,
   `test:e2e:app`, `test:e2e:integration` in `package.json`
-- [ ] T002 [P] Generate `src/lib/api/schema.d.ts` from
+- [x] T002 [P] Generate `src/lib/api/schema.d.ts` from
   `specs/002-app-api-integration/contracts/backend-openapi.json`; `api:check` fails when stale
-- [ ] T003 [P] Vitest config for `tests/app/unit/**/*.test.{ts,tsx}` (jsdom, React) alongside the
+- [x] T003 [P] Vitest config for `tests/app/unit/**/*.test.{ts,tsx}` (jsdom, React) alongside the
   prototype suites in `vitest.config.ts`
-- [ ] T004 [P] `playwright.app.config.ts` (desktop 1440 / mobile 390, webServer: mock API + app)
-- [ ] T005 [P] `.env.example` with `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`,
+- [x] T004 [P] `playwright.app.config.ts` (desktop 1440 / mobile 390, webServer: mock API + app)
+- [x] T005 [P] `.env.example` with `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`,
   `API_BASE_URL`, `PSEUDONYM_EMAIL_DOMAIN`; remove `NEXT_PUBLIC_API_BASE_URL`
 - [ ] T006 CI: add `api:check` and the app E2E suite to `.github/workflows/ci.yml`
 
 ## Phase 2: Foundational (blocks every story)
 
-- [ ] T007 [P] Unit tests: identifier → auth email (`tests/app/unit/identifier.test.ts`), error
+- [x] T007 [P] Unit tests: identifier → auth email (`tests/app/unit/identifier.test.ts`), error
   code → message key mapper (`errors.test.ts`), catalog key parity ES/EN (`messages.test.ts`)
-- [ ] T008 `src/lib/auth/identifier.ts`, `src/lib/api/errors.ts`
-- [ ] T009 `messages/es.json`, `messages/en.json` seeded from the prototype catalogs, plus
+- [x] T008 `src/lib/auth/identifier.ts`, `src/lib/api/errors.ts`
+- [x] T009 `messages/es.json`, `messages/en.json` seeded from the prototype catalogs, plus
   `errors.*` keys; `src/i18n/request.ts`; root `layout.tsx` with `NextIntlClientProvider`
-- [ ] T010 `src/lib/auth/supabase.ts` (server client, cookies) and `src/proxy.ts` (refresh,
+- [x] T010 `src/lib/auth/supabase.ts` (server client, cookies) and `src/proxy.ts` (refresh,
   signed-out redirect with `next`)
-- [ ] T011 `src/lib/api/client.ts` (openapi-fetch, bearer from the session, `server-only`,
+- [x] T011 `src/lib/api/client.ts` (openapi-fetch, bearer from the session, `server-only`,
   401 → sign-in redirect) and `src/lib/api/me.ts`
-- [ ] T012 Typed mock backend `tests/app/mock-api/` (server, seeded admin/teacher/students, auth
+- [x] T012 Typed mock backend `tests/app/mock-api/` (server, seeded admin/teacher/students, auth
   endpoints, state reset endpoint for tests) and E2E helpers (`signInAs`, `axeCheck`)
-- [ ] T013 [P] Port shared components with the prototype names and states into
+- [x] T013 [P] Port shared components with the prototype names and states into
   `src/components/` (shells per role, `AppFooter` with IMFAHE, `LanguageSwitcher`, `EmptyState`,
   `ErrorState`, `LoadingState`, `ConfirmDialog`, `CopyButton`, `StatusBadge`), each with a
   component test
@@ -50,44 +50,44 @@ test with axe, titled with its ID (e.g. `001-US2-AS5`, `002-US3-AS1`).
 
 ## Phase 3: US1 — Sign-in and role areas (P1) 🎯
 
-- [ ] T014 [US1] E2E: 001-US7-AS1…AS3, AS5, AS7; 002-US1-AS1…AS3, AS5 in `tests/app/e2e/us1-auth.spec.ts`
-- [ ] T015 [US1] `(public)` routes: `/entrar` (+ session-expired state), `/recuperar`,
+- [x] T014 [US1] E2E: 001-US7-AS1…AS3, AS5, AS7; 002-US1-AS1…AS3, AS5 in `tests/app/e2e/us1-auth.spec.ts`
+- [x] T015 [US1] `(public)` routes: `/entrar` (+ session-expired state), `/recuperar`,
   `/acceso-denegado`, `/acerca`; sign-in/sign-out/recover Server Actions
-- [ ] T016 [US1] Role group layouts `(admin)`, `(teacher)`, `(student)` with server role check;
+- [x] T016 [US1] Role group layouts `(admin)`, `(teacher)`, `(student)` with server role check;
   `/` home redirect; language switch saved to the profile
 
 ## Phase 4: US9 — Admin area (P1)
 
-- [ ] T017 [US9] Prototype first: `public/prototype/admin/students-new.html` (#35) with states
+- [x] T017 [US9] Prototype first: `public/prototype/admin/students-new.html` (#35) with states
   default, loading, validation error, created, error; add to `pages.json`, catalogs and the
   prototype test sweep
-- [ ] T018 [US9] E2E: 001-US7-AS6 (with deviation D3), 002-US1-AS4, 002-US9-AS1…AS2 in
+- [x] T018 [US9] E2E: 001-US7-AS6 (with deviation D3), 002-US1-AS4, 002-US9-AS1…AS2 in
   `tests/app/e2e/us9-admin.spec.ts`
-- [ ] T019 [US9] `/admin/usuarios`, `/admin/cursos`, `/admin/profesores/nuevo`,
+- [x] T019 [US9] `/admin/usuarios`, `/admin/cursos`, `/admin/profesores/nuevo`,
   `/admin/estudiantes/nuevos` (CSV download client-side), `src/lib/api/admin.ts`
 
 ## Phase 5: US2 — Courses and enrolment (P1)
 
-- [ ] T020 [US2] E2E: 001-US4-AS1…AS6, 002-US2-AS1…AS2 in `tests/app/e2e/us2-courses.spec.ts`
-- [ ] T021 [US2] `src/lib/api/courses.ts`; teacher `/profesor/cursos`, `/nuevo`, `/[id]`
+- [x] T020 [US2] E2E: 001-US4-AS1…AS6, 002-US2-AS1…AS2 in `tests/app/e2e/us2-courses.spec.ts`
+- [x] T021 [US2] `src/lib/api/courses.ts`; teacher `/profesor/cursos`, `/nuevo`, `/[id]`
   (codes, regenerate/disable, students, revoke)
-- [ ] T022 [US2] Student `/alumno/cursos`, `/alumno/unirse`, `/unirse/[codigo]` (return after
+- [x] T022 [US2] Student `/alumno/cursos`, `/alumno/unirse`, `/unirse/[codigo]` (return after
   sign-in), study consent page `/alumno/consentimiento` and the consent guard (001-US7-AS4)
 
 ## Phase 6: US3 — Material (P1)
 
-- [ ] T023 [US3] E2E: 001-US2-AS1…AS8, 002-US3-AS1…AS4 in `tests/app/e2e/us3-material.spec.ts`
-- [ ] T024 [US3] `src/lib/api/documents.ts`; `/profesor/cursos/[id]/material` with upload,
+- [x] T023 [US3] E2E: 001-US2-AS1…AS8, 002-US3-AS1…AS4 in `tests/app/e2e/us3-material.spec.ts`
+- [x] T024 [US3] `src/lib/api/documents.ts`; `/profesor/cursos/[id]/material` with upload,
   per-file progress, error reasons, validate/exclude/remove dialogs, no-validated warning,
   duplicate-name dialog (client-side check)
-- [ ] T025 [US3] `DocumentStatusPoller` client component (FR-008) with a component test
-- [ ] T026 [US3] `/profesor/cursos/[id]/material/[documento]`: fragments (all pages), search,
+- [x] T025 [US3] `DocumentStatusPoller` client component (FR-008) with a component test
+- [x] T026 [US3] `/profesor/cursos/[id]/material/[documento]`: fragments (all pages), search,
   exclude/include, open original file
 
 ## Phase 7: US4 — Tutor settings (P1)
 
-- [ ] T027 [US4] E2E: 001-US3-AS1…AS4, 002-US4-AS1 in `tests/app/e2e/us4-settings.spec.ts`
-- [ ] T028 [US4] `src/lib/api/tutor.ts`; `/profesor/cursos/[id]/tutor` with example exchange,
+- [x] T027 [US4] E2E: 001-US3-AS1…AS4, 002-US4-AS1 in `tests/app/e2e/us4-settings.spec.ts`
+- [x] T028 [US4] `src/lib/api/tutor.ts`; `/profesor/cursos/[id]/tutor` with example exchange,
   unsaved-changes guard, retry on failure
 
 ## Phase 8: US6 — Student chat and guided mode (P1)
@@ -125,7 +125,7 @@ test with axe, titled with its ID (e.g. `001-US2-AS5`, `002-US3-AS1`).
 ## Phase 12: Profile and consent (P1, US1/US7)
 
 - [ ] T039 E2E: 001-US7-AS4 revocation, FR-015 in `tests/app/e2e/profile.spec.ts`
-- [ ] T040 `/alumno/perfil`: profile, language, consent history, revoke with confirmation
+- [x] T040 `/alumno/perfil`: profile, language, consent history, revoke with confirmation
 
 ## Phase 13: Polish
 
