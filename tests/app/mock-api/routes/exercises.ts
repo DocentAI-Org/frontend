@@ -63,8 +63,8 @@ export const exerciseRoutes: Route[] = [
           [...words(`${f.location_label} ${f.text}`)].some((w) => query.has(w))
         );
       });
-      const topic = (state as State & { topics?: { id: string; course_id: string; name: string; position: number }[] }).topics
-        ?.filter((t) => t.course_id === enrolment.course_id)
+      const topic = state.topics
+        .filter((t) => t.course_id === enrolment.course_id)
         .sort((a, b) => a.position - b.position)[0];
       const submission: Submission = {
         id: id(),

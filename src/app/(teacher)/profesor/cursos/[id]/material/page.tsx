@@ -10,6 +10,8 @@ import { Icon } from "@/components/Icon";
 import { StatusPoller } from "@/components/StatusPoller";
 import type { Schemas } from "@/lib/api/client";
 import { listDocuments } from "@/lib/api/documents";
+import { listTopics } from "@/lib/api/topics";
+import { UnassignedWarning } from "@/components/UnassignedWarning";
 import { errorMessageKey } from "@/lib/api/errors";
 import { routes } from "@/lib/routes";
 
@@ -44,7 +46,7 @@ export default async function MaterialPage({
   const t = await getTranslations("teacher.material");
   const tAll = await getTranslations();
   const format = await getFormatter();
-  const documents = await listDocuments(id);
+  const [documents, topics] = await Promise.all([listDocuments(id), listTopics(id)]);
   if (!documents.ok) return <ErrorState code={documents.code} />;
 
   const docs = documents.data.items;
@@ -72,6 +74,7 @@ export default async function MaterialPage({
       {excluido && <Alert tone="info">{t("excludedToast", { name: excluido })}</Alert>}
       {error && <Alert tone="danger">{tAll(errorMessageKey(error))}</Alert>}
 
+      <UnassignedWarning courseId={id} hasTopics={topics.ok && topics.data.length > 0} />
       <Uploader
         courseId={id}
         uploadUrl={`${routes.teacherMaterial(id)}/subir`}

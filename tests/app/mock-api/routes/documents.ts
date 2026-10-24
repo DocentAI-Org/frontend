@@ -92,7 +92,10 @@ export function documentView(current: State, doc: Doc): S["Document"] {
     fragment_count: fragments.length,
     excluded_fragment_count: fragments.filter((f) => f.excluded).length,
     uploaded_at: doc.uploaded_at,
-    topics: (current as State & { topicsOf?: (d: string) => S["TopicRef"][] }).topicsOf?.(doc.id) ?? []
+    topics: current.topics
+      .filter((t) => current.assignments.some((a) => a.document_id === doc.id && a.topic_id === t.id && a.status === "confirmed"))
+      .sort((a, b) => a.position - b.position)
+      .map((t) => ({ id: t.id, name: t.name }))
   };
 }
 
