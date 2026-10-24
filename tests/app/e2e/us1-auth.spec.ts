@@ -26,7 +26,7 @@ test.describe("US1 sign-in and role areas", () => {
   });
 
   scenario("001-US7-AS3", "invalid credentials show a non-revealing error", async ({ page }) => {
-    await signIn(page, USERS.teacher, "wrong-password");
+    await signIn(page, USERS.teacher, "wrong-password", { expectFailure: true });
 
     await expect(page.getByRole("alert").filter({ hasText: /incorrectos/i })).toBeVisible();
     await expect(page.getByRole("link", { name: /has olvidado tu contraseña/i })).toBeVisible();

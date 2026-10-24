@@ -573,7 +573,11 @@
         "joined": "Joined {date}",
         "pseudonym": "Pseudonym",
         "showing": "Showing {shown} of {total}",
-        "title": "Students"
+        "title": "Students",
+        "revoke": "Remove from course",
+        "revokeTitle": "Remove {name} from the course?",
+        "revokeBody": "They will lose access to the course and the tutor. Their conversations are kept.",
+        "revoked": "Removed from course"
       },
       "tab": {
         "conversations": "Conversations",

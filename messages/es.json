@@ -573,7 +573,11 @@
         "joined": "Se unió el {date}",
         "pseudonym": "Seudónimo",
         "showing": "Mostrando {shown} de {total}",
-        "title": "Estudiantes"
+        "title": "Estudiantes",
+        "revoke": "Quitar del curso",
+        "revokeTitle": "¿Quitar a {name} del curso?",
+        "revokeBody": "Dejará de tener acceso al curso y al tutor. Sus conversaciones se conservan.",
+        "revoked": "Fuera del curso"
       },
       "tab": {
         "conversations": "Conversaciones",

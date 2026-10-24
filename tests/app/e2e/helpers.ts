@@ -39,6 +39,8 @@ export function scenario(id: string, title: string, fn: Parameters<typeof test>[
 const TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
 
 export async function expectAccessible(page: Page) {
+  // Next streams metadata after the content: wait for the page title to be in place.
+  await page.waitForFunction(() => document.title.trim() !== "");
   // Entrance animations (e.g. the menu's fade-in) would be measured half-transparent.
   // Spinners loop forever, so only finite animations are awaited.
   // WebKit never settles some animations of hidden elements, hence the 1 s cap.
@@ -48,7 +50,8 @@ export async function expectAccessible(page: Page) {
         document
           .getAnimations()
           .filter((animation) => animation.effect?.getComputedTiming().iterations !== Infinity)
-          .map((animation) => animation.finished)
+          // A cancelled animation rejects `finished` with AbortError: nothing left to wait for.
+          .map((animation) => animation.finished.catch(() => undefined))
       ),
       new Promise((resolve) => setTimeout(resolve, 1000))
     ])
@@ -60,11 +63,13 @@ export async function expectAccessible(page: Page) {
   expect(violations, report).toEqual([]);
 }
 
-export async function signIn(page: Page, identifier: string, password = PASSWORD) {
+/** Signs in through the form and, unless a failure is expected, waits until it has left /entrar. */
+export async function signIn(page: Page, identifier: string, password = PASSWORD, { expectFailure = false } = {}) {
   await page.goto("/entrar");
   await page.getByLabel(/correo electrónico o código/i).fill(identifier);
   await page.getByLabel(/^contraseña/i).fill(password);
   await page.getByRole("button", { name: /^entrar$/i }).click();
+  if (!expectFailure) await page.waitForURL((url) => !url.pathname.startsWith("/entrar"));
 }
 
 /** Opens the mobile menu when the sidebar is hidden (390 px), then returns the visible control. */
@@ -76,4 +81,5 @@ export async function openMenuIfNeeded(page: Page) {
 export async function signOut(page: Page) {
   await openMenuIfNeeded(page);
   await page.getByRole("button", { name: /cerrar sesión|sign out/i }).filter({ visible: true }).click();
+  await page.waitForURL(/\/entrar/);
 }
