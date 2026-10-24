@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# Pull request rules, run in CI. Mirrored in the frontend and backend repositories.
+#   PR_TITLE, PR_BRANCH, PR_BODY, PR_BASE_SHA, PR_HEAD_SHA come from the workflow.
+set -u
+
+hooks_dir="$(cd "$(dirname "$0")" && pwd)"
+failed=0
+fail() { echo "✗ $*" >&2; failed=1; }
+
+# 1. The title becomes the squash commit (constitution: squash-merged PRs).
+title_file="$(mktemp)"
+printf '%s\n' "$PR_TITLE" > "$title_file"
+COMMIT_RULES=pr-title "$hooks_dir/commit-msg" "$title_file" || fail "PR title (above)."
+
+# 2. Branches: NNN-name for a spec feature, type/name for everything else.
+feature=""
+if [[ "$PR_BRANCH" =~ ^[0-9]{3}-[a-z0-9-]+$ ]]; then
+  feature="$PR_BRANCH"
+elif ! [[ "$PR_BRANCH" =~ ^(fix|docs|ci|chore|build|refactor|test)/[a-z0-9-]+$ ||
+          "$PR_BRANCH" =~ ^dependabot/ ]]; then
+  fail "Branch '$PR_BRANCH' must be 'NNN-name' (specs folder) or 'type/name'."
+fi
+
+# 3. A feature PR links its spec.
+if [ -n "$feature" ] && ! printf '%s' "$PR_BODY" | grep -q "specs/$feature/spec.md"; then
+  fail "Feature PRs must link specs/$feature/spec.md in the description."
+fi
+
+# 4. Every commit in the branch follows the commit rules.
+while read -r sha; do
+  message_file="$(mktemp)"
+  git log -1 --format=%B "$sha" > "$message_file"
+  "$hooks_dir/commit-msg" "$message_file" || fail "Commit ${sha:0:7} (above)."
+done < <(git rev-list --no-merges "$PR_BASE_SHA..$PR_HEAD_SHA")
+
+exit "$failed"
