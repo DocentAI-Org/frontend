@@ -1,0 +1,79 @@
+// Shared helpers for the app E2E tests (tasks T012).
+import AxeBuilder from "@axe-core/playwright";
+import { type Page, test as base, expect } from "@playwright/test";
+
+export { expect };
+
+const MOCK = "http://127.0.0.1:8010";
+const integration = process.env.E2E_TARGET === "integration";
+export const PASSWORD = "docentai-dev-password";
+
+export const USERS = {
+  admin: "admin@docentai.local",
+  teacher: "profesora@docentai.local",
+  student: "alumno@docentai.local",
+  otherTeacher: "otro.profesor@docentai.local",
+  pseudonymous: "EST-DEMO1"
+} as const;
+
+/** Every test starts from the seeded mock state (no-op against the real stack). */
+export const test = base.extend<{ mock: { faults: (names: string[]) => Promise<void> } }>({
+  mock: [
+    async ({ request }, provide) => {
+      if (!integration) await request.post(`${MOCK}/__test/reset`);
+      await provide({
+        faults: async (names) => {
+          if (!integration) await request.post(`${MOCK}/__test/faults`, { data: { faults: names } });
+        }
+      });
+    },
+    { auto: true }
+  ]
+});
+
+/** One acceptance scenario = one test, titled with its ID (Constitution V). */
+export function scenario(id: string, title: string, fn: Parameters<typeof test>[2]) {
+  test(`${id} ${title}`, fn);
+}
+
+const TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
+
+export async function expectAccessible(page: Page) {
+  // Entrance animations (e.g. the menu's fade-in) would be measured half-transparent.
+  // Spinners loop forever, so only finite animations are awaited.
+  // WebKit never settles some animations of hidden elements, hence the 1 s cap.
+  await page.evaluate(() =>
+    Promise.race([
+      Promise.all(
+        document
+          .getAnimations()
+          .filter((animation) => animation.effect?.getComputedTiming().iterations !== Infinity)
+          .map((animation) => animation.finished)
+      ),
+      new Promise((resolve) => setTimeout(resolve, 1000))
+    ])
+  );
+  const { violations } = await new AxeBuilder({ page }).withTags(TAGS).analyze();
+  const report = violations
+    .map((v) => `${v.id}: ${v.help}\n${v.nodes.map((n) => `    ${n.target.join(" ")}`).join("\n")}`)
+    .join("\n");
+  expect(violations, report).toEqual([]);
+}
+
+export async function signIn(page: Page, identifier: string, password = PASSWORD) {
+  await page.goto("/entrar");
+  await page.getByLabel(/correo electrónico o código/i).fill(identifier);
+  await page.getByLabel(/^contraseña/i).fill(password);
+  await page.getByRole("button", { name: /^entrar$/i }).click();
+}
+
+/** Opens the mobile menu when the sidebar is hidden (390 px), then returns the visible control. */
+export async function openMenuIfNeeded(page: Page) {
+  const menu = page.getByLabel(/^(abrir menú|open menu)$/i).filter({ visible: true });
+  if ((await menu.count()) && !(await page.locator("details[open]").count())) await menu.click();
+}
+
+export async function signOut(page: Page) {
+  await openMenuIfNeeded(page);
+  await page.getByRole("button", { name: /cerrar sesión|sign out/i }).filter({ visible: true }).click();
+}

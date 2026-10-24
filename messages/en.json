@@ -127,7 +127,11 @@
       "signInLead": "Your course tutor, guided by your teacher.",
       "signInPageTitle": "Sign in",
       "signInTitle": "Welcome to DocentAI",
-      "signingIn": "Signing in…"
+      "signingIn": "Signing in…",
+      "identifier": "Email or code",
+      "identifierHint": "If you were given a code (for example, EST-7K3P9), type it here.",
+      "invalidIdentifier": "Incorrect email, code or password. Check them and try again.",
+      "missing": "Type your email or code and your password."
     },
     "brand": {
       "name": "DocentAI",
@@ -188,8 +192,6 @@
       "errorTypeLabel": "Error type:",
       "topicLabel": "Topic:",
       "saved": "Saved to your progress",
-      "times_one": "{count} time",
-      "times_other": "{count} times",
       "seeExample": "See an example",
       "levelLabel": "Mastery level:",
       "level": {
@@ -198,7 +200,8 @@
         "mastered": "Mastered"
       },
       "masteryBasis": "Because you solved {right} of your last {total} exercises on this topic correctly.",
-      "masteryBasisTeacher": "Because they solved {right} of their last {total} exercises on this topic correctly."
+      "masteryBasisTeacher": "Because they solved {right} of their last {total} exercises on this topic correctly.",
+      "times": "{count, plural, one {# time} other {# times}}"
     },
     "correction": {
       "reviewed": "Reviewed by your teacher",
@@ -258,8 +261,6 @@
         "rephrase": "Rephrase the question"
       },
       "pageTitle": "Course chat",
-      "remaining_one": "You have {count} message left today, across all your courses.",
-      "remaining_other": "You have {count} messages left today, across all your courses.",
       "sources": "Sources",
       "suggestionsTitle": "You could start with…",
       "switchCourse": "Switch course",
@@ -287,7 +288,8 @@
         "entry": "{count} times this week",
         "progress": "See my progress",
         "teacherSees": "Your teacher sees the same explanation."
-      }
+      },
+      "remaining": "{count, plural, one {You have # message left today, across all your courses.} other {You have # messages left today, across all your courses.}}"
     },
     "consent": {
       "accept": "I've read this information and agree to take part",
@@ -418,7 +420,9 @@
       "privacy": "When you join, your teacher will see your name or pseudonym and may review your conversations with the tutor.",
       "searching": "Looking for the course…",
       "teacher": "Teacher",
-      "title": "Join a course"
+      "title": "Join a course",
+      "joined": "You have joined the course",
+      "goToCourse": "Go to the course"
     },
     "profile": {
       "accountTitle": "Account",
@@ -451,13 +455,12 @@
       "pageTitle": "My progress",
       "percent": "{value}",
       "quiz": "Take a quiz",
-      "quizzes_one": "{count} quiz done",
-      "quizzes_other": "{count} quizzes done",
       "title": "My progress",
       "updated": "Updated on {date}",
       "errors": "See my mistakes",
       "detailTitle": "Most frequent mistakes on this topic",
-      "backToAll": "Back to all topics"
+      "backToAll": "Back to all topics",
+      "quizzes": "{count, plural, one {# quiz done} other {# quizzes done}}"
     },
     "quiz": {
       "adaptive": "The difficulty adapts to your answers, and it doesn't count toward your grade.",
@@ -526,8 +529,6 @@
       "lead": "Your students' conversations with the tutor in this course. They know you may review them.",
       "listLabel": "Conversations",
       "loadError": "We couldn't load the conversations",
-      "messages_one": "{count} message",
-      "messages_other": "{count} messages",
       "noResultsBody": "Try another student, date or topic.",
       "noResultsTitle": "No conversations match these filters",
       "noSource": "No source",
@@ -540,7 +541,8 @@
       "topic": "Topic",
       "exercise": "Exercise",
       "corrected": "Corrected",
-      "correctedLabel": "Includes answers you corrected"
+      "correctedLabel": "Includes answers you corrected",
+      "messages": "{count, plural, one {# message} other {# messages}}"
     },
     "course": {
       "back": "Back to my courses",
@@ -607,9 +609,8 @@
       "listLabel": "Courses",
       "loadError": "We couldn't load your courses",
       "pageTitle": "My courses",
-      "students_one": "{count} student",
-      "students_other": "{count} students",
-      "title": "My courses"
+      "title": "My courses",
+      "students": "{count, plural, one {# student} other {# students}}"
     },
     "dashboard": {
       "all": "Whole course",
@@ -623,8 +624,6 @@
       "errorsBasis": "Mistakes found in exercises and quizzes in the last 30 days.",
       "errorsTitleStudent": "Recurring mistakes by student",
       "errorsTitleTopic": "Recurring mistakes by topic",
-      "errors_one": "{count} mistake",
-      "errors_other": "{count} mistakes",
       "groupLabel": "Group mistakes",
       "last30": "Last 30 days",
       "last7": "Last 7 days",
@@ -642,7 +641,8 @@
       "colTopic": "Topic",
       "colStudent": "Student",
       "colErrors": "Errors",
-      "colShare": "Share"
+      "colShare": "Share",
+      "errors": "{count, plural, one {# mistake} other {# mistakes}}"
     },
     "flags": {
       "category": "Reason",
@@ -698,15 +698,13 @@
       "noResultsTitle": "No fragment contains \"{query}\"",
       "number": "Fragment {n}",
       "pageTitle": "Fragment review",
-      "results_one": "{count} fragment contains \"{query}\"",
-      "results_other": "{count} fragments contain \"{query}\"",
       "searchLabel": "Search the fragments",
       "searchPlaceholder": "For example, \"solve\"",
       "title": "Fragment review",
       "excludeFragment": "Exclude fragment",
       "excludedTag": "Excluded: the tutor doesn't use this fragment",
-      "excludedCount_one": "{count} excluded fragment",
-      "excludedCount_other": "{count} excluded fragments"
+      "results": "{count, plural, one {# fragment contains \"{query}\"} other {# fragments contain \"{query}\"}}",
+      "excludedCount": "{count, plural, one {# excluded fragment} other {# excluded fragments}}"
     },
     "material": {
       "backToCourse": "Back to the course",
@@ -763,12 +761,10 @@
       "excludeConfirm": "Exclude document",
       "validatedToast": "“{name}” is validated. The tutor can now use it.",
       "excludedToast": "“{name}” is excluded. The tutor no longer uses it.",
-      "excludedFragments_one": "{count} excluded fragment",
-      "excludedFragments_other": "{count} excluded fragments",
       "topicsLabel": "Topics:",
       "assignTopics": "Assign topics",
-      "unassignedSection_one": "{count} section with no topic",
-      "unassignedSection_other": "{count} sections with no topic"
+      "excludedFragments": "{count, plural, one {# excluded fragment} other {# excluded fragments}}",
+      "unassignedSection": "{count, plural, one {# section with no topic} other {# sections with no topic}}"
     },
     "questions": {
       "approved": "Approved",
@@ -800,8 +796,6 @@
       "back": "Back to the dashboard",
       "examplesTitle": "Example mistakes",
       "inactiveDetail": "Their last activity was on {date}.",
-      "items_one": "{count} activity",
-      "items_other": "{count} activities",
       "lastSeen": "Last seen on {date}",
       "loadError": "We couldn't load the data",
       "openConversation": "See their conversations",
@@ -809,7 +803,8 @@
       "rateDetail": "6 of 10 exercises with mistakes in the last two weeks.",
       "times": "{count} times",
       "week": "Week of {date}",
-      "whyTitle": "Why they're listed"
+      "whyTitle": "Why they're listed",
+      "items": "{count, plural, one {# activity} other {# activities}}"
     },
     "shell": {
       "nav": {
@@ -880,12 +875,6 @@
       "activityTitle": "Activity",
       "progressTitle": "Progress by topic",
       "errorsTitle": "Most frequent error types",
-      "sessions_one": "{count} session",
-      "sessions_other": "{count} sessions",
-      "exercises_one": "{count} exercise",
-      "exercises_other": "{count} exercises",
-      "quizzes_one": "{count} quiz",
-      "quizzes_other": "{count} quizzes",
       "atRiskReason": "Listed here because they have had no activity for 7 days and 6 of their last 10 exercises have mistakes.",
       "errorTypeTitle": "“{type}” mistakes",
       "errorTypeLead": "Each mistake links to the exercise or conversation where it happened.",
@@ -894,7 +883,10 @@
       "emptyTitle": "{name} has no activity yet",
       "emptyBody": "Once they use the tutor, submit exercises or take quizzes, you'll see their progress and mistakes here.",
       "loadError": "We couldn't load the student's data",
-      "notStarted": "No activity on this topic yet."
+      "notStarted": "No activity on this topic yet.",
+      "sessions": "{count, plural, one {# session} other {# sessions}}",
+      "exercises": "{count, plural, one {# exercise} other {# exercises}}",
+      "quizzes": "{count, plural, one {# quiz} other {# quizzes}}"
     },
     "topics": {
       "pageTitle": "Course topics",
@@ -902,8 +894,6 @@
       "back": "Back to the course",
       "lead": "Topics are the course's learning objectives. Mistakes, quizzes, the dashboard and progress are grouped by these topics.",
       "listLabel": "Topics, in order",
-      "sections_one": "{count} section assigned",
-      "sections_other": "{count} sections assigned",
       "up": "Move up",
       "down": "Move down",
       "rename": "Rename",
@@ -926,7 +916,8 @@
       "unassignedBody": "Assign them a topic so their mistakes and progress are grouped correctly.",
       "assign": "Assign topics",
       "manage": "Manage topics",
-      "deletedSuffix": "they belonged to the deleted topic “{name}”"
+      "deletedSuffix": "they belonged to the deleted topic “{name}”",
+      "sections": "{count, plural, one {# section assigned} other {# sections assigned}}"
     },
     "topicAssignment": {
       "pageTitle": "Assign topics",

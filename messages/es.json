@@ -127,7 +127,11 @@
       "signInLead": "El tutor de tu curso, guiado por tu profesor/a.",
       "signInPageTitle": "Iniciar sesión",
       "signInTitle": "Te damos la bienvenida a DocentAI",
-      "signingIn": "Entrando…"
+      "signingIn": "Entrando…",
+      "identifier": "Correo electrónico o código",
+      "identifierHint": "Si te han dado un código (por ejemplo, EST-7K3P9), escríbelo aquí.",
+      "invalidIdentifier": "Correo, código o contraseña incorrectos. Revísalos e inténtalo de nuevo.",
+      "missing": "Escribe tu correo o código y tu contraseña."
     },
     "brand": {
       "name": "DocentAI",
@@ -188,8 +192,6 @@
       "errorTypeLabel": "Tipo de error:",
       "topicLabel": "Tema:",
       "saved": "Guardado en tu progreso",
-      "times_one": "{count} vez",
-      "times_other": "{count} veces",
       "seeExample": "Ver un ejemplo",
       "levelLabel": "Nivel de dominio:",
       "level": {
@@ -198,7 +200,8 @@
         "mastered": "Dominado"
       },
       "masteryBasis": "Porque has resuelto bien {right} de los últimos {total} ejercicios de este tema.",
-      "masteryBasisTeacher": "Porque ha resuelto bien {right} de sus últimos {total} ejercicios de este tema."
+      "masteryBasisTeacher": "Porque ha resuelto bien {right} de sus últimos {total} ejercicios de este tema.",
+      "times": "{count, plural, one {# vez} other {# veces}}"
     },
     "correction": {
       "reviewed": "Revisado por tu profesor/a",
@@ -258,8 +261,6 @@
         "rephrase": "Reformular la pregunta"
       },
       "pageTitle": "Chat del curso",
-      "remaining_one": "Te queda {count} mensaje hoy, en todos tus cursos.",
-      "remaining_other": "Te quedan {count} mensajes hoy, en todos tus cursos.",
       "sources": "Fuentes",
       "suggestionsTitle": "Puedes empezar por…",
       "switchCourse": "Cambiar de curso",
@@ -287,7 +288,8 @@
         "entry": "{count} veces esta semana",
         "progress": "Ver mi progreso",
         "teacherSees": "Tu profesor/a ve la misma explicación."
-      }
+      },
+      "remaining": "{count, plural, one {Te queda # mensaje hoy, en todos tus cursos.} other {Te quedan # mensajes hoy, en todos tus cursos.}}"
     },
     "consent": {
       "accept": "He leído esta información y acepto participar",
@@ -418,7 +420,9 @@
       "privacy": "Al unirte, tu profesor/a verá tu nombre o seudónimo y podrá revisar tus conversaciones con el tutor.",
       "searching": "Buscando el curso…",
       "teacher": "Profesor/a",
-      "title": "Unirse a un curso"
+      "title": "Unirse a un curso",
+      "joined": "Te has unido al curso",
+      "goToCourse": "Ir al curso"
     },
     "profile": {
       "accountTitle": "Cuenta",
@@ -451,13 +455,12 @@
       "pageTitle": "Mi progreso",
       "percent": "{value}",
       "quiz": "Hacer un cuestionario",
-      "quizzes_one": "{count} cuestionario hecho",
-      "quizzes_other": "{count} cuestionarios hechos",
       "title": "Mi progreso",
       "updated": "Actualizado el {date}",
       "errors": "Ver mis errores",
       "detailTitle": "Errores más frecuentes en este tema",
-      "backToAll": "Volver a todos los temas"
+      "backToAll": "Volver a todos los temas",
+      "quizzes": "{count, plural, one {# cuestionario hecho} other {# cuestionarios hechos}}"
     },
     "quiz": {
       "adaptive": "La dificultad se adapta a tus respuestas y no cuenta para la nota.",
@@ -526,8 +529,6 @@
       "lead": "Conversaciones de tus estudiantes con el tutor en este curso. Ellos saben que puedes revisarlas.",
       "listLabel": "Conversaciones",
       "loadError": "No hemos podido cargar las conversaciones",
-      "messages_one": "{count} mensaje",
-      "messages_other": "{count} mensajes",
       "noResultsBody": "Prueba con otro estudiante, fecha o tema.",
       "noResultsTitle": "Ninguna conversación coincide con los filtros",
       "noSource": "Sin fuente",
@@ -540,7 +541,8 @@
       "topic": "Tema",
       "exercise": "Ejercicio",
       "corrected": "Corregida",
-      "correctedLabel": "Incluye respuestas que has corregido"
+      "correctedLabel": "Incluye respuestas que has corregido",
+      "messages": "{count, plural, one {# mensaje} other {# mensajes}}"
     },
     "course": {
       "back": "Volver a mis cursos",
@@ -607,9 +609,8 @@
       "listLabel": "Cursos",
       "loadError": "No hemos podido cargar tus cursos",
       "pageTitle": "Mis cursos",
-      "students_one": "{count} estudiante",
-      "students_other": "{count} estudiantes",
-      "title": "Mis cursos"
+      "title": "Mis cursos",
+      "students": "{count, plural, one {# estudiante} other {# estudiantes}}"
     },
     "dashboard": {
       "all": "Todo el curso",
@@ -623,8 +624,6 @@
       "errorsBasis": "Errores detectados en ejercicios y cuestionarios en los últimos 30 días.",
       "errorsTitleStudent": "Errores repetidos por estudiante",
       "errorsTitleTopic": "Errores repetidos por tema",
-      "errors_one": "{count} error",
-      "errors_other": "{count} errores",
       "groupLabel": "Agrupar errores",
       "last30": "Últimos 30 días",
       "last7": "Últimos 7 días",
@@ -642,7 +641,8 @@
       "colTopic": "Tema",
       "colStudent": "Estudiante",
       "colErrors": "Errores",
-      "colShare": "Proporción"
+      "colShare": "Proporción",
+      "errors": "{count, plural, one {# error} other {# errores}}"
     },
     "flags": {
       "category": "Motivo",
@@ -698,15 +698,13 @@
       "noResultsTitle": "Ningún fragmento contiene «{query}»",
       "number": "Fragmento {n}",
       "pageTitle": "Revisión de fragmentos",
-      "results_one": "{count} fragmento contiene «{query}»",
-      "results_other": "{count} fragmentos contienen «{query}»",
       "searchLabel": "Buscar en los fragmentos",
       "searchPlaceholder": "Por ejemplo, «despejar»",
       "title": "Revisión de fragmentos",
       "excludeFragment": "Excluir fragmento",
       "excludedTag": "Excluido: el tutor no usa este fragmento",
-      "excludedCount_one": "{count} fragmento excluido",
-      "excludedCount_other": "{count} fragmentos excluidos"
+      "results": "{count, plural, one {# fragmento contiene «{query}»} other {# fragmentos contienen «{query}»}}",
+      "excludedCount": "{count, plural, one {# fragmento excluido} other {# fragmentos excluidos}}"
     },
     "material": {
       "backToCourse": "Volver al curso",
@@ -763,12 +761,10 @@
       "excludeConfirm": "Excluir documento",
       "validatedToast": "«{name}» está validado. El tutor ya puede usarlo.",
       "excludedToast": "«{name}» está excluido. El tutor ya no lo usa.",
-      "excludedFragments_one": "{count} fragmento excluido",
-      "excludedFragments_other": "{count} fragmentos excluidos",
       "topicsLabel": "Temas:",
       "assignTopics": "Asignar temas",
-      "unassignedSection_one": "{count} sección sin tema",
-      "unassignedSection_other": "{count} secciones sin tema"
+      "excludedFragments": "{count, plural, one {# fragmento excluido} other {# fragmentos excluidos}}",
+      "unassignedSection": "{count, plural, one {# sección sin tema} other {# secciones sin tema}}"
     },
     "questions": {
       "approved": "Aprobadas",
@@ -800,8 +796,6 @@
       "back": "Volver al panel",
       "examplesTitle": "Errores de ejemplo",
       "inactiveDetail": "Su última actividad fue el {date}.",
-      "items_one": "{count} actividad",
-      "items_other": "{count} actividades",
       "lastSeen": "Visto por última vez el {date}",
       "loadError": "No hemos podido cargar los datos",
       "openConversation": "Ver sus conversaciones",
@@ -809,7 +803,8 @@
       "rateDetail": "6 de 10 ejercicios con errores en las dos últimas semanas.",
       "times": "{count} veces",
       "week": "Semana del {date}",
-      "whyTitle": "Por qué aparece aquí"
+      "whyTitle": "Por qué aparece aquí",
+      "items": "{count, plural, one {# actividad} other {# actividades}}"
     },
     "shell": {
       "nav": {
@@ -880,12 +875,6 @@
       "activityTitle": "Actividad",
       "progressTitle": "Progreso por tema",
       "errorsTitle": "Tipos de error más frecuentes",
-      "sessions_one": "{count} sesión",
-      "sessions_other": "{count} sesiones",
-      "exercises_one": "{count} ejercicio",
-      "exercises_other": "{count} ejercicios",
-      "quizzes_one": "{count} quiz",
-      "quizzes_other": "{count} quizzes",
       "atRiskReason": "Aparece aquí porque lleva 7 días sin actividad y 6 de sus últimos 10 ejercicios tienen errores.",
       "errorTypeTitle": "Errores de tipo «{type}»",
       "errorTypeLead": "Cada error enlaza con el ejercicio o la conversación en que ocurrió.",
@@ -894,7 +883,10 @@
       "emptyTitle": "{name} todavía no tiene actividad",
       "emptyBody": "Cuando use el tutor, envíe ejercicios o haga quizzes, verás aquí su progreso y sus errores.",
       "loadError": "No hemos podido cargar los datos del estudiante",
-      "notStarted": "Sin actividad todavía en este tema."
+      "notStarted": "Sin actividad todavía en este tema.",
+      "sessions": "{count, plural, one {# sesión} other {# sesiones}}",
+      "exercises": "{count, plural, one {# ejercicio} other {# ejercicios}}",
+      "quizzes": "{count, plural, one {# quiz} other {# quizzes}}"
     },
     "topics": {
       "pageTitle": "Temas del curso",
@@ -902,8 +894,6 @@
       "back": "Volver al curso",
       "lead": "Los temas son los objetivos de aprendizaje del curso. Los errores, los quizzes, el panel y el progreso se agrupan por estos temas.",
       "listLabel": "Temas, en orden",
-      "sections_one": "{count} sección asignada",
-      "sections_other": "{count} secciones asignadas",
       "up": "Subir",
       "down": "Bajar",
       "rename": "Renombrar",
@@ -926,7 +916,8 @@
       "unassignedBody": "Asígnales un tema para que sus errores y su progreso se agrupen bien.",
       "assign": "Asignar temas",
       "manage": "Gestionar los temas",
-      "deletedSuffix": "eran del tema eliminado «{name}»"
+      "deletedSuffix": "eran del tema eliminado «{name}»",
+      "sections": "{count, plural, one {# sección asignada} other {# secciones asignadas}}"
     },
     "topicAssignment": {
       "pageTitle": "Asignar temas",
