@@ -35,19 +35,21 @@
     "teacherNew": {
       "back": "Volver a usuarios",
       "createAnother": "Crear otra cuenta",
-      "createdBody": "Hemos enviado una invitación a {email}. La cuenta aparecerá como pendiente hasta que la acepte.",
+      "createdBody": "La cuenta de {name} ({email}) ya está activa. Comparte esta contraseña inicial por un canal seguro.",
       "createdTitle": "Cuenta creada",
       "email": "Correo electrónico",
       "emailError": "Escribe un correo válido, por ejemplo nombre@example.org.",
       "emailHelp": "Usa el correo institucional del profesor/a.",
-      "errorSummary": "Revisa los campos marcados para enviar la invitación.",
-      "lead": "Le enviaremos una invitación para que cree su contraseña.",
+      "errorSummary": "Revisa los campos marcados para crear la cuenta.",
+      "lead": "Crea la cuenta y comparte con el profesor/a su contraseña inicial por un canal seguro.",
       "name": "Nombre completo",
       "nameError": "Escribe el nombre completo.",
       "pageTitle": "Crear cuenta de profesor/a",
-      "sending": "Enviando invitación…",
-      "submit": "Enviar invitación",
-      "title": "Crear cuenta de profesor/a"
+      "sending": "Creando la cuenta…",
+      "submit": "Crear cuenta",
+      "title": "Crear cuenta de profesor/a",
+      "passwordLabel": "Contraseña inicial",
+      "passwordWarning": "Guárdala ahora: no se volverá a mostrar."
     },
     "users": {
       "colEmail": "Correo",
@@ -71,7 +73,29 @@
         "pending": "Invitación pendiente"
       },
       "tableCaption": "Usuarios de la plataforma",
-      "title": "Usuarios"
+      "title": "Usuarios",
+      "createStudents": "Crear cuentas de estudiante"
+    },
+    "studentsNew": {
+      "back": "Volver a usuarios",
+      "title": "Crear cuentas de estudiante",
+      "pageTitle": "Crear cuentas de estudiante",
+      "lead": "Crea cuentas con seudónimo para el piloto. Cada estudiante entra con su código y su contraseña, sin dar su correo.",
+      "count": "Número de cuentas",
+      "countHelp": "Entre 1 y 100.",
+      "countError": "Escribe un número entre 1 y 100.",
+      "errorSummary": "Revisa el campo marcado para crear las cuentas.",
+      "submit": "Crear cuentas",
+      "creating": "Creando cuentas…",
+      "error": "No hemos podido crear las cuentas. Inténtalo de nuevo.",
+      "createdTitle": "Cuentas creadas",
+      "warning": "Guarda o descarga ahora estos datos: las contraseñas no se volverán a mostrar.",
+      "colCode": "Código",
+      "colPassword": "Contraseña inicial",
+      "tableCaption": "Cuentas creadas",
+      "copyAll": "Copiar todo",
+      "download": "Descargar CSV",
+      "createMore": "Crear más cuentas"
     }
   },
   "common": {

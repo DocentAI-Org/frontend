@@ -35,19 +35,21 @@
     "teacherNew": {
       "back": "Back to users",
       "createAnother": "Create another account",
-      "createdBody": "We've sent an invitation to {email}. The account will show as pending until it's accepted.",
+      "createdBody": "The account of {name} ({email}) is active. Share this initial password through a secure channel.",
       "createdTitle": "Account created",
       "email": "Email",
       "emailError": "Enter a valid email, for example name@example.org.",
       "emailHelp": "Use the teacher's institutional email.",
-      "errorSummary": "Check the highlighted fields to send the invitation.",
-      "lead": "We'll email them an invitation to set their password.",
+      "errorSummary": "Check the highlighted fields to create the account.",
+      "lead": "Create the account and share the initial password with the teacher through a secure channel.",
       "name": "Full name",
       "nameError": "Enter the full name.",
       "pageTitle": "Create a teacher account",
-      "sending": "Sending invitation…",
-      "submit": "Send invitation",
-      "title": "Create a teacher account"
+      "sending": "Creating the account…",
+      "submit": "Create account",
+      "title": "Create a teacher account",
+      "passwordLabel": "Initial password",
+      "passwordWarning": "Save it now: it will not be shown again."
     },
     "users": {
       "colEmail": "Email",
@@ -71,7 +73,29 @@
         "pending": "Invitation pending"
       },
       "tableCaption": "Platform users",
-      "title": "Users"
+      "title": "Users",
+      "createStudents": "Create student accounts"
+    },
+    "studentsNew": {
+      "back": "Back to users",
+      "title": "Create student accounts",
+      "pageTitle": "Create student accounts",
+      "lead": "Create pseudonymous accounts for the pilot. Each student signs in with their code and password, without giving their email.",
+      "count": "Number of accounts",
+      "countHelp": "Between 1 and 100.",
+      "countError": "Type a number between 1 and 100.",
+      "errorSummary": "Check the highlighted field to create the accounts.",
+      "submit": "Create accounts",
+      "creating": "Creating accounts…",
+      "error": "The accounts could not be created. Please try again.",
+      "createdTitle": "Accounts created",
+      "warning": "Save or download these details now: the passwords will not be shown again.",
+      "colCode": "Code",
+      "colPassword": "Initial password",
+      "tableCaption": "Accounts created",
+      "copyAll": "Copy all",
+      "download": "Download CSV",
+      "createMore": "Create more accounts"
     }
   },
   "common": {

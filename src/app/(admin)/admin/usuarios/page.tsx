@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 
+import { LinkButton } from "@/components/Button";
 import { EmptyState } from "@/components/EmptyState";
 import { ErrorState } from "@/components/ErrorState";
 import { PageHeader } from "@/components/PageHeader";
@@ -28,7 +29,20 @@ export default async function UsersPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <PageHeader title={t("title")} lead={t("lead")} />
+      <PageHeader
+        title={t("title")}
+        lead={t("lead")}
+        actions={
+          <>
+            <LinkButton href="/admin/estudiantes/nuevos" variant="secondary" icon="plus">
+              {t("createStudents")}
+            </LinkButton>
+            <LinkButton href="/admin/profesores/nuevo" icon="plus">
+              {t("create")}
+            </LinkButton>
+          </>
+        }
+      />
       {!users.ok ? (
         <ErrorState code={users.code} />
       ) : users.data.items.length <= 1 ? (
