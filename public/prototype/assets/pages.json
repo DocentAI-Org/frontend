@@ -598,6 +598,30 @@
     ]
   },
   {
+    "path": "admin/students-new.html",
+    "screen": [
+      35
+    ],
+    "role": "admin",
+    "titleKey": "admin.studentsNew.pageTitle",
+    "stories": [
+      "US-07"
+    ],
+    "requirements": [
+      "P1",
+      "§4.1"
+    ],
+    "priority": "P1",
+    "mobile": false,
+    "states": [
+      "default",
+      "validation-error",
+      "loading",
+      "created",
+      "error"
+    ]
+  },
+  {
     "path": "admin/courses.html",
     "screen": [
       22

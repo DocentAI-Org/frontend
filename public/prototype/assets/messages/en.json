@@ -71,7 +71,29 @@
         "pending": "Invitation pending"
       },
       "tableCaption": "Platform users",
-      "title": "Users"
+      "title": "Users",
+      "createStudents": "Create student accounts"
+    },
+    "studentsNew": {
+      "back": "Back to users",
+      "title": "Create student accounts",
+      "pageTitle": "Create student accounts",
+      "lead": "Create pseudonymous accounts for the pilot. Each student signs in with their code and password, without giving their email.",
+      "count": "Number of accounts",
+      "countHelp": "Between 1 and 100.",
+      "countError": "Type a number between 1 and 100.",
+      "errorSummary": "Check the highlighted field to create the accounts.",
+      "submit": "Create accounts",
+      "creating": "Creating accounts…",
+      "error": "The accounts could not be created. Please try again.",
+      "createdTitle": "Accounts created",
+      "warning": "Save or download these details now: the passwords will not be shown again.",
+      "colCode": "Code",
+      "colPassword": "Initial password",
+      "tableCaption": "Accounts created",
+      "copyAll": "Copy all",
+      "download": "Download CSV",
+      "createMore": "Create more accounts"
     }
   },
   "common": {
