@@ -15,7 +15,7 @@ import { SkipLink } from "./SkipLink";
 const SIGN_OUT =
   "flex min-h-11 w-full items-center gap-2 rounded-lg px-4 text-sm text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus";
 
-async function SignOutButton() {
+export async function SignOutButton() {
   const t = await getTranslations("common.actions");
   return (
     <form action={signOut}>
@@ -28,8 +28,8 @@ async function SignOutButton() {
 }
 
 /**
- * The role shells of the prototype (teacher, student, admin): a sidebar on desktop, a menu on
- * mobile, the user's display name and role, language and sign-out.
+ * The teacher and admin shells of the prototype: a sidebar on desktop, a menu on mobile, the
+ * user's display name and role, language and sign-out. Students get `StudentShell`.
  */
 export async function AppShell({
   variant,
@@ -40,7 +40,7 @@ export async function AppShell({
   banner,
   children
 }: {
-  variant: "admin" | "teacher" | "student";
+  variant: "admin" | "teacher";
   home: Route;
   nav: NavItem[];
   userName: string;
@@ -100,7 +100,8 @@ export async function AppShell({
           <SignOutButton />
         </div>
       </aside>
-      <div className="flex flex-1 flex-col lg:pl-64">
+      {/* theme.css pads the body for the fixed sidebar (lg and up). */}
+      <div className="flex flex-1 flex-col">
         {banner}
         <main id="main" tabIndex={-1} className="mx-auto w-full max-w-6xl flex-1 px-4 py-8 sm:px-6">
           {children}
