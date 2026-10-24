@@ -116,11 +116,11 @@ test with axe, titled with its ID (e.g. `001-US2-AS5`, `002-US3-AS1`).
 
 ## Phase 11: US8 — Review and corrections (P1)
 
-- [ ] T036 [US8] E2E: 001-US8-AS1…AS7 (deviation D4), 002-US8-AS1 in
+- [x] T036 [US8] E2E: 001-US8-AS1…AS7 (deviation D4), 002-US8-AS1 in
   `tests/app/e2e/us8-review.spec.ts`
-- [ ] T037 [US8] `src/lib/api/review.ts`; `/profesor/cursos/[id]/conversaciones` (filters,
+- [x] T037 [US8] `src/lib/api/review.ts`; `/profesor/cursos/[id]/conversaciones` (filters,
   markers, submissions), conversation and feedback detail with flag dialog, preview, edit, remove
-- [ ] T038 [US8] `/profesor/cursos/[id]/correcciones` (flags list, links back)
+- [x] T038 [US8] `/profesor/cursos/[id]/correcciones` (flags list, links back)
 
 ## Phase 12: Profile and consent (P1, US1/US7)
 
