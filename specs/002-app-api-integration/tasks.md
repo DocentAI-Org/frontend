@@ -124,7 +124,7 @@ test with axe, titled with its ID (e.g. `001-US2-AS5`, `002-US3-AS1`).
 
 ## Phase 12: Profile and consent (P1, US1/US7)
 
-- [ ] T039 E2E: 001-US7-AS4 revocation, FR-015 in `tests/app/e2e/profile.spec.ts`
+- [x] T039 E2E: 001-US7-AS4 revocation, FR-015 in `tests/app/e2e/profile.spec.ts`
 - [x] T040 `/alumno/perfil`: profile, language, consent history, revoke with confirmation
 
 ## Phase 13: Polish
