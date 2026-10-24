@@ -886,7 +886,13 @@
         "lead": "Ejemplo con «Solo pistas (modo guiado)».",
         "note": "Con este ajuste el tutor nunca da la solución completa.",
         "student": "Estudiante",
-        "title": "Así responderá el tutor"
+        "title": "Así responderá el tutor",
+        "question": "¿Cómo resuelvo 2x − 4 = 6?",
+        "leadDirect": "Ejemplo con «Soluciones directas permitidas».",
+        "leadHintsFirst": "Ejemplo con «Primero pistas, luego solución».",
+        "direct": "Suma 4 en los dos lados: 2x = 10. Después divide entre 2: x = 5.",
+        "noteDirect": "Con este ajuste el tutor puede dar la solución completa.",
+        "noteHintsFirst": "Si el estudiante pide la solución tras las pistas, el tutor se la muestra."
       },
       "save": "Guardar cambios",
       "saveFailed": "No hemos podido guardar los cambios. Siguen en pantalla: inténtalo de nuevo.",

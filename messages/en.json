@@ -886,7 +886,13 @@
         "lead": "Example with \"Hints only (guided mode)\".",
         "note": "With this setting the tutor never gives the full solution.",
         "student": "Student",
-        "title": "This is how the tutor will answer"
+        "title": "This is how the tutor will answer",
+        "question": "How do I solve 2x − 4 = 6?",
+        "leadDirect": "Example with «Direct solutions allowed».",
+        "leadHintsFirst": "Example with «Hints first, then the solution».",
+        "direct": "Add 4 to both sides: 2x = 10. Then divide by 2: x = 5.",
+        "noteDirect": "With this setting the tutor can give the full solution.",
+        "noteHintsFirst": "If the student asks for the solution after the hints, the tutor shows it."
       },
       "save": "Save changes",
       "saveFailed": "We couldn't save your changes. They're still on screen, so try again.",
