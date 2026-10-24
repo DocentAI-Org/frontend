@@ -39,7 +39,10 @@ export function scenario(id: string, title: string, fn: Parameters<typeof test>[
 const TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
 
 export async function expectAccessible(page: Page) {
-  // Next streams metadata after the content: wait for the page title to be in place.
+  // Next streams metadata after the content: wait for the page title to be in place. Callers
+  // must first wait for the page they navigated to (e.g. its heading), or the previous page's
+  // title satisfies this check.
+  await page.waitForLoadState("load");
   await page.waitForFunction(() => document.title.trim() !== "");
   // Entrance animations (e.g. the menu's fade-in) would be measured half-transparent.
   // Spinners loop forever, so only finite animations are awaited.

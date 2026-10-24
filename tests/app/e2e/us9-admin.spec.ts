@@ -6,6 +6,7 @@ test.describe("US9 admin area", () => {
     await signIn(page, USERS.admin);
     await expectAccessible(page);
     await page.getByRole("link", { name: /crear cuenta de profesor/i }).click();
+    await expect(page.getByRole("heading", { level: 1, name: /crear cuenta de profesor/i })).toBeVisible();
     await page.getByRole("button", { name: /crear cuenta/i }).click();
     await expect(page.getByRole("alert").filter({ hasText: /revisa los campos/i })).toBeVisible();
     await expectAccessible(page);
@@ -36,6 +37,7 @@ test.describe("US9 admin area", () => {
   scenario("002-US9-AS1", "the admin creates pseudonymous accounts and a student signs in with one", async ({ page }) => {
     await signIn(page, USERS.admin);
     await page.getByRole("link", { name: /crear cuentas de estudiante/i }).click();
+    await expect(page.getByRole("heading", { level: 1, name: /crear cuentas de estudiante/i })).toBeVisible();
     await expectAccessible(page);
     await page.getByLabel(/número de cuentas/i).fill("3");
     await page.getByRole("button", { name: /crear cuentas/i }).click();
