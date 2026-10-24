@@ -29,9 +29,10 @@ describe("coverage against the contract and plan", () => {
   const contract = contractStates();
   const mobile = planMobile();
 
-  it("finds all 33 pages in the contract and the plan", () => {
-    expect(Object.keys(contract)).toHaveLength(33);
-    expect(Object.keys(mobile)).toHaveLength(33);
+  // 33 pages from 001, plus #35 admin/students-new.html added by spec 002 (FR-012).
+  it("finds all 34 pages in the contract and the plan", () => {
+    expect(Object.keys(contract)).toHaveLength(34);
+    expect(Object.keys(mobile)).toHaveLength(34);
   });
 
   it("has a manifest entry for every contract page", () => {
