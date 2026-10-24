@@ -12,14 +12,19 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
       - run: npm ci
+      - run: npm run api:check
       - run: npm run lint
       - run: npm run typecheck
       - run: npm test
       - run: npx playwright install --with-deps chromium webkit
       - run: npm run test:e2e
+        env:
+          CI: "true"
+      # App E2E + axe against the typed mock backend (starts the mock and the app itself).
+      - run: npm run test:e2e:app
         env:
           CI: "true"
       - uses: actions/upload-artifact@v4

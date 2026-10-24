@@ -26,7 +26,7 @@ test with axe, titled with its ID (e.g. `001-US2-AS5`, `002-US3-AS1`).
 - [x] T004 [P] `playwright.app.config.ts` (desktop 1440 / mobile 390, webServer: mock API + app)
 - [x] T005 [P] `.env.example` with `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`,
   `API_BASE_URL`, `PSEUDONYM_EMAIL_DOMAIN`; remove `NEXT_PUBLIC_API_BASE_URL`
-- [ ] T006 CI: add `api:check` and the app E2E suite to `.github/workflows/ci.yml`
+- [x] T006 CI: add `api:check` and the app E2E suite to `.github/workflows/ci.yml`
 
 ## Phase 2: Foundational (blocks every story)
 
@@ -102,16 +102,16 @@ test with axe, titled with its ID (e.g. `001-US2-AS5`, `002-US3-AS1`).
 
 ## Phase 9: US7 — Exercises (P1)
 
-- [ ] T032 [US7] E2E: 001-US6-AS1…AS4, AS6, AS7 (deviation D2), 002-US7-AS1 in
+- [x] T032 [US7] E2E: 001-US6-AS1…AS4, AS6, AS7 (deviation D2), 002-US7-AS1 in
   `tests/app/e2e/us7-exercises.spec.ts`
-- [ ] T033 [US7] `src/lib/api/exercises.ts`; `/alumno/cursos/[id]/ejercicio` (review before
+- [x] T033 [US7] `src/lib/api/exercises.ts`; `/alumno/cursos/[id]/ejercicio` (review before
   send) and `/ejercicios/[envio]` (stub notice)
 
 ## Phase 10: US5 — Topics (P1)
 
-- [ ] T034 [US5] E2E: 001-US14 scenarios (deviation D5), 002-US5-AS1…AS2 in
+- [x] T034 [US5] E2E: 001-US14 scenarios (deviation D5), 002-US5-AS1…AS2 in
   `tests/app/e2e/us5-topics.spec.ts`
-- [ ] T035 [US5] `src/lib/api/topics.ts`; `/profesor/cursos/[id]/temas` (CRUD, reorder,
+- [x] T035 [US5] `src/lib/api/topics.ts`; `/profesor/cursos/[id]/temas` (CRUD, reorder,
   unassigned) and `/temas/asignacion`
 
 ## Phase 11: US8 — Review and corrections (P1)
