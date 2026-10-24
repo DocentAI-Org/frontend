@@ -92,6 +92,23 @@ export type Flag = {
   updated_at: string;
 };
 
+export type Submission = {
+  id: string;
+  course_id: string;
+  student_id: string;
+  problem_statement: string;
+  worked_answer: string;
+  verdict: "correct" | "partially_correct" | "incorrect";
+  mistake_location: string | null;
+  error_type: string | null;
+  topic_id: string | null;
+  topic_name: string | null;
+  explanation: string;
+  explanation_kind: "answer" | "no_source";
+  cited: string[];
+  created_at: string;
+};
+
 export type State = {
   users: User[];
   courses: Course[];
@@ -101,6 +118,7 @@ export type State = {
   conversations: Conversation[];
   messages: Msg[];
   flags: Flag[];
+  submissions: Submission[];
   consent: { student_id: string; action: "given" | "revoked"; version: string; created_at: string }[];
   /** Messages used today per student (shared across courses). */
   usage: Map<string, number>;
@@ -152,6 +170,7 @@ export function seed(): State {
     conversations: [],
     messages: [],
     flags: [],
+    submissions: [],
     consent: [],
     usage: new Map(),
     faults: new Set()

@@ -416,7 +416,15 @@
       "summary": "Vas por buen camino, pero hay un error en el paso 2.",
       "title": "Corrección del ejercicio",
       "verdictLabel": "Resultado",
-      "whyTitle": "Por qué"
+      "whyTitle": "Por qué",
+      "verdict": {
+        "correct": "Correcta",
+        "partially_correct": "Parcialmente correcta",
+        "incorrect": "Incorrecta"
+      },
+      "mistakeLabel": "Dónde está el error:",
+      "stubNotice": "La corrección automática todavía se está preparando: este resultado es provisional y tu profesor/a puede revisarlo.",
+      "explanationTitle": "Explicación"
     },
     "guided": {
       "anotherHint": "Otra pista",

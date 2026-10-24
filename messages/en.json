@@ -416,7 +416,15 @@
       "summary": "You're on the right track, but there's a mistake in step 2.",
       "title": "Exercise feedback",
       "verdictLabel": "Result",
-      "whyTitle": "Why"
+      "whyTitle": "Why",
+      "verdict": {
+        "correct": "Correct",
+        "partially_correct": "Partly correct",
+        "incorrect": "Incorrect"
+      },
+      "mistakeLabel": "Where the mistake is:",
+      "stubNotice": "Automatic feedback is still being prepared: this result is provisional and your teacher can review it.",
+      "explanationTitle": "Explanation"
     },
     "guided": {
       "anotherHint": "Another hint",

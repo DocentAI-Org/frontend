@@ -6,6 +6,7 @@ import { useEffect, useId, useRef, useState, useTransition } from "react";
 
 import { Alert } from "@/components/Alert";
 import { Button } from "@/components/Button";
+import { CitationNotes } from "@/components/CitationNotes";
 import { Icon } from "@/components/Icon";
 import type { Schemas } from "@/lib/api/client";
 import { errorMessageKey } from "@/lib/api/errors";
@@ -14,7 +15,6 @@ import { routes } from "@/lib/routes";
 import { type ChatResult, acknowledgeAction, retryAction, sendAction } from "./actions";
 
 type Message = Schemas["StudentMessage"];
-type Citation = Schemas["Citation"];
 
 const POLICY_HELP = {
   direct: "policy.directHelp",
@@ -55,7 +55,6 @@ export function ChatScreen({
   const ids = useId();
   const input = useRef<HTMLTextAreaElement>(null);
   const infoDialog = useRef<HTMLDialogElement>(null);
-  const sheet = useRef<HTMLDialogElement>(null);
 
   const [acknowledged, setAcknowledged] = useState(initiallyAcknowledged);
   const [ackChecked, setAckChecked] = useState(false);
@@ -66,7 +65,6 @@ export function ChatScreen({
   const [hasDraft, setHasDraft] = useState(false);
   useEffect(() => setHasDraft(Boolean(input.current?.value.trim())), []);
   const [error, setError] = useState<string | null>(null);
-  const [citation, setCitation] = useState<Citation | null>(null);
   const [pending, startTransition] = useTransition();
 
   const guided = settings.solution_policy !== "direct";
@@ -144,11 +142,6 @@ export function ChatScreen({
     if (!conversationId) return;
     setMessages((current) => current.map((m) => (m.id === messageId ? { ...m, status: "sent" } : m)));
     startTransition(async () => handle(await retryAction(courseId, conversationId, messageId), messageId));
-  }
-
-  function openCitation(value: Citation) {
-    setCitation(value);
-    sheet.current?.showModal();
   }
 
   const last = messages.at(-1);
@@ -306,27 +299,7 @@ export function ChatScreen({
                     <p className="mt-1 font-serif text-fg">{message.correction.text}</p>
                   </div>
                 )}
-                {message.citations.map((item, index) => (
-                  <button
-                    key={`${item.fragment_id}-${index}`}
-                    type="button"
-                    onClick={() => openCitation(item)}
-                    aria-label={t("chat.citation.chipLabel", { doc: item.document_name, loc: item.location_label })}
-                    className="-mx-2 flex flex-col items-start gap-1 rounded-md px-2 py-2 text-left hover:bg-teacher-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
-                    data-component="SourceCitation"
-                    data-variant={item.available ? "margin-note" : "unavailable"}
-                  >
-                    <span className="flex items-baseline gap-1 text-sm font-semibold text-teacher-700">
-                      <sup className="text-xs font-bold" aria-hidden="true">
-                        {index + 1}
-                      </sup>
-                      <span>{t("chat.citation.chip", { doc: item.document_name, loc: item.location_label })}</span>
-                    </span>
-                    <span className="text-sm font-semibold text-teacher-700 underline decoration-teacher-300 underline-offset-2">
-                      {t("chat.citation.open")}
-                    </span>
-                  </button>
-                ))}
+                <CitationNotes citations={message.citations} />
               </aside>
             </li>
           )
@@ -452,52 +425,6 @@ export function ChatScreen({
         </div>
       </dialog>
 
-      <dialog
-        ref={sheet}
-        aria-labelledby={`${ids}-sheet`}
-        className="mb-0 max-h-dvh w-full max-w-none overflow-y-auto rounded-t-2xl border border-border bg-surface-raised p-0 text-fg shadow-lg backdrop:bg-neutral-900/50 lg:my-0 lg:mr-0 lg:ml-auto lg:h-dvh lg:max-h-none lg:w-md lg:max-w-md lg:rounded-none lg:rounded-l-2xl"
-        data-component="CitationSheet"
-        onClose={() => setCitation(null)}
-      >
-        <div className="flex items-center justify-between gap-4 border-b border-border px-6 py-4">
-          <h2 id={`${ids}-sheet`} className="text-xl font-semibold">
-            {t("chat.citation.sheetTitle")}
-          </h2>
-          <button
-            type="button"
-            onClick={() => sheet.current?.close()}
-            aria-label={tAll("common.actions.close")}
-            className="inline-flex size-11 items-center justify-center rounded-lg text-fg-muted hover:bg-surface-sunken hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
-          >
-            <Icon name="x" className="size-5 shrink-0" />
-          </button>
-        </div>
-        {citation && (
-          <div className="flex flex-col gap-6 p-6">
-            <div className="flex items-start gap-4">
-              <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-lg border border-teacher-600 text-teacher-700">
-                <Icon name="file-text" className="size-5 shrink-0" />
-              </span>
-              <div className="min-w-0">
-                <p className="font-semibold break-words text-fg">{citation.document_name}</p>
-                <p className="text-sm text-fg-muted">{citation.location_label}</p>
-              </div>
-            </div>
-            {citation.available && citation.passage ? (
-              <figure className="flex flex-col gap-2">
-                <figcaption className="text-sm font-semibold text-teacher-700">{t("chat.citation.passageLabel")}</figcaption>
-                <blockquote className="border-l-2 border-margin bg-surface py-2 pr-2 pl-4 font-serif text-lg text-fg">{citation.passage}</blockquote>
-                <p className="text-sm text-fg-muted">{t("chat.citation.validated")}</p>
-              </figure>
-            ) : (
-              <p className="flex items-center gap-2 rounded-lg border border-dashed border-border-strong p-4 text-fg-muted">
-                <Icon name="file-text" />
-                <span>{citation.fragment_id ? t("chat.citation.fragmentUnavailable") : t("chat.citation.unavailable")}</span>
-              </p>
-            )}
-          </div>
-        )}
-      </dialog>
     </div>
   );
 }

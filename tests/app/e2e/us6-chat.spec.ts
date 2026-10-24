@@ -1,20 +1,14 @@
 // US6 — student chats with the tutor, with citations and guided mode (spec 002 US6, 001 US1, US5).
 import type { APIRequestContext, Page } from "@playwright/test";
 
-import { USERS, expect, expectAccessible, scenario, signIn, test } from "./helpers";
+import { USERS, expect, expectAccessible, scenario, test } from "./helpers";
+import { MOCK, type Policy, classroom as seedClassroom } from "./helpers-student";
 
-const MOCK = "http://127.0.0.1:8010";
 const COVERED = "¿Cómo despejo la incógnita en 2x = 4?";
 const UNCOVERED = "¿Quién ganó el mundial de 2010?";
 
-type Policy = "direct" | "hints_first" | "hints_only";
-
 async function classroom(request: APIRequestContext, page: Page, opts: { policy?: Policy; disclosure?: boolean } = {}) {
-  const response = await request.post(`${MOCK}/__test/classroom`, { data: { policy: "direct", disclosure: true, ...opts } });
-  const { course_id } = (await response.json()) as { course_id: string };
-  await signIn(page, USERS.student);
-  await page.goto(`/alumno/cursos/${course_id}`);
-  return course_id;
+  return (await seedClassroom(request, page, opts)).courseId;
 }
 
 async function ask(page: Page, text: string) {
