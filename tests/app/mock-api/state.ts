@@ -63,12 +63,44 @@ export type Frag = {
   excluded: boolean;
 };
 
+export type Conversation = { id: string; course_id: string; student_id: string; started_at: string; last_message_at: string };
+
+export type Msg = {
+  id: string;
+  conversation_id: string;
+  author: "student" | "tutor";
+  kind: "question" | "answer" | "hint" | "no_source";
+  status: "sent" | "failed";
+  text: string;
+  hint_number: number | null;
+  request_solution: boolean;
+  counts_toward_limit: boolean;
+  created_at: string;
+  /** Fragment ids cited by a tutor message. */
+  cited: string[];
+};
+
+export type Flag = {
+  id: string;
+  course_id: string;
+  message_id: string | null;
+  submission_id: string | null;
+  category: "incorrect" | "poor";
+  correction: string;
+  author_id: string;
+  created_at: string;
+  updated_at: string;
+};
+
 export type State = {
   users: User[];
   courses: Course[];
   enrolments: Enrolment[];
   documents: Doc[];
   fragments: Frag[];
+  conversations: Conversation[];
+  messages: Msg[];
+  flags: Flag[];
   consent: { student_id: string; action: "given" | "revoked"; version: string; created_at: string }[];
   /** Messages used today per student (shared across courses). */
   usage: Map<string, number>;
@@ -117,6 +149,9 @@ export function seed(): State {
     enrolments: [],
     documents: [],
     fragments: [],
+    conversations: [],
+    messages: [],
+    flags: [],
     consent: [],
     usage: new Map(),
     faults: new Set()

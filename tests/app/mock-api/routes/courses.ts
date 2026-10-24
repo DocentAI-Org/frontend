@@ -1,5 +1,5 @@
 import { type Ctx, HttpError, type Route, noContent, page, requireRole } from "../http.ts";
-import { type Course, DAILY_LIMIT, type Enrolment, type S, type State, id, now } from "../state.ts";
+import { type Course, type Enrolment, type S, type State, id, now } from "../state.ts";
 
 const ALPHABET = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
 
@@ -187,17 +187,6 @@ export const courseRoutes: Route[] = [
       const enrolment = activeEnrolment(ctx);
       enrolment.disclosure_acknowledged_at ??= now();
       return studentCourse(ctx.state, enrolment);
-    }
-  },
-  {
-    method: "GET",
-    path: "/v1/student/allowance",
-    handler: (ctx) => {
-      const student = requireRole(ctx, "student");
-      const used = ctx.state.usage.get(student.id) ?? 0;
-      const midnight = new Date();
-      midnight.setHours(24, 0, 0, 0);
-      return { limit: DAILY_LIMIT, used, remaining: Math.max(DAILY_LIMIT - used, 0), resets_at: midnight.toISOString() };
     }
   }
 ];

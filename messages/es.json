@@ -282,7 +282,8 @@
         "body": "No he encontrado nada sobre esto en el material que ha validado tu profesor/a, así que prefiero no darte una respuesta sin fuente.",
         "heading": "El material del curso no cubre esta pregunta",
         "iconLabel": "Información",
-        "rephrase": "Reformular la pregunta"
+        "rephrase": "Reformular la pregunta",
+        "teacherTip": "También puedes preguntárselo a tu profesor/a."
       },
       "pageTitle": "Chat del curso",
       "sources": "Fuentes",
@@ -313,7 +314,9 @@
         "progress": "Ver mi progreso",
         "teacherSees": "Tu profesor/a ve la misma explicación."
       },
-      "remaining": "{count, plural, one {Te queda # mensaje hoy, en todos tus cursos.} other {Te quedan # mensajes hoy, en todos tus cursos.}}"
+      "remaining": "{count, plural, one {Te queda # mensaje hoy, en todos tus cursos.} other {Te quedan # mensajes hoy, en todos tus cursos.}}",
+      "hint": "Pista {n}",
+      "failedMessage": "No enviado"
     },
     "consent": {
       "accept": "He leído esta información y acepto participar",

@@ -5,6 +5,7 @@ import { createServer } from "node:http";
 import { type Ctx, HttpError, NO_CONTENT, type Route, compile, send } from "./http.ts";
 import { authRoutes, subjectOf } from "./routes/auth.ts";
 import { adminRoutes } from "./routes/admin.ts";
+import { chatRoutes } from "./routes/chat.ts";
 import { consentRoutes } from "./routes/consent.ts";
 import { courseRoutes } from "./routes/courses.ts";
 import { documentRoutes } from "./routes/documents.ts";
@@ -32,7 +33,7 @@ const testRoutes: Route[] = [
   }
 ];
 
-const routes = [...testRoutes, ...authRoutes, ...meRoutes, ...consentRoutes, ...courseRoutes, ...documentRoutes, ...settingsRoutes, ...adminRoutes].map((route) => ({
+const routes = [...testRoutes, ...authRoutes, ...meRoutes, ...consentRoutes, ...courseRoutes, ...documentRoutes, ...settingsRoutes, ...chatRoutes, ...adminRoutes].map((route) => ({
   ...route,
   matcher: compile(route.path)
 }));

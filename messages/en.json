@@ -282,7 +282,8 @@
         "body": "I couldn't find anything on this in the material your teacher has approved, so I won't give you an answer without a source.",
         "heading": "The course material doesn't cover this question",
         "iconLabel": "Information",
-        "rephrase": "Rephrase the question"
+        "rephrase": "Rephrase the question",
+        "teacherTip": "You can also ask your teacher."
       },
       "pageTitle": "Course chat",
       "sources": "Sources",
@@ -313,7 +314,9 @@
         "progress": "See my progress",
         "teacherSees": "Your teacher sees the same explanation."
       },
-      "remaining": "{count, plural, one {You have # message left today, across all your courses.} other {You have # messages left today, across all your courses.}}"
+      "remaining": "{count, plural, one {You have # message left today, across all your courses.} other {You have # messages left today, across all your courses.}}",
+      "hint": "Hint {n}",
+      "failedMessage": "Not sent"
     },
     "consent": {
       "accept": "I've read this information and agree to take part",
