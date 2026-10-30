@@ -1,5 +1,5 @@
 // US1 — everyone signs in and lands in their own area (spec 002 US1, 001 US7).
-import { USERS, expect, expectAccessible, openMenuIfNeeded, scenario, signIn, signOut, test } from "./helpers";
+import { USERS, chooseOption, expect, expectAccessible, openMenuIfNeeded, scenario, signIn, signOut, test } from "./helpers";
 
 test.describe("US1 sign-in and role areas", () => {
   scenario("001-US7-AS1", "sign-in shows identity, form, IMFAHE and privacy", async ({ page }) => {
@@ -93,13 +93,19 @@ test.describe("US1 sign-in and role areas", () => {
 
   scenario("002-US1-AS5", "the language choice is applied and saved to the profile", async ({ page }) => {
     await page.goto("/entrar");
-    await page.getByRole("banner").getByRole("button", { name: "English" }).click();
+    const language = page.getByRole("banner").getByRole("combobox", { name: "Idioma" });
+    await language.click();
+    await expect(page.getByRole("listbox", { name: "Idioma" })).toBeVisible();
+    await expectAccessible(page);
+    await page.keyboard.press("Escape");
+    await chooseOption(language, "English");
     await expect(page.getByRole("heading", { level: 1, name: /welcome to docentai/i })).toBeVisible();
 
-    await page.getByRole("banner").getByRole("button", { name: "Español" }).click();
+    await chooseOption(page.getByRole("banner").getByRole("combobox", { name: "Language" }), "Español");
     await expect(page.getByRole("heading", { level: 1, name: /bienvenida a docentai/i })).toBeVisible();
     await signIn(page, USERS.teacher);
-    await page.getByRole("contentinfo").getByRole("button", { name: "English" }).click();
+    await openMenuIfNeeded(page);
+    await chooseOption(page.getByRole("combobox", { name: "Idioma" }).filter({ visible: true }), "English");
     await expect(page.getByRole("heading", { level: 1, name: "My courses" })).toBeVisible();
     await openMenuIfNeeded(page);
     await expect(page.getByRole("button", { name: /sign out/i }).filter({ visible: true })).toBeVisible();

@@ -5,6 +5,7 @@ import { Alert } from "@/components/Alert";
 import { Button } from "@/components/Button";
 import { EmptyState } from "@/components/EmptyState";
 import { ErrorState } from "@/components/ErrorState";
+import { Select } from "@/components/Select";
 import type { Schemas } from "@/lib/api/client";
 import { listAllFragments, listDocuments } from "@/lib/api/documents";
 import { listAssignments, listTopics } from "@/lib/api/topics";
@@ -73,22 +74,20 @@ export default async function TopicAssignmentPage({
                           value={assignment ? `${assignment.id}|${assignment.status}|${assignment.topic_id}` : ""}
                         />
                         <div className="flex flex-wrap items-center gap-2">
-                          <label className="sr-only" htmlFor={`select-${key}`}>
+                          <label id={`label-${key}`} className="sr-only" htmlFor={`select-${key}`}>
                             {t("topicFor")}
                           </label>
-                          <select
+                          <Select
                             id={`select-${key}`}
+                            labelId={`label-${key}`}
                             name={`topic:${key}`}
                             defaultValue={assignment?.topic_id ?? ""}
-                            className="min-h-11 rounded-lg border border-border-strong bg-surface-raised px-4 text-base text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
-                          >
-                            <option value="">{t("none")}</option>
-                            {topics.data.map((topic) => (
-                              <option key={topic.id} value={topic.id}>
-                                {topic.name}
-                              </option>
-                            ))}
-                          </select>
+                            className="min-w-48"
+                            options={[
+                              { value: "", label: t("none") },
+                              ...topics.data.map((topic) => ({ value: topic.id, label: topic.name }))
+                            ]}
+                          />
                           {assignment && (
                             <span
                               className={`rounded-sm border px-2 py-0.5 text-xs font-semibold ${assignment.status === "suggested" ? "border-warning-300 bg-warning-50 text-warning-900" : "border-teacher-300 bg-teacher-50 text-teacher-800"}`}

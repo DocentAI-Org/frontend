@@ -135,6 +135,14 @@ test with axe, titled with its ID (e.g. `001-US2-AS5`, `002-US3-AS1`).
 - [x] T044 Run quickstart B + C against the real local stack; record `validation.md`
 - [x] T045 [P] Update `README.md` (app setup, scripts) and the 001 prototype index (#35)
 
+## Phase 14: Review fixes
+
+- [x] T046 Stable hydration: `suppressHydrationWarning` on `<body>` (browser extensions such as
+  Grammarly add attributes) and a fixed `timeZone` for next-intl (server UTC vs browser)
+- [x] T047 `Select` component as in the prototype (Forms › Select): select-only combobox with a
+  listbox drawn by the app, same in every browser; unit tests; used by every dropdown
+- [x] T048 `LanguageSwitcher` as a `Select` over `LOCALES`; removed from `AppFooter`
+
 ## Dependencies
 
 - Setup → Foundational → US1 → US9 → US2 → (US3, US4) → US6 → US7 → US5 → US8 → Profile →

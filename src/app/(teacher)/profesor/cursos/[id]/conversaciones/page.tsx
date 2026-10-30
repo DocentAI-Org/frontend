@@ -6,6 +6,7 @@ import { Button, buttonClass } from "@/components/Button";
 import { EmptyState } from "@/components/EmptyState";
 import { ErrorState } from "@/components/ErrorState";
 import { Icon } from "@/components/Icon";
+import { Select } from "@/components/Select";
 import { listCourseStudents } from "@/lib/api/courses";
 import { type ConversationFilters, listCourseConversations, listCourseSubmissions } from "@/lib/api/review";
 import { routes } from "@/lib/routes";
@@ -15,8 +16,6 @@ export async function generateMetadata(): Promise<Metadata> {
   return { title: t("pageTitle") };
 }
 
-const FIELD =
-  "min-h-11 rounded-lg border border-border-strong bg-surface-raised px-4 text-base text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus";
 const DAYS: Record<string, number> = { "7": 7, "30": 30 };
 
 /** Start of the "last N days" window chosen in the date filter. */
@@ -102,26 +101,39 @@ export default async function ConversationsPage({
       </div>
 
       <form method="get" aria-label={t("filtersLabel")} className="flex flex-wrap items-end gap-4 rounded-xl border border-border bg-surface p-4">
-        <label className="flex flex-col gap-1 text-sm font-semibold text-fg">
-          {t("studentLabel")}
-          <select name="estudiante" defaultValue={estudiante ?? ""} className={FIELD}>
-            <option value="">{t("all")}</option>
-            {students.ok &&
-              students.data.items.map((s) => (
-                <option key={s.student_id} value={s.student_id}>
-                  {s.display_name}
-                </option>
-              ))}
-          </select>
-        </label>
-        <label className="flex flex-col gap-1 text-sm font-semibold text-fg">
-          {t("date")}
-          <select name="desde" defaultValue={desde ?? ""} className={FIELD}>
-            <option value="">{t("allTime")}</option>
-            <option value="7">{t("last7")}</option>
-            <option value="30">{t("last30")}</option>
-          </select>
-        </label>
+        <div className="flex flex-col gap-1">
+          <label id="filtro-estudiante-label" htmlFor="filtro-estudiante" className="text-sm font-semibold text-fg">
+            {t("studentLabel")}
+          </label>
+          <Select
+            id="filtro-estudiante"
+            labelId="filtro-estudiante-label"
+            name="estudiante"
+            defaultValue={estudiante ?? ""}
+            className="min-w-48"
+            options={[
+              { value: "", label: t("all") },
+              ...(students.ok ? students.data.items.map((s) => ({ value: s.student_id, label: s.display_name })) : [])
+            ]}
+          />
+        </div>
+        <div className="flex flex-col gap-1">
+          <label id="filtro-desde-label" htmlFor="filtro-desde" className="text-sm font-semibold text-fg">
+            {t("date")}
+          </label>
+          <Select
+            id="filtro-desde"
+            labelId="filtro-desde-label"
+            name="desde"
+            defaultValue={desde ?? ""}
+            className="min-w-48"
+            options={[
+              { value: "", label: t("allTime") },
+              { value: "7", label: t("last7") },
+              { value: "30", label: t("last30") }
+            ]}
+          />
+        </div>
         <label className="flex min-h-11 items-center gap-2 text-fg">
           <input type="checkbox" name="sinFuente" value="1" defaultChecked={!!sinFuente} className="size-5 accent-primary-600" />
           {t("noSourceLabel")}

@@ -5,8 +5,11 @@ import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 
 import { setLanguage } from "@/app/actions/session";
-import { LOCALES } from "@/i18n/locales";
+import { LOCALES, isLocale } from "@/i18n/locales";
 
+import { Select } from "./Select";
+
+/** A Select, so adding a language to LOCALES needs no layout change. */
 export function LanguageSwitcher({ stretch = false }: { stretch?: boolean }) {
   const t = useTranslations("common");
   const active = useLocale();
@@ -14,30 +17,20 @@ export function LanguageSwitcher({ stretch = false }: { stretch?: boolean }) {
   const [pending, startTransition] = useTransition();
 
   return (
-    <div
-      role="group"
-      aria-label={t("a11y.language")}
-      className={`${stretch ? "flex" : "inline-flex"} rounded-lg border border-border-strong p-1`}
-      data-component="LanguageSwitcher"
-    >
-      {LOCALES.map((locale) => (
-        <button
-          key={locale}
-          type="button"
-          lang={locale}
-          aria-pressed={locale === active}
-          disabled={pending}
-          onClick={() =>
-            startTransition(async () => {
-              await setLanguage(locale);
-              router.refresh();
-            })
-          }
-          className={`${stretch ? "min-h-9 flex-1" : "min-h-8"} rounded-md px-4 text-sm font-medium text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus aria-pressed:bg-neutral-900 aria-pressed:text-fg-inverse`}
-        >
-          {t(`language.${locale}`)}
-        </button>
-      ))}
+    <div data-component="LanguageSwitcher" className={stretch ? "w-full" : "w-40"}>
+      <Select
+        aria-label={t("a11y.language")}
+        value={active}
+        disabled={pending}
+        options={LOCALES.map((locale) => ({ value: locale, label: t(`language.${locale}`), lang: locale }))}
+        onValueChange={(locale) => {
+          if (!isLocale(locale)) return;
+          startTransition(async () => {
+            await setLanguage(locale);
+            router.refresh();
+          });
+        }}
+      />
     </div>
   );
 }

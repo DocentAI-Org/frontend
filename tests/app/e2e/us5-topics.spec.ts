@@ -1,7 +1,7 @@
 // US5 — teacher defines topics and assigns material (spec 002 US5, 001 US14).
 import type { APIRequestContext, Page } from "@playwright/test";
 
-import { USERS, expect, expectAccessible, scenario, signIn, test } from "./helpers";
+import { USERS, chooseOption, expect, expectAccessible, scenario, signIn, test } from "./helpers";
 import { MOCK } from "./helpers-student";
 
 async function teacherCourse(request: APIRequestContext, page: Page, path = "/temas") {
@@ -71,7 +71,7 @@ test.describe("US5 topics", () => {
     await expect(suggested.getByText(/^sugerido$/i)).toBeVisible();
     await expectAccessible(page);
 
-    await page.getByRole("group", { name: /3\.2 despejar la incógnita/i }).getByLabel(/tema de la sección/i).selectOption({ label: "Ecuaciones" });
+    await chooseOption(page.getByRole("group", { name: /3\.2 despejar la incógnita/i }).getByRole("combobox", { name: /tema de la sección/i }), "Ecuaciones");
     await page.getByRole("button", { name: /guardar temas/i }).click();
 
     await expect(page.getByRole("status").filter({ hasText: /temas guardados/i })).toBeVisible();

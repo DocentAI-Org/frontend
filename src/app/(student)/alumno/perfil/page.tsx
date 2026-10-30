@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getFormatter, getLocale, getTranslations } from "next-intl/server";
+import { getFormatter, getTranslations } from "next-intl/server";
 
 import { LinkButton } from "@/components/Button";
 import { ConfirmDialog } from "@/components/ConfirmDialog";
@@ -24,7 +24,6 @@ const SECTION = "flex flex-col gap-4 rounded-xl border border-border bg-surface-
 export default async function ProfilePage() {
   const t = await getTranslations();
   const format = await getFormatter();
-  const locale = await getLocale();
   const [me, consent, history] = await Promise.all([getMe(), getConsent(), getConsentHistory()]);
   if (!me.ok || !consent.ok) return <ErrorState code={!me.ok ? me.code : !consent.ok ? consent.code : "unknown"} />;
 
@@ -48,8 +47,7 @@ export default async function ProfilePage() {
             </>
           )}
           <dt className="text-sm font-semibold text-fg-muted">{t("student.profile.language")}</dt>
-          <dd className="flex flex-wrap items-center gap-4">
-            <span className="text-fg">{t(`common.language.${locale}`)}</span>
+          <dd>
             <LanguageSwitcher />
           </dd>
         </dl>

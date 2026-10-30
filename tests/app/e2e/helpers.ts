@@ -1,6 +1,6 @@
 // Shared helpers for the app E2E tests (tasks T012).
 import AxeBuilder from "@axe-core/playwright";
-import { type Page, test as base, expect } from "@playwright/test";
+import { type Locator, type Page, test as base, expect } from "@playwright/test";
 
 export { expect };
 
@@ -79,6 +79,15 @@ export async function signIn(page: Page, identifier: string, password = PASSWORD
 export async function openMenuIfNeeded(page: Page) {
   const menu = page.getByLabel(/^(abrir menú|open menu|menú de usuario|user menu)$/i).filter({ visible: true });
   if ((await menu.count()) && !(await page.locator("details[open]").count())) await menu.click();
+}
+
+/** Picks an option in a Select (the app's combobox, not a native select). */
+export async function chooseOption(combobox: Locator, label: string | RegExp) {
+  await combobox.click();
+  const list = combobox.page().locator(`#${await combobox.getAttribute("aria-controls")}`);
+  await list.getByRole("option", { name: label, exact: typeof label === "string" }).click();
+  // The combobox may be renamed by the choice (language), so check the list instead.
+  await expect(list).toBeHidden();
 }
 
 export async function signOut(page: Page) {

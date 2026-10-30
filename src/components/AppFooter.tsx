@@ -2,7 +2,6 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
 import { ImfaheAcknowledgement } from "./ImfaheAcknowledgement";
-import { LanguageSwitcher } from "./LanguageSwitcher";
 
 const LINK =
   "rounded-sm text-fg underline decoration-neutral-400 underline-offset-2 hover:decoration-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus";
@@ -20,7 +19,6 @@ export async function AppFooter() {
           <Link href="/acerca#privacidad" className={LINK}>
             {t("privacy.link")}
           </Link>
-          <LanguageSwitcher />
         </div>
       </div>
     </footer>
