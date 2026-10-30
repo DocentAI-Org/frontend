@@ -39,6 +39,23 @@ export interface paths {
         patch: operations["update_me_v1_me_patch"];
         trace?: never;
     };
+    "/v1/error-types": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** The error taxonomy used to classify exercise mistakes */
+        get: operations["list_error_types_v1_error_types_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/admin/users": {
         parameters: {
             query?: never;
@@ -793,8 +810,8 @@ export interface paths {
         get: operations["list_submissions_v1_student_courses__course_id__submissions_get"];
         put?: never;
         /**
-         * Submit a worked exercise (stub feedback in v1)
-         * @description Stores the submission, its citations and a learning-record entry, and counts toward the daily allowance. The feedback content is a fixed placeholder until the error taxonomy is agreed (`is_stub: true`).
+         * Submit a worked exercise and get feedback on the mistake
+         * @description The tutor checks the answer against the course material: verdict, first mistake, error type (`GET /v1/error-types`), course topic and a cited explanation. Mistakes with a type go to the learning record. Exercises the material does not cover are `not_assessed`. Counts toward the daily allowance, except when the tutor is unavailable (503). `is_stub` is always false and will be removed.
          */
         post: operations["submit_exercise_v1_student_courses__course_id__submissions_post"];
         delete?: never;
@@ -1212,6 +1229,26 @@ export interface components {
         ErrorResponse: {
             error: components["schemas"]["ErrorBody"];
         };
+        /** ErrorTaxonomy */
+        ErrorTaxonomy: {
+            /**
+             * Provisional
+             * @description True while the taxonomy is the technical team's draft (specs/003).
+             */
+            provisional: boolean;
+            /** Items */
+            items: components["schemas"]["ErrorTypeView"][];
+        };
+        /** ErrorTypeView */
+        ErrorTypeView: {
+            /**
+             * Code
+             * @description Stable identifier stored in the learning record.
+             */
+            code: string;
+            label: components["schemas"]["Localized"];
+            description: components["schemas"]["Localized"];
+        };
         /** EvaluationItem */
         EvaluationItem: {
             /**
@@ -1333,6 +1370,13 @@ export interface components {
              * Format: date-time
              */
             created_at: string;
+        };
+        /** Localized */
+        Localized: {
+            /** Es */
+            es: string;
+            /** En */
+            en: string;
         };
         /** Me */
         Me: {
@@ -1661,7 +1705,7 @@ export interface components {
              * Verdict
              * @enum {string}
              */
-            verdict: "correct" | "partially_correct" | "incorrect";
+            verdict: "correct" | "partially_correct" | "incorrect" | "not_assessed";
             /** Mistake Location */
             mistake_location: string | null;
             /** Error Type */
@@ -1681,7 +1725,7 @@ export interface components {
             saved_to_record: boolean;
             /**
              * Is Stub
-             * @description True while feedback is a fixed placeholder.
+             * @description Always false since real feedback (specs/003); to be removed.
              */
             is_stub: boolean;
             correction: components["schemas"]["Correction"] | null;
@@ -1868,7 +1912,7 @@ export interface components {
              * Verdict
              * @enum {string}
              */
-            verdict: "correct" | "partially_correct" | "incorrect";
+            verdict: "correct" | "partially_correct" | "incorrect" | "not_assessed";
             /** Mistake Location */
             mistake_location: string | null;
             /** Error Type */
@@ -1888,7 +1932,7 @@ export interface components {
             saved_to_record: boolean;
             /**
              * Is Stub
-             * @description True while feedback is a fixed placeholder.
+             * @description Always false since real feedback (specs/003); to be removed.
              */
             is_stub: boolean;
             correction: components["schemas"]["Correction"] | null;
@@ -2190,6 +2234,44 @@ export interface operations {
             };
             /** @description Unprocessable Entity */
             422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    list_error_types_v1_error_types_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorTaxonomy"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -5713,6 +5795,15 @@ export interface operations {
             };
             /** @description Too Many Requests */
             429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
                 headers: {
                     [name: string]: unknown;
                 };
