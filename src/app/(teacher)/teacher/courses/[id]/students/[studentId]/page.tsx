@@ -81,7 +81,7 @@ async function WhyFlagged({ risk }: { risk: Schemas["StudentRisk"] }) {
       </div>
       <p className="flex items-start gap-2 text-sm text-fg-muted">
         <Icon name="info" className="mt-0.5 size-4 shrink-0" />
-        <span>{td("provisional")}</span>
+        <span>{t("provisional")}</span>
       </p>
     </section>
   );

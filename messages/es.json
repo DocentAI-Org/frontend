@@ -870,7 +870,8 @@
       "colWeek": "Semana",
       "colMessages": "Mensajes",
       "colExercises": "Ejercicios",
-      "noActivity": "Sin actividad todavía"
+      "noActivity": "Sin actividad todavía",
+      "provisional": "Los criterios son provisionales: el equipo educativo todavía los está revisando."
     },
     "shell": {
       "nav": {
