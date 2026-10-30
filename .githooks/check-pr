@@ -26,7 +26,19 @@ if [ -n "$feature" ] && ! printf '%s' "$PR_BODY" | grep -q "specs/$feature/spec.
   fail "Feature PRs must link specs/$feature/spec.md in the description."
 fi
 
-# 4. Every commit in the branch follows the commit rules.
+# 4. The description fills the sections reviewers need (pull_request_template.md). Template
+#    comments do not count as content. Dependabot writes its own description.
+section_text() {
+  printf '%s\n' "$PR_BODY" | perl -0pe 's/\r//g; s/<!--.*?-->//gs' |
+    awk -v heading="$1" 'index($0, "## ") == 1 { inside = (substr($0, 4) == heading); next } inside && NF'
+}
+if ! [[ "$PR_BRANCH" =~ ^dependabot/ ]]; then
+  for heading in "Summary" "How to verify"; do
+    [ -n "$(section_text "$heading")" ] || fail "The description needs a '## $heading' section with content (see the PR template)."
+  done
+fi
+
+# 5. Every commit in the branch follows the commit rules.
 while read -r sha; do
   message_file="$(mktemp)"
   git log -1 --format=%B "$sha" > "$message_file"
