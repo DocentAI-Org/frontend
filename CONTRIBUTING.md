@@ -37,5 +37,10 @@ The hooks in `.githooks/` are mirrored in the backend repository: change both to
   format (a task ID is not required in the title).
 - Feature PRs link `specs/NNN-name/spec.md` in the description; the template lists the rest:
   prototype pages, checklists, Vercel preview and pedagogy review.
+- The description follows the template: summary, type, spec, what changes, screenshots, how to
+  verify, dependencies and merge order, risks and rollback, checks, and known gaps. CI fails if
+  "Summary" or "How to verify" is empty. Write "None" or "n/a" in a section that does not apply.
+- "How to verify" is written for a reviewer who has not followed the work: setup (and whether
+  the backend is needed), the commands to run, and the manual steps with the expected result.
 
 `git commit --no-verify` skips the local hooks; CI still checks every commit of the PR.
