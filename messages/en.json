@@ -223,7 +223,11 @@
       },
       "masteryBasis": "Because you solved {right} of your last {total} exercises on this topic correctly.",
       "masteryBasisTeacher": "Because they solved {right} of their last {total} exercises on this topic correctly.",
-      "times": "{count, plural, one {# time} other {# times}}"
+      "times": "{count, plural, one {# time} other {# times}}",
+      "provisional": "The error types are provisional: the education team is still reviewing them.",
+      "byTopic": "Mistakes by topic",
+      "noTopic": "No topic",
+      "topicDeleted": "(topic deleted)"
     },
     "correction": {
       "reviewed": "Reviewed by your teacher",
@@ -393,7 +397,8 @@
       "send": "Send exercise",
       "steps": "Your solution, step by step",
       "stepsHelp": "Write each step on its own line.",
-      "title": "Submit an exercise"
+      "title": "Submit an exercise",
+      "checking": "Checking your exercise…"
     },
     "feedback": {
       "askTutor": "Ask the tutor",
@@ -418,10 +423,10 @@
       "verdict": {
         "correct": "Correct",
         "partially_correct": "Partly correct",
-        "incorrect": "Incorrect"
+        "incorrect": "Incorrect",
+        "not_assessed": "Not assessed"
       },
       "mistakeLabel": "Where the mistake is:",
-      "stubNotice": "Automatic feedback is still being prepared: this result is provisional and your teacher can review it.",
       "explanationTitle": "Explanation"
     },
     "guided": {
@@ -493,7 +498,10 @@
       "errors": "See my mistakes",
       "detailTitle": "Most frequent mistakes on this topic",
       "backToAll": "Back to all topics",
-      "quizzes": "{count, plural, one {# quiz done} other {# quizzes done}}"
+      "quizzes": "{count, plural, one {# quiz done} other {# quizzes done}}",
+      "mistakesLead": "The mistakes in your exercises, by topic and type. Your teacher sees this too.",
+      "noMistakesTitle": "No mistakes recorded yet",
+      "noMistakesBody": "When you send an exercise and the tutor finds a mistake, it appears here with its type and topic."
     },
     "quiz": {
       "adaptive": "The difficulty adapts to your answers, and it doesn't count toward your grade.",
@@ -937,7 +945,11 @@
       "notStarted": "No activity on this topic yet.",
       "sessions": "{count, plural, one {# session} other {# sessions}}",
       "exercises": "{count, plural, one {# exercise} other {# exercises}}",
-      "quizzes": "{count, plural, one {# quiz} other {# quizzes}}"
+      "quizzes": "{count, plural, one {# quiz} other {# quizzes}}",
+      "mistakesLead": "The mistakes in their exercises, by topic and type. Each example opens the feedback.",
+      "noMistakesTitle": "{name} has no recorded mistakes yet",
+      "noMistakesBody": "When they send exercises with mistakes, they appear here with their type and topic.",
+      "backToCourse": "Back to the course"
     },
     "topics": {
       "pageTitle": "Course topics",

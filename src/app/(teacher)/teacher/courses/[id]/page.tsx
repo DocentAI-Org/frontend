@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { getFormatter, getTranslations } from "next-intl/server";
 import { headers } from "next/headers";
 
@@ -136,7 +137,12 @@ export default async function TeacherCoursePage({
             {students.data.items.map((student) => (
               <li key={student.student_id} className="flex flex-wrap items-center justify-between gap-4 py-4">
                 <div className="flex flex-col gap-1">
-                  <span className="font-semibold text-fg">{student.display_name}</span>
+                  <Link
+                    href={routes.teacherStudent(id, student.student_id)}
+                    className="w-fit rounded-sm font-semibold text-fg underline decoration-neutral-400 underline-offset-2 hover:decoration-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+                  >
+                    {student.display_name}
+                  </Link>
                   <span className="text-sm text-fg-muted tabular-nums">
                     {t("teacher.course.students.joined", {
                       date: format.dateTime(new Date(student.joined_at), { dateStyle: "long" })

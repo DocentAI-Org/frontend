@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
-import { getFormatter, getTranslations } from "next-intl/server";
+import Link from "next/link";
+import { getFormatter, getLocale, getTranslations } from "next-intl/server";
 
 import { AccessDenied } from "@/components/AccessDenied";
 import { LinkButton } from "@/components/Button";
 import { CitationNotes } from "@/components/CitationNotes";
 import { ErrorState } from "@/components/ErrorState";
 import { Icon } from "@/components/Icon";
+import { errorTypeLabel } from "@/components/LearningRecord";
 import { PageHeader } from "@/components/PageHeader";
-import { getSubmission } from "@/lib/api/exercises";
+import { getErrorTypes, getSubmission } from "@/lib/api/exercises";
 import { routes } from "@/lib/routes";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -18,15 +20,17 @@ export async function generateMetadata(): Promise<Metadata> {
 const VERDICT_STYLE = {
   correct: "border-success-300 bg-success-50 text-success-800",
   partially_correct: "border-warning-300 bg-warning-50 text-warning-900",
-  incorrect: "border-danger-200 bg-danger-50 text-danger-700"
+  incorrect: "border-danger-200 bg-danger-50 text-danger-700",
+  not_assessed: "border-border-strong bg-surface text-fg"
 } as const;
 
-/** Exercise feedback (#12, 001 US6 AS3, AS4, AS7; stub notice per deviation D2). */
+/** Exercise feedback (#12, 001 US6 AS3, AS4, AS7; real feedback since spec 005). */
 export default async function FeedbackPage({ params }: { params: Promise<{ id: string; submissionId: string }> }) {
   const { id, submissionId } = await params;
   const t = await getTranslations();
   const format = await getFormatter();
-  const submission = await getSubmission(id, submissionId);
+  const locale = await getLocale();
+  const [submission, taxonomy] = await Promise.all([getSubmission(id, submissionId), getErrorTypes()]);
   if (!submission.ok) {
     return submission.status === 404 ? <AccessDenied reason="not-found" home="/student/courses" /> : <ErrorState code={submission.code} />;
   }
@@ -34,12 +38,6 @@ export default async function FeedbackPage({ params }: { params: Promise<{ id: s
   return (
     <div className="flex flex-col gap-6">
       <PageHeader title={t("student.feedback.title")} back={{ href: "/student/courses", label: t("student.feedback.backToCourses") }} />
-      {s.is_stub && (
-        <p role="note" className="flex items-start gap-2 rounded-lg border border-border bg-surface p-4 text-sm text-fg-muted">
-          <Icon name="info" className="mt-0.5 size-4 shrink-0" />
-          <span>{t("student.feedback.stubNotice")}</span>
-        </p>
-      )}
       <section aria-labelledby="exercise-title" className="flex flex-col gap-2 rounded-xl border border-border bg-surface-raised p-6">
         <h2 id="exercise-title" className="text-sm font-semibold text-fg-muted">
           {t("student.exercise.problem")}
@@ -69,7 +67,7 @@ export default async function FeedbackPage({ params }: { params: Promise<{ id: s
             {s.error_type && (
               <div className="flex flex-wrap gap-1">
                 <dt className="text-fg-muted">{t("common.record.errorTypeLabel")}</dt>
-                <dd className="font-semibold">{s.error_type}</dd>
+                <dd className="font-semibold">{errorTypeLabel(taxonomy.ok ? taxonomy.data : null, s.error_type, locale)}</dd>
               </div>
             )}
             {s.topic_name && (
@@ -80,10 +78,13 @@ export default async function FeedbackPage({ params }: { params: Promise<{ id: s
             )}
           </dl>
           {s.saved_to_record && (
-            <p className="inline-flex items-center gap-2 text-sm font-semibold text-success-800">
+            <Link
+              href={routes.studentProgress(id)}
+              className="inline-flex w-fit items-center gap-2 rounded-sm text-sm font-semibold text-success-800 underline decoration-success-300 underline-offset-2 hover:decoration-success-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+            >
               <Icon name="check" />
               <span>{t("common.record.saved")}</span>
-            </p>
+            </Link>
           )}
           {s.explanation_kind === "no_source" ? (
             <div className="flex gap-4 rounded-lg border border-info-200 bg-info-50 px-4 py-4" data-component="NoSourceNotice">
