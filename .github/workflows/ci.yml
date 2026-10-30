@@ -5,7 +5,32 @@ on:
   push:
     branches: [main]
 
+# A new push to a pull request cancels its previous run; runs on main always finish.
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
+  # Which E2E suites the change needs (scripts/ci-changes.sh). Pushes to main run everything.
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      app: ${{ steps.filter.outputs.app }}
+      prototype: ${{ steps.filter.outputs.prototype }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - id: filter
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          if [ "${{ github.event_name }}" != "pull_request" ]; then
+            printf 'app=true\nprototype=true\n' | tee -a "$GITHUB_OUTPUT"
+          else
+            git diff --name-only "$BASE_SHA" HEAD | scripts/ci-changes.sh | tee -a "$GITHUB_OUTPUT"
+          fi
+
   checks:
     runs-on: ubuntu-latest
     steps:
@@ -19,18 +44,59 @@ jobs:
       - run: npm run lint
       - run: npm run typecheck
       - run: npm test
+      - run: npm run build
+
+  # App E2E + axe against the typed mock backend. Each shard starts its own mock and app, so
+  # the shards share no state.
+  e2e-app:
+    needs: changes
+    if: needs.changes.outputs.app == 'true'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
       - run: npx playwright install --with-deps chromium webkit
-      - run: npm run test:e2e
-        env:
-          CI: "true"
-      # App E2E + axe against the typed mock backend (starts the mock and the app itself).
-      - run: npm run test:e2e:app
+      - run: npx playwright test -c playwright.app.config.ts --shard=${{ matrix.shard }}/3
         env:
           CI: "true"
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name: playwright-report
+          name: playwright-report-app-${{ matrix.shard }}
           path: playwright-report/
           retention-days: 7
-      - run: npm run build
+
+  # The static prototype in public/prototype/: only when it, its tests or what serves it change.
+  e2e-prototype:
+    needs: changes
+    if: needs.changes.outputs.prototype == 'true'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium webkit
+      - run: npx playwright test --shard=${{ matrix.shard }}/3
+        env:
+          CI: "true"
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report-prototype-${{ matrix.shard }}
+          path: playwright-report/
+          retention-days: 7

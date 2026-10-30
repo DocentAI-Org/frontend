@@ -39,3 +39,15 @@ The hooks in `.githooks/` are mirrored in the backend repository: change both to
   prototype pages, checklists, Vercel preview and pedagogy review.
 
 `git commit --no-verify` skips the local hooks; CI still checks every commit of the PR.
+
+## CI
+
+`CI` runs lint, types, unit tests and the build on every pull request, and the E2E suites only
+where a change can affect them (`scripts/ci-changes.sh`):
+
+- **App E2E** (3 shards): anything but documentation (`specs/`, `docs/`, `*.md`), repository
+  tooling and the prototype.
+- **Prototype E2E** (3 shards): `public/prototype/`, its tests, dependencies, Next.js and Vercel
+  config, `src/proxy.ts` and the workflow itself.
+
+Pushes to `main` run everything.
