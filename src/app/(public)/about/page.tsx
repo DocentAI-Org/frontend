@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
-import { Icon } from "@/components/Icon";
+import { BackLink } from "@/components/BackLink";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("about");
@@ -14,13 +13,7 @@ export default async function AboutPage() {
   const email = process.env.PRIVACY_CONTACT_EMAIL ?? "privacidad@example.org";
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-6">
-      <Link
-        href="/sign-in"
-        className="inline-flex w-fit items-center gap-1 rounded-sm bg-surface text-sm font-semibold text-fg-muted hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
-      >
-        <Icon name="chevron-left" />
-        <span>{t("about.back")}</span>
-      </Link>
+      <BackLink>{t("about.back")}</BackLink>
       <article className="flex flex-col gap-10 rounded-xl border border-border bg-surface-raised p-6 sm:p-10">
         <header className="border-b-2 border-neutral-900 pb-6">
           <h1 className="text-4xl font-semibold text-fg sm:text-5xl">{t("about.title")}</h1>

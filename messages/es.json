@@ -1,6 +1,6 @@
 {
   "about": {
-    "back": "Volver al inicio de sesión",
+    "back": "Volver",
     "contact": "Para cualquier duda sobre tus datos, escribe a {email}.",
     "fundingTitle": "Financiación",
     "lead": "DocentAI es un tutor de inteligencia artificial que responde solo con el material que valida cada profesor/a. Así, el profesorado mantiene el control de lo que se enseña.",
@@ -203,10 +203,8 @@
       "loading": "Cargando…"
     },
     "theme": {
-      "label": "Tema",
-      "system": "Tema del sistema",
-      "light": "Tema claro",
-      "dark": "Tema oscuro"
+      "toDark": "Cambiar a tema oscuro",
+      "toLight": "Cambiar a tema claro"
     },
     "decision": {
       "why": "¿Por qué?",

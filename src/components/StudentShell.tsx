@@ -1,5 +1,4 @@
 import type { Route } from "next";
-import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import type { ReactNode } from "react";
 
@@ -10,6 +9,7 @@ import { Icon } from "./Icon";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { type NavItem, NavLinks } from "./NavLinks";
 import { SkipLink } from "./SkipLink";
+import { ThemeSwitcher } from "./ThemeSwitcher";
 
 /**
  * The student shell of the prototype (partials/shell-student.html): header tabs and a user menu,
@@ -35,13 +35,9 @@ export async function StudentShell({
       <header className="sticky top-0 z-40">
         <div className="border-b border-border-strong bg-surface-raised">
           <div className="mx-auto flex h-16 max-w-6xl items-stretch gap-6 px-4 sm:px-6">
-            <Link
-              href={home}
-              aria-label={t("common.a11y.homeLink")}
-              className="flex shrink-0 items-center gap-2 self-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
-            >
-              <Brand />
-            </Link>
+            <div className="flex self-center">
+              <Brand href={home} />
+            </div>
             <nav aria-label={t("common.a11y.mainNav")} className="hidden items-end md:flex">
               <NavLinks items={nav} variant="tabs" />
             </nav>
@@ -58,8 +54,9 @@ export async function StudentShell({
               <div className="absolute right-0 mt-2 w-64 rounded-xl border border-border bg-surface-raised p-2 shadow-lg">
                 <p className="px-4 pt-2 font-semibold text-fg sm:hidden">{userName}</p>
                 <p className="px-4 pt-1 pb-2 text-sm text-fg-muted">{roleLabel}</p>
-                <div className="mx-1 mb-2">
+                <div className="mx-1 mb-2 flex gap-2">
                   <LanguageSwitcher stretch />
+                  <ThemeSwitcher />
                 </div>
                 <SignOutButton />
               </div>
