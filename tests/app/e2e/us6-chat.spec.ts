@@ -177,7 +177,7 @@ test.describe("US6 student chat", () => {
     await page.getByRole("button", { name: /empezar/i }).click();
     await expect(page.getByLabel(/escribe tu pregunta/i)).toBeVisible();
 
-    await page.goto(`/alumno/cursos/${courseId}`);
+    await page.goto(`/student/courses/${courseId}`);
     await expect(page.getByRole("heading", { name: /antes de empezar/i })).toHaveCount(0);
   });
 
@@ -195,10 +195,10 @@ test.describe("US6 student chat", () => {
   scenario("002-US6-AS3", "a conversation can be reopened from the course", async ({ page, request }) => {
     const courseId = await classroom(request, page);
     await ask(page, COVERED);
-    await expect(page).toHaveURL(/\/conversaciones\//);
+    await expect(page).toHaveURL(/\/conversations\//);
     const conversationUrl = page.url();
 
-    await page.goto(`/alumno/cursos/${courseId}`);
+    await page.goto(`/student/courses/${courseId}`);
     await expect(page).toHaveURL(conversationUrl);
     await expect(page.getByText(COVERED)).toBeVisible();
   });

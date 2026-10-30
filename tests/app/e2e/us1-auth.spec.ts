@@ -3,7 +3,7 @@ import { USERS, chooseOption, expect, expectAccessible, openMenuIfNeeded, scenar
 
 test.describe("US1 sign-in and role areas", () => {
   scenario("001-US7-AS1", "sign-in shows identity, form, IMFAHE and privacy", async ({ page }) => {
-    await page.goto("/entrar");
+    await page.goto("/sign-in");
 
     await expect(page.getByRole("heading", { level: 1, name: /bienvenida a docentai/i })).toBeVisible();
     await expect(page.getByLabel(/correo electrónico o código/i)).toBeVisible();
@@ -14,7 +14,7 @@ test.describe("US1 sign-in and role areas", () => {
 
   scenario("001-US7-AS2", "each role lands on its own home", async ({ page }) => {
     await signIn(page, USERS.teacher);
-    await expect(page).toHaveURL(/\/profesor\/cursos$/);
+    await expect(page).toHaveURL(/\/teacher\/courses$/);
     await openMenuIfNeeded(page);
     await expect(page.getByRole("navigation", { name: /navegación principal/i }).filter({ visible: true })).toBeVisible();
     await expect(page.getByText("Prof. Elena Ruiz").filter({ visible: true })).toBeVisible();
@@ -22,7 +22,7 @@ test.describe("US1 sign-in and role areas", () => {
 
     await signOut(page);
     await signIn(page, USERS.admin);
-    await expect(page).toHaveURL(/\/admin\/usuarios$/);
+    await expect(page).toHaveURL(/\/admin\/users$/);
   });
 
   scenario("001-US7-AS3", "invalid credentials show a non-revealing error", async ({ page }) => {
@@ -35,7 +35,7 @@ test.describe("US1 sign-in and role areas", () => {
 
   scenario("001-US7-AS4", "first sign-in of a student asks for study consent", async ({ page }) => {
     await signIn(page, USERS.student);
-    await expect(page).toHaveURL(/\/alumno\/consentimiento/);
+    await expect(page).toHaveURL(/\/student\/consent/);
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
     await expectAccessible(page);
 
@@ -44,55 +44,55 @@ test.describe("US1 sign-in and role areas", () => {
     await expect(page.getByRole("heading", { level: 1, name: /cómo funciona el tutor/i })).toBeVisible();
     await expectAccessible(page);
     await page.getByRole("link", { name: /entendido, continuar/i }).click();
-    await expect(page).toHaveURL(/\/alumno\/cursos$/);
+    await expect(page).toHaveURL(/\/student\/courses$/);
   });
 
   scenario("001-US7-AS5", "another role's page shows access denied", async ({ page }) => {
     await signIn(page, USERS.teacher);
-    await expect(page).toHaveURL(/\/profesor\/cursos$/);
+    await expect(page).toHaveURL(/\/teacher\/courses$/);
 
-    await page.goto("/admin/usuarios");
+    await page.goto("/admin/users");
 
     await expect(page.getByRole("heading", { level: 1, name: /no tienes acceso/i })).toBeVisible();
     await page.getByRole("link", { name: /ir a mi inicio/i }).click();
-    await expect(page).toHaveURL(/\/profesor\/cursos$/);
+    await expect(page).toHaveURL(/\/teacher\/courses$/);
   });
 
   scenario("001-US7-AS7", "an expired session returns to the same page after signing in", async ({ page, mock }) => {
     await signIn(page, USERS.teacher);
-    await expect(page).toHaveURL(/\/profesor\/cursos$/);
+    await expect(page).toHaveURL(/\/teacher\/courses$/);
     await mock.faults(["expire_sessions"]);
 
-    await page.goto("/profesor/cursos/nuevo");
+    await page.goto("/teacher/courses/new");
 
-    await expect(page).toHaveURL(/\/entrar\?expirada=1/);
+    await expect(page).toHaveURL(/\/sign-in\?expired=1/);
     await expect(page.getByRole("alert").filter({ hasText: /sesión ha caducado/i })).toBeVisible();
     await mock.faults([]);
     await page.getByLabel(/correo electrónico o código/i).fill(USERS.teacher);
     await page.getByLabel(/^contraseña/i).fill("docentai-dev-password");
     await page.getByRole("button", { name: /^entrar$/i }).click();
-    await expect(page).toHaveURL(/\/profesor\/cursos\/nuevo$/);
+    await expect(page).toHaveURL(/\/teacher\/courses\/new$/);
   });
 
   scenario("002-US1-AS1", "a student signs in with a pseudonymous code", async ({ page }) => {
     await signIn(page, USERS.pseudonymous);
 
-    await expect(page).toHaveURL(/\/alumno\/consentimiento/);
+    await expect(page).toHaveURL(/\/student\/consent/);
   });
 
   scenario("002-US1-AS2", "signed-out visitors go to sign-in and come back", async ({ page }) => {
-    await page.goto("/profesor/cursos/nuevo");
-    await expect(page).toHaveURL(/\/entrar\?next=%2Fprofesor%2Fcursos%2Fnuevo/);
+    await page.goto("/teacher/courses/new");
+    await expect(page).toHaveURL(/\/sign-in\?next=%2Fteacher%2Fcourses%2Fnew/);
 
     await page.getByLabel(/correo electrónico o código/i).fill(USERS.teacher);
     await page.getByLabel(/^contraseña/i).fill("docentai-dev-password");
     await page.getByRole("button", { name: /^entrar$/i }).click();
 
-    await expect(page).toHaveURL(/\/profesor\/cursos\/nuevo$/);
+    await expect(page).toHaveURL(/\/teacher\/courses\/new$/);
   });
 
   scenario("002-US1-AS5", "the language choice is applied and saved to the profile", async ({ page }) => {
-    await page.goto("/entrar");
+    await page.goto("/sign-in");
     const language = page.getByRole("banner").getByRole("combobox", { name: "Idioma" });
     await language.click();
     await expect(page.getByRole("listbox", { name: "Idioma" })).toBeVisible();
@@ -111,9 +111,9 @@ test.describe("US1 sign-in and role areas", () => {
     await expect(page.getByRole("button", { name: /sign out/i }).filter({ visible: true })).toBeVisible();
 
     await page.getByRole("button", { name: /sign out/i }).filter({ visible: true }).click();
-    await expect(page).toHaveURL(/\/entrar/);
+    await expect(page).toHaveURL(/\/sign-in/);
     await page.context().clearCookies();
-    await page.goto("/entrar");
+    await page.goto("/sign-in");
     await page.getByLabel(/correo electrónico o código/i).fill(USERS.teacher);
     await page.getByLabel(/^contraseña/i).fill("docentai-dev-password");
     await page.getByRole("button", { name: /^entrar$/i }).click();

@@ -20,7 +20,7 @@ async function submit(page: Page, problem = COVERED) {
 
 test.describe("US7 exercises", () => {
   scenario("001-US6-AS1", "the student reviews the exercise before sending", async ({ page, request }) => {
-    await classroom(request, page, { path: "/ejercicio" });
+    await classroom(request, page, { path: "/exercise" });
     await expectAccessible(page);
     await fill(page, COVERED);
 
@@ -34,18 +34,18 @@ test.describe("US7 exercises", () => {
   });
 
   scenario("001-US6-AS2", "the feedback stays available after leaving", async ({ page, request }) => {
-    await classroom(request, page, { path: "/ejercicio" });
+    await classroom(request, page, { path: "/exercise" });
     await submit(page);
     const url = page.url();
 
-    await page.goto("/alumno/cursos");
+    await page.goto("/student/courses");
     await page.goto(url);
 
     await expect(page.getByRole("heading", { level: 1, name: /corrección del ejercicio/i })).toBeVisible();
   });
 
   scenario("001-US6-AS3", "feedback names the result, the mistake, its type and topic, with citations", async ({ page, request }) => {
-    await classroom(request, page, { path: "/ejercicio" });
+    await classroom(request, page, { path: "/exercise" });
     await submit(page);
 
     await expect(page.getByText(/^incorrecta$/i)).toBeVisible();
@@ -57,7 +57,7 @@ test.describe("US7 exercises", () => {
   });
 
   scenario("001-US6-AS4", "an exercise outside the material uses the not-covered pattern", async ({ page, request }) => {
-    await classroom(request, page, { path: "/ejercicio" });
+    await classroom(request, page, { path: "/exercise" });
     await submit(page, "Calcula la derivada del seno");
 
     await expect(page.locator('[data-component="NoSourceNotice"]')).toBeVisible();
@@ -65,7 +65,7 @@ test.describe("US7 exercises", () => {
   });
 
   scenario("001-US6-AS5", "an empty submission explains how to fix it", async ({ page, request }) => {
-    await classroom(request, page, { path: "/ejercicio" });
+    await classroom(request, page, { path: "/exercise" });
 
     await page.getByRole("button", { name: /revisar antes de enviar/i }).click();
 
@@ -74,7 +74,7 @@ test.describe("US7 exercises", () => {
   });
 
   scenario("001-US6-AS6", "at the daily limit the same limit message appears", async ({ page, request }) => {
-    await classroom(request, page, { path: "/ejercicio" });
+    await classroom(request, page, { path: "/exercise" });
     await request.post(`${MOCK}/__test/usage`, { data: { email: USERS.student, used: 30 } });
     await page.reload();
 
@@ -84,7 +84,7 @@ test.describe("US7 exercises", () => {
   });
 
   scenario("002-US7-AS1", "stub feedback carries a discreet provisional notice", async ({ page, request }) => {
-    await classroom(request, page, { path: "/ejercicio" });
+    await classroom(request, page, { path: "/exercise" });
     await submit(page);
 
     await expect(page.getByRole("note").filter({ hasText: /todavía se está preparando/i })).toBeVisible();

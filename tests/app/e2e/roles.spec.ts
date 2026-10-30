@@ -16,29 +16,29 @@ async function seed(request: APIRequestContext): Promise<Ids> {
 
 const ROUTES = {
   student: (i: Ids) => [
-    "/alumno/cursos",
-    "/alumno/unirse",
-    "/alumno/perfil",
-    `/alumno/cursos/${i.course}`,
-    `/alumno/cursos/${i.course}/conversaciones/${i.conversation}`,
-    `/alumno/cursos/${i.course}/ejercicio`,
-    `/alumno/cursos/${i.course}/ejercicios/${i.submission}`
+    "/student/courses",
+    "/student/join",
+    "/student/profile",
+    `/student/courses/${i.course}`,
+    `/student/courses/${i.course}/conversations/${i.conversation}`,
+    `/student/courses/${i.course}/exercise`,
+    `/student/courses/${i.course}/exercises/${i.submission}`
   ],
   teacher: (i: Ids) => [
-    "/profesor/cursos",
-    "/profesor/cursos/nuevo",
-    `/profesor/cursos/${i.course}`,
-    `/profesor/cursos/${i.course}/material`,
-    `/profesor/cursos/${i.course}/material/${i.document}`,
-    `/profesor/cursos/${i.course}/tutor`,
-    `/profesor/cursos/${i.course}/temas`,
-    `/profesor/cursos/${i.course}/temas/asignacion`,
-    `/profesor/cursos/${i.course}/conversaciones`,
-    `/profesor/cursos/${i.course}/conversaciones/${i.conversation}`,
-    `/profesor/cursos/${i.course}/ejercicios/${i.submission}`,
-    `/profesor/cursos/${i.course}/correcciones`
+    "/teacher/courses",
+    "/teacher/courses/new",
+    `/teacher/courses/${i.course}`,
+    `/teacher/courses/${i.course}/material`,
+    `/teacher/courses/${i.course}/material/${i.document}`,
+    `/teacher/courses/${i.course}/tutor`,
+    `/teacher/courses/${i.course}/topics`,
+    `/teacher/courses/${i.course}/topics/assignment`,
+    `/teacher/courses/${i.course}/conversations`,
+    `/teacher/courses/${i.course}/conversations/${i.conversation}`,
+    `/teacher/courses/${i.course}/exercises/${i.submission}`,
+    `/teacher/courses/${i.course}/corrections`
   ],
-  admin: () => ["/admin/usuarios", "/admin/profesores/nuevo", "/admin/estudiantes/nuevos", "/admin/cursos"]
+  admin: () => ["/admin/users", "/admin/teachers/new", "/admin/students/new", "/admin/courses"]
 };
 
 async function expectDenied(page: Page, routes: string[], variant: string) {
@@ -53,7 +53,7 @@ test.describe("Role separation", () => {
     const ids = await seed(request);
     for (const route of [...ROUTES.student(ids), ...ROUTES.teacher(ids), ...ROUTES.admin()]) {
       await page.goto(route);
-      await expect(page, route).toHaveURL(/\/entrar\?next=/);
+      await expect(page, route).toHaveURL(/\/sign-in\?next=/);
     }
   });
 

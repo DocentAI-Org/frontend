@@ -10,10 +10,10 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   return (
     <AppShell
       variant="admin"
-      home="/admin/usuarios"
+      home="/admin/users"
       nav={[
-        { href: "/admin/usuarios", label: t("nav.users"), icon: "users" },
-        { href: "/admin/cursos", label: t("nav.courses"), icon: "book-open" }
+        { href: "/admin/users", label: t("nav.users"), icon: "users" },
+        { href: "/admin/courses", label: t("nav.courses"), icon: "book-open" }
       ]}
       userName={access.me.display_name}
       roleLabel={t("role")}

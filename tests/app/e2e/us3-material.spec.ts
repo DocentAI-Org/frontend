@@ -18,7 +18,7 @@ Se divide entre el número que multiplica a la incógnita.
 
 async function courseMaterial(page: Page) {
   await signIn(page, USERS.teacher);
-  await page.goto("/profesor/cursos/nuevo");
+  await page.goto("/teacher/courses/new");
   await page.getByLabel(/nombre del curso/i).fill("Álgebra");
   await page.getByRole("button", { name: /crear curso/i }).click();
   await expect(page.getByRole("heading", { level: 1, name: "Álgebra" })).toBeVisible();
@@ -157,6 +157,6 @@ test.describe("US3 material", () => {
     const row = await readyDocument(page);
 
     const link = row.getByRole("link", { name: /ver original/i });
-    await expect(link).toHaveAttribute("href", /\/archivo$/);
+    await expect(link).toHaveAttribute("href", /\/file$/);
   });
 });

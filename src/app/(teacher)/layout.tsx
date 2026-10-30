@@ -10,8 +10,8 @@ export default async function TeacherLayout({ children }: { children: React.Reac
   return (
     <AppShell
       variant="teacher"
-      home="/profesor/cursos"
-      nav={[{ href: "/profesor/cursos", label: t("nav.courses"), icon: "book-open" }]}
+      home="/teacher/courses"
+      nav={[{ href: "/teacher/courses", label: t("nav.courses"), icon: "book-open" }]}
       userName={access.me.display_name}
       roleLabel={t("role")}
     >

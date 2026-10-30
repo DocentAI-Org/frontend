@@ -23,7 +23,7 @@ npm run dev                  # http://localhost:3000
 | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | `PUBLISHABLE_KEY` from `npx supabase status -o env` in the backend repo |
 | `API_BASE_URL` | DocentAI API, called from the Next.js server only (`http://localhost:8000`) |
 | `PSEUDONYM_EMAIL_DOMAIN` | Pseudonymous students sign in with a code; their auth email is `<code>@<domain>` |
-| `PRIVACY_CONTACT_EMAIL` | Contact shown on `/acerca` |
+| `PRIVACY_CONTACT_EMAIL` | Contact shown on `/about` |
 
 To run against the real backend, start it as described in its README (Supabase, Ollama,
 `uvicorn`, `scripts/seed_dev.py`); the full walkthrough is in
@@ -45,7 +45,7 @@ To run against the real backend, start it as described in its README (Supabase, 
 
 ```text
 src/
-├── proxy.ts            # Supabase session refresh, signed-out redirect to /entrar
+├── proxy.ts            # Supabase session refresh, signed-out redirect to /sign-in
 ├── lib/api/            # typed API client (server-only), one module per area
 ├── lib/auth/           # Supabase server client, role guards, sign-in identifiers
 ├── components/         # ported prototype components (AppShell, StudentShell, …)

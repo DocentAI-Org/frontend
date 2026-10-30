@@ -66,13 +66,13 @@ export async function expectAccessible(page: Page) {
   expect(violations, report).toEqual([]);
 }
 
-/** Signs in through the form and, unless a failure is expected, waits until it has left /entrar. */
+/** Signs in through the form and, unless a failure is expected, waits until it has left /sign-in. */
 export async function signIn(page: Page, identifier: string, password = PASSWORD, { expectFailure = false } = {}) {
-  await page.goto("/entrar");
+  await page.goto("/sign-in");
   await page.getByLabel(/correo electrónico o código/i).fill(identifier);
   await page.getByLabel(/^contraseña/i).fill(password);
   await page.getByRole("button", { name: /^entrar$/i }).click();
-  if (!expectFailure) await page.waitForURL((url) => !url.pathname.startsWith("/entrar"));
+  if (!expectFailure) await page.waitForURL((url) => !url.pathname.startsWith("/sign-in"));
 }
 
 /** Opens the mobile menu (sidebar hidden at 390 px) or the student user menu, if not open yet. */
@@ -93,5 +93,5 @@ export async function chooseOption(combobox: Locator, label: string | RegExp) {
 export async function signOut(page: Page) {
   await openMenuIfNeeded(page);
   await page.getByRole("button", { name: /cerrar sesión|sign out/i }).filter({ visible: true }).click();
-  await page.waitForURL(/\/entrar/);
+  await page.waitForURL(/\/sign-in/);
 }

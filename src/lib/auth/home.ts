@@ -3,9 +3,9 @@ import type { Route } from "next";
 import type { Schemas } from "@/lib/api/client";
 
 export const ROLE_HOME: Record<Schemas["Me"]["role"], Route> = {
-  admin: "/admin/usuarios",
-  teacher: "/profesor/cursos",
-  student: "/alumno/cursos"
+  admin: "/admin/users",
+  teacher: "/teacher/courses",
+  student: "/student/courses"
 };
 
 /** Only same-site paths are followed after sign-in (no open redirects). */

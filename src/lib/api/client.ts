@@ -31,7 +31,7 @@ export async function apiClient() {
 
 async function signInAgain(): Promise<never> {
   const current = (await headers()).get(PATHNAME_HEADER) ?? "/";
-  redirect(`/entrar?expirada=1&next=${encodeURIComponent(current)}`);
+  redirect(`/sign-in?expired=1&next=${encodeURIComponent(current)}`);
 }
 
 /**

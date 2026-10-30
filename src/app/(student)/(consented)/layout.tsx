@@ -14,8 +14,8 @@ export default async function ConsentedLayout({ children }: { children: React.Re
   const consent = await getConsent();
   if (!consent.ok) return <ErrorState code={consent.code} />;
   if (!consent.data.given) {
-    const path = (await headers()).get(PATHNAME_HEADER) ?? "/alumno/cursos";
-    redirect(`/alumno/consentimiento?next=${encodeURIComponent(path)}` as Route);
+    const path = (await headers()).get(PATHNAME_HEADER) ?? "/student/courses";
+    redirect(`/student/consent?next=${encodeURIComponent(path)}` as Route);
   }
   return children;
 }
