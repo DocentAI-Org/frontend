@@ -1,5 +1,4 @@
 import type { Route } from "next";
-import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import type { ReactNode } from "react";
 
@@ -11,6 +10,7 @@ import { Icon } from "./Icon";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { type NavItem, NavLinks } from "./NavLinks";
 import { SkipLink } from "./SkipLink";
+import { ThemeSwitcher } from "./ThemeSwitcher";
 
 const SIGN_OUT =
   "flex min-h-11 w-full items-center gap-2 rounded-lg px-4 text-sm text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus";
@@ -49,15 +49,7 @@ export async function AppShell({
   children: ReactNode;
 }) {
   const t = await getTranslations("common.a11y");
-  const homeLink = (
-    <Link
-      href={home}
-      aria-label={t("homeLink")}
-      className="flex items-center gap-2 rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
-    >
-      <Brand />
-    </Link>
-  );
+  const homeLink = <Brand href={home} />;
   return (
     <div className="flex min-h-dvh flex-col bg-surface font-sans text-fg antialiased" data-component="AppShell" data-variant={variant}>
       <SkipLink />
@@ -78,8 +70,9 @@ export async function AppShell({
               <div className="my-2 border-t border-border" />
               <p className="px-4 font-semibold text-fg">{userName}</p>
               <p className="px-4 pb-2 text-sm text-fg-muted">{roleLabel}</p>
-              <div className="mx-1 mb-2">
+              <div className="mx-1 mb-2 flex flex-col gap-2">
                 <LanguageSwitcher stretch />
+                <ThemeSwitcher stretch />
               </div>
               <SignOutButton />
             </div>
@@ -97,6 +90,7 @@ export async function AppShell({
             <p className="text-sm text-fg-muted">{roleLabel}</p>
           </div>
           <LanguageSwitcher stretch />
+          <ThemeSwitcher stretch />
           <SignOutButton />
         </div>
       </aside>

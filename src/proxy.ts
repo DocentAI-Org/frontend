@@ -1,6 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { type NextRequest, NextResponse } from "next/server";
 
+import { safeNext } from "@/lib/auth/home";
 import { PATHNAME_HEADER } from "@/lib/request-path";
 
 /** Routes reachable without a session; everything else needs one. */
@@ -43,6 +44,11 @@ export async function proxy(request: NextRequest) {
     const signIn = new URL("/sign-in", request.url);
     if (pathname !== "/") signIn.searchParams.set("next", `${pathname}${search}`);
     return NextResponse.redirect(signIn);
+  }
+  // Signed-in users skip the form (spec 004 FR-005); an expired API session still needs it.
+  if (user && pathname === "/sign-in" && !request.nextUrl.searchParams.has("expired")) {
+    const target = safeNext(request.nextUrl.searchParams.get("next")) ?? "/";
+    return NextResponse.redirect(new URL(target, request.url));
   }
   return response;
 }
