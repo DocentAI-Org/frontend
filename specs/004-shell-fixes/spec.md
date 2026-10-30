@@ -16,20 +16,21 @@ screen."
 
 ## User Scenarios & Testing *(mandatory)*
 
-### User Story 1 — Choose light, dark or the system theme (Priority: P1) 🎯
+### User Story 1 — Switch between light and dark (Priority: P1) 🎯
 
-Anyone, signed in or not, can choose the system theme (default), light or dark next to the
-language selector, as in the prototype's ThemeSwitcher. The choice applies at once, survives
-reloads and sign-out, and the first paint already uses it (no flash).
+The app follows the operating system's theme until the user chooses. One button, on the same
+line as the language selector, switches to the opposite of what is shown (moon in light, sun in
+dark); that choice is saved as the user's preference, survives reloads and sign-out, and the first
+paint already uses it (no flash).
 
 **Acceptance Scenarios**:
 
-1. **Given** any page, **When** the user picks "Dark theme", **Then** the page turns dark, the
-   button is marked as pressed, and a reload keeps it dark.
-2. **Given** a dark choice, **When** the user picks "System theme", **Then** the page follows the
-   operating system again.
-3. **Given** a signed-in user, **When** they look for the switcher, **Then** it is next to the
-   language selector (sidebar on desktop, menu on mobile); on public pages, in the header.
+1. **Given** a system in light mode and no saved choice, **When** the user presses "Switch to dark
+   theme", **Then** the page turns dark and a reload keeps it dark.
+2. **Given** a system in dark mode and no saved choice, **When** the page loads, **Then** it is dark
+   and the button offers "Switch to light theme"; pressing it saves light.
+3. **Given** a signed-in user, **When** they look for the button, **Then** it is on the same line as
+   the language selector (sidebar on desktop, menu on mobile); on public pages, in the header.
 
 ### User Story 2 — The DocentAI brand takes you home (Priority: P1)
 
@@ -57,11 +58,13 @@ be selected as text.
 
 ## Requirements *(mandatory)*
 
-- **FR-001**: The theme choice MUST be stored in a cookie (`docentai-theme`: `light` or `dark`; no
-  cookie means system), read on the server to set `data-theme` on `<html>`. It is a display
-  preference, not personal data (Constitution VII).
-- **FR-002**: The switcher MUST be a group of three toggle buttons (system, light, dark) with
-  accessible names and `aria-pressed`, using the prototype's icons and labels.
+- **FR-001**: Without a saved choice the theme MUST follow the system. A choice MUST be stored in a
+  cookie (`docentai-theme`: `light` or `dark`), read on the server to set `data-theme` on `<html>`.
+  It is a display preference, not personal data (Constitution VII).
+- **FR-002**: The switcher MUST be one button whose icon and accessible name say what pressing it
+  does ("Switch to dark theme" / "Switch to light theme"), correct from the first paint whatever
+  the system theme is. This replaces the prototype's three-button ThemeSwitcher (system, light,
+  dark), which took more room for a choice users rarely change.
 - **FR-003**: The brand MUST be a single link with an accessible name, `select-none`, in every
   header.
 - **FR-004**: The about page's "Back" MUST go to the previous page in the app when there is one,

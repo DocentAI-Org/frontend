@@ -70,9 +70,9 @@ export async function AppShell({
               <div className="my-2 border-t border-border" />
               <p className="px-4 font-semibold text-fg">{userName}</p>
               <p className="px-4 pb-2 text-sm text-fg-muted">{roleLabel}</p>
-              <div className="mx-1 mb-2 flex flex-col gap-2">
+              <div className="mx-1 mb-2 flex gap-2">
                 <LanguageSwitcher stretch />
-                <ThemeSwitcher stretch />
+                <ThemeSwitcher />
               </div>
               <SignOutButton />
             </div>
@@ -89,8 +89,10 @@ export async function AppShell({
             <p className="font-semibold text-fg">{userName}</p>
             <p className="text-sm text-fg-muted">{roleLabel}</p>
           </div>
-          <LanguageSwitcher stretch />
-          <ThemeSwitcher stretch />
+          <div className="flex gap-2">
+            <LanguageSwitcher stretch />
+            <ThemeSwitcher />
+          </div>
           <SignOutButton />
         </div>
       </aside>

@@ -21,8 +21,8 @@ export default async function RootLayout({
   const locale = await getLocale();
   const theme = themeFromCookie((await cookies()).get(THEME_COOKIE)?.value);
   return (
-    // An explicit theme is set before the first paint; "system" leaves theme.css to the OS.
-    <html lang={locale} data-theme={theme === "system" ? undefined : theme}>
+    // A saved choice is set before the first paint; without one theme.css follows the system.
+    <html lang={locale} data-theme={theme}>
       <body suppressHydrationWarning>
         <NavigationTracker />
         <NextIntlClientProvider>{children}</NextIntlClientProvider>

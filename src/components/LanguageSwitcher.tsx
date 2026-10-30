@@ -17,7 +17,7 @@ export function LanguageSwitcher({ stretch = false }: { stretch?: boolean }) {
   const [pending, startTransition] = useTransition();
 
   return (
-    <div data-component="LanguageSwitcher" className={stretch ? "w-full" : "w-40"}>
+    <div data-component="LanguageSwitcher" className={stretch ? "min-w-0 flex-1" : "w-40"}>
       <Select
         aria-label={t("a11y.language")}
         value={active}

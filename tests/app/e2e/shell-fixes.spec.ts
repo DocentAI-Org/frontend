@@ -1,40 +1,52 @@
 // 004 — theme switcher, home link and navigation fixes (spec 004 US1–US3).
 import { USERS, expect, expectAccessible, openMenuIfNeeded, scenario, signIn, test } from "./helpers";
 
-const theme = (page: import("@playwright/test").Page) =>
-  page.getByRole("group", { name: "Tema" }).filter({ visible: true });
+const themeButton = (page: import("@playwright/test").Page, name: RegExp) =>
+  page.getByRole("button", { name }).filter({ visible: true });
 
 test.describe("004 US1 theme switcher", () => {
-  scenario("004-US1-AS1", "the dark theme applies at once and survives a reload", async ({ page }) => {
-    await page.goto("/sign-in");
-    await theme(page).getByRole("button", { name: "Tema oscuro" }).click();
+  test.describe("system in light mode", () => {
+    test.use({ colorScheme: "light" });
 
-    await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
-    await expect(theme(page).getByRole("button", { name: "Tema oscuro" })).toHaveAttribute("aria-pressed", "true");
-    await page.reload();
-    await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
-    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-    await expectAccessible(page);
+    scenario("004-US1-AS1", "switching to dark applies at once and survives a reload", async ({ page }) => {
+      await page.goto("/sign-in");
+      await expect(page.locator("html")).not.toHaveAttribute("data-theme", /.+/);
+      await themeButton(page, /cambiar a tema oscuro/i).click();
+
+      await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+      await expect(themeButton(page, /cambiar a tema claro/i)).toBeVisible();
+      await page.reload();
+      await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+      await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+      await expectAccessible(page);
+    });
+
+    scenario("004-US1-AS3", "signed-in users find it on the language selector's line", async ({ page }) => {
+      await signIn(page, USERS.teacher);
+      await openMenuIfNeeded(page);
+      const language = page.getByRole("combobox", { name: "Idioma" }).filter({ visible: true });
+      const button = themeButton(page, /cambiar a tema oscuro/i);
+      await expect(button).toBeVisible();
+      const [a, b] = [await language.boundingBox(), await button.boundingBox()];
+      expect(Math.abs(a!.y + a!.height / 2 - (b!.y + b!.height / 2))).toBeLessThan(4);
+      await button.click();
+      await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+      await expectAccessible(page);
+    });
   });
 
-  scenario("004-US1-AS2", "the system theme follows the operating system again", async ({ page }) => {
-    await page.goto("/sign-in");
-    await theme(page).getByRole("button", { name: "Tema claro" }).click();
-    await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+  test.describe("system in dark mode", () => {
+    test.use({ colorScheme: "dark" });
 
-    await theme(page).getByRole("button", { name: "Tema del sistema" }).click();
-    await expect(page.locator("html")).not.toHaveAttribute("data-theme", /.+/);
-    await expect(theme(page).getByRole("button", { name: "Tema del sistema" })).toHaveAttribute("aria-pressed", "true");
-  });
-
-  scenario("004-US1-AS3", "signed-in users find it next to the language selector", async ({ page }) => {
-    await signIn(page, USERS.teacher);
-    await openMenuIfNeeded(page);
-    await expect(theme(page)).toBeVisible();
-    await expect(page.getByRole("combobox", { name: "Idioma" }).filter({ visible: true })).toBeVisible();
-    await theme(page).getByRole("button", { name: "Tema oscuro" }).click();
-    await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
-    await expectAccessible(page);
+    scenario("004-US1-AS2", "with no saved choice it follows the system", async ({ page }) => {
+      await page.goto("/sign-in");
+      await expect(page.locator("html")).not.toHaveAttribute("data-theme", /.+/);
+      await themeButton(page, /cambiar a tema claro/i).click();
+      await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+      await page.reload();
+      await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+      await expect(themeButton(page, /cambiar a tema oscuro/i)).toBeVisible();
+    });
   });
 });
 

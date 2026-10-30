@@ -54,9 +54,9 @@ export async function StudentShell({
               <div className="absolute right-0 mt-2 w-64 rounded-xl border border-border bg-surface-raised p-2 shadow-lg">
                 <p className="px-4 pt-2 font-semibold text-fg sm:hidden">{userName}</p>
                 <p className="px-4 pt-1 pb-2 text-sm text-fg-muted">{roleLabel}</p>
-                <div className="mx-1 mb-2 flex flex-col gap-2">
+                <div className="mx-1 mb-2 flex gap-2">
                   <LanguageSwitcher stretch />
-                  <ThemeSwitcher stretch />
+                  <ThemeSwitcher />
                 </div>
                 <SignOutButton />
               </div>
