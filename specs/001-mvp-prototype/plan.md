@@ -174,6 +174,7 @@ reached · NS no validated source · AI AI disclosure · SC source citations. "M
 | 32 | Student | My progress | `student/progress.html` | US-13 | S7, S4 | P2 | D (mastery, timeline, last updated), topic detail (error types), mastery basis, E, L, Er | ✓ |
 | 33 | Teacher | Course topics | `teacher/topics.html` | US-14 | T9 | P1 | D, E, L, Er, added, editing, reordered, delete confirm, unassigned | — |
 | 34 | Teacher | Topic assignment | `teacher/topic-assignment.html` | US-14 | T9 | P1 | D (suggestions), confirmed, suggestions error, L, Er | — |
+| 35 | Admin | Create pseudonymous student accounts (added by spec 002, FR-012) | `admin/students-new.html` | US-07 | P1, §4.1 | P1 | D, validation error, L, created, Er | — |
 
 The full state IDs (kebab-case values for `?state=`) are fixed in the contract; the IDs added on
 2026-10-06 are listed in its revision note. Every

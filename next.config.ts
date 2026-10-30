@@ -1,8 +1,17 @@
 import type { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
+
+// Course material uploads are up to 20 MB (backend MAX_UPLOAD_MB); both the proxy and Server
+// Actions buffer request bodies with lower defaults (10 MB and 1 MB).
+const UPLOAD_LIMIT = "21mb";
 
 const nextConfig: NextConfig = {
   agentRules: false,
   typedRoutes: true,
+  experimental: {
+    serverActions: { bodySizeLimit: UPLOAD_LIMIT },
+    proxyClientMaxBodySize: UPLOAD_LIMIT
+  },
   async redirects() {
     // The static prototype lives in public/prototype/. A redirect (not a rewrite) keeps the
     // browser URL inside /prototype/, so the pages' relative asset paths resolve correctly.
@@ -13,4 +22,4 @@ const nextConfig: NextConfig = {
   }
 };
 
-export default nextConfig;
+export default createNextIntlPlugin("./src/i18n/request.ts")(nextConfig);

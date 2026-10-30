@@ -143,6 +143,7 @@ states below.
 | 32 | `student/progress.html` | default (mastery and timeline per topic; last updated), topic-detail, mastery-basis, empty, loading, error |
 | 33 | `teacher/topics.html` | default, empty, loading, error, added, editing, reordered, delete-confirm, unassigned |
 | 34 | `teacher/topic-assignment.html` | default (with suggestions), confirmed, suggestions-error, loading, error |
+| 35 | `admin/students-new.html` | default, validation-error, loading, created, error |
 
 Page #27 was `teacher/student-risk.html` until 2026-10-06. The states added on 2026-10-06 are
 listed in the revision note at the top of this contract. On `student/exercise-feedback.html`, `default` is the
