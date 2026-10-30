@@ -8,6 +8,8 @@ export default getRequestConfig(async () => {
   const locale = isLocale(stored) ? stored : DEFAULT_LOCALE;
   return {
     locale,
+    // Fixed so dates render the same on the server (UTC on Vercel) and in the browser.
+    timeZone: "Europe/Madrid",
     messages: (await import(`../../messages/${locale}.json`)).default
   };
 });
