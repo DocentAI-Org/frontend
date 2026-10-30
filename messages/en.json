@@ -625,7 +625,8 @@
         "material": "Material",
         "settings": "Tutor settings",
         "students": "Students",
-        "topics": "Topics"
+        "topics": "Topics",
+        "dashboard": "Dashboard"
       },
       "tabs": "Course sections"
     },
@@ -664,9 +665,9 @@
       "byStudent": "By student",
       "byTopic": "By topic",
       "chartLabel": "{label}: {value}",
-      "emptyBody": "You'll see data once your students have sent at least 20 messages or 5 exercises.",
+      "emptyBody": "You'll see data once your students have sent at least {messages} messages or {exercises} exercises in this period.",
       "emptyTitle": "The dashboard needs more activity",
-      "errorsBasis": "Mistakes found in exercises and quizzes in the last 30 days.",
+      "errorsBasis": "Mistakes found in exercises {period, select, 7d {in the last 7 days} 30d {in the last 30 days} other {since the course started}}.",
       "errorsTitleStudent": "Recurring mistakes by student",
       "errorsTitleTopic": "Recurring mistakes by topic",
       "groupLabel": "Group mistakes",
@@ -677,8 +678,9 @@
       "pageTitle": "Dashboard",
       "period": "Period",
       "reason": {
-        "errorRate": "Error rate {rate}",
-        "inactive": "No activity in {days} days"
+        "inactive": "No activity in {days} days (the last on {date})",
+        "inactiveNever": "No activity since joining, {days} days ago",
+        "errorRate": "{mistakes} of {assessed} exercises with mistakes in the last {days} days"
       },
       "title": "Course dashboard",
       "topPattern": "Most frequent: {pattern}",
@@ -687,7 +689,14 @@
       "colStudent": "Student",
       "colErrors": "Errors",
       "colShare": "Share",
-      "errors": "{count, plural, one {# mistake} other {# mistakes}}"
+      "errors": "{count, plural, one {# mistake} other {# mistakes}}",
+      "provisional": "The criteria and the error types are provisional: the educational team is still reviewing them.",
+      "emptyNow": "So far: {messages} of {messagesNeeded} messages and {exercises} of {exercisesNeeded} exercises.",
+      "viewLabel": "Show mistakes",
+      "colStudents": "Students",
+      "colTop": "Most frequent",
+      "colTopTopic": "Topic with most mistakes",
+      "atRiskNone": "No student meets the criteria right now."
     },
     "flags": {
       "category": "Reason",
@@ -857,7 +866,12 @@
       "times": "{count} times",
       "week": "Week of {date}",
       "whyTitle": "Why they're listed",
-      "items": "{count, plural, one {# activity} other {# activities}}"
+      "items": "{count, plural, one {# activity} other {# activities}}",
+      "colWeek": "Week",
+      "colMessages": "Messages",
+      "colExercises": "Exercises",
+      "noActivity": "No activity yet",
+      "provisional": "The criteria are provisional: the educational team is still reviewing them."
     },
     "shell": {
       "nav": {

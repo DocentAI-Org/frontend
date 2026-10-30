@@ -140,6 +140,8 @@ export type State = {
   faults: Set<string>;
   /** What the next exercise feedback looks like (backend specs/003), set by /__test/feedback. */
   feedback: { mode: "mistake" | "correct" | "fail"; delay_ms: number };
+  /** What each course's dashboard looks like (backend specs/004), set by /__test/dashboard. */
+  dashboard: Map<string, "busy" | "quiet" | "calm">;
 };
 
 export const CONSENT_VERSION = "2026-10";
@@ -192,7 +194,8 @@ export function seed(): State {
     consent: [],
     usage: new Map(),
     faults: new Set(),
-    feedback: { mode: "mistake", delay_ms: 0 }
+    feedback: { mode: "mistake", delay_ms: 0 },
+    dashboard: new Map()
   };
 }
 
