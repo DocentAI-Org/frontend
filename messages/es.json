@@ -625,7 +625,8 @@
         "material": "Material",
         "settings": "Configuración del tutor",
         "students": "Estudiantes",
-        "topics": "Temas"
+        "topics": "Temas",
+        "dashboard": "Panel"
       },
       "tabs": "Secciones del curso"
     },
@@ -664,9 +665,9 @@
       "byStudent": "Por estudiante",
       "byTopic": "Por tema",
       "chartLabel": "{label}: {value}",
-      "emptyBody": "Verás datos cuando tus estudiantes hayan enviado al menos 20 mensajes o 5 ejercicios.",
+      "emptyBody": "Verás datos cuando tus estudiantes hayan enviado al menos {messages} mensajes o {exercises} ejercicios en este periodo.",
       "emptyTitle": "El panel necesita más actividad",
-      "errorsBasis": "Errores detectados en ejercicios y cuestionarios en los últimos 30 días.",
+      "errorsBasis": "Errores detectados en ejercicios {period, select, 7d {en los últimos 7 días} 30d {en los últimos 30 días} other {desde el inicio del curso}}.",
       "errorsTitleStudent": "Errores repetidos por estudiante",
       "errorsTitleTopic": "Errores repetidos por tema",
       "groupLabel": "Agrupar errores",
@@ -677,8 +678,9 @@
       "pageTitle": "Panel",
       "period": "Periodo",
       "reason": {
-        "errorRate": "Tasa de error {rate}",
-        "inactive": "Sin actividad en {days} días"
+        "inactive": "Sin actividad en {days} días (la última, el {date})",
+        "inactiveNever": "Sin actividad desde que se unió, hace {days} días",
+        "errorRate": "{mistakes} de {assessed} ejercicios con errores en los últimos {days} días"
       },
       "title": "Panel del curso",
       "topPattern": "Más frecuente: {pattern}",
@@ -687,7 +689,14 @@
       "colStudent": "Estudiante",
       "colErrors": "Errores",
       "colShare": "Proporción",
-      "errors": "{count, plural, one {# error} other {# errores}}"
+      "errors": "{count, plural, one {# error} other {# errores}}",
+      "provisional": "Los criterios y los tipos de error son provisionales: el equipo educativo todavía los está revisando.",
+      "emptyNow": "Ahora: {messages} de {messagesNeeded} mensajes y {exercises} de {exercisesNeeded} ejercicios.",
+      "viewLabel": "Ver errores",
+      "colStudents": "Estudiantes",
+      "colTop": "Más frecuente",
+      "colTopTopic": "Tema con más errores",
+      "atRiskNone": "Ningún estudiante cumple ahora los criterios."
     },
     "flags": {
       "category": "Motivo",
@@ -857,7 +866,11 @@
       "times": "{count} veces",
       "week": "Semana del {date}",
       "whyTitle": "Por qué aparece aquí",
-      "items": "{count, plural, one {# actividad} other {# actividades}}"
+      "items": "{count, plural, one {# actividad} other {# actividades}}",
+      "colWeek": "Semana",
+      "colMessages": "Mensajes",
+      "colExercises": "Ejercicios",
+      "noActivity": "Sin actividad todavía"
     },
     "shell": {
       "nav": {
