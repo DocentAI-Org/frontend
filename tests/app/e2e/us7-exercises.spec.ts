@@ -1,4 +1,4 @@
-// US7 — student submits a worked exercise; feedback is the API stub (spec 002 US7, 001 US6).
+// US7 — student submits a worked exercise (spec 002 US7, 001 US6); real feedback in 005.
 import type { Page } from "@playwright/test";
 
 import { USERS, expect, expectAccessible, scenario, test } from "./helpers";
@@ -81,13 +81,5 @@ test.describe("US7 exercises", () => {
     await expect(page.getByRole("heading", { name: /has usado tus 30 mensajes de hoy/i })).toBeVisible();
     await expect(page.getByText(/no puedes enviar ejercicios hasta las/i)).toBeVisible();
     await expect(page.getByLabel(/enunciado del ejercicio/i)).toBeDisabled();
-  });
-
-  scenario("002-US7-AS1", "stub feedback carries a discreet provisional notice", async ({ page, request }) => {
-    await classroom(request, page, { path: "/exercise" });
-    await submit(page);
-
-    await expect(page.getByRole("note").filter({ hasText: /todavía se está preparando/i })).toBeVisible();
-    await expect(page.getByText(/^incorrecta$/i)).toBeVisible();
   });
 });

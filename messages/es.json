@@ -223,7 +223,11 @@
       },
       "masteryBasis": "Porque has resuelto bien {right} de los últimos {total} ejercicios de este tema.",
       "masteryBasisTeacher": "Porque ha resuelto bien {right} de sus últimos {total} ejercicios de este tema.",
-      "times": "{count, plural, one {# vez} other {# veces}}"
+      "times": "{count, plural, one {# vez} other {# veces}}",
+      "provisional": "Los tipos de error son provisionales: el equipo educativo todavía los está revisando.",
+      "byTopic": "Errores por tema",
+      "noTopic": "Sin tema",
+      "topicDeleted": "(tema eliminado)"
     },
     "correction": {
       "reviewed": "Revisado por tu profesor/a",
@@ -393,7 +397,8 @@
       "send": "Enviar ejercicio",
       "steps": "Tu solución, paso a paso",
       "stepsHelp": "Escribe cada paso en una línea.",
-      "title": "Enviar un ejercicio"
+      "title": "Enviar un ejercicio",
+      "checking": "Revisando tu ejercicio…"
     },
     "feedback": {
       "askTutor": "Preguntar al tutor",
@@ -418,10 +423,10 @@
       "verdict": {
         "correct": "Correcta",
         "partially_correct": "Parcialmente correcta",
-        "incorrect": "Incorrecta"
+        "incorrect": "Incorrecta",
+        "not_assessed": "No evaluado"
       },
       "mistakeLabel": "Dónde está el error:",
-      "stubNotice": "La corrección automática todavía se está preparando: este resultado es provisional y tu profesor/a puede revisarlo.",
       "explanationTitle": "Explicación"
     },
     "guided": {
@@ -493,7 +498,10 @@
       "errors": "Ver mis errores",
       "detailTitle": "Errores más frecuentes en este tema",
       "backToAll": "Volver a todos los temas",
-      "quizzes": "{count, plural, one {# cuestionario hecho} other {# cuestionarios hechos}}"
+      "quizzes": "{count, plural, one {# cuestionario hecho} other {# cuestionarios hechos}}",
+      "mistakesLead": "Los errores de tus ejercicios, por tema y tipo. Tu profesor/a también lo ve.",
+      "noMistakesTitle": "Todavía no hay errores registrados",
+      "noMistakesBody": "Cuando envíes un ejercicio y el tutor encuentre un error, aparecerá aquí con su tipo y su tema."
     },
     "quiz": {
       "adaptive": "La dificultad se adapta a tus respuestas y no cuenta para la nota.",
@@ -937,7 +945,11 @@
       "notStarted": "Sin actividad todavía en este tema.",
       "sessions": "{count, plural, one {# sesión} other {# sesiones}}",
       "exercises": "{count, plural, one {# ejercicio} other {# ejercicios}}",
-      "quizzes": "{count, plural, one {# quiz} other {# quizzes}}"
+      "quizzes": "{count, plural, one {# quiz} other {# quizzes}}",
+      "mistakesLead": "Los errores de sus ejercicios, por tema y tipo. Cada ejemplo lleva a la corrección.",
+      "noMistakesTitle": "{name} todavía no tiene errores registrados",
+      "noMistakesBody": "Cuando envíe ejercicios con errores, aparecerán aquí con su tipo y su tema.",
+      "backToCourse": "Volver al curso"
     },
     "topics": {
       "pageTitle": "Temas del curso",

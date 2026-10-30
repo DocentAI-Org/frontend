@@ -4,14 +4,18 @@ import type { APIRequestContext, Page } from "@playwright/test";
 import { USERS, expect, scenario, signIn, test } from "./helpers";
 import { MOCK } from "./helpers-student";
 
-type Ids = { course: string; document: string; conversation: string; submission: string };
+type Ids = { course: string; document: string; conversation: string; submission: string; student: string };
 
 async function seed(request: APIRequestContext): Promise<Ids> {
   const classroom = await request.post(`${MOCK}/__test/classroom`, { data: { disclosure: true } });
   const { course_id, document_id } = (await classroom.json()) as { course_id: string; document_id: string };
   const activity = await request.post(`${MOCK}/__test/activity`, { data: { course_id } });
-  const { conversation_id, submission_id } = (await activity.json()) as { conversation_id: string; submission_id: string };
-  return { course: course_id, document: document_id, conversation: conversation_id, submission: submission_id };
+  const { conversation_id, submission_id, student_id } = (await activity.json()) as {
+    conversation_id: string;
+    submission_id: string;
+    student_id: string;
+  };
+  return { course: course_id, document: document_id, conversation: conversation_id, submission: submission_id, student: student_id };
 }
 
 const ROUTES = {
@@ -22,7 +26,8 @@ const ROUTES = {
     `/student/courses/${i.course}`,
     `/student/courses/${i.course}/conversations/${i.conversation}`,
     `/student/courses/${i.course}/exercise`,
-    `/student/courses/${i.course}/exercises/${i.submission}`
+    `/student/courses/${i.course}/exercises/${i.submission}`,
+    `/student/courses/${i.course}/progress`
   ],
   teacher: (i: Ids) => [
     "/teacher/courses",
@@ -36,7 +41,8 @@ const ROUTES = {
     `/teacher/courses/${i.course}/conversations`,
     `/teacher/courses/${i.course}/conversations/${i.conversation}`,
     `/teacher/courses/${i.course}/exercises/${i.submission}`,
-    `/teacher/courses/${i.course}/corrections`
+    `/teacher/courses/${i.course}/corrections`,
+    `/teacher/courses/${i.course}/students/${i.student}`
   ],
   admin: () => ["/admin/users", "/admin/teachers/new", "/admin/students/new", "/admin/courses"]
 };

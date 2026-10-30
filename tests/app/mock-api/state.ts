@@ -98,7 +98,7 @@ export type Submission = {
   student_id: string;
   problem_statement: string;
   worked_answer: string;
-  verdict: "correct" | "partially_correct" | "incorrect";
+  verdict: "correct" | "partially_correct" | "incorrect" | "not_assessed";
   mistake_location: string | null;
   error_type: string | null;
   topic_id: string | null;
@@ -106,6 +106,8 @@ export type Submission = {
   explanation: string;
   explanation_kind: "answer" | "no_source";
   cited: string[];
+  /** In the learning record (a mistake with a known error type). */
+  saved: boolean;
   created_at: string;
 };
 
@@ -136,6 +138,8 @@ export type State = {
   usage: Map<string, number>;
   /** Named faults tests can switch on, e.g. "expire_sessions", "tutor_unavailable". */
   faults: Set<string>;
+  /** What the next exercise feedback looks like (backend specs/003), set by /__test/feedback. */
+  feedback: { mode: "mistake" | "correct" | "fail"; delay_ms: number };
 };
 
 export const CONSENT_VERSION = "2026-10";
@@ -187,7 +191,8 @@ export function seed(): State {
     assignments: [],
     consent: [],
     usage: new Map(),
-    faults: new Set()
+    faults: new Set(),
+    feedback: { mode: "mistake", delay_ms: 0 }
   };
 }
 

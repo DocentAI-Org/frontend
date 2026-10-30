@@ -90,6 +90,7 @@ export function ExerciseForm({ courseId, limit, resetsAt }: { courseId: string; 
             type="button"
             icon="send"
             pending={pending}
+            pendingLabel={t("exercise.checking")}
             onClick={() =>
               startTransition(async () => {
                 const result = await submitAction(courseId, values.problem, values.steps);

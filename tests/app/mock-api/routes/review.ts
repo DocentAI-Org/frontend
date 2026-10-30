@@ -216,15 +216,16 @@ reviewRoutes.push({
       worked_answer: "x = 4 - 2",
       verdict: "incorrect" as const,
       mistake_location: "Paso 1",
-      error_type: "placeholder",
+      error_type: "procedural",
       topic_id: null,
       topic_name: null,
-      explanation: "Respuesta de ejemplo: revisa el primer paso.",
+      explanation: "Al pasar el 2 al otro miembro, divide en lugar de restar.",
       explanation_kind: "answer" as const,
       cited: [fragment.id],
+      saved: true,
       created_at: now()
     };
     state.submissions.push(submission);
-    return { conversation_id: conversation.id, submission_id: submission.id };
+    return { conversation_id: conversation.id, submission_id: submission.id, student_id: student.id };
   }
 });
