@@ -4,11 +4,11 @@ import type { APIRequestContext, Page } from "@playwright/test";
 import { USERS, chooseOption, expect, expectAccessible, scenario, signIn, test } from "./helpers";
 import { MOCK } from "./helpers-student";
 
-async function teacherCourse(request: APIRequestContext, page: Page, path = "/temas") {
+async function teacherCourse(request: APIRequestContext, page: Page, path = "/topics") {
   const response = await request.post(`${MOCK}/__test/classroom`, { data: {} });
   const { course_id } = (await response.json()) as { course_id: string };
   await signIn(page, USERS.teacher);
-  await page.goto(`/profesor/cursos/${course_id}${path}`);
+  await page.goto(`/teacher/courses/${course_id}${path}`);
   return course_id;
 }
 
@@ -66,7 +66,7 @@ test.describe("US5 topics", () => {
     await addTopic(page, "Ecuaciones");
     await request.post(`${MOCK}/__test/suggestion`, { data: { topic_name: "Ecuaciones", section: "3.1 Transponer términos" } });
 
-    await page.goto(`/profesor/cursos/${courseId}/temas/asignacion`);
+    await page.goto(`/teacher/courses/${courseId}/topics/assignment`);
     const suggested = page.getByRole("group", { name: /3\.1 transponer términos/i });
     await expect(suggested.getByText(/^sugerido$/i)).toBeVisible();
     await expectAccessible(page);
@@ -84,7 +84,7 @@ test.describe("US5 topics", () => {
     await addTopic(page, "Ecuaciones");
 
     await expect(page.getByRole("alert").filter({ hasText: /hay secciones sin tema/i })).toContainText("3.1 Transponer términos");
-    await page.goto(`/profesor/cursos/${courseId}/material`);
+    await page.goto(`/teacher/courses/${courseId}/material`);
     await expect(page.getByRole("alert").filter({ hasText: /hay secciones sin tema/i })).toBeVisible();
   });
 
@@ -93,7 +93,7 @@ test.describe("US5 topics", () => {
     await addTopic(page, "Ecuaciones");
     await mock.faults(["assignments_fail"]);
 
-    await page.goto(`/profesor/cursos/${courseId}/temas/asignacion`);
+    await page.goto(`/teacher/courses/${courseId}/topics/assignment`);
 
     await expect(page.getByRole("alert").filter({ hasText: /no hemos podido cargar las sugerencias/i })).toBeVisible();
     await expect(page.getByRole("group", { name: /3\.1 transponer términos/i }).getByLabel(/tema de la sección/i)).toBeEnabled();

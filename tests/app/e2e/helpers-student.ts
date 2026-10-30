@@ -15,6 +15,6 @@ export async function classroom(
   const response = await request.post(`${MOCK}/__test/classroom`, { data: { policy: "direct", disclosure: true, ...seed } });
   const { course_id, document_id } = (await response.json()) as { course_id: string; document_id: string };
   await signIn(page, USERS.student);
-  await page.goto(`/alumno/cursos/${course_id}${path}`);
+  await page.goto(`/student/courses/${course_id}${path}`);
   return { courseId: course_id, documentId: document_id };
 }

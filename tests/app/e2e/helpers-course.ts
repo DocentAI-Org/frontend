@@ -5,7 +5,7 @@ import { USERS, expect, signIn } from "./helpers";
 
 export async function newCourse(page: Page, name = "Álgebra") {
   await signIn(page, USERS.teacher);
-  await page.goto("/profesor/cursos/nuevo");
+  await page.goto("/teacher/courses/new");
   await page.getByLabel(/nombre del curso/i).fill(name);
   await page.getByRole("button", { name: /crear curso/i }).click();
   await expect(page.getByRole("heading", { level: 1, name })).toBeVisible();

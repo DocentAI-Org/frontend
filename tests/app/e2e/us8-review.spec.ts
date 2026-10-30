@@ -15,7 +15,7 @@ async function reviewSetup(request: APIRequestContext, page: Page, withActivity 
     ids = (await activity.json()) as typeof ids;
   }
   await signIn(page, USERS.teacher);
-  await page.goto(`/profesor/cursos/${course_id}/conversaciones`);
+  await page.goto(`/teacher/courses/${course_id}/conversations`);
   return { courseId: course_id, ...ids };
 }
 
@@ -67,7 +67,7 @@ test.describe("US8 review and corrections", () => {
     await (await flagFirstAnswer(page)).getByRole("button", { name: /guardar corrección/i }).click();
     await expect(page.getByRole("status").filter({ hasText: /corrección guardada/i })).toBeVisible();
 
-    await page.goto(`/profesor/cursos/${courseId}/correcciones`);
+    await page.goto(`/teacher/courses/${courseId}/corrections`);
 
     const item = page.getByRole("list", { name: /respuestas marcadas/i }).getByRole("listitem").first();
     await expect(item).toContainText(/incorrecta/i);
@@ -87,7 +87,7 @@ test.describe("US8 review and corrections", () => {
 
   scenario("001-US8-AS6", "editing and removing the correction reaches the student", async ({ page, request }) => {
     const { courseId, conversation_id } = await reviewSetup(request, page);
-    await page.goto(`/profesor/cursos/${courseId}/conversaciones/${conversation_id}`);
+    await page.goto(`/teacher/courses/${courseId}/conversations/${conversation_id}`);
     await (await flagFirstAnswer(page)).getByRole("button", { name: /guardar corrección/i }).click();
     await expect(page.getByText(CORRECTION)).toBeVisible();
 
@@ -99,13 +99,13 @@ test.describe("US8 review and corrections", () => {
 
     await signOut(page);
     await signIn(page, USERS.student);
-    await page.goto(`/alumno/cursos/${courseId}/conversaciones/${conversation_id}`);
+    await page.goto(`/student/courses/${courseId}/conversations/${conversation_id}`);
     await expect(page.getByText(/revisado por tu profesor\/a/i)).toBeVisible();
     await expect(page.getByText("Divide entre 2.")).toBeVisible();
 
     await signOut(page);
     await signIn(page, USERS.teacher);
-    await page.goto(`/profesor/cursos/${courseId}/conversaciones/${conversation_id}`);
+    await page.goto(`/teacher/courses/${courseId}/conversations/${conversation_id}`);
     await page.getByRole("button", { name: /quitar corrección/i }).click();
     await page.getByRole("dialog").getByRole("button", { name: /quitar corrección/i }).click();
     await expect(page.getByText("Divide entre 2.")).toHaveCount(0);
@@ -113,7 +113,7 @@ test.describe("US8 review and corrections", () => {
 
   scenario("001-US8-AS7", "a failed save keeps the text and offers a retry", async ({ page, request, mock }) => {
     const { courseId, conversation_id } = await reviewSetup(request, page);
-    await page.goto(`/profesor/cursos/${courseId}/conversaciones/${conversation_id}`);
+    await page.goto(`/teacher/courses/${courseId}/conversations/${conversation_id}`);
     await mock.faults(["save_flag_fails"]);
 
     const dialog = await flagFirstAnswer(page);
@@ -128,13 +128,13 @@ test.describe("US8 review and corrections", () => {
 
   scenario("001-US1-AS8", "the student sees the correction under the corrected answer", async ({ page, request }) => {
     const { courseId, conversation_id } = await reviewSetup(request, page);
-    await page.goto(`/profesor/cursos/${courseId}/conversaciones/${conversation_id}`);
+    await page.goto(`/teacher/courses/${courseId}/conversations/${conversation_id}`);
     await (await flagFirstAnswer(page)).getByRole("button", { name: /guardar corrección/i }).click();
     await expect(page.getByText(CORRECTION)).toBeVisible();
 
     await signOut(page);
     await signIn(page, USERS.student);
-    await page.goto(`/alumno/cursos/${courseId}/conversaciones/${conversation_id}`);
+    await page.goto(`/student/courses/${courseId}/conversations/${conversation_id}`);
 
     const corrected = page.locator('[data-component="ChatMessage"]').filter({ hasText: /corregida/i });
     await expect(corrected).toContainText(/revisado por tu profesor\/a/i);
@@ -145,7 +145,7 @@ test.describe("US8 review and corrections", () => {
 
   scenario("002-US8-AS1", "exercise feedback can be corrected too", async ({ page, request }) => {
     const { courseId, submission_id } = await reviewSetup(request, page);
-    await page.goto(`/profesor/cursos/${courseId}/ejercicios/${submission_id}`);
+    await page.goto(`/teacher/courses/${courseId}/exercises/${submission_id}`);
 
     const dialog = await flagFirstAnswer(page, /^mejorable/i, "Revisa el signo.");
     await dialog.getByRole("button", { name: /guardar corrección/i }).click();
@@ -153,7 +153,7 @@ test.describe("US8 review and corrections", () => {
 
     await signOut(page);
     await signIn(page, USERS.student);
-    await page.goto(`/alumno/cursos/${courseId}/ejercicios/${submission_id}`);
+    await page.goto(`/student/courses/${courseId}/exercises/${submission_id}`);
     await expect(page.getByText("Revisa el signo.")).toBeVisible();
     await expect(page.getByText(/mejorable/i)).toHaveCount(0);
   });

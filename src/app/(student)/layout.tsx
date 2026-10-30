@@ -10,10 +10,10 @@ export default async function StudentLayout({ children }: { children: React.Reac
   const t = await getTranslations("student.shell");
   return (
     <StudentShell
-      home="/alumno/cursos"
+      home="/student/courses"
       nav={[
-        { href: "/alumno/cursos", label: t("nav.courses"), icon: "book-open" },
-        { href: "/alumno/perfil", label: t("nav.profile"), icon: "user" }
+        { href: "/student/courses", label: t("nav.courses"), icon: "book-open" },
+        { href: "/student/profile", label: t("nav.profile"), icon: "user" }
       ]}
       userName={access.me.display_name}
       roleLabel={t("role")}

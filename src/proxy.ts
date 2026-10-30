@@ -4,7 +4,7 @@ import { type NextRequest, NextResponse } from "next/server";
 import { PATHNAME_HEADER } from "@/lib/request-path";
 
 /** Routes reachable without a session; everything else needs one. */
-const PUBLIC_PATHS = ["/entrar", "/recuperar", "/acerca", "/acceso-denegado"];
+const PUBLIC_PATHS = ["/sign-in", "/forgot-password", "/about", "/access-denied"];
 
 
 function isPublic(pathname: string): boolean {
@@ -40,7 +40,7 @@ export async function proxy(request: NextRequest) {
   } = await supabase.auth.getUser();
 
   if (!user && !isPublic(pathname)) {
-    const signIn = new URL("/entrar", request.url);
+    const signIn = new URL("/sign-in", request.url);
     if (pathname !== "/") signIn.searchParams.set("next", `${pathname}${search}`);
     return NextResponse.redirect(signIn);
   }

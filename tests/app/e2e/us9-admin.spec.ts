@@ -26,7 +26,7 @@ test.describe("US9 admin area", () => {
 
   scenario("002-US1-AS4", "a duplicate email is explained", async ({ page }) => {
     await signIn(page, USERS.admin);
-    await page.goto("/admin/profesores/nuevo");
+    await page.goto("/admin/teachers/new");
     await page.getByLabel(/nombre completo/i).fill("Otra");
     await page.getByLabel(/correo electrónico/i).fill(USERS.teacher);
     await page.getByRole("button", { name: /crear cuenta/i }).click();
@@ -53,32 +53,32 @@ test.describe("US9 admin area", () => {
 
     await signOut(page);
     await signIn(page, code, password);
-    await expect(page).toHaveURL(/\/alumno\/consentimiento/);
+    await expect(page).toHaveURL(/\/student\/consent/);
   });
 
   scenario("002-US9-AS2", "passwords are not shown again after leaving", async ({ page }) => {
     await signIn(page, USERS.admin);
-    await page.goto("/admin/estudiantes/nuevos");
+    await page.goto("/admin/students/new");
     await page.getByLabel(/número de cuentas/i).fill("1");
     await page.getByRole("button", { name: /crear cuentas/i }).click();
     await expect(page.getByRole("heading", { name: /cuentas creadas/i })).toBeVisible();
 
-    await page.goto("/admin/estudiantes/nuevos");
+    await page.goto("/admin/students/new");
     await expect(page.getByRole("heading", { name: /cuentas creadas/i })).toHaveCount(0);
-    await page.goto("/admin/usuarios");
+    await page.goto("/admin/users");
     await expect(page.getByText(/^EST-/).filter({ visible: true }).first()).toBeVisible();
   });
 
   scenario("001-US7-AS6b", "the admin sees every course", async ({ page }) => {
     await signIn(page, USERS.teacher);
-    await page.goto("/profesor/cursos/nuevo");
+    await page.goto("/teacher/courses/new");
     await page.getByLabel(/nombre del curso/i).fill("Álgebra");
     await page.getByRole("button", { name: /crear curso/i }).click();
     await expect(page.getByRole("heading", { level: 1, name: "Álgebra" })).toBeVisible();
     await signOut(page);
 
     await signIn(page, USERS.admin);
-    await page.goto("/admin/cursos");
+    await page.goto("/admin/courses");
     await expect(page.getByRole("row").filter({ hasText: "Álgebra" })).toContainText("Prof. Elena Ruiz");
     await expectAccessible(page);
   });

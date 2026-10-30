@@ -19,7 +19,7 @@ export function teacherCourse(state: State, course: Course): S["TeacherCourse"] 
     description: course.description,
     class_code: course.class_code,
     class_code_active: course.class_code_active,
-    invitation_path: `/unirse/${course.class_code}`,
+    invitation_path: `/join/${course.class_code}`,
     student_count: studentCount(state, course),
     created_at: course.created_at
   };

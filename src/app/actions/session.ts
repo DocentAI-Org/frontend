@@ -38,7 +38,7 @@ export async function signIn(_: SignInState, form: FormData): Promise<SignInStat
 export async function signOut() {
   const supabase = await createSupabase();
   await supabase.auth.signOut();
-  redirect("/entrar");
+  redirect("/sign-in");
 }
 
 export type RecoveryState = { sent?: boolean; error?: boolean };
@@ -48,7 +48,7 @@ export async function requestPasswordReset(_: RecoveryState, form: FormData): Pr
   if (!email) return { error: true };
   const origin = (await headers()).get("origin") ?? "";
   const supabase = await createSupabase();
-  const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: `${origin}/entrar` });
+  const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: `${origin}/sign-in` });
   // The same answer whether or not the account exists (no account enumeration).
   return error && (error.status ?? 0) >= 500 ? { error: true } : { sent: true };
 }

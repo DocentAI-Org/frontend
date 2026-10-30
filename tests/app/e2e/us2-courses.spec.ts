@@ -4,7 +4,7 @@ import type { Page } from "@playwright/test";
 import { USERS, expect, expectAccessible, scenario, signIn, signOut, test } from "./helpers";
 
 async function createCourse(page: Page, name = "Álgebra") {
-  await page.goto("/profesor/cursos/nuevo");
+  await page.goto("/teacher/courses/new");
   await page.getByLabel(/nombre del curso/i).fill(name);
   await page.getByLabel(/descripción/i).fill("Ecuaciones de primer grado");
   await page.getByRole("button", { name: /crear curso/i }).click();
@@ -20,8 +20,8 @@ async function studentJoins(page: Page, code: string) {
   await page.getByRole("checkbox", { name: /acepto participar/i }).check();
   await page.getByRole("button", { name: /^continuar/i }).click();
   await page.getByRole("link", { name: /entendido, continuar/i }).click();
-  await page.waitForURL(/\/alumno\/cursos$/);
-  await page.goto("/alumno/unirse");
+  await page.waitForURL(/\/student\/courses$/);
+  await page.goto("/student/join");
   await page.getByLabel(/código de clase/i).fill(code);
   await page.getByRole("button", { name: /unirme al curso/i }).click();
 }
@@ -44,7 +44,7 @@ test.describe("US2 courses and enrolment", () => {
     const { code } = await createCourse(page);
 
     const link = page.getByLabel(/enlace de invitación/i);
-    await expect(link).toHaveValue(new RegExp(`/unirse/${code}$`));
+    await expect(link).toHaveValue(new RegExp(`/join/${code}$`));
     await page.getByRole("button", { name: /copiar código/i }).click();
     await expect(page.getByRole("status").filter({ hasText: /copiado/i })).toBeVisible();
     await expectAccessible(page);
@@ -99,7 +99,7 @@ test.describe("US2 courses and enrolment", () => {
     await expect(page.getByText("Álgebra").first()).toBeVisible();
     await expect(page.getByText(/Prof\. Elena Ruiz/).first()).toBeVisible();
     await expectAccessible(page);
-    await page.goto("/alumno/cursos");
+    await page.goto("/student/courses");
     await expect(page.getByRole("heading", { level: 2, name: "Álgebra" })).toBeVisible();
   });
 
@@ -118,7 +118,7 @@ test.describe("US2 courses and enrolment", () => {
     await signOut(page);
 
     await page.goto(new URL(link).pathname);
-    await expect(page).toHaveURL(/\/entrar\?next=%2Funirse%2F/);
+    await expect(page).toHaveURL(/\/sign-in\?next=%2Fjoin%2F/);
     await page.getByLabel(/correo electrónico o código/i).fill(USERS.student);
     await page.getByLabel(/^contraseña/i).fill("docentai-dev-password");
     await page.getByRole("button", { name: /^entrar$/i }).click();
@@ -143,7 +143,7 @@ test.describe("US2 courses and enrolment", () => {
     await signOut(page);
 
     await signIn(page, USERS.student);
-    await page.goto("/alumno/unirse");
+    await page.goto("/student/join");
     await page.getByLabel(/código de clase/i).fill(code);
     await page.getByRole("button", { name: /unirme al curso/i }).click();
 
