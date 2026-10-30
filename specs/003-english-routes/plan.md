@@ -19,8 +19,7 @@ dependency: `Accept-Language` is parsed by a small function in `src/i18n/locales
 - **Links**: `src/lib/routes.ts` and every literal path, `src/proxy.ts` public paths, the session
   expiry redirect in `src/lib/api/client.ts`.
 - **Locale**: `DEFAULT_LOCALE = "en"`; `src/i18n/request.ts` reads the cookie, then the header.
-- **Redirect**: `/unirse/:code` → `/join/:code` in `vercel.ts` (deployment) and `next.config.ts`
-  (local).
+- **Redirect**: `/unirse/:code` → `/join/:code` (308) in `next.config.ts`, which Vercel also applies.
 - **Tests**: E2E paths updated; Playwright projects pin `locale: "es-ES"` so the Spanish
   assertions of 002 keep testing the pilot language; new E2E for the default locale with other
   browser languages; unit test for header matching; unit test that fails on Spanish paths in

@@ -25,6 +25,8 @@
 | `/profesor/cursos/[id]` | `/teacher/courses/[id]` |
 | `/profesor/cursos/[id]/material` | `/teacher/courses/[id]/material` |
 | `/profesor/cursos/[id]/material/[documento]` | `/teacher/courses/[id]/material/[documentId]` |
+| `/profesor/cursos/[id]/material/[documento]/archivo` (route handler) | `/teacher/courses/[id]/material/[documentId]/file` |
+| `/profesor/cursos/[id]/material/subir` (route handler) | `/teacher/courses/[id]/material/upload` |
 | `/profesor/cursos/[id]/tutor` | `/teacher/courses/[id]/tutor` |
 | `/profesor/cursos/[id]/temas` | `/teacher/courses/[id]/topics` |
 | `/profesor/cursos/[id]/temas/asignacion` | `/teacher/courses/[id]/topics/assignment` |
