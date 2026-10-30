@@ -19,6 +19,8 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
   reporter: process.env.CI ? [["html", { open: "never" }], ["list"]] : "list",
+  // Spanish is the pilot language: the browsers prefer it, so most assertions are in Spanish. The
+  // default English locale is tested in english-routes.spec.ts (003).
   use: { baseURL: `http://localhost:${APP_PORT}` },
   webServer: integration
     ? undefined
@@ -45,7 +47,7 @@ export default defineConfig({
   projects: [
     {
       name: "desktop",
-      use: { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 900 } }
+      use: { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 900 }, locale: "es-ES" }
     },
     {
       name: "mobile",
@@ -53,6 +55,7 @@ export default defineConfig({
         ...devices["iPhone 13"],
         browserName: "webkit",
         viewport: { width: 390, height: 844 },
+        locale: "es-ES",
         isMobile: true,
         hasTouch: true
       }
