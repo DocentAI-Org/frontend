@@ -8,7 +8,7 @@ import { mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-const CONTRACT = "specs/005-exercise-feedback/contracts/backend-openapi.json";
+const CONTRACT = "specs/006-teacher-dashboard/contracts/backend-openapi.json";
 const OUTPUT = "src/lib/api/schema.d.ts";
 const GENERATOR = ["-y", "-p", "openapi-typescript@7.13.0", "-p", "typescript@5.9.3"];
 

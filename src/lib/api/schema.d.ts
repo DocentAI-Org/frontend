@@ -628,6 +628,57 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/teacher/courses/{course_id}/dashboard": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Recurring errors by topic and by student, and at-risk students */
+        get: operations["read_dashboard_v1_teacher_courses__course_id__dashboard_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/teacher/courses/{course_id}/students/{student_id}/risk": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Whether a student is at risk, why, and their weekly activity */
+        get: operations["read_student_risk_v1_teacher_courses__course_id__students__student_id__risk_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/teacher/risk-criteria": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** The criteria that flag a student as at risk */
+        get: operations["list_risk_criteria_v1_teacher_risk_criteria_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/student/enrolments": {
         parameters: {
             query?: never;
@@ -894,6 +945,19 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** ActivityCounts */
+        ActivityCounts: {
+            /**
+             * Messages
+             * @description Messages students sent to the tutor.
+             */
+            messages: number;
+            /**
+             * Exercises
+             * @description Exercises submitted, whatever the verdict.
+             */
+            exercises: number;
+        };
         /** AdminCourse */
         AdminCourse: {
             /**
@@ -955,6 +1019,20 @@ export interface components {
              * Format: date-time
              */
             resets_at: string;
+        };
+        /** AtRiskStudent */
+        AtRiskStudent: {
+            /**
+             * Student Id
+             * Format: uuid
+             */
+            student_id: string;
+            /** Display Name */
+            display_name: string;
+            /** Last Activity At */
+            last_activity_at: string | null;
+            /** Reasons */
+            reasons: (components["schemas"]["InactiveReason"] | components["schemas"]["ErrorRateReason"])[];
         };
         /** Body_upload_document_v1_teacher_courses__course_id__documents_post */
         Body_upload_document_v1_teacher_courses__course_id__documents_post: {
@@ -1225,6 +1303,24 @@ export interface components {
                 [key: string]: unknown;
             } | null;
         };
+        /** ErrorRateReason */
+        ErrorRateReason: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            criterion: "error_rate";
+            /** Mistakes */
+            mistakes: number;
+            /** Assessed */
+            assessed: number;
+            /** Window Days */
+            window_days: number;
+            /** Min Exercises */
+            min_exercises: number;
+            /** Threshold Rate */
+            threshold_rate: number;
+        };
         /** ErrorResponse */
         ErrorResponse: {
             error: components["schemas"]["ErrorBody"];
@@ -1339,6 +1435,26 @@ export interface components {
              * @enum {string}
              */
             llm: "ok" | "error";
+        };
+        /** InactiveReason */
+        InactiveReason: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            criterion: "inactive";
+            /** Days Inactive */
+            days_inactive: number;
+            /** Threshold Days */
+            threshold_days: number;
+            /**
+             * Since
+             * Format: date-time
+             * @description The last activity, or joining the course if there was none.
+             */
+            since: string;
+            /** Never Active */
+            never_active: boolean;
         };
         /** JoinCourse */
         JoinCourse: {
@@ -1597,6 +1713,27 @@ export interface components {
             /** Count */
             count: number;
         };
+        /** RiskCriteriaList */
+        RiskCriteriaList: {
+            /**
+             * Provisional
+             * @description True while the criteria are the technical team's draft (spec 004).
+             */
+            provisional: boolean;
+            /** Items */
+            items: components["schemas"]["RiskCriterionView"][];
+        };
+        /** RiskCriterionView */
+        RiskCriterionView: {
+            /** Code */
+            code: string;
+            /** Enabled */
+            enabled: boolean;
+            /** Thresholds */
+            thresholds: {
+                [key: string]: number;
+            };
+        };
         /** SignedUrl */
         SignedUrl: {
             /** Url */
@@ -1651,6 +1788,22 @@ export interface components {
             /** Disclosure Acknowledged */
             disclosure_acknowledged: boolean;
         };
+        /** StudentErrors */
+        StudentErrors: {
+            /**
+             * Student Id
+             * Format: uuid
+             */
+            student_id: string;
+            /** Display Name */
+            display_name: string;
+            /** Errors */
+            errors: number;
+            /** Top Error Type */
+            top_error_type: string;
+            /** Top Topic Name */
+            top_topic_name: string | null;
+        };
         /** StudentMessage */
         StudentMessage: {
             /**
@@ -1689,6 +1842,29 @@ export interface components {
             /** Citations */
             citations: components["schemas"]["Citation"][];
             correction: components["schemas"]["Correction"] | null;
+        };
+        /** StudentRisk */
+        StudentRisk: {
+            /**
+             * Student Id
+             * Format: uuid
+             */
+            student_id: string;
+            /** Display Name */
+            display_name: string;
+            /** At Risk */
+            at_risk: boolean;
+            /** Reasons */
+            reasons: (components["schemas"]["InactiveReason"] | components["schemas"]["ErrorRateReason"])[];
+            /** Last Activity At */
+            last_activity_at: string | null;
+            /**
+             * Weekly Activity
+             * @description The last 8 weeks, oldest first.
+             */
+            weekly_activity: components["schemas"]["WeekActivity"][];
+            /** Criteria Provisional */
+            criteria_provisional: boolean;
         };
         /** StudentSubmission */
         StudentSubmission: {
@@ -1829,6 +2005,37 @@ export interface components {
             display_name: string;
             /** Password */
             password?: string | null;
+        };
+        /** TeacherDashboard */
+        TeacherDashboard: {
+            /**
+             * Period
+             * @enum {string}
+             */
+            period: "7d" | "30d" | "all";
+            /**
+             * Since
+             * @description Start of the period; None for 'all'.
+             */
+            since: string | null;
+            activity: components["schemas"]["ActivityCounts"];
+            /**
+             * Enough Data
+             * @description At least `thresholds.messages` messages or `thresholds.exercises` exercises in the period.
+             */
+            enough_data: boolean;
+            thresholds: components["schemas"]["ActivityCounts"];
+            /** Errors By Topic */
+            errors_by_topic: components["schemas"]["TopicErrors"][];
+            /** Errors By Student */
+            errors_by_student: components["schemas"]["StudentErrors"][];
+            /**
+             * At Risk
+             * @description Independent of the period: each criterion has its own window.
+             */
+            at_risk: components["schemas"]["AtRiskStudent"][];
+            /** Criteria Provisional */
+            criteria_provisional: boolean;
         };
         /** TeacherFlag */
         TeacherFlag: {
@@ -2027,6 +2234,24 @@ export interface components {
             /** Name */
             name: string;
         };
+        /** TopicErrors */
+        TopicErrors: {
+            /** Topic Id */
+            topic_id: string | null;
+            /**
+             * Topic Name
+             * @description None for mistakes without a topic.
+             */
+            topic_name: string | null;
+            /** Topic Deleted */
+            topic_deleted: boolean;
+            /** Errors */
+            errors: number;
+            /** Students */
+            students: number;
+            /** Top Error Type */
+            top_error_type: string;
+        };
         /** TopicOrder */
         TopicOrder: {
             /**
@@ -2124,6 +2349,19 @@ export interface components {
             input?: unknown;
             /** Context */
             ctx?: Record<string, never>;
+        };
+        /** WeekActivity */
+        WeekActivity: {
+            /**
+             * Week Start
+             * Format: date
+             * @description Monday of the week (UTC).
+             */
+            week_start: string;
+            /** Messages */
+            messages: number;
+            /** Exercises */
+            exercises: number;
         };
     };
     responses: never;
@@ -4982,6 +5220,163 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    read_dashboard_v1_teacher_courses__course_id__dashboard_get: {
+        parameters: {
+            query?: {
+                period?: "7d" | "30d" | "all";
+            };
+            header?: never;
+            path: {
+                course_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TeacherDashboard"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    read_student_risk_v1_teacher_courses__course_id__students__student_id__risk_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+                student_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StudentRisk"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_risk_criteria_v1_teacher_risk_criteria_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RiskCriteriaList"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };

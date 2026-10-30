@@ -39,7 +39,7 @@ To run against the real backend, start it as described in its README (Supabase, 
 | `npm run test:e2e:app` | App E2E with axe (Playwright, desktop 1440 px and mobile 390 px) against the typed mock backend in `tests/app/mock-api`; starts the mock and the app itself |
 | `npm run test:e2e:integration` | The same suite against the real local stack and an app started with `npm run dev` |
 | `npm run test:e2e` | Prototype tests (`tests/prototype`) |
-| `npm run api:types` · `api:check` | Regenerate / check `src/lib/api/schema.d.ts` from the pinned contract `specs/005-exercise-feedback/contracts/backend-openapi.json` |
+| `npm run api:types` · `api:check` | Regenerate / check `src/lib/api/schema.d.ts` from the pinned contract `specs/006-teacher-dashboard/contracts/backend-openapi.json` |
 
 ## Structure
 
