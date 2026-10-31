@@ -41,6 +41,7 @@ export default async function TeacherCourseLayout({
           { href: routes.teacherQuestions(id), label: t("tab.questions") },
           { href: routes.teacherTest(id), label: t("tab.test") },
           { href: routes.teacherSettings(id), label: t("tab.settings") },
+          { href: routes.teacherCriteria(id), label: t("tab.criteria") },
           { href: routes.teacherConversations(id), label: t("tab.conversations") }
         ]}
       />

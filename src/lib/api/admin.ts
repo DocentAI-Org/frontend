@@ -27,3 +27,8 @@ export const updateQuestionnaire = (id: string, body: Schemas["QuestionnaireUpda
   request((api) => api.PATCH("/v1/admin/questionnaires/{questionnaire_id}", { params: { path: { questionnaire_id: id } }, body }));
 export const deleteQuestionnaire = (id: string) =>
   request((api) => api.DELETE("/v1/admin/questionnaires/{questionnaire_id}", { params: { path: { questionnaire_id: id } } }));
+
+/** The study's pedagogical criteria (backend specs/015). */
+export const getStudyCriteria = () => request((api) => api.GET("/v1/admin/pedagogy-criteria"));
+export const updateStudyCriteria = (body: Schemas["StudyCriteriaUpdate"]) =>
+  request((api) => api.PUT("/v1/admin/pedagogy-criteria", { body }));
