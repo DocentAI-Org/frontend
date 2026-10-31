@@ -19,6 +19,21 @@ export const getSubmission = (course_id: string, submission_id: string) =>
     })
   );
 
+/** The targeted review of a repeated mistake (backend specs/005): created once, then free. */
+export const requestReview = (course_id: string, submission_id: string) =>
+  request((api) =>
+    api.POST("/v1/student/courses/{course_id}/submissions/{submission_id}/review", {
+      params: { path: { course_id, submission_id } }
+    })
+  );
+
+export const getReview = (course_id: string, submission_id: string) =>
+  request((api) =>
+    api.GET("/v1/student/courses/{course_id}/submissions/{submission_id}/review", {
+      params: { path: { course_id, submission_id } }
+    })
+  );
+
 /** The error taxonomy (backend specs/003); fetched once per request. */
 export const getErrorTypes = cache(() => request((api) => api.GET("/v1/error-types")));
 

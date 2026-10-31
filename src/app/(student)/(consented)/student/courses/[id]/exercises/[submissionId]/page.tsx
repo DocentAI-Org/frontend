@@ -12,6 +12,8 @@ import { PageHeader } from "@/components/PageHeader";
 import { getErrorTypes, getSubmission } from "@/lib/api/exercises";
 import { routes } from "@/lib/routes";
 
+import { RepeatedMistakeNotice } from "./RepeatedMistakeNotice";
+
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("student.feedback");
   return { title: t("pageTitle") };
@@ -35,9 +37,22 @@ export default async function FeedbackPage({ params }: { params: Promise<{ id: s
     return submission.status === 404 ? <AccessDenied reason="not-found" home="/student/courses" /> : <ErrorState code={submission.code} />;
   }
   const s = submission.data;
+  const types = taxonomy.ok ? taxonomy.data : null;
+  const repeated = s.repeated_mistake;
   return (
     <div className="flex flex-col gap-6">
       <PageHeader title={t("student.feedback.title")} back={{ href: "/student/courses", label: t("student.feedback.backToCourses") }} />
+      {repeated && (
+        <RepeatedMistakeNotice
+          courseId={id}
+          submissionId={s.id}
+          count={repeated.count}
+          days={repeated.window_days}
+          pattern={[errorTypeLabel(types, repeated.error_type, locale), repeated.topic_name].filter(Boolean).join(" · ")}
+          errorType={repeated.error_type}
+          topic={repeated.topic_name}
+        />
+      )}
       <section aria-labelledby="exercise-title" className="flex flex-col gap-2 rounded-xl border border-border bg-surface-raised p-6">
         <h2 id="exercise-title" className="text-sm font-semibold text-fg-muted">
           {t("student.exercise.problem")}
@@ -67,7 +82,7 @@ export default async function FeedbackPage({ params }: { params: Promise<{ id: s
             {s.error_type && (
               <div className="flex flex-wrap gap-1">
                 <dt className="text-fg-muted">{t("common.record.errorTypeLabel")}</dt>
-                <dd className="font-semibold">{errorTypeLabel(taxonomy.ok ? taxonomy.data : null, s.error_type, locale)}</dd>
+                <dd className="font-semibold">{errorTypeLabel(types, s.error_type, locale)}</dd>
               </div>
             )}
             {s.topic_name && (

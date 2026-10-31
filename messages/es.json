@@ -376,7 +376,16 @@
       "practiceTitle": "Practica",
       "solve": "Resolver",
       "times": "Este error te ha salido {count} veces",
-      "whatTitle": "Qué está pasando"
+      "whatTitle": "Qué está pasando",
+      "timesIn": "Este error te ha salido {count} veces en los últimos {days} días",
+      "provisional": "Contamos los errores del mismo tipo y tema. Es un criterio provisional: el equipo educativo todavía lo está revisando.",
+      "preparing": "Preparando el repaso…",
+      "askTeacher": "Preguntar al profesor/a",
+      "teacherBasis": "Este error se ha repetido {count} veces en los últimos {days} días ({type} · {topic}).",
+      "teacherBasisNoTopic": "Este error se ha repetido {count} veces en los últimos {days} días ({type}).",
+      "teacherReviewTitle": "Repaso que recibió",
+      "teacherNoReview": "El estudiante todavía no ha abierto el repaso.",
+      "limit": "Has llegado al límite de mensajes de hoy. Podrás pedir el repaso a las {time}."
     },
     "exercise": {
       "edit": "Editar",
@@ -1036,6 +1045,7 @@
     "auth_unavailable": "El servicio de cuentas no responde. Inténtalo de nuevo en unos minutos.",
     "storage_unavailable": "No se ha podido guardar el archivo. Inténtalo de nuevo en unos minutos.",
     "api_unreachable": "No podemos conectar con DocentAI. Comprueba tu conexión e inténtalo de nuevo.",
-    "unknown": "Algo ha fallado. Inténtalo de nuevo."
+    "unknown": "Algo ha fallado. Inténtalo de nuevo.",
+    "no_repeated_mistake": "Este error no se ha repetido lo suficiente para preparar un repaso."
   }
 }
