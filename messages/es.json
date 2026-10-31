@@ -1006,7 +1006,8 @@
       "emptyRejected": "No has rechazado ninguna pregunta.",
       "listLabel": "Preguntas {status}",
       "unavailable": "El tutor no está disponible ahora mismo. Inténtalo de nuevo en unos minutos.",
-      "correctOption": "Opción {n} es la correcta"
+      "correctOption": "Opción {n} es la correcta",
+      "checkAnswerKey": "Las preguntas las redacta la IA y a veces marca como correcta una opción equivocada o deja dos opciones válidas. Resuélvela tú antes de aprobarla."
     },
     "risk": {
       "activityBasis": "Mensajes al tutor, ejercicios enviados y cuestionarios terminados.",

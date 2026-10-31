@@ -18,3 +18,5 @@
   level shown and `…/quiz-topics`
 - [x] T008 [US2] Topic choice on the start page; the `level_exhausted` sentence
 
+- [x] T009 From the end-to-end review (AI drafts with a wrong key or two right options): a reminder
+  on "Pendientes" to solve each question before approving it; E2E 008-US1-AS9

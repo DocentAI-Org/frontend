@@ -195,6 +195,23 @@ async function start(page: Page) {
   await expect(page.getByText(/pregunta 1 de/i)).toBeVisible();
 }
 
+test.describe("008 US1 check the answer key before approving", () => {
+  scenario("008-US1-AS9", "pending AI questions remind the teacher to solve them first", async ({ page, request }) => {
+    const { courseId } = await teacherRoom(request, page);
+    await seedQuestions(request, courseId, { levels: [1], status: "pending" });
+    await seedQuestions(request, courseId, { levels: [2], status: "approved" });
+    await openQuestions(page, courseId);
+
+    const reminder = page.getByRole("note").filter({ hasText: /resuélvela tú antes de aprobarla/i });
+    await expect(reminder).toBeVisible();
+    await expect(reminder).toContainText(/respuesta marcada|dos opciones/i);
+    await expectAccessible(page);
+
+    await statusTabs(page).getByRole("link", { name: /aprobadas/i }).click();
+    await expect(page.getByRole("note").filter({ hasText: /resuélvela tú/i })).toHaveCount(0);
+  });
+});
+
 test.describe("008 US2 adaptive quiz", () => {
   scenario("008-US2-AS1", "the quiz opens from the course and shows the first question", async ({ page, request }) => {
     const { courseId } = await classroom(request, page);
