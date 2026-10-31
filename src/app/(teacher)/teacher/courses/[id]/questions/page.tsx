@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
 import { Alert } from "@/components/Alert";
+import { Icon } from "@/components/Icon";
 import { LinkButton } from "@/components/Button";
 import { EmptyState } from "@/components/EmptyState";
 import { ErrorState } from "@/components/ErrorState";
@@ -102,6 +103,18 @@ export default async function QuestionsPage({
                     : t(status === "approved" ? "teacher.questions.emptyApproved" : "teacher.questions.emptyRejected")}
                 </p>
               ) : (
+                <>
+                  {status === "pending" && (
+                    // AI drafts often mark a wrong option or leave two right ones (end-to-end review).
+                    <p
+                      role="note"
+                      className="flex items-start gap-2 rounded-lg border border-warning-300 bg-warning-50 px-4 py-3 text-sm text-fg"
+                      data-component="AnswerKeyReminder"
+                    >
+                      <Icon name="triangle-alert" className="mt-0.5 size-4 shrink-0 text-warning-900" />
+                      <span>{t("teacher.questions.checkAnswerKey")}</span>
+                    </p>
+                  )}
                 <ul aria-label={t("teacher.questions.listLabel", { status: t(`teacher.questions.${status}`) })} className="flex flex-col gap-4">
                   {questions.data.items.map((question) => (
                     <li key={question.id}>
@@ -109,6 +122,7 @@ export default async function QuestionsPage({
                     </li>
                   ))}
                 </ul>
+                </>
               )}
             </>
           )}
