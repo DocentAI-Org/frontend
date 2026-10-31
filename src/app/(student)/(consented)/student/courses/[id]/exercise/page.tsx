@@ -15,8 +15,15 @@ export async function generateMetadata(): Promise<Metadata> {
   return { title: t("pageTitle") };
 }
 
-export default async function ExercisePage({ params }: { params: Promise<{ id: string }> }) {
+export default async function ExercisePage({
+  params,
+  searchParams
+}: {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ problem?: string }>;
+}) {
   const { id } = await params;
+  const { problem } = await searchParams;
   const t = await getTranslations("student");
   const [course, allowance] = await Promise.all([getStudentCourse(id), getAllowance()]);
   if (!course.ok) {
@@ -38,6 +45,7 @@ export default async function ExercisePage({ params }: { params: Promise<{ id: s
         courseId={id}
         limit={allowance.data.limit}
         resetsAt={allowance.data.remaining === 0 ? allowance.data.resets_at : null}
+        initialProblem={problem?.slice(0, 2000)}
       />
     </div>
   );

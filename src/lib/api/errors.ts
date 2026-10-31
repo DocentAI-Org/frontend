@@ -21,6 +21,7 @@ export const API_ERROR_CODES = [
   "solution_not_allowed",
   "tutor_unavailable",
   "not_a_tutor_message",
+  "no_repeated_mistake",
   "email_taken",
   "auth_unavailable",
   "storage_unavailable",

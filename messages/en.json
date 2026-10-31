@@ -376,7 +376,16 @@
       "practiceTitle": "Practise",
       "solve": "Solve",
       "times": "This mistake has come up {count} times",
-      "whatTitle": "What's going on"
+      "whatTitle": "What's going on",
+      "timesIn": "You've made this mistake {count} times in the last {days} days",
+      "provisional": "We count mistakes of the same type and topic. It's a provisional rule: the educational team is still reviewing it.",
+      "preparing": "Preparing the review…",
+      "askTeacher": "Ask your teacher",
+      "teacherBasis": "This mistake has repeated {count} times in the last {days} days ({type} · {topic}).",
+      "teacherBasisNoTopic": "This mistake has repeated {count} times in the last {days} days ({type}).",
+      "teacherReviewTitle": "Review they got",
+      "teacherNoReview": "The student hasn't opened the review yet.",
+      "limit": "You've reached today's message limit. You can ask for the review at {time}."
     },
     "exercise": {
       "edit": "Edit",
@@ -1036,6 +1045,7 @@
     "auth_unavailable": "The account service is not responding. Try again in a few minutes.",
     "storage_unavailable": "The file could not be saved. Try again in a few minutes.",
     "api_unreachable": "We cannot connect to DocentAI. Check your connection and try again.",
-    "unknown": "Something went wrong. Please try again."
+    "unknown": "Something went wrong. Please try again.",
+    "no_repeated_mistake": "This mistake hasn't repeated enough to prepare a review."
   }
 }

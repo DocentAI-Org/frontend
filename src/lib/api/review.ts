@@ -60,3 +60,10 @@ export const removeFlag = (course_id: string, target: FlagTarget) =>
 
 export const listCourseFlags = (course_id: string) =>
   request((api) => api.GET("/v1/teacher/courses/{course_id}/flags", { params: { path: { course_id }, query: PAGE } }));
+
+export const getCourseSubmissionReview = (course_id: string, submission_id: string) =>
+  request((api) =>
+    api.GET("/v1/teacher/courses/{course_id}/submissions/{submission_id}/review", {
+      params: { path: { course_id, submission_id } }
+    })
+  );

@@ -16,7 +16,18 @@ const FIELD =
   "w-full rounded-lg border border-border-strong bg-surface-raised px-4 py-2 text-base text-fg placeholder:text-fg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:bg-surface-sunken aria-invalid:border-danger-600";
 
 /** Submit a worked exercise (#11, 001 US6 AS1, AS5, AS6): write, review, send. */
-export function ExerciseForm({ courseId, limit, resetsAt }: { courseId: string; limit: number; resetsAt: string | null }) {
+export function ExerciseForm({
+  courseId,
+  limit,
+  resetsAt,
+  initialProblem = ""
+}: {
+  courseId: string;
+  limit: number;
+  resetsAt: string | null;
+  /** A practice statement from a mistake review (spec 007 US2 AS3). */
+  initialProblem?: string;
+}) {
   const t = useTranslations("student");
   const tAll = useTranslations();
   const format = useFormatter();
@@ -25,7 +36,7 @@ export function ExerciseForm({ courseId, limit, resetsAt }: { courseId: string; 
   const problemRef = useRef<HTMLTextAreaElement>(null);
   const stepsRef = useRef<HTMLTextAreaElement>(null);
   // Kept after "Editar" so nothing typed is lost; `reviewing` switches to the review step.
-  const [values, setValues] = useState({ problem: "", steps: "" });
+  const [values, setValues] = useState({ problem: initialProblem, steps: "" });
   const [reviewing, setReviewing] = useState(false);
   const [empty, setEmpty] = useState(false);
   const [error, setError] = useState<string | null>(null);

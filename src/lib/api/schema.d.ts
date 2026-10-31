@@ -558,6 +558,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/teacher/courses/{course_id}/submissions/{submission_id}/review": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** The review the student got for a repeated mistake */
+        get: operations["read_review_v1_teacher_courses__course_id__submissions__submission_id__review_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/teacher/courses/{course_id}/messages/{message_id}/flag": {
         parameters: {
             query?: never;
@@ -882,6 +899,27 @@ export interface paths {
         get: operations["read_submission_v1_student_courses__course_id__submissions__submission_id__get"];
         put?: never;
         post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/student/courses/{course_id}/submissions/{submission_id}/review": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Read Review */
+        get: operations["read_review_v1_student_courses__course_id__submissions__submission_id__review_get"];
+        put?: never;
+        /**
+         * A targeted review of a repeated mistake
+         * @description Only for a submission with `repeated_mistake`, else 409 `no_repeated_mistake`. What is going wrong, a worked example and practice statements, grounded in the material. Created once (201) and counted toward the daily allowance; asking again returns the same review (200) for free.
+         */
+        post: operations["request_review_v1_student_courses__course_id__submissions__submission_id__review_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1537,6 +1575,44 @@ export interface components {
              */
             request_solution: boolean;
         };
+        /** MistakeReview */
+        MistakeReview: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /**
+             * Submission Id
+             * Format: uuid
+             */
+            submission_id: string;
+            /** Error Type */
+            error_type: string;
+            /** Topic Name */
+            topic_name: string | null;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "answer" | "no_source";
+            /** Explanation */
+            explanation: string;
+            /** Worked Example */
+            worked_example: string | null;
+            /**
+             * Practice
+             * @description Practice statements, without solutions.
+             */
+            practice: string[];
+            /** Citations */
+            citations: components["schemas"]["Citation"][];
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+        };
         /** Page[AdminCourse] */
         Page_AdminCourse_: {
             /** Items */
@@ -1712,6 +1788,20 @@ export interface components {
         PseudonymousBatchCreate: {
             /** Count */
             count: number;
+        };
+        /** RepeatedMistake */
+        RepeatedMistake: {
+            /**
+             * Count
+             * @description Mistakes of this type and topic in the window, up to this one.
+             */
+            count: number;
+            /** Window Days */
+            window_days: number;
+            /** Error Type */
+            error_type: string;
+            /** Topic Name */
+            topic_name: string | null;
         };
         /** RiskCriteriaList */
         RiskCriteriaList: {
@@ -1905,6 +1995,8 @@ export interface components {
              */
             is_stub: boolean;
             correction: components["schemas"]["Correction"] | null;
+            /** @description Set when this mistake repeats a pattern (specs/005, provisional). */
+            repeated_mistake: components["schemas"]["RepeatedMistake"] | null;
             /**
              * Created At
              * Format: date-time
@@ -2143,6 +2235,8 @@ export interface components {
              */
             is_stub: boolean;
             correction: components["schemas"]["Correction"] | null;
+            /** @description Set when this mistake repeats a pattern (specs/005, provisional). */
+            repeated_mistake: components["schemas"]["RepeatedMistake"] | null;
             /**
              * Created At
              * Format: date-time
@@ -4852,6 +4946,65 @@ export interface operations {
             };
         };
     };
+    read_review_v1_teacher_courses__course_id__submissions__submission_id__review_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+                submission_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MistakeReview"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     flag_message_v1_teacher_courses__course_id__messages__message_id__flag_put: {
         parameters: {
             query?: never;
@@ -6263,6 +6416,151 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    read_review_v1_student_courses__course_id__submissions__submission_id__review_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+                submission_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MistakeReview"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    request_review_v1_student_courses__course_id__submissions__submission_id__review_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+                submission_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MistakeReview"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };

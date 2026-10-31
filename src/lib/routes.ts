@@ -25,5 +25,6 @@ export const routes = {
     `/teacher/courses/${id}/students/${studentId}${query}` as Route,
   studentExercise: (id: string) => `/student/courses/${id}/exercise` as Route,
   studentSubmission: (id: string, submissionId: string) => `/student/courses/${id}/exercises/${submissionId}` as Route,
+  studentReview: (id: string, submissionId: string) => `/student/courses/${id}/exercises/${submissionId}/review` as Route,
   join: (code: string) => `/join/${encodeURIComponent(code)}` as Route
 };

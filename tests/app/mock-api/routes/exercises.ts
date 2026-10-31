@@ -11,6 +11,30 @@ function words(text: string): Set<string> {
   return new Set(text.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase().match(/[a-z0-9]{4,}/g) ?? []);
 }
 
+const DAY = 24 * 60 * 60 * 1000;
+// Backend defaults (specs/005): the same type and topic 3 times in 30 days.
+export const REPEATED = { count: 3, days: 30 };
+
+/** The pattern a saved mistake repeats, counted up to it (backend specs/005 US1). */
+export function repeatedOf(state: State, s: Submission): S["RepeatedMistake"] | null {
+  if (!s.saved || !s.error_type) return null;
+  const at = Date.parse(s.created_at);
+  const index = state.submissions.indexOf(s);
+  const count = state.submissions.filter(
+    (o, i) =>
+      o.saved &&
+      i <= index &&
+      o.course_id === s.course_id &&
+      o.student_id === s.student_id &&
+      o.error_type === s.error_type &&
+      o.topic_name === s.topic_name &&
+      at - Date.parse(o.created_at) < REPEATED.days * DAY
+  ).length;
+  return count >= REPEATED.count
+    ? { count, window_days: REPEATED.days, error_type: s.error_type, topic_name: s.topic_name }
+    : null;
+}
+
 export function submissionView(state: State, s: Submission): S["StudentSubmission"] {
   const flag = state.flags.find((f) => f.submission_id === s.id);
   return {
@@ -27,6 +51,7 @@ export function submissionView(state: State, s: Submission): S["StudentSubmissio
     saved_to_record: s.saved,
     is_stub: false,
     correction: flag ? { text: flag.correction, reviewed_at: flag.updated_at } : null,
+    repeated_mistake: repeatedOf(state, s),
     created_at: s.created_at
   };
 }
