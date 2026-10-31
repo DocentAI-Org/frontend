@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import { useId, useRef, useState, useTransition } from "react";
+import { useEffect, useId, useRef, useState, useTransition } from "react";
 
 import { Alert } from "@/components/Alert";
 import { Button } from "@/components/Button";
@@ -15,7 +15,8 @@ import { submitTestAction } from "./actions";
 
 /**
  * Every question on one page, no hints (010 US3 AS2–AS3). Sending asks for confirmation, as the
- * answers cannot change; afterwards only a thank-you, never a score.
+ * answers cannot change; afterwards only a thank-you, never a score. The radios are uncontrolled
+ * and read from the form, so choices made before hydration (slow phones) are kept.
  */
 export function TestForm({
   courseId,
@@ -32,6 +33,7 @@ export function TestForm({
   const tAll = useTranslations();
   const router = useRouter();
   const ids = useId();
+  const formRef = useRef<HTMLFormElement>(null);
   const [choices, setChoices] = useState<Record<string, number>>({});
   const [confirming, setConfirming] = useState(false);
   const [sent, setSent] = useState(false);
@@ -39,6 +41,20 @@ export function TestForm({
   const [pending, startTransition] = useTransition();
   const confirmRef = useRef<HTMLDivElement>(null);
   const missing = questions.filter((q) => choices[q.id] === undefined).length;
+
+  const read = (form: HTMLFormElement | null) => {
+    if (!form) return;
+    const data = new FormData(form);
+    const found: Record<string, number> = {};
+    for (const q of questions) {
+      const value = data.get(`${ids}-${q.id}`);
+      if (value !== null) found[q.id] = Number(value);
+    }
+    setChoices(found);
+  };
+  // Picks up anything chosen before hydration.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => read(formRef.current), []);
 
   if (sent) {
     return (
@@ -69,7 +85,9 @@ export function TestForm({
 
   return (
     <form
+      ref={formRef}
       className="flex flex-col gap-6"
+      onChange={(event) => read(event.currentTarget)}
       onSubmit={(event) => {
         event.preventDefault();
         if (missing === 0) {
@@ -94,8 +112,7 @@ export function TestForm({
                   <input
                     type="radio"
                     name={`${ids}-${question.id}`}
-                    checked={choices[question.id] === i}
-                    onChange={() => setChoices((all) => ({ ...all, [question.id]: i }))}
+                    value={i}
                     className="size-5 shrink-0 accent-primary-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
                   />
                   <span className="text-fg">{option}</span>
