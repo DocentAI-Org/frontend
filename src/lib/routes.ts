@@ -17,6 +17,7 @@ export const routes = {
   teacherSubmission: (id: string, submissionId: string) => `/teacher/courses/${id}/exercises/${submissionId}` as Route,
   teacherFlags: (id: string) => `/teacher/courses/${id}/corrections` as Route,
   teacherQuestions: (id: string, query = "") => `/teacher/courses/${id}/questions${query}` as Route,
+  teacherTest: (id: string, query = "") => `/teacher/courses/${id}/test${query}` as Route,
   teacherDashboard: (id: string, query = "") => `/teacher/courses/${id}/dashboard${query}` as Route,
   studentCourse: (id: string) => `/student/courses/${id}` as Route,
   studentConversation: (id: string, conversationId: string) =>
@@ -28,6 +29,7 @@ export const routes = {
   studentSubmission: (id: string, submissionId: string) => `/student/courses/${id}/exercises/${submissionId}` as Route,
   studentReview: (id: string, submissionId: string) => `/student/courses/${id}/exercises/${submissionId}/review` as Route,
   studentQuizStart: (id: string) => `/student/courses/${id}/quiz` as Route,
+  studentTest: (id: string, phase: "pre" | "post") => `/student/courses/${id}/test/${phase}` as Route,
   studentQuiz: (id: string, quizId: string) => `/student/courses/${id}/quizzes/${quizId}` as Route,
   join: (code: string) => `/join/${encodeURIComponent(code)}` as Route
 };

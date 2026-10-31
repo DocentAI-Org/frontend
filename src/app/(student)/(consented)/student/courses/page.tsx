@@ -9,6 +9,7 @@ import { Icon } from "@/components/Icon";
 import { MessageAllowance } from "@/components/MessageAllowance";
 import { PageHeader } from "@/components/PageHeader";
 import { getAllowance } from "@/lib/api/chat";
+import { listTestPhases } from "@/lib/api/course-tests";
 import { listStudentCourses } from "@/lib/api/courses";
 import { routes } from "@/lib/routes";
 
@@ -22,7 +23,19 @@ const ACTION =
 
 export default async function StudentCoursesPage() {
   const t = await getTranslations("student.courses");
+  const tt = await getTranslations("student.test");
+  const tp = await getTranslations("teacher.test");
   const [courses, allowance] = await Promise.all([listStudentCourses(), getAllowance()]);
+  // An open pre/post-test the student has not done yet is announced on its card (010 US3 AS1).
+  const pending = new Map<string, "pre" | "post">();
+  if (courses.ok) {
+    const phases = await Promise.all(courses.data.items.map((course) => listTestPhases(course.id)));
+    courses.data.items.forEach((course, i) => {
+      const result = phases[i];
+      const open = result.ok ? result.data.find((p) => p.status === "open" && !p.done) : undefined;
+      if (open) pending.set(course.id, open.phase);
+    });
+  }
   const join = (variant: "primary" | "secondary") => (
     <LinkButton href="/student/join" variant={variant} icon="plus">
       {t("join")}
@@ -55,6 +68,16 @@ export default async function StudentCoursesPage() {
                   </p>
                   {course.description && <p className="text-fg">{course.description}</p>}
                 </div>
+                {pending.has(course.id) && (
+                  <div className="flex flex-col gap-2 rounded-lg border border-info-200 bg-info-50 p-4" data-component="TestNotice">
+                    <p className="font-medium text-info-800">{tt("cardOpen", { phase: tp(`phaseLower.${pending.get(course.id)!}`) })}</p>
+                    <div>
+                      <LinkButton href={routes.studentTest(course.id, pending.get(course.id)!)} icon="file-text">
+                        {tt("cardLink", { phase: tp(`phaseLower.${pending.get(course.id)!}`) })}
+                      </LinkButton>
+                    </div>
+                  </div>
+                )}
                 <nav aria-labelledby={`course-${course.id}`} className="flex flex-wrap gap-2">
                   <LinkButton href={routes.studentCourse(course.id)} icon="message-circle">
                     {t("openChat")}
