@@ -8,4 +8,4 @@
   weekly activity with quizzes
 - [x] T004 [US1] `TopicProgress` component; "Mi progreso" with it above the learning record
 - [x] T005 [US2] "Progreso por tema" and the quizzes column on the teacher's student page
-- [ ] T006 Validation against the real stack (SC-002) in `validation.md`
+- [x] T006 Validation against the real stack (SC-002) in `validation.md`

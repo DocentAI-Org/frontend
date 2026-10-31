@@ -56,6 +56,7 @@ test.describe("009 US1 my progress", () => {
 
     await expect(parens.getByText(/has acertado el 50\s?% de tus últimos 7 ejercicios y preguntas de este tema/i)).toBeVisible();
     await expect(parens.getByText(/criterio provisional/i)).toBeVisible();
+    await expectAccessible(page);
   });
 
   scenario("009-US1-AS3", "few items and no items are explained", async ({ page, request }) => {
