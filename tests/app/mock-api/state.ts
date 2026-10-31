@@ -171,6 +171,25 @@ export type Quiz = {
   items: QuizItem[];
 };
 
+export type TestQuestion = {
+  id: string;
+  course_id: string;
+  topic_id: string | null;
+  topic_name: string;
+  position: number;
+  statement: string;
+  options: string[];
+  correct_option: number;
+};
+export type TestPhaseRow = { status: "not_open" | "open" | "closed"; opened_at: string | null; closed_at: string | null };
+export type TestAttempt = {
+  course_id: string;
+  student_id: string;
+  phase: "pre" | "post";
+  submitted_at: string;
+  answers: { question_id: string; choice: number; correct: boolean }[];
+};
+
 export type Topic = { id: string; course_id: string; name: string; position: number };
 export type Assignment = {
   id: string;
@@ -209,6 +228,10 @@ export type State = {
   quizzes: Quiz[];
   /** What the next question generation returns (backend specs/006), set by /__test/generation. */
   generation: { mode: "drafts" | "no_source" | "fail"; delay_ms: number };
+  testQuestions: TestQuestion[];
+  /** Pre/post-test phases (backend specs/008), keyed "<course_id>:<phase>". */
+  testPhases: Map<string, TestPhaseRow>;
+  testAttempts: TestAttempt[];
 };
 
 export const CONSENT_VERSION = "2026-10";
@@ -267,7 +290,10 @@ export function seed(): State {
     dashboard: new Map(),
     questions: [],
     quizzes: [],
-    generation: { mode: "drafts", delay_ms: 0 }
+    generation: { mode: "drafts", delay_ms: 0 },
+    testQuestions: [],
+    testPhases: new Map(),
+    testAttempts: []
   };
 }
 
