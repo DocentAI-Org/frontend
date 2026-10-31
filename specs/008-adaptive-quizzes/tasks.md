@@ -10,4 +10,4 @@
   filter, request, approve, reject, edit
 - [x] T005 [US2] Quiz start `/student/courses/[id]/quiz`, quiz `/student/courses/[id]/quizzes/[quizId]`
   with feedback, level reasons and summary; "Cuestionario" on the course card
-- [ ] T006 Validation against the real stack (SC-002) in `validation.md`
+- [x] T006 Validation against the real stack (SC-002) in `validation.md`
