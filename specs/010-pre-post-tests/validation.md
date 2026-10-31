@@ -17,10 +17,13 @@ pre-test on mobile WebKit 390 px and the post-test on desktop). A course with th
 
 ## Changes made because of this run
 
-- **Choices made before the page finished loading were lost** on mobile WebKit: the radios were
-  controlled by React state, and hydration reset them, so "Enviar respuestas" stayed disabled.
-  The student form (and the teacher's question form, for the same reason in the E2E tests) now
-  uses uncontrolled fields read from the form, including once on hydration.
+- **Text typed before hydration was lost** in the teacher's question form on mobile WebKit (seen
+  in the E2E tests: the statement came back empty). The form now uses uncontrolled fields read on
+  submit. The student's test form got the same change as a precaution (radios read from the form,
+  also once on hydration), so a choice made on a slow phone before the page is ready counts. The
+  first two walkthrough attempts failed for reasons in the walkthrough script itself (it read the
+  page before navigating, and opened the pre-test before the third question was saved), not in
+  the app.
 
 ## Open points
 
