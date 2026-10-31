@@ -19,6 +19,7 @@ import { courseTestRoutes } from "./routes/course-tests.ts";
 import { settingsRoutes } from "./routes/settings.ts";
 import { topicRoutes } from "./routes/topics.ts";
 import { meRoutes } from "./routes/me.ts";
+import { pedagogyRoutes } from "./routes/pedagogy.ts";
 import { questionnaireRoutes } from "./routes/questionnaires.ts";
 import { seed, state } from "./state.ts";
 
@@ -42,7 +43,7 @@ const testRoutes: Route[] = [
   }
 ];
 
-const routes = [...testRoutes, ...authRoutes, ...meRoutes, ...consentRoutes, ...courseRoutes, ...documentRoutes, ...topicRoutes, ...settingsRoutes, ...chatRoutes, ...exerciseRoutes, ...recordRoutes, ...reviewRoutes, ...mistakeReviewRoutes, ...quizRoutes, ...progressRoutes, ...courseTestRoutes, ...dashboardRoutes, ...questionnaireRoutes, ...adminRoutes].map((route) => ({
+const routes = [...testRoutes, ...authRoutes, ...meRoutes, ...consentRoutes, ...courseRoutes, ...documentRoutes, ...topicRoutes, ...settingsRoutes, ...chatRoutes, ...exerciseRoutes, ...recordRoutes, ...reviewRoutes, ...mistakeReviewRoutes, ...quizRoutes, ...progressRoutes, ...courseTestRoutes, ...dashboardRoutes, ...questionnaireRoutes, ...pedagogyRoutes, ...adminRoutes].map((route) => ({
   ...route,
   matcher: compile(route.path)
 }));
