@@ -696,6 +696,63 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/teacher/courses/{course_id}/topics/{topic_id}/questions/generate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Draft quiz questions for a topic with the AI
+         * @description Multiple-choice drafts from the topic's confirmed material (or, without any, the material closest to its name), each citing its source. They are stored as `pending`: students only see approved questions. Unusable drafts are dropped; `kind: no_source` when none is usable. Logged with its cost; not charged to any student.
+         */
+        post: operations["generate_questions_v1_teacher_courses__course_id__topics__topic_id__questions_generate_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/teacher/courses/{course_id}/questions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Questions */
+        get: operations["list_questions_v1_teacher_courses__course_id__questions_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/teacher/courses/{course_id}/questions/{question_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /**
+         * Edit, approve or reject a question
+         * @description Any of the content fields and/or `status`. Changing the content of an AI draft marks it `edited`. Quizzes already started keep the version the student saw.
+         */
+        patch: operations["update_question_v1_teacher_courses__course_id__questions__question_id__patch"];
+        trace?: never;
+    };
     "/v1/student/enrolments": {
         parameters: {
             query?: never;
@@ -943,6 +1000,64 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/student/courses/{course_id}/quizzes": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Quizzes */
+        get: operations["list_quizzes_v1_student_courses__course_id__quizzes_get"];
+        put?: never;
+        /**
+         * Start an adaptive quiz
+         * @description Over the teacher's approved questions, for one topic or all. 409 `no_questions` when there are none. Answering never calls the model and does not count toward the daily allowance.
+         */
+        post: operations["start_quiz_v1_student_courses__course_id__quizzes_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/student/courses/{course_id}/quizzes/{quiz_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Read Quiz */
+        get: operations["read_quiz_v1_student_courses__course_id__quizzes__quiz_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/student/courses/{course_id}/quizzes/{quiz_id}/answers": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Answer the current question
+         * @description Immediate feedback: whether it was right, the correct option, the explanation and its sources, and the next question. `difficulty_change` says when and why the level moved. 409 `not_current_question` or `quiz_completed`.
+         */
+        post: operations["answer_question_v1_student_courses__course_id__quizzes__quiz_id__answers_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/student/consent": {
         parameters: {
             query?: never;
@@ -1057,6 +1172,48 @@ export interface components {
              * Format: date-time
              */
             resets_at: string;
+        };
+        /** AnswerResult */
+        AnswerResult: {
+            /** Correct */
+            correct: boolean;
+            /** Correct Option */
+            correct_option: number;
+            /** Explanation */
+            explanation: string;
+            /** Citations */
+            citations: components["schemas"]["Citation"][];
+            /** @description Set when this answer moved the level (provisional rule, spec 006). */
+            difficulty_change: components["schemas"]["DifficultyChange"] | null;
+            quiz: components["schemas"]["Quiz"];
+        };
+        /** AnsweredItem */
+        AnsweredItem: {
+            /** Position */
+            position: number;
+            /** Statement */
+            statement: string;
+            /** Options */
+            options: string[];
+            /** Difficulty */
+            difficulty: number;
+            /** Topic Name */
+            topic_name: string;
+            /** Choice */
+            choice: number;
+            /** Correct */
+            correct: boolean;
+            /** Correct Option */
+            correct_option: number;
+            /** Explanation */
+            explanation: string;
+            /** Citations */
+            citations: components["schemas"]["Citation"][];
+            /**
+             * Answered At
+             * Format: date-time
+             */
+            answered_at: string;
         };
         /** AtRiskStudent */
         AtRiskStudent: {
@@ -1284,6 +1441,23 @@ export interface components {
              */
             initial_password: string;
         };
+        /** DifficultyChange */
+        DifficultyChange: {
+            /** From Level */
+            from_level: number;
+            /** To Level */
+            to_level: number;
+            /**
+             * Reason
+             * @enum {string}
+             */
+            reason: "correct_streak" | "wrong_streak";
+            /**
+             * Streak
+             * @description Right or wrong answers in a row that caused it.
+             */
+            streak: number;
+        };
         /** Document */
         Document: {
             /**
@@ -1446,6 +1620,25 @@ export interface components {
         FragmentUpdate: {
             /** Excluded */
             excluded: boolean;
+        };
+        /** GenerateQuestions */
+        GenerateQuestions: {
+            /**
+             * Count
+             * @default 5
+             */
+            count: number;
+        };
+        /** GeneratedQuestions */
+        GeneratedQuestions: {
+            /**
+             * Kind
+             * @description `no_source` when the material gave no usable question.
+             * @enum {string}
+             */
+            kind: "answer" | "no_source";
+            /** Questions */
+            questions: components["schemas"]["TeacherQuestion"][];
         };
         /** HTTPValidationError */
         HTTPValidationError: {
@@ -1712,6 +1905,17 @@ export interface components {
             /** Offset */
             offset: number;
         };
+        /** Page[Quiz] */
+        Page_Quiz_: {
+            /** Items */
+            items: components["schemas"]["Quiz"][];
+            /** Total */
+            total: number;
+            /** Limit */
+            limit: number;
+            /** Offset */
+            offset: number;
+        };
         /** Page[StudentConversationSummary] */
         Page_StudentConversationSummary_: {
             /** Items */
@@ -1788,6 +1992,173 @@ export interface components {
         PseudonymousBatchCreate: {
             /** Count */
             count: number;
+        };
+        /** QuestionCounts */
+        QuestionCounts: {
+            /** Pending */
+            pending: number;
+            /** Approved */
+            approved: number;
+            /** Rejected */
+            rejected: number;
+        };
+        /** QuestionPage */
+        QuestionPage: {
+            /** Items */
+            items: components["schemas"]["TeacherQuestion"][];
+            /** Total */
+            total: number;
+            /** Limit */
+            limit: number;
+            /** Offset */
+            offset: number;
+            /** @description Questions per status, for the topic filter if given. */
+            counts: components["schemas"]["QuestionCounts"];
+        };
+        /** QuestionUpdate */
+        QuestionUpdate: {
+            /** Statement */
+            statement?: string | null;
+            /** Options */
+            options?: string[] | null;
+            /** Correct Option */
+            correct_option?: number | null;
+            /** Explanation */
+            explanation?: string | null;
+            /** Difficulty */
+            difficulty?: number | null;
+            /** Status */
+            status?: ("pending" | "approved" | "rejected") | null;
+        };
+        /** Quiz */
+        Quiz: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Topic Id */
+            topic_id: string | null;
+            /** Topic Name */
+            topic_name: string | null;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "in_progress" | "completed";
+            /** Question Count */
+            question_count: number;
+            /** Answered Count */
+            answered_count: number;
+            /**
+             * Level
+             * @description Current difficulty level, 1-3.
+             */
+            level: number;
+            /** @description Null once completed. */
+            current: components["schemas"]["QuizQuestion"] | null;
+            /** @description Set once completed. */
+            summary: components["schemas"]["QuizSummary"] | null;
+            /**
+             * Started At
+             * Format: date-time
+             */
+            started_at: string;
+            /** Completed At */
+            completed_at: string | null;
+        };
+        /** QuizAnswer */
+        QuizAnswer: {
+            /**
+             * Question Id
+             * Format: uuid
+             */
+            question_id: string;
+            /**
+             * Choice
+             * @description Index of the option, 0-3.
+             */
+            choice: number;
+        };
+        /** QuizDetail */
+        QuizDetail: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Topic Id */
+            topic_id: string | null;
+            /** Topic Name */
+            topic_name: string | null;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "in_progress" | "completed";
+            /** Question Count */
+            question_count: number;
+            /** Answered Count */
+            answered_count: number;
+            /**
+             * Level
+             * @description Current difficulty level, 1-3.
+             */
+            level: number;
+            /** @description Null once completed. */
+            current: components["schemas"]["QuizQuestion"] | null;
+            /** @description Set once completed. */
+            summary: components["schemas"]["QuizSummary"] | null;
+            /**
+             * Started At
+             * Format: date-time
+             */
+            started_at: string;
+            /** Completed At */
+            completed_at: string | null;
+            /**
+             * Items
+             * @description The answered questions, in order.
+             */
+            items: components["schemas"]["AnsweredItem"][];
+        };
+        /** QuizQuestion */
+        QuizQuestion: {
+            /**
+             * Id
+             * Format: uuid
+             * @description The question to send back with the answer.
+             */
+            id: string;
+            /** Position */
+            position: number;
+            /** Statement */
+            statement: string;
+            /** Options */
+            options: string[];
+            /** Difficulty */
+            difficulty: number;
+            /** Topic Name */
+            topic_name: string;
+        };
+        /** QuizStart */
+        QuizStart: {
+            /**
+             * Topic Id
+             * @description Omit for a quiz over every topic.
+             */
+            topic_id?: string | null;
+        };
+        /** QuizSummary */
+        QuizSummary: {
+            /** Score */
+            score: number;
+            /** Total */
+            total: number;
+            /** Final Level */
+            final_level: number;
+            /** By Topic */
+            by_topic: components["schemas"]["TopicScore"][];
         };
         /** RepeatedMistake */
         RepeatedMistake: {
@@ -2196,6 +2567,61 @@ export interface components {
             correction: components["schemas"]["Correction"] | null;
             flag: components["schemas"]["TeacherFlag"] | null;
         };
+        /** TeacherQuestion */
+        TeacherQuestion: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /**
+             * Topic Id
+             * Format: uuid
+             */
+            topic_id: string;
+            /** Topic Name */
+            topic_name: string;
+            /** Statement */
+            statement: string;
+            /** Options */
+            options: string[];
+            /** Correct Option */
+            correct_option: number;
+            /** Explanation */
+            explanation: string;
+            /** Difficulty */
+            difficulty: number;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "pending" | "approved" | "rejected";
+            /**
+             * Origin
+             * @description `edited` once the teacher changes an AI draft.
+             * @enum {string}
+             */
+            origin: "ai" | "edited";
+            /** Citations */
+            citations: components["schemas"]["Citation"][];
+            /**
+             * Answered Count
+             * @description Answers given in students' quizzes.
+             */
+            answered_count: number;
+            /**
+             * Correct Rate
+             * @description Share of those answers that were right; null before any.
+             */
+            correct_rate: number | null;
+            /** Reviewed At */
+            reviewed_at: string | null;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+        };
         /** TeacherSubmission */
         TeacherSubmission: {
             /**
@@ -2363,6 +2789,17 @@ export interface components {
             id: string;
             /** Name */
             name: string;
+        };
+        /** TopicScore */
+        TopicScore: {
+            /** Topic Id */
+            topic_id: string | null;
+            /** Topic Name */
+            topic_name: string;
+            /** Correct */
+            correct: number;
+            /** Total */
+            total: number;
         };
         /** TopicUpdate */
         TopicUpdate: {
@@ -5534,6 +5971,204 @@ export interface operations {
             };
         };
     };
+    generate_questions_v1_teacher_courses__course_id__topics__topic_id__questions_generate_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+                topic_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["GenerateQuestions"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GeneratedQuestions"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    list_questions_v1_teacher_courses__course_id__questions_get: {
+        parameters: {
+            query?: {
+                status?: ("pending" | "approved" | "rejected") | null;
+                topic_id?: string | null;
+                limit?: number;
+                offset?: number;
+            };
+            header?: never;
+            path: {
+                course_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["QuestionPage"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    update_question_v1_teacher_courses__course_id__questions__question_id__patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+                question_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["QuestionUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TeacherQuestion"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
     join_course_v1_student_enrolments_post: {
         parameters: {
             query?: never;
@@ -6622,6 +7257,269 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_quizzes_v1_student_courses__course_id__quizzes_get: {
+        parameters: {
+            query?: {
+                limit?: number;
+                offset?: number;
+            };
+            header?: never;
+            path: {
+                course_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Page_Quiz_"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    start_quiz_v1_student_courses__course_id__quizzes_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["QuizStart"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Quiz"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    read_quiz_v1_student_courses__course_id__quizzes__quiz_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+                quiz_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["QuizDetail"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    answer_question_v1_student_courses__course_id__quizzes__quiz_id__answers_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+                quiz_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["QuizAnswer"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AnswerResult"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
