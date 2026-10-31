@@ -554,7 +554,11 @@
       "finalLevel": "Final level: {level}",
       "stepTopic": "Practise {topic}",
       "topicScore": "{topic}: {right} of {total}",
-      "optionsLabel": "Answers"
+      "optionsLabel": "Answers",
+      "topicLabel": "Topic",
+      "allTopics": "All topics",
+      "topicOption": "{topic} · {count, plural, one {# question} other {# questions}}",
+      "reasonExhausted": "There are no more {from} questions left: the next one is {to}."
     },
     "shell": {
       "aiLabel": "AI tutor",

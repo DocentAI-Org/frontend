@@ -22,6 +22,7 @@ type Answered = { question: Current; choice: number; result: Schemas["AnswerResu
 /** One question at a time with immediate feedback, then the summary (008 US2 AS1–AS4). */
 export function QuizRunner({ courseId, initial }: { courseId: string; initial: Quiz }) {
   const t = useTranslations("student.quiz");
+  const tQuiz = useTranslations("common.quiz");
   const tAll = useTranslations();
   const [quiz, setQuiz] = useState<Quiz>(initial);
   const [answered, setAnswered] = useState<Answered | null>(null);
@@ -67,7 +68,13 @@ export function QuizRunner({ courseId, initial }: { courseId: string; initial: Q
               <p role="status" className="flex items-start gap-2 rounded-xl border border-info-200 bg-info-50 p-4 font-medium text-info-800" data-component="DecisionReason">
                 <Icon name="sparkles" className="mt-0.5 size-5 shrink-0" />
                 <span>
-                  {t(change.reason === "correct_streak" ? "reasonUp" : "reasonDown", { count: change.streak })} {t("provisional")}
+                  {change.reason === "level_exhausted"
+                    ? t("reasonExhausted", {
+                        from: tQuiz(levelKey(change.from_level)).toLocaleLowerCase(),
+                        to: tQuiz(levelKey(change.to_level)).toLocaleLowerCase()
+                      })
+                    : t(change.reason === "correct_streak" ? "reasonUp" : "reasonDown", { count: change.streak })}{" "}
+                  {t("provisional")}
                 </span>
               </p>
             )}

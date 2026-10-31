@@ -554,7 +554,11 @@
       "finalLevel": "Nivel final: {level}",
       "stepTopic": "Practicar {topic}",
       "topicScore": "{topic}: {right} de {total}",
-      "optionsLabel": "Respuestas"
+      "optionsLabel": "Respuestas",
+      "topicLabel": "Tema",
+      "allTopics": "Todos los temas",
+      "topicOption": "{topic} · {count, plural, one {# pregunta} other {# preguntas}}",
+      "reasonExhausted": "No quedan más preguntas de dificultad {from}: la siguiente es {to}."
     },
     "shell": {
       "aiLabel": "Tutor IA",

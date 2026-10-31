@@ -60,3 +60,6 @@ export const answerQuestion = (course_id: string, quiz_id: string, question_id: 
       body: { question_id, choice }
     })
   );
+
+export const listQuizTopics = (course_id: string) =>
+  request((api) => api.GET("/v1/student/courses/{course_id}/quiz-topics", { params: { path: { course_id } } }));
