@@ -253,6 +253,10 @@
       "errorsLabel": "Errores más frecuentes en este tema",
       "lastActivity": "Última actividad: {date}",
       "allMistakes": "Todos tus errores"
+    },
+    "adaptation": {
+      "student": "Adaptada para ti: has cometido {count} errores de tipo «{type}» en los últimos {days} días, así que la explicación insiste en ese tipo de error.",
+      "teacher": "Adaptada: el estudiante ha cometido {count} errores de tipo «{type}» en los últimos {days} días; se pidió al tutor que insistiera en ese tipo de error."
     }
   },
   "student": {

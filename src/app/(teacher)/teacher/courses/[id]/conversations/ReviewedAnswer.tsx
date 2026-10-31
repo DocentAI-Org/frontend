@@ -1,5 +1,6 @@
 import { getFormatter, getTranslations } from "next-intl/server";
 
+import { AdaptationNote } from "@/components/AdaptationNote";
 import { CitationNotes } from "@/components/CitationNotes";
 import { ConfirmDialog } from "@/components/ConfirmDialog";
 import { Icon } from "@/components/Icon";
@@ -16,7 +17,8 @@ export async function ReviewedAnswer({
   text,
   kind,
   citations,
-  flag
+  flag,
+  adaptation
 }: {
   courseId: string;
   target: { kind: "message" | "submission"; id: string };
@@ -25,6 +27,8 @@ export async function ReviewedAnswer({
   kind: "answer" | "hint" | "no_source";
   citations: Schemas["Citation"][];
   flag: Schemas["TeacherFlag"] | null;
+  /** Why it was adapted, with the error type's name (014 US2). */
+  adaptation?: { basis: Schemas["Adaptation"]; typeName: string } | null;
 }) {
   const t = await getTranslations();
   const format = await getFormatter();
@@ -45,6 +49,7 @@ export async function ReviewedAnswer({
           )}
         </p>
         <p className={`font-serif text-lg ${flag ? "text-fg-muted line-through decoration-teacher-600 decoration-1" : "text-fg"}`}>{text}</p>
+        {adaptation && <AdaptationNote adaptation={adaptation.basis} typeName={adaptation.typeName} audience="teacher" />}
         <div className="mt-2 flex flex-wrap gap-2">
           <FlagDialog key={flag?.updated_at ?? "new"} courseId={courseId} target={target} path={path} answer={text} existing={flag} />
           {flag && (

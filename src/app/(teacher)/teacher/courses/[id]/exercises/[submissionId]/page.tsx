@@ -128,6 +128,11 @@ export default async function SubmissionReviewPage({
         kind={s.explanation_kind}
         citations={s.citations}
         flag={s.flag}
+        adaptation={
+          s.adaptation
+            ? { basis: s.adaptation, typeName: errorTypeLabel(taxonomy.ok ? taxonomy.data : null, s.adaptation.error_type, locale) }
+            : null
+        }
       />
     </div>
   );
