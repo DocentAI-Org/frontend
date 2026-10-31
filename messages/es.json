@@ -235,6 +235,24 @@
       "correctedTag": "Corregida",
       "edit": "Editar corrección",
       "remove": "Quitar corrección"
+    },
+    "progress": {
+      "level": "Nivel de dominio: {level}",
+      "basisExercises": "{right} de {total} ejercicios correctos",
+      "basisPartial": "({count} a medias)",
+      "basisQuiz": "{right} de {total} preguntas acertadas",
+      "why": "¿Por qué?",
+      "whyStudent": "Has acertado el {score} de tus últimos {count} ejercicios y preguntas de este tema.",
+      "whyTeacher": "Ha acertado el {score} de sus últimos {count} ejercicios y preguntas de este tema.",
+      "criteria": "Es un criterio provisional: «{progressing}» desde el {progressingAt} y «{mastered}» desde el {masteredAt}, con los últimos {window} ejercicios o preguntas.",
+      "insufficientStudent": "Todavía hay poca actividad en este tema para calcular tu nivel (hacen falta {count} ejercicios o preguntas).",
+      "insufficientTeacher": "Todavía hay poca actividad en este tema para calcular su nivel (hacen falta {count} ejercicios o preguntas).",
+      "historyLabel": "Evolución en las últimas 8 semanas",
+      "week": "Semana del {date}: {value}",
+      "noData": "sin datos",
+      "errorsLabel": "Errores más frecuentes en este tema",
+      "lastActivity": "Última actividad: {date}",
+      "allMistakes": "Todos tus errores"
     }
   },
   "student": {
@@ -912,7 +930,7 @@
       "correctOption": "Opción {n} es la correcta"
     },
     "risk": {
-      "activityBasis": "Mensajes al tutor y ejercicios enviados.",
+      "activityBasis": "Mensajes al tutor, ejercicios enviados y cuestionarios terminados.",
       "activityTitle": "Actividad por semana",
       "back": "Volver al panel",
       "examplesTitle": "Errores de ejemplo",
@@ -930,7 +948,8 @@
       "colMessages": "Mensajes",
       "colExercises": "Ejercicios",
       "noActivity": "Sin actividad todavía",
-      "provisional": "Los criterios son provisionales: el equipo educativo todavía los está revisando."
+      "provisional": "Los criterios son provisionales: el equipo educativo todavía los está revisando.",
+      "colQuizzes": "Cuestionarios"
     },
     "shell": {
       "nav": {
