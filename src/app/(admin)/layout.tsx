@@ -13,7 +13,8 @@ export default async function AdminLayout({ children }: { children: React.ReactN
       home="/admin/users"
       nav={[
         { href: "/admin/users", label: t("nav.users"), icon: "users" },
-        { href: "/admin/courses", label: t("nav.courses"), icon: "book-open" }
+        { href: "/admin/courses", label: t("nav.courses"), icon: "book-open" },
+        { href: "/admin/study-export", label: t("nav.studyExport"), icon: "file-text" }
       ]}
       userName={access.me.display_name}
       roleLabel={t("role")}

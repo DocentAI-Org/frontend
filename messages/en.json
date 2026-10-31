@@ -28,7 +28,8 @@
     "shell": {
       "nav": {
         "courses": "Courses",
-        "users": "Users"
+        "users": "Users",
+        "studyExport": "Study data"
       },
       "role": "Administration"
     },
@@ -96,6 +97,20 @@
       "copyAll": "Copy all",
       "download": "Download CSV",
       "createMore": "Create more accounts"
+    },
+    "studyExport": {
+      "pageTitle": "Study data",
+      "title": "Study data",
+      "lead": "Download the activity data for the study analysis, as a ZIP with one CSV file per table and a README that explains each column.",
+      "includedTitle": "What it includes",
+      "included": "Only students who gave their consent and have not withdrawn it. Each student appears under a pseudonymous code, the same in every download.",
+      "excludedTitle": "What it leaves out",
+      "excluded": "No names, emails or free text: no messages, statements, answers or explanations. Only results, error types, topics, dates and model usage.",
+      "courseLabel": "Course",
+      "allCourses": "All courses",
+      "download": "Download ZIP",
+      "downloadError": "The download could not be prepared. Try again in a few minutes.",
+      "emptyCourses": "There are no courses yet; the download will only have the headers."
     }
   },
   "common": {
