@@ -48,7 +48,8 @@ export function messageView(state: State, message: Msg): S["StudentMessage"] {
     counts_toward_limit: message.counts_toward_limit,
     created_at: message.created_at,
     citations: message.cited.map((fid) => citationView(state, fid)),
-    correction: flag ? { text: flag.correction, reviewed_at: flag.updated_at } : null
+    correction: flag ? { text: flag.correction, reviewed_at: flag.updated_at } : null,
+    adaptation: message.adaptation ?? null
   };
 }
 
@@ -100,9 +101,9 @@ function reply(state: State, conversation: Conversation, question: Msg): Msg {
       if (m.kind !== "hint") break;
       hints += 1;
     }
-    return { ...base, kind: "hint", text: `Piensa en esto: ${hits[0].f.text}`, hint_number: hints + 1, cited: [hits[0].f.id] };
+    return { ...base, kind: "hint", text: `Piensa en esto: ${hits[0].f.text}`, hint_number: hints + 1, cited: [hits[0].f.id], adaptation: state.adaptation };
   }
-  return { ...base, kind: "answer", text: `Según el material: ${hits[0].f.text}`, hint_number: null, cited: hits.slice(0, 2).map((h) => h.f.id) };
+  return { ...base, kind: "answer", text: `Según el material: ${hits[0].f.text}`, hint_number: null, cited: hits.slice(0, 2).map((h) => h.f.id), adaptation: state.adaptation };
 }
 
 function exchange(state: State, conversation: Conversation, question: Msg, studentId: string) {

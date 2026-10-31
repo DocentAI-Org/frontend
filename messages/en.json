@@ -304,6 +304,10 @@
       "title": "Study questionnaires",
       "lead": "Your opinion helps improve DocentAI. They open in another tool.",
       "newTab": "(opens in a new tab)"
+    },
+    "adaptation": {
+      "student": "Adapted for you: you made {count} mistakes of the type “{type}” in the last {days} days, so the explanation focuses on that kind of mistake.",
+      "teacher": "Adapted: the student made {count} mistakes of the type “{type}” in the last {days} days; the tutor was asked to focus on that kind of mistake."
     }
   },
   "student": {

@@ -4,6 +4,7 @@ import { useFormatter, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useEffect, useId, useRef, useState, useTransition } from "react";
 
+import { AdaptationNote } from "@/components/AdaptationNote";
 import { Alert } from "@/components/Alert";
 import { Button } from "@/components/Button";
 import { CitationNotes } from "@/components/CitationNotes";
@@ -39,13 +40,16 @@ export function ChatScreen({
   acknowledged: initiallyAcknowledged,
   settings,
   initialAllowance,
-  initialMessages
+  initialMessages,
+  errorTypeNames
 }: {
   courseId: string;
   conversationId: string | null;
   acknowledged: boolean;
   settings: Schemas["StudentTutorSettings"];
   initialAllowance: Schemas["Allowance"];
+  /** Error type names by code, for the adaptation sentence (014 US1). */
+  errorTypeNames: Record<string, string>;
   initialMessages: Message[];
 }) {
   const t = useTranslations("student");
@@ -286,6 +290,13 @@ export function ChatScreen({
                 >
                   <MathText text={message.text} />
                 </p>
+                {message.adaptation && (
+                  <AdaptationNote
+                    adaptation={message.adaptation}
+                    typeName={errorTypeNames[message.adaptation.error_type] ?? message.adaptation.error_type}
+                    audience="student"
+                  />
+                )}
               </div>
               <aside className="mt-2 flex flex-col gap-2 lg:col-span-3 lg:mt-0" aria-label={t("chat.sources")}>
                 {message.correction && (
