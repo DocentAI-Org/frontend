@@ -8,9 +8,11 @@ import { ErrorState } from "@/components/ErrorState";
 import { Icon } from "@/components/Icon";
 import { MessageAllowance } from "@/components/MessageAllowance";
 import { PageHeader } from "@/components/PageHeader";
+import { StudyQuestionnaires } from "@/components/StudyQuestionnaires";
 import { getAllowance } from "@/lib/api/chat";
 import { listTestPhases } from "@/lib/api/course-tests";
 import { listStudentCourses } from "@/lib/api/courses";
+import { listMyQuestionnaires } from "@/lib/api/me";
 import { routes } from "@/lib/routes";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -25,7 +27,7 @@ export default async function StudentCoursesPage() {
   const t = await getTranslations("student.courses");
   const tt = await getTranslations("student.test");
   const tp = await getTranslations("teacher.test");
-  const [courses, allowance] = await Promise.all([listStudentCourses(), getAllowance()]);
+  const [courses, allowance, questionnaires] = await Promise.all([listStudentCourses(), getAllowance(), listMyQuestionnaires()]);
   // An open pre/post-test the student has not done yet is announced on its card (010 US3 AS1).
   const pending = new Map<string, "pre" | "post">();
   if (courses.ok) {
@@ -44,6 +46,7 @@ export default async function StudentCoursesPage() {
   return (
     <div className="flex flex-col gap-6">
       <PageHeader title={t("title")} actions={join("secondary")} />
+      {questionnaires.ok && <StudyQuestionnaires items={questionnaires.data} />}
       {!courses.ok ? (
         <ErrorState code={courses.code} />
       ) : courses.data.items.length === 0 ? (
