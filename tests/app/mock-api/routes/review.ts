@@ -204,7 +204,7 @@ reviewRoutes.push({
     const base = { conversation_id: conversation.id, status: "sent" as const, request_solution: false, created_at: now(), hint_number: null };
     state.messages.push(
       { ...base, id: id(), author: "student", kind: "question", text: "¿Cómo despejo la incógnita?", counts_toward_limit: true, cited: [] },
-      { ...base, id: id(), author: "tutor", kind: "answer", text: "Se suma el número que la multiplica.", counts_toward_limit: false, cited: [fragment.id] },
+      { ...base, id: id(), author: "tutor", kind: "answer", text: "Se suma el número que la multiplica.", counts_toward_limit: false, cited: [fragment.id], adaptation: state.adaptation },
       { ...base, id: id(), author: "student", kind: "question", text: "¿Quién ganó el mundial?", counts_toward_limit: true, cited: [] },
       { ...base, id: id(), author: "tutor", kind: "no_source", text: "El material del curso no cubre esta pregunta.", counts_toward_limit: false, cited: [] }
     );
@@ -223,6 +223,7 @@ reviewRoutes.push({
       explanation_kind: "answer" as const,
       cited: [fragment.id],
       saved: true,
+      adaptation: state.adaptation,
       created_at: now()
     };
     state.submissions.push(submission);

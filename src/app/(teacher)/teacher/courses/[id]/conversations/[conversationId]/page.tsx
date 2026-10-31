@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 
 import { AccessDenied } from "@/components/AccessDenied";
 import { Alert } from "@/components/Alert";
 import { ErrorState } from "@/components/ErrorState";
 import { Icon } from "@/components/Icon";
+import { errorTypeLabel } from "@/components/LearningRecord";
+import { getErrorTypes } from "@/lib/api/exercises";
 import { getCourseConversation } from "@/lib/api/review";
 import { routes } from "@/lib/routes";
 
@@ -27,7 +29,9 @@ export default async function ConversationReviewPage({
   const { id, conversationId } = await params;
   const { saved } = await searchParams;
   const t = await getTranslations();
-  const conversation = await getCourseConversation(id, conversationId);
+  const locale = await getLocale();
+  const [conversation, taxonomy] = await Promise.all([getCourseConversation(id, conversationId), getErrorTypes()]);
+  const types = taxonomy.ok ? taxonomy.data : null;
   if (!conversation.ok) {
     return conversation.status === 404 ? <AccessDenied reason="not-found" home="/teacher/courses" /> : <ErrorState code={conversation.code} />;
   }
@@ -69,6 +73,11 @@ export default async function ConversationReviewPage({
                 kind={message.kind === "question" ? "answer" : message.kind}
                 citations={message.citations}
                 flag={message.flag}
+                adaptation={
+                  message.adaptation
+                    ? { basis: message.adaptation, typeName: errorTypeLabel(types, message.adaptation.error_type, locale) }
+                    : null
+                }
               />
             </li>
           )

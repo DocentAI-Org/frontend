@@ -52,6 +52,7 @@ export function submissionView(state: State, s: Submission): S["StudentSubmissio
     is_stub: false,
     correction: flag ? { text: flag.correction, reviewed_at: flag.updated_at } : null,
     repeated_mistake: repeatedOf(state, s),
+    adaptation: s.adaptation ?? null,
     created_at: s.created_at
   };
 }
@@ -118,6 +119,7 @@ export const exerciseRoutes: Route[] = [
         explanation_kind: hit ? "answer" : "no_source",
         cited: hit ? [hit.id] : [],
         saved: mistake,
+        adaptation: hit ? state.adaptation : null,
         created_at: now()
       };
       state.submissions.push(submission);
@@ -203,6 +205,14 @@ export const recordRoutes: Route[] = [
       const enrolled = ctx.state.enrolments.some((e) => e.course_id === ctx.params.course_id && e.student_id === ctx.params.student_id);
       if (!course || !enrolled) throw new HttpError(404, "not_found");
       return page(recordOf(ctx.state, course.id, ctx.params.student_id), ctx.url);
+    }
+  },
+  {
+    method: "POST",
+    path: "/__test/adaptation",
+    handler: (ctx) => {
+      ctx.state.adaptation = (ctx.body as { adaptation: S["Adaptation"] | null }).adaptation;
+      return { ok: true };
     }
   },
   {

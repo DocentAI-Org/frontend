@@ -39,6 +39,23 @@ export interface paths {
         patch: operations["update_me_v1_me_patch"];
         trace?: never;
     };
+    "/v1/me/questionnaires": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Open study questionnaires for the caller (P4, specs/012) */
+        get: operations["my_questionnaires_v1_me_questionnaires_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/error-types": {
         parameters: {
             query?: never;
@@ -156,6 +173,42 @@ export interface paths {
         options?: never;
         head?: never;
         patch?: never;
+        trace?: never;
+    };
+    "/v1/admin/questionnaires": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Study questionnaires (P4, specs/012) */
+        get: operations["list_questionnaires_v1_admin_questionnaires_get"];
+        put?: never;
+        /** Create Questionnaire */
+        post: operations["create_questionnaire_v1_admin_questionnaires_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/admin/questionnaires/{questionnaire_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Delete Questionnaire */
+        delete: operations["delete_questionnaire_v1_admin_questionnaires__questionnaire_id__delete"];
+        options?: never;
+        head?: never;
+        /** Update Questionnaire */
+        patch: operations["update_questionnaire_v1_admin_questionnaires__questionnaire_id__patch"];
         trace?: never;
     };
     "/v1/teacher/courses": {
@@ -1338,6 +1391,24 @@ export interface components {
              */
             exercises: number;
         };
+        /**
+         * Adaptation
+         * @description Why an explanation was adapted (specs/013): shown to the student and teacher.
+         */
+        Adaptation: {
+            /**
+             * Error Type
+             * @description Error type code the student repeats.
+             */
+            error_type: string;
+            /**
+             * Count
+             * @description Mistakes of that type in the window.
+             */
+            count: number;
+            /** Window Days */
+            window_days: number;
+        };
         /** AdminCourse */
         AdminCourse: {
             /**
@@ -2055,6 +2126,21 @@ export interface components {
              */
             created_at: string;
         };
+        /**
+         * MyQuestionnaire
+         * @description An open questionnaire for the caller, with its link resolved.
+         */
+        MyQuestionnaire: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Title */
+            title: string;
+            /** Url */
+            url: string;
+        };
         /** Page[AdminCourse] */
         Page_AdminCourse_: {
             /** Items */
@@ -2380,6 +2466,62 @@ export interface components {
             /** Status */
             status?: ("pending" | "approved" | "rejected") | null;
         };
+        /** Questionnaire */
+        Questionnaire: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Title */
+            title: string;
+            /** Url */
+            url: string;
+            /**
+             * Audience
+             * @enum {string}
+             */
+            audience: "student" | "teacher";
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "open" | "closed";
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /**
+             * Updated At
+             * Format: date-time
+             */
+            updated_at: string;
+        };
+        /** QuestionnaireCreate */
+        QuestionnaireCreate: {
+            /** Title */
+            title: string;
+            /**
+             * Url
+             * @description https link; `{study_ref}` becomes the student's export code.
+             */
+            url: string;
+            /**
+             * Audience
+             * @enum {string}
+             */
+            audience: "student" | "teacher";
+        };
+        /** QuestionnaireUpdate */
+        QuestionnaireUpdate: {
+            /** Title */
+            title?: string | null;
+            /** Url */
+            url?: string | null;
+            /** Status */
+            status?: ("open" | "closed") | null;
+        };
         /** Quiz */
         Quiz: {
             /**
@@ -2668,6 +2810,8 @@ export interface components {
             /** Citations */
             citations: components["schemas"]["Citation"][];
             correction: components["schemas"]["Correction"] | null;
+            /** @description Set when the answer was adapted (specs/013). */
+            adaptation?: components["schemas"]["Adaptation"] | null;
         };
         /** StudentResult */
         StudentResult: {
@@ -2745,6 +2889,8 @@ export interface components {
             correction: components["schemas"]["Correction"] | null;
             /** @description Set when this mistake repeats a pattern (specs/005, provisional). */
             repeated_mistake: components["schemas"]["RepeatedMistake"] | null;
+            /** @description Set when the feedback was adapted (specs/013). */
+            adaptation?: components["schemas"]["Adaptation"] | null;
             /**
              * Created At
              * Format: date-time
@@ -2997,6 +3143,8 @@ export interface components {
             /** Citations */
             citations: components["schemas"]["Citation"][];
             correction: components["schemas"]["Correction"] | null;
+            /** @description Set when the answer was adapted (specs/013). */
+            adaptation?: components["schemas"]["Adaptation"] | null;
             flag: components["schemas"]["TeacherFlag"] | null;
         };
         /** TeacherQuestion */
@@ -3095,6 +3243,8 @@ export interface components {
             correction: components["schemas"]["Correction"] | null;
             /** @description Set when this mistake repeats a pattern (specs/005, provisional). */
             repeated_mistake: components["schemas"]["RepeatedMistake"] | null;
+            /** @description Set when the feedback was adapted (specs/013). */
+            adaptation?: components["schemas"]["Adaptation"] | null;
             /**
              * Created At
              * Format: date-time
@@ -3646,6 +3796,44 @@ export interface operations {
             };
         };
     };
+    my_questionnaires_v1_me_questionnaires_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MyQuestionnaire"][];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
     list_error_types_v1_error_types_get: {
         parameters: {
             query?: never;
@@ -4010,6 +4198,213 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_questionnaires_v1_admin_questionnaires_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Questionnaire"][];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    create_questionnaire_v1_admin_questionnaires_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["QuestionnaireCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Questionnaire"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    delete_questionnaire_v1_admin_questionnaires__questionnaire_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                questionnaire_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_questionnaire_v1_admin_questionnaires__questionnaire_id__patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                questionnaire_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["QuestionnaireUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Questionnaire"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };

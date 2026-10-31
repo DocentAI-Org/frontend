@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getFormatter, getLocale, getTranslations } from "next-intl/server";
 
+import { AdaptationNote } from "@/components/AdaptationNote";
 import { AccessDenied } from "@/components/AccessDenied";
 import { LinkButton } from "@/components/Button";
 import { CitationNotes } from "@/components/CitationNotes";
@@ -117,6 +118,9 @@ export default async function FeedbackPage({ params }: { params: Promise<{ id: s
               <p className={`font-serif text-lg ${s.correction ? "text-fg-muted line-through decoration-teacher-600 decoration-1" : "text-fg"}`}>
                 <MathText text={s.explanation} />
               </p>
+              {s.adaptation && (
+                <AdaptationNote adaptation={s.adaptation} typeName={errorTypeLabel(types, s.adaptation.error_type, locale)} audience="student" />
+              )}
             </div>
           )}
         </section>
