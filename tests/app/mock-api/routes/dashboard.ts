@@ -59,14 +59,16 @@ function dashboardOf(state: State, courseId: string, period: Period): S["Teacher
   };
 }
 
-function weeks(flagged: boolean): S["WeekActivity"][] {
+function weeks(flagged: boolean, quizzesOn: string[] = []): S["WeekActivity"][] {
   const today = new Date();
   const monday = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate() - ((today.getUTCDay() + 6) % 7)));
   return Array.from({ length: 8 }, (_, i) => {
     const start = new Date(monday.getTime() - (7 - i) * 7 * DAY);
     // A flagged student was active until two weeks ago.
     const active = !flagged || i < 6;
-    return { week_start: start.toISOString().slice(0, 10), messages: active ? 5 + i : 0, exercises: active ? 2 : 0 };
+    const end = new Date(start.getTime() + 7 * DAY).toISOString();
+    const quizzes = quizzesOn.filter((at) => at >= start.toISOString() && at < end).length;
+    return { week_start: start.toISOString().slice(0, 10), messages: active ? 5 + i : 0, exercises: active ? 2 : 0, quizzes };
   });
 }
 
@@ -96,7 +98,10 @@ export const dashboardRoutes: Route[] = [
         at_risk: flagged,
         reasons: flagged ? lucasReasons() : [],
         last_activity_at: flagged ? ago(9) : ago(1),
-        weekly_activity: weeks(flagged),
+        weekly_activity: weeks(
+          flagged,
+          ctx.state.quizzes.filter((q) => q.course_id === course.id && q.student_id === user.id && q.completed_at).map((q) => q.completed_at!)
+        ),
         criteria_provisional: true
       };
     }
