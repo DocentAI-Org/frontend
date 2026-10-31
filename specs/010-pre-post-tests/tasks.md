@@ -8,4 +8,4 @@
 - [x] T003 Mock API: test questions, phases, attempts and results
 - [x] T004 [US1, US2, US4] "Pre/post-test" tab `/teacher/courses/[id]/test`
 - [x] T005 [US3] Course card notice; `/student/courses/[id]/test/[phase]` with confirmation
-- [ ] T006 Validation against the real stack (SC-002) in `validation.md`
+- [x] T006 Validation against the real stack (SC-002) in `validation.md`
