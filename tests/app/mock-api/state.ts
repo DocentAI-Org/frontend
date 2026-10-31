@@ -111,6 +111,19 @@ export type Submission = {
   created_at: string;
 };
 
+export type Review = {
+  id: string;
+  submission_id: string;
+  error_type: string;
+  topic_name: string | null;
+  kind: "answer" | "no_source";
+  explanation: string;
+  worked_example: string | null;
+  practice: string[];
+  cited: string[];
+  created_at: string;
+};
+
 export type Topic = { id: string; course_id: string; name: string; position: number };
 export type Assignment = {
   id: string;
@@ -140,6 +153,9 @@ export type State = {
   faults: Set<string>;
   /** What the next exercise feedback looks like (backend specs/003), set by /__test/feedback. */
   feedback: { mode: "mistake" | "correct" | "fail"; delay_ms: number };
+  reviews: Review[];
+  /** What the next mistake review looks like (backend specs/005), set by /__test/review. */
+  review: { mode: "answer" | "no_source" | "fail" | "limit"; delay_ms: number };
   /** What each course's dashboard looks like (backend specs/004), set by /__test/dashboard. */
   dashboard: Map<string, "busy" | "quiet" | "calm">;
 };
@@ -195,6 +211,8 @@ export function seed(): State {
     usage: new Map(),
     faults: new Set(),
     feedback: { mode: "mistake", delay_ms: 0 },
+    reviews: [],
+    review: { mode: "answer", delay_ms: 0 },
     dashboard: new Map()
   };
 }
