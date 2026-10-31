@@ -8,9 +8,11 @@ import { Icon } from "@/components/Icon";
 import { LearningRecord } from "@/components/LearningRecord";
 import { PageHeader } from "@/components/PageHeader";
 import { RiskReasons } from "@/components/RiskReasons";
+import { TopicProgressList } from "@/components/TopicProgress";
 import type { Schemas } from "@/lib/api/client";
 import { listCourseStudents } from "@/lib/api/courses";
 import { getStudentRisk } from "@/lib/api/dashboard";
+import { getStudentProgress } from "@/lib/api/progress";
 import { getErrorTypes, getStudentLearningRecord } from "@/lib/api/exercises";
 import { routes } from "@/lib/routes";
 
@@ -21,14 +23,70 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const TH = "pb-2 pr-4 text-left text-sm font-semibold text-fg-muted";
 
+/** Weekly activity of a student (spec 006; quizzes since 009 US2 AS2). */
+async function ActivityTable({
+  risk,
+  titleId = "weeks-title",
+  headingLevel = 3
+}: {
+  risk: Schemas["StudentRisk"];
+  titleId?: string;
+  headingLevel?: 2 | 3;
+}) {
+  const t = await getTranslations("teacher.risk");
+  const format = await getFormatter();
+  const Heading = `h${headingLevel}` as const;
+  // Weeks are calendar dates (Mondays, UTC): formatted in UTC so they never shift a day.
+  const monday = (date: string) => format.dateTime(new Date(date), { day: "numeric", month: "long", timeZone: "UTC" });
+  return (
+    <div className="flex flex-col gap-2">
+      <Heading id={titleId} className={headingLevel === 2 ? "text-lg font-semibold text-fg" : "font-semibold text-fg"}>
+        {t("activityTitle")}
+      </Heading>
+      <p className="text-sm text-fg-muted">{t("activityBasis")}</p>
+      {/* Focusable so the table can be scrolled by keyboard on narrow screens. */}
+      <div className="overflow-x-auto" tabIndex={0} role="region" aria-labelledby={titleId}>
+        <table aria-labelledby={titleId} className="w-full border-collapse text-sm">
+          <thead>
+            <tr className="border-b-2 border-neutral-900">
+              <th scope="col" className={TH}>
+                {t("colWeek")}
+              </th>
+              <th scope="col" className={TH}>
+                {t("colMessages")}
+              </th>
+              <th scope="col" className={TH}>
+                {t("colExercises")}
+              </th>
+              <th scope="col" className={TH}>
+                {t("colQuizzes")}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {risk.weekly_activity.map((week) => (
+              <tr key={week.week_start} className="border-b border-border last:border-b-0">
+                <th scope="row" className="py-2 pr-4 text-left font-normal text-fg">
+                  {t("week", { date: monday(week.week_start) })}
+                </th>
+                <td className="py-2 pr-4 text-fg tabular-nums">{format.number(week.messages)}</td>
+                <td className="py-2 pr-4 text-fg tabular-nums">{format.number(week.exercises)}</td>
+                <td className="py-2 pr-4 text-fg tabular-nums">{format.number(week.quizzes)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
 /** Why a flagged student appears on the dashboard (spec 006 US2 AS2): reasons and weekly activity. */
 async function WhyFlagged({ risk }: { risk: Schemas["StudentRisk"] }) {
   const t = await getTranslations("teacher.risk");
   const td = await getTranslations("teacher.dashboard");
   const format = await getFormatter();
   const day = (iso: string) => format.dateTime(new Date(iso), { day: "numeric", month: "long" });
-  // Weeks are calendar dates (Mondays, UTC): formatted in UTC so they never shift a day.
-  const monday = (date: string) => format.dateTime(new Date(date), { day: "numeric", month: "long", timeZone: "UTC" });
   return (
     <section
       aria-labelledby="why-title"
@@ -45,40 +103,7 @@ async function WhyFlagged({ risk }: { risk: Schemas["StudentRisk"] }) {
       <p className="text-sm text-fg-muted">
         {risk.last_activity_at ? t("lastSeen", { date: day(risk.last_activity_at) }) : t("noActivity")}
       </p>
-      <div className="flex flex-col gap-2">
-        <h3 id="weeks-title" className="font-semibold text-fg">
-          {t("activityTitle")}
-        </h3>
-        <p className="text-sm text-fg-muted">{t("activityBasis")}</p>
-        <div className="overflow-x-auto">
-          <table aria-labelledby="weeks-title" className="w-full border-collapse text-sm">
-            <thead>
-              <tr className="border-b-2 border-neutral-900">
-                <th scope="col" className={TH}>
-                  {t("colWeek")}
-                </th>
-                <th scope="col" className={TH}>
-                  {t("colMessages")}
-                </th>
-                <th scope="col" className={TH}>
-                  {t("colExercises")}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {risk.weekly_activity.map((week) => (
-                <tr key={week.week_start} className="border-b border-border last:border-b-0">
-                  <th scope="row" className="py-2 pr-4 text-left font-normal text-fg">
-                    {t("week", { date: monday(week.week_start) })}
-                  </th>
-                  <td className="py-2 pr-4 text-fg tabular-nums">{format.number(week.messages)}</td>
-                  <td className="py-2 pr-4 text-fg tabular-nums">{format.number(week.exercises)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <ActivityTable risk={risk} />
       <p className="flex items-start gap-2 text-sm text-fg-muted">
         <Icon name="info" className="mt-0.5 size-4 shrink-0" />
         <span>{t("provisional")}</span>
@@ -102,11 +127,12 @@ export default async function StudentRecordPage({
   const { from } = await searchParams;
   const t = await getTranslations("teacher.student");
   const tr = await getTranslations("teacher.risk");
-  const [students, record, taxonomy, risk] = await Promise.all([
+  const [students, record, taxonomy, risk, progress] = await Promise.all([
     listCourseStudents(id),
     getStudentLearningRecord(id, studentId),
     getErrorTypes(),
-    getStudentRisk(id, studentId)
+    getStudentRisk(id, studentId),
+    getStudentProgress(id, studentId)
   ]);
   if (!students.ok) return <ErrorState code={students.code} />;
   const student = students.data.items.find((s) => s.student_id === studentId);
@@ -119,21 +145,47 @@ export default async function StudentRecordPage({
     <div className="flex max-w-3xl flex-col gap-6">
       <PageHeader title={student.display_name} lead={t("mistakesLead")} back={back} />
       {risk.ok && risk.data.at_risk && <WhyFlagged risk={risk.data} />}
-      {!record.ok ? (
-        <ErrorState code={record.code} />
-      ) : record.data.length === 0 ? (
-        <EmptyState
-          icon="chart-column"
-          title={t("noMistakesTitle", { name: student.display_name })}
-          body={t("noMistakesBody")}
-        />
-      ) : (
-        <LearningRecord
-          entries={record.data}
-          taxonomy={taxonomy.ok ? taxonomy.data : null}
-          exampleHref={(submissionId) => routes.teacherSubmission(id, submissionId)}
-        />
+      {risk.ok && !risk.data.at_risk && (
+        <section className="rounded-xl border border-border bg-surface-raised p-6">
+          <ActivityTable risk={risk.data} headingLevel={2} />
+        </section>
       )}
+      <section aria-labelledby="progress-title" className="flex flex-col gap-4">
+        <h2 id="progress-title" className="text-xl font-semibold text-fg">
+          {t("progressTitle")}
+        </h2>
+        {!progress.ok ? (
+          <ErrorState code={progress.code} />
+        ) : (
+          <TopicProgressList
+            progress={progress.data}
+            taxonomy={taxonomy.ok ? taxonomy.data : null}
+            audience="teacher"
+            exampleHref={(submissionId) => routes.teacherSubmission(id, submissionId)}
+            headingLevel={3}
+          />
+        )}
+      </section>
+      <section aria-labelledby="errors-title" className="flex flex-col gap-4">
+        <h2 id="errors-title" className="text-xl font-semibold text-fg">
+          {t("errorsTitle")}
+        </h2>
+        {!record.ok ? (
+          <ErrorState code={record.code} />
+        ) : record.data.length === 0 ? (
+          <EmptyState
+            icon="chart-column"
+            title={t("noMistakesTitle", { name: student.display_name })}
+            body={t("noMistakesBody")}
+          />
+        ) : (
+          <LearningRecord
+            entries={record.data}
+            taxonomy={taxonomy.ok ? taxonomy.data : null}
+            exampleHref={(submissionId) => routes.teacherSubmission(id, submissionId)}
+          />
+        )}
+      </section>
     </div>
   );
 }

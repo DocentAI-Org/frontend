@@ -679,6 +679,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/teacher/courses/{course_id}/students/{student_id}/progress": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * A student's progress and mastery by topic
+         * @description Exactly what the student sees in their own progress (spec 007).
+         */
+        get: operations["read_student_progress_v1_teacher_courses__course_id__students__student_id__progress_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/teacher/risk-criteria": {
         parameters: {
             query?: never;
@@ -1072,6 +1092,26 @@ export interface paths {
          * @description Immediate feedback: whether it was right, the correct option, the explanation and its sources, and the next question. `difficulty_change` says when and why the level moved. 409 `not_current_question` or `quiz_completed`.
          */
         post: operations["answer_question_v1_student_courses__course_id__quizzes__quiz_id__answers_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/student/courses/{course_id}/progress": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * My progress and mastery by topic
+         * @description Every course topic with a provisional mastery level, its score and the graded exercises and quiz answers behind it, a weekly history and the most frequent mistakes. The teacher sees exactly the same (spec 007).
+         */
+        get: operations["read_progress_v1_student_courses__course_id__progress_get"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -1992,6 +2032,68 @@ export interface components {
             /** Offset */
             offset: number;
         };
+        /** Progress */
+        Progress: {
+            /**
+             * Provisional
+             * @description True while the criteria are the technical team's draft (spec 007).
+             */
+            provisional: boolean;
+            criteria: components["schemas"]["ProgressCriteria"];
+            /**
+             * Updated At
+             * @description Latest graded activity.
+             */
+            updated_at: string | null;
+            /** Quizzes Completed */
+            quizzes_completed: number;
+            /**
+             * Topics
+             * @description Every course topic, in order.
+             */
+            topics: components["schemas"]["TopicProgress"][];
+            /** @description Graded work without a topic; null if there is none. */
+            unassigned: components["schemas"]["TopicProgress"] | null;
+        };
+        /**
+         * ProgressBasis
+         * @description The items behind the score: those in the window.
+         */
+        ProgressBasis: {
+            /** Exercises Correct */
+            exercises_correct: number;
+            /** Exercises Partial */
+            exercises_partial: number;
+            /** Exercises Total */
+            exercises_total: number;
+            /** Quiz Right */
+            quiz_right: number;
+            /** Quiz Total */
+            quiz_total: number;
+        };
+        /** ProgressCriteria */
+        ProgressCriteria: {
+            /**
+             * Window
+             * @description Latest graded items that count, per topic.
+             */
+            window: number;
+            /**
+             * Min Items
+             * @description Items needed for a score.
+             */
+            min_items: number;
+            /**
+             * Progressing
+             * @description Score from which the level is `progressing`.
+             */
+            progressing: number;
+            /**
+             * Mastered
+             * @description Score from which the level is `mastered`.
+             */
+            mastered: number;
+        };
         /** PseudonymousAccount */
         PseudonymousAccount: {
             /**
@@ -2790,6 +2892,18 @@ export interface components {
             /** Name */
             name: string;
         };
+        /** TopicError */
+        TopicError: {
+            /** Error Type */
+            error_type: string;
+            /** Count */
+            count: number;
+            /**
+             * Latest Submission Id
+             * Format: uuid
+             */
+            latest_submission_id: string;
+        };
         /** TopicErrors */
         TopicErrors: {
             /** Topic Id */
@@ -2815,6 +2929,39 @@ export interface components {
              * @description Every topic of the course, in order.
              */
             topic_ids: string[];
+        };
+        /** TopicProgress */
+        TopicProgress: {
+            /**
+             * Topic Id
+             * @description Null for graded work without a topic.
+             */
+            topic_id: string | null;
+            /** Topic Name */
+            topic_name: string | null;
+            /**
+             * Level
+             * @enum {string}
+             */
+            level: "not_started" | "insufficient" | "starting" | "progressing" | "mastered";
+            /**
+             * Score
+             * @description Share right, 0-1; null below `min_items`.
+             */
+            score: number | null;
+            basis: components["schemas"]["ProgressBasis"];
+            /**
+             * History
+             * @description The last 8 weeks, oldest first.
+             */
+            history: components["schemas"]["WeekScore"][];
+            /**
+             * Top Errors
+             * @description Up to three most frequent error types (exercises only).
+             */
+            top_errors: components["schemas"]["TopicError"][];
+            /** Last Activity At */
+            last_activity_at: string | null;
         };
         /** TopicRef */
         TopicRef: {
@@ -2929,6 +3076,25 @@ export interface components {
             messages: number;
             /** Exercises */
             exercises: number;
+            /**
+             * Quizzes
+             * @description Quizzes completed that week (spec 007).
+             */
+            quizzes: number;
+        };
+        /** WeekScore */
+        WeekScore: {
+            /**
+             * Week Start
+             * Format: date
+             * @description Monday of the week (UTC).
+             */
+            week_start: string;
+            /**
+             * Score
+             * @description Null with too few items by then.
+             */
+            score: number | null;
         };
     };
     responses: never;
@@ -5969,6 +6135,65 @@ export interface operations {
             };
         };
     };
+    read_student_progress_v1_teacher_courses__course_id__students__student_id__progress_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+                student_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Progress"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     list_risk_criteria_v1_teacher_risk_criteria_get: {
         parameters: {
             query?: never;
@@ -7614,6 +7839,64 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    read_progress_v1_student_courses__course_id__progress_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Progress"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };

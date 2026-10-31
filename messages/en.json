@@ -235,6 +235,24 @@
       "correctedTag": "Corrected",
       "edit": "Edit correction",
       "remove": "Remove correction"
+    },
+    "progress": {
+      "level": "Mastery level: {level}",
+      "basisExercises": "{right} of {total} exercises right",
+      "basisPartial": "({count} partly)",
+      "basisQuiz": "{right} of {total} questions right",
+      "why": "Why?",
+      "whyStudent": "You got {score} of your last {count} exercises and questions in this topic right.",
+      "whyTeacher": "They got {score} of their last {count} exercises and questions in this topic right.",
+      "criteria": "This is a provisional criterion: \"{progressing}\" from {progressingAt} and \"{mastered}\" from {masteredAt}, over the last {window} exercises or questions.",
+      "insufficientStudent": "There isn't enough activity in this topic yet to work out your level ({count} exercises or questions are needed).",
+      "insufficientTeacher": "There isn't enough activity in this topic yet to work out their level ({count} exercises or questions are needed).",
+      "historyLabel": "Over the last 8 weeks",
+      "week": "Week of {date}: {value}",
+      "noData": "no data",
+      "errorsLabel": "Most frequent mistakes in this topic",
+      "lastActivity": "Last activity: {date}",
+      "allMistakes": "All your mistakes"
     }
   },
   "student": {
@@ -912,7 +930,7 @@
       "correctOption": "Option {n} is correct"
     },
     "risk": {
-      "activityBasis": "Messages to the tutor and exercises submitted.",
+      "activityBasis": "Messages to the tutor, exercises submitted and quizzes completed.",
       "activityTitle": "Activity per week",
       "back": "Back to the dashboard",
       "examplesTitle": "Example mistakes",
@@ -930,7 +948,8 @@
       "colMessages": "Messages",
       "colExercises": "Exercises",
       "noActivity": "No activity yet",
-      "provisional": "The criteria are provisional: the educational team is still reviewing them."
+      "provisional": "The criteria are provisional: the educational team is still reviewing them.",
+      "colQuizzes": "Quizzes"
     },
     "shell": {
       "nav": {
