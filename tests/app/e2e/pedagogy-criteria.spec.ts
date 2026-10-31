@@ -53,6 +53,26 @@ test.describe("015 US1 the study team sets the defaults", () => {
   });
 });
 
+test.describe("015 US1 slow phones", () => {
+  scenario("015-US1-AS4", "a value typed before the page is ready is the one saved", async ({ page }) => {
+    // Seen in CI on mobile: hydration reset the typed value and the old one was saved.
+    await signIn(page, USERS.admin);
+    await page.route("**/_next/static/chunks/**", async (route) => {
+      await new Promise((resolve) => setTimeout(resolve, 2500));
+      await route.continue();
+    });
+    await page.goto("/admin/pedagogy", { waitUntil: "commit" });
+    await group(page, /sin actividad/i).getByLabel(/días sin actividad/i).fill("12");
+    await page.waitForLoadState("networkidle");
+    await page.unroute("**/_next/static/chunks/**");
+    await page.getByRole("button", { name: /guardar criterios/i }).click();
+
+    await expect(page.getByRole("status").filter({ hasText: /guardado/i })).toBeVisible();
+    await page.reload();
+    await expect(group(page, /sin actividad/i).getByLabel(/días sin actividad/i)).toHaveValue("12");
+  });
+});
+
 test.describe("015 US2 a teacher adjusts their course", () => {
   scenario("015-US2-AS1", "each group follows the study by default, read-only", async ({ page, request }) => {
     const courseId = await teacherCourse(request, page);
