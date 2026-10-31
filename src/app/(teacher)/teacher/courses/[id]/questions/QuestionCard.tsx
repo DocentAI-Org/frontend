@@ -10,6 +10,7 @@ import { Icon } from "@/components/Icon";
 import { Select } from "@/components/Select";
 import { TextArea } from "@/components/TextArea";
 import { TextField } from "@/components/TextField";
+import { MathText } from "@/components/MathText";
 import type { Schemas } from "@/lib/api/client";
 import { errorMessageKey } from "@/lib/api/errors";
 import { levelKey } from "@/lib/quiz/levels";
@@ -47,7 +48,7 @@ export function QuestionCard({ courseId, question, view }: { courseId: string; q
       ) : (
         <>
           <h3 id={`${ids}-statement`} className="font-serif text-xl font-semibold text-fg">
-            {q.statement}
+            <MathText text={q.statement} />
           </h3>
           <ol aria-label={t("optionsLabel")} className="flex flex-col gap-2">
             {q.options.map((option, i) => {
@@ -60,7 +61,7 @@ export function QuestionCard({ courseId, question, view }: { courseId: string; q
                   <span className="font-semibold text-fg-muted" aria-hidden="true">
                     {String.fromCharCode(65 + i)}
                   </span>
-                  <span className="text-fg">{option}</span>
+                  <span className="text-fg"><MathText text={option} /></span>
                   {right && (
                     <span className="ml-auto inline-flex items-center gap-1 text-sm font-semibold text-success-800">
                       <Icon name="check" />
@@ -73,7 +74,7 @@ export function QuestionCard({ courseId, question, view }: { courseId: string; q
           </ol>
           <div>
             <p className="text-sm font-semibold text-fg-muted">{t("explanation")}</p>
-            <p className="text-fg">{q.explanation}</p>
+            <p className="text-fg"><MathText text={q.explanation} /></p>
           </div>
           {q.citations.length > 0 && (
             <div className="flex flex-wrap gap-2">

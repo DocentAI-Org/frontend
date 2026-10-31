@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Button } from "@/components/Button";
 import { ConfirmDialog } from "@/components/ConfirmDialog";
 import { Icon } from "@/components/Icon";
+import { MathText } from "@/components/MathText";
 import type { Schemas } from "@/lib/api/client";
 
 import { deleteQuestionAction } from "./actions";
@@ -42,7 +43,7 @@ export function TestQuestionItem({
         <p className="text-sm text-fg-muted tabular-nums">
           {question.position}. {t("topic", { topic: question.topic_name })}
         </p>
-        <p className="font-serif text-lg font-semibold text-fg">{question.statement}</p>
+        <p className="font-serif text-lg font-semibold text-fg"><MathText text={question.statement} /></p>
       </div>
       {/* Not a list: the questions are the list items (010 US1). */}
       <div className="flex flex-col gap-2">
@@ -50,7 +51,7 @@ export function TestQuestionItem({
           const right = i === question.correct_option;
           return (
             <div key={i} className={`flex min-h-11 flex-wrap items-center gap-x-4 rounded-lg border px-4 py-2 ${right ? "border-success-300 bg-success-50" : "border-border"}`}>
-              <span className="text-fg">{option}</span>
+              <span className="text-fg"><MathText text={option} /></span>
               {right && (
                 <span className="ml-auto inline-flex items-center gap-1 text-sm font-semibold text-success-800">
                   <Icon name="check" />

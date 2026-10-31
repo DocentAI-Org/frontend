@@ -7,6 +7,7 @@ import { Alert } from "@/components/Alert";
 import { Button, LinkButton } from "@/components/Button";
 import { CitationNotes } from "@/components/CitationNotes";
 import { Icon } from "@/components/Icon";
+import { MathText } from "@/components/MathText";
 import type { Schemas } from "@/lib/api/client";
 import { errorMessageKey } from "@/lib/api/errors";
 import { levelKey } from "@/lib/quiz/levels";
@@ -121,7 +122,7 @@ function QuestionForm({ question, total, pending, onSubmit }: { question: Curren
       <div className="flex flex-col gap-4" data-component="QuizQuestion" data-variant="unanswered">
         <p className="text-sm font-medium text-fg-muted tabular-nums">{tQuiz("counter", { n: question.position, total })}</p>
         <fieldset className="flex flex-col gap-2">
-          <legend className="mb-4 font-serif text-2xl font-semibold text-fg">{question.statement}</legend>
+          <legend className="mb-4 font-serif text-2xl font-semibold text-fg"><MathText text={question.statement} /></legend>
           {question.options.map((option, i) => (
             <label
               key={i}
@@ -137,7 +138,7 @@ function QuestionForm({ question, total, pending, onSubmit }: { question: Curren
                 disabled={pending}
                 className="size-5 shrink-0 accent-primary-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
               />
-              <span className="text-fg">{option}</span>
+              <span className="text-fg"><MathText text={option} /></span>
             </label>
           ))}
         </fieldset>
@@ -162,7 +163,7 @@ function Feedback({ answered, last, onNext }: { answered: Answered; last: boolea
       <div className="flex flex-col gap-4 rounded-xl border border-border bg-surface-raised p-6">
         <DifficultyBadge level={question.difficulty} />
         <p className="text-sm font-medium text-fg-muted tabular-nums">{tQuiz("counter", { n: question.position, total: answered.result.quiz.question_count })}</p>
-        <p className="font-serif text-2xl font-semibold text-fg">{question.statement}</p>
+        <p className="font-serif text-2xl font-semibold text-fg"><MathText text={question.statement} /></p>
         <ol aria-label={t("optionsLabel")} className="flex flex-col gap-2" data-component="QuizQuestion" data-variant={right ? "correct" : "incorrect"}>
           {question.options.map((option, i) => {
             const isRight = i === result.correct_option;
@@ -170,7 +171,7 @@ function Feedback({ answered, last, onNext }: { answered: Answered; last: boolea
             const tone = isRight ? "border-success-300 bg-success-50" : isMine ? "border-danger-600 bg-danger-50" : "border-border";
             return (
               <li key={i} className={`flex min-h-11 flex-wrap items-center gap-x-4 gap-y-1 rounded-lg border p-4 ${tone}`}>
-                <span className="text-fg">{option}</span>
+                <span className="text-fg"><MathText text={option} /></span>
                 <span className="ml-auto flex flex-wrap gap-x-4">
                   {isMine && (
                     <span className={`inline-flex items-center gap-1 text-sm font-semibold ${isRight ? "text-success-800" : "text-danger-700"}`}>
@@ -198,7 +199,7 @@ function Feedback({ answered, last, onNext }: { answered: Answered; last: boolea
           <Icon name={right ? "check" : "x"} className="size-5 shrink-0" />
           {right ? t("correct") : t("incorrect")}
         </h2>
-        <p className="text-fg">{result.explanation}</p>
+        <p className="text-fg"><MathText text={result.explanation} /></p>
         {result.citations.length > 0 && (
           <div className="flex flex-wrap gap-2 border-t border-border pt-4">
             <CitationNotes citations={result.citations} />

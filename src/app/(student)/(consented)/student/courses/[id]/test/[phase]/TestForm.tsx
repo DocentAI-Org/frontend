@@ -7,6 +7,7 @@ import { useEffect, useId, useRef, useState, useTransition } from "react";
 import { Alert } from "@/components/Alert";
 import { Button } from "@/components/Button";
 import { Icon } from "@/components/Icon";
+import { MathText } from "@/components/MathText";
 import type { Schemas } from "@/lib/api/client";
 import { errorMessageKey } from "@/lib/api/errors";
 import type { TestPhase } from "@/lib/api/course-tests";
@@ -102,7 +103,7 @@ export function TestForm({
             <fieldset className="flex flex-col gap-2" disabled={confirming || pending}>
               <legend className="mb-4 font-serif text-xl font-semibold text-fg">
                 <span className="sr-only">{index + 1}. </span>
-                {question.statement}
+                <MathText text={question.statement} />
               </legend>
               {question.options.map((option, i) => (
                 <label
@@ -115,7 +116,7 @@ export function TestForm({
                     value={i}
                     className="size-5 shrink-0 accent-primary-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
                   />
-                  <span className="text-fg">{option}</span>
+                  <span className="text-fg"><MathText text={option} /></span>
                 </label>
               ))}
             </fieldset>
