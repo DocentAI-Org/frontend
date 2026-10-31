@@ -91,7 +91,7 @@ test.describe("010 US1 the teacher prepares the test", () => {
 
     const second = questionList(page).getByRole("listitem").filter({ hasText: /pregunta 2 del test/i });
     await second.getByRole("button", { name: /^eliminar$/i }).click();
-    await page.getByRole("dialog").getByRole("button", { name: /^eliminar$/i }).click();
+    await page.getByRole("dialog", { name: /eliminar esta pregunta/i }).getByRole("button", { name: /^eliminar$/i }).click();
     await expect(questionList(page).getByRole("listitem")).toHaveCount(1);
   });
 
@@ -111,7 +111,7 @@ test.describe("010 US2 phases", () => {
     await openTab(page, courseId);
 
     await phase(page, /^pre-test$/i).getByRole("button", { name: /abrir el pre-test/i }).click();
-    const dialog = page.getByRole("dialog");
+    const dialog = page.getByRole("dialog", { name: /abrir el pre-test/i });
     await expect(dialog.getByText(/las preguntas quedarán fijas/i)).toBeVisible();
     await dialog.getByRole("button", { name: /^abrir$/i }).click();
 
