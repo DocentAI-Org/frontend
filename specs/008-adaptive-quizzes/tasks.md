@@ -11,3 +11,10 @@
 - [x] T005 [US2] Quiz start `/student/courses/[id]/quiz`, quiz `/student/courses/[id]/quizzes/[quizId]`
   with feedback, level reasons and summary; "Cuestionario" on the course card
 - [x] T006 Validation against the real stack (SC-002) in `validation.md`
+
+## Follow-up after the real-stack walkthrough (backend 006 T008–T010)
+
+- [x] T007 E2E: 008-US2-AS7, AS8; pin the contract of backend `fix/quiz-levels`; mock with the
+  level shown and `…/quiz-topics`
+- [x] T008 [US2] Topic choice on the start page; the `level_exhausted` sentence
+

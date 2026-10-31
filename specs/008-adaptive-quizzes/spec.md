@@ -51,7 +51,7 @@
 **Acceptance Scenarios**:
 
 1. **Given** approved questions, **When** the student opens "Cuestionario" from the course and
-   starts (all topics; one topic from a summary, see AS4), **Then** they see "N preguntas sobre {tema}", that the difficulty
+   starts (all topics, or one chosen on the start page or from a summary), **Then** they see "N preguntas sobre {tema}", that the difficulty
    adapts and does not count for the grade, the counter "Pregunta 1 de N", the difficulty in
    words and the options.
 2. **Given** an option, **When** the student selects "Comprobar", **Then** the feedback appears
@@ -67,6 +67,12 @@
    questions yet and offers the tutor.
 6. **Given** the student reloads during a quiz, or comes back to "Cuestionario" with one
    unfinished, **Then** they can continue at the current question.
+7. **Given** approved questions in several topics, **When** the student opens "Cuestionario",
+   **Then** they can choose "Todos los temas" or one topic, each with its number of questions.
+8. **Given** no question left at the current level, **Then** the next question is preceded by
+   "No quedan más preguntas de dificultad {anterior}: la siguiente es {nueva}."; and
+   **Given** only questions of one level, **Then** the level shown is that one from the start
+   and no level change is announced (backend 006 T008).
 
 ## Requirements *(mandatory)*
 
