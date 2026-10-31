@@ -40,7 +40,7 @@ Same walkthrough after the follow-up (backend 006 T008–T010, this spec T007–
 
 | Step | Result |
 |---|---|
-| "Pedir preguntas" | ✅ 5 questions in 19 s, now at levels 1, 1, 2, 2, 3 |
+| "Pedir preguntas" | ✅ 5 questions in 19 s; the four approved ones were "Media", "Media", "Fácil" and "Difícil" (the first run had only "Fácil") |
 | Quiz | ✅ starts at "Media"; two wrong → "Bajamos el nivel porque has fallado 2 seguidas."; when no easy question is left, the next one is "Difícil" and the reason says so ("No quedan más preguntas de dificultad fácil: la siguiente es difícil.", wording changed after this run) |
 | Summary, mobile | ✅ as before, no horizontal scroll |
 
