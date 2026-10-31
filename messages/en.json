@@ -29,7 +29,8 @@
       "nav": {
         "courses": "Courses",
         "users": "Users",
-        "studyExport": "Study data"
+        "studyExport": "Study data",
+        "questionnaires": "Questionnaires"
       },
       "role": "Administration"
     },
@@ -111,6 +112,36 @@
       "download": "Download ZIP",
       "downloadError": "The download could not be prepared. Try again in a few minutes.",
       "emptyCourses": "There are no courses yet; the download will only have the headers."
+    },
+    "questionnaires": {
+      "pageTitle": "Questionnaires",
+      "title": "Questionnaires",
+      "lead": "Satisfaction, usefulness and trust questionnaires in an external tool (for example Tally). Open ones appear in “My courses” for their audience.",
+      "codeHelp": "If the link includes {code}, each student gets it with their pseudonymous export code, so answers and data can be joined without their name. Teachers get it without a code.",
+      "formTitle": "Publish a questionnaire",
+      "titleLabel": "Title",
+      "titleError": "Write a title.",
+      "urlLabel": "Link",
+      "urlHint": "The questionnaire's address in the external tool.",
+      "urlError": "The link must start with https://.",
+      "audienceLabel": "Audience",
+      "audienceStudent": "Students",
+      "audienceTeacher": "Teachers",
+      "submit": "Publish",
+      "publishing": "Publishing…",
+      "emptyTitle": "No questionnaires yet",
+      "emptyBody": "Publish the first one with the form below.",
+      "tableCaption": "Study questionnaires",
+      "colTitle": "Title",
+      "colAudience": "Audience",
+      "colStatus": "Status",
+      "colActions": "Actions",
+      "statusOpen": "Open",
+      "statusClosed": "Closed",
+      "close": "Close",
+      "reopen": "Reopen",
+      "delete": "Delete",
+      "actionsFor": "Actions for “{title}”"
     }
   },
   "common": {
@@ -268,6 +299,11 @@
       "errorsLabel": "Most frequent mistakes in this topic",
       "lastActivity": "Last activity: {date}",
       "allMistakes": "All your mistakes"
+    },
+    "questionnaires": {
+      "title": "Study questionnaires",
+      "lead": "Your opinion helps improve DocentAI. They open in another tool.",
+      "newTab": "(opens in a new tab)"
     },
     "adaptation": {
       "student": "Adapted for you: you made {count} mistakes of the type “{type}” in the last {days} days, so the explanation focuses on that kind of mistake.",

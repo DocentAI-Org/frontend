@@ -237,6 +237,8 @@ export type State = {
   /** Pre/post-test phases (backend specs/008), keyed "<course_id>:<phase>". */
   testPhases: Map<string, TestPhaseRow>;
   testAttempts: TestAttempt[];
+  /** Study questionnaires (backend specs/012). */
+  questionnaires: S["Questionnaire"][];
 };
 
 export const CONSENT_VERSION = "2026-10";
@@ -299,7 +301,8 @@ export function seed(): State {
     generation: { mode: "drafts", delay_ms: 0 },
     testQuestions: [],
     testPhases: new Map(),
-    testAttempts: []
+    testAttempts: [],
+    questionnaires: []
   };
 }
 

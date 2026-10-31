@@ -1,6 +1,14 @@
 "use server";
 
-import { createPseudonymousStudents, createTeacher } from "@/lib/api/admin";
+import { revalidatePath } from "next/cache";
+
+import {
+  createPseudonymousStudents,
+  createQuestionnaire,
+  createTeacher,
+  deleteQuestionnaire,
+  updateQuestionnaire
+} from "@/lib/api/admin";
 import type { Schemas } from "@/lib/api/client";
 
 export type TeacherState = {
@@ -38,4 +46,40 @@ export async function createStudentsAction(_: StudentsState, form: FormData): Pr
   const result = await createPseudonymousStudents(count);
   if (!result.ok) return { error: result.code };
   return { accounts: result.data.accounts };
+}
+
+export type QuestionnaireState = {
+  titleError?: boolean;
+  urlError?: boolean;
+  error?: string;
+  values?: { title: string; url: string; audience: string };
+  /** Bumped on success so the form clears (012 US1 AS2). */
+  created?: number;
+};
+
+const HTTPS = /^https:\/\/[^/\s]+/;
+
+export async function createQuestionnaireAction(_: QuestionnaireState, form: FormData): Promise<QuestionnaireState> {
+  const title = String(form.get("title") ?? "").trim();
+  const url = String(form.get("url") ?? "").trim();
+  const audience = String(form.get("audience") ?? "student") === "teacher" ? "teacher" : "student";
+  const values = { title, url, audience };
+  const titleError = !title;
+  const urlError = !HTTPS.test(url);
+  if (titleError || urlError) return { titleError, urlError, values };
+  const result = await createQuestionnaire({ title, url, audience });
+  if (!result.ok) return { error: result.code, values };
+  revalidatePath("/admin/questionnaires");
+  return { created: Date.now() };
+}
+
+export async function setQuestionnaireStatusAction(form: FormData): Promise<void> {
+  const status = form.get("status") === "closed" ? "closed" : "open";
+  await updateQuestionnaire(String(form.get("id")), { status });
+  revalidatePath("/admin/questionnaires");
+}
+
+export async function deleteQuestionnaireAction(form: FormData): Promise<void> {
+  await deleteQuestionnaire(String(form.get("id")));
+  revalidatePath("/admin/questionnaires");
 }

@@ -7,7 +7,9 @@ import { EmptyState } from "@/components/EmptyState";
 import { ErrorState } from "@/components/ErrorState";
 import { Icon } from "@/components/Icon";
 import { PageHeader } from "@/components/PageHeader";
+import { StudyQuestionnaires } from "@/components/StudyQuestionnaires";
 import { listTeacherCourses } from "@/lib/api/courses";
+import { listMyQuestionnaires } from "@/lib/api/me";
 import { routes } from "@/lib/routes";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -18,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function TeacherCoursesPage() {
   const t = await getTranslations("teacher.courses");
   const format = await getFormatter();
-  const courses = await listTeacherCourses();
+  const [courses, questionnaires] = await Promise.all([listTeacherCourses(), listMyQuestionnaires()]);
   const create = (
     <LinkButton href="/teacher/courses/new" icon="plus">
       {t("create")}
@@ -27,6 +29,7 @@ export default async function TeacherCoursesPage() {
   return (
     <div className="flex flex-col gap-6">
       <PageHeader title={t("title")} lead={t("lead")} actions={create} />
+      {questionnaires.ok && <StudyQuestionnaires items={questionnaires.data} />}
       {!courses.ok ? (
         <ErrorState code={courses.code} />
       ) : courses.data.items.length === 0 ? (

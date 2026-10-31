@@ -29,7 +29,8 @@
       "nav": {
         "courses": "Cursos",
         "users": "Usuarios",
-        "studyExport": "Datos del estudio"
+        "studyExport": "Datos del estudio",
+        "questionnaires": "Cuestionarios"
       },
       "role": "Administración"
     },
@@ -111,6 +112,36 @@
       "download": "Descargar ZIP",
       "downloadError": "No se ha podido generar la descarga. Inténtalo de nuevo en unos minutos.",
       "emptyCourses": "Todavía no hay cursos; la descarga solo tendrá las cabeceras."
+    },
+    "questionnaires": {
+      "pageTitle": "Cuestionarios",
+      "title": "Cuestionarios",
+      "lead": "Cuestionarios de satisfacción, utilidad y confianza en una herramienta externa (por ejemplo Tally). Los abiertos aparecen en «Mis cursos» de quien corresponda.",
+      "codeHelp": "Si el enlace incluye {code}, a cada estudiante le llega con su código seudónimo de la exportación, para cruzar respuestas y datos sin dar su nombre. Al profesorado le llega sin código.",
+      "formTitle": "Publicar un cuestionario",
+      "titleLabel": "Título",
+      "titleError": "Escribe un título.",
+      "urlLabel": "Enlace",
+      "urlHint": "La dirección del cuestionario en la herramienta externa.",
+      "urlError": "El enlace debe empezar por https://.",
+      "audienceLabel": "Para quién",
+      "audienceStudent": "Estudiantes",
+      "audienceTeacher": "Profesorado",
+      "submit": "Publicar",
+      "publishing": "Publicando…",
+      "emptyTitle": "Todavía no hay cuestionarios",
+      "emptyBody": "Publica el primero con el formulario de abajo.",
+      "tableCaption": "Cuestionarios del estudio",
+      "colTitle": "Título",
+      "colAudience": "Para quién",
+      "colStatus": "Estado",
+      "colActions": "Acciones",
+      "statusOpen": "Abierto",
+      "statusClosed": "Cerrado",
+      "close": "Cerrar",
+      "reopen": "Reabrir",
+      "delete": "Eliminar",
+      "actionsFor": "Acciones para «{title}»"
     }
   },
   "common": {
@@ -268,6 +299,11 @@
       "errorsLabel": "Errores más frecuentes en este tema",
       "lastActivity": "Última actividad: {date}",
       "allMistakes": "Todos tus errores"
+    },
+    "questionnaires": {
+      "title": "Cuestionarios del estudio",
+      "lead": "Tu opinión ayuda a mejorar DocentAI. Se abren en otra herramienta.",
+      "newTab": "(se abre en otra pestaña)"
     },
     "adaptation": {
       "student": "Adaptada para ti: has cometido {count} errores de tipo «{type}» en los últimos {days} días, así que la explicación insiste en ese tipo de error.",
