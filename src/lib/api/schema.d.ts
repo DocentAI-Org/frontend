@@ -1391,6 +1391,24 @@ export interface components {
              */
             exercises: number;
         };
+        /**
+         * Adaptation
+         * @description Why an explanation was adapted (specs/013): shown to the student and teacher.
+         */
+        Adaptation: {
+            /**
+             * Error Type
+             * @description Error type code the student repeats.
+             */
+            error_type: string;
+            /**
+             * Count
+             * @description Mistakes of that type in the window.
+             */
+            count: number;
+            /** Window Days */
+            window_days: number;
+        };
         /** AdminCourse */
         AdminCourse: {
             /**
@@ -2792,6 +2810,8 @@ export interface components {
             /** Citations */
             citations: components["schemas"]["Citation"][];
             correction: components["schemas"]["Correction"] | null;
+            /** @description Set when the answer was adapted (specs/013). */
+            adaptation?: components["schemas"]["Adaptation"] | null;
         };
         /** StudentResult */
         StudentResult: {
@@ -2869,6 +2889,8 @@ export interface components {
             correction: components["schemas"]["Correction"] | null;
             /** @description Set when this mistake repeats a pattern (specs/005, provisional). */
             repeated_mistake: components["schemas"]["RepeatedMistake"] | null;
+            /** @description Set when the feedback was adapted (specs/013). */
+            adaptation?: components["schemas"]["Adaptation"] | null;
             /**
              * Created At
              * Format: date-time
@@ -3121,6 +3143,8 @@ export interface components {
             /** Citations */
             citations: components["schemas"]["Citation"][];
             correction: components["schemas"]["Correction"] | null;
+            /** @description Set when the answer was adapted (specs/013). */
+            adaptation?: components["schemas"]["Adaptation"] | null;
             flag: components["schemas"]["TeacherFlag"] | null;
         };
         /** TeacherQuestion */
@@ -3219,6 +3243,8 @@ export interface components {
             correction: components["schemas"]["Correction"] | null;
             /** @description Set when this mistake repeats a pattern (specs/005, provisional). */
             repeated_mistake: components["schemas"]["RepeatedMistake"] | null;
+            /** @description Set when the feedback was adapted (specs/013). */
+            adaptation?: components["schemas"]["Adaptation"] | null;
             /**
              * Created At
              * Format: date-time

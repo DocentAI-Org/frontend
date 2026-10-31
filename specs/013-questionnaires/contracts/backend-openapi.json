@@ -8787,6 +8787,32 @@
         ],
         "title": "ActivityCounts"
       },
+      "Adaptation": {
+        "properties": {
+          "error_type": {
+            "type": "string",
+            "title": "Error Type",
+            "description": "Error type code the student repeats."
+          },
+          "count": {
+            "type": "integer",
+            "title": "Count",
+            "description": "Mistakes of that type in the window."
+          },
+          "window_days": {
+            "type": "integer",
+            "title": "Window Days"
+          }
+        },
+        "type": "object",
+        "required": [
+          "error_type",
+          "count",
+          "window_days"
+        ],
+        "title": "Adaptation",
+        "description": "Why an explanation was adapted (specs/013): shown to the student and teacher."
+      },
       "AdminCourse": {
         "properties": {
           "id": {
@@ -12159,6 +12185,17 @@
                 "type": "null"
               }
             ]
+          },
+          "adaptation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Adaptation"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Set when the answer was adapted (specs/013)."
           }
         },
         "type": "object",
@@ -12397,6 +12434,17 @@
               }
             ],
             "description": "Set when this mistake repeats a pattern (specs/005, provisional)."
+          },
+          "adaptation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Adaptation"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Set when the feedback was adapted (specs/013)."
           },
           "created_at": {
             "type": "string",
@@ -12971,6 +13019,17 @@
               }
             ]
           },
+          "adaptation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Adaptation"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Set when the answer was adapted (specs/013)."
+          },
           "flag": {
             "anyOf": [
               {
@@ -13224,6 +13283,17 @@
               }
             ],
             "description": "Set when this mistake repeats a pattern (specs/005, provisional)."
+          },
+          "adaptation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Adaptation"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Set when the feedback was adapted (specs/013)."
           },
           "created_at": {
             "type": "string",
