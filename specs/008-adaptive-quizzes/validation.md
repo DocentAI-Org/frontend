@@ -33,3 +33,17 @@ rejects the last; the student then takes a quiz on desktop and another on mobile
   edits reach the quiz; a real review would have rejected or fixed it.
 - The second quiz repeated the same order of questions: all four had been answered once, so none
   is preferred. Expected with so few questions.
+
+## Second run, with backend `fix/quiz-levels` (2026-10-31)
+
+Same walkthrough after the follow-up (backend 006 T008–T010, this spec T007–T008).
+
+| Step | Result |
+|---|---|
+| "Pedir preguntas" | ✅ 5 questions in 19 s, now at levels 1, 1, 2, 2, 3 |
+| Quiz | ✅ starts at "Media"; two wrong → "Bajamos el nivel porque has fallado 2 seguidas."; when no easy question is left, the next one is "Difícil" and the reason says so ("No quedan más preguntas de dificultad fácil: la siguiente es difícil.", wording changed after this run) |
+| Summary, mobile | ✅ as before, no horizontal scroll |
+
+With only four approved questions, a student who keeps failing can still get a hard question
+once the easy ones run out; the sentence now says why.
+
