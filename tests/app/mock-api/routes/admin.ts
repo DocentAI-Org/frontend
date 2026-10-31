@@ -1,4 +1,4 @@
-import { HttpError, type Route, page, requireRole } from "../http.ts";
+import { HttpError, RawBody, type Route, page, requireRole } from "../http.ts";
 import { type S, type User, id, now } from "../state.ts";
 
 const ALPHABET = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
@@ -19,7 +19,21 @@ function password(): string {
   return `pw-${Math.random().toString(36).slice(2, 12)}`;
 }
 
+// An empty ZIP archive: only the end-of-central-directory record.
+const EMPTY_ZIP = Buffer.concat([Buffer.from("PK\x05\x06"), Buffer.alloc(18)]);
+
 export const adminRoutes: Route[] = [
+  {
+    method: "GET",
+    path: "/v1/admin/study-export",
+    handler: (ctx) => {
+      requireRole(ctx, "admin");
+      if (ctx.state.faults.has("study_export_fails")) throw new HttpError(503, "api_unreachable");
+      return new RawBody("application/zip", EMPTY_ZIP, {
+        "content-disposition": 'attachment; filename="docentai-study-export.zip"'
+      });
+    }
+  },
   {
     method: "GET",
     path: "/v1/admin/users",

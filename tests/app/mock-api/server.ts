@@ -2,7 +2,7 @@
 // (research R7). Run: node tests/app/mock-api/server.ts  (port MOCK_API_PORT, default 8010)
 import { createServer } from "node:http";
 
-import { type Ctx, HttpError, NO_CONTENT, type Route, compile, send } from "./http.ts";
+import { type Ctx, HttpError, NO_CONTENT, RawBody, type Route, compile, send } from "./http.ts";
 import { authRoutes, subjectOf } from "./routes/auth.ts";
 import { adminRoutes } from "./routes/admin.ts";
 import { chatRoutes } from "./routes/chat.ts";
@@ -71,6 +71,9 @@ const server = createServer(async (req, res) => {
       const result = await route.handler(ctx);
       if (result === NO_CONTENT) {
         res.writeHead(204).end();
+      } else if (result instanceof RawBody) {
+        res.writeHead(route.status ?? 200, { "content-type": result.contentType, ...result.headers });
+        res.end(result.body);
       } else {
         send(res, route.status ?? 200, result);
       }
