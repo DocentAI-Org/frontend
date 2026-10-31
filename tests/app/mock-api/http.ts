@@ -34,6 +34,18 @@ export function send(res: ServerResponse, status: number, body?: unknown): void 
   res.end(body === undefined ? "" : JSON.stringify(body));
 }
 
+/** A non-JSON body, such as a file download. */
+export class RawBody {
+  contentType: string;
+  body: Buffer;
+  headers: Record<string, string>;
+  constructor(contentType: string, body: Buffer, headers: Record<string, string> = {}) {
+    this.contentType = contentType;
+    this.body = body;
+    this.headers = headers;
+  }
+}
+
 export const NO_CONTENT = Symbol("no-content");
 
 export function noContent(): typeof NO_CONTENT {
