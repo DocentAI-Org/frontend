@@ -9,6 +9,7 @@ import { ErrorState } from "@/components/ErrorState";
 import { Icon } from "@/components/Icon";
 import { errorTypeLabel } from "@/components/LearningRecord";
 import { PageHeader } from "@/components/PageHeader";
+import { MathText } from "@/components/MathText";
 import { getErrorTypes, getReview, getSubmission } from "@/lib/api/exercises";
 import { routes } from "@/lib/routes";
 
@@ -78,7 +79,7 @@ export default async function ReviewPage({ params }: { params: Promise<{ id: str
                   {t("student.chat.aiTag")}
                 </abbr>
               </div>
-              <p className="font-serif text-lg text-fg">{r.explanation}</p>
+              <p className="font-serif text-lg text-fg"><MathText text={r.explanation} /></p>
             </section>
             {r.worked_example && (
               <section aria-labelledby="example-title" className="flex flex-col gap-2 rounded-xl border border-border bg-surface-raised p-6">

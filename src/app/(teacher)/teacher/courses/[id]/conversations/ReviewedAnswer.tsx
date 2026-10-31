@@ -3,6 +3,7 @@ import { getFormatter, getTranslations } from "next-intl/server";
 import { CitationNotes } from "@/components/CitationNotes";
 import { ConfirmDialog } from "@/components/ConfirmDialog";
 import { Icon } from "@/components/Icon";
+import { MathText } from "@/components/MathText";
 import type { Schemas } from "@/lib/api/client";
 
 import { removeFlagAction } from "./actions";
@@ -44,7 +45,7 @@ export async function ReviewedAnswer({
             </span>
           )}
         </p>
-        <p className={`font-serif text-lg ${flag ? "text-fg-muted line-through decoration-teacher-600 decoration-1" : "text-fg"}`}>{text}</p>
+        <p className={`font-serif text-lg ${flag ? "text-fg-muted line-through decoration-teacher-600 decoration-1" : "text-fg"}`}><MathText text={text} /></p>
         <div className="mt-2 flex flex-wrap gap-2">
           <FlagDialog key={flag?.updated_at ?? "new"} courseId={courseId} target={target} path={path} answer={text} existing={flag} />
           {flag && (
@@ -72,7 +73,7 @@ export async function ReviewedAnswer({
             <p className="text-xs text-fg-muted tabular-nums">
               {t("common.correction.date", { date: format.dateTime(new Date(flag.updated_at), { dateStyle: "long" }) })}
             </p>
-            <p className="mt-1 font-serif text-fg">{flag.correction}</p>
+            <p className="mt-1 font-serif text-fg"><MathText text={flag.correction} /></p>
           </div>
         )}
         <CitationNotes citations={citations} />
