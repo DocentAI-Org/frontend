@@ -78,6 +78,8 @@ export type Msg = {
   created_at: string;
   /** Fragment ids cited by a tutor message. */
   cited: string[];
+  /** Why the answer was adapted (backend specs/013). */
+  adaptation?: S["Adaptation"] | null;
 };
 
 export type Flag = {
@@ -109,6 +111,7 @@ export type Submission = {
   /** In the learning record (a mistake with a known error type). */
   saved: boolean;
   created_at: string;
+  adaptation?: S["Adaptation"] | null;
 };
 
 export type Review = {
@@ -217,6 +220,8 @@ export type State = {
   usage: Map<string, number>;
   /** Named faults tests can switch on, e.g. "expire_sessions", "tutor_unavailable". */
   faults: Set<string>;
+  /** The adaptation of the next tutor answers and feedback (backend specs/013), set by /__test/adaptation. */
+  adaptation: S["Adaptation"] | null;
   /** What the next exercise feedback looks like (backend specs/003), set by /__test/feedback. */
   feedback: { mode: "mistake" | "correct" | "fail"; delay_ms: number };
   reviews: Review[];
@@ -284,6 +289,7 @@ export function seed(): State {
     consent: [],
     usage: new Map(),
     faults: new Set(),
+    adaptation: null,
     feedback: { mode: "mistake", delay_ms: 0 },
     reviews: [],
     review: { mode: "answer", delay_ms: 0 },
