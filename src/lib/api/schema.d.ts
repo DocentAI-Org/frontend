@@ -211,6 +211,24 @@ export interface paths {
         patch: operations["update_questionnaire_v1_admin_questionnaires__questionnaire_id__patch"];
         trace?: never;
     };
+    "/v1/admin/pedagogy-criteria": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** The study's default pedagogical criteria (specs/015) */
+        get: operations["read_study_criteria_v1_admin_pedagogy_criteria_get"];
+        /** Set the defaults for every course without its own values */
+        put: operations["update_study_criteria_v1_admin_pedagogy_criteria_put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/teacher/courses": {
         parameters: {
             query?: never;
@@ -952,6 +970,24 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/teacher/courses/{course_id}/pedagogy-criteria": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** The study's criteria, the course's own groups and those in effect */
+        get: operations["read_course_criteria_v1_teacher_courses__course_id__pedagogy_criteria_get"];
+        /** Set the course's own groups; null keeps the study's (specs/015) */
+        put: operations["update_course_criteria_v1_teacher_courses__course_id__pedagogy_criteria_put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/student/enrolments": {
         parameters: {
             query?: never;
@@ -1409,6 +1445,14 @@ export interface components {
             /** Window Days */
             window_days: number;
         };
+        /**
+         * AdaptationCriteria
+         * @description Explanations adapted to repeated mistakes (spec 013).
+         */
+        AdaptationCriteria: {
+            /** Enabled */
+            enabled: boolean;
+        };
         /** AdminCourse */
         AdminCourse: {
             /**
@@ -1662,6 +1706,31 @@ export interface components {
             /** Description */
             description?: string | null;
         };
+        /** CourseCriteria */
+        CourseCriteria: {
+            study: components["schemas"]["Criteria"];
+            /** Provisional */
+            provisional: boolean;
+            /**
+             * Custom
+             * @description Groups the course overrides.
+             */
+            custom: {
+                [key: string]: boolean;
+            };
+            effective: components["schemas"]["Criteria"];
+        };
+        /**
+         * CourseCriteriaUpdate
+         * @description A group's own values for the course, or null for the study's.
+         */
+        CourseCriteriaUpdate: {
+            inactive?: components["schemas"]["InactiveCriteria"] | null;
+            error_rate?: components["schemas"]["ErrorRateCriteria"] | null;
+            repeated_mistakes?: components["schemas"]["RepeatedMistakeCriteria"] | null;
+            adaptation?: components["schemas"]["AdaptationCriteria"] | null;
+            mastery?: components["schemas"]["MasteryCriteria"] | null;
+        };
         /** CourseFlag */
         CourseFlag: {
             /**
@@ -1760,6 +1829,14 @@ export interface components {
              */
             initial_password: string;
         };
+        /** Criteria */
+        Criteria: {
+            inactive: components["schemas"]["InactiveCriteria"];
+            error_rate: components["schemas"]["ErrorRateCriteria"];
+            repeated_mistakes: components["schemas"]["RepeatedMistakeCriteria"];
+            adaptation: components["schemas"]["AdaptationCriteria"];
+            mastery: components["schemas"]["MasteryCriteria"];
+        };
         /** DifficultyChange */
         DifficultyChange: {
             /** From Level */
@@ -1834,6 +1911,20 @@ export interface components {
             details?: {
                 [key: string]: unknown;
             } | null;
+        };
+        /**
+         * ErrorRateCriteria
+         * @description At risk with this share of mistakes in enough assessed exercises (spec 004).
+         */
+        ErrorRateCriteria: {
+            /** Enabled */
+            enabled: boolean;
+            /** Rate */
+            rate: number;
+            /** Min Exercises */
+            min_exercises: number;
+            /** Window Days */
+            window_days: number;
         };
         /** ErrorRateReason */
         ErrorRateReason: {
@@ -1987,6 +2078,16 @@ export interface components {
              */
             llm: "ok" | "error";
         };
+        /**
+         * InactiveCriteria
+         * @description At risk after this many days without activity (spec 004).
+         */
+        InactiveCriteria: {
+            /** Enabled */
+            enabled: boolean;
+            /** Days */
+            days: number;
+        };
         /** InactiveReason */
         InactiveReason: {
             /**
@@ -2044,6 +2145,20 @@ export interface components {
             es: string;
             /** En */
             en: string;
+        };
+        /**
+         * MasteryCriteria
+         * @description Latest items that count, items needed for a level, and the scores (spec 007).
+         */
+        MasteryCriteria: {
+            /** Window */
+            window: number;
+            /** Min Items */
+            min_items: number;
+            /** Progressing */
+            progressing: number;
+            /** Mastered */
+            mastered: number;
         };
         /** Me */
         Me: {
@@ -2681,6 +2796,16 @@ export interface components {
             /** Topic Name */
             topic_name: string | null;
         };
+        /**
+         * RepeatedMistakeCriteria
+         * @description The same mistake this many times in this many days (spec 005).
+         */
+        RepeatedMistakeCriteria: {
+            /** Count */
+            count: number;
+            /** Window Days */
+            window_days: number;
+        };
         /** RiskCriteriaList */
         RiskCriteriaList: {
             /**
@@ -2969,6 +3094,26 @@ export interface components {
              * @enum {string}
              */
             solution_policy: "direct" | "hints_first" | "hints_only";
+        };
+        /** StudyCriteria */
+        StudyCriteria: {
+            criteria: components["schemas"]["Criteria"];
+            /**
+             * Provisional
+             * @description True until the educational stream agrees the defaults.
+             */
+            provisional: boolean;
+            /**
+             * Updated At
+             * Format: date-time
+             */
+            updated_at: string;
+        };
+        /** StudyCriteriaUpdate */
+        StudyCriteriaUpdate: {
+            criteria: components["schemas"]["Criteria"];
+            /** Provisional */
+            provisional: boolean;
         };
         /** SubmissionCreate */
         SubmissionCreate: {
@@ -4391,6 +4536,95 @@ export interface operations {
             };
             /** @description Not Found */
             404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    read_study_criteria_v1_admin_pedagogy_criteria_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StudyCriteria"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    update_study_criteria_v1_admin_pedagogy_criteria_put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StudyCriteriaUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StudyCriteria"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -7770,6 +8004,126 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    read_course_criteria_v1_teacher_courses__course_id__pedagogy_criteria_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CourseCriteria"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_course_criteria_v1_teacher_courses__course_id__pedagogy_criteria_put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CourseCriteriaUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CourseCriteria"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
