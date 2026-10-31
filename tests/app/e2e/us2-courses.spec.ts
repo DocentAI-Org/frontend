@@ -37,6 +37,8 @@ test.describe("US2 courses and enrolment", () => {
   scenario("001-US4-AS2", "a new course shows its code and invitation link with copy actions", async ({ page }) => {
     await signIn(page, USERS.teacher);
     await page.getByRole("link", { name: /crear curso/i }).first().click();
+    // Wait for the new page: the courses list's title would let axe run mid-navigation.
+    await expect(page.getByRole("heading", { level: 1, name: /crear un curso/i })).toBeVisible();
     await expectAccessible(page);
     await page.getByRole("button", { name: /crear curso/i }).click();
     await expect(page.getByRole("alert").filter({ hasText: /revisa el campo/i })).toBeVisible();
