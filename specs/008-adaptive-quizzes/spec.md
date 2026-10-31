@@ -51,7 +51,7 @@
 **Acceptance Scenarios**:
 
 1. **Given** approved questions, **When** the student opens "Cuestionario" from the course and
-   starts (all topics or one), **Then** they see "N preguntas sobre {tema}", that the difficulty
+   starts (all topics; one topic from a summary, see AS4), **Then** they see "N preguntas sobre {tema}", that the difficulty
    adapts and does not count for the grade, the counter "Pregunta 1 de N", the difficulty in
    words and the options.
 2. **Given** an option, **When** the student selects "Comprobar", **Then** the feedback appears
@@ -62,11 +62,11 @@
    nivel porque has fallado 2 seguidas") and the rule is called provisional.
 4. **Given** the last answer, **When** the student selects "Ver resumen", **Then** the summary
    shows the score, the result by topic with a text count, the final level, and next steps:
-   another quiz or asking the tutor.
+   another quiz, a quiz on one of its topics, or asking the tutor.
 5. **Given** no approved questions, **Then** the empty state says the teacher has not published
    questions yet and offers the tutor.
-6. **Given** the student reloads during a quiz, **Then** the current question is shown again
-   with the answered count.
+6. **Given** the student reloads during a quiz, or comes back to "Cuestionario" with one
+   unfinished, **Then** they can continue at the current question.
 
 ## Requirements *(mandatory)*
 

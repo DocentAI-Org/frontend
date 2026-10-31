@@ -63,6 +63,10 @@ export default async function StudentCoursesPage() {
                     <Icon name="file-text" />
                     <span>{t("exercise")}</span>
                   </Link>
+                  <Link href={routes.studentQuizStart(course.id)} className={ACTION}>
+                    <Icon name="lightbulb" />
+                    <span>{t("quiz")}</span>
+                  </Link>
                   <Link href={routes.studentProgress(course.id)} className={ACTION}>
                     <Icon name="chart-column" />
                     <span>{t("progress")}</span>
