@@ -5,6 +5,7 @@ import { getFormatter, getTranslations } from "next-intl/server";
 import { EmptyState } from "@/components/EmptyState";
 import { ErrorState } from "@/components/ErrorState";
 import { Icon } from "@/components/Icon";
+import { MathText } from "@/components/MathText";
 import { listCourseFlags } from "@/lib/api/review";
 import { routes } from "@/lib/routes";
 
@@ -58,7 +59,7 @@ export default async function FlagsPage({ params }: { params: Promise<{ id: stri
                 <p className="font-serif text-fg-muted line-through decoration-teacher-600 decoration-1">{flag.original_text}</p>
                 <p className="font-serif text-fg">
                   <span className="font-sans text-sm font-semibold text-teacher-700">{t("teacher.flags.correctionLabel")} </span>
-                  {flag.correction}
+                  <MathText text={flag.correction} />
                 </p>
                 <Link
                   href={href}

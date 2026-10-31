@@ -6,6 +6,7 @@ import { Button, LinkButton } from "@/components/Button";
 import { EmptyState } from "@/components/EmptyState";
 import { ErrorState } from "@/components/ErrorState";
 import { Icon } from "@/components/Icon";
+import { MathText } from "@/components/MathText";
 import { getDocument, listAllFragments } from "@/lib/api/documents";
 import { routes } from "@/lib/routes";
 
@@ -127,7 +128,7 @@ export default async function FragmentsPage({
                   <span>{t("excludedTag")}</span>
                 </p>
               )}
-              <p className={`font-serif ${fragment.excluded ? "text-fg-muted" : "text-fg"}`}>{fragment.text}</p>
+              <p className={`font-serif ${fragment.excluded ? "text-fg-muted" : "text-fg"}`}><MathText text={fragment.text} /></p>
             </li>
           ))}
         </ol>

@@ -28,7 +28,8 @@
     "shell": {
       "nav": {
         "courses": "Cursos",
-        "users": "Usuarios"
+        "users": "Usuarios",
+        "studyExport": "Datos del estudio"
       },
       "role": "Administración"
     },
@@ -96,6 +97,20 @@
       "copyAll": "Copiar todo",
       "download": "Descargar CSV",
       "createMore": "Crear más cuentas"
+    },
+    "studyExport": {
+      "pageTitle": "Datos del estudio",
+      "title": "Datos del estudio",
+      "lead": "Descarga los datos de actividad para el análisis del estudio, en un ZIP con un archivo CSV por tabla y un README que explica cada columna.",
+      "includedTitle": "Qué incluye",
+      "included": "Solo estudiantes que han dado su consentimiento y no lo han retirado. Cada estudiante aparece con un código seudónimo, el mismo en cada descarga.",
+      "excludedTitle": "Qué no incluye",
+      "excluded": "Sin nombres, correos ni texto libre: ni mensajes, ni enunciados, ni respuestas, ni explicaciones. Solo resultados, tipos de error, temas, fechas y uso del modelo.",
+      "courseLabel": "Curso",
+      "allCourses": "Todos los cursos",
+      "download": "Descargar ZIP",
+      "downloadError": "No se ha podido generar la descarga. Inténtalo de nuevo en unos minutos.",
+      "emptyCourses": "Todavía no hay cursos; la descarga solo tendrá las cabeceras."
     }
   },
   "common": {

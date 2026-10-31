@@ -10,6 +10,7 @@ import { ErrorState } from "@/components/ErrorState";
 import { Icon } from "@/components/Icon";
 import { errorTypeLabel } from "@/components/LearningRecord";
 import { PageHeader } from "@/components/PageHeader";
+import { MathText } from "@/components/MathText";
 import { getErrorTypes, getSubmission } from "@/lib/api/exercises";
 import { routes } from "@/lib/routes";
 
@@ -58,7 +59,7 @@ export default async function FeedbackPage({ params }: { params: Promise<{ id: s
         <h2 id="exercise-title" className="text-sm font-semibold text-fg-muted">
           {t("student.exercise.problem")}
         </h2>
-        <p className="font-serif text-lg text-fg">{s.problem_statement}</p>
+        <p className="font-serif text-lg text-fg"><MathText text={s.problem_statement} /></p>
         <h3 className="mt-2 text-sm font-semibold text-fg-muted">{t("student.feedback.stepsTitle")}</h3>
         <p className="font-mono whitespace-pre-line text-fg">{s.worked_answer}</p>
       </section>
@@ -77,7 +78,7 @@ export default async function FeedbackPage({ params }: { params: Promise<{ id: s
             {s.mistake_location && (
               <div className="flex flex-wrap gap-1">
                 <dt className="text-fg-muted">{t("student.feedback.mistakeLabel")}</dt>
-                <dd className="font-semibold">{s.mistake_location}</dd>
+                <dd className="font-semibold"><MathText text={s.mistake_location} /></dd>
               </div>
             )}
             {s.error_type && (
@@ -115,7 +116,7 @@ export default async function FeedbackPage({ params }: { params: Promise<{ id: s
             <div className="flex flex-col gap-2">
               <h3 className="text-lg font-semibold text-fg">{t("student.feedback.explanationTitle")}</h3>
               <p className={`font-serif text-lg ${s.correction ? "text-fg-muted line-through decoration-teacher-600 decoration-1" : "text-fg"}`}>
-                {s.explanation}
+                <MathText text={s.explanation} />
               </p>
               {s.adaptation && (
                 <AdaptationNote adaptation={s.adaptation} typeName={errorTypeLabel(types, s.adaptation.error_type, locale)} audience="student" />
@@ -133,7 +134,7 @@ export default async function FeedbackPage({ params }: { params: Promise<{ id: s
               <p className="text-xs text-fg-muted tabular-nums">
                 {t("common.correction.date", { date: format.dateTime(new Date(s.correction.reviewed_at), { dateStyle: "long" }) })}
               </p>
-              <p className="mt-1 font-serif text-fg">{s.correction.text}</p>
+              <p className="mt-1 font-serif text-fg"><MathText text={s.correction.text} /></p>
             </div>
           )}
           <CitationNotes citations={s.citations} />

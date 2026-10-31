@@ -7,6 +7,7 @@ import { Alert } from "@/components/Alert";
 import { ErrorState } from "@/components/ErrorState";
 import { Icon } from "@/components/Icon";
 import { errorTypeLabel } from "@/components/LearningRecord";
+import { MathText } from "@/components/MathText";
 import type { Schemas } from "@/lib/api/client";
 import { getErrorTypes } from "@/lib/api/exercises";
 import { getCourseSubmission, getCourseSubmissionReview } from "@/lib/api/review";
@@ -48,7 +49,7 @@ async function RepeatedMistake({
         <div className="flex flex-col gap-4">
           <div>
             <p className="text-sm font-semibold text-fg-muted">{t("whatTitle")}</p>
-            <p className="font-serif text-fg">{review.explanation}</p>
+            <p className="font-serif text-fg"><MathText text={review.explanation} /></p>
           </div>
           {review.worked_example && (
             <div>
@@ -116,7 +117,7 @@ export default async function SubmissionReviewPage({
       )}
       <section className="flex flex-col gap-2 rounded-xl border border-border bg-surface-raised p-6">
         <h3 className="text-sm font-semibold text-fg-muted">{t("student.exercise.problem")}</h3>
-        <p className="font-serif text-lg text-fg">{s.problem_statement}</p>
+        <p className="font-serif text-lg text-fg"><MathText text={s.problem_statement} /></p>
         <h3 className="mt-2 text-sm font-semibold text-fg-muted">{t("student.feedback.stepsTitle")}</h3>
         <p className="font-mono whitespace-pre-line text-fg">{s.worked_answer}</p>
       </section>
