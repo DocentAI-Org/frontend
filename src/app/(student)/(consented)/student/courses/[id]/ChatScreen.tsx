@@ -8,6 +8,7 @@ import { Alert } from "@/components/Alert";
 import { Button } from "@/components/Button";
 import { CitationNotes } from "@/components/CitationNotes";
 import { Icon } from "@/components/Icon";
+import { MathText } from "@/components/MathText";
 import type { Schemas } from "@/lib/api/client";
 import { errorMessageKey } from "@/lib/api/errors";
 import { routes } from "@/lib/routes";
@@ -283,7 +284,7 @@ export function ChatScreen({
                 <p
                   className={`font-serif text-lg ${message.correction ? "text-fg-muted line-through decoration-teacher-600 decoration-1" : "text-fg"}`}
                 >
-                  {message.text}
+                  <MathText text={message.text} />
                 </p>
               </div>
               <aside className="mt-2 flex flex-col gap-2 lg:col-span-3 lg:mt-0" aria-label={t("chat.sources")}>
@@ -296,7 +297,7 @@ export function ChatScreen({
                     <p className="text-xs text-fg-muted tabular-nums">
                       {tAll("common.correction.date", { date: format.dateTime(new Date(message.correction.reviewed_at), { dateStyle: "long" }) })}
                     </p>
-                    <p className="mt-1 font-serif text-fg">{message.correction.text}</p>
+                    <p className="mt-1 font-serif text-fg"><MathText text={message.correction.text} /></p>
                   </div>
                 )}
                 <CitationNotes citations={message.citations} />

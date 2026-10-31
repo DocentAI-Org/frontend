@@ -6,6 +6,7 @@ import { useId, useRef, useState } from "react";
 import type { Schemas } from "@/lib/api/client";
 
 import { Icon } from "./Icon";
+import { MathText } from "./MathText";
 
 type Citation = Schemas["Citation"];
 
@@ -80,7 +81,7 @@ export function CitationNotes({ citations }: { citations: Citation[] }) {
             {open.available && open.passage ? (
               <figure className="flex flex-col gap-2">
                 <figcaption className="text-sm font-semibold text-teacher-700">{t("citation.passageLabel")}</figcaption>
-                <blockquote className="border-l-2 border-margin bg-surface py-2 pr-2 pl-4 font-serif text-lg text-fg">{open.passage}</blockquote>
+                <blockquote className="border-l-2 border-margin bg-surface py-2 pr-2 pl-4 font-serif text-lg text-fg"><MathText text={open.passage} /></blockquote>
                 <p className="text-sm text-fg-muted">{t("citation.validated")}</p>
               </figure>
             ) : (
