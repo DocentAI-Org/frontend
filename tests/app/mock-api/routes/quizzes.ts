@@ -1,6 +1,7 @@
 // Quiz questions and adaptive quizzes (backend specs/006). /__test/generation scripts the model
 // (drafts, nothing usable, unavailable); /__test/questions seeds approved questions. The quiz
-// follows the backend's provisional rule: start at level 2, move after 2 in a row, 5 questions.
+// follows the backend's provisional rule: the level is the difficulty shown, starting nearest
+// to 2; 2 in a row aim one level up or down; 5 questions.
 import { HttpError, type Route, page } from "../http.ts";
 import { type Question, type Quiz, type QuizItem, type S, type State, id, now } from "../state.ts";
 import { citationView } from "./chat.ts";
@@ -127,7 +128,7 @@ function approved(state: State, courseId: string, topicId: string | null) {
   return state.questions.filter((q) => q.course_id === courseId && q.status === "approved" && (!topicId || q.topic_id === topicId));
 }
 
-function pick(state: State, quiz: Quiz): Question | undefined {
+function pick(state: State, quiz: Quiz, target: number): Question | undefined {
   const used = new Set(quiz.items.map((i) => i.question_id));
   const answered = (qid: string) =>
     state.quizzes
@@ -138,7 +139,7 @@ function pick(state: State, quiz: Quiz): Question | undefined {
     .filter((q) => !used.has(q.id))
     .sort(
       (a, b) =>
-        Math.abs(a.difficulty - quiz.level) - Math.abs(b.difficulty - quiz.level) ||
+        Math.abs(a.difficulty - target) - Math.abs(b.difficulty - target) ||
         answered(a.id) - answered(b.id) ||
         a.difficulty - b.difficulty ||
         a.created_at.localeCompare(b.created_at)
@@ -269,8 +270,23 @@ export const quizRoutes: Route[] = [
         items: []
       };
       state.quizzes.push(quiz);
-      addItem(state, quiz, pick(state, quiz)!);
+      const first = pick(state, quiz, START_LEVEL)!;
+      quiz.level = first.difficulty;
+      addItem(state, quiz, first);
       return quizView(quiz);
+    }
+  },
+  {
+    method: "GET",
+    path: "/v1/student/courses/{course_id}/quiz-topics",
+    handler: (ctx) => {
+      const enrolment = activeEnrolment(ctx);
+      const state = ctx.state;
+      return state.topics
+        .filter((t) => t.course_id === enrolment.course_id)
+        .sort((a, b) => a.position - b.position)
+        .map((t) => ({ topic_id: t.id, topic_name: t.name, question_count: approved(state, t.course_id, t.id).length }))
+        .filter((t) => t.question_count > 0);
     }
   },
   {
@@ -328,19 +344,30 @@ export const quizRoutes: Route[] = [
 
       const run = item.correct ? (quiz.streak > 0 ? quiz.streak + 1 : 1) : quiz.streak < 0 ? quiz.streak - 1 : -1;
       const from = quiz.level;
-      let level = from;
-      if (run >= STREAK && from < 3) level = from + 1;
-      if (-run >= STREAK && from > 1) level = from - 1;
-      quiz.level = level;
-      quiz.streak = level === from ? run : 0;
+      let change: S["DifficultyChange"] | null = null;
 
       if (item.position >= quiz.question_count) {
         quiz.status = "completed";
         quiz.completed_at = now();
       } else {
-        const next = pick(state, quiz);
-        if (next) addItem(state, quiz, next);
-        else {
+        let target = from;
+        if (run >= STREAK && from < 3) target = from + 1;
+        if (-run >= STREAK && from > 1) target = from - 1;
+        const next = pick(state, quiz, target);
+        if (next) {
+          if (next.difficulty !== from) {
+            const streakMove = target !== from && (next.difficulty - from) * (target - from) > 0;
+            change = {
+              from_level: from,
+              to_level: next.difficulty,
+              reason: streakMove ? (item.correct ? "correct_streak" : "wrong_streak") : "level_exhausted",
+              streak: Math.abs(run)
+            };
+          }
+          quiz.streak = change ? 0 : run;
+          quiz.level = next.difficulty;
+          addItem(state, quiz, next);
+        } else {
           quiz.question_count = item.position;
           quiz.status = "completed";
           quiz.completed_at = now();
@@ -351,8 +378,7 @@ export const quizRoutes: Route[] = [
         correct_option: item.correct_option,
         explanation: item.explanation,
         citations: citationsOf(state, item),
-        difficulty_change:
-          level === from ? null : { from_level: from, to_level: level, reason: item.correct ? "correct_streak" : "wrong_streak", streak: Math.abs(run) },
+        difficulty_change: change,
         quiz: quizView(quiz)
       };
     }
@@ -370,12 +396,14 @@ export const quizRoutes: Route[] = [
     method: "POST",
     path: "/__test/questions",
     handler: (ctx) => {
-      // Approved questions for "Paréntesis", one per entry of `levels`; answered "statuses" too.
-      const body = ctx.body as { course_id: string; levels?: number[]; status?: Question["status"] };
+      // Questions (approved unless `status` says otherwise) for a topic, "Paréntesis" by
+      // default, one per entry of `levels`.
+      const body = ctx.body as { course_id: string; levels?: number[]; status?: Question["status"]; topic?: string };
       const state = ctx.state;
-      let topic = state.topics.find((t) => t.course_id === body.course_id && t.name === "Paréntesis");
+      const name = body.topic ?? "Paréntesis";
+      let topic = state.topics.find((t) => t.course_id === body.course_id && t.name === name);
       if (!topic) {
-        topic = { id: id(), course_id: body.course_id, name: "Paréntesis", position: state.topics.filter((t) => t.course_id === body.course_id).length + 1 };
+        topic = { id: id(), course_id: body.course_id, name, position: state.topics.filter((t) => t.course_id === body.course_id).length + 1 };
         state.topics.push(topic);
       }
       const fragment = courseFragment(state, body.course_id);

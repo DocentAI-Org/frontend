@@ -14,7 +14,7 @@ async function teacherRoom(request: APIRequestContext, page: Page) {
   return { courseId };
 }
 
-async function seedQuestions(request: APIRequestContext, courseId: string, opts: { levels?: number[]; status?: string } = {}) {
+async function seedQuestions(request: APIRequestContext, courseId: string, opts: { levels?: number[]; status?: string; topic?: string } = {}) {
   const response = await request.post(`${MOCK}/__test/questions`, { data: { course_id: courseId, ...opts } });
   return (await response.json()) as { topic_id: string; questions: Seeded[] };
 }
@@ -132,7 +132,7 @@ test.describe("008 US1 question review", () => {
     await expect(page.getByRole("status").filter({ hasText: /tus estudiantes ya pueden verla/i })).toBeVisible();
     await statusTabs(page).getByRole("link", { name: /aprobadas 1/i }).click();
     const edited = card(page, "¿Cuánto es 2(x - 3) sin paréntesis?");
-    await expect(edited.getByRole("listitem").filter({ hasText: "2x - 6" })).toContainText(/respuesta correcta/i);
+    await expect(edited.getByRole("listitem").filter({ hasText: /(?<![0-9])2x - 6(?![0-9])/ })).toContainText(/respuesta correcta/i);
     await expect(edited.getByText(/editada/i)).toBeVisible();
   });
 
@@ -289,6 +289,46 @@ test.describe("008 US2 adaptive quiz", () => {
     await page.goto(`/student/courses/${courseId}/quiz`);
     await page.getByRole("link", { name: /continuar/i }).click();
     await expect(page.getByText(/pregunta 2 de 5/i)).toBeVisible();
+  });
+
+  scenario("008-US2-AS7", "the student chooses a topic before starting", async ({ page, request }) => {
+    const { courseId } = await classroom(request, page);
+    await seedQuestions(request, courseId, { levels: [1, 2, 3] });
+    await seedQuestions(request, courseId, { levels: [2, 2], topic: "Transponer términos" });
+    await page.goto(`/student/courses/${courseId}/quiz`);
+
+    const topic = page.getByRole("combobox", { name: /tema/i });
+    await topic.click();
+    const list = page.locator(`#${await topic.getAttribute("aria-controls")}`);
+    await expect(list.getByRole("option")).toHaveText([/todos los temas · 5 preguntas/i, /paréntesis · 3 preguntas/i, /transponer términos · 2 preguntas/i]);
+    await list.getByRole("option", { name: /transponer términos/i }).click();
+    await start(page);
+
+    await expect(page.getByText(/2 preguntas sobre transponer términos/i)).toBeVisible();
+    await expectAccessible(page);
+  });
+
+  scenario("008-US2-AS8", "the level shown is the one available, and running out of it is explained", async ({ page, request }) => {
+    const { courseId } = await classroom(request, page);
+    const easy = await seedQuestions(request, courseId, { levels: [1, 1, 1] });
+    await page.goto(`/student/courses/${courseId}/quiz`);
+    await start(page);
+
+    await expect(page.getByText(/dificultad: fácil/i)).toBeVisible();
+    for (let i = 0; i < 2; i++) {
+      await answer(page, easy.questions, false);
+      await next(page);
+    }
+    await expect(page.locator('[data-component="DecisionReason"]')).toHaveCount(0);
+
+    const mixed = await seedQuestions(request, courseId, { levels: [2, 1], topic: "Mezcla" });
+    await page.goto(`/student/courses/${courseId}/quiz`);
+    await chooseOption(page.getByRole("combobox", { name: /tema/i }), /mezcla/i);
+    await start(page);
+    await expect(page.getByText(/dificultad: media/i)).toBeVisible();
+    await answer(page, mixed.questions, true);
+    await next(page);
+    await expect(page.getByRole("status").filter({ hasText: /no quedan más preguntas de dificultad media: la siguiente es fácil/i })).toBeVisible();
   });
 });
 

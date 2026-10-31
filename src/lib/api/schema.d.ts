@@ -1021,6 +1021,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/student/courses/{course_id}/quiz-topics": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Topics a quiz can be about
+         * @description Course topics with approved questions, in course order.
+         */
+        get: operations["list_quiz_topics_v1_student_courses__course_id__quiz_topics_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/student/courses/{course_id}/quizzes/{quiz_id}": {
         parameters: {
             query?: never;
@@ -1449,12 +1469,13 @@ export interface components {
             to_level: number;
             /**
              * Reason
+             * @description `level_exhausted`: no question left at the previous level.
              * @enum {string}
              */
-            reason: "correct_streak" | "wrong_streak";
+            reason: "correct_streak" | "wrong_streak" | "level_exhausted";
             /**
              * Streak
-             * @description Right or wrong answers in a row that caused it.
+             * @description Right (or wrong) answers in a row, this one included.
              */
             streak: number;
         };
@@ -2159,6 +2180,21 @@ export interface components {
             final_level: number;
             /** By Topic */
             by_topic: components["schemas"]["TopicScore"][];
+        };
+        /** QuizTopic */
+        QuizTopic: {
+            /**
+             * Topic Id
+             * Format: uuid
+             */
+            topic_id: string;
+            /** Topic Name */
+            topic_name: string;
+            /**
+             * Question Count
+             * @description Approved questions in the topic.
+             */
+            question_count: number;
         };
         /** RepeatedMistake */
         RepeatedMistake: {
@@ -7389,6 +7425,64 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    list_quiz_topics_v1_student_courses__course_id__quiz_topics_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["QuizTopic"][];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };

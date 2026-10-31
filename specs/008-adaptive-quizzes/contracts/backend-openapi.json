@@ -6779,6 +6779,89 @@
         }
       }
     },
+    "/v1/student/courses/{course_id}/quiz-topics": {
+      "get": {
+        "tags": [
+          "student: quizzes"
+        ],
+        "summary": "Topics a quiz can be about",
+        "description": "Course topics with approved questions, in course order.",
+        "operationId": "list_quiz_topics_v1_student_courses__course_id__quiz_topics_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "course_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Course Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/QuizTopic"
+                  },
+                  "title": "Response List Quiz Topics V1 Student Courses  Course Id  Quiz Topics Get"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/student/courses/{course_id}/quizzes/{quiz_id}": {
       "get": {
         "tags": [
@@ -7974,14 +8057,16 @@
             "type": "string",
             "enum": [
               "correct_streak",
-              "wrong_streak"
+              "wrong_streak",
+              "level_exhausted"
             ],
-            "title": "Reason"
+            "title": "Reason",
+            "description": "`level_exhausted`: no question left at the previous level."
           },
           "streak": {
             "type": "integer",
             "title": "Streak",
-            "description": "Right or wrong answers in a row that caused it."
+            "description": "Right (or wrong) answers in a row, this one included."
           }
         },
         "type": "object",
@@ -9800,6 +9885,31 @@
           "by_topic"
         ],
         "title": "QuizSummary"
+      },
+      "QuizTopic": {
+        "properties": {
+          "topic_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Topic Id"
+          },
+          "topic_name": {
+            "type": "string",
+            "title": "Topic Name"
+          },
+          "question_count": {
+            "type": "integer",
+            "title": "Question Count",
+            "description": "Approved questions in the topic."
+          }
+        },
+        "type": "object",
+        "required": [
+          "topic_id",
+          "topic_name",
+          "question_count"
+        ],
+        "title": "QuizTopic"
       },
       "RepeatedMistake": {
         "properties": {
