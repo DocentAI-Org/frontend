@@ -113,7 +113,7 @@ export const exerciseRoutes: Route[] = [
         explanation: !hit
           ? "El material del curso no cubre esta pregunta. Prueba a reformularla o pregúntale a tu profesor/a."
           : mistake
-            ? "Cuando la incógnita está multiplicada por un número, se divide entre ese número en ambos miembros: x = 4 / 2."
+            ? "Cuando la incógnita está multiplicada por un número, se divide entre ese número en ambos miembros: \\(x = \\frac{4}{2}\\)."
             : "Correcto: has despejado bien la incógnita.",
         explanation_kind: hit ? "answer" : "no_source",
         cited: hit ? [hit.id] : [],
