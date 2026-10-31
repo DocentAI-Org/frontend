@@ -773,6 +773,115 @@ export interface paths {
         patch: operations["update_question_v1_teacher_courses__course_id__questions__question_id__patch"];
         trace?: never;
     };
+    "/v1/teacher/courses/{course_id}/test": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** The course's pre/post-test: questions and phases */
+        get: operations["read_test_v1_teacher_courses__course_id__test_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/teacher/courses/{course_id}/test/questions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Add Question
+         * @description 409 `test_locked` once the pre-test has been opened.
+         */
+        post: operations["add_question_v1_teacher_courses__course_id__test_questions_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/teacher/courses/{course_id}/test/questions/from-quiz": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Copy an approved quiz question into the test */
+        post: operations["copy_quiz_question_v1_teacher_courses__course_id__test_questions_from_quiz_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/teacher/courses/{course_id}/test/questions/{question_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Delete Question */
+        delete: operations["delete_question_v1_teacher_courses__course_id__test_questions__question_id__delete"];
+        options?: never;
+        head?: never;
+        /** Update Question */
+        patch: operations["update_question_v1_teacher_courses__course_id__test_questions__question_id__patch"];
+        trace?: never;
+    };
+    "/v1/teacher/courses/{course_id}/test/phases/{phase}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /**
+         * Open or close the pre-test or the post-test
+         * @description 409 `test_empty` without questions. Opening the pre-test freezes the questions. A closed phase can be opened again; answers given stay.
+         */
+        put: operations["set_phase_v1_teacher_courses__course_id__test_phases__phase__put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/teacher/courses/{course_id}/test/results": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Scores by student, phase and topic, and course averages */
+        get: operations["read_results_v1_teacher_courses__course_id__test_results_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/student/enrolments": {
         parameters: {
             query?: never;
@@ -1118,6 +1227,47 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/student/courses/{course_id}/test": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** The pre-test and post-test: status and whether I have done them */
+        get: operations["list_phases_v1_student_courses__course_id__test_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/student/courses/{course_id}/test/{phase}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Read Phase
+         * @description The questions, without the right option; empty once done. 409 `test_not_open` if the phase is not open and not done.
+         */
+        get: operations["read_phase_v1_student_courses__course_id__test__phase__get"];
+        put?: never;
+        /**
+         * Submit my answers, once
+         * @description One answer per question. Nothing about right or wrong is returned. 409 `test_already_done`, `test_not_open` or `consent_required`.
+         */
+        post: operations["submit_phase_v1_student_courses__course_id__test__phase__post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/student/consent": {
         parameters: {
             query?: never;
@@ -1398,6 +1548,15 @@ export interface components {
             /** Has Correction */
             has_correction: boolean;
         };
+        /** CopyQuizQuestion */
+        CopyQuizQuestion: {
+            /**
+             * Question Id
+             * Format: uuid
+             * @description An approved quiz question of the course.
+             */
+            question_id: string;
+        };
         /** Correction */
         Correction: {
             /** Text */
@@ -1484,6 +1643,18 @@ export interface components {
              * @enum {string}
              */
             status: "active" | "revoked";
+        };
+        /** CourseTest */
+        CourseTest: {
+            /**
+             * Locked
+             * @description True once the pre-test has been opened: questions are frozen.
+             */
+            locked: boolean;
+            /** Questions */
+            questions: components["schemas"]["TestQuestion"][];
+            /** Phases */
+            phases: components["schemas"]["TestPhaseView"][];
         };
         /** CourseUpdate */
         CourseUpdate: {
@@ -2032,6 +2203,45 @@ export interface components {
             /** Offset */
             offset: number;
         };
+        /** PhaseAverage */
+        PhaseAverage: {
+            /**
+             * Phase
+             * @enum {string}
+             */
+            phase: "pre" | "post";
+            /** Submitted */
+            submitted: number;
+            /**
+             * Score
+             * @description Mean share right, 0-1; null if none.
+             */
+            score: number | null;
+            /** By Topic */
+            by_topic: components["schemas"]["TopicAverage"][];
+        };
+        /** PhaseScore */
+        PhaseScore: {
+            /**
+             * Submitted At
+             * Format: date-time
+             */
+            submitted_at: string;
+            /** Right */
+            right: number;
+            /** Total */
+            total: number;
+            /** By Topic */
+            by_topic: components["schemas"]["TestTopicScore"][];
+        };
+        /** PhaseUpdate */
+        PhaseUpdate: {
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "open" | "closed";
+        };
         /** Progress */
         Progress: {
             /**
@@ -2442,6 +2652,18 @@ export interface components {
             citations: components["schemas"]["Citation"][];
             correction: components["schemas"]["Correction"] | null;
         };
+        /** StudentResult */
+        StudentResult: {
+            /**
+             * Student Id
+             * Format: uuid
+             */
+            student_id: string;
+            /** Display Name */
+            display_name: string;
+            pre: components["schemas"]["PhaseScore"] | null;
+            post: components["schemas"]["PhaseScore"] | null;
+        };
         /** StudentRisk */
         StudentRisk: {
             /**
@@ -2511,6 +2733,61 @@ export interface components {
              * Format: date-time
              */
             created_at: string;
+        };
+        /** StudentTest */
+        StudentTest: {
+            /**
+             * Phase
+             * @enum {string}
+             */
+            phase: "pre" | "post";
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "not_open" | "open" | "closed";
+            /** Done */
+            done: boolean;
+            /** Submitted At */
+            submitted_at: string | null;
+            /**
+             * Questions
+             * @description Empty once done; never with the right option.
+             */
+            questions: components["schemas"]["StudentTestQuestion"][];
+        };
+        /** StudentTestPhase */
+        StudentTestPhase: {
+            /**
+             * Phase
+             * @enum {string}
+             */
+            phase: "pre" | "post";
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "not_open" | "open" | "closed";
+            /** Done */
+            done: boolean;
+            /** Question Count */
+            question_count: number;
+        };
+        /** StudentTestQuestion */
+        StudentTestQuestion: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Position */
+            position: number;
+            /** Statement */
+            statement: string;
+            /** Options */
+            options: string[];
+            /** Topic Name */
+            topic_name: string;
         };
         /** StudentTutorSettings */
         StudentTutorSettings: {
@@ -2815,6 +3092,132 @@ export interface components {
             student_name: string;
             flag: components["schemas"]["TeacherFlag"] | null;
         };
+        /** TestAnswerIn */
+        TestAnswerIn: {
+            /**
+             * Question Id
+             * Format: uuid
+             */
+            question_id: string;
+            /**
+             * Choice
+             * @description Index of the option, 0-3.
+             */
+            choice: number;
+        };
+        /** TestPhaseView */
+        TestPhaseView: {
+            /**
+             * Phase
+             * @enum {string}
+             */
+            phase: "pre" | "post";
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "not_open" | "open" | "closed";
+            /** Opened At */
+            opened_at: string | null;
+            /** Closed At */
+            closed_at: string | null;
+            /** Submitted Count */
+            submitted_count: number;
+        };
+        /** TestQuestion */
+        TestQuestion: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Topic Id */
+            topic_id: string | null;
+            /** Topic Name */
+            topic_name: string;
+            /** Position */
+            position: number;
+            /** Statement */
+            statement: string;
+            /** Options */
+            options: string[];
+            /** Correct Option */
+            correct_option: number;
+        };
+        /** TestQuestionCreate */
+        TestQuestionCreate: {
+            /**
+             * Topic Id
+             * Format: uuid
+             */
+            topic_id: string;
+            /** Statement */
+            statement: string;
+            /** Options */
+            options: string[];
+            /**
+             * Correct Option
+             * @description Index of the option, 0-3.
+             */
+            correct_option: number;
+        };
+        /** TestQuestionUpdate */
+        TestQuestionUpdate: {
+            /** Topic Id */
+            topic_id?: string | null;
+            /** Statement */
+            statement?: string | null;
+            /** Options */
+            options?: string[] | null;
+            /** Correct Option */
+            correct_option?: number | null;
+        };
+        /** TestResults */
+        TestResults: {
+            /** Question Count */
+            question_count: number;
+            /** Phases */
+            phases: components["schemas"]["TestPhaseView"][];
+            /**
+             * Students
+             * @description Active students of the course.
+             */
+            students: components["schemas"]["StudentResult"][];
+            /** Averages */
+            averages: components["schemas"]["PhaseAverage"][];
+        };
+        /** TestSubmission */
+        TestSubmission: {
+            /**
+             * Answers
+             * @description One answer per question.
+             */
+            answers: components["schemas"]["TestAnswerIn"][];
+        };
+        /** TestSubmitted */
+        TestSubmitted: {
+            /**
+             * Phase
+             * @enum {string}
+             */
+            phase: "pre" | "post";
+            /**
+             * Submitted At
+             * Format: date-time
+             */
+            submitted_at: string;
+        };
+        /** TestTopicScore */
+        TestTopicScore: {
+            /** Topic Id */
+            topic_id: string | null;
+            /** Topic Name */
+            topic_name: string;
+            /** Right */
+            right: number;
+            /** Total */
+            total: number;
+        };
         /** Topic */
         Topic: {
             /**
@@ -2886,6 +3289,18 @@ export interface components {
              * @constant
              */
             status: "confirmed";
+        };
+        /** TopicAverage */
+        TopicAverage: {
+            /** Topic Id */
+            topic_id: string | null;
+            /** Topic Name */
+            topic_name: string;
+            /**
+             * Score
+             * @description Mean share right, 0-1.
+             */
+            score: number;
         };
         /** TopicCreate */
         TopicCreate: {
@@ -6430,6 +6845,474 @@ export interface operations {
             };
         };
     };
+    read_test_v1_teacher_courses__course_id__test_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CourseTest"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    add_question_v1_teacher_courses__course_id__test_questions_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["TestQuestionCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TestQuestion"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    copy_quiz_question_v1_teacher_courses__course_id__test_questions_from_quiz_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CopyQuizQuestion"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TestQuestion"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    delete_question_v1_teacher_courses__course_id__test_questions__question_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+                question_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_question_v1_teacher_courses__course_id__test_questions__question_id__patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+                question_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["TestQuestionUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TestQuestion"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    set_phase_v1_teacher_courses__course_id__test_phases__phase__put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+                phase: "pre" | "post";
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PhaseUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TestPhaseView"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    read_results_v1_teacher_courses__course_id__test_results_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TestResults"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     join_course_v1_student_enrolments_post: {
         parameters: {
             query?: never;
@@ -7897,6 +8780,204 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_phases_v1_student_courses__course_id__test_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StudentTestPhase"][];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    read_phase_v1_student_courses__course_id__test__phase__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+                phase: "pre" | "post";
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StudentTest"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    submit_phase_v1_student_courses__course_id__test__phase__post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+                phase: "pre" | "post";
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["TestSubmission"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TestSubmitted"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };

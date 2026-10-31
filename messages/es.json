@@ -587,6 +587,29 @@
       },
       "role": "Estudiante",
       "teacherReview": "tu profesor/a puede revisar tus conversaciones"
+    },
+    "test": {
+      "pageTitle": "Test",
+      "title": {
+        "pre": "Pre-test",
+        "post": "Post-test"
+      },
+      "lead": {
+        "pre": "Responde a todas las preguntas. No verás la corrección: sirve para saber qué sabes antes de empezar.",
+        "post": "Responde a todas las preguntas. No verás la corrección: sirve para medir lo que has aprendido."
+      },
+      "send": "Enviar respuestas",
+      "pending": "{count, plural, one {Falta # pregunta por responder} other {Faltan # preguntas por responder}}",
+      "confirmTitle": "¿Enviar tus respuestas?",
+      "confirmBody": "No podrás cambiarlas después.",
+      "confirm": "Enviar",
+      "back": "Volver a revisarlas",
+      "thanksTitle": "¡Gracias!",
+      "thanks": "Has terminado el {phase}. Tus respuestas se han guardado.",
+      "done": "Ya has hecho el {phase} el {date}.",
+      "notOpen": "El {phase} todavía no está abierto.",
+      "cardOpen": "Tu profesor/a ha abierto el {phase}.",
+      "cardLink": "Hacer el {phase}"
     }
   },
   "teacher": {
@@ -669,7 +692,8 @@
         "students": "Estudiantes",
         "topics": "Temas",
         "dashboard": "Panel",
-        "questions": "Preguntas"
+        "questions": "Preguntas",
+        "test": "Pre/post-test"
       },
       "tabs": "Secciones del curso"
     },
@@ -1089,6 +1113,57 @@
       "suggestionsError": "No hemos podido cargar las sugerencias. Puedes asignar los temas a mano.",
       "loadError": "No hemos podido cargar las secciones",
       "listLabel": "Secciones del documento"
+    },
+    "test": {
+      "pageTitle": "Pre-test y post-test",
+      "title": "Pre-test y post-test",
+      "lead": "Un mismo test antes y después del piloto para medir lo aprendido en cada tema. Cada estudiante lo hace una vez en cada fase y no ve la corrección.",
+      "phase": {
+        "pre": "Pre-test",
+        "post": "Post-test"
+      },
+      "phaseLower": {
+        "pre": "pre-test",
+        "post": "post-test"
+      },
+      "status": {
+        "not_open": "Sin abrir",
+        "open": "Abierto desde el {date}",
+        "closed": "Cerrado el {date}"
+      },
+      "submitted": "{count, plural, =0 {Nadie lo ha hecho todavía} one {# estudiante lo ha hecho} other {# estudiantes lo han hecho}}",
+      "open": "Abrir el {phase}",
+      "close": "Cerrar el {phase}",
+      "reopen": "Volver a abrir el {phase}",
+      "openTitle": "¿Abrir el pre-test?",
+      "openBody": "Las preguntas quedarán fijas: no podrás añadir, cambiar ni quitar preguntas, para que el pre-test y el post-test midan lo mismo.",
+      "openConfirm": "Abrir",
+      "needQuestions": "Añade preguntas para poder abrirlo.",
+      "locked": "Las preguntas ya no se pueden cambiar: el pre-test se ha abierto.",
+      "questionsTitle": "Preguntas ({count})",
+      "questionsLabel": "Preguntas del test",
+      "topic": "Tema: {topic}",
+      "noQuestions": "Todavía no hay preguntas. Añade la primera o cópiala del banco de preguntas.",
+      "addTitle": "Añadir una pregunta",
+      "add": "Añadir pregunta",
+      "topicLabel": "Tema",
+      "copyTitle": "Copiar del banco de preguntas",
+      "copyLabel": "Pregunta aprobada",
+      "copy": "Copiar al test",
+      "delete": "Eliminar",
+      "deleteTitle": "¿Eliminar esta pregunta?",
+      "deleteBody": "Se quitará del test.",
+      "resultsTitle": "Resultados",
+      "studentsLabel": "Resultados por estudiante",
+      "topicsLabel": "Media por tema",
+      "colStudent": "Estudiante",
+      "colTopic": "Tema",
+      "score": "{right} de {total} · {percent}",
+      "notDone": "—",
+      "noResults": "Los resultados aparecerán aquí cuando los estudiantes hagan el test.",
+      "added": "Pregunta añadida.",
+      "saved": "Cambios guardados.",
+      "deleted": "Pregunta eliminada."
     }
   },
   "errors": {
@@ -1118,6 +1193,10 @@
     "no_repeated_mistake": "Este error no se ha repetido lo suficiente para preparar un repaso.",
     "no_questions": "Tu profesor/a todavía no ha publicado preguntas.",
     "not_current_question": "Esa pregunta ya no es la actual. Recarga para seguir con el cuestionario.",
-    "quiz_completed": "Este cuestionario ya está terminado."
+    "quiz_completed": "Este cuestionario ya está terminado.",
+    "test_locked": "Las preguntas ya no se pueden cambiar: el pre-test se ha abierto.",
+    "test_empty": "Añade preguntas antes de abrir el test.",
+    "test_not_open": "Este test no está abierto.",
+    "test_already_done": "Ya has hecho este test."
   }
 }

@@ -587,6 +587,29 @@
       },
       "role": "Student",
       "teacherReview": "your teacher may review your conversations"
+    },
+    "test": {
+      "pageTitle": "Test",
+      "title": {
+        "pre": "Pre-test",
+        "post": "Post-test"
+      },
+      "lead": {
+        "pre": "Answer every question. You will not see the marking: it shows what you know before starting.",
+        "post": "Answer every question. You will not see the marking: it measures what you have learned."
+      },
+      "send": "Send answers",
+      "pending": "{count, plural, one {# question left to answer} other {# questions left to answer}}",
+      "confirmTitle": "Send your answers?",
+      "confirmBody": "You will not be able to change them afterwards.",
+      "confirm": "Send",
+      "back": "Review them again",
+      "thanksTitle": "Thank you!",
+      "thanks": "You have finished the {phase}. Your answers have been saved.",
+      "done": "You took the {phase} on {date}.",
+      "notOpen": "The {phase} is not open yet.",
+      "cardOpen": "Your teacher has opened the {phase}.",
+      "cardLink": "Take the {phase}"
     }
   },
   "teacher": {
@@ -669,7 +692,8 @@
         "students": "Students",
         "topics": "Topics",
         "dashboard": "Dashboard",
-        "questions": "Questions"
+        "questions": "Questions",
+        "test": "Pre/post-test"
       },
       "tabs": "Course sections"
     },
@@ -1089,6 +1113,57 @@
       "suggestionsError": "We couldn't load the suggestions. You can assign the topics by hand.",
       "loadError": "We couldn't load the sections",
       "listLabel": "Document sections"
+    },
+    "test": {
+      "pageTitle": "Pre-test and post-test",
+      "title": "Pre-test and post-test",
+      "lead": "The same test before and after the pilot, to measure what was learned in each topic. Each student takes it once in each phase and does not see the marking.",
+      "phase": {
+        "pre": "Pre-test",
+        "post": "Post-test"
+      },
+      "phaseLower": {
+        "pre": "pre-test",
+        "post": "post-test"
+      },
+      "status": {
+        "not_open": "Not open",
+        "open": "Open since {date}",
+        "closed": "Closed on {date}"
+      },
+      "submitted": "{count, plural, =0 {Nobody has taken it yet} one {# student has taken it} other {# students have taken it}}",
+      "open": "Open the {phase}",
+      "close": "Close the {phase}",
+      "reopen": "Reopen the {phase}",
+      "openTitle": "Open the pre-test?",
+      "openBody": "The questions will be frozen: you will not be able to add, change or remove questions, so the pre-test and the post-test measure the same thing.",
+      "openConfirm": "Open",
+      "needQuestions": "Add questions to be able to open it.",
+      "locked": "The questions can no longer change: the pre-test has been opened.",
+      "questionsTitle": "Questions ({count})",
+      "questionsLabel": "Test questions",
+      "topic": "Topic: {topic}",
+      "noQuestions": "No questions yet. Add the first one or copy it from the question bank.",
+      "addTitle": "Add a question",
+      "add": "Add question",
+      "topicLabel": "Topic",
+      "copyTitle": "Copy from the question bank",
+      "copyLabel": "Approved question",
+      "copy": "Copy to the test",
+      "delete": "Delete",
+      "deleteTitle": "Delete this question?",
+      "deleteBody": "It will be removed from the test.",
+      "resultsTitle": "Results",
+      "studentsLabel": "Results by student",
+      "topicsLabel": "Average by topic",
+      "colStudent": "Student",
+      "colTopic": "Topic",
+      "score": "{right} of {total} · {percent}",
+      "notDone": "—",
+      "noResults": "Results will appear here when students take the test.",
+      "added": "Question added.",
+      "saved": "Changes saved.",
+      "deleted": "Question deleted."
     }
   },
   "errors": {
@@ -1118,6 +1193,10 @@
     "no_repeated_mistake": "This mistake hasn't repeated enough to prepare a review.",
     "no_questions": "Your teacher hasn't published any questions yet.",
     "not_current_question": "That question is no longer the current one. Reload to continue the quiz.",
-    "quiz_completed": "This quiz is already finished."
+    "quiz_completed": "This quiz is already finished.",
+    "test_locked": "The questions can no longer change: the pre-test has been opened.",
+    "test_empty": "Add questions before opening the test.",
+    "test_not_open": "This test is not open.",
+    "test_already_done": "You have already taken this test."
   }
 }
