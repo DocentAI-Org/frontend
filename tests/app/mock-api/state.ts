@@ -124,6 +124,53 @@ export type Review = {
   created_at: string;
 };
 
+export type Question = {
+  id: string;
+  course_id: string;
+  topic_id: string;
+  statement: string;
+  options: string[];
+  correct_option: number;
+  explanation: string;
+  difficulty: number;
+  status: "pending" | "approved" | "rejected";
+  origin: "ai" | "edited";
+  cited: string[];
+  reviewed_at: string | null;
+  created_at: string;
+};
+
+/** A question as the student saw it, and their answer (backend specs/006 FR-005). */
+export type QuizItem = {
+  question_id: string;
+  position: number;
+  topic_id: string | null;
+  topic_name: string;
+  statement: string;
+  options: string[];
+  correct_option: number;
+  explanation: string;
+  difficulty: number;
+  choice: number | null;
+  correct: boolean | null;
+  answered_at: string | null;
+};
+
+export type Quiz = {
+  id: string;
+  course_id: string;
+  student_id: string;
+  topic_id: string | null;
+  topic_name: string | null;
+  status: "in_progress" | "completed";
+  question_count: number;
+  level: number;
+  streak: number;
+  started_at: string;
+  completed_at: string | null;
+  items: QuizItem[];
+};
+
 export type Topic = { id: string; course_id: string; name: string; position: number };
 export type Assignment = {
   id: string;
@@ -158,6 +205,10 @@ export type State = {
   review: { mode: "answer" | "no_source" | "fail" | "limit"; delay_ms: number };
   /** What each course's dashboard looks like (backend specs/004), set by /__test/dashboard. */
   dashboard: Map<string, "busy" | "quiet" | "calm">;
+  questions: Question[];
+  quizzes: Quiz[];
+  /** What the next question generation returns (backend specs/006), set by /__test/generation. */
+  generation: { mode: "drafts" | "no_source" | "fail"; delay_ms: number };
 };
 
 export const CONSENT_VERSION = "2026-10";
@@ -213,7 +264,10 @@ export function seed(): State {
     feedback: { mode: "mistake", delay_ms: 0 },
     reviews: [],
     review: { mode: "answer", delay_ms: 0 },
-    dashboard: new Map()
+    dashboard: new Map(),
+    questions: [],
+    quizzes: [],
+    generation: { mode: "drafts", delay_ms: 0 }
   };
 }
 

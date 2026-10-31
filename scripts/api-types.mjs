@@ -8,14 +8,15 @@ import { mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-const CONTRACT = "specs/007-repeated-mistakes/contracts/backend-openapi.json";
+const CONTRACT = "specs/008-adaptive-quizzes/contracts/backend-openapi.json";
 const OUTPUT = "src/lib/api/schema.d.ts";
 const GENERATOR = ["-y", "-p", "openapi-typescript@7.13.0", "-p", "typescript@5.9.3"];
 
 function generate(target) {
-  execFileSync("npx", [...GENERATOR, "openapi-typescript", CONTRACT, "-o", target], {
-    stdio: ["ignore", "ignore", "inherit"]
-  });
+  const args = [...GENERATOR, "openapi-typescript", CONTRACT, "-o", target];
+  // On Windows npx is npx.cmd, which Node only runs through cmd.exe.
+  const [command, argv] = process.platform === "win32" ? ["cmd.exe", ["/d", "/s", "/c", "npx", ...args]] : ["npx", args];
+  execFileSync(command, argv, { stdio: ["ignore", "ignore", "inherit"] });
 }
 
 if (process.argv.includes("--check")) {
