@@ -19,3 +19,11 @@ export const exportStudyData = (courseId?: string) =>
       parseAs: "arrayBuffer"
     })
   );
+
+export const listQuestionnaires = () => request((api) => api.GET("/v1/admin/questionnaires"));
+export const createQuestionnaire = (body: Schemas["QuestionnaireCreate"]) =>
+  request((api) => api.POST("/v1/admin/questionnaires", { body }));
+export const updateQuestionnaire = (id: string, body: Schemas["QuestionnaireUpdate"]) =>
+  request((api) => api.PATCH("/v1/admin/questionnaires/{questionnaire_id}", { params: { path: { questionnaire_id: id } }, body }));
+export const deleteQuestionnaire = (id: string) =>
+  request((api) => api.DELETE("/v1/admin/questionnaires/{questionnaire_id}", { params: { path: { questionnaire_id: id } } }));
