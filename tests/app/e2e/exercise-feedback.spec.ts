@@ -95,7 +95,8 @@ test.describe("005 US2–US3 learning record", () => {
     await expect(page).toHaveURL(new RegExp(`/student/courses/${courseId}/progress$`));
     await expect(page.getByRole("heading", { level: 1, name: /mi progreso/i })).toBeVisible();
     await expect(page.getByText(/los tipos de error son provisionales/i)).toBeVisible();
-    const item = page.getByRole("listitem").filter({ hasText: "Error de procedimiento" });
+    // The full record is below the progress by topic (spec 009), which also lists frequent mistakes.
+    const item = page.getByRole("region", { name: /todos tus errores/i }).getByRole("listitem").filter({ hasText: "Error de procedimiento" });
     await expect(item.getByText(/2 veces/i)).toBeVisible();
     await expectAccessible(page);
 
@@ -109,7 +110,8 @@ test.describe("005 US2–US3 learning record", () => {
     await page.getByRole("link", { name: /mi progreso/i }).first().click();
 
     await expect(page).toHaveURL(new RegExp(`/student/courses/${courseId}/progress$`));
-    await expect(page.getByRole("heading", { name: /todavía no hay errores registrados/i })).toBeVisible();
+    // Without any activity, progress by topic (spec 009) explains where it will come from.
+    await expect(page.getByRole("heading", { name: /todavía no hay actividad/i })).toBeVisible();
     await expectAccessible(page);
   });
 
@@ -122,7 +124,7 @@ test.describe("005 US2–US3 learning record", () => {
     await page.goto(`/teacher/courses/${courseId}`);
     await page.getByRole("link", { name: "Lucas Herrera" }).click();
     await expect(page.getByRole("heading", { level: 1, name: "Lucas Herrera" })).toBeVisible();
-    const item = page.getByRole("listitem").filter({ hasText: "Error de procedimiento" });
+    const item = page.getByRole("region", { name: /tipos de error más frecuentes/i }).getByRole("listitem").filter({ hasText: "Error de procedimiento" });
     await expect(item.getByText(/1 vez/i)).toBeVisible();
     await expectAccessible(page);
 
