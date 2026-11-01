@@ -30,7 +30,8 @@
         "courses": "Cursos",
         "users": "Usuarios",
         "studyExport": "Datos del estudio",
-        "questionnaires": "Cuestionarios"
+        "questionnaires": "Cuestionarios",
+        "criteria": "Criterios pedagógicos"
       },
       "role": "Administración"
     },
@@ -142,6 +143,11 @@
       "reopen": "Reabrir",
       "delete": "Eliminar",
       "actionsFor": "Acciones para «{title}»"
+    },
+    "criteria": {
+      "pageTitle": "Criterios pedagógicos",
+      "title": "Criterios pedagógicos",
+      "lead": "Los valores del estudio para todos los cursos. Cada profesor/a puede personalizarlos en su curso; los cursos que no lo hagan usan estos."
     }
   },
   "common": {
@@ -308,6 +314,50 @@
     "adaptation": {
       "student": "Adaptada para ti: has cometido {count} errores de tipo «{type}» en los últimos {days} días, así que la explicación insiste en ese tipo de error.",
       "teacher": "Adaptada: el estudiante ha cometido {count} errores de tipo «{type}» en los últimos {days} días; se pidió al tutor que insistiera en ese tipo de error."
+    },
+    "criteria": {
+      "study": "Los del estudio",
+      "custom": "Personalizar",
+      "save": "Guardar criterios",
+      "saving": "Guardando…",
+      "saved": "Guardado",
+      "invalid": "No se han guardado. Revisa los valores: los porcentajes van de 1 a 100, «En progreso desde» debe ser menor que «Dominado desde» y las actividades necesarias no pueden ser más que las que cuentan.",
+      "failed": "No se han podido guardar los criterios. Inténtalo de nuevo en unos minutos.",
+      "provisional": "Criterios provisionales: el equipo educativo todavía los está revisando (se indica en el panel y en el progreso).",
+      "inactive": {
+        "legend": "Estudiantes sin actividad",
+        "help": "Marca a un estudiante como alguien que puede necesitar ayuda cuando lleva estos días sin escribir al tutor, enviar ejercicios ni hacer cuestionarios."
+      },
+      "error_rate": {
+        "legend": "Proporción de errores",
+        "help": "Marca a un estudiante cuando una parte alta de sus ejercicios recientes tiene errores. Solo cuenta si ha enviado suficientes ejercicios."
+      },
+      "repeated_mistakes": {
+        "legend": "Errores repetidos",
+        "help": "Un error del mismo tipo y tema que se repite estas veces en este tiempo se avisa como error repetido, con repaso y práctica."
+      },
+      "adaptation": {
+        "legend": "Adaptación de las explicaciones",
+        "help": "Si un estudiante repite un tipo de error, el tutor insiste en ese tipo de error al explicar y dice por qué lo ha adaptado."
+      },
+      "mastery": {
+        "legend": "Dominio de un tema",
+        "help": "El nivel de cada tema sale de las últimas actividades (ejercicios y preguntas de cuestionario): la media de aciertos decide si está empezando, en progreso o dominado."
+      },
+      "field": {
+        "inactiveEnabled": "Avisar de estudiantes sin actividad",
+        "inactiveDays": "Días sin actividad",
+        "errorRateEnabled": "Avisar por proporción de errores",
+        "errorRate": "Porcentaje de errores",
+        "minExercises": "Ejercicios evaluados como mínimo",
+        "windowDays": "En los últimos (días)",
+        "repeatedCount": "Veces que se repite",
+        "adaptationEnabled": "Adaptar las explicaciones a los errores repetidos",
+        "masteryWindow": "Últimas actividades que cuentan",
+        "masteryMinItems": "Actividades necesarias para dar un nivel",
+        "progressing": "En progreso desde (%)",
+        "mastered": "Dominado desde (%)"
+      }
     }
   },
   "student": {
@@ -748,7 +798,8 @@
         "topics": "Temas",
         "dashboard": "Panel",
         "questions": "Preguntas",
-        "test": "Pre/post-test"
+        "test": "Pre/post-test",
+        "criteria": "Criterios"
       },
       "tabs": "Secciones del curso"
     },
@@ -1220,6 +1271,10 @@
       "added": "Pregunta añadida.",
       "saved": "Cambios guardados.",
       "deleted": "Pregunta eliminada."
+    },
+    "criteria": {
+      "pageTitle": "Criterios",
+      "lead": "Cómo se decide en este curso quién puede necesitar ayuda, qué es un error repetido, cuándo se adaptan las explicaciones y qué nivel tiene cada tema. Por defecto se usan los del estudio; puedes personalizar cada grupo."
     }
   },
   "errors": {

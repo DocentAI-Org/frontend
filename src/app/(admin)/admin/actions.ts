@@ -7,7 +7,8 @@ import {
   createQuestionnaire,
   createTeacher,
   deleteQuestionnaire,
-  updateQuestionnaire
+  updateQuestionnaire,
+  updateStudyCriteria
 } from "@/lib/api/admin";
 import type { Schemas } from "@/lib/api/client";
 
@@ -82,4 +83,11 @@ export async function setQuestionnaireStatusAction(form: FormData): Promise<void
 export async function deleteQuestionnaireAction(form: FormData): Promise<void> {
   await deleteQuestionnaire(String(form.get("id")));
   revalidatePath("/admin/questionnaires");
+}
+
+export async function saveStudyCriteriaAction(body: Schemas["StudyCriteriaUpdate"]): Promise<{ ok: true } | { ok: false; code: string }> {
+  const result = await updateStudyCriteria(body);
+  if (!result.ok) return { ok: false, code: result.code };
+  revalidatePath("/admin/pedagogy");
+  return { ok: true };
 }

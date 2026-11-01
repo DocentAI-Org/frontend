@@ -15,6 +15,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         { href: "/admin/users", label: t("nav.users"), icon: "users" },
         { href: "/admin/courses", label: t("nav.courses"), icon: "book-open" },
         { href: "/admin/questionnaires", label: t("nav.questionnaires"), icon: "circle-help" },
+        { href: "/admin/pedagogy", label: t("nav.criteria"), icon: "settings" },
         { href: "/admin/study-export", label: t("nav.studyExport"), icon: "file-text" }
       ]}
       userName={access.me.display_name}

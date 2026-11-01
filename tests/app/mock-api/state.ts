@@ -239,6 +239,17 @@ export type State = {
   testAttempts: TestAttempt[];
   /** Study questionnaires (backend specs/012). */
   questionnaires: S["Questionnaire"][];
+  /** Pedagogical criteria (backend specs/015): the study's and each course's own groups. */
+  studyCriteria: { criteria: S["Criteria"]; provisional: boolean; updated_at: string };
+  courseCriteria: Map<string, S["CourseCriteriaUpdate"]>;
+};
+
+export const DEFAULT_CRITERIA: S["Criteria"] = {
+  inactive: { enabled: true, days: 7 },
+  error_rate: { enabled: true, rate: 0.6, min_exercises: 5, window_days: 14 },
+  repeated_mistakes: { count: 3, window_days: 30 },
+  adaptation: { enabled: true },
+  mastery: { window: 10, min_items: 3, progressing: 0.5, mastered: 0.8 }
 };
 
 export const CONSENT_VERSION = "2026-10";
@@ -302,7 +313,9 @@ export function seed(): State {
     testQuestions: [],
     testPhases: new Map(),
     testAttempts: [],
-    questionnaires: []
+    questionnaires: [],
+    studyCriteria: { criteria: structuredClone(DEFAULT_CRITERIA), provisional: true, updated_at: now() },
+    courseCriteria: new Map()
   };
 }
 
