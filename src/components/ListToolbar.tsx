@@ -42,14 +42,18 @@ export function ListToolbar({
     setQ(inUrl);
   }
 
-  const go = (changes: Record<string, string | undefined>) =>
-    router.replace(withParams(pathname, params, { ...changes, shown: undefined }) as Route, { scroll: false });
+  // Reads the URL when the change is made, not when it was scheduled: a filter picked while the
+  // search waits for typing to stop must survive it.
+  const go = (changes: Record<string, string | undefined>) => {
+    const current = new URLSearchParams(window.location.search);
+    router.replace(withParams(pathname, current, { ...changes, shown: undefined }) as Route, { scroll: false });
+  };
 
   useEffect(() => {
     if (q.trim() === inUrl) return;
     const timer = setTimeout(() => go({ q: q.trim() || undefined }), DEBOUNCE_MS);
     return () => clearTimeout(timer);
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- `go` reads the latest params
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- `go` reads the URL when it runs
   }, [q, inUrl]);
 
   return (
