@@ -2,14 +2,14 @@
 name: DocentAI
 description: Teacher-guided AI tutor whose every answer shows its source. Direction "Cuadrícula", the annotated notebook.
 colors:
-  ink: "oklch(0.261 0.03 265)"
-  ink-muted: "oklch(0.502 0.034 264)"
-  paper: "oklch(0.991 0.003 265)"
-  sheet: "oklch(0.998 0.001 262)"
-  sunken: "oklch(0.962 0.008 262)"
-  grid: "oklch(0.948 0.012 262)"
-  hairline: "oklch(0.925 0.016 262)"
-  hairline-strong: "oklch(0.62 0.032 263)"
+  ink: "oklch(0.261 0 0)"
+  ink-muted: "oklch(0.502 0 0)"
+  paper: "oklch(0.991 0 0)"
+  sheet: "oklch(0.998 0 0)"
+  sunken: "oklch(0.962 0 0)"
+  squares: "oklch(0.948 0 0)"
+  hairline: "oklch(0.925 0 0)"
+  hairline-strong: "oklch(0.62 0 0)"
   pen-violet: "oklch(0.499 0.221 283)"
   pen-violet-deep: "oklch(0.44 0.2 283)"
   teacher-green: "oklch(0.486 0.088 166)"
@@ -19,37 +19,37 @@ colors:
   info-ink: "oklch(0.39 0.08 245)"
   success-green: "oklch(0.52 0.13 148)"
   danger-red: "oklch(0.53 0.2 27)"
-  scrim: "oklch(0.17 0.02 266)"
+  scrim: "oklch(0.17 0 0)"
 typography:
   display:
-    fontFamily: "Literata, Literata Fallback, Georgia, serif"
+    fontFamily: "Geist, Geist Fallback, ui-sans-serif, system-ui, sans-serif"
     fontSize: "2.5rem"
     fontWeight: 600
     lineHeight: "3rem"
     letterSpacing: "-0.015em"
   headline:
-    fontFamily: "Literata, Literata Fallback, Georgia, serif"
+    fontFamily: "Geist, Geist Fallback, ui-sans-serif, system-ui, sans-serif"
     fontSize: "2rem"
     fontWeight: 600
     lineHeight: "2.5rem"
     letterSpacing: "-0.01em"
   title:
-    fontFamily: "Literata, Literata Fallback, Georgia, serif"
+    fontFamily: "Geist, Geist Fallback, ui-sans-serif, system-ui, sans-serif"
     fontSize: "1.25rem"
     fontWeight: 600
     lineHeight: "1.75rem"
   answer:
-    fontFamily: "Literata, Literata Fallback, Georgia, serif"
+    fontFamily: "Geist, Geist Fallback, ui-sans-serif, system-ui, sans-serif"
     fontSize: "1.125rem"
     fontWeight: 400
     lineHeight: "1.75rem"
   body:
-    fontFamily: "Atkinson Hyperlegible Next, Atkinson Hyperlegible Next Fallback, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Geist, Geist Fallback, ui-sans-serif, system-ui, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
     lineHeight: "1.5rem"
   body-small:
-    fontFamily: "Atkinson Hyperlegible Next, Atkinson Hyperlegible Next Fallback, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Geist, Geist Fallback, ui-sans-serif, system-ui, sans-serif"
     fontSize: "0.875rem"
     fontWeight: 500
     lineHeight: "1.25rem"
@@ -126,16 +126,16 @@ The product promise drives the metaphor. Every answer shows the passage it came 
 
 **Key characteristics:**
 - Cool paper (`surface`) with a faint 16 px squared grid behind every page. Loose sheets (cards, menus, dialogs) are plain white.
-- Blue-black ink (`#1D2433`) for text and for selected/current states.
+- Neutral ink (achromatic greys, as in Vercel's dashboard) for text and for selected/current states.
 - **Four inks, each with a fixed meaning**: ink (text, selection), pen violet (what the student does: primary actions, send, focus, their own lines), teacher green (sources, the margin, corrections, validation) and highlighter yellow (hints, guided mode, non-blocking warnings).
-- Two voices: **Literata** for the page (headings, tutor answers, quoted material), **Atkinson Hyperlegible Next** for the interface and the student.
+- One voice: **Geist** for everything, with **Geist Mono** for code. Tutor answers and quoted material are set larger (`text-lg`), not in another family.
 - Nearly square corners (3–12 px). Hairline borders at rest, a soft shadow only on hover and floating layers.
-- WCAG 2.2 AA in light and dark ("night study": deep blue paper, light ink).
+- WCAG 2.2 AA in light and dark (dark: near-black paper, light ink; the user picks system, light or dark).
 
 ## The notebook
 
 ### Paper
-- `body` carries the grid in the base layer (`--color-grid`, 16 px squares, so the 8 px spacing scale lands on its lines). Any other surface can opt in with `bg-grid`.
+- `body` carries the grid in the base layer (`--color-squares`, 16 px squares, so the 8 px spacing scale lands on its lines). Any other surface can opt in with `bg-grid`.
 - **Reading text never sits on the grid.** Tutor answers, notices and long copy sit on plain paper (`bg-surface`). The grid shows between blocks and inside worked maths: equations are written on a small gridded strip (`bg-grid` + hairline).
 - Data-dense surfaces (tables, lists, forms) sit on a white sheet (`bg-surface-raised`, 1 px hairline, `rounded-xl`).
 
@@ -146,17 +146,17 @@ The product promise drives the metaphor. Every answer shows the passage it came 
 - **No source:** the answer becomes a `NoSourceNotice` (info wash, no citations) and the margin is an empty column behind a dashed rule.
 
 ### Page header
-Pages open with their subject written at the top of the page: the `h1` in Literata, context lines underneath, and a 2 px ink rule (`border-b-2 border-neutral-900`) closing the header.
+Pages open with their subject at the top: the `h1`, context lines underneath, and a hairline (`border-b border-border`) closing the header.
 
 ## Colors
 
 ### Neutral
-Cool paper to blue-black ink (hue ≈ 262–265, low chroma); dark mode mirrors the ramp.
+Achromatic greys from paper to ink (chroma 0, Geist's neutral ramp); dark mode mirrors the ramp.
 - **Ink** (`neutral-900` → `fg`): text, current and selected states.
 - **Ink muted** (`neutral-600` → `fg-muted`): secondary text (≥ 5:1 on paper, sheet, sunken and grid).
 - **Paper** (`surface` → `neutral-50`), **Sheet** (`surface-raised` → `neutral-0`), **Sunken** (`neutral-100`).
 - **Hairline** (`border`), **Hairline strong** (`border-strong` → `neutral-450`, 3:1 for control borders and dashed absences).
-- **Grid** (`--color-grid`): the squares only.
+- **Squares** (`--color-squares`): the grid's lines only. Not named `--color-grid`, which would also create a `bg-grid` colour utility clashing with the grid utility.
 
 ### Inks
 - **Pen violet** (`primary-*`, the logo's violet end): primary buttons, send, focus ring, caret, the student's own messages (left pen rule) and the celebration.
@@ -180,17 +180,17 @@ Cool paper to blue-black ink (hue ≈ 262–265, low chroma); dark mode mirrors 
 
 ## Typography
 
-Self-hosted (`assets/fonts/`, OFL), each with a metric-matched local fallback so lines do not jump while loading.
+Self-hosted (`assets/fonts/`, OFL), with a metric-matched local fallback so lines do not jump while loading.
 
-- **Literata** (variable, opsz + wght, roman and italic): every `h1`–`h3` (set in the base layer), tutor answers (`font-serif text-lg`), quoted passages and equations (italic). Headings use **600**.
-- **Atkinson Hyperlegible Next** (variable wght): interface, buttons, navigation, data, the student's own messages. Designed for legibility, including its distinct zero.
+- **Geist** (variable wght): headings, interface, tutor answers, quoted passages and the student's own messages. `font-serif` is kept as an alias of the sans family, so the reading voice is a size (`text-lg`), not a typeface.
+- **Geist Mono**: code and identifiers.
 
 ### Hierarchy
-- **Display** (Literata 600, 2.5rem): page `h1` from `sm` up; the cover can go to `text-5xl`.
-- **Headline** (Literata 600, 2rem): mobile `h1`, section titles on the cover.
-- **Title** (Literata 600, 1.25rem): sheet and section headings.
-- **Answer** (Literata 400, 1.125rem / 1.75rem): tutor text.
-- **Body** (Atkinson 400, 1rem) and **Body small** (Atkinson 500–600, 0.875rem) for the interface.
+- **Display** (600, 2.5rem, tight tracking): page `h1` from `sm` up; the cover can go to `text-5xl`.
+- **Headline** (600, 2rem): mobile `h1`, section titles on the cover.
+- **Title** (600, 1.25rem): sheet and section headings.
+- **Answer** (400, 1.125rem / 1.75rem): tutor text.
+- **Body** (400, 1rem) and **Body small** (500–600, 0.875rem) for the interface.
 - No uppercase tracked labels. A small label is sentence case, `text-sm font-semibold text-fg-muted` (or `text-teacher-700` when it names a source).
 
 **The Tabular Data Rule.** Counts, numbers, percentages, dates and times set `tabular-nums`.
@@ -203,11 +203,13 @@ Self-hosted (`assets/fonts/`, OFL), each with a metric-matched local fallback so
 - **Containers:** reading pages (chat) `max-w-4xl` with the 9/3 text-and-margin grid; working pages `max-w-6xl`; single-task forms `max-w-md`.
 - **The 44 px Rule.** Touch targets ≥ 44 px (`min-h-11`); dense desktop controls may drop to 36 px from `md`.
 
-### App shells (`partials/shell-*.html`)
-- **Student:** a white top sheet with the wordmark and **notebook divider tabs** on desktop (the current tab joins the page below it), the persistent `AIDisclosure` strip, and a **bottom tab bar** on phones (Mis cursos, Mi progreso, Perfil). Sticky bottom elements use `bottom-tabbar` so they sit above it.
-- **Teacher and admin:** a fixed **contents sidebar** on desktop (`lg`, 16rem; the page gets `padding-inline-start` from `theme.css`). The current entry is bold ink with an ink bar on the sidebar edge. Below `lg`, a top bar with a menu.
-- **Public:** a top sheet with the wordmark and language switcher.
-- The footer carries the IMFAHE acknowledgement, language and theme switchers on every page.
+### App shells (`AppShell`)
+- **Signed in (every role):** one sticky white header row with the wordmark, the role's sections as text tabs (the current one underlined in ink) and the account menu at the end. On phones the tabs wrap to their own row under the wordmark.
+- **Account menu:** profile, language (a compact Select), theme (system, light or dark, as a three-way switch) and sign out.
+- **Course pages:** the course's sections are tabs inside the page, under its title. Students get one row (Tutor, Exercises, Quizzes, Progress). Teachers get three groups (Seguimiento, Contenido, Ajustes) with the current group's sections always shown underneath, so any section is one click away.
+- **Public:** the header with the wordmark, a compact language Select and the theme switch.
+- The footer carries the IMFAHE acknowledgement on every page.
+- **Back links** return to the page the user came from (e.g. an example opened from a student's page goes back to that student), not to a fixed parent.
 
 ## Elevation, Shape & Motion
 
@@ -220,7 +222,7 @@ Self-hosted (`assets/fonts/`, OFL), each with a metric-matched local fallback so
 
 ### ChatMessage
 - **Student:** right-aligned line on a white slip with a 4 px pen-violet left rule; sans.
-- **Tutor answer:** no bubble and no avatar. "Tutor" + outlined **IA** tag, then Literata text on plain paper; worked steps on gridded strips; sources in the margin.
+- **Tutor answer:** no bubble and no avatar. "Tutor" + outlined **IA** tag, then the answer at `text-lg` on plain paper; worked steps on gridded strips; sources in the margin.
 - **Tutor hint:** the same, with a highlighter **Pista n** mark.
 - **No source:** info-wash block with an info icon and next steps; empty dashed margin.
 - **Failed:** the student's line with a danger left rule, a plain explanation and Retry.
@@ -230,13 +232,16 @@ Self-hosted (`assets/fonts/`, OFL), each with a metric-matched local fallback so
 `margin-note`: reference number + document and location in teacher green, a three-line italic excerpt, and "Ver el pasaje" to open the `CitationSheet`. `unavailable` / `fragment-unavailable`: a dashed, disabled note.
 
 ### CitationSheet
-Bottom sheet below `lg`, right panel from `lg`. The passage is set in Literata behind the green margin rule; "From the material your teacher approved" closes it in teacher green.
+Bottom sheet below `lg`, right panel from `lg`. The passage is set at `text-lg` behind the green margin rule; "From the material your teacher approved" closes it in teacher green.
 
 ### Teacher tables
 Ledger style on a white sheet: a 2 px ink rule under the header row, hairlines between rows, numbers right-aligned beside an ink bar. At-risk reasons are highlighter marks.
 
 ### Selection
-Segmented controls, current tabs and current nav use ink (`neutral-900` + `fg-inverse`, or an ink bar). Never the pen violet.
+Segmented controls, current tabs and current nav use ink (`neutral-900` + `fg-inverse`, an ink underline, or a sunken pill for a sub-section). Never the pen violet.
+
+### Lists
+Long lists show 20 items and a "Mostrar más" button, with a search box, a sort and, for courses, a star (favourites first) and the user's own coloured tags. The list's state lives in the URL. Ordered lists the teacher arranges (topics) are sorted by dragging a handle; pressing the handle opens "Subir / Bajar" and the arrow keys move the row, so dragging is never required (WCAG 2.5.7).
 
 ### States
 Every data view has populated, empty, loading and error states. Empty states are a dashed panel with one clear action. Errors use the danger wash with a recovery action.

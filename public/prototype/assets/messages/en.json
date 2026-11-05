@@ -414,13 +414,13 @@
         "vExercise": "Exercise"
       },
       "type": {
-        "lead": "Two voices, self-hosted. Literata is the page voice: headings, tutor answers and passages from the material. Atkinson Hyperlegible Next is the interface and what the student writes. Each size carries its line height.",
+        "lead": "One family, self-hosted: Geist, with Geist Mono for code. The reading voice (tutor answers and passages from the material) is a larger size, not another typeface. Each size carries its line height.",
         "sample": "The course material doesn't cover this question",
         "title": "Typography",
         "weights": "Weights",
         "families": "Families",
-        "serifRole": "Headings, tutor answers and quoted passages",
-        "sansRole": "Interface, data and the student's messages"
+        "serifRole": "Tutor answers and quoted passages, at reading size",
+        "sansRole": "Headings, interface, data and the student's messages"
       },
       "v": {
         "active": "Active",
@@ -498,7 +498,7 @@
         "marginNote": "The green rule separates an answer from its sources. Only the teacher writes in the margin: cited sources and corrections. When the material does not cover a question, the margin stays empty behind a dashed rule.",
         "inks": "Inks",
         "ink": {
-          "fg": "Blue-black ink: text, selected and current states.",
+          "fg": "Neutral ink: text, selected and current states.",
           "pen": "Violet: what the student does. Primary actions, send, focus and their own messages.",
           "teacher": "Green: the teacher's hand. Sources, the margin, corrections and validation.",
           "highlight": "Highlighter: hints, guided mode and non-blocking warnings."
