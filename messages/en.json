@@ -394,7 +394,14 @@
         "joined": "Date joined",
         "oldest": "Oldest",
         "default": "Pending first"
-      }
+      },
+      "scope": {
+        "label": "Filter courses",
+        "all": "All",
+        "favorites": "Favourites"
+      },
+      "noFavorites": "No favourite courses yet",
+      "noFavoritesBody": "Press a course’s star to keep it at hand here."
     }
   },
   "student": {
@@ -518,7 +525,8 @@
       "quiz": "Take a quiz",
       "teacher": "Teacher: {teacher}",
       "title": "My courses",
-      "search": "Search courses"
+      "search": "Search courses",
+      "moreActions": "More actions for {name}"
     },
     "errorPatterns": {
       "back": "Back to the feedback",

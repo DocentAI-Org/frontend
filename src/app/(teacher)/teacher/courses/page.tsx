@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getFormatter, getTranslations } from "next-intl/server";
 
 import { LinkButton } from "@/components/Button";
+import { CourseScope } from "@/components/CourseScope";
 import { EmptyState } from "@/components/EmptyState";
 import { FavoriteStar } from "@/components/FavoriteStar";
 import { ErrorState } from "@/components/ErrorState";
@@ -35,8 +36,12 @@ export default async function TeacherCoursesPage({
   const t = await getTranslations("teacher.courses");
   const tl = await getTranslations("common.list");
   const format = await getFormatter();
-  const [courses, questionnaires] = await Promise.all([
-    listTeacherCourses(apiQuery(list, SORTS), list.shown),
+  const favoritesOnly = params.only === "favorites";
+  const [courses, all, favorites, questionnaires] = await Promise.all([
+    listTeacherCourses({ ...apiQuery(list, SORTS), favorite: favoritesOnly || undefined }, list.shown),
+    // The side filter's counts, whatever the search (spec 016).
+    listTeacherCourses({}, 1),
+    listTeacherCourses({ favorite: true }, 1),
     env.studyQuestionnaires ? listMyQuestionnaires() : null
   ]);
   const create = (
@@ -50,54 +55,64 @@ export default async function TeacherCoursesPage({
       {questionnaires?.ok && <StudyQuestionnaires items={questionnaires.data} />}
       {!courses.ok ? (
         <ErrorState code={courses.code} />
-      ) : courses.data.total === 0 && !list.q ? (
+      ) : (all.ok ? all.data.total : 0) === 0 ? (
         <EmptyState icon="graduation-cap" title={t("emptyTitle")} body={t("emptyBody")} action={create} />
       ) : (
-        <>
-          <ListToolbar
-            searchLabel={t("search")}
-            sorts={SORTS.map((value) => ({ value, label: tl(`sorts.${value}`) }))}
+        <div className="grid gap-6 lg:grid-cols-[12rem_minmax(0,1fr)] lg:items-start">
+          <CourseScope
+            path="/teacher/courses"
+            params={params}
+            favoritesOnly={favoritesOnly}
+            counts={{ all: all.ok ? all.data.total : 0, favorites: favorites.ok ? favorites.data.total : 0 }}
           />
-          {courses.data.items.length === 0 ? (
-            <NoMatches q={list.q} />
-          ) : (
-            <ul
-              aria-label={t("listLabel")}
-              className="flex flex-col divide-y divide-border rounded-xl border border-border bg-surface-raised px-2 sm:px-3"
-            >
-              {courses.data.items.map((course) => (
-                <li key={course.id} className="flex items-start gap-2 py-2">
-                  <Link
-                    href={routes.teacherCourse(course.id)}
-                    className="group flex min-w-0 flex-1 flex-col gap-2 rounded-lg px-2 py-4 hover:bg-surface-sunken focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus sm:px-3"
-                    data-component="Card"
-                    data-variant="interactive"
-                  >
-                    <h2 className="text-2xl font-semibold text-fg group-hover:underline">{course.name}</h2>
-                    <span className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-fg-muted">
-                      <span className="inline-flex items-center gap-2">
-                        <Icon name="users" />
-                        <span className="tabular-nums">{t("students", { count: course.student_count })}</span>
-                      </span>
-                      <span className="inline-flex items-center gap-2">
-                        <Icon name="clock" />
-                        <span className="tabular-nums">
-                          {t("created", { date: format.dateTime(new Date(course.created_at), { dateStyle: "long" }) })}
+          <div className="flex min-w-0 flex-col gap-4">
+            <ListToolbar
+              searchLabel={t("search")}
+              sorts={SORTS.map((value) => ({ value, label: tl(`sorts.${value}`) }))}
+            />
+            {courses.data.items.length === 0 ? (
+              favoritesOnly && !list.q ? (
+                <EmptyState icon="star" title={tl("noFavorites")} body={tl("noFavoritesBody")} />
+              ) : (
+                <NoMatches q={list.q} />
+              )
+            ) : (
+              <ul
+                aria-label={t("listLabel")}
+                className="flex flex-col divide-y divide-border rounded-xl border border-border bg-surface-raised px-2 sm:px-3"
+              >
+                {courses.data.items.map((course) => (
+                  <li key={course.id} className="flex items-center gap-2 py-1">
+                    <Link
+                      href={routes.teacherCourse(course.id)}
+                      className="group flex min-w-0 flex-1 flex-col gap-1 rounded-lg px-2 py-3 hover:bg-surface-sunken focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus sm:px-3"
+                      data-component="Card"
+                      data-variant="interactive"
+                    >
+                      <h2 className="truncate text-base font-semibold text-fg group-hover:underline">{course.name}</h2>
+                      <span className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-fg-muted">
+                        <span className="inline-flex items-center gap-2">
+                          <Icon name="users" />
+                          <span className="tabular-nums">{t("students", { count: course.student_count })}</span>
+                        </span>
+                        <span className="inline-flex items-center gap-2">
+                          <Icon name="clock" />
+                          <span className="tabular-nums">
+                            {t("created", { date: format.dateTime(new Date(course.created_at), { dateStyle: "long" }) })}
+                          </span>
                         </span>
                       </span>
-                    </span>
-                  </Link>
-                  <span className="pt-4">
+                    </Link>
                     <FavoriteStar courseId={course.id} name={course.name} initial={course.is_favorite} />
-                  </span>
-                </li>
-              ))}
-            </ul>
-          )}
-          {courses.data.items.length > 0 && (
-            <ListFooter path="/teacher/courses" params={params} shown={list.shown} total={courses.data.total} />
-          )}
-        </>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {courses.data.items.length > 0 && (
+              <ListFooter path="/teacher/courses" params={params} shown={list.shown} total={courses.data.total} />
+            )}
+          </div>
+        </div>
       )}
     </div>
   );

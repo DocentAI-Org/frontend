@@ -57,9 +57,11 @@ export function activeEnrolment(ctx: Ctx): Enrolment {
   return enrolment;
 }
 
-/** Starred courses first, keeping the order otherwise (backend specs/016). */
-function starredFirst<T extends { is_favorite: boolean }>(rows: T[]): T[] {
-  return [...rows.filter((r) => r.is_favorite), ...rows.filter((r) => !r.is_favorite)];
+/** Starred courses first, keeping the order otherwise; `favorite` keeps one side (backend specs/016). */
+function starredFirst<T extends { is_favorite: boolean }>(rows: T[], url: URL): T[] {
+  const favorite = url.searchParams.get("favorite");
+  const kept = favorite === null ? rows : rows.filter((r) => r.is_favorite === (favorite === "true"));
+  return [...kept.filter((r) => r.is_favorite), ...kept.filter((r) => !r.is_favorite)];
 }
 
 function validName(value: unknown): string {
@@ -114,7 +116,7 @@ export const courseRoutes: Route[] = [
       const sort = sortParam(ctx.url, ["recent", "name"] as const);
       const mine = ctx.state.courses.filter((c) => c.teacher_id === teacher.id).reverse();
       const rows = search(mine.map((c) => teacherCourse(ctx.state, c)), ctx.url, (c) => [c.name, c.description]);
-      return page(starredFirst(sort === "name" ? rows.sort(byName((c) => c.name)) : rows), ctx.url);
+      return page(starredFirst(sort === "name" ? rows.sort(byName((c) => c.name)) : rows, ctx.url), ctx.url);
     }
   },
   {
@@ -224,7 +226,7 @@ export const courseRoutes: Route[] = [
       const sort = sortParam(ctx.url, ["recent", "name"] as const);
       const mine = ctx.state.enrolments.filter((e) => e.student_id === student.id && e.status === "active").reverse();
       const rows = search(mine.map((e) => studentCourse(ctx.state, e)), ctx.url, (c) => [c.name, c.description, c.teacher_name]);
-      return page(starredFirst(sort === "name" ? rows.sort(byName((c) => c.name)) : rows), ctx.url);
+      return page(starredFirst(sort === "name" ? rows.sort(byName((c) => c.name)) : rows, ctx.url), ctx.url);
     }
   },
   { method: "GET", path: "/v1/student/courses/{course_id}", handler: (ctx) => studentCourse(ctx.state, activeEnrolment(ctx)) },

@@ -123,4 +123,31 @@ test.describe("016 US3 star the courses I use most", () => {
     await expect(star(page, "Primero")).toHaveAttribute("aria-pressed", "true");
     await expectAccessible(page);
   });
+
+  scenario("016-US3-AS4", "'Favoritos' shows only the starred courses, with their count", async ({ page, request }) => {
+    await courses(request, ["Primero", "Segundo", "Tercero"]);
+    await signIn(page, USERS.teacher);
+    const scope = page.getByRole("navigation", { name: /filtrar cursos/i });
+    await expect(scope.getByRole("link", { name: /favoritos/i })).toContainText("0");
+
+    await star(page, "Segundo").click();
+    await expect(scope.getByRole("link", { name: /favoritos/i })).toContainText("1");
+    await scope.getByRole("link", { name: /favoritos/i }).click();
+
+    await expect(page).toHaveURL(/only=favorites/);
+    await expect(courseTitles(page)).toHaveText(["Segundo"]);
+    await expect(scope.getByRole("link", { name: /favoritos/i })).toHaveAttribute("aria-current", "page");
+    await expectAccessible(page);
+  });
+
+  scenario("016-US3-AS5", "a student's course row opens the tutor, with the rest in a menu", async ({ page, request }) => {
+    await courses(request, ["Primero"], true);
+    await signIn(page, USERS.student);
+
+    await page.locator('summary[aria-label="Más acciones de Primero"]').click();
+
+    await expect(page.getByRole("link", { name: /enviar un ejercicio/i })).toBeVisible();
+    await expect(page.getByRole("link", { name: /mi progreso/i })).toBeVisible();
+    await expectAccessible(page);
+  });
 });

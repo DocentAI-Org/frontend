@@ -394,7 +394,14 @@
         "joined": "Fecha de entrada",
         "oldest": "Más antiguas",
         "default": "Pendientes primero"
-      }
+      },
+      "scope": {
+        "label": "Filtrar cursos",
+        "all": "Todos",
+        "favorites": "Favoritos"
+      },
+      "noFavorites": "Aún no tienes cursos favoritos",
+      "noFavoritesBody": "Pulsa la estrella de un curso para tenerlo siempre a mano aquí."
     }
   },
   "student": {
@@ -518,7 +525,8 @@
       "quiz": "Hacer un cuestionario",
       "teacher": "Profesor/a: {teacher}",
       "title": "Mis cursos",
-      "search": "Buscar cursos"
+      "search": "Buscar cursos",
+      "moreActions": "Más acciones de {name}"
     },
     "errorPatterns": {
       "back": "Volver a la corrección",

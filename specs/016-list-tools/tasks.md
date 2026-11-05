@@ -10,3 +10,5 @@
 - [x] T005 [US1] [US2] The eight lists: courses (teacher, student), students, conversations,
   material, questions, users, courses (admin)
 - [x] T006 [US3] The favourite star in both course lists
+- [x] T007 [US3] Compact course rows, "Todos / Favoritos" side filter with counts; the
+  student's exercise, quiz and progress links move to a row menu

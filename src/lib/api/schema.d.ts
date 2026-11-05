@@ -4797,6 +4797,8 @@ export interface operations {
                 /** @description Words to look for. */
                 q?: string | null;
                 sort?: "recent" | "name";
+                /** @description Only starred courses, or only the others. */
+                favorite?: boolean | null;
                 limit?: number;
                 offset?: number;
             };
@@ -8360,6 +8362,8 @@ export interface operations {
                 /** @description Words to look for. */
                 q?: string | null;
                 sort?: "recent" | "name";
+                /** @description Only starred courses, or only the others. */
+                favorite?: boolean | null;
                 limit?: number;
                 offset?: number;
             };

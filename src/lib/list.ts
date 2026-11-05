@@ -39,3 +39,12 @@ export function withParams(pathname: string, current: URLSearchParams, changes: 
   const query = next.toString();
   return query ? `${pathname}?${query}` : pathname;
 }
+
+/** A page's searchParams as URLSearchParams, for links that change one of them. */
+export function toSearch(params: Params): URLSearchParams {
+  const result = new URLSearchParams();
+  for (const [key, value] of Object.entries(params)) {
+    for (const item of Array.isArray(value) ? value : value ? [value] : []) result.append(key, item);
+  }
+  return result;
+}

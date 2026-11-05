@@ -1453,6 +1453,24 @@
             }
           },
           {
+            "name": "favorite",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Only starred courses, or only the others.",
+              "title": "Favorite"
+            },
+            "description": "Only starred courses, or only the others."
+          },
+          {
             "name": "limit",
             "in": "query",
             "required": false,
@@ -6958,6 +6976,24 @@
               "default": "recent",
               "title": "Sort"
             }
+          },
+          {
+            "name": "favorite",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Only starred courses, or only the others.",
+              "title": "Favorite"
+            },
+            "description": "Only starred courses, or only the others."
           },
           {
             "name": "limit",

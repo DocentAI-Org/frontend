@@ -2,17 +2,9 @@ import type { Route } from "next";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
-import { STEP, withParams } from "@/lib/list";
+import { STEP, toSearch, withParams } from "@/lib/list";
 
 type Params = Record<string, string | string[] | undefined>;
-
-function search(params: Params): URLSearchParams {
-  const result = new URLSearchParams();
-  for (const [key, value] of Object.entries(params)) {
-    for (const item of Array.isArray(value) ? value : value ? [value] : []) result.append(key, item);
-  }
-  return result;
-}
 
 /** "Showing 20 of 143" and, while some are hidden, a link that shows 20 more (spec 016). */
 export async function ListFooter({
@@ -35,7 +27,7 @@ export async function ListFooter({
       </p>
       {visible < total && (
         <Link
-          href={withParams(path, search(params), { shown: String(shown + STEP) }) as Route}
+          href={withParams(path, toSearch(params), { shown: String(shown + STEP) }) as Route}
           scroll={false}
           className="inline-flex min-h-9 items-center rounded-md border border-border bg-surface-raised px-3 font-medium text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
         >
