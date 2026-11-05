@@ -16,9 +16,6 @@ export async function AppFooter() {
           <Link href="/about" className={LINK}>
             {t("imfahe.aboutLink")}
           </Link>
-          <Link href="/about#privacy" className={LINK}>
-            {t("privacy.link")}
-          </Link>
         </div>
       </div>
     </footer>
