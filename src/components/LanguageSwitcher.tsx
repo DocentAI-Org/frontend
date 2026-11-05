@@ -50,7 +50,7 @@ export function LanguageMenuRow() {
   const label = useId();
 
   return (
-    <div className="flex min-h-11 items-center gap-2 px-4 text-sm text-fg" data-component="LanguageSwitcher" data-variant="menu">
+    <div className="flex min-h-9 items-center gap-2 px-3 text-sm text-fg" data-component="LanguageSwitcher" data-variant="menu">
       <Icon name="globe" />
       <span id={label}>{t("a11y.language")}</span>
       <div role="group" aria-labelledby={label} className="ml-auto flex gap-1">

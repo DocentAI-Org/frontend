@@ -697,7 +697,14 @@
         "progress": "Mi progreso"
       },
       "role": "Estudiante",
-      "teacherReview": "tu profesor/a puede revisar tus conversaciones"
+      "teacherReview": "tu profesor/a puede revisar tus conversaciones",
+      "course": {
+        "label": "Curso",
+        "tutor": "Tutor",
+        "exercise": "Ejercicios",
+        "quiz": "Cuestionarios",
+        "progress": "Mi progreso"
+      }
     },
     "test": {
       "pageTitle": "Test",
@@ -1095,7 +1102,8 @@
         "dashboard": "Panel",
         "questions": "Preguntas"
       },
-      "role": "Profesor/a"
+      "role": "Profesor/a",
+      "course": "Curso"
     },
     "tutorSettings": {
       "back": "Volver al curso",

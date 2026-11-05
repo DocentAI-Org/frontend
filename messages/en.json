@@ -697,7 +697,14 @@
         "progress": "My progress"
       },
       "role": "Student",
-      "teacherReview": "your teacher may review your conversations"
+      "teacherReview": "your teacher may review your conversations",
+      "course": {
+        "label": "Course",
+        "tutor": "Tutor",
+        "exercise": "Exercises",
+        "quiz": "Quizzes",
+        "progress": "My progress"
+      }
     },
     "test": {
       "pageTitle": "Test",
@@ -1095,7 +1102,8 @@
         "dashboard": "Dashboard",
         "questions": "Questions"
       },
-      "role": "Teacher"
+      "role": "Teacher",
+      "course": "Course"
     },
     "tutorSettings": {
       "back": "Back to the course",
