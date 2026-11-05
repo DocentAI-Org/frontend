@@ -30,7 +30,7 @@ export function LanguageSwitcher() {
   const [pending, choose] = useSetLanguage();
 
   return (
-    <div data-component="LanguageSwitcher" className="w-32">
+    <div data-component="LanguageSwitcher" className="w-28">
       <Select
         size="sm"
         aria-label={t("a11y.language")}
@@ -61,7 +61,7 @@ export function LanguageMenuRow() {
         disabled={pending}
         options={LOCALES.map((locale) => ({ value: locale, label: t(`language.${locale}`), lang: locale }))}
         onValueChange={choose}
-        className="ml-auto w-32 shrink-0"
+        className="ml-auto w-28 shrink-0"
       />
     </div>
   );
