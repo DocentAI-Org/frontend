@@ -1,7 +1,7 @@
 // 013 — study questionnaires (spec 013 US1–US2, requirement P4).
 import type { Page } from "@playwright/test";
 
-import { USERS, chooseOption, expect, expectAccessible, openMenuIfNeeded, scenario, signIn, signOut, test } from "./helpers";
+import { USERS, chooseOption, expect, expectAccessible, scenario, signIn, signOut, test } from "./helpers";
 import { classroom } from "./helpers-student";
 
 const LINK = "https://tally.so/r/abc123?ref={study_ref}";
@@ -21,7 +21,7 @@ function row(page: Page, title: string) {
 test.describe("013 US1 the study team publishes questionnaires", () => {
   scenario("013-US1-AS1", "the admin page lists them and explains the code", async ({ page }) => {
     await signIn(page, USERS.admin);
-    await openMenuIfNeeded(page);
+    // The admin's sections are header tabs, always shown.
     await page.getByRole("link", { name: /^cuestionarios$/i }).filter({ visible: true }).first().click();
 
     await expect(page.getByRole("heading", { level: 1, name: /cuestionarios/i })).toBeVisible();

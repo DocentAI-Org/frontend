@@ -1,7 +1,7 @@
 // 015 — configurable pedagogical criteria (spec 015 US1–US2; open questions OQ3, OQ9, OQ12).
 import type { APIRequestContext, Page } from "@playwright/test";
 
-import { courseSection, expect, expectAccessible, openMenuIfNeeded, scenario, signIn, test, USERS } from "./helpers";
+import { courseSection, expect, expectAccessible, scenario, signIn, test, USERS } from "./helpers";
 import { MOCK } from "./helpers-student";
 
 const group = (page: Page, name: RegExp) => page.getByRole("group", { name });
@@ -16,7 +16,7 @@ async function teacherCourse(request: APIRequestContext, page: Page) {
 test.describe("015 US1 the study team sets the defaults", () => {
   scenario("015-US1-AS1", "the admin sees every group with today's values", async ({ page }) => {
     await signIn(page, USERS.admin);
-    await openMenuIfNeeded(page);
+    // The admin's sections are header tabs, always shown.
     await page.getByRole("link", { name: /criterios pedagógicos/i }).filter({ visible: true }).first().click();
 
     await expect(page.getByRole("heading", { level: 1, name: /criterios pedagógicos/i })).toBeVisible();

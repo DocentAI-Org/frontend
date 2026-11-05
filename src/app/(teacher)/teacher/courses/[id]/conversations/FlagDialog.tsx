@@ -122,7 +122,7 @@ export function FlagDialog({
                         checked={category === value}
                         onChange={() => setCategory(value)}
                         aria-describedby={`${ids}-${value}`}
-                        className="mt-1 size-5 shrink-0 accent-primary-600"
+                        className="mt-0.5 size-6 shrink-0 accent-primary-600"
                       />
                       <span className="flex flex-col">
                         <span className="font-medium text-fg">{t(`teacher.flags.${label}`)}</span>

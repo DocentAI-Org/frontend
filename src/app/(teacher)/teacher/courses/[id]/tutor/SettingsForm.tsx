@@ -98,7 +98,7 @@ export function SettingsForm({ courseId, initial }: { courseId: string; initial:
                   value={option}
                   checked={values[group.name] === option}
                   onChange={() => setValues((current) => ({ ...current, [group.name]: option }))}
-                  className="mt-1 size-5 shrink-0 accent-primary-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+                  className="mt-0.5 size-6 shrink-0 accent-primary-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
                   aria-describedby={`${group.name}-${option}-help`}
                 />
                 <span className="flex flex-col">
