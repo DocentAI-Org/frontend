@@ -23,3 +23,9 @@ body {
     font: inherit;
   }
 }
+
+/* The signed-in header is sticky (3.5rem, and a 2.75rem tab row on phones): scrolling to or
+   focusing an element leaves it clear of the header (WCAG 2.4.11). */
+html:has([data-component="SignedInShell"]) {
+  scroll-padding-top: 7rem;
+}
