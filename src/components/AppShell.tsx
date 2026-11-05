@@ -12,14 +12,15 @@ import { type NavItem, NavLinks } from "./NavLinks";
 import { SkipLink } from "./SkipLink";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 
-const SIGN_OUT =
+/** A row of the user menu: sign out, and links like the student profile. */
+export const MENU_ITEM =
   "flex min-h-11 w-full items-center gap-2 rounded-lg px-4 text-sm text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus";
 
 export async function SignOutButton() {
   const t = await getTranslations("common.actions");
   return (
     <form action={signOut}>
-      <button type="submit" className={SIGN_OUT}>
+      <button type="submit" className={MENU_ITEM}>
         <Icon name="log-out" />
         <span>{t("signOut")}</span>
       </button>

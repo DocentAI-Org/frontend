@@ -1,8 +1,9 @@
 import type { Route } from "next";
+import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import type { ReactNode } from "react";
 
-import { SignOutButton } from "./AppShell";
+import { MENU_ITEM, SignOutButton } from "./AppShell";
 import { AppFooter } from "./AppFooter";
 import { Brand } from "./Brand";
 import { Icon } from "./Icon";
@@ -13,17 +14,20 @@ import { ThemeSwitcher } from "./ThemeSwitcher";
 
 /**
  * The student shell of the prototype (partials/shell-student.html): header tabs and a user menu,
- * the persistent AI notice, and a bottom tab bar on phones (theme.css keeps room for it).
+ * the persistent AI notice, and a bottom tab bar on phones (theme.css keeps room for it). The
+ * profile is in the user menu; only the phone tab bar also lists it.
  */
 export async function StudentShell({
   home,
   nav,
+  profile,
   userName,
   roleLabel,
   children
 }: {
   home: Route;
   nav: NavItem[];
+  profile: NavItem;
   userName: string;
   roleLabel: string;
   children: ReactNode;
@@ -64,6 +68,10 @@ export async function StudentShell({
                   <LanguageSwitcher stretch />
                   <ThemeSwitcher />
                 </div>
+                <Link href={profile.href} className={MENU_ITEM}>
+                  <Icon name={profile.icon} />
+                  <span>{profile.label}</span>
+                </Link>
                 <SignOutButton />
               </div>
             </details>
@@ -91,7 +99,7 @@ export async function StudentShell({
         aria-label={t("common.a11y.mainNav")}
         className="pb-safe fixed inset-x-0 bottom-0 z-40 border-t border-border-strong bg-surface-raised md:hidden"
       >
-        <NavLinks items={nav} variant="tabbar" />
+        <NavLinks items={[...nav, profile]} variant="tabbar" />
       </nav>
     </div>
   );

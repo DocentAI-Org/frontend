@@ -11,10 +11,8 @@ export default async function StudentLayout({ children }: { children: React.Reac
   return (
     <StudentShell
       home="/student/courses"
-      nav={[
-        { href: "/student/courses", label: t("nav.courses"), icon: "book-open" },
-        { href: "/student/profile", label: t("nav.profile"), icon: "user" }
-      ]}
+      nav={[{ href: "/student/courses", label: t("nav.courses"), icon: "book-open" }]}
+      profile={{ href: "/student/profile", label: t("nav.profile"), icon: "user" }}
       userName={access.me.display_name}
       roleLabel={t("role")}
     >
