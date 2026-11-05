@@ -14,6 +14,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { StudyQuestionnaires } from "@/components/StudyQuestionnaires";
 import { listTeacherCourses } from "@/lib/api/courses";
 import { listMyQuestionnaires } from "@/lib/api/me";
+import { env } from "@/lib/env";
 import { apiQuery, listState } from "@/lib/list";
 import { routes } from "@/lib/routes";
 
@@ -36,7 +37,7 @@ export default async function TeacherCoursesPage({
   const format = await getFormatter();
   const [courses, questionnaires] = await Promise.all([
     listTeacherCourses(apiQuery(list, SORTS), list.shown),
-    listMyQuestionnaires()
+    env.studyQuestionnaires ? listMyQuestionnaires() : null
   ]);
   const create = (
     <LinkButton href="/teacher/courses/new" icon="plus">
@@ -46,7 +47,7 @@ export default async function TeacherCoursesPage({
   return (
     <div className="flex flex-col gap-6">
       <PageHeader title={t("title")} lead={t("lead")} actions={create} />
-      {questionnaires.ok && <StudyQuestionnaires items={questionnaires.data} />}
+      {questionnaires?.ok && <StudyQuestionnaires items={questionnaires.data} />}
       {!courses.ok ? (
         <ErrorState code={courses.code} />
       ) : courses.data.total === 0 && !list.q ? (

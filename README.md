@@ -23,6 +23,7 @@ npm run dev                  # http://localhost:3000
 | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | `PUBLISHABLE_KEY` from `npx supabase status -o env` in the backend repo |
 | `API_BASE_URL` | DocentAI API, called from the Next.js server only (`http://localhost:8000`) |
 | `PSEUDONYM_EMAIL_DOMAIN` | Pseudonymous students sign in with a code; their auth email is `<code>@<domain>` |
+| `STUDY_QUESTIONNAIRES` | `on` shows the study questionnaires card on "Mis cursos"; hidden otherwise (off for now) |
 | `PRIVACY_CONTACT_EMAIL` | Contact shown on `/about` |
 
 To run against the real backend, start it as described in its README (Supabase, Ollama,

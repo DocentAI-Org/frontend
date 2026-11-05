@@ -17,6 +17,7 @@ import { getAllowance } from "@/lib/api/chat";
 import { listTestPhases } from "@/lib/api/course-tests";
 import { listStudentCourses } from "@/lib/api/courses";
 import { listMyQuestionnaires } from "@/lib/api/me";
+import { env } from "@/lib/env";
 import { apiQuery, listState } from "@/lib/list";
 import { routes } from "@/lib/routes";
 
@@ -44,7 +45,7 @@ export default async function StudentCoursesPage({
   const [courses, allowance, questionnaires] = await Promise.all([
     listStudentCourses(apiQuery(list, SORTS), list.shown),
     getAllowance(),
-    listMyQuestionnaires()
+    env.studyQuestionnaires ? listMyQuestionnaires() : null
   ]);
   // An open pre/post-test the student has not done yet is announced on its card (010 US3 AS1).
   const pending = new Map<string, "pre" | "post">();
@@ -64,7 +65,7 @@ export default async function StudentCoursesPage({
   return (
     <div className="flex flex-col gap-6">
       <PageHeader title={t("title")} actions={join("secondary")} />
-      {questionnaires.ok && <StudyQuestionnaires items={questionnaires.data} />}
+      {questionnaires?.ok && <StudyQuestionnaires items={questionnaires.data} />}
       {!courses.ok ? (
         <ErrorState code={courses.code} />
       ) : courses.data.total === 0 && !list.q ? (

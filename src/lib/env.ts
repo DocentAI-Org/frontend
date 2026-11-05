@@ -18,5 +18,9 @@ export const env = {
   },
   get pseudonymEmailDomain() {
     return process.env.PSEUDONYM_EMAIL_DOMAIN ?? "students.docentai.invalid";
+  },
+  /** The study questionnaires card on "Mis cursos" (P4, specs/013): hidden unless "on". */
+  get studyQuestionnaires() {
+    return process.env.STUDY_QUESTIONNAIRES === "on";
   }
 };
