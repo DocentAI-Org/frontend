@@ -50,7 +50,7 @@ test.describe("008 US1 question review", () => {
     await expect(card(page, questions[1].statement).getByText(/dificultad: difícil/i)).toBeVisible();
     await expect(first.getByText(/paréntesis/i).first()).toBeVisible();
     await expect(first.getByText(/multiplica a cada término/i)).toBeVisible();
-    await expect(first.getByRole("button", { name: /ver fuente: ecuaciones\.md/i })).toBeVisible();
+    await expect(first.getByRole("button", { name: /ecuaciones\.md · .* ver el pasaje/i })).toBeVisible();
     await expect(first.getByTitle(/generada con ia/i)).toBeVisible();
     await expectAccessible(page);
   });
@@ -237,7 +237,7 @@ test.describe("008 US2 adaptive quiz", () => {
 
     const feedback = page.getByRole("region", { name: /no es correcta/i });
     await expect(feedback.getByText(/multiplica a cada término/i)).toBeVisible();
-    await expect(feedback.getByRole("button", { name: /ver fuente: ecuaciones\.md/i })).toBeVisible();
+    await expect(feedback.getByRole("button", { name: /ecuaciones\.md · .* ver el pasaje/i })).toBeVisible();
     await expect(page.getByRole("listitem").filter({ hasText: /tu respuesta/i })).toHaveCount(1);
     await expect(page.getByRole("listitem").filter({ hasText: /respuesta correcta/i })).toHaveCount(1);
     await expect(page.getByRole("radio")).toHaveCount(0);

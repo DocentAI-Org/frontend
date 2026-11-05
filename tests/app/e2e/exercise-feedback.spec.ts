@@ -33,7 +33,7 @@ test.describe("005 US1 real feedback", () => {
     await expect(page.getByText("Error de procedimiento")).toBeVisible();
     await expect(page.getByText("procedural")).toHaveCount(0);
     await expect(page.getByRole("link", { name: /guardado en tu progreso/i })).toBeVisible();
-    await expect(page.getByRole("button", { name: /ver fuente: ecuaciones\.md/i })).toBeVisible();
+    await expect(page.getByRole("button", { name: /ecuaciones\.md · .* ver el pasaje/i })).toBeVisible();
     await expect(page.getByRole("note").filter({ hasText: /todavía se está preparando/i })).toHaveCount(0);
     await expectAccessible(page);
   });

@@ -52,7 +52,7 @@ test.describe("US7 exercises", () => {
     await expect(page.getByText(/dónde está el error:/i)).toBeVisible();
     await expect(page.getByText(/tipo de error:/i)).toBeVisible();
     await expect(page.getByText(/guardado en tu progreso/i)).toBeVisible();
-    await expect(page.getByRole("button", { name: /ver fuente: ecuaciones\.md/i })).toBeVisible();
+    await expect(page.getByRole("button", { name: /ecuaciones\.md · .* ver el pasaje/i })).toBeVisible();
     await expectAccessible(page);
   });
 
@@ -61,7 +61,7 @@ test.describe("US7 exercises", () => {
     await submit(page, "Calcula la derivada del seno");
 
     await expect(page.locator('[data-component="NoSourceNotice"]')).toBeVisible();
-    await expect(page.getByRole("button", { name: /ver fuente/i })).toHaveCount(0);
+    await expect(page.getByRole("button", { name: /ver el pasaje/i })).toHaveCount(0);
   });
 
   scenario("001-US6-AS5", "an empty submission explains how to fix it", async ({ page, request }) => {

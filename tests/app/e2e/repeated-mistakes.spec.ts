@@ -78,7 +78,7 @@ test.describe("007 US2 targeted review", () => {
     await expect(page.getByRole("heading", { level: 1, name: /repaso de un error/i })).toBeVisible();
     await expect(page.getByRole("heading", { name: /qué está pasando/i })).toBeVisible();
     await expect(page.getByRole("heading", { name: /un ejemplo resuelto/i })).toBeVisible();
-    await expect(page.getByRole("button", { name: /ver fuente: ecuaciones\.md/i })).toBeVisible();
+    await expect(page.getByRole("button", { name: /ecuaciones\.md · .* ver el pasaje/i })).toBeVisible();
     const practice = page.getByRole("region", { name: /^practica$/i });
     await expect(practice.getByRole("listitem")).toHaveCount(2);
     await expect(page.getByText(/este error te ha salido 3 veces/i)).toBeVisible();
