@@ -885,7 +885,12 @@
         "test": "Pre/post-test",
         "criteria": "Criteria"
       },
-      "tabs": "Course sections"
+      "tabs": "Course sections",
+      "group": {
+        "follow": "Follow-up",
+        "content": "Content",
+        "settings": "Settings"
+      }
     },
     "courseNew": {
       "back": "Back to my courses",

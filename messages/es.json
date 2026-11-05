@@ -885,7 +885,12 @@
         "test": "Pre/post-test",
         "criteria": "Criterios"
       },
-      "tabs": "Secciones del curso"
+      "tabs": "Secciones del curso",
+      "group": {
+        "follow": "Seguimiento",
+        "content": "Contenido",
+        "settings": "Ajustes"
+      }
     },
     "courseNew": {
       "back": "Volver a mis cursos",
