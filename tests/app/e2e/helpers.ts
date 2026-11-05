@@ -59,6 +59,9 @@ export async function expectAccessible(page: Page) {
       new Promise((resolve) => setTimeout(resolve, 1000))
     ])
   );
+  // Audit from the top: a reload keeps the scroll position, and whatever then sits under the
+  // sticky header reads to axe's target-size check as "partially obscured".
+  await page.evaluate(() => window.scrollTo(0, 0));
   const { violations } = await new AxeBuilder({ page }).withTags(TAGS).analyze();
   const report = violations
     .map((v) => `${v.id}: ${v.help}\n${v.nodes.map((n) => `    ${n.target.join(" ")}`).join("\n")}`)
