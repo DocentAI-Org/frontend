@@ -366,6 +366,24 @@
         "progressing": "En progreso desde (%)",
         "mastered": "Dominado desde (%)"
       }
+    },
+    "list": {
+      "search": "Buscar",
+      "sort": "Ordenar",
+      "shown": "Mostrando {shown} de {total}",
+      "more": "Mostrar más",
+      "noMatches": "Nada coincide con «{q}»",
+      "noMatchesBody": "Prueba con otras palabras o quita los filtros.",
+      "clear": "Borrar la búsqueda",
+      "favorite": "Marcar {name} como favorito",
+      "favoriteError": "No se ha podido guardar el favorito. Inténtalo de nuevo.",
+      "sorts": {
+        "recent": "Más recientes",
+        "name": "Nombre",
+        "joined": "Fecha de entrada",
+        "oldest": "Más antiguas",
+        "default": "Pendientes primero"
+      }
     }
   },
   "student": {

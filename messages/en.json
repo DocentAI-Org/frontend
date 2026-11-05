@@ -366,6 +366,24 @@
         "progressing": "Progressing from (%)",
         "mastered": "Mastered from (%)"
       }
+    },
+    "list": {
+      "search": "Search",
+      "sort": "Sort",
+      "shown": "Showing {shown} of {total}",
+      "more": "Show more",
+      "noMatches": "Nothing matches “{q}”",
+      "noMatchesBody": "Try other words or clear the filters.",
+      "clear": "Clear the search",
+      "favorite": "Mark {name} as a favourite",
+      "favoriteError": "The favourite could not be saved. Try again.",
+      "sorts": {
+        "recent": "Most recent",
+        "name": "Name",
+        "joined": "Date joined",
+        "oldest": "Oldest",
+        "default": "Pending first"
+      }
     }
   },
   "student": {
