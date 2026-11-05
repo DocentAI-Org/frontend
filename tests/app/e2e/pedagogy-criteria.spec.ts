@@ -1,7 +1,7 @@
 // 015 — configurable pedagogical criteria (spec 015 US1–US2; open questions OQ3, OQ9, OQ12).
 import type { APIRequestContext, Page } from "@playwright/test";
 
-import { USERS, expect, expectAccessible, openMenuIfNeeded, scenario, signIn, test } from "./helpers";
+import { courseSection, expect, expectAccessible, openMenuIfNeeded, scenario, signIn, test, USERS } from "./helpers";
 import { MOCK } from "./helpers-student";
 
 const group = (page: Page, name: RegExp) => page.getByRole("group", { name });
@@ -77,7 +77,7 @@ test.describe("015 US2 a teacher adjusts their course", () => {
   scenario("015-US2-AS1", "each group follows the study by default, read-only", async ({ page, request }) => {
     const courseId = await teacherCourse(request, page);
     await page.goto(`/teacher/courses/${courseId}`);
-    await page.getByRole("link", { name: /^criterios$/i }).click();
+    await (await courseSection(page, /^criterios$/i)).click();
 
     const inactive = group(page, /sin actividad/i);
     await expect(inactive.getByRole("radio", { name: /los del estudio/i })).toBeChecked();

@@ -23,7 +23,7 @@ export default async function Page() {
         <span>{t("back")}</span>
       </Link>
       <div className="flex flex-col gap-6 rounded-xl border border-border bg-surface-raised p-6 sm:p-8">
-        <div className="border-b-2 border-neutral-900 pb-4">
+        <div className="border-b border-border pb-4">
           <h1 className="text-3xl font-semibold text-fg">{t("title")}</h1>
           <p className="mt-2 text-fg-muted">{t("lead")}</p>
         </div>

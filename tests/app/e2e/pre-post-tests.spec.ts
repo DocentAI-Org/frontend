@@ -1,7 +1,7 @@
 // 010 — pre-test and post-test: the teacher prepares, opens and reads; students take each once.
 import type { APIRequestContext, Page } from "@playwright/test";
 
-import { USERS, chooseOption, expect, expectAccessible, scenario, signIn, signOut, test } from "./helpers";
+import { chooseOption, courseSection, expect, expectAccessible, scenario, signIn, signOut, test, USERS } from "./helpers";
 import { MOCK, classroom } from "./helpers-student";
 
 type Phase = "pre" | "post";
@@ -43,7 +43,7 @@ test.describe("010 US1 the teacher prepares the test", () => {
     await seedTest(request, courseId, { count: 2 });
     await openTab(page, courseId);
 
-    await expect(page.getByRole("link", { name: /^pre\/post-test$/i })).toHaveAttribute("aria-current", "page");
+    await expect(await courseSection(page, /^pre\/post-test$/i)).toHaveAttribute("aria-current", "page");
     await expect(phase(page, /^pre-test$/i).getByText(/sin abrir/i)).toBeVisible();
     await expect(phase(page, /^post-test$/i).getByText(/sin abrir/i)).toBeVisible();
     const first = questionList(page).getByRole("listitem").filter({ hasText: /pregunta 1 del test/i });

@@ -42,7 +42,7 @@ test.describe("003 US2 default locale", () => {
     scenario("003-US2-AS1", "a Spanish browser sees Spanish", async ({ page }) => {
       await page.goto("/sign-in");
       await expect(page.locator("html")).toHaveAttribute("lang", "es");
-      await expect(page.getByRole("heading", { level: 1, name: /bienvenida a docentai/i })).toBeVisible();
+      await expect(page.getByRole("heading", { level: 1, name: /entra en docentai/i })).toBeVisible();
       await expectAccessible(page);
     });
   });
@@ -52,7 +52,7 @@ test.describe("003 US2 default locale", () => {
     scenario("003-US2-AS2", "an unsupported browser language falls back to English", async ({ page }) => {
       await page.goto("/sign-in");
       await expect(page.locator("html")).toHaveAttribute("lang", "en");
-      await expect(page.getByRole("heading", { level: 1, name: /welcome to docentai/i })).toBeVisible();
+      await expect(page.getByRole("heading", { level: 1, name: /sign in to docentai/i })).toBeVisible();
       await expectAccessible(page);
     });
   });
@@ -63,7 +63,7 @@ test.describe("003 US2 default locale", () => {
       await context.addCookies([{ name: "NEXT_LOCALE", value: "es", url: baseURL! }]);
       await page.goto("/sign-in");
       await expect(page.locator("html")).toHaveAttribute("lang", "es");
-      await expect(page.getByRole("heading", { level: 1, name: /bienvenida a docentai/i })).toBeVisible();
+      await expect(page.getByRole("heading", { level: 1, name: /entra en docentai/i })).toBeVisible();
     });
   });
 });

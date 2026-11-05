@@ -37,7 +37,7 @@ export function StudentsForm() {
         <table className="w-full border-collapse text-sm">
           <caption className="sr-only">{t("admin.studentsNew.tableCaption")}</caption>
           <thead>
-            <tr className="border-b-2 border-neutral-900">
+            <tr className="border-b border-border">
               <th scope="col" className="pb-2 pr-4 text-left text-sm font-semibold text-fg-muted">
                 {t("admin.studentsNew.colCode")}
               </th>

@@ -12,20 +12,20 @@
   /* Remove Tailwind's default palette: only DocentAI colors exist. */
   --color-*: initial;
 
-  /* Neutral: cool paper to blue-black ink (#1D2433), like a squared school notebook. Dark mirrors light
-   * ("night study": #141925 paper, #E6EAF2 ink). */
-  --color-neutral-0: light-dark(oklch(0.998 0.001 262), oklch(0.24 0.026 266));
-  --color-neutral-50: light-dark(oklch(0.991 0.003 265), oklch(0.214 0.025 267));
-  --color-neutral-100: light-dark(oklch(0.962 0.008 262), oklch(0.265 0.028 266));
-  --color-neutral-200: light-dark(oklch(0.925 0.016 262), oklch(0.305 0.03 266));
-  --color-neutral-300: light-dark(oklch(0.862 0.026 263), oklch(0.375 0.032 265));
-  --color-neutral-400: light-dark(oklch(0.72 0.03 263), oklch(0.49 0.032 265));
-  --color-neutral-450: light-dark(oklch(0.62 0.032 263), oklch(0.57 0.03 264));
-  --color-neutral-500: light-dark(oklch(0.56 0.033 264), oklch(0.65 0.029 264));
-  --color-neutral-600: light-dark(oklch(0.502 0.034 264), oklch(0.735 0.026 264));
-  --color-neutral-700: light-dark(oklch(0.39 0.033 264), oklch(0.83 0.018 264));
-  --color-neutral-800: light-dark(oklch(0.315 0.032 265), oklch(0.895 0.014 265));
-  --color-neutral-900: light-dark(oklch(0.261 0.03 265), oklch(0.936 0.012 265));
+  /* Neutral: pure grays, no tint, so color only ever means something (primary, teacher, states). The
+   * light steps keep their lightness (and so their contrast); dark sits on near-black. */
+  --color-neutral-0: light-dark(oklch(0.998 0 0), oklch(0.205 0 0));
+  --color-neutral-50: light-dark(oklch(0.991 0 0), oklch(0.175 0 0));
+  --color-neutral-100: light-dark(oklch(0.962 0 0), oklch(0.23 0 0));
+  --color-neutral-200: light-dark(oklch(0.925 0 0), oklch(0.275 0 0));
+  --color-neutral-300: light-dark(oklch(0.862 0 0), oklch(0.35 0 0));
+  --color-neutral-400: light-dark(oklch(0.72 0 0), oklch(0.49 0 0));
+  --color-neutral-450: light-dark(oklch(0.62 0 0), oklch(0.57 0 0));
+  --color-neutral-500: light-dark(oklch(0.56 0 0), oklch(0.65 0 0));
+  --color-neutral-600: light-dark(oklch(0.502 0 0), oklch(0.735 0 0));
+  --color-neutral-700: light-dark(oklch(0.39 0 0), oklch(0.83 0 0));
+  --color-neutral-800: light-dark(oklch(0.315 0 0), oklch(0.895 0 0));
+  --color-neutral-900: light-dark(oklch(0.261 0 0), oklch(0.936 0 0));
 
   /* Primary: pen violet, the logo's violet end. Reserved for primary actions, the send button, focus and
    * the celebration; everything else is ink or neutral. */
@@ -112,11 +112,11 @@
   --color-border: var(--color-neutral-200);
   --color-border-strong: var(--color-neutral-450); /* 3:1 on raised and canvas surfaces (WCAG 1.4.11) */
   --color-focus: var(--color-primary-600);
-  --color-grid: light-dark(oklch(0.948 0.012 262), oklch(0.245 0.026 266)); /* the 4 mm squares */
+  --color-dot: light-dark(oklch(0.87 0 0), oklch(0.3 0 0)); /* the dots of the dotted paper */
   --color-margin: var(--color-teacher-600); /* the margin rule where sources live */
   --color-highlight: var(--color-warning-200);
   /* Dialog backdrop: dark in both schemes. */
-  --color-scrim: oklch(0.17 0.02 266);
+  --color-scrim: oklch(0.17 0 0);
 
   /* Spacing: 8 px scale. The unit stays 4 px so utilities read naturally, but layout spacing uses even
    * steps only (2 = 8 px, 4 = 16, 6 = 24, 8 = 32, 10 = 40, 12 = 48); 1 (4 px) is the one half-step,
@@ -131,11 +131,12 @@
   --radius-xl: 0.5rem;
   --radius-2xl: 0.75rem;
 
-  /* Typography (assets/fonts/fonts.css): Literata is the page voice (headings, tutor answers, quoted
-   * material); Atkinson Hyperlegible Next is the interface and the student's voice. */
-  --font-sans: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible Next Fallback", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-serif: "Literata", "Literata Fallback", Georgia, ui-serif, serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  /* Typography (assets/fonts/fonts.css): Geist is the one voice, quiet and compact. --font-serif is
+   * kept as the token for the "page" voice (headings, tutor answers, quoted material) and points at
+   * the same face, so that voice can change again in one place. */
+  --font-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-serif: var(--font-sans);
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   --text-xs: 0.75rem;
   --text-xs--line-height: 1rem;
@@ -149,16 +150,17 @@
   --text-xl--line-height: 1.75rem;
   --text-2xl: 1.5rem;
   --text-2xl--line-height: 2rem;
-  --text-2xl--letter-spacing: -0.005em;
-  --text-3xl: 2rem;
-  --text-3xl--line-height: 2.5rem;
-  --text-3xl--letter-spacing: -0.01em;
-  --text-4xl: 2.5rem;
-  --text-4xl--line-height: 3rem;
-  --text-4xl--letter-spacing: -0.015em;
-  --text-5xl: 3.5rem;
-  --text-5xl--line-height: 4rem;
-  --text-5xl--letter-spacing: -0.02em;
+  --text-2xl--letter-spacing: -0.02em;
+  /* Headings stay modest and tight-tracked: the content leads, not the title. */
+  --text-3xl: 1.75rem;
+  --text-3xl--line-height: 2.25rem;
+  --text-3xl--letter-spacing: -0.025em;
+  --text-4xl: 2rem;
+  --text-4xl--line-height: 2.5rem;
+  --text-4xl--letter-spacing: -0.03em;
+  --text-5xl: 2.5rem;
+  --text-5xl--line-height: 3rem;
+  --text-5xl--letter-spacing: -0.035em;
 
   --font-weight-normal: 400;
   --font-weight-medium: 500;
@@ -167,11 +169,11 @@
 
   /* Shadows: blue-black ink, very soft. Resting sheets carry only their 1px border; shadow-md appears on
    * hover. shadow-lg is for floating layers (menus, dialogs, toasts). */
-  --shadow-sm: 0 1px 2px 0 light-dark(oklch(0.26 0.03 265 / 0.05), oklch(0.08 0.01 266 / 0.35));
-  --shadow-md: 0 8px 20px -10px light-dark(oklch(0.26 0.03 265 / 0.16), oklch(0.08 0.01 266 / 0.6)),
-    0 2px 6px -2px light-dark(oklch(0.26 0.03 265 / 0.06), oklch(0.08 0.01 266 / 0.35));
-  --shadow-lg: 0 16px 36px -12px light-dark(oklch(0.26 0.03 265 / 0.2), oklch(0.08 0.01 266 / 0.65)),
-    0 4px 12px -4px light-dark(oklch(0.26 0.03 265 / 0.07), oklch(0.08 0.01 266 / 0.4));
+  --shadow-sm: 0 1px 2px 0 light-dark(oklch(0.26 0 0 / 0.05), oklch(0.08 0 0 / 0.35));
+  --shadow-md: 0 8px 20px -10px light-dark(oklch(0.26 0 0 / 0.16), oklch(0.08 0 0 / 0.6)),
+    0 2px 6px -2px light-dark(oklch(0.26 0 0 / 0.06), oklch(0.08 0 0 / 0.35));
+  --shadow-lg: 0 16px 36px -12px light-dark(oklch(0.26 0 0 / 0.2), oklch(0.08 0 0 / 0.65)),
+    0 4px 12px -4px light-dark(oklch(0.26 0 0 / 0.07), oklch(0.08 0 0 / 0.4));
 
   /* Motion */
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
@@ -181,13 +183,12 @@
   --default-transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-/* Paper: the 16 px squared grid. On <body> by default (base layer below); add bg-grid to any other
+/* Paper: a faint 24 px dot grid. On <body> by default (base layer below); add bg-grid to any other
  * surface that should read as notebook paper. Reading text sits on solid paper, never on the grid. */
 @utility bg-grid {
-  background-image: linear-gradient(var(--color-grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
-  background-size: 1rem 1rem;
-  background-position: -1px -1px;
+  background-image: radial-gradient(var(--color-dot) 1px, transparent 1px);
+  background-size: 1.5rem 1.5rem;
+  background-position: -0.75rem -0.75rem;
 }
 
 @utility bg-plain {
@@ -228,6 +229,8 @@
     scrollbar-color: var(--color-neutral-300) transparent;
     -webkit-text-size-adjust: 100%;
     font-optical-sizing: auto;
+    /* Geist has no italic; a slanted fake reads as a rendering glitch, so emphasis stays upright. */
+    font-synthesis-style: none;
   }
 
   ::selection {
@@ -235,12 +238,11 @@
     color: var(--color-primary-900);
   }
 
-  /* The notebook paper behind every page. */
+  /* The dotted paper behind every page. */
   body {
-    background-image: linear-gradient(var(--color-grid) 1px, transparent 1px),
-      linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
-    background-size: 1rem 1rem;
-    background-position: -1px -1px;
+    background-image: radial-gradient(var(--color-dot) 1px, transparent 1px);
+    background-size: 1.5rem 1.5rem;
+    background-position: -0.75rem -0.75rem;
   }
 
   /* Headings speak in the page voice (Literata); utilities can still switch a heading to font-sans. */

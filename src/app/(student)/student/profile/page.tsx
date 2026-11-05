@@ -4,7 +4,6 @@ import { getFormatter, getTranslations } from "next-intl/server";
 import { LinkButton } from "@/components/Button";
 import { ConfirmDialog } from "@/components/ConfirmDialog";
 import { ErrorState } from "@/components/ErrorState";
-import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { PageHeader } from "@/components/PageHeader";
 import { StatusBadge } from "@/components/StatusBadge";
 import { Alert } from "@/components/Alert";
@@ -20,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const SECTION = "flex flex-col gap-4 rounded-xl border border-border bg-surface-raised p-6";
 
-/** Profile, language and study consent with revocation (001 US7 AS4, FR-015, #13). */
+/** Profile and study consent with revocation (001 US7 AS4, FR-015, #13). The language is in the user menu. */
 export default async function ProfilePage() {
   const t = await getTranslations();
   const format = await getFormatter();
@@ -46,10 +45,6 @@ export default async function ProfilePage() {
               <dd className="break-all text-fg">{me.data.email}</dd>
             </>
           )}
-          <dt className="text-sm font-semibold text-fg-muted">{t("student.profile.language")}</dt>
-          <dd>
-            <LanguageSwitcher />
-          </dd>
         </dl>
       </section>
       <section aria-labelledby="consent-title" className={SECTION}>

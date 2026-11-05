@@ -1,11 +1,9 @@
 import { getTranslations } from "next-intl/server";
 
 import { AccessDenied, deniedReasonFor } from "@/components/AccessDenied";
-import { CourseTabs } from "@/components/CourseTabs";
 import { ErrorState } from "@/components/ErrorState";
 import { PageHeader } from "@/components/PageHeader";
 import { getTeacherCourse } from "@/lib/api/courses";
-import { routes } from "@/lib/routes";
 
 export default async function TeacherCourseLayout({
   children,
@@ -24,26 +22,13 @@ export default async function TeacherCourseLayout({
       <ErrorState code={course.code} />
     );
   }
+  // The course sections are in the sidebar (AppShell); the header names the course on every one.
   return (
     <div className="flex flex-col gap-6">
       <PageHeader
         title={course.data.name}
         lead={course.data.description ?? undefined}
         back={{ href: "/teacher/courses", label: t("back") }}
-      />
-      <CourseTabs
-        label={t("tabs")}
-        tabs={[
-          { href: routes.teacherCourse(id), label: t("tab.students"), exact: true },
-          { href: routes.teacherDashboard(id), label: t("tab.dashboard") },
-          { href: routes.teacherMaterial(id), label: t("tab.material") },
-          { href: routes.teacherTopics(id), label: t("tab.topics") },
-          { href: routes.teacherQuestions(id), label: t("tab.questions") },
-          { href: routes.teacherTest(id), label: t("tab.test") },
-          { href: routes.teacherSettings(id), label: t("tab.settings") },
-          { href: routes.teacherCriteria(id), label: t("tab.criteria") },
-          { href: routes.teacherConversations(id), label: t("tab.conversations") }
-        ]}
       />
       {children}
     </div>

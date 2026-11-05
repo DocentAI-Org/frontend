@@ -202,12 +202,18 @@
       "signIn": "Entrar",
       "signInLead": "El tutor de tu curso, guiado por tu profesor/a.",
       "signInPageTitle": "Iniciar sesión",
-      "signInTitle": "Te damos la bienvenida a DocentAI",
+      "signInTitle": "Entra en DocentAI",
       "signingIn": "Entrando…",
       "identifier": "Correo electrónico o código",
-      "identifierHint": "Si te han dado un código (por ejemplo, EST-7K3P9), escríbelo aquí.",
+      "identifierHint": "¿Te han dado un código? Escríbelo aquí.",
       "invalidIdentifier": "Correo, código o contraseña incorrectos. Revísalos e inténtalo de nuevo.",
-      "missing": "Escribe tu correo o código y tu contraseña."
+      "missing": "Escribe tu correo o código y tu contraseña.",
+      "preview": {
+        "question": "¿Cómo despejo x en 3x + 5 = 20?",
+        "answer": "Deja la x sola: resta 5 en los dos lados y divide entre 3.",
+        "equation": "3x + 5 = 20  →  3x = 15  →  x = 5",
+        "source": "Tema 3 · p. 12"
+      }
     },
     "brand": {
       "name": "DocentAI",
@@ -255,8 +261,10 @@
       "loading": "Cargando…"
     },
     "theme": {
-      "toDark": "Cambiar a tema oscuro",
-      "toLight": "Cambiar a tema claro"
+      "label": "Tema",
+      "system": "Tema del sistema",
+      "light": "Tema claro",
+      "dark": "Tema oscuro"
     },
     "decision": {
       "why": "¿Por qué?",
@@ -308,7 +316,7 @@
     },
     "questionnaires": {
       "title": "Cuestionarios del estudio",
-      "lead": "Tu opinión ayuda a mejorar DocentAI. Se abren en otra herramienta.",
+      "lead": "Tu opinión ayuda a mejorar DocentAI.",
       "newTab": "(se abre en otra pestaña)"
     },
     "adaptation": {
@@ -601,7 +609,6 @@
       "consentTitle": "Consentimiento",
       "email": "Correo",
       "giveAgain": "Volver a dar mi consentimiento",
-      "language": "Idioma",
       "loadError": "No hemos podido cargar tu perfil",
       "name": "Nombre",
       "pageTitle": "Perfil",
@@ -690,7 +697,14 @@
         "progress": "Mi progreso"
       },
       "role": "Estudiante",
-      "teacherReview": "tu profesor/a puede revisar tus conversaciones"
+      "teacherReview": "tu profesor/a puede revisar tus conversaciones",
+      "course": {
+        "label": "Curso",
+        "tutor": "Tutor",
+        "exercise": "Ejercicios",
+        "quiz": "Cuestionarios",
+        "progress": "Mi progreso"
+      }
     },
     "test": {
       "pageTitle": "Test",
@@ -1088,7 +1102,8 @@
         "dashboard": "Panel",
         "questions": "Preguntas"
       },
-      "role": "Profesor/a"
+      "role": "Profesor/a",
+      "course": "Curso"
     },
     "tutorSettings": {
       "back": "Volver al curso",

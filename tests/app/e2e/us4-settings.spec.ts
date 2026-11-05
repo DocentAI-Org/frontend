@@ -1,11 +1,11 @@
 // US4 — teacher configures the tutor (spec 002 US4, 001 US3).
-import { expect, expectAccessible, scenario, test } from "./helpers";
+import { courseSection, expect, expectAccessible, scenario, test } from "./helpers";
 import { newCourse } from "./helpers-course";
 
 test.describe("US4 tutor settings", () => {
   test.beforeEach(async ({ page }) => {
     await newCourse(page);
-    await page.getByRole("link", { name: /configuración del tutor/i }).click();
+    await (await courseSection(page, /^configuración del tutor$/i)).click();
     await expect(page.getByRole("heading", { level: 2, name: /nivel del curso/i }).or(page.getByRole("group", { name: /nivel del curso/i }))).toBeVisible();
   });
 
@@ -33,12 +33,12 @@ test.describe("US4 tutor settings", () => {
     await page.getByRole("radio", { name: /formal/i }).check();
     await expect(page.getByText("Tienes cambios sin guardar.", { exact: true })).toBeVisible();
 
-    await page.getByRole("link", { name: /^material$/i }).click();
+    await (await courseSection(page, /^material$/i)).click();
     await expect(page.getByRole("dialog")).toContainText(/salir sin guardar/i);
     await page.getByRole("dialog").getByRole("button", { name: /seguir editando/i }).click();
     await expect(page.getByRole("radio", { name: /formal/i })).toBeChecked();
 
-    await page.getByRole("link", { name: /^material$/i }).click();
+    await (await courseSection(page, /^material$/i)).click();
     await page.getByRole("dialog").getByRole("button", { name: /salir sin guardar/i }).click();
     await expect(page).toHaveURL(/\/material$/);
   });

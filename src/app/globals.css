@@ -8,14 +8,25 @@
 
 body {
   margin: 0;
-  background: var(--color-surface);
+  /* background-color only: the shorthand would drop theme.css's notebook grid on <body>. */
+  background-color: var(--color-surface);
   color: var(--color-fg);
   font-family: var(--font-sans);
 }
 
-button,
-input,
-textarea,
-select {
-  font: inherit;
+/* In the base layer so text-sm, font-semibold and the like on a control still apply. */
+@layer base {
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+}
+
+/* The signed-in shell's fixed sidebar (src/components/AppShell.tsx) takes 15rem from lg up. */
+@media (width >= 64rem) {
+  body:has(aside[data-sidebar]) {
+    padding-inline-start: 15rem;
+  }
 }

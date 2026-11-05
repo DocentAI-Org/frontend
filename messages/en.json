@@ -202,12 +202,18 @@
       "signIn": "Sign in",
       "signInLead": "Your course tutor, guided by your teacher.",
       "signInPageTitle": "Sign in",
-      "signInTitle": "Welcome to DocentAI",
+      "signInTitle": "Sign in to DocentAI",
       "signingIn": "Signing in…",
       "identifier": "Email or code",
-      "identifierHint": "If you were given a code (for example, EST-7K3P9), type it here.",
+      "identifierHint": "Were you given a code? Type it here.",
       "invalidIdentifier": "Incorrect email, code or password. Check them and try again.",
-      "missing": "Type your email or code and your password."
+      "missing": "Type your email or code and your password.",
+      "preview": {
+        "question": "How do I solve for x in 3x + 5 = 20?",
+        "answer": "Get x on its own: subtract 5 from both sides, then divide by 3.",
+        "equation": "3x + 5 = 20  →  3x = 15  →  x = 5",
+        "source": "Unit 3 · p. 12"
+      }
     },
     "brand": {
       "name": "DocentAI",
@@ -255,8 +261,10 @@
       "loading": "Loading…"
     },
     "theme": {
-      "toDark": "Switch to dark theme",
-      "toLight": "Switch to light theme"
+      "label": "Theme",
+      "system": "System theme",
+      "light": "Light theme",
+      "dark": "Dark theme"
     },
     "decision": {
       "why": "Why?",
@@ -308,7 +316,7 @@
     },
     "questionnaires": {
       "title": "Study questionnaires",
-      "lead": "Your opinion helps improve DocentAI. They open in another tool.",
+      "lead": "Your opinion helps improve DocentAI.",
       "newTab": "(opens in a new tab)"
     },
     "adaptation": {
@@ -601,7 +609,6 @@
       "consentTitle": "Consent",
       "email": "Email",
       "giveAgain": "Give my consent again",
-      "language": "Language",
       "loadError": "We couldn't load your profile",
       "name": "Name",
       "pageTitle": "Profile",
@@ -690,7 +697,14 @@
         "progress": "My progress"
       },
       "role": "Student",
-      "teacherReview": "your teacher may review your conversations"
+      "teacherReview": "your teacher may review your conversations",
+      "course": {
+        "label": "Course",
+        "tutor": "Tutor",
+        "exercise": "Exercises",
+        "quiz": "Quizzes",
+        "progress": "My progress"
+      }
     },
     "test": {
       "pageTitle": "Test",
@@ -1088,7 +1102,8 @@
         "dashboard": "Dashboard",
         "questions": "Questions"
       },
-      "role": "Teacher"
+      "role": "Teacher",
+      "course": "Course"
     },
     "tutorSettings": {
       "back": "Back to the course",
