@@ -8,7 +8,8 @@
 
 body {
   margin: 0;
-  background: var(--color-surface);
+  /* background-color only: the shorthand would drop theme.css's notebook grid on <body>. */
+  background-color: var(--color-surface);
   color: var(--color-fg);
   font-family: var(--font-sans);
 }

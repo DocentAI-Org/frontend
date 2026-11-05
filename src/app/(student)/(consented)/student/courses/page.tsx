@@ -65,11 +65,11 @@ export default async function StudentCoursesPage() {
                   <h2 id={`course-${course.id}`} className="font-serif text-2xl font-semibold text-fg">
                     {course.name}
                   </h2>
-                  <p className="inline-flex items-center gap-2 text-sm text-fg-muted">
+                  <p className="inline-flex items-center gap-2 text-sm text-teacher-700">
                     <Icon name="graduation-cap" />
                     <span>{t("teacher", { teacher: course.teacher_name })}</span>
                   </p>
-                  {course.description && <p className="text-fg">{course.description}</p>}
+                  {course.description && <p className="font-serif text-lg text-fg">{course.description}</p>}
                 </div>
                 {pending.has(course.id) && (
                   <div className="flex flex-col gap-2 rounded-lg border border-info-200 bg-info-50 p-4" data-component="TestNotice">
@@ -81,7 +81,7 @@ export default async function StudentCoursesPage() {
                     </div>
                   </div>
                 )}
-                <nav aria-labelledby={`course-${course.id}`} className="flex flex-wrap gap-2">
+                <nav aria-labelledby={`course-${course.id}`} className="flex flex-wrap gap-2 border-t border-border pt-4">
                   <LinkButton href={routes.studentCourse(course.id)} icon="message-circle">
                     {t("openChat")}
                   </LinkButton>

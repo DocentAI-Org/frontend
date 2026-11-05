@@ -2,6 +2,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 
 import { AccessDenied, deniedReasonFor } from "@/components/AccessDenied";
 import { ErrorState } from "@/components/ErrorState";
+import { Icon } from "@/components/Icon";
 import { errorTypeLabel } from "@/components/LearningRecord";
 import { getAllowance, getConversation } from "@/lib/api/chat";
 import { getStudentCourse } from "@/lib/api/courses";
@@ -41,8 +42,11 @@ export async function CourseChat({ courseId, conversationId }: { courseId: strin
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-1 border-b-2 border-neutral-900 pb-4">
         <p className="text-sm text-fg-muted">{t("courseLabel")}</p>
-        <h1 className="text-3xl font-semibold text-fg">{course.data.name}</h1>
-        <p className="text-sm text-fg-muted">{t("teacherLine", { teacher: course.data.teacher_name })}</p>
+        <h1 className="text-3xl font-semibold text-fg sm:text-4xl">{course.data.name}</h1>
+        <p className="inline-flex items-center gap-2 text-sm text-teacher-700">
+          <Icon name="graduation-cap" />
+          <span>{t("teacherLine", { teacher: course.data.teacher_name })}</span>
+        </p>
       </div>
       <ChatScreen
         courseId={courseId}

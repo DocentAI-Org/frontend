@@ -30,7 +30,7 @@ export async function StudentShell({
 }) {
   const t = await getTranslations();
   return (
-    <div className="flex min-h-dvh flex-col bg-surface font-sans text-fg antialiased" data-component="AppShell" data-variant="student">
+    <div className="flex min-h-dvh flex-col font-sans text-fg antialiased" data-component="AppShell" data-variant="student">
       <SkipLink />
       <header className="sticky top-0 z-40">
         <div className="border-b border-border-strong bg-surface-raised">

@@ -51,7 +51,7 @@ export async function AppShell({
   const t = await getTranslations("common.a11y");
   const homeLink = <Brand href={home} />;
   return (
-    <div className="flex min-h-dvh flex-col bg-surface font-sans text-fg antialiased" data-component="AppShell" data-variant={variant}>
+    <div className="flex min-h-dvh flex-col font-sans text-fg antialiased" data-component="AppShell" data-variant={variant}>
       <SkipLink />
       <header className="sticky top-0 z-40 border-b border-border-strong bg-surface-raised lg:hidden">
         <div className="mx-auto flex h-16 max-w-6xl items-center gap-4 px-4 sm:px-6">
