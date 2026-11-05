@@ -56,6 +56,24 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/me/favorite-courses/{course_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Star a course the caller teaches or is in (specs/016) */
+        put: operations["star_course_v1_me_favorite_courses__course_id__put"];
+        post?: never;
+        /** Unstar a course (specs/016) */
+        delete: operations["unstar_course_v1_me_favorite_courses__course_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/error-types": {
         parameters: {
             query?: never;
@@ -2880,6 +2898,12 @@ export interface components {
             joined_at: string;
             /** Disclosure Acknowledged */
             disclosure_acknowledged: boolean;
+            /**
+             * Is Favorite
+             * @description Starred by the caller; listed first (specs/016).
+             * @default false
+             */
+            is_favorite: boolean;
         };
         /** StudentErrors */
         StudentErrors: {
@@ -3182,6 +3206,12 @@ export interface components {
              * Format: date-time
              */
             created_at: string;
+            /**
+             * Is Favorite
+             * @description Starred by the caller; listed first (specs/016).
+             * @default false
+             */
+            is_favorite: boolean;
         };
         /** TeacherCreate */
         TeacherCreate: {
@@ -3979,6 +4009,118 @@ export interface operations {
             };
         };
     };
+    star_course_v1_me_favorite_courses__course_id__put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    unstar_course_v1_me_favorite_courses__course_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     list_error_types_v1_error_types_get: {
         parameters: {
             query?: never;
@@ -4022,6 +4164,9 @@ export interface operations {
             query?: {
                 role?: ("admin" | "teacher" | "student") | null;
                 status?: ("active" | "disabled") | null;
+                /** @description Words to look for. */
+                q?: string | null;
+                sort?: "recent" | "name";
                 limit?: number;
                 offset?: number;
             };
@@ -4201,6 +4346,9 @@ export interface operations {
     list_courses_v1_admin_courses_get: {
         parameters: {
             query?: {
+                /** @description Words to look for. */
+                q?: string | null;
+                sort?: "recent" | "name";
                 limit?: number;
                 offset?: number;
             };
@@ -4646,6 +4794,9 @@ export interface operations {
     list_courses_v1_teacher_courses_get: {
         parameters: {
             query?: {
+                /** @description Words to look for. */
+                q?: string | null;
+                sort?: "recent" | "name";
                 limit?: number;
                 offset?: number;
             };
@@ -4987,6 +5138,9 @@ export interface operations {
     list_students_v1_teacher_courses__course_id__students_get: {
         parameters: {
             query?: {
+                /** @description Words to look for. */
+                q?: string | null;
+                sort?: "joined" | "name";
                 limit?: number;
                 offset?: number;
             };
@@ -5105,6 +5259,9 @@ export interface operations {
     list_documents_v1_teacher_courses__course_id__documents_get: {
         parameters: {
             query?: {
+                /** @description Words to look for. */
+                q?: string | null;
+                sort?: "recent" | "name";
                 limit?: number;
                 offset?: number;
             };
@@ -6455,6 +6612,9 @@ export interface operations {
                 to?: string | null;
                 has_no_source?: boolean | null;
                 has_correction?: boolean | null;
+                /** @description Words to look for. */
+                q?: string | null;
+                sort?: "recent" | "oldest";
                 limit?: number;
                 offset?: number;
             };
@@ -7419,6 +7579,9 @@ export interface operations {
             query?: {
                 status?: ("pending" | "approved" | "rejected") | null;
                 topic_id?: string | null;
+                /** @description Words to look for. */
+                q?: string | null;
+                sort?: "default" | "recent";
                 limit?: number;
                 offset?: number;
             };
@@ -8191,6 +8354,9 @@ export interface operations {
     list_courses_v1_student_courses_get: {
         parameters: {
             query?: {
+                /** @description Words to look for. */
+                q?: string | null;
+                sort?: "recent" | "name";
                 limit?: number;
                 offset?: number;
             };
