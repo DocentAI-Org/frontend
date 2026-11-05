@@ -1001,7 +1001,8 @@
       "removeTitle": "Remove the correction?",
       "removeBody": "Your student will no longer see the correction or the “Reviewed by your teacher” mark.",
       "removeConfirm": "Remove correction",
-      "correctionLabel": "Correction:"
+      "correctionLabel": "Correction:",
+      "back": "Back to flagged answers"
     },
     "fragments": {
       "backToMaterial": "Back to the material",
@@ -1264,7 +1265,8 @@
       "mistakesLead": "The mistakes in their exercises, by topic and type. Each example opens the feedback.",
       "noMistakesTitle": "{name} has no recorded mistakes yet",
       "noMistakesBody": "When they send exercises with mistakes, they appear here with their type and topic.",
-      "backToCourse": "Back to the course"
+      "backToCourse": "Back to the course",
+      "backTo": "Back to {name}"
     },
     "topics": {
       "pageTitle": "Course topics",

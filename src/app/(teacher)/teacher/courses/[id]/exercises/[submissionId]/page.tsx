@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Route } from "next";
 import Link from "next/link";
 import { getLocale, getTranslations } from "next-intl/server";
 
@@ -12,6 +12,8 @@ import type { Schemas } from "@/lib/api/client";
 import { getErrorTypes } from "@/lib/api/exercises";
 import { getCourseSubmission, getCourseSubmissionReview } from "@/lib/api/review";
 import { routes } from "@/lib/routes";
+
+import { backLink } from "../../backLink";
 
 import { ReviewedAnswer } from "../../conversations/ReviewedAnswer";
 
@@ -77,10 +79,10 @@ export default async function SubmissionReviewPage({
   searchParams
 }: {
   params: Promise<{ id: string; submissionId: string }>;
-  searchParams: Promise<{ saved?: string }>;
+  searchParams: Promise<{ saved?: string; back?: string }>;
 }) {
   const { id, submissionId } = await params;
-  const { saved } = await searchParams;
+  const { saved, back } = await searchParams;
   const t = await getTranslations();
   const locale = await getLocale();
   const [submission, review, taxonomy] = await Promise.all([
@@ -93,14 +95,15 @@ export default async function SubmissionReviewPage({
   }
   const s = submission.data;
   const repeated = s.repeated_mistake;
+  const backTo = await backLink(id, back, s.student_name);
   return (
     <div className="flex flex-col gap-6">
       <Link
-        href={routes.teacherConversations(id)}
+        href={backTo.href as Route}
         className="inline-flex w-fit items-center gap-1 rounded-sm text-sm font-semibold text-fg-muted hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
       >
         <Icon name="chevron-left" />
-        <span>{t("teacher.conversations.back")}</span>
+        <span>{backTo.label}</span>
       </Link>
       <div>
         <h2 className="text-2xl font-semibold text-fg">

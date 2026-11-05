@@ -164,7 +164,7 @@ export default async function DashboardPage({
                   : data.errors_by_student.map((row) => (
                       <tr key={row.student_id} className="border-b border-border last:border-b-0">
                         <th scope="row" className={`${TD} text-left`}>
-                          <Link href={routes.teacherStudent(id, row.student_id)} className={`${LINK} font-semibold`}>
+                          <Link href={routes.teacherStudent(id, row.student_id, "?from=dashboard")} className={`${LINK} font-semibold`}>
                             {row.display_name}
                           </Link>
                         </th>

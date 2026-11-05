@@ -141,6 +141,8 @@ export default async function StudentRecordPage({
     from === "dashboard"
       ? { href: routes.teacherDashboard(id), label: tr("back") }
       : { href: routes.teacherCourse(id), label: t("backToCourse") };
+  // The examples come back here, to this page as it was reached.
+  const here = routes.teacherStudent(id, studentId, from === "dashboard" ? "?from=dashboard" : "");
   return (
     <div className="flex max-w-3xl flex-col gap-6">
       <PageHeader title={student.display_name} lead={t("mistakesLead")} back={back} />
@@ -161,7 +163,7 @@ export default async function StudentRecordPage({
             progress={progress.data}
             taxonomy={taxonomy.ok ? taxonomy.data : null}
             audience="teacher"
-            exampleHref={(submissionId) => routes.teacherSubmission(id, submissionId)}
+            exampleHref={(submissionId) => routes.teacherSubmission(id, submissionId, here)}
             headingLevel={3}
           />
         )}
@@ -182,7 +184,7 @@ export default async function StudentRecordPage({
           <LearningRecord
             entries={record.data}
             taxonomy={taxonomy.ok ? taxonomy.data : null}
-            exampleHref={(submissionId) => routes.teacherSubmission(id, submissionId)}
+            exampleHref={(submissionId) => routes.teacherSubmission(id, submissionId, here)}
           />
         )}
       </section>

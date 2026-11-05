@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Route } from "next";
 import Link from "next/link";
 import { getLocale, getTranslations } from "next-intl/server";
 
@@ -11,6 +11,7 @@ import { getErrorTypes } from "@/lib/api/exercises";
 import { getCourseConversation } from "@/lib/api/review";
 import { routes } from "@/lib/routes";
 
+import { backLink } from "../../backLink";
 import { ReviewedAnswer } from "../ReviewedAnswer";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -24,10 +25,10 @@ export default async function ConversationReviewPage({
   searchParams
 }: {
   params: Promise<{ id: string; conversationId: string }>;
-  searchParams: Promise<{ saved?: string }>;
+  searchParams: Promise<{ saved?: string; back?: string }>;
 }) {
   const { id, conversationId } = await params;
-  const { saved } = await searchParams;
+  const { saved, back } = await searchParams;
   const t = await getTranslations();
   const locale = await getLocale();
   const [conversation, taxonomy] = await Promise.all([getCourseConversation(id, conversationId), getErrorTypes()]);
@@ -36,14 +37,15 @@ export default async function ConversationReviewPage({
     return conversation.status === 404 ? <AccessDenied reason="not-found" home="/teacher/courses" /> : <ErrorState code={conversation.code} />;
   }
   const path = routes.teacherConversation(id, conversationId);
+  const backTo = await backLink(id, back, conversation.data.student_name);
   return (
     <div className="flex flex-col gap-6">
       <Link
-        href={routes.teacherConversations(id)}
+        href={backTo.href as Route}
         className="inline-flex w-fit items-center gap-1 rounded-sm text-sm font-semibold text-fg-muted hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
       >
         <Icon name="chevron-left" />
-        <span>{t("teacher.conversations.back")}</span>
+        <span>{backTo.label}</span>
       </Link>
       <div>
         <h2 className="text-2xl font-semibold text-fg">

@@ -1001,7 +1001,8 @@
       "removeTitle": "¿Quitar la corrección?",
       "removeBody": "Tu estudiante dejará de ver la corrección y la marca «Revisado por tu profesor/a».",
       "removeConfirm": "Quitar corrección",
-      "correctionLabel": "Corrección:"
+      "correctionLabel": "Corrección:",
+      "back": "Volver a respuestas marcadas"
     },
     "fragments": {
       "backToMaterial": "Volver al material",
@@ -1264,7 +1265,8 @@
       "mistakesLead": "Los errores de sus ejercicios, por tema y tipo. Cada ejemplo lleva a la corrección.",
       "noMistakesTitle": "{name} todavía no tiene errores registrados",
       "noMistakesBody": "Cuando envíe ejercicios con errores, aparecerán aquí con su tipo y su tema.",
-      "backToCourse": "Volver al curso"
+      "backToCourse": "Volver al curso",
+      "backTo": "Volver a {name}"
     },
     "topics": {
       "pageTitle": "Temas del curso",
