@@ -47,7 +47,13 @@ export function TagMenu({ tag }: { tag: { id: string; name: string; color: TagCo
       </button>
       {open && (
         <div className="absolute right-0 z-30 mt-1 flex w-52 flex-col gap-1 rounded-lg border border-border bg-surface-raised p-2 shadow-lg">
-          <TagDialog tag={tag} triggerLabel={t("editAction")} triggerIcon="settings" triggerClassName={buttonClass("ghost")} />
+          <TagDialog
+            tag={tag}
+            triggerLabel={t("editAction")}
+            triggerIcon="settings"
+            triggerClassName={buttonClass("ghost")}
+            onSaved={() => setOpen(false)}
+          />
           <ConfirmDialog
             trigger={t("delete")}
             triggerVariant="ghost"

@@ -20,9 +20,12 @@ export function TagDialog({
   tag,
   triggerLabel,
   triggerIcon,
-  triggerClassName
+  triggerClassName,
+  onSaved
 }: {
   tag?: Tag;
+  /** After a save, e.g. to close the menu the dialog was opened from. */
+  onSaved?: () => void;
   triggerLabel: string;
   triggerIcon: string;
   triggerClassName: string;
@@ -71,6 +74,7 @@ export function TagDialog({
               }
               dialog.current?.close();
               if (!tag) element.reset();
+              onSaved?.();
               router.refresh();
             });
           }}

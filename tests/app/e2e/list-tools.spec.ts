@@ -190,7 +190,7 @@ test.describe("016 US4 organise my courses with my own tags", () => {
     await tagCourse(page, "Primero", "Repaso");
 
     const row = page.getByRole("listitem").filter({ has: page.getByRole("heading", { name: "Primero" }) });
-    await expect(row.getByText("Repaso")).toBeVisible();
+    await expect(row.locator('[data-component="TagChips"]').getByText("Repaso")).toBeVisible();
     await expect(scope(page).getByRole("link", { name: /repaso/i })).toContainText("1");
     await scope(page).getByRole("link", { name: /repaso/i }).click();
     await expect(page).toHaveURL(/tag=/);
@@ -219,7 +219,8 @@ test.describe("016 US4 organise my courses with my own tags", () => {
     await expect(courseTitles(page)).toHaveText(["Primero"]);
   });
 
-  scenario("016-US4-AS4", "a name already in use is refused", async ({ page }) => {
+  scenario("016-US4-AS4", "a name already in use is refused", async ({ page, request }) => {
+    await courses(request, ["Primero"]);
     await signIn(page, USERS.teacher);
     await newTag(page, "Repaso");
     await expect(scope(page).getByRole("link", { name: /repaso/i })).toBeVisible();
