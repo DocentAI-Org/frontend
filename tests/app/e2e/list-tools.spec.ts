@@ -45,7 +45,7 @@ test.describe("016 US1 find something in a long list", () => {
     await signIn(page, USERS.admin);
 
     await search(page).fill("herrera");
-    await expect(page.getByRole("cell", { name: "Lucas Herrera" })).toBeVisible();
+    await expect(page.getByRole("main").getByText("Lucas Herrera").filter({ visible: true })).toBeVisible();
     await chooseOption(page.getByRole("combobox", { name: /rol/i }), /profesorado/i);
 
     await expect(page).toHaveURL(/role=teacher/);

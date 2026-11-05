@@ -73,7 +73,7 @@ function validName(value: unknown): string {
 export const courseRoutes: Route[] = [
   {
     // Backend specs/016 tests: the seeded teacher's courses with these names, oldest first; with
-    // `enrol`, the seeded student is in all of them.
+    // `enrol`, the seeded student is in all of them, with study consent given.
     method: "POST",
     path: "/__test/courses",
     handler: (ctx) => {
@@ -99,6 +99,10 @@ export const courseRoutes: Route[] = [
           state.enrolments.push({ course_id: course.id, student_id: student.id, status: "active", joined_at: at, disclosure_acknowledged_at: at });
         }
       });
+      // Like /__test/classroom: an enrolled student has given study consent, so the list opens.
+      if (enrol && !state.consent.some((c) => c.student_id === student.id)) {
+        state.consent.push({ student_id: student.id, action: "given", version: "2026-10", created_at: now() });
+      }
       return noContent();
     }
   },

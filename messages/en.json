@@ -23,7 +23,8 @@
       "loadError": "We couldn't load the courses",
       "pageTitle": "Courses",
       "tableCaption": "Platform courses",
-      "title": "Courses"
+      "title": "Courses",
+      "search": "Search by course or teacher"
     },
     "shell": {
       "nav": {
@@ -77,7 +78,17 @@
       },
       "tableCaption": "Platform users",
       "title": "Users",
-      "createStudents": "Create student accounts"
+      "createStudents": "Create student accounts",
+      "search": "Search by name or email",
+      "filterRole": "Role",
+      "allRoles": "All roles",
+      "roleFilter": {
+        "admin": "Administration",
+        "teacher": "Teachers",
+        "student": "Students"
+      },
+      "filterStatus": "Status",
+      "allStatuses": "All statuses"
     },
     "studentsNew": {
       "back": "Back to users",
@@ -785,7 +796,8 @@
       "exercise": "Exercise",
       "corrected": "Corrected",
       "correctedLabel": "Includes answers you corrected",
-      "messages": "{count, plural, one {# message} other {# messages}}"
+      "messages": "{count, plural, one {# message} other {# messages}}",
+      "search": "Search by student or text"
     },
     "course": {
       "back": "Back to my courses",
@@ -820,7 +832,8 @@
         "revoke": "Remove from course",
         "revokeTitle": "Remove {name} from the course?",
         "revokeBody": "They will lose access to the course and the tutor. Their conversations are kept.",
-        "revoked": "Removed from course"
+        "revoked": "Removed from course",
+        "search": "Search students"
       },
       "tab": {
         "conversations": "Conversations",
@@ -1032,7 +1045,8 @@
       "delete": "Delete",
       "deleteTitle": "Delete «{name}»?",
       "deleteBody": "The file and its fragments will be deleted. This cannot be undone.",
-      "openOriginal": "View original"
+      "openOriginal": "View original",
+      "search": "Search by file name"
     },
     "questions": {
       "approved": "Approved",
@@ -1091,7 +1105,8 @@
       "listLabel": "{status} questions",
       "unavailable": "The tutor isn't available right now. Try again in a few minutes.",
       "correctOption": "Option {n} is correct",
-      "checkAnswerKey": "The AI drafts these questions and sometimes marks a wrong option as correct or leaves two right options. Solve it yourself before approving it."
+      "checkAnswerKey": "The AI drafts these questions and sometimes marks a wrong option as correct or leaves two right options. Solve it yourself before approving it.",
+      "search": "Search by statement or topic"
     },
     "risk": {
       "activityBasis": "Messages to the tutor, exercises submitted and quizzes completed.",

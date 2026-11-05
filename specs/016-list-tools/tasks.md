@@ -7,6 +7,6 @@
 - [x] T003 Mock API: `q`, `sort`, paging and favourites
 - [x] T004 [US1] [US2] `ListToolbar`, "Mostrar más" and the API helpers that take `q`, `sort` and
   the number shown
-- [ ] T005 [US1] [US2] The eight lists: courses (teacher, student), students, conversations,
+- [x] T005 [US1] [US2] The eight lists: courses (teacher, student), students, conversations,
   material, questions, users, courses (admin)
-- [ ] T006 [US3] The favourite star in both course lists
+- [x] T006 [US3] The favourite star in both course lists

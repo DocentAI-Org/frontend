@@ -23,7 +23,8 @@
       "loadError": "No hemos podido cargar los cursos",
       "pageTitle": "Cursos",
       "tableCaption": "Cursos de la plataforma",
-      "title": "Cursos"
+      "title": "Cursos",
+      "search": "Buscar por curso o profesor/a"
     },
     "shell": {
       "nav": {
@@ -77,7 +78,17 @@
       },
       "tableCaption": "Usuarios de la plataforma",
       "title": "Usuarios",
-      "createStudents": "Crear cuentas de estudiante"
+      "createStudents": "Crear cuentas de estudiante",
+      "search": "Buscar por nombre o correo",
+      "filterRole": "Rol",
+      "allRoles": "Todos los roles",
+      "roleFilter": {
+        "admin": "Administración",
+        "teacher": "Profesorado",
+        "student": "Estudiantes"
+      },
+      "filterStatus": "Estado",
+      "allStatuses": "Todos los estados"
     },
     "studentsNew": {
       "back": "Volver a usuarios",
@@ -785,7 +796,8 @@
       "exercise": "Ejercicio",
       "corrected": "Corregida",
       "correctedLabel": "Incluye respuestas que has corregido",
-      "messages": "{count, plural, one {# mensaje} other {# mensajes}}"
+      "messages": "{count, plural, one {# mensaje} other {# mensajes}}",
+      "search": "Buscar por estudiante o texto"
     },
     "course": {
       "back": "Volver a mis cursos",
@@ -820,7 +832,8 @@
         "revoke": "Quitar del curso",
         "revokeTitle": "¿Quitar a {name} del curso?",
         "revokeBody": "Dejará de tener acceso al curso y al tutor. Sus conversaciones se conservan.",
-        "revoked": "Fuera del curso"
+        "revoked": "Fuera del curso",
+        "search": "Buscar estudiantes"
       },
       "tab": {
         "conversations": "Conversaciones",
@@ -1032,7 +1045,8 @@
       "delete": "Eliminar",
       "deleteTitle": "¿Eliminar «{name}»?",
       "deleteBody": "Se borrarán el archivo y sus fragmentos. No se puede deshacer.",
-      "openOriginal": "Ver original"
+      "openOriginal": "Ver original",
+      "search": "Buscar por nombre de archivo"
     },
     "questions": {
       "approved": "Aprobadas",
@@ -1091,7 +1105,8 @@
       "listLabel": "Preguntas {status}",
       "unavailable": "El tutor no está disponible ahora mismo. Inténtalo de nuevo en unos minutos.",
       "correctOption": "Opción {n} es la correcta",
-      "checkAnswerKey": "Las preguntas las redacta la IA y a veces marca como correcta una opción equivocada o deja dos opciones válidas. Resuélvela tú antes de aprobarla."
+      "checkAnswerKey": "Las preguntas las redacta la IA y a veces marca como correcta una opción equivocada o deja dos opciones válidas. Resuélvela tú antes de aprobarla.",
+      "search": "Buscar por enunciado o tema"
     },
     "risk": {
       "activityBasis": "Mensajes al tutor, ejercicios enviados y cuestionarios terminados.",
