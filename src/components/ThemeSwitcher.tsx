@@ -1,56 +1,76 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 
-import { THEME_COOKIE } from "@/lib/theme";
+import { THEME_COOKIE, type ThemeChoice } from "@/lib/theme";
 
 import { Icon } from "./Icon";
 
 const YEAR = 60 * 60 * 24 * 365;
 
-function isDark() {
-  const chosen = document.documentElement.getAttribute("data-theme");
-  return chosen ? chosen === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
-}
+const OPTIONS: { value: ThemeChoice; icon: string }[] = [
+  { value: "system", icon: "monitor" },
+  { value: "light", icon: "sun" },
+  { value: "dark", icon: "moon" }
+];
 
-/** Saves the opposite of what is shown as the user's preference and applies it at once. */
-function toggleTheme() {
-  const next = isDark() ? "light" : "dark";
-  document.documentElement.setAttribute("data-theme", next);
-  document.cookie = `${THEME_COOKIE}=${next}; path=/; max-age=${YEAR}; samesite=lax`;
+/** Applies the choice at once and remembers it; "system" forgets it, so theme.css follows the system. */
+function apply(choice: ThemeChoice) {
+  const root = document.documentElement;
+  if (choice === "system") {
+    root.removeAttribute("data-theme");
+    document.cookie = `${THEME_COOKIE}=; path=/; max-age=0; samesite=lax`;
+  } else {
+    root.setAttribute("data-theme", choice);
+    document.cookie = `${THEME_COOKIE}=${choice}; path=/; max-age=${YEAR}; samesite=lax`;
+  }
 }
 
 /**
- * ThemeSwitcher (spec 004): one button that switches between light and dark. Until the user picks
- * one it follows the system. Icon and label come from the `dark:` variant, so the server renders
- * the right ones whatever the system theme is.
+ * ThemeSwitcher (spec 004): system, light and dark as a small segmented pill, like Geist's. `initial`
+ * is the saved choice the server rendered the page with (no cookie means the system theme).
  */
-export function ThemeSwitcher() {
+export function ThemeSwitcher({ initial }: { initial: ThemeChoice }) {
   const t = useTranslations("common.theme");
+  const [choice, setChoice] = useState(initial);
   return (
-    <button
-      type="button"
-      onClick={toggleTheme}
-      className="inline-flex size-11 shrink-0 items-center justify-center rounded-lg border border-border bg-surface-raised text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+    <div
+      role="group"
+      aria-label={t("label")}
+      className="inline-flex shrink-0 items-center gap-0.5 rounded-full border border-border bg-surface-raised p-0.5"
       data-component="ThemeSwitcher"
     >
-      <Icon name="moon" className="size-5 shrink-0 dark:hidden" />
-      <Icon name="sun" className="hidden size-5 shrink-0 dark:block" />
-      <span className="sr-only dark:hidden">{t("toDark")}</span>
-      <span className="sr-only hidden dark:inline">{t("toLight")}</span>
-    </button>
+      {OPTIONS.map((option) => (
+        <button
+          key={option.value}
+          type="button"
+          aria-label={t(option.value)}
+          aria-pressed={choice === option.value}
+          title={t(option.value)}
+          onClick={() => {
+            apply(option.value);
+            setChoice(option.value);
+          }}
+          className="inline-flex size-8 items-center justify-center rounded-full text-fg-muted hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus aria-pressed:bg-surface-sunken aria-pressed:text-fg"
+        >
+          <Icon name={option.icon} className="size-4 shrink-0" />
+        </button>
+      ))}
+    </div>
   );
 }
 
-/** A user-menu row that switches theme; the label names the theme it switches to. */
-export function ThemeMenuRow({ className }: { className: string }) {
+/** A row of the account menu: "Theme" and the switcher, shaped like the language row. */
+export function ThemeMenuRow({ initial }: { initial: ThemeChoice }) {
   const t = useTranslations("common.theme");
   return (
-    <button type="button" onClick={toggleTheme} className={className} data-component="ThemeSwitcher" data-variant="menu">
-      <Icon name="moon" className="size-4 shrink-0 dark:hidden" />
-      <Icon name="sun" className="hidden size-4 shrink-0 dark:block" />
-      <span className="dark:hidden">{t("dark")}</span>
-      <span className="hidden dark:inline">{t("light")}</span>
-    </button>
+    <div className="flex min-h-9 items-center gap-2 px-3 text-sm text-fg">
+      <Icon name="sun" />
+      <span>{t("label")}</span>
+      <span className="ml-auto">
+        <ThemeSwitcher initial={initial} />
+      </span>
+    </div>
   );
 }

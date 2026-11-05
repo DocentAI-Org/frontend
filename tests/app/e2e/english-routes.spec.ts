@@ -1,5 +1,5 @@
 // 003 — English routes for every language; English is the base language (spec 003 US1, US2).
-import { USERS, chooseOption, expect, expectAccessible, openMenuIfNeeded, scenario, signIn, test } from "./helpers";
+import { USERS, expect, expectAccessible, openMenuIfNeeded, scenario, signIn, test } from "./helpers";
 import { newCourse } from "./helpers-course";
 
 test.describe("003 US1 English routes", () => {
@@ -30,7 +30,7 @@ test.describe("003 US1 English routes", () => {
     const url = page.url();
 
     await openMenuIfNeeded(page);
-    await chooseOption(page.getByRole("combobox", { name: "Idioma" }).filter({ visible: true }), "English");
+    await page.getByRole("group", { name: /^idioma$/i }).filter({ visible: true }).getByRole("button", { name: "English" }).click();
     await expect(page.getByRole("heading", { level: 1, name: "My courses" })).toBeVisible();
     expect(page.url()).toBe(url);
   });

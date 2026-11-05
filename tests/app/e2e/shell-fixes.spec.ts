@@ -2,7 +2,7 @@
 import { USERS, expect, expectAccessible, openMenuIfNeeded, scenario, signIn, test } from "./helpers";
 
 const themeButton = (page: import("@playwright/test").Page, name: RegExp) =>
-  page.getByRole("button", { name }).filter({ visible: true });
+  page.getByRole("group", { name: /^tema$/i }).filter({ visible: true }).getByRole("button", { name });
 
 test.describe("004 US1 theme switcher", () => {
   test.describe("system in light mode", () => {
@@ -11,27 +11,35 @@ test.describe("004 US1 theme switcher", () => {
     scenario("004-US1-AS1", "switching to dark applies at once and survives a reload", async ({ page }) => {
       await page.goto("/sign-in");
       await expect(page.locator("html")).not.toHaveAttribute("data-theme", /.+/);
-      await themeButton(page, /cambiar a tema oscuro/i).click();
+      await expect(themeButton(page, /tema del sistema/i)).toHaveAttribute("aria-pressed", "true");
+      await themeButton(page, /tema oscuro/i).click();
 
       await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
-      await expect(themeButton(page, /cambiar a tema claro/i)).toBeVisible();
+      await expect(themeButton(page, /tema oscuro/i)).toHaveAttribute("aria-pressed", "true");
       await page.reload();
       await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+      await expect(themeButton(page, /tema oscuro/i)).toHaveAttribute("aria-pressed", "true");
       await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
       await expectAccessible(page);
     });
 
-    scenario("004-US1-AS3", "signed-in users find it on the language selector's line", async ({ page }) => {
+    scenario("004-US1-AS3", "signed-in users find it in the account menu, next to the language", async ({ page }) => {
       await signIn(page, USERS.teacher);
       await openMenuIfNeeded(page);
-      const language = page.getByRole("combobox", { name: "Idioma" }).filter({ visible: true });
-      const button = themeButton(page, /cambiar a tema oscuro/i);
-      await expect(button).toBeVisible();
-      const [a, b] = [await language.boundingBox(), await button.boundingBox()];
-      expect(Math.abs(a!.y + a!.height / 2 - (b!.y + b!.height / 2))).toBeLessThan(4);
-      await button.click();
+      await expect(page.getByRole("group", { name: /^idioma$/i }).filter({ visible: true })).toBeVisible();
+      await themeButton(page, /tema oscuro/i).click();
       await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
       await expectAccessible(page);
+    });
+
+    scenario("004-US1-AS4", "choosing the system theme again forgets the saved choice", async ({ page }) => {
+      await page.goto("/sign-in");
+      await themeButton(page, /tema oscuro/i).click();
+      await themeButton(page, /tema del sistema/i).click();
+      await expect(page.locator("html")).not.toHaveAttribute("data-theme", /.+/);
+      await page.reload();
+      await expect(page.locator("html")).not.toHaveAttribute("data-theme", /.+/);
+      await expect(themeButton(page, /tema del sistema/i)).toHaveAttribute("aria-pressed", "true");
     });
   });
 
@@ -41,11 +49,11 @@ test.describe("004 US1 theme switcher", () => {
     scenario("004-US1-AS2", "with no saved choice it follows the system", async ({ page }) => {
       await page.goto("/sign-in");
       await expect(page.locator("html")).not.toHaveAttribute("data-theme", /.+/);
-      await themeButton(page, /cambiar a tema claro/i).click();
+      await themeButton(page, /tema claro/i).click();
       await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
       await page.reload();
       await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
-      await expect(themeButton(page, /cambiar a tema oscuro/i)).toBeVisible();
+      await expect(themeButton(page, /tema claro/i)).toHaveAttribute("aria-pressed", "true");
     });
   });
 });

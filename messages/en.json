@@ -261,10 +261,10 @@
       "loading": "Loading…"
     },
     "theme": {
-      "toDark": "Switch to dark theme",
-      "toLight": "Switch to light theme",
-      "dark": "Dark theme",
-      "light": "Light theme"
+      "label": "Theme",
+      "system": "System theme",
+      "light": "Light theme",
+      "dark": "Dark theme"
     },
     "decision": {
       "why": "Why?",

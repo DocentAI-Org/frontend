@@ -42,7 +42,7 @@ export function LanguageSwitcher({ stretch = false }: { stretch?: boolean }) {
   );
 }
 
-/** A user-menu row: the languages as small pressed/unpressed text buttons, lighter than a Select. */
+/** A user-menu row: the languages as a small segmented pill, like the theme switcher. */
 export function LanguageMenuRow() {
   const t = useTranslations("common");
   const active = useLocale();
@@ -53,7 +53,7 @@ export function LanguageMenuRow() {
     <div className="flex min-h-9 items-center gap-2 px-3 text-sm text-fg" data-component="LanguageSwitcher" data-variant="menu">
       <Icon name="globe" />
       <span id={label}>{t("a11y.language")}</span>
-      <div role="group" aria-labelledby={label} className="ml-auto flex gap-1">
+      <div role="group" aria-labelledby={label} className="ml-auto inline-flex items-center gap-0.5 rounded-full border border-border bg-surface-raised p-0.5">
         {LOCALES.map((locale) => (
           <button
             key={locale}
@@ -62,7 +62,7 @@ export function LanguageMenuRow() {
             aria-pressed={locale === active}
             disabled={pending}
             onClick={() => locale !== active && choose(locale)}
-            className="min-h-8 rounded-md px-2 text-xs font-medium text-fg-muted hover:bg-surface-sunken hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus aria-pressed:bg-neutral-900 aria-pressed:text-fg-inverse"
+            className="min-h-8 rounded-full px-3 text-xs font-medium text-fg-muted hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus aria-pressed:bg-surface-sunken aria-pressed:text-fg"
           >
             {t(`language.${locale}`)}
           </button>

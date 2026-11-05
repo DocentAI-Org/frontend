@@ -105,7 +105,7 @@ test.describe("US1 sign-in and role areas", () => {
     await expect(page.getByRole("heading", { level: 1, name: /entra en docentai/i })).toBeVisible();
     await signIn(page, USERS.teacher);
     await openMenuIfNeeded(page);
-    await chooseOption(page.getByRole("combobox", { name: "Idioma" }).filter({ visible: true }), "English");
+    await page.getByRole("group", { name: /^idioma$/i }).filter({ visible: true }).getByRole("button", { name: "English" }).click();
     await expect(page.getByRole("heading", { level: 1, name: "My courses" })).toBeVisible();
     await openMenuIfNeeded(page);
     await expect(page.getByRole("button", { name: /sign out/i }).filter({ visible: true })).toBeVisible();

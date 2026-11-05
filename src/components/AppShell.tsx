@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server";
 import type { ReactNode } from "react";
 
 import { signOut } from "@/app/actions/session";
+import { themeChoice } from "@/lib/theme-server";
 
 import { AppFooter } from "./AppFooter";
 import { Brand } from "./Brand";
@@ -40,7 +41,7 @@ async function AccountRows({ profile }: { profile?: NavItem }) {
         </Link>
       )}
       <LanguageMenuRow />
-      <ThemeMenuRow className={MENU_ITEM} />
+      <ThemeMenuRow initial={await themeChoice()} />
       <div className="my-1 border-t border-border" />
       <SignOutButton />
     </div>
