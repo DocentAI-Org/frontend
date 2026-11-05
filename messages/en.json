@@ -761,14 +761,12 @@
       "reasonExhausted": "There are no more {from} questions left: the next one is {to}."
     },
     "shell": {
-      "aiLabel": "AI tutor",
       "nav": {
         "courses": "My courses",
         "profile": "Profile",
         "progress": "My progress"
       },
       "role": "Student",
-      "teacherReview": "your teacher may review your conversations",
       "course": {
         "label": "Course",
         "tutor": "Tutor",

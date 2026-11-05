@@ -59,8 +59,7 @@ function Avatar() {
 /**
  * The signed-in shell for every role, laid out like a project dashboard: a header with the brand
  * and the account menu, and under it the role's sections as tabs (and the current course's after a
- * divider), scrolling sideways when they do not fit. `banner` sits above every page (the student's
- * AI notice).
+ * divider), scrolling sideways when they do not fit.
  */
 export async function AppShell({
   variant,
@@ -70,7 +69,6 @@ export async function AppShell({
   profile,
   userName,
   roleLabel,
-  banner,
   children
 }: {
   variant: "admin" | "teacher" | "student";
@@ -80,7 +78,6 @@ export async function AppShell({
   profile?: NavItem;
   userName: string;
   roleLabel: string;
-  banner?: ReactNode;
   children: ReactNode;
 }) {
   const t = await getTranslations("common.a11y");
@@ -88,9 +85,18 @@ export async function AppShell({
     <div className="flex min-h-dvh flex-col font-sans text-fg antialiased" data-component="SignedInShell" data-variant={variant}>
       <SkipLink />
       <header className="sticky top-0 z-40 border-b border-border bg-surface-raised">
-        <div className="flex h-14 items-center gap-4 px-4 sm:px-6 lg:px-8">
-          <Brand href={home} />
-          <details className="relative ml-auto">
+        {/* One row from md up: brand, tabs, account. On phones the tabs wrap to a row of their own. */}
+        <div className="flex flex-wrap items-stretch gap-x-4 px-4 sm:px-6 md:h-14 md:flex-nowrap lg:px-8">
+          <div className="flex h-14 shrink-0 items-center">
+            <Brand href={home} />
+          </div>
+          <nav
+            aria-label={t("mainNav")}
+            className="order-last -mx-4 w-[calc(100%+2rem)] overflow-x-auto border-t border-border px-2 sm:-mx-6 sm:w-[calc(100%+3rem)] sm:px-4 md:order-none md:mx-0 md:w-auto md:min-w-0 md:flex-1 md:border-t-0 md:px-0"
+          >
+            <ShellNav items={nav} course={course} />
+          </nav>
+          <details className="relative ml-auto self-center md:ml-0">
             <summary className="flex min-h-11 cursor-pointer list-none items-center gap-2 rounded-md px-2 hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
               <Avatar />
               <span className="hidden min-w-0 flex-col text-left sm:flex">
@@ -110,11 +116,7 @@ export async function AppShell({
             </div>
           </details>
         </div>
-        <nav aria-label={t("mainNav")} className="overflow-x-auto px-2 sm:px-4 lg:px-6">
-          <ShellNav items={nav} course={course} />
-        </nav>
       </header>
-      {banner}
       <main id="main" tabIndex={-1} className="mx-auto w-full max-w-6xl flex-1 px-4 py-8 sm:px-6 lg:px-8">
         {children}
       </main>

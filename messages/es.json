@@ -761,14 +761,12 @@
       "reasonExhausted": "No quedan más preguntas de dificultad {from}: la siguiente es {to}."
     },
     "shell": {
-      "aiLabel": "Tutor IA",
       "nav": {
         "courses": "Mis cursos",
         "profile": "Perfil",
         "progress": "Mi progreso"
       },
       "role": "Estudiante",
-      "teacherReview": "tu profesor/a puede revisar tus conversaciones",
       "course": {
         "label": "Curso",
         "tutor": "Tutor",

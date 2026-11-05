@@ -14,7 +14,7 @@ export type CourseSection = { path: string; label: string; icon: string; also?: 
 export type CourseNav = { base: string; label: string; sections: CourseSection[] };
 
 const TAB =
-  "relative flex h-11 shrink-0 items-center gap-2 rounded-md px-3 text-sm whitespace-nowrap text-fg-muted hover:text-fg focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus after:absolute after:inset-x-3 after:-bottom-px after:h-0.5 after:rounded-full after:bg-transparent data-current:font-medium data-current:text-fg data-current:after:bg-neutral-900";
+  "relative flex h-11 shrink-0 items-center gap-2 rounded-md px-3 md:h-14 text-sm whitespace-nowrap text-fg-muted hover:text-fg focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:rounded-full after:bg-transparent data-current:font-medium data-current:text-fg data-current:after:bg-neutral-900";
 
 function Tab({ href, icon, label, current }: { href: Route; icon: string; label: string; current: boolean }) {
   return (
@@ -28,7 +28,7 @@ function Tab({ href, icon, label, current }: { href: Route; icon: string; label:
 }
 
 /**
- * The signed-in shell's tabs, under the header like a project dashboard's: the role's sections
+ * The signed-in shell's tabs, in the header like a project dashboard's: the role's sections
  * and, inside a course, that course's sections after a divider. The course is read from the URL.
  */
 export function ShellNav({ items, course }: { items: NavItem[]; course?: CourseNav }) {
@@ -47,7 +47,7 @@ export function ShellNav({ items, course }: { items: NavItem[]; course?: CourseN
       </ul>
       {course && courseUrl && (
         <>
-          <span aria-hidden="true" className="my-3 w-px shrink-0 bg-border" />
+          <span aria-hidden="true" className="my-3 w-px shrink-0 bg-border md:my-4" />
           <span id={heading} className="sr-only">
             {course.label}
           </span>
