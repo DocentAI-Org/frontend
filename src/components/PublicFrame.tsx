@@ -10,7 +10,7 @@ export function PublicFrame({ children }: { children: ReactNode }) {
     <div className="flex min-h-dvh flex-col font-sans text-fg antialiased">
       <SkipLink />
       <PublicHeader />
-      <main id="main" tabIndex={-1} className="mx-auto w-full max-w-6xl flex-1 px-4 py-8 sm:px-6 lg:py-16">
+      <main id="main" tabIndex={-1} className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 py-8 sm:px-6 lg:py-16">
         {children}
       </main>
       <AppFooter />

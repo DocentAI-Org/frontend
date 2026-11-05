@@ -18,7 +18,7 @@ export default async function SignInPage({
   const { next, expired } = await searchParams;
   const t = await getTranslations();
   return (
-    <div className="mx-auto grid w-full max-w-md gap-10 lg:max-w-none lg:grid-cols-2 lg:items-start lg:gap-16">
+    <div className="mx-auto grid w-full max-w-md gap-10 lg:my-auto lg:max-w-none lg:grid-cols-2 lg:items-center lg:gap-16">
       <div className="flex flex-col gap-8">
         <div className="flex flex-col gap-4 border-b-2 border-neutral-900 pb-6">
           {/* eslint-disable-next-line @next/next/no-img-element -- static prototype asset, decorative */}
