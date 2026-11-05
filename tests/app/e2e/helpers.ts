@@ -96,8 +96,10 @@ export async function courseSection(page: Page, name: RegExp) {
   if (await link.count()) return link;
   const groups = page.getByRole("navigation", { name: /secciones del curso/i }).getByRole("link");
   for (let i = 0; i < (await groups.count()); i += 1) {
+    if ((await groups.nth(i).getAttribute("aria-current")) === "true") continue;
     await groups.nth(i).click();
-    await page.waitForLoadState("networkidle");
+    // Wait for the group's sections to be shown before looking for the link.
+    await expect(groups.nth(i)).toHaveAttribute("aria-current", "true");
     if (await link.count()) break;
   }
   return link;

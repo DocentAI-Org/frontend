@@ -1283,7 +1283,6 @@
       "addFirst": "Add the first topic",
       "saveName": "Save name",
       "added": "“{name}” was added. Assign sections to it from the material.",
-      "reordered": "“{name}” moved up one place.",
       "emptyTitle": "No topics yet",
       "emptyBody": "Topics are the course's learning objectives. Create the first one, then assign each document or section to its topics.",
       "deleteTitle": "Delete “{name}”?",
@@ -1295,7 +1294,11 @@
       "assign": "Assign topics",
       "manage": "Manage topics",
       "deletedSuffix": "they belonged to the deleted topic “{name}”",
-      "sections": "{count, plural, one {# section assigned} other {# sections assigned}}"
+      "sections": "{count, plural, one {# section assigned} other {# sections assigned}}",
+      "handle": "Move “{name}”",
+      "handleHelp": "Drag to reorder, use the ↑ ↓ arrow keys or press for options.",
+      "movedTo": "“{name}” is now in position {position}.",
+      "moveFailed": "The order could not be saved. Try again."
     },
     "topicAssignment": {
       "pageTitle": "Assign topics",

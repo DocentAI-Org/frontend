@@ -1283,7 +1283,6 @@
       "addFirst": "Añadir el primer tema",
       "saveName": "Guardar nombre",
       "added": "«{name}» se ha añadido. Asígnale secciones desde el material.",
-      "reordered": "«{name}» ha subido una posición.",
       "emptyTitle": "Todavía no hay temas",
       "emptyBody": "Los temas son los objetivos de aprendizaje del curso. Crea el primero y después asigna a cada documento o sección sus temas.",
       "deleteTitle": "¿Eliminar «{name}»?",
@@ -1295,7 +1294,11 @@
       "assign": "Asignar temas",
       "manage": "Gestionar los temas",
       "deletedSuffix": "eran del tema eliminado «{name}»",
-      "sections": "{count, plural, one {# sección asignada} other {# secciones asignadas}}"
+      "sections": "{count, plural, one {# sección asignada} other {# secciones asignadas}}",
+      "handle": "Mover «{name}»",
+      "handleHelp": "Arrastra para ordenar, usa las flechas ↑ ↓ o pulsa para ver las opciones.",
+      "movedTo": "«{name}» está ahora en la posición {position}.",
+      "moveFailed": "No se ha podido guardar el orden. Inténtalo de nuevo."
     },
     "topicAssignment": {
       "pageTitle": "Asignar temas",
