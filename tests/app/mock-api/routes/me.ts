@@ -1,4 +1,4 @@
-import { HttpError, type Route } from "../http.ts";
+import { type Ctx, HttpError, type Route, noContent } from "../http.ts";
 import type { S, User } from "../state.ts";
 
 export function meView(user: User): S["Me"] {
@@ -34,5 +34,35 @@ export const meRoutes: Route[] = [
       user.preferred_language = language;
       return meView(user);
     }
+  },
+  {
+    // Backend specs/016: a course the caller teaches or is actively in, else 404.
+    method: "PUT",
+    path: "/v1/me/favorite-courses/{course_id}",
+    handler: (ctx) => {
+      ctx.state.favorites.add(favoriteKey(ctx));
+      return noContent();
+    }
+  },
+  {
+    method: "DELETE",
+    path: "/v1/me/favorite-courses/{course_id}",
+    handler: (ctx) => {
+      ctx.state.favorites.delete(favoriteKey(ctx));
+      return noContent();
+    }
   }
 ];
+
+function favoriteKey(ctx: Ctx): string {
+  const user = ctx.user;
+  if (!user) throw new HttpError(401, "unauthenticated");
+  if (user.role !== "teacher" && user.role !== "student") throw new HttpError(403, "forbidden");
+  const courseId = ctx.params.course_id;
+  const mine =
+    user.role === "teacher"
+      ? ctx.state.courses.some((c) => c.id === courseId && c.teacher_id === user.id)
+      : ctx.state.enrolments.some((e) => e.course_id === courseId && e.student_id === user.id && e.status === "active");
+  if (!mine) throw new HttpError(404, "not_found");
+  return `${user.id}:${courseId}`;
+}

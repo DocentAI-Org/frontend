@@ -2,7 +2,7 @@
 // (drafts, nothing usable, unavailable); /__test/questions seeds approved questions. The quiz
 // follows the backend's provisional rule: the level is the difficulty shown, starting nearest
 // to 2; 2 in a row aim one level up or down; 5 questions.
-import { HttpError, type Route, page } from "../http.ts";
+import { HttpError, type Route, page, search, sortParam } from "../http.ts";
 import { type Question, type Quiz, type QuizItem, type S, type State, id, now } from "../state.ts";
 import { citationView } from "./chat.ts";
 import { consentStatus } from "./consent.ts";
@@ -199,11 +199,21 @@ export const quizRoutes: Route[] = [
       const state = ctx.state;
       const status = ctx.url.searchParams.get("status");
       const topicId = ctx.url.searchParams.get("topic_id");
-      const scope = state.questions.filter((q) => q.course_id === course.id && (!topicId || q.topic_id === topicId));
+      const sort = sortParam(ctx.url, ["default", "recent"] as const);
+      const topicName = (q: Question) => state.topics.find((t) => t.id === q.topic_id)?.name;
+      const scope = search(
+        state.questions.filter((q) => q.course_id === course.id && (!topicId || q.topic_id === topicId)),
+        ctx.url,
+        (q) => [q.statement, topicName(q)]
+      );
       const counts = Object.fromEntries(STATUSES.map((s) => [s, scope.filter((q) => q.status === s).length])) as S["QuestionCounts"];
       const rows = scope
         .filter((q) => !status || q.status === status)
-        .sort((a, b) => Number(a.status !== "pending") - Number(b.status !== "pending") || b.created_at.localeCompare(a.created_at));
+        .sort(
+          (a, b) =>
+            (sort === "default" ? Number(a.status !== "pending") - Number(b.status !== "pending") : 0) ||
+            b.created_at.localeCompare(a.created_at)
+        );
       return { ...page(rows.map((q) => questionView(state, q)), ctx.url), counts };
     }
   },

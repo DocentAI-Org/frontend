@@ -1,4 +1,4 @@
-import { HttpError, type Route, noContent, page } from "../http.ts";
+import { HttpError, type Route, byName, noContent, page, search, sortParam } from "../http.ts";
 import { type Doc, type Frag, type S, type State, id, now, state as store } from "../state.ts";
 import { ownedCourse } from "./courses.ts";
 
@@ -151,8 +151,10 @@ export const documentRoutes: Route[] = [
     path: BASE,
     handler: (ctx) => {
       const course = ownedCourse(ctx);
+      const sort = sortParam(ctx.url, ["recent", "name"] as const);
       const docs = ctx.state.documents.filter((d) => d.course_id === course.id).reverse();
-      return page(docs.map((d) => documentView(ctx.state, d)), ctx.url);
+      const rows = search(docs.map((d) => documentView(ctx.state, d)), ctx.url, (d) => [d.file_name]);
+      return page(sort === "name" ? rows.sort(byName((d) => d.file_name)) : rows, ctx.url);
     }
   },
   {

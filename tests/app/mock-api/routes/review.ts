@@ -1,5 +1,5 @@
 // Teacher review of conversations and feedback, flags and corrections (001 US8, backend 002).
-import { HttpError, type Route, noContent, page } from "../http.ts";
+import { HttpError, type Route, noContent, page, search, sortParam } from "../http.ts";
 import { type Flag, type S, type State, id, now } from "../state.ts";
 import { messageView } from "./chat.ts";
 import { ownedCourse } from "./courses.ts";
@@ -85,7 +85,11 @@ export const reviewRoutes: Route[] = [
       if (q.get("from")) rows = rows.filter((r) => r.last_message_at >= q.get("from")!);
       if (q.get("has_no_source")) rows = rows.filter((r) => r.has_no_source === (q.get("has_no_source") === "true"));
       if (q.get("has_correction")) rows = rows.filter((r) => r.has_correction === (q.get("has_correction") === "true"));
-      return page(rows.sort((a, b) => b.last_message_at.localeCompare(a.last_message_at)), ctx.url);
+      const sort = sortParam(ctx.url, ["recent", "oldest"] as const);
+      const texts = (conversationId: string) => ctx.state.messages.filter((m) => m.conversation_id === conversationId).map((m) => m.text);
+      rows = search(rows, ctx.url, (r) => [r.student_name, ...texts(r.id)]);
+      rows.sort((a, b) => b.last_message_at.localeCompare(a.last_message_at));
+      return page(sort === "oldest" ? rows.reverse() : rows, ctx.url);
     }
   },
   {
