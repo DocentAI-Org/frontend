@@ -107,7 +107,8 @@ export default async function StudentCoursesPage({
                     return (
                       <li key={course.id} className="flex flex-wrap items-center gap-x-3 gap-y-2 px-3 py-3 sm:px-4" data-component="CourseRow">
                         <FavoriteStar courseId={course.id} name={course.name} initial={course.is_favorite} />
-                        <div className="flex min-w-0 flex-1 flex-col gap-0.5">
+                        {/* At least 12rem for the name: on phones the actions wrap to a second line. */}
+                        <div className="flex min-w-48 flex-1 flex-col gap-0.5">
                           <h2 id={`course-${course.id}`} className="truncate text-base font-semibold text-fg">
                             <Link
                               href={routes.studentCourse(course.id)}
@@ -135,32 +136,34 @@ export default async function StudentCoursesPage({
                             </p>
                           )}
                         </div>
-                        <LinkButton href={routes.studentCourse(course.id)} icon="message-circle">
-                          {t("openChat")}
-                        </LinkButton>
-                        <details className="relative">
-                          <summary
-                            aria-label={t("moreActions", { name: course.name })}
-                            title={t("moreActions", { name: course.name })}
-                            className="flex size-9 cursor-pointer list-none items-center justify-center rounded-md text-fg-muted hover:bg-surface-sunken hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
-                          >
-                            <Icon name="ellipsis" className="size-5 shrink-0" />
-                          </summary>
-                          <div className="absolute right-0 z-20 mt-1 flex w-60 flex-col gap-1 rounded-lg border border-border bg-surface-raised p-2 shadow-lg">
-                            <Link href={routes.studentExercise(course.id)} className={ACTION}>
-                              <Icon name="file-text" />
-                              <span>{t("exercise")}</span>
-                            </Link>
-                            <Link href={routes.studentQuizStart(course.id)} className={ACTION}>
-                              <Icon name="lightbulb" />
-                              <span>{t("quiz")}</span>
-                            </Link>
-                            <Link href={routes.studentProgress(course.id)} className={ACTION}>
-                              <Icon name="chart-column" />
-                              <span>{t("progress")}</span>
-                            </Link>
-                          </div>
-                        </details>
+                        <div className="ml-auto flex items-center gap-1">
+                          <LinkButton href={routes.studentCourse(course.id)} icon="message-circle">
+                            {t("openChat")}
+                          </LinkButton>
+                          <details className="relative">
+                            <summary
+                              aria-label={t("moreActions", { name: course.name })}
+                              title={t("moreActions", { name: course.name })}
+                              className="flex size-9 cursor-pointer list-none items-center justify-center rounded-md text-fg-muted hover:bg-surface-sunken hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+                            >
+                              <Icon name="ellipsis" className="size-5 shrink-0" />
+                            </summary>
+                            <div className="absolute right-0 z-20 mt-1 flex w-60 flex-col gap-1 rounded-lg border border-border bg-surface-raised p-2 shadow-lg">
+                              <Link href={routes.studentExercise(course.id)} className={ACTION}>
+                                <Icon name="file-text" />
+                                <span>{t("exercise")}</span>
+                              </Link>
+                              <Link href={routes.studentQuizStart(course.id)} className={ACTION}>
+                                <Icon name="lightbulb" />
+                                <span>{t("quiz")}</span>
+                              </Link>
+                              <Link href={routes.studentProgress(course.id)} className={ACTION}>
+                                <Icon name="chart-column" />
+                                <span>{t("progress")}</span>
+                              </Link>
+                            </div>
+                          </details>
+                        </div>
                       </li>
                     );
                   })}
