@@ -5,7 +5,7 @@ test.describe("US1 sign-in and role areas", () => {
   scenario("001-US7-AS1", "sign-in shows identity, form, IMFAHE and privacy", async ({ page }) => {
     await page.goto("/sign-in");
 
-    await expect(page.getByRole("heading", { level: 1, name: /bienvenida a docentai/i })).toBeVisible();
+    await expect(page.getByRole("heading", { level: 1, name: /entra en docentai/i })).toBeVisible();
     await expect(page.getByLabel(/correo electrónico o código/i)).toBeVisible();
     await expect(page.getByText(/fundación imfahe/i).first()).toBeVisible();
     await expect(page.getByRole("link", { name: /privacidad/i }).first()).toBeVisible();
@@ -99,10 +99,10 @@ test.describe("US1 sign-in and role areas", () => {
     await expectAccessible(page);
     await page.keyboard.press("Escape");
     await chooseOption(language, "English");
-    await expect(page.getByRole("heading", { level: 1, name: /welcome to docentai/i })).toBeVisible();
+    await expect(page.getByRole("heading", { level: 1, name: /sign in to docentai/i })).toBeVisible();
 
     await chooseOption(page.getByRole("banner").getByRole("combobox", { name: "Language" }), "Español");
-    await expect(page.getByRole("heading", { level: 1, name: /bienvenida a docentai/i })).toBeVisible();
+    await expect(page.getByRole("heading", { level: 1, name: /entra en docentai/i })).toBeVisible();
     await signIn(page, USERS.teacher);
     await openMenuIfNeeded(page);
     await chooseOption(page.getByRole("combobox", { name: "Idioma" }).filter({ visible: true }), "English");
