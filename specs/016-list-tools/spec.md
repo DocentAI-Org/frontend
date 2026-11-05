@@ -45,6 +45,18 @@ signed-in shell (search field with an icon, a compact sort Select, the list's ow
 3. The star is a toggle button named after the course ("Marcar Álgebra como favorito"), with
    its pressed state announced.
 
+### User Story 4 — Organise my courses with my own tags (Priority: P2)
+
+**Role**: Teacher, student · **Device**: desktop and mobile. Like Overleaf's project tags.
+
+1. **Given** "Mis cursos", **When** the user presses "Nueva etiqueta", types a name and picks a
+   colour, **Then** the tag appears under "Etiquetas" in the side filter, with 0 courses.
+2. **When** they open a course's menu, choose "Etiquetas" and tick the tag, **Then** the course
+   shows it as a coloured chip, the tag counts 1 and choosing it lists only that course.
+3. **When** they edit the tag (name, colour) or delete it, **Then** the chips follow; deleting
+   asks first and leaves the courses.
+4. **Given** a name they already use, **Then** the dialog says so and nothing changes.
+
 ## Requirements *(mandatory)*
 
 - **FR-001**: One `ListToolbar` and one "Mostrar más" for every list; search, sort, filters and

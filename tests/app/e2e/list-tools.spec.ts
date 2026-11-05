@@ -151,3 +151,95 @@ test.describe("016 US3 star the courses I use most", () => {
     await expectAccessible(page);
   });
 });
+
+const scope = (page: Page) => page.getByRole("navigation", { name: /filtrar cursos/i }).filter({ visible: true });
+
+async function newTag(page: Page, name: string, color = /verde/i) {
+  await page.getByRole("button", { name: /nueva etiqueta/i }).filter({ visible: true }).click();
+  const dialog = page.getByRole("dialog", { name: /nueva etiqueta/i });
+  await dialog.getByLabel(/nombre/i).fill(name);
+  await dialog.getByRole("radio", { name: color }).check();
+  await dialog.getByRole("button", { name: /^crear$/i }).click();
+}
+
+async function tagCourse(page: Page, course: string, tag: string) {
+  await page.locator(`summary[aria-label="Más acciones de ${course}"]`).click();
+  await page.getByRole("button", { name: /^etiquetas…$/i }).filter({ visible: true }).click();
+  const dialog = page.getByRole("dialog", { name: `Etiquetas de ${course}` });
+  await dialog.getByRole("checkbox", { name: tag }).check();
+  await expect(dialog.getByRole("checkbox", { name: tag })).toBeChecked();
+  await dialog.getByRole("button", { name: /cerrar/i }).click();
+}
+
+test.describe("016 US4 organise my courses with my own tags", () => {
+  scenario("016-US4-AS1", "a new tag is listed in the side filter with its count", async ({ page, request }) => {
+    await courses(request, ["Primero", "Segundo"]);
+    await signIn(page, USERS.teacher);
+
+    await newTag(page, "Repaso");
+
+    await expect(scope(page).getByRole("link", { name: /repaso/i })).toContainText("0");
+    await expectAccessible(page);
+  });
+
+  scenario("016-US4-AS2", "a tagged course shows the chip and the tag filters the list", async ({ page, request }) => {
+    await courses(request, ["Primero", "Segundo"]);
+    await signIn(page, USERS.teacher);
+    await newTag(page, "Repaso");
+
+    await tagCourse(page, "Primero", "Repaso");
+
+    const row = page.getByRole("listitem").filter({ has: page.getByRole("heading", { name: "Primero" }) });
+    await expect(row.getByText("Repaso")).toBeVisible();
+    await expect(scope(page).getByRole("link", { name: /repaso/i })).toContainText("1");
+    await scope(page).getByRole("link", { name: /repaso/i }).click();
+    await expect(page).toHaveURL(/tag=/);
+    await expect(courseTitles(page)).toHaveText(["Primero"]);
+    await expectAccessible(page);
+  });
+
+  scenario("016-US4-AS3", "editing and deleting a tag; the courses stay", async ({ page, request }) => {
+    await courses(request, ["Primero"]);
+    await signIn(page, USERS.teacher);
+    await newTag(page, "Repaso");
+    await tagCourse(page, "Primero", "Repaso");
+
+    await page.getByRole("button", { name: "Opciones de la etiqueta Repaso" }).filter({ visible: true }).click();
+    await page.getByRole("button", { name: /^editar$/i }).filter({ visible: true }).click();
+    const edit = page.getByRole("dialog", { name: /editar etiqueta/i });
+    await edit.getByLabel(/nombre/i).fill("Repaso final");
+    await edit.getByRole("button", { name: /guardar/i }).click();
+    await expect(scope(page).getByRole("link", { name: /repaso final/i })).toBeVisible();
+
+    await page.getByRole("button", { name: "Opciones de la etiqueta Repaso final" }).filter({ visible: true }).click();
+    await page.getByRole("button", { name: /borrar etiqueta/i }).filter({ visible: true }).click();
+    await page.getByRole("dialog", { name: /borrar la etiqueta/i }).getByRole("button", { name: /^borrar$/i }).click();
+
+    await expect(scope(page).getByRole("link", { name: /repaso final/i })).toHaveCount(0);
+    await expect(courseTitles(page)).toHaveText(["Primero"]);
+  });
+
+  scenario("016-US4-AS4", "a name already in use is refused", async ({ page }) => {
+    await signIn(page, USERS.teacher);
+    await newTag(page, "Repaso");
+    await expect(scope(page).getByRole("link", { name: /repaso/i })).toBeVisible();
+
+    await newTag(page, "repaso", /azul/i);
+
+    await expect(page.getByRole("dialog", { name: /nueva etiqueta/i }).getByRole("alert")).toContainText(/ya tienes una etiqueta/i);
+    await expect(scope(page).getByRole("link", { name: /repaso/i })).toHaveCount(1);
+  });
+
+  scenario("016-US4-AS5", "students tag the courses they are in", async ({ page, request }) => {
+    await courses(request, ["Primero", "Segundo"], true);
+    await signIn(page, USERS.student);
+    await newTag(page, "Difícil", /rojo/i);
+
+    await tagCourse(page, "Segundo", "Difícil");
+    await scope(page).getByRole("link", { name: /difícil/i }).click();
+
+    await expect(courseTitles(page)).toHaveText(["Segundo"]);
+    await expectAccessible(page);
+  });
+});
+

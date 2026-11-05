@@ -12,3 +12,6 @@
 - [x] T006 [US3] The favourite star in both course lists
 - [x] T007 [US3] Compact course rows, "Todos / Favoritos" side filter with counts; the
   student's exercise, quiz and progress links move to a row menu
+- [x] T008 [US4] E2E 016-US4-AS1…AS4; mock API tags; contract repinned
+- [ ] T009 [US4] Tags in the side filter (create, edit, delete), chips on course rows and the
+  course's "Etiquetas" dialog, for teachers and students

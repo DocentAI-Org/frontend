@@ -22,7 +22,8 @@ export function teacherCourse(state: State, course: Course): S["TeacherCourse"] 
     invitation_path: `/join/${course.class_code}`,
     student_count: studentCount(state, course),
     created_at: course.created_at,
-    is_favorite: state.favorites.has(`${course.teacher_id}:${course.id}`)
+    is_favorite: state.favorites.has(`${course.teacher_id}:${course.id}`),
+    tags: courseTags(state, course.teacher_id, course.id)
   };
 }
 
@@ -36,7 +37,8 @@ export function studentCourse(state: State, enrolment: Enrolment): S["StudentCou
     teacher_name: teacher.display_name,
     joined_at: enrolment.joined_at,
     disclosure_acknowledged: enrolment.disclosure_acknowledged_at !== null,
-    is_favorite: state.favorites.has(`${enrolment.student_id}:${course.id}`)
+    is_favorite: state.favorites.has(`${enrolment.student_id}:${course.id}`),
+    tags: courseTags(state, enrolment.student_id, course.id)
   };
 }
 
@@ -57,10 +59,24 @@ export function activeEnrolment(ctx: Ctx): Enrolment {
   return enrolment;
 }
 
-/** Starred courses first, keeping the order otherwise; `favorite` keeps one side (backend specs/016). */
-function starredFirst<T extends { is_favorite: boolean }>(rows: T[], url: URL): T[] {
+/** A user's tags on a course, by name (backend specs/016 US4). */
+export function courseTags(state: State, userId: string, courseId: string): S["CourseTagRef"][] {
+  return state.tags
+    .filter((t) => t.user_id === userId && state.tagLinks.has(`${t.id}:${courseId}`))
+    .sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()))
+    .map(({ id, name, color }) => ({ id, name, color }));
+}
+
+/**
+ * Starred courses first, keeping the order otherwise; `favorite` keeps one side and `tag` the
+ * courses with that tag (backend specs/016).
+ */
+function starredFirst<T extends { is_favorite: boolean; tags?: S["CourseTagRef"][] }>(rows: T[], url: URL): T[] {
   const favorite = url.searchParams.get("favorite");
-  const kept = favorite === null ? rows : rows.filter((r) => r.is_favorite === (favorite === "true"));
+  const tag = url.searchParams.get("tag");
+  const kept = rows.filter(
+    (r) => (favorite === null || r.is_favorite === (favorite === "true")) && (!tag || (r.tags ?? []).some((t) => t.id === tag))
+  );
   return [...kept.filter((r) => r.is_favorite), ...kept.filter((r) => !r.is_favorite)];
 }
 
