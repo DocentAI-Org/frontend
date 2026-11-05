@@ -38,7 +38,7 @@ export async function StudentShell({
             <div className="flex self-center">
               <Brand href={home} />
             </div>
-            <nav aria-label={t("common.a11y.mainNav")} className="hidden items-end md:flex">
+            <nav aria-label={t("common.a11y.mainNav")} className="hidden items-center md:flex">
               <NavLinks items={nav} variant="tabs" />
             </nav>
             {/* Language and theme at hand, like the teacher sidebar; phones keep them in the menu. */}
