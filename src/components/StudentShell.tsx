@@ -15,7 +15,7 @@ import { ThemeSwitcher } from "./ThemeSwitcher";
 /**
  * The student shell of the prototype (partials/shell-student.html): header tabs and a user menu,
  * the persistent AI notice, and a bottom tab bar on phones (theme.css keeps room for it). The
- * profile is in the user menu; only the phone tab bar also lists it.
+ * profile, language and theme are in the user menu; only the phone tab bar also lists the profile.
  */
 export async function StudentShell({
   home,
@@ -45,12 +45,7 @@ export async function StudentShell({
             <nav aria-label={t("common.a11y.mainNav")} className="hidden md:flex">
               <NavLinks items={nav} variant="tabs" />
             </nav>
-            {/* Language and theme at hand, like the teacher sidebar; phones keep them in the menu. */}
-            <div className="ml-auto hidden items-center gap-2 self-center sm:flex">
-              <LanguageSwitcher />
-              <ThemeSwitcher />
-            </div>
-            <details className="relative ml-auto self-center sm:ml-0">
+            <details className="relative ml-auto self-center">
               <summary
                 className="flex min-h-11 cursor-pointer list-none items-center gap-2 rounded-lg px-2 text-sm font-medium text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
               >
@@ -64,15 +59,20 @@ export async function StudentShell({
               <div className="absolute right-0 mt-2 w-64 rounded-xl border border-border bg-surface-raised p-2 shadow-lg">
                 <p className="px-4 pt-2 font-semibold text-fg sm:hidden">{userName}</p>
                 <p className="px-4 pt-1 pb-2 text-sm text-fg-muted">{roleLabel}</p>
-                <div className="mx-1 mb-2 flex gap-2 sm:hidden">
-                  <LanguageSwitcher stretch />
-                  <ThemeSwitcher />
+                {/* The teacher sidebar's user block, folded: profile, language and theme, sign out. */}
+                <div className="flex flex-col gap-2 border-y border-border py-2">
+                  <Link href={profile.href} className={MENU_ITEM}>
+                    <Icon name={profile.icon} />
+                    <span>{profile.label}</span>
+                  </Link>
+                  <div className="mx-1 flex gap-2">
+                    <LanguageSwitcher stretch />
+                    <ThemeSwitcher />
+                  </div>
                 </div>
-                <Link href={profile.href} className={MENU_ITEM}>
-                  <Icon name={profile.icon} />
-                  <span>{profile.label}</span>
-                </Link>
-                <SignOutButton />
+                <div className="pt-2">
+                  <SignOutButton />
+                </div>
               </div>
             </details>
           </div>
