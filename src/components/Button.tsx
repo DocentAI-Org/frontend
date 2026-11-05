@@ -12,7 +12,7 @@ const VARIANTS: Record<ButtonVariant, string> = {
   primary:
     "bg-primary-600 text-fg-inverse hover:bg-primary-700 disabled:bg-neutral-200 disabled:text-neutral-600",
   secondary:
-    "border border-border-strong bg-surface-raised text-fg hover:bg-surface-sunken disabled:text-fg-muted",
+    "border border-border bg-surface-raised text-fg hover:bg-surface-sunken disabled:text-fg-muted",
   ghost: "text-fg hover:bg-surface-sunken disabled:text-fg-muted",
   danger:
     "bg-danger-600 text-fg-inverse hover:bg-danger-700 disabled:bg-neutral-200 disabled:text-neutral-600"

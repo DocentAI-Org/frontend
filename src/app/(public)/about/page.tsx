@@ -15,7 +15,7 @@ export default async function AboutPage() {
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-6">
       <BackLink>{t("about.back")}</BackLink>
       <article className="flex flex-col gap-10 rounded-xl border border-border bg-surface-raised p-6 sm:p-10">
-        <header className="border-b-2 border-neutral-900 pb-6">
+        <header className="border-b border-border pb-6">
           <h1 className="text-4xl font-semibold text-fg sm:text-5xl">{t("about.title")}</h1>
           <p className="mt-4 max-w-prose font-serif text-xl text-fg">{t("about.lead")}</p>
         </header>

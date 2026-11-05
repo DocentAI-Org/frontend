@@ -52,7 +52,7 @@ export default async function UsersPage() {
           <table className="hidden w-full border-collapse text-sm md:table">
             <caption className="sr-only">{t("tableCaption")}</caption>
             <thead>
-              <tr className="border-b-2 border-neutral-900">
+              <tr className="border-b border-border">
                 {(["colName", "colRole", "colEmail", "colStatus"] as const).map((col) => (
                   <th key={col} scope="col" className="pb-2 pr-4 text-left text-sm font-semibold text-fg-muted">
                     {t(col)}

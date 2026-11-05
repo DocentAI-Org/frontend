@@ -48,7 +48,7 @@ async function ActivityTable({
       <div className="overflow-x-auto" tabIndex={0} role="region" aria-labelledby={titleId}>
         <table aria-labelledby={titleId} className="w-full border-collapse text-sm">
           <thead>
-            <tr className="border-b-2 border-neutral-900">
+            <tr className="border-b border-border">
               <th scope="col" className={TH}>
                 {t("colWeek")}
               </th>

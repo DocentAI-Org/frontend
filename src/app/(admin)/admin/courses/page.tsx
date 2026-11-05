@@ -27,7 +27,7 @@ export default async function AdminCoursesPage() {
           <table className="w-full border-collapse text-sm">
             <caption className="sr-only">{t("tableCaption")}</caption>
             <thead>
-              <tr className="border-b-2 border-neutral-900">
+              <tr className="border-b border-border">
                 {(["colCourse", "colTeacher", "colStudents", "colCreated"] as const).map((col) => (
                   <th key={col} scope="col" className="pb-2 pr-4 text-left text-sm font-semibold text-fg-muted">
                     {t(col)}

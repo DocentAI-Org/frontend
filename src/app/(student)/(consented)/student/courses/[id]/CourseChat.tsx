@@ -40,7 +40,7 @@ export async function CourseChat({ courseId, conversationId }: { courseId: strin
   }
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex flex-col gap-1 border-b-2 border-neutral-900 pb-4">
+      <div className="flex flex-col gap-1 border-b border-border pb-4">
         <p className="text-sm text-fg-muted">{t("courseLabel")}</p>
         <h1 className="text-3xl font-semibold text-fg sm:text-4xl">{course.data.name}</h1>
         <p className="inline-flex items-center gap-2 text-sm text-teacher-700">

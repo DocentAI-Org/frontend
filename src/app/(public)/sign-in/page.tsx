@@ -20,7 +20,7 @@ export default async function SignInPage({
   return (
     <div className="mx-auto grid w-full max-w-md gap-10 lg:my-auto lg:max-w-none lg:grid-cols-2 lg:items-center lg:gap-16">
       <div className="flex flex-col gap-8">
-        <div className="flex flex-col gap-4 border-b-2 border-neutral-900 pb-6">
+        <div className="flex flex-col gap-4 border-b border-border pb-6">
           <h1 className="text-3xl font-semibold text-fg sm:text-4xl lg:text-5xl">{t("common.auth.signInTitle")}</h1>
           <p className="w-fit bg-surface text-lg text-fg-muted">{t("common.auth.signInLead")}</p>
         </div>

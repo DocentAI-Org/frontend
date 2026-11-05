@@ -54,7 +54,7 @@ export async function AppShell({
   return (
     <div className="flex min-h-dvh flex-col font-sans text-fg antialiased" data-component="AppShell" data-variant={variant}>
       <SkipLink />
-      <header className="sticky top-0 z-40 border-b border-border-strong bg-surface-raised lg:hidden">
+      <header className="sticky top-0 z-40 border-b border-border bg-surface-raised lg:hidden">
         <div className="mx-auto flex h-16 max-w-6xl items-center gap-4 px-4 sm:px-6">
           {homeLink}
           <details className="relative ml-auto">
@@ -80,7 +80,7 @@ export async function AppShell({
           </details>
         </div>
       </header>
-      <aside className="fixed inset-y-0 left-0 z-40 hidden w-64 flex-col border-r border-border-strong bg-surface-raised lg:flex">
+      <aside className="fixed inset-y-0 left-0 z-40 hidden w-64 flex-col border-r border-border bg-surface-raised lg:flex">
         <div className="flex h-16 shrink-0 items-center px-6">{homeLink}</div>
         <nav aria-label={t("mainNav")} className="flex-1 overflow-y-auto px-4 py-4">
           <NavLinks items={nav} variant="sidebar" />

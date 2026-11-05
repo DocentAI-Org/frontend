@@ -37,7 +37,7 @@ export async function StudentShell({
     <div className="flex min-h-dvh flex-col font-sans text-fg antialiased" data-component="AppShell" data-variant="student">
       <SkipLink />
       <header className="sticky top-0 z-40">
-        <div className="border-b border-border-strong bg-surface-raised">
+        <div className="border-b border-border bg-surface-raised">
           <div className="mx-auto flex h-16 max-w-6xl items-stretch gap-6 px-4 sm:px-6">
             <div className="flex self-center">
               <Brand href={home} />
@@ -49,7 +49,7 @@ export async function StudentShell({
               <summary
                 className="flex min-h-11 cursor-pointer list-none items-center gap-2 rounded-lg px-2 text-sm font-medium text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
               >
-                <span className="inline-flex size-8 items-center justify-center rounded-full border border-border-strong bg-surface text-fg">
+                <span className="inline-flex size-8 items-center justify-center rounded-full border border-border bg-surface text-fg">
                   <Icon name="user" />
                 </span>
                 <span className="hidden sm:inline">{userName}</span>
@@ -95,7 +95,7 @@ export async function StudentShell({
       <AppFooter />
       <nav
         aria-label={t("common.a11y.mainNav")}
-        className="pb-safe fixed inset-x-0 bottom-0 z-40 border-t border-border-strong bg-surface-raised md:hidden"
+        className="pb-safe fixed inset-x-0 bottom-0 z-40 border-t border-border bg-surface-raised md:hidden"
       >
         <NavLinks items={[...nav, profile]} variant="tabbar" />
       </nav>

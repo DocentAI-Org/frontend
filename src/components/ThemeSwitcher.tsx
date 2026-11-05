@@ -31,7 +31,7 @@ export function ThemeSwitcher() {
     <button
       type="button"
       onClick={toggleTheme}
-      className="inline-flex size-11 shrink-0 items-center justify-center rounded-lg border border-border-strong bg-surface-raised text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+      className="inline-flex size-11 shrink-0 items-center justify-center rounded-lg border border-border bg-surface-raised text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
       data-component="ThemeSwitcher"
     >
       <Icon name="moon" className="size-5 shrink-0 dark:hidden" />

@@ -195,7 +195,7 @@ async function Results({ results, code }: { results: Schemas["TestResults"] | nu
                 {t("studentsLabel")}
               </caption>
               <thead>
-                <tr className="border-b-2 border-neutral-900">
+                <tr className="border-b border-border">
                   <th scope="col" className={TH}>{t("colStudent")}</th>
                   <th scope="col" className={TH}>{t("phase.pre")}</th>
                   <th scope="col" className={TH}>{t("phase.post")}</th>
@@ -218,7 +218,7 @@ async function Results({ results, code }: { results: Schemas["TestResults"] | nu
                 {t("topicsLabel")}
               </caption>
               <thead>
-                <tr className="border-b-2 border-neutral-900">
+                <tr className="border-b border-border">
                   <th scope="col" className={TH}>{t("colTopic")}</th>
                   <th scope="col" className={TH}>{t("phase.pre")}</th>
                   <th scope="col" className={TH}>{t("phase.post")}</th>

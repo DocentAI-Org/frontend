@@ -125,7 +125,7 @@ export default async function DashboardPage({
           <div className="overflow-x-auto rounded-xl border border-border bg-surface-raised px-4 pt-4 sm:px-6">
             <table aria-labelledby="errors-title" className="w-full border-collapse text-sm">
               <thead>
-                <tr className="border-b-2 border-neutral-900">
+                <tr className="border-b border-border">
                   <th scope="col" className={TH}>
                     {view === "topic" ? t("colTopic") : t("colStudent")}
                   </th>
