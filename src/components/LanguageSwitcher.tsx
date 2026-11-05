@@ -23,15 +23,16 @@ function useSetLanguage() {
   return [pending, choose] as const;
 }
 
-/** A Select, so adding a language to LOCALES needs no layout change. */
-export function LanguageSwitcher({ stretch = false }: { stretch?: boolean }) {
+/** A compact Select for headers, so adding a language to LOCALES needs no layout change. */
+export function LanguageSwitcher() {
   const t = useTranslations("common");
   const active = useLocale();
   const [pending, choose] = useSetLanguage();
 
   return (
-    <div data-component="LanguageSwitcher" className={stretch ? "min-w-0 flex-1" : "w-40"}>
+    <div data-component="LanguageSwitcher" className="w-32">
       <Select
+        size="sm"
         aria-label={t("a11y.language")}
         value={active}
         disabled={pending}

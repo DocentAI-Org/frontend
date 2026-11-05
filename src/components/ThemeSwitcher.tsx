@@ -52,7 +52,7 @@ export function ThemeSwitcher({ initial }: { initial: ThemeChoice }) {
             apply(option.value);
             setChoice(option.value);
           }}
-          className="inline-flex size-8 items-center justify-center rounded-full text-fg-muted hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus aria-pressed:bg-surface-sunken aria-pressed:text-fg"
+          className="inline-flex size-7 items-center justify-center rounded-full text-fg-muted hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus aria-pressed:bg-surface-sunken aria-pressed:text-fg"
         >
           <Icon name={option.icon} className="size-4 shrink-0" />
         </button>
