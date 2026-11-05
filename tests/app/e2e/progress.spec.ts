@@ -131,6 +131,7 @@ test.describe("009 US2 the teacher's student page", () => {
     await signIn(page, USERS.teacher);
     await page.goto(`/teacher/courses/${courseId}`);
     await page.getByRole("link", { name: /lucas herrera/i }).first().click();
+    await expect(page.getByRole("heading", { level: 1, name: /lucas herrera/i })).toBeVisible();
     const student = page.url();
 
     await page.getByRole("link", { name: /ver un ejemplo/i }).first().click();

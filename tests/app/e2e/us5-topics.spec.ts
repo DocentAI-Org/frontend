@@ -49,6 +49,8 @@ test.describe("US5 topics", () => {
     await movedDown;
 
     // And dragging the handle moves it up again; the order survives a reload.
+    // Measured once the rows have slid into place.
+    await page.evaluate(() => Promise.all(document.getAnimations().map((animation) => animation.finished)));
     const handle = page.getByRole("button", { name: "Mover «Paréntesis»" });
     const box = (await handle.boundingBox())!;
     const target = (await topicItems(page).first().boundingBox())!;
