@@ -143,7 +143,7 @@ export function CriteriaForm(
                       value={custom ? "custom" : "study"}
                       checked={own[group] === custom}
                       onChange={() => setOwn((o) => ({ ...o, [group]: custom }))}
-                      className="size-5 accent-primary-600"
+                      className="size-6 accent-primary-600"
                     />
                     <span>{custom ? t("custom") : t("study")}</span>
                   </label>

@@ -52,6 +52,33 @@ export function noContent(): typeof NO_CONTENT {
   return NO_CONTENT;
 }
 
+/** Lowercase without accents, so "garcia" finds "García" (backend specs/016). */
+function fold(text: string | null | undefined): string {
+  return (text ?? "").normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
+}
+
+/** The backend's `q`: every word must appear in one of the item's fields. */
+export function search<T>(items: T[], url: URL, fields: (item: T) => (string | null | undefined)[]): T[] {
+  const words = fold(url.searchParams.get("q")).split(/\s+/).filter(Boolean);
+  if (!words.length) return items;
+  return items.filter((item) => {
+    const texts = fields(item).map(fold);
+    return words.every((word) => texts.some((text) => text.includes(word)));
+  });
+}
+
+/** The backend's `sort`: one of `allowed` (the first is the default), else 422. */
+export function sortParam<T extends string>(url: URL, allowed: readonly T[]): T {
+  const value = url.searchParams.get("sort") ?? allowed[0];
+  if (!allowed.includes(value as T)) throw new HttpError(422, "validation_error", { fields: [{ loc: ["query", "sort"] }] });
+  return value as T;
+}
+
+/** Compares names like the backend's lower(name) order. */
+export function byName<T>(name: (item: T) => string) {
+  return (a: T, b: T) => name(a).toLowerCase().localeCompare(name(b).toLowerCase());
+}
+
 export function page<T>(items: T[], url: URL) {
   const limit = Number(url.searchParams.get("limit") ?? 20);
   const offset = Number(url.searchParams.get("offset") ?? 0);

@@ -1,16 +1,19 @@
 import "server-only";
 
 import { type Schemas, request } from "./client";
+import { type ListQuery, upTo } from "./paging";
 
 const PAGE = { limit: 100, offset: 0 };
 
-export type ConversationFilters = { student_id?: string; from?: string; has_no_source?: boolean; has_correction?: boolean };
+export type ConversationFilters = ListQuery<"/v1/teacher/courses/{course_id}/conversations">;
 
-export const listCourseConversations = (course_id: string, filters: ConversationFilters) =>
-  request((api) =>
-    api.GET("/v1/teacher/courses/{course_id}/conversations", {
-      params: { path: { course_id }, query: { ...PAGE, ...filters } }
-    })
+export const listCourseConversations = (course_id: string, filters: ConversationFilters, shown = PAGE.limit) =>
+  upTo(shown, (limit, offset) =>
+    request((api) =>
+      api.GET("/v1/teacher/courses/{course_id}/conversations", {
+        params: { path: { course_id }, query: { ...filters, limit, offset } }
+      })
+    )
   );
 
 export const getCourseConversation = (course_id: string, conversation_id: string) =>
@@ -20,9 +23,15 @@ export const getCourseConversation = (course_id: string, conversation_id: string
     })
   );
 
-export const listCourseSubmissions = (course_id: string, filters: { student_id?: string; from?: string }) =>
-  request((api) =>
-    api.GET("/v1/teacher/courses/{course_id}/submissions", { params: { path: { course_id }, query: { ...PAGE, ...filters } } })
+export type SubmissionFilters = ListQuery<"/v1/teacher/courses/{course_id}/submissions">;
+
+export const listCourseSubmissions = (course_id: string, filters: SubmissionFilters, shown = PAGE.limit) =>
+  upTo(shown, (limit, offset) =>
+    request((api) =>
+      api.GET("/v1/teacher/courses/{course_id}/submissions", {
+        params: { path: { course_id }, query: { ...filters, limit, offset } }
+      })
+    )
   );
 
 export const getCourseSubmission = (course_id: string, submission_id: string) =>

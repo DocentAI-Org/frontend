@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useId, useRef, useState, useTransition } from "react";
 
 import { Alert } from "@/components/Alert";
@@ -32,6 +32,7 @@ export function FlagDialog({
 }) {
   const t = useTranslations();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const ids = useId();
   const dialog = useRef<HTMLDialogElement>(null);
   const [category, setCategory] = useState<Schemas["FlagUpsert"]["category"]>(existing?.category ?? "incorrect");
@@ -50,7 +51,10 @@ export function FlagDialog({
       setFailed(!ok);
       if (ok) {
         dialog.current?.close();
-        router.replace(`${path}?saved=1` as never, { scroll: false });
+        // Keeps the rest of the query (where the back link goes).
+        const query = new URLSearchParams(searchParams);
+        query.set("saved", "1");
+        router.replace(`${path}?${query}` as never, { scroll: false });
       }
     });
   }
@@ -122,7 +126,7 @@ export function FlagDialog({
                         checked={category === value}
                         onChange={() => setCategory(value)}
                         aria-describedby={`${ids}-${value}`}
-                        className="mt-1 size-5 shrink-0 accent-primary-600"
+                        className="mt-0.5 size-6 shrink-0 accent-primary-600"
                       />
                       <span className="flex flex-col">
                         <span className="font-medium text-fg">{t(`teacher.flags.${label}`)}</span>

@@ -6,9 +6,13 @@ import { Button, buttonClass } from "@/components/Button";
 import { EmptyState } from "@/components/EmptyState";
 import { ErrorState } from "@/components/ErrorState";
 import { Icon } from "@/components/Icon";
+import { ListFooter } from "@/components/ListFooter";
+import { ListToolbar } from "@/components/ListToolbar";
+import { NoMatches } from "@/components/NoMatches";
 import { Select } from "@/components/Select";
 import { listCourseStudents } from "@/lib/api/courses";
 import { type ConversationFilters, listCourseConversations, listCourseSubmissions } from "@/lib/api/review";
+import { apiQuery, listState } from "@/lib/list";
 import { routes } from "@/lib/routes";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -17,6 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const DAYS: Record<string, number> = { "7": 7, "30": 30 };
+const SORTS = ["recent", "oldest"] as const;
 
 /** Start of the "last N days" window chosen in the date filter. */
 const windowStart = (option?: string) => {
@@ -41,11 +46,15 @@ export default async function ConversationsPage({
   searchParams
 }: {
   params: Promise<{ id: string }>;
-  searchParams: Promise<{ student?: string; since?: string; noSource?: string; corrected?: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const { id } = await params;
-  const { student, since, noSource, corrected } = await searchParams;
+  const query = await searchParams;
+  const { student, since, noSource, corrected } = query as Record<string, string | undefined>;
+  const list = listState(query, SORTS);
+  const searched = apiQuery(list, SORTS);
   const t = await getTranslations("teacher.conversations");
+  const tl = await getTranslations("common.list");
   const format = await getFormatter();
 
   const filters: ConversationFilters = {
@@ -54,16 +63,23 @@ export default async function ConversationsPage({
     has_no_source: noSource ? true : undefined,
     has_correction: corrected ? true : undefined
   };
-  const filtered = Object.values(filters).some((v) => v !== undefined);
+  const filtered = Object.values(filters).some((v) => v !== undefined) || Boolean(list.q);
+  // Both sources take the search and order; the merged list shows the first `shown` (spec 016).
   const [conversations, submissions, students] = await Promise.all([
-    listCourseConversations(id, filters),
-    listCourseSubmissions(id, { student_id: filters.student_id, from: filters.from }),
+    listCourseConversations(id, { ...filters, ...searched }, list.shown),
+    listCourseSubmissions(id, { student_id: filters.student_id, from: filters.from, ...searched }, list.shown),
     listCourseStudents(id)
   ]);
   if (!conversations.ok) return <ErrorState code={conversations.code} />;
   if (!submissions.ok) return <ErrorState code={submissions.code} />;
 
-  const rows: Row[] = [
+  const exercises = submissions.data.items.filter(
+    (s) => (!filters.has_no_source || s.explanation_kind === "no_source") && (!filters.has_correction || s.flag !== null)
+  );
+  // The flags are filtered here, so the exercises' total is what came back when one is on.
+  const total =
+    conversations.data.total + (filters.has_no_source || filters.has_correction ? exercises.length : submissions.data.total);
+  const merged: Row[] = [
     ...conversations.data.items.map((c) => ({
       key: c.id,
       href: routes.teacherConversation(id, c.id),
@@ -74,18 +90,17 @@ export default async function ConversationsPage({
       noSource: c.has_no_source,
       corrected: c.has_correction
     })),
-    ...submissions.data.items
-      .map((s) => ({
-        key: s.id,
-        href: routes.teacherSubmission(id, s.id),
-        student: s.student_name,
-        at: s.created_at,
-        exercise: true,
-        noSource: s.explanation_kind === "no_source",
-        corrected: s.flag !== null
-      }))
-      .filter((r) => (!filters.has_no_source || r.noSource) && (!filters.has_correction || r.corrected))
-  ].sort((a, b) => b.at.localeCompare(a.at));
+    ...exercises.map((s) => ({
+      key: s.id,
+      href: routes.teacherSubmission(id, s.id),
+      student: s.student_name,
+      at: s.created_at,
+      exercise: true,
+      noSource: s.explanation_kind === "no_source",
+      corrected: s.flag !== null
+    }))
+  ].sort((a, b) => (list.sort === "oldest" ? a.at.localeCompare(b.at) : b.at.localeCompare(a.at)));
+  const rows = merged.slice(0, list.shown);
 
   return (
     <div className="flex flex-col gap-6">
@@ -100,7 +115,14 @@ export default async function ConversationsPage({
         </Link>
       </div>
 
+      <ListToolbar
+        searchLabel={t("search")}
+        sorts={SORTS.map((value) => ({ value, label: tl(`sorts.${value}`) }))}
+      />
       <form method="get" aria-label={t("filtersLabel")} className="flex flex-wrap items-end gap-4 rounded-xl border border-border bg-surface p-4">
+        {/* Applying the filters keeps the search and the order. */}
+        {list.q && <input type="hidden" name="q" value={list.q} />}
+        {searched.sort && <input type="hidden" name="sort" value={searched.sort} />}
         <div className="flex flex-col gap-1">
           <label id="filter-student-label" htmlFor="filter-student" className="text-sm font-semibold text-fg">
             {t("studentLabel")}
@@ -155,7 +177,9 @@ export default async function ConversationsPage({
       </form>
 
       {rows.length === 0 ? (
-        filtered ? (
+        list.q ? (
+          <NoMatches q={list.q} />
+        ) : filtered ? (
           <EmptyState icon="search" title={t("noResultsTitle")} body={t("noResultsBody")} />
         ) : (
           <EmptyState icon="message-circle" title={t("emptyTitle")} body={t("emptyBody")} />
@@ -187,6 +211,9 @@ export default async function ConversationsPage({
             </li>
           ))}
         </ul>
+      )}
+      {rows.length > 0 && (
+        <ListFooter path={routes.teacherConversations(id)} params={query} shown={list.shown} total={total} />
       )}
     </div>
   );

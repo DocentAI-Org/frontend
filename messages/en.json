@@ -23,7 +23,8 @@
       "loadError": "We couldn't load the courses",
       "pageTitle": "Courses",
       "tableCaption": "Platform courses",
-      "title": "Courses"
+      "title": "Courses",
+      "search": "Search by course or teacher"
     },
     "shell": {
       "nav": {
@@ -77,7 +78,17 @@
       },
       "tableCaption": "Platform users",
       "title": "Users",
-      "createStudents": "Create student accounts"
+      "createStudents": "Create student accounts",
+      "search": "Search by name or email",
+      "filterRole": "Role",
+      "allRoles": "All roles",
+      "roleFilter": {
+        "admin": "Administration",
+        "teacher": "Teachers",
+        "student": "Students"
+      },
+      "filterStatus": "Status",
+      "allStatuses": "All statuses"
     },
     "studentsNew": {
       "back": "Back to users",
@@ -366,6 +377,64 @@
         "progressing": "Progressing from (%)",
         "mastered": "Mastered from (%)"
       }
+    },
+    "list": {
+      "search": "Search",
+      "sort": "Sort",
+      "shown": "Showing {shown} of {total}",
+      "more": "Show more",
+      "noMatches": "Nothing matches “{q}”",
+      "noMatchesBody": "Try other words or clear the filters.",
+      "clear": "Clear the search",
+      "favorite": "Mark {name} as a favourite",
+      "favoriteError": "The favourite could not be saved. Try again.",
+      "sorts": {
+        "recent": "Most recent",
+        "name": "Name",
+        "joined": "Date joined",
+        "oldest": "Oldest",
+        "default": "Pending first"
+      },
+      "scope": {
+        "label": "Filter courses",
+        "all": "All",
+        "favorites": "Favourites"
+      },
+      "noFavorites": "No favourite courses yet",
+      "noFavoritesBody": "Press a course’s star to keep it at hand here.",
+      "rowActions": "More actions for {name}"
+    },
+    "tags": {
+      "title": "Tags",
+      "new": "New tag",
+      "edit": "Edit tag",
+      "name": "Name",
+      "color": "Colour",
+      "colors": {
+        "violet": "Violet",
+        "green": "Green",
+        "blue": "Blue",
+        "amber": "Amber",
+        "red": "Red",
+        "gray": "Grey"
+      },
+      "create": "Create",
+      "save": "Save",
+      "cancel": "Cancel",
+      "close": "Close",
+      "editAction": "Edit",
+      "delete": "Delete tag",
+      "deleteTitle": "Delete the tag “{name}”?",
+      "deleteBody": "The courses stay; they only lose the tag.",
+      "deleteConfirm": "Delete",
+      "menu": "Options for the tag {name}",
+      "courseAction": "Tags…",
+      "courseTitle": "Tags of {course}",
+      "courseLead": "Tick this course’s tags. Only you see them.",
+      "none": "No tags yet. Create one with “New tag” in the filter panel.",
+      "taken": "You already have a tag with that name.",
+      "invalid": "Type a name of up to 40 characters.",
+      "failed": "It could not be saved. Try again."
     }
   },
   "student": {
@@ -488,7 +557,9 @@
       "progress": "My progress",
       "quiz": "Take a quiz",
       "teacher": "Teacher: {teacher}",
-      "title": "My courses"
+      "title": "My courses",
+      "search": "Search courses",
+      "moreActions": "More actions for {name}"
     },
     "errorPatterns": {
       "back": "Back to the feedback",
@@ -690,20 +761,18 @@
       "reasonExhausted": "There are no more {from} questions left: the next one is {to}."
     },
     "shell": {
-      "aiLabel": "AI tutor",
       "nav": {
         "courses": "My courses",
         "profile": "Profile",
         "progress": "My progress"
       },
       "role": "Student",
-      "teacherReview": "your teacher may review your conversations",
       "course": {
-        "label": "Course",
         "tutor": "Tutor",
         "exercise": "Exercises",
         "quiz": "Quizzes",
-        "progress": "My progress"
+        "progress": "My progress",
+        "sections": "Course sections"
       }
     },
     "test": {
@@ -766,7 +835,8 @@
       "exercise": "Exercise",
       "corrected": "Corrected",
       "correctedLabel": "Includes answers you corrected",
-      "messages": "{count, plural, one {# message} other {# messages}}"
+      "messages": "{count, plural, one {# message} other {# messages}}",
+      "search": "Search by student or text"
     },
     "course": {
       "back": "Back to my courses",
@@ -801,7 +871,8 @@
         "revoke": "Remove from course",
         "revokeTitle": "Remove {name} from the course?",
         "revokeBody": "They will lose access to the course and the tutor. Their conversations are kept.",
-        "revoked": "Removed from course"
+        "revoked": "Removed from course",
+        "search": "Search students"
       },
       "tab": {
         "conversations": "Conversations",
@@ -814,7 +885,12 @@
         "test": "Pre/post-test",
         "criteria": "Criteria"
       },
-      "tabs": "Course sections"
+      "tabs": "Course sections",
+      "group": {
+        "follow": "Follow-up",
+        "content": "Content",
+        "settings": "Settings"
+      }
     },
     "courseNew": {
       "back": "Back to my courses",
@@ -842,7 +918,8 @@
       "loadError": "We couldn't load your courses",
       "pageTitle": "My courses",
       "title": "My courses",
-      "students": "{count, plural, one {# student} other {# students}}"
+      "students": "{count, plural, one {# student} other {# students}}",
+      "search": "Search courses"
     },
     "dashboard": {
       "all": "Whole course",
@@ -924,7 +1001,8 @@
       "removeTitle": "Remove the correction?",
       "removeBody": "Your student will no longer see the correction or the “Reviewed by your teacher” mark.",
       "removeConfirm": "Remove correction",
-      "correctionLabel": "Correction:"
+      "correctionLabel": "Correction:",
+      "back": "Back to flagged answers"
     },
     "fragments": {
       "backToMaterial": "Back to the material",
@@ -1012,7 +1090,8 @@
       "delete": "Delete",
       "deleteTitle": "Delete «{name}»?",
       "deleteBody": "The file and its fragments will be deleted. This cannot be undone.",
-      "openOriginal": "View original"
+      "openOriginal": "View original",
+      "search": "Search by file name"
     },
     "questions": {
       "approved": "Approved",
@@ -1071,7 +1150,8 @@
       "listLabel": "{status} questions",
       "unavailable": "The tutor isn't available right now. Try again in a few minutes.",
       "correctOption": "Option {n} is correct",
-      "checkAnswerKey": "The AI drafts these questions and sometimes marks a wrong option as correct or leaves two right options. Solve it yourself before approving it."
+      "checkAnswerKey": "The AI drafts these questions and sometimes marks a wrong option as correct or leaves two right options. Solve it yourself before approving it.",
+      "search": "Search by statement or topic"
     },
     "risk": {
       "activityBasis": "Messages to the tutor, exercises submitted and quizzes completed.",
@@ -1102,8 +1182,7 @@
         "dashboard": "Dashboard",
         "questions": "Questions"
       },
-      "role": "Teacher",
-      "course": "Course"
+      "role": "Teacher"
     },
     "tutorSettings": {
       "back": "Back to the course",
@@ -1186,7 +1265,8 @@
       "mistakesLead": "The mistakes in their exercises, by topic and type. Each example opens the feedback.",
       "noMistakesTitle": "{name} has no recorded mistakes yet",
       "noMistakesBody": "When they send exercises with mistakes, they appear here with their type and topic.",
-      "backToCourse": "Back to the course"
+      "backToCourse": "Back to the course",
+      "backTo": "Back to {name}"
     },
     "topics": {
       "pageTitle": "Course topics",
@@ -1205,7 +1285,6 @@
       "addFirst": "Add the first topic",
       "saveName": "Save name",
       "added": "“{name}” was added. Assign sections to it from the material.",
-      "reordered": "“{name}” moved up one place.",
       "emptyTitle": "No topics yet",
       "emptyBody": "Topics are the course's learning objectives. Create the first one, then assign each document or section to its topics.",
       "deleteTitle": "Delete “{name}”?",
@@ -1217,7 +1296,11 @@
       "assign": "Assign topics",
       "manage": "Manage topics",
       "deletedSuffix": "they belonged to the deleted topic “{name}”",
-      "sections": "{count, plural, one {# section assigned} other {# sections assigned}}"
+      "sections": "{count, plural, one {# section assigned} other {# sections assigned}}",
+      "handle": "Move “{name}”",
+      "handleHelp": "Drag to reorder, use the ↑ ↓ arrow keys or press for options.",
+      "movedTo": "“{name}” is now in position {position}.",
+      "moveFailed": "The order could not be saved. Try again."
     },
     "topicAssignment": {
       "pageTitle": "Assign topics",

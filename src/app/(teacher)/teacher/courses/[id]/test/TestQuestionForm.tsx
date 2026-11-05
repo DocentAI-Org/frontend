@@ -115,7 +115,7 @@ export function TestQuestionForm({
                 name="correct"
                 value={i}
                 defaultChecked={(question?.correct_option ?? 0) === i}
-                className="size-5 accent-primary-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+                className="size-6 accent-primary-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
               />
               <span className="text-fg">{tq("correctOption", { n: i + 1 })}</span>
             </label>

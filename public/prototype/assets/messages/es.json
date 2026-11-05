@@ -414,13 +414,13 @@
         "vExercise": "Ejercicio"
       },
       "type": {
-        "lead": "Dos voces, alojadas en el propio proyecto. Literata es la voz de la página: títulos, respuestas del tutor y pasajes del material. Atkinson Hyperlegible Next es la interfaz y lo que escribe el estudiante. Cada tamaño lleva su interlineado.",
+        "lead": "Una sola familia, alojada en el propio proyecto: Geist, con Geist Mono para el código. La voz de lectura (respuestas del tutor y pasajes del material) es un tamaño mayor, no otra tipografía. Cada tamaño lleva su interlineado.",
         "sample": "El material del curso no cubre esta pregunta",
         "title": "Tipografía",
         "weights": "Pesos",
         "families": "Familias",
-        "serifRole": "Títulos, respuestas del tutor y pasajes citados",
-        "sansRole": "Interfaz, datos y mensajes del estudiante"
+        "serifRole": "Respuestas del tutor y pasajes citados, en tamaño de lectura",
+        "sansRole": "Títulos, interfaz, datos y mensajes del estudiante"
       },
       "v": {
         "active": "Activo",
@@ -498,7 +498,7 @@
         "marginNote": "La regla verde separa la respuesta de sus fuentes. En el margen solo escribe el profesor/a: fuentes citadas y correcciones. Si el material no cubre la pregunta, el margen queda vacío tras una regla discontinua.",
         "inks": "Tintas",
         "ink": {
-          "fg": "Tinta azul oscuro: texto, estados seleccionados y actuales.",
+          "fg": "Tinta neutra: texto, estados seleccionados y actuales.",
           "pen": "Violeta: lo que hace el estudiante. Acciones principales, envío, foco y sus propios mensajes.",
           "teacher": "Verde: la mano del profesor/a. Fuentes, margen, correcciones y validaciones.",
           "highlight": "Fluorescente: pistas, modo guiado y avisos que no bloquean."

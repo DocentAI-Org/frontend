@@ -242,6 +242,11 @@ export type State = {
   /** Pedagogical criteria (backend specs/015): the study's and each course's own groups. */
   studyCriteria: { criteria: S["Criteria"]; provisional: boolean; updated_at: string };
   courseCriteria: Map<string, S["CourseCriteriaUpdate"]>;
+  /** Starred courses (backend specs/016), as "<user_id>:<course_id>". */
+  favorites: Set<string>;
+  /** Each user's course tags (backend specs/016 US4) and their courses, as "<tag_id>:<course_id>". */
+  tags: { id: string; user_id: string; name: string; color: S["CourseTagRef"]["color"] }[];
+  tagLinks: Set<string>;
 };
 
 export const DEFAULT_CRITERIA: S["Criteria"] = {
@@ -314,6 +319,9 @@ export function seed(): State {
     testPhases: new Map(),
     testAttempts: [],
     questionnaires: [],
+    favorites: new Set(),
+    tags: [],
+    tagLinks: new Set(),
     studyCriteria: { criteria: structuredClone(DEFAULT_CRITERIA), provisional: true, updated_at: now() },
     courseCriteria: new Map()
   };

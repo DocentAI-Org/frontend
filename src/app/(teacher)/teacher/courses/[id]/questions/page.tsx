@@ -6,10 +6,14 @@ import { Alert } from "@/components/Alert";
 import { Icon } from "@/components/Icon";
 import { LinkButton } from "@/components/Button";
 import { EmptyState } from "@/components/EmptyState";
+import { ListFooter } from "@/components/ListFooter";
+import { ListToolbar } from "@/components/ListToolbar";
+import { NoMatches } from "@/components/NoMatches";
 import { ErrorState } from "@/components/ErrorState";
 import { errorMessageKey } from "@/lib/api/errors";
 import { type QuestionStatus, listQuestions } from "@/lib/api/quizzes";
 import { listTopics } from "@/lib/api/topics";
+import { apiQuery, listState } from "@/lib/list";
 import { routes } from "@/lib/routes";
 
 import { QuestionCard } from "./QuestionCard";
@@ -30,20 +34,26 @@ export default async function QuestionsPage({
   searchParams
 }: {
   params: Promise<{ id: string }>;
-  searchParams: Promise<{ status?: string; topic?: string; done?: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const { id } = await params;
-  const query = await searchParams;
+  const search = await searchParams;
+  const query = search as { status?: string; topic?: string; done?: string };
+  // No sort here: the status tabs split the list and each keeps the newest first (spec 016).
+  const list = listState(search, ["default"] as const);
   const status: QuestionStatus = STATUSES.includes(query.status as QuestionStatus) ? (query.status as QuestionStatus) : "pending";
   const topicFilter = query.topic ?? "";
   const t = await getTranslations();
-  const [topics, questions] = await Promise.all([listTopics(id), listQuestions(id, status, topicFilter || undefined)]);
+  const [topics, questions] = await Promise.all([
+    listTopics(id),
+    listQuestions(id, status, topicFilter || undefined, apiQuery(list, ["default"] as const), list.shown)
+  ]);
   if (!topics.ok) return <ErrorState code={topics.code} />;
   if (!questions.ok) return <ErrorState code={questions.code} />;
 
-  const view = new URLSearchParams({ status, ...(topicFilter ? { topic: topicFilter } : {}) }).toString();
-  const hrefFor = (s: QuestionStatus) =>
-    routes.teacherQuestions(id, `?${new URLSearchParams({ status: s, ...(topicFilter ? { topic: topicFilter } : {}) }).toString()}`);
+  const kept = { ...(topicFilter ? { topic: topicFilter } : {}), ...(list.q ? { q: list.q } : {}) };
+  const view = new URLSearchParams({ status, ...kept }).toString();
+  const hrefFor = (s: QuestionStatus) => routes.teacherQuestions(id, `?${new URLSearchParams({ status: s, ...kept }).toString()}`);
   const counts = questions.data.counts;
   const total = counts.pending + counts.approved + counts.rejected;
   const topicList = topics.data.map((x) => ({ id: x.id, name: x.name }));
@@ -73,10 +83,11 @@ export default async function QuestionsPage({
       ) : (
         <>
           <RequestQuestions courseId={id} topics={topicList} />
-          {total === 0 && !topicFilter ? (
+          {total === 0 && !topicFilter && !list.q ? (
             <EmptyState icon="lightbulb" title={t("teacher.questions.noneTitle")} body={t("teacher.questions.noneBody")} />
           ) : (
             <>
+              <ListToolbar searchLabel={t("teacher.questions.search")} />
               <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
                 <nav aria-label={t("teacher.questions.tabsLabel")} className="overflow-x-auto border-b border-border">
                   <ul className="flex gap-1">
@@ -96,7 +107,9 @@ export default async function QuestionsPage({
                 </nav>
                 <TopicFilter courseId={id} status={status} topic={topicFilter} topics={topicList} />
               </div>
-              {questions.data.items.length === 0 ? (
+              {questions.data.items.length === 0 && list.q ? (
+                <NoMatches q={list.q} />
+              ) : questions.data.items.length === 0 ? (
                 <p className="rounded-xl border border-dashed border-border-strong px-6 py-8 text-center text-fg-muted">
                   {status === "pending"
                     ? t("teacher.questions.emptyTitle")
@@ -122,6 +135,12 @@ export default async function QuestionsPage({
                     </li>
                   ))}
                 </ul>
+                <ListFooter
+                  path={routes.teacherQuestions(id)}
+                  params={search}
+                  shown={list.shown}
+                  total={questions.data.total}
+                />
                 </>
               )}
             </>

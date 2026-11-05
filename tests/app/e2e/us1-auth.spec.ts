@@ -2,13 +2,13 @@
 import { USERS, chooseOption, expect, expectAccessible, openMenuIfNeeded, scenario, signIn, signOut, test } from "./helpers";
 
 test.describe("US1 sign-in and role areas", () => {
-  scenario("001-US7-AS1", "sign-in shows identity, form, IMFAHE and privacy", async ({ page }) => {
+  scenario("001-US7-AS1", "sign-in shows identity, form and IMFAHE", async ({ page }) => {
     await page.goto("/sign-in");
 
     await expect(page.getByRole("heading", { level: 1, name: /entra en docentai/i })).toBeVisible();
     await expect(page.getByLabel(/correo electrónico o código/i)).toBeVisible();
     await expect(page.getByText(/fundación imfahe/i).first()).toBeVisible();
-    await expect(page.getByRole("link", { name: /privacidad/i }).first()).toBeVisible();
+    // No privacy link for now: there is no privacy policy yet.
     await expectAccessible(page);
   });
 

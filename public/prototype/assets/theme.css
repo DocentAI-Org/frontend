@@ -112,7 +112,8 @@
   --color-border: var(--color-neutral-200);
   --color-border-strong: var(--color-neutral-450); /* 3:1 on raised and canvas surfaces (WCAG 1.4.11) */
   --color-focus: var(--color-primary-600);
-  --color-dot: light-dark(oklch(0.87 0 0), oklch(0.3 0 0)); /* the dots of the dotted paper */
+  /* Not --color-grid: that name also makes a bg-grid colour utility, which floods the strips. */
+  --color-squares: light-dark(oklch(0.948 0 0), oklch(0.245 0 0)); /* the 4 mm squares */
   --color-margin: var(--color-teacher-600); /* the margin rule where sources live */
   --color-highlight: var(--color-warning-200);
   /* Dialog backdrop: dark in both schemes. */
@@ -183,12 +184,13 @@
   --default-transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-/* Paper: a faint 24 px dot grid. On <body> by default (base layer below); add bg-grid to any other
+/* Paper: the 16 px squared grid. On <body> by default (base layer below); add bg-grid to any other
  * surface that should read as notebook paper. Reading text sits on solid paper, never on the grid. */
 @utility bg-grid {
-  background-image: radial-gradient(var(--color-dot) 1px, transparent 1px);
-  background-size: 1.5rem 1.5rem;
-  background-position: -0.75rem -0.75rem;
+  background-image: linear-gradient(var(--color-squares) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-squares) 1px, transparent 1px);
+  background-size: 1rem 1rem;
+  background-position: -1px -1px;
 }
 
 @utility bg-plain {
@@ -238,11 +240,12 @@
     color: var(--color-primary-900);
   }
 
-  /* The dotted paper behind every page. */
+  /* The squared paper behind every page. */
   body {
-    background-image: radial-gradient(var(--color-dot) 1px, transparent 1px);
-    background-size: 1.5rem 1.5rem;
-    background-position: -0.75rem -0.75rem;
+    background-image: linear-gradient(var(--color-squares) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-squares) 1px, transparent 1px);
+    background-size: 1rem 1rem;
+    background-position: -1px -1px;
   }
 
   /* Headings speak in the page voice (Literata); utilities can still switch a heading to font-sans. */

@@ -1,4 +1,4 @@
-import { type Ctx, HttpError, type Route, noContent, page, requireRole } from "../http.ts";
+import { type Ctx, HttpError, type Route, byName, noContent, page, requireRole, search, sortParam } from "../http.ts";
 import { type Course, type Enrolment, type S, type State, id, now } from "../state.ts";
 
 const ALPHABET = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
@@ -21,7 +21,9 @@ export function teacherCourse(state: State, course: Course): S["TeacherCourse"] 
     class_code_active: course.class_code_active,
     invitation_path: `/join/${course.class_code}`,
     student_count: studentCount(state, course),
-    created_at: course.created_at
+    created_at: course.created_at,
+    is_favorite: state.favorites.has(`${course.teacher_id}:${course.id}`),
+    tags: courseTags(state, course.teacher_id, course.id)
   };
 }
 
@@ -34,7 +36,9 @@ export function studentCourse(state: State, enrolment: Enrolment): S["StudentCou
     description: course.description,
     teacher_name: teacher.display_name,
     joined_at: enrolment.joined_at,
-    disclosure_acknowledged: enrolment.disclosure_acknowledged_at !== null
+    disclosure_acknowledged: enrolment.disclosure_acknowledged_at !== null,
+    is_favorite: state.favorites.has(`${enrolment.student_id}:${course.id}`),
+    tags: courseTags(state, enrolment.student_id, course.id)
   };
 }
 
@@ -55,6 +59,27 @@ export function activeEnrolment(ctx: Ctx): Enrolment {
   return enrolment;
 }
 
+/** A user's tags on a course, by name (backend specs/016 US4). */
+export function courseTags(state: State, userId: string, courseId: string): S["CourseTagRef"][] {
+  return state.tags
+    .filter((t) => t.user_id === userId && state.tagLinks.has(`${t.id}:${courseId}`))
+    .sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()))
+    .map(({ id, name, color }) => ({ id, name, color }));
+}
+
+/**
+ * Starred courses first, keeping the order otherwise; `favorite` keeps one side and `tag` the
+ * courses with that tag (backend specs/016).
+ */
+function starredFirst<T extends { is_favorite: boolean; tags?: S["CourseTagRef"][] }>(rows: T[], url: URL): T[] {
+  const favorite = url.searchParams.get("favorite");
+  const tag = url.searchParams.get("tag");
+  const kept = rows.filter(
+    (r) => (favorite === null || r.is_favorite === (favorite === "true")) && (!tag || (r.tags ?? []).some((t) => t.id === tag))
+  );
+  return [...kept.filter((r) => r.is_favorite), ...kept.filter((r) => !r.is_favorite)];
+}
+
 function validName(value: unknown): string {
   const name = typeof value === "string" ? value.trim() : "";
   if (!name || name.length > 80) {
@@ -65,12 +90,49 @@ function validName(value: unknown): string {
 
 export const courseRoutes: Route[] = [
   {
+    // Backend specs/016 tests: the seeded teacher's courses with these names, oldest first; with
+    // `enrol`, the seeded student is in all of them, with study consent given.
+    method: "POST",
+    path: "/__test/courses",
+    handler: (ctx) => {
+      const { names, enrol = false } = ctx.body as { names: string[]; enrol?: boolean };
+      const state = ctx.state;
+      const teacher = state.users.find((u) => u.email === "profesora@docentai.local")!;
+      const student = state.users.find((u) => u.email === "alumno@docentai.local")!;
+      const start = Date.now() - names.length * 60_000;
+      names.forEach((name, index) => {
+        const at = new Date(start + index * 60_000).toISOString();
+        const course: Course = {
+          id: id(),
+          teacher_id: teacher.id,
+          name,
+          description: null,
+          class_code: code(),
+          class_code_active: true,
+          created_at: at,
+          settings: { level: "intermediate", tone: "friendly", solution_policy: "hints_first", updated_at: at }
+        };
+        state.courses.push(course);
+        if (enrol) {
+          state.enrolments.push({ course_id: course.id, student_id: student.id, status: "active", joined_at: at, disclosure_acknowledged_at: at });
+        }
+      });
+      // Like /__test/classroom: an enrolled student has given study consent, so the list opens.
+      if (enrol && !state.consent.some((c) => c.student_id === student.id)) {
+        state.consent.push({ student_id: student.id, action: "given", version: "2026-10", created_at: now() });
+      }
+      return noContent();
+    }
+  },
+  {
     method: "GET",
     path: "/v1/teacher/courses",
     handler: (ctx) => {
       const teacher = requireRole(ctx, "teacher");
+      const sort = sortParam(ctx.url, ["recent", "name"] as const);
       const mine = ctx.state.courses.filter((c) => c.teacher_id === teacher.id).reverse();
-      return page(mine.map((c) => teacherCourse(ctx.state, c)), ctx.url);
+      const rows = search(mine.map((c) => teacherCourse(ctx.state, c)), ctx.url, (c) => [c.name, c.description]);
+      return page(starredFirst(sort === "name" ? rows.sort(byName((c) => c.name)) : rows, ctx.url), ctx.url);
     }
   },
   {
@@ -138,7 +200,9 @@ export const courseRoutes: Route[] = [
           joined_at: e.joined_at,
           status: e.status
         }));
-      return page(rows, ctx.url);
+      const sort = sortParam(ctx.url, ["joined", "name"] as const);
+      const found = search(rows, ctx.url, (r) => [r.display_name]);
+      return page(sort === "name" ? found.sort(byName((r) => r.display_name)) : found, ctx.url);
     }
   },
   {
@@ -175,8 +239,10 @@ export const courseRoutes: Route[] = [
     path: "/v1/student/courses",
     handler: (ctx) => {
       const student = requireRole(ctx, "student");
-      const mine = ctx.state.enrolments.filter((e) => e.student_id === student.id && e.status === "active");
-      return page(mine.map((e) => studentCourse(ctx.state, e)), ctx.url);
+      const sort = sortParam(ctx.url, ["recent", "name"] as const);
+      const mine = ctx.state.enrolments.filter((e) => e.student_id === student.id && e.status === "active").reverse();
+      const rows = search(mine.map((e) => studentCourse(ctx.state, e)), ctx.url, (c) => [c.name, c.description, c.teacher_name]);
+      return page(starredFirst(sort === "name" ? rows.sort(byName((c) => c.name)) : rows, ctx.url), ctx.url);
     }
   },
   { method: "GET", path: "/v1/student/courses/{course_id}", handler: (ctx) => studentCourse(ctx.state, activeEnrolment(ctx)) },

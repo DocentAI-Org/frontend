@@ -1,6 +1,11 @@
 // US4 — teacher configures the tutor (spec 002 US4, 001 US3).
+import type { Page } from "@playwright/test";
+
 import { courseSection, expect, expectAccessible, scenario, test } from "./helpers";
 import { newCourse } from "./helpers-course";
+
+/** The "Contenido" group of the course sections: leaving the settings through it. */
+const contentTab = (page: Page) => page.getByRole("navigation", { name: /secciones del curso/i }).getByRole("link", { name: /^contenido$/i });
 
 test.describe("US4 tutor settings", () => {
   test.beforeEach(async ({ page }) => {
@@ -33,13 +38,14 @@ test.describe("US4 tutor settings", () => {
     await page.getByRole("radio", { name: /formal/i }).check();
     await expect(page.getByText("Tienes cambios sin guardar.", { exact: true })).toBeVisible();
 
-    await (await courseSection(page, /^material$/i)).click();
+    await contentTab(page).click();
     await expect(page.getByRole("dialog")).toContainText(/salir sin guardar/i);
     await page.getByRole("dialog").getByRole("button", { name: /seguir editando/i }).click();
     await expect(page.getByRole("radio", { name: /formal/i })).toBeChecked();
 
-    await (await courseSection(page, /^material$/i)).click();
+    await contentTab(page).click();
     await page.getByRole("dialog").getByRole("button", { name: /salir sin guardar/i }).click();
+    // Contenido opens its first section, Material.
     await expect(page).toHaveURL(/\/material$/);
   });
 

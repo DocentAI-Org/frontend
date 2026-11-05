@@ -36,7 +36,32 @@ test.describe("US5 topics", () => {
     await expect(topicItems(page)).toHaveCount(2);
     await expectAccessible(page);
 
-    await topicItems(page).nth(1).getByRole("button", { name: /subir/i }).click();
+    // Pressing the handle without dragging opens the move menu (the no-drag alternative).
+    await page.getByRole("button", { name: "Mover «Paréntesis»" }).click();
+    await page.getByRole("button", { name: /^subir$/i }).click();
+    await expect(topicItems(page).first()).toContainText("Paréntesis");
+    await expect(page.getByRole("status").filter({ hasText: /«Paréntesis» está ahora en la posición 1/ })).toBeAttached();
+
+    // The arrow keys move it back down.
+    const movedDown = page.waitForResponse((response) => response.request().method() === "POST");
+    await page.getByRole("button", { name: "Mover «Paréntesis»" }).press("ArrowDown");
+    await expect(topicItems(page).first()).toContainText("Ecuaciones");
+    await movedDown;
+
+    // And dragging the handle moves it up again; the order survives a reload.
+    // Measured once the rows have slid into place.
+    await page.evaluate(() => Promise.all(document.getAnimations().map((animation) => animation.finished)));
+    const handle = page.getByRole("button", { name: "Mover «Paréntesis»" });
+    const box = (await handle.boundingBox())!;
+    const target = (await topicItems(page).first().boundingBox())!;
+    await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(box.x + box.width / 2, target.y + 4, { steps: 8 });
+    const saved = page.waitForResponse((response) => response.request().method() === "POST");
+    await page.mouse.up();
+    await expect(topicItems(page).first()).toContainText("Paréntesis");
+    await saved;
+    await page.reload();
     await expect(topicItems(page).first()).toContainText("Paréntesis");
 
     await topicItems(page).first().getByRole("button", { name: /renombrar/i }).click();

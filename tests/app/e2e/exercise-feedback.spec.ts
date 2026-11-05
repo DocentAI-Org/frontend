@@ -107,6 +107,8 @@ test.describe("005 US2–US3 learning record", () => {
   scenario("005-US2-AS2", "with no mistakes the page explains where they come from", async ({ page, request }) => {
     const { courseId } = await classroom(request, page);
     await page.goto("/student/courses");
+    // Exercise, quiz and progress are in each course row's "More actions" menu (spec 016).
+    await page.locator('summary[aria-label^="Más acciones"]').first().click();
     await page.getByRole("link", { name: /mi progreso/i }).first().click();
 
     await expect(page).toHaveURL(new RegExp(`/student/courses/${courseId}/progress$`));

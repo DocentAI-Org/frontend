@@ -1,0 +1,17 @@
+# Tasks: Search, Sort and Favourites in Lists
+
+**Spec**: [spec.md](spec.md)
+
+- [x] T001 E2E: 016-US1-AS1…AS3, US2-AS1…AS2, US3-AS1…AS3 in `tests/app/e2e/list-tools.spec.ts`
+- [x] T002 Pin the backend contract and regenerate the types
+- [x] T003 Mock API: `q`, `sort`, paging and favourites
+- [x] T004 [US1] [US2] `ListToolbar`, "Mostrar más" and the API helpers that take `q`, `sort` and
+  the number shown
+- [x] T005 [US1] [US2] The eight lists: courses (teacher, student), students, conversations,
+  material, questions, users, courses (admin)
+- [x] T006 [US3] The favourite star in both course lists
+- [x] T007 [US3] Compact course rows, "Todos / Favoritos" side filter with counts; the
+  student's exercise, quiz and progress links move to a row menu
+- [x] T008 [US4] E2E 016-US4-AS1…AS4; mock API tags; contract repinned
+- [x] T009 [US4] Tags in the side filter (create, edit, delete), chips on course rows and the
+  course's "Etiquetas" dialog, for teachers and students

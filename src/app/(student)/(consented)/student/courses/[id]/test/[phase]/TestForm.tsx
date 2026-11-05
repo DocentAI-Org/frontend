@@ -114,7 +114,7 @@ export function TestForm({
                     type="radio"
                     name={`${ids}-${question.id}`}
                     value={i}
-                    className="size-5 shrink-0 accent-primary-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+                    className="size-6 shrink-0 accent-primary-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
                   />
                   <span className="text-fg"><MathText text={option} /></span>
                 </label>

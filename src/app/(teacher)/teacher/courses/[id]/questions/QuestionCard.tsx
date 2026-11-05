@@ -218,7 +218,7 @@ function QuestionEditor({
                 name={`${ids}-correct`}
                 checked={correct === i}
                 onChange={() => setCorrect(i)}
-                className="size-5 accent-primary-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+                className="size-6 accent-primary-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
               />
               <span className="text-fg">{t("correctOption", { n: i + 1 })}</span>
             </label>

@@ -125,6 +125,21 @@ test.describe("009 US2 the teacher's student page", () => {
     await expectAccessible(page);
   });
 
+  scenario("009-US2-AS3", "an example opened from the student page goes back to it", async ({ page, request }) => {
+    const { courseId } = await progressPage(request, page);
+    await signOut(page);
+    await signIn(page, USERS.teacher);
+    await page.goto(`/teacher/courses/${courseId}`);
+    await page.getByRole("link", { name: /lucas herrera/i }).first().click();
+    await expect(page.getByRole("heading", { level: 1, name: /lucas herrera/i })).toBeVisible();
+    const student = page.url();
+
+    await page.getByRole("link", { name: /ver un ejemplo/i }).first().click();
+    await page.getByRole("link", { name: /^volver a lucas herrera$/i }).click();
+    await expect(page).toHaveURL(student);
+    await expect(page.getByRole("heading", { level: 1, name: /lucas herrera/i })).toBeVisible();
+  });
+
   scenario("009-US2-AS2", "the weekly activity counts completed quizzes", async ({ page, request }) => {
     const { courseId } = await progressPage(request, page);
     await signOut(page);

@@ -39,8 +39,8 @@ export default async function FlagsPage({ params }: { params: Promise<{ id: stri
         <ul aria-label={t("teacher.flags.listLabel")} className="flex flex-col gap-4">
           {flags.data.items.map((flag) => {
             const href = flag.conversation_id
-              ? routes.teacherConversation(id, flag.conversation_id)
-              : routes.teacherSubmission(id, flag.submission_id ?? "");
+              ? routes.teacherConversation(id, flag.conversation_id, routes.teacherFlags(id))
+              : routes.teacherSubmission(id, flag.submission_id ?? "", routes.teacherFlags(id));
             return (
               <li key={flag.id} className="flex flex-col gap-2 rounded-xl border border-border bg-surface-raised p-4" data-component="FlagRow">
                 <p className="flex flex-wrap items-center gap-2 text-sm">

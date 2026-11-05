@@ -40,7 +40,8 @@ export default defineConfig({
             NEXT_PUBLIC_SUPABASE_URL: MOCK,
             NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: "mock-publishable-key",
             API_BASE_URL: MOCK,
-            PSEUDONYM_EMAIL_DOMAIN: "students.docentai.invalid"
+            PSEUDONYM_EMAIL_DOMAIN: "students.docentai.invalid",
+            STUDY_QUESTIONNAIRES: "on"
           }
         }
       ],

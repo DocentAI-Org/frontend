@@ -136,7 +136,7 @@ function QuestionForm({ question, total, pending, onSubmit }: { question: Curren
                 checked={choice === i}
                 onChange={() => setChoice(i)}
                 disabled={pending}
-                className="size-5 shrink-0 accent-primary-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+                className="size-6 shrink-0 accent-primary-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
               />
               <span className="text-fg"><MathText text={option} /></span>
             </label>

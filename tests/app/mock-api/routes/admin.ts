@@ -1,4 +1,4 @@
-import { HttpError, RawBody, type Route, page, requireRole } from "../http.ts";
+import { HttpError, RawBody, type Route, byName, page, requireRole, search, sortParam } from "../http.ts";
 import { type S, type User, id, now } from "../state.ts";
 
 const ALPHABET = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
@@ -39,7 +39,12 @@ export const adminRoutes: Route[] = [
     path: "/v1/admin/users",
     handler: (ctx) => {
       requireRole(ctx, "admin");
-      return page([...ctx.state.users].reverse().map(adminUser), ctx.url);
+      const sort = sortParam(ctx.url, ["recent", "name"] as const);
+      const role = ctx.url.searchParams.get("role");
+      const status = ctx.url.searchParams.get("status");
+      const users = [...ctx.state.users].reverse().filter((u) => (!role || u.role === role) && (!status || u.status === status));
+      const rows = search(users.map(adminUser), ctx.url, (u) => [u.display_name, u.email]);
+      return page(sort === "name" ? rows.sort(byName((u) => u.display_name)) : rows, ctx.url);
     }
   },
   {
@@ -54,7 +59,9 @@ export const adminRoutes: Route[] = [
         student_count: ctx.state.enrolments.filter((e) => e.course_id === course.id && e.status === "active").length,
         created_at: course.created_at
       }));
-      return page(rows, ctx.url);
+      const sort = sortParam(ctx.url, ["recent", "name"] as const);
+      const found = search(rows.reverse(), ctx.url, (c) => [c.name, c.teacher_name]);
+      return page(sort === "name" ? found.sort(byName((c) => c.name)) : found, ctx.url);
     }
   },
   {

@@ -1,10 +1,10 @@
 // 012 — study data export for the admin (spec 012 US1, requirement P5).
-import { USERS, chooseOption, expect, expectAccessible, openMenuIfNeeded, scenario, signIn, signOut, test } from "./helpers";
+import { USERS, chooseOption, expect, expectAccessible, scenario, signIn, signOut, test } from "./helpers";
 
 test.describe("012 US1 study data export", () => {
   scenario("012-US1-AS1", "the page says what is exported and what is not", async ({ page }) => {
     await signIn(page, USERS.admin);
-    await openMenuIfNeeded(page);
+    // The admin's sections are header tabs, always shown.
     await page.getByRole("link", { name: /datos del estudio/i }).filter({ visible: true }).first().click();
 
     await expect(page.getByRole("heading", { level: 1, name: /datos del estudio/i })).toBeVisible();

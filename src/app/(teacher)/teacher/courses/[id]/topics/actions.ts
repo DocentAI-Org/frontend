@@ -37,13 +37,8 @@ export async function deleteTopicAction(form: FormData) {
   back(courseId);
 }
 
-export async function moveTopicAction(form: FormData) {
-  const courseId = String(form.get("course_id"));
-  const order = String(form.get("order")).split(",");
-  const index = Number(form.get("index"));
-  const target = form.get("direction") === "up" ? index - 1 : index + 1;
-  if (target < 0 || target >= order.length) back(courseId);
-  [order[index], order[target]] = [order[target], order[index]];
-  await reorderTopics(courseId, order);
-  back(courseId, { moved: String(form.get("name")) });
+/** Saves a new order from the sortable list (drag, arrow keys or its menu); the list refreshes. */
+export async function reorderTopicsAction(courseId: string, order: string[]): Promise<{ ok: boolean }> {
+  const result = await reorderTopics(courseId, order);
+  return { ok: result.ok };
 }

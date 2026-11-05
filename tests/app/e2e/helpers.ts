@@ -4,7 +4,7 @@ import { type Locator, type Page, test as base, expect } from "@playwright/test"
 
 export { expect };
 
-const MOCK = "http://127.0.0.1:8010";
+export const MOCK = "http://127.0.0.1:8010";
 const integration = process.env.E2E_TARGET === "integration";
 export const PASSWORD = "docentai-dev-password";
 
@@ -59,6 +59,9 @@ export async function expectAccessible(page: Page) {
       new Promise((resolve) => setTimeout(resolve, 1000))
     ])
   );
+  // Audit from the top: a reload keeps the scroll position, and whatever then sits under the
+  // sticky header reads to axe's target-size check as "partially obscured".
+  await page.evaluate(() => window.scrollTo(0, 0));
   const { violations } = await new AxeBuilder({ page }).withTags(TAGS).analyze();
   const report = violations
     .map((v) => `${v.id}: ${v.help}\n${v.nodes.map((n) => `    ${n.target.join(" ")}`).join("\n")}`)
@@ -84,11 +87,22 @@ export async function openMenuIfNeeded(page: Page) {
   if ((await menu.count()) && !(await page.locator("details[open]").count())) await menu.click();
 }
 
-/** A course section link in the sidebar; on phones the sections are in the menu, opened first. */
+/**
+ * A course section link. The teacher's sections are grouped (Seguimiento, Contenido, Ajustes) and
+ * only the current group's are shown, so the other groups are opened in turn until it appears.
+ */
 export async function courseSection(page: Page, name: RegExp) {
-  const menu = page.getByLabel(/^(abrir menú|open menu)$/i).filter({ visible: true });
-  if ((await menu.count()) && !(await page.locator("header details[open]").count())) await menu.click();
-  return page.getByRole("link", { name }).filter({ visible: true });
+  const link = page.getByRole("link", { name }).filter({ visible: true });
+  if (await link.count()) return link;
+  const groups = page.getByRole("navigation", { name: /secciones del curso/i }).getByRole("link");
+  for (let i = 0; i < (await groups.count()); i += 1) {
+    if ((await groups.nth(i).getAttribute("aria-current")) === "true") continue;
+    await groups.nth(i).click();
+    // Wait for the group's sections to be shown before looking for the link.
+    await expect(groups.nth(i)).toHaveAttribute("aria-current", "true");
+    if (await link.count()) break;
+  }
+  return link;
 }
 
 /** Picks an option in a Select (the app's combobox, not a native select). */

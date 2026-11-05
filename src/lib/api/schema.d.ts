@@ -56,6 +56,78 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/me/favorite-courses/{course_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Star a course the caller teaches or is in (specs/016) */
+        put: operations["star_course_v1_me_favorite_courses__course_id__put"];
+        post?: never;
+        /** Unstar a course (specs/016) */
+        delete: operations["unstar_course_v1_me_favorite_courses__course_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/me/course-tags": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** The caller's course tags */
+        get: operations["list_course_tags_v1_me_course_tags_get"];
+        put?: never;
+        /** Create Course Tag */
+        post: operations["create_course_tag_v1_me_course_tags_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/me/course-tags/{tag_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Delete Course Tag */
+        delete: operations["delete_course_tag_v1_me_course_tags__tag_id__delete"];
+        options?: never;
+        head?: never;
+        /** Update Course Tag */
+        patch: operations["update_course_tag_v1_me_course_tags__tag_id__patch"];
+        trace?: never;
+    };
+    "/v1/me/course-tags/{tag_id}/courses/{course_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Put a tag on a course the caller teaches or is in */
+        put: operations["tag_course_v1_me_course_tags__tag_id__courses__course_id__put"];
+        post?: never;
+        /** Untag Course */
+        delete: operations["untag_course_v1_me_course_tags__tag_id__courses__course_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/error-types": {
         parameters: {
             query?: never;
@@ -1801,6 +1873,61 @@ export interface components {
              */
             status: "active" | "revoked";
         };
+        /** CourseTag */
+        CourseTag: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Name */
+            name: string;
+            /**
+             * Color
+             * @enum {string}
+             */
+            color: "violet" | "green" | "blue" | "amber" | "red" | "gray";
+            /**
+             * Course Count
+             * @description Courses the user teaches or is in with this tag.
+             */
+            course_count: number;
+        };
+        /** CourseTagCreate */
+        CourseTagCreate: {
+            /** Name */
+            name: string;
+            /**
+             * Color
+             * @enum {string}
+             */
+            color: "violet" | "green" | "blue" | "amber" | "red" | "gray";
+        };
+        /**
+         * CourseTagRef
+         * @description One of the caller's tags on a course (specs/016 US4).
+         */
+        CourseTagRef: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Name */
+            name: string;
+            /**
+             * Color
+             * @enum {string}
+             */
+            color: "violet" | "green" | "blue" | "amber" | "red" | "gray";
+        };
+        /** CourseTagUpdate */
+        CourseTagUpdate: {
+            /** Name */
+            name?: string | null;
+            /** Color */
+            color?: ("violet" | "green" | "blue" | "amber" | "red" | "gray") | null;
+        };
         /** CourseTest */
         CourseTest: {
             /**
@@ -2880,6 +3007,17 @@ export interface components {
             joined_at: string;
             /** Disclosure Acknowledged */
             disclosure_acknowledged: boolean;
+            /**
+             * Is Favorite
+             * @description Starred by the caller; listed first (specs/016).
+             * @default false
+             */
+            is_favorite: boolean;
+            /**
+             * Tags
+             * @description The caller's own tags (specs/016 US4).
+             */
+            tags?: components["schemas"]["CourseTagRef"][];
         };
         /** StudentErrors */
         StudentErrors: {
@@ -3182,6 +3320,17 @@ export interface components {
              * Format: date-time
              */
             created_at: string;
+            /**
+             * Is Favorite
+             * @description Starred by the caller; listed first (specs/016).
+             * @default false
+             */
+            is_favorite: boolean;
+            /**
+             * Tags
+             * @description The caller's own tags (specs/016 US4).
+             */
+            tags?: components["schemas"]["CourseTagRef"][];
         };
         /** TeacherCreate */
         TeacherCreate: {
@@ -3979,6 +4128,457 @@ export interface operations {
             };
         };
     };
+    star_course_v1_me_favorite_courses__course_id__put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    unstar_course_v1_me_favorite_courses__course_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_course_tags_v1_me_course_tags_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CourseTag"][];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    create_course_tag_v1_me_course_tags_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CourseTagCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CourseTag"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    delete_course_tag_v1_me_course_tags__tag_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                tag_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_course_tag_v1_me_course_tags__tag_id__patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                tag_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CourseTagUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CourseTag"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    tag_course_v1_me_course_tags__tag_id__courses__course_id__put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                tag_id: string;
+                course_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    untag_course_v1_me_course_tags__tag_id__courses__course_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                tag_id: string;
+                course_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     list_error_types_v1_error_types_get: {
         parameters: {
             query?: never;
@@ -4022,6 +4622,9 @@ export interface operations {
             query?: {
                 role?: ("admin" | "teacher" | "student") | null;
                 status?: ("active" | "disabled") | null;
+                /** @description Words to look for. */
+                q?: string | null;
+                sort?: "recent" | "name";
                 limit?: number;
                 offset?: number;
             };
@@ -4201,6 +4804,9 @@ export interface operations {
     list_courses_v1_admin_courses_get: {
         parameters: {
             query?: {
+                /** @description Words to look for. */
+                q?: string | null;
+                sort?: "recent" | "name";
                 limit?: number;
                 offset?: number;
             };
@@ -4646,6 +5252,13 @@ export interface operations {
     list_courses_v1_teacher_courses_get: {
         parameters: {
             query?: {
+                /** @description Words to look for. */
+                q?: string | null;
+                sort?: "recent" | "name";
+                /** @description Only starred courses, or only the others. */
+                favorite?: boolean | null;
+                /** @description Only the courses with this tag of yours. */
+                tag?: string | null;
                 limit?: number;
                 offset?: number;
             };
@@ -4987,6 +5600,9 @@ export interface operations {
     list_students_v1_teacher_courses__course_id__students_get: {
         parameters: {
             query?: {
+                /** @description Words to look for. */
+                q?: string | null;
+                sort?: "joined" | "name";
                 limit?: number;
                 offset?: number;
             };
@@ -5105,6 +5721,9 @@ export interface operations {
     list_documents_v1_teacher_courses__course_id__documents_get: {
         parameters: {
             query?: {
+                /** @description Words to look for. */
+                q?: string | null;
+                sort?: "recent" | "name";
                 limit?: number;
                 offset?: number;
             };
@@ -6455,6 +7074,9 @@ export interface operations {
                 to?: string | null;
                 has_no_source?: boolean | null;
                 has_correction?: boolean | null;
+                /** @description Words to look for. */
+                q?: string | null;
+                sort?: "recent" | "oldest";
                 limit?: number;
                 offset?: number;
             };
@@ -6578,6 +7200,9 @@ export interface operations {
                 student_id?: string | null;
                 from?: string | null;
                 to?: string | null;
+                /** @description Words to look for. */
+                q?: string | null;
+                sort?: "recent" | "oldest";
                 limit?: number;
                 offset?: number;
             };
@@ -7419,6 +8044,9 @@ export interface operations {
             query?: {
                 status?: ("pending" | "approved" | "rejected") | null;
                 topic_id?: string | null;
+                /** @description Words to look for. */
+                q?: string | null;
+                sort?: "default" | "recent";
                 limit?: number;
                 offset?: number;
             };
@@ -8191,6 +8819,13 @@ export interface operations {
     list_courses_v1_student_courses_get: {
         parameters: {
             query?: {
+                /** @description Words to look for. */
+                q?: string | null;
+                sort?: "recent" | "name";
+                /** @description Only starred courses, or only the others. */
+                favorite?: boolean | null;
+                /** @description Only the courses with this tag of yours. */
+                tag?: string | null;
                 limit?: number;
                 offset?: number;
             };

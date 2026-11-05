@@ -5,11 +5,15 @@ import { getFormatter, getTranslations } from "next-intl/server";
 import { Alert } from "@/components/Alert";
 import { ConfirmDialog } from "@/components/ConfirmDialog";
 import { EmptyState } from "@/components/EmptyState";
+import { ListFooter } from "@/components/ListFooter";
+import { ListToolbar } from "@/components/ListToolbar";
+import { NoMatches } from "@/components/NoMatches";
 import { ErrorState } from "@/components/ErrorState";
 import { Icon } from "@/components/Icon";
 import { StatusPoller } from "@/components/StatusPoller";
 import type { Schemas } from "@/lib/api/client";
 import { listDocuments } from "@/lib/api/documents";
+import { apiQuery, listState } from "@/lib/list";
 import { listTopics } from "@/lib/api/topics";
 import { UnassignedWarning } from "@/components/UnassignedWarning";
 import { errorMessageKey } from "@/lib/api/errors";
@@ -33,21 +37,32 @@ const ERROR_KEYS: Record<string, string> = {
   processing_interrupted: "error.interrupted"
 };
 
+const SORTS = ["recent", "name"] as const;
+
 /** Course material (#17): upload, status, validation (001 US2). */
 export default async function MaterialPage({
   params,
   searchParams
 }: {
   params: Promise<{ id: string }>;
-  searchParams: Promise<{ validated?: string; excluded?: string; error?: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const { id } = await params;
-  const { validated: validatedName, excluded: excludedName, error } = await searchParams;
+  const query = await searchParams;
+  const { validated: validatedName, excluded: excludedName, error } = query as Record<string, string | undefined>;
+  const list = listState(query, SORTS);
   const t = await getTranslations("teacher.material");
   const tAll = await getTranslations();
   const format = await getFormatter();
-  const [documents, topics] = await Promise.all([listDocuments(id), listTopics(id)]);
+  // Every document for the counts and the duplicate-name check; the list shows what matches (spec 016).
+  const [documents, shownDocuments, topics] = await Promise.all([
+    listDocuments(id),
+    listDocuments(id, apiQuery(list, SORTS), list.shown),
+    listTopics(id)
+  ]);
   if (!documents.ok) return <ErrorState code={documents.code} />;
+  if (!shownDocuments.ok) return <ErrorState code={shownDocuments.code} />;
+  const visible = shownDocuments.data.items;
 
   const docs = documents.data.items;
   const ready = docs.filter((d) => d.processing_status === "ready");
@@ -98,103 +113,114 @@ export default async function MaterialPage({
               <span className="text-fg">{t("noValidatedBody")}</span>
             </Alert>
           )}
-          <ul className="flex flex-col divide-y divide-border rounded-xl border border-border bg-surface-raised px-4 sm:px-6">
-            {docs.map((doc) => (
-              <li key={doc.id} className="flex flex-col gap-4 py-4 sm:flex-row sm:items-center" data-component="DocumentRow">
-                <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-lg border border-teacher-600 text-teacher-700">
-                  <Icon name="file-text" className="size-5 shrink-0" />
-                </span>
-                <div className="flex min-w-0 flex-1 flex-col gap-1">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <p id={`doc-${doc.id}`} className="font-medium break-words text-fg">
-                      {doc.file_name}
-                    </p>
-                    {status(doc)}
+          <ListToolbar
+            searchLabel={t("search")}
+            sorts={SORTS.map((value) => ({ value, label: tAll(`common.list.sorts.${value}`) }))}
+          />
+          {visible.length === 0 ? (
+            <NoMatches q={list.q} />
+          ) : (
+            <ul className="flex flex-col divide-y divide-border rounded-xl border border-border bg-surface-raised px-4 sm:px-6">
+              {visible.map((doc) => (
+                <li key={doc.id} className="flex flex-col gap-4 py-4 sm:flex-row sm:items-center" data-component="DocumentRow">
+                  <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-lg border border-teacher-600 text-teacher-700">
+                    <Icon name="file-text" className="size-5 shrink-0" />
+                  </span>
+                  <div className="flex min-w-0 flex-1 flex-col gap-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <p id={`doc-${doc.id}`} className="font-medium break-words text-fg">
+                        {doc.file_name}
+                      </p>
+                      {status(doc)}
+                    </div>
+                    {doc.processing_status === "error" && (
+                      <p className="text-sm text-danger-700">{t(ERROR_KEYS[doc.error_reason ?? ""] ?? "error.failed")}</p>
+                    )}
+                    {doc.validation_status === "validated" && doc.validated_by_name && doc.validated_at && (
+                      <p className="text-sm text-fg-muted">{t("validatedBy", { name: doc.validated_by_name, date: date(doc.validated_at) })}</p>
+                    )}
+                    {doc.processing_status === "ready" && doc.validation_status === "pending_validation" && (
+                      <p className="text-sm text-fg-muted">{t("pendingNote")}</p>
+                    )}
+                    {doc.processing_status === "ready" && doc.validation_status === "excluded" && (
+                      <p className="text-sm text-fg-muted">{t("excludedNote")}</p>
+                    )}
+                    {doc.processing_status === "ready" && (
+                      <p className="text-sm text-fg-muted tabular-nums">
+                        {doc.page_count
+                          ? t("meta", { pages: doc.page_count, fragments: doc.fragment_count, date: date(doc.uploaded_at) })
+                          : t("metaNoPages", { fragments: doc.fragment_count, date: date(doc.uploaded_at) })}
+                      </p>
+                    )}
+                    {doc.excluded_fragment_count > 0 && (
+                      <p className="text-sm text-fg-muted tabular-nums">{t("excludedFragments", { count: doc.excluded_fragment_count })}</p>
+                    )}
+                    {doc.topics.length > 0 && (
+                      <p className="text-sm text-fg">
+                        <span className="text-fg-muted">{t("topicsLabel")}</span> {doc.topics.map((topic) => topic.name).join(", ")}
+                      </p>
+                    )}
                   </div>
-                  {doc.processing_status === "error" && (
-                    <p className="text-sm text-danger-700">{t(ERROR_KEYS[doc.error_reason ?? ""] ?? "error.failed")}</p>
-                  )}
-                  {doc.validation_status === "validated" && doc.validated_by_name && doc.validated_at && (
-                    <p className="text-sm text-fg-muted">{t("validatedBy", { name: doc.validated_by_name, date: date(doc.validated_at) })}</p>
-                  )}
-                  {doc.processing_status === "ready" && doc.validation_status === "pending_validation" && (
-                    <p className="text-sm text-fg-muted">{t("pendingNote")}</p>
-                  )}
-                  {doc.processing_status === "ready" && doc.validation_status === "excluded" && (
-                    <p className="text-sm text-fg-muted">{t("excludedNote")}</p>
-                  )}
-                  {doc.processing_status === "ready" && (
-                    <p className="text-sm text-fg-muted tabular-nums">
-                      {doc.page_count
-                        ? t("meta", { pages: doc.page_count, fragments: doc.fragment_count, date: date(doc.uploaded_at) })
-                        : t("metaNoPages", { fragments: doc.fragment_count, date: date(doc.uploaded_at) })}
-                    </p>
-                  )}
-                  {doc.excluded_fragment_count > 0 && (
-                    <p className="text-sm text-fg-muted tabular-nums">{t("excludedFragments", { count: doc.excluded_fragment_count })}</p>
-                  )}
-                  {doc.topics.length > 0 && (
-                    <p className="text-sm text-fg">
-                      <span className="text-fg-muted">{t("topicsLabel")}</span> {doc.topics.map((topic) => topic.name).join(", ")}
-                    </p>
-                  )}
-                </div>
-                <div className="flex flex-wrap items-center gap-2">
-                  {doc.processing_status === "ready" && (
-                    <>
-                      <Link href={routes.teacherDocument(id, doc.id)} className={ROW_ACTION} aria-describedby={`doc-${doc.id}`}>
-                        <Icon name="search" />
-                        <span>{t("reviewFragments")}</span>
-                      </Link>
-                      <a href={`${routes.teacherDocument(id, doc.id)}/file` as Route} target="_blank" rel="noopener" className={ROW_ACTION}>
-                        <Icon name="eye" />
-                        <span>{t("openOriginal")}</span>
-                      </a>
-                      {doc.validation_status !== "validated" && (
-                        <ConfirmDialog
-                          trigger={t("validate")}
-                          triggerVariant="secondary"
-                          triggerIcon="check"
-                          title={t("validateTitle", { name: doc.file_name })}
-                          body={t("validateBody")}
-                          confirmLabel={t("validateConfirm")}
-                          cancelLabel={tAll("common.actions.cancel")}
-                          action={validateAction}
-                          fields={fields(doc)}
-                        />
-                      )}
-                      {doc.validation_status !== "excluded" && (
-                        <ConfirmDialog
-                          trigger={t("excludeDocument")}
-                          triggerVariant="ghost"
-                          title={t("excludeTitle", { name: doc.file_name })}
-                          body={t("excludeBody")}
-                          confirmLabel={t("excludeConfirm")}
-                          cancelLabel={tAll("common.actions.cancel")}
-                          confirmVariant="danger"
-                          action={excludeAction}
-                          fields={fields(doc)}
-                        />
-                      )}
-                    </>
-                  )}
-                  {doc.processing_status === "error" && (
-                    <ConfirmDialog
-                      trigger={t("delete")}
-                      triggerVariant="ghost"
-                      title={t("deleteTitle", { name: doc.file_name })}
-                      body={t("deleteBody")}
-                      confirmLabel={t("delete")}
-                      cancelLabel={tAll("common.actions.cancel")}
-                      confirmVariant="danger"
-                      action={deleteAction}
-                      fields={fields(doc)}
-                    />
-                  )}
-                </div>
-              </li>
-            ))}
-          </ul>
+                  <div className="flex flex-wrap items-center gap-2">
+                    {doc.processing_status === "ready" && (
+                      <>
+                        <Link href={routes.teacherDocument(id, doc.id)} className={ROW_ACTION} aria-describedby={`doc-${doc.id}`}>
+                          <Icon name="search" />
+                          <span>{t("reviewFragments")}</span>
+                        </Link>
+                        <a href={`${routes.teacherDocument(id, doc.id)}/file` as Route} target="_blank" rel="noopener" className={ROW_ACTION}>
+                          <Icon name="eye" />
+                          <span>{t("openOriginal")}</span>
+                        </a>
+                        {doc.validation_status !== "validated" && (
+                          <ConfirmDialog
+                            trigger={t("validate")}
+                            triggerVariant="secondary"
+                            triggerIcon="check"
+                            title={t("validateTitle", { name: doc.file_name })}
+                            body={t("validateBody")}
+                            confirmLabel={t("validateConfirm")}
+                            cancelLabel={tAll("common.actions.cancel")}
+                            action={validateAction}
+                            fields={fields(doc)}
+                          />
+                        )}
+                        {doc.validation_status !== "excluded" && (
+                          <ConfirmDialog
+                            trigger={t("excludeDocument")}
+                            triggerVariant="ghost"
+                            title={t("excludeTitle", { name: doc.file_name })}
+                            body={t("excludeBody")}
+                            confirmLabel={t("excludeConfirm")}
+                            cancelLabel={tAll("common.actions.cancel")}
+                            confirmVariant="danger"
+                            action={excludeAction}
+                            fields={fields(doc)}
+                          />
+                        )}
+                      </>
+                    )}
+                    {doc.processing_status === "error" && (
+                      <ConfirmDialog
+                        trigger={t("delete")}
+                        triggerVariant="ghost"
+                        title={t("deleteTitle", { name: doc.file_name })}
+                        body={t("deleteBody")}
+                        confirmLabel={t("delete")}
+                        cancelLabel={tAll("common.actions.cancel")}
+                        confirmVariant="danger"
+                        action={deleteAction}
+                        fields={fields(doc)}
+                      />
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+          {visible.length > 0 && (
+            <ListFooter path={routes.teacherMaterial(id)} params={query} shown={list.shown} total={shownDocuments.data.total} />
+          )}
         </section>
       )}
     </div>

@@ -217,6 +217,8 @@ test.describe("008 US2 adaptive quiz", () => {
     const { courseId } = await classroom(request, page);
     await seedQuestions(request, courseId);
     await page.goto("/student/courses");
+    // Exercise, quiz and progress are in each course row's "More actions" menu (spec 016).
+    await page.locator('summary[aria-label^="Más acciones"]').first().click();
     await page.getByRole("link", { name: /hacer un cuestionario/i }).click();
     await expect(page.getByRole("heading", { level: 1, name: /^cuestionario$/i })).toBeVisible();
     await start(page);

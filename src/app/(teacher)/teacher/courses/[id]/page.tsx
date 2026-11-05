@@ -9,9 +9,13 @@ import { ConfirmDialog } from "@/components/ConfirmDialog";
 import { CopyButton } from "@/components/CopyButton";
 import { EmptyState } from "@/components/EmptyState";
 import { ErrorState } from "@/components/ErrorState";
+import { ListFooter } from "@/components/ListFooter";
+import { ListToolbar } from "@/components/ListToolbar";
+import { NoMatches } from "@/components/NoMatches";
 import { StatusBadge } from "@/components/StatusBadge";
 import { getTeacherCourse, listCourseStudents } from "@/lib/api/courses";
 import { errorMessageKey } from "@/lib/api/errors";
+import { apiQuery, listState } from "@/lib/list";
 import { routes } from "@/lib/routes";
 
 import { regenerateCodeAction, revokeStudentAction, setCodeActiveAction } from "./actions";
@@ -28,19 +32,26 @@ async function appOrigin(): Promise<string> {
   return `${proto}://${host}`;
 }
 
+const SORTS = ["joined", "name"] as const;
+
 /** Course overview (#16): invitation code and link, students (001 US4 AS2–AS4). */
 export default async function TeacherCoursePage({
   params,
   searchParams
 }: {
   params: Promise<{ id: string }>;
-  searchParams: Promise<{ code?: string; error?: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const { id } = await params;
-  const { code: codeStatus, error } = await searchParams;
+  const query = await searchParams;
+  const { code: codeStatus, error } = query as { code?: string; error?: string };
+  const list = listState(query, SORTS);
   const t = await getTranslations();
   const format = await getFormatter();
-  const [course, students] = await Promise.all([getTeacherCourse(id), listCourseStudents(id)]);
+  const [course, students] = await Promise.all([
+    getTeacherCourse(id),
+    listCourseStudents(id, apiQuery(list, SORTS), list.shown)
+  ]);
   if (!course.ok) return null; // the layout shows the error
   const code = course.data.class_code;
   // Built from the app's own route, not the API's invitation_path (003 FR-004).
@@ -126,47 +137,60 @@ export default async function TeacherCoursePage({
         </h2>
         {!students.ok ? (
           <ErrorState code={students.code} />
-        ) : students.data.items.length === 0 ? (
+        ) : students.data.total === 0 && !list.q ? (
           <EmptyState
             icon="users"
             title={t("teacher.course.students.emptyTitle")}
             body={t("teacher.course.students.emptyBody", { code })}
           />
         ) : (
-          <ul className="flex flex-col divide-y divide-border rounded-xl border border-border bg-surface-raised px-4 sm:px-6">
-            {students.data.items.map((student) => (
-              <li key={student.student_id} className="flex flex-wrap items-center justify-between gap-4 py-4">
-                <div className="flex flex-col gap-1">
-                  <Link
-                    href={routes.teacherStudent(id, student.student_id)}
-                    className="w-fit rounded-sm font-semibold text-fg underline decoration-neutral-400 underline-offset-2 hover:decoration-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
-                  >
-                    {student.display_name}
-                  </Link>
-                  <span className="text-sm text-fg-muted tabular-nums">
-                    {t("teacher.course.students.joined", {
-                      date: format.dateTime(new Date(student.joined_at), { dateStyle: "long" })
-                    })}
-                  </span>
-                </div>
-                {student.status === "active" ? (
-                  <ConfirmDialog
-                    trigger={t("teacher.course.students.revoke")}
-                    triggerVariant="ghost"
-                    title={t("teacher.course.students.revokeTitle", { name: student.display_name })}
-                    body={t("teacher.course.students.revokeBody")}
-                    confirmLabel={t("teacher.course.students.revoke")}
-                    cancelLabel={t("common.actions.cancel")}
-                    confirmVariant="danger"
-                    action={revokeStudentAction}
-                    fields={{ ...fields, student_id: student.student_id }}
-                  />
-                ) : (
-                  <StatusBadge tone="neutral" icon="lock" label={t("teacher.course.students.revoked")} />
-                )}
-              </li>
-            ))}
-          </ul>
+          <>
+            <ListToolbar
+              searchLabel={t("teacher.course.students.search")}
+              sorts={SORTS.map((value) => ({ value, label: t(`common.list.sorts.${value}`) }))}
+            />
+            {students.data.items.length === 0 ? (
+              <NoMatches q={list.q} />
+            ) : (
+              <ul className="flex flex-col divide-y divide-border rounded-xl border border-border bg-surface-raised px-4 sm:px-6">
+                {students.data.items.map((student) => (
+                  <li key={student.student_id} className="flex flex-wrap items-center justify-between gap-4 py-4">
+                    <div className="flex flex-col gap-1">
+                      <Link
+                        href={routes.teacherStudent(id, student.student_id)}
+                        className="w-fit rounded-sm font-semibold text-fg underline decoration-neutral-400 underline-offset-2 hover:decoration-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+                      >
+                        {student.display_name}
+                      </Link>
+                      <span className="text-sm text-fg-muted tabular-nums">
+                        {t("teacher.course.students.joined", {
+                          date: format.dateTime(new Date(student.joined_at), { dateStyle: "long" })
+                        })}
+                      </span>
+                    </div>
+                    {student.status === "active" ? (
+                      <ConfirmDialog
+                        trigger={t("teacher.course.students.revoke")}
+                        triggerVariant="ghost"
+                        title={t("teacher.course.students.revokeTitle", { name: student.display_name })}
+                        body={t("teacher.course.students.revokeBody")}
+                        confirmLabel={t("teacher.course.students.revoke")}
+                        cancelLabel={t("common.actions.cancel")}
+                        confirmVariant="danger"
+                        action={revokeStudentAction}
+                        fields={{ ...fields, student_id: student.student_id }}
+                      />
+                    ) : (
+                      <StatusBadge tone="neutral" icon="lock" label={t("teacher.course.students.revoked")} />
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
+            {students.data.items.length > 0 && (
+              <ListFooter path={routes.teacherCourse(id)} params={query} shown={list.shown} total={students.data.total} />
+            )}
+          </>
         )}
       </section>
     </div>

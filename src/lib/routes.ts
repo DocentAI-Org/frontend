@@ -13,9 +13,11 @@ export const routes = {
   teacherTopics: (id: string) => `/teacher/courses/${id}/topics` as Route,
   teacherTopicAssignment: (id: string) => `/teacher/courses/${id}/topics/assignment` as Route,
   teacherConversations: (id: string) => `/teacher/courses/${id}/conversations` as Route,
-  teacherConversation: (id: string, conversationId: string) =>
-    `/teacher/courses/${id}/conversations/${conversationId}` as Route,
-  teacherSubmission: (id: string, submissionId: string) => `/teacher/courses/${id}/exercises/${submissionId}` as Route,
+  /** `back`: the page the link is on, for the detail's back link (else it goes to the conversations). */
+  teacherConversation: (id: string, conversationId: string, back?: string) =>
+    `/teacher/courses/${id}/conversations/${conversationId}${backQuery(back)}` as Route,
+  teacherSubmission: (id: string, submissionId: string, back?: string) =>
+    `/teacher/courses/${id}/exercises/${submissionId}${backQuery(back)}` as Route,
   teacherFlags: (id: string) => `/teacher/courses/${id}/corrections` as Route,
   teacherQuestions: (id: string, query = "") => `/teacher/courses/${id}/questions${query}` as Route,
   teacherTest: (id: string, query = "") => `/teacher/courses/${id}/test${query}` as Route,
@@ -34,3 +36,7 @@ export const routes = {
   studentQuiz: (id: string, quizId: string) => `/student/courses/${id}/quizzes/${quizId}` as Route,
   join: (code: string) => `/join/${encodeURIComponent(code)}` as Route
 };
+
+function backQuery(back?: string): string {
+  return back ? `?back=${encodeURIComponent(back)}` : "";
+}

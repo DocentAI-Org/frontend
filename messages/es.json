@@ -23,7 +23,8 @@
       "loadError": "No hemos podido cargar los cursos",
       "pageTitle": "Cursos",
       "tableCaption": "Cursos de la plataforma",
-      "title": "Cursos"
+      "title": "Cursos",
+      "search": "Buscar por curso o profesor/a"
     },
     "shell": {
       "nav": {
@@ -77,7 +78,17 @@
       },
       "tableCaption": "Usuarios de la plataforma",
       "title": "Usuarios",
-      "createStudents": "Crear cuentas de estudiante"
+      "createStudents": "Crear cuentas de estudiante",
+      "search": "Buscar por nombre o correo",
+      "filterRole": "Rol",
+      "allRoles": "Todos los roles",
+      "roleFilter": {
+        "admin": "Administración",
+        "teacher": "Profesorado",
+        "student": "Estudiantes"
+      },
+      "filterStatus": "Estado",
+      "allStatuses": "Todos los estados"
     },
     "studentsNew": {
       "back": "Volver a usuarios",
@@ -366,6 +377,64 @@
         "progressing": "En progreso desde (%)",
         "mastered": "Dominado desde (%)"
       }
+    },
+    "list": {
+      "search": "Buscar",
+      "sort": "Ordenar",
+      "shown": "Mostrando {shown} de {total}",
+      "more": "Mostrar más",
+      "noMatches": "Nada coincide con «{q}»",
+      "noMatchesBody": "Prueba con otras palabras o quita los filtros.",
+      "clear": "Borrar la búsqueda",
+      "favorite": "Marcar {name} como favorito",
+      "favoriteError": "No se ha podido guardar el favorito. Inténtalo de nuevo.",
+      "sorts": {
+        "recent": "Más recientes",
+        "name": "Nombre",
+        "joined": "Fecha de entrada",
+        "oldest": "Más antiguas",
+        "default": "Pendientes primero"
+      },
+      "scope": {
+        "label": "Filtrar cursos",
+        "all": "Todos",
+        "favorites": "Favoritos"
+      },
+      "noFavorites": "Aún no tienes cursos favoritos",
+      "noFavoritesBody": "Pulsa la estrella de un curso para tenerlo siempre a mano aquí.",
+      "rowActions": "Más acciones de {name}"
+    },
+    "tags": {
+      "title": "Etiquetas",
+      "new": "Nueva etiqueta",
+      "edit": "Editar etiqueta",
+      "name": "Nombre",
+      "color": "Color",
+      "colors": {
+        "violet": "Violeta",
+        "green": "Verde",
+        "blue": "Azul",
+        "amber": "Ámbar",
+        "red": "Rojo",
+        "gray": "Gris"
+      },
+      "create": "Crear",
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "close": "Cerrar",
+      "editAction": "Editar",
+      "delete": "Borrar etiqueta",
+      "deleteTitle": "¿Borrar la etiqueta «{name}»?",
+      "deleteBody": "Los cursos se quedan; solo pierden la etiqueta.",
+      "deleteConfirm": "Borrar",
+      "menu": "Opciones de la etiqueta {name}",
+      "courseAction": "Etiquetas…",
+      "courseTitle": "Etiquetas de {course}",
+      "courseLead": "Marca las etiquetas de este curso. Solo las ves tú.",
+      "none": "Aún no tienes etiquetas. Crea una con «Nueva etiqueta» en el panel de filtros.",
+      "taken": "Ya tienes una etiqueta con ese nombre.",
+      "invalid": "Escribe un nombre de hasta 40 caracteres.",
+      "failed": "No se ha podido guardar. Inténtalo de nuevo."
     }
   },
   "student": {
@@ -488,7 +557,9 @@
       "progress": "Mi progreso",
       "quiz": "Hacer un cuestionario",
       "teacher": "Profesor/a: {teacher}",
-      "title": "Mis cursos"
+      "title": "Mis cursos",
+      "search": "Buscar cursos",
+      "moreActions": "Más acciones de {name}"
     },
     "errorPatterns": {
       "back": "Volver a la corrección",
@@ -690,20 +761,18 @@
       "reasonExhausted": "No quedan más preguntas de dificultad {from}: la siguiente es {to}."
     },
     "shell": {
-      "aiLabel": "Tutor IA",
       "nav": {
         "courses": "Mis cursos",
         "profile": "Perfil",
         "progress": "Mi progreso"
       },
       "role": "Estudiante",
-      "teacherReview": "tu profesor/a puede revisar tus conversaciones",
       "course": {
-        "label": "Curso",
         "tutor": "Tutor",
         "exercise": "Ejercicios",
         "quiz": "Cuestionarios",
-        "progress": "Mi progreso"
+        "progress": "Mi progreso",
+        "sections": "Secciones del curso"
       }
     },
     "test": {
@@ -766,7 +835,8 @@
       "exercise": "Ejercicio",
       "corrected": "Corregida",
       "correctedLabel": "Incluye respuestas que has corregido",
-      "messages": "{count, plural, one {# mensaje} other {# mensajes}}"
+      "messages": "{count, plural, one {# mensaje} other {# mensajes}}",
+      "search": "Buscar por estudiante o texto"
     },
     "course": {
       "back": "Volver a mis cursos",
@@ -801,7 +871,8 @@
         "revoke": "Quitar del curso",
         "revokeTitle": "¿Quitar a {name} del curso?",
         "revokeBody": "Dejará de tener acceso al curso y al tutor. Sus conversaciones se conservan.",
-        "revoked": "Fuera del curso"
+        "revoked": "Fuera del curso",
+        "search": "Buscar estudiantes"
       },
       "tab": {
         "conversations": "Conversaciones",
@@ -814,7 +885,12 @@
         "test": "Pre/post-test",
         "criteria": "Criterios"
       },
-      "tabs": "Secciones del curso"
+      "tabs": "Secciones del curso",
+      "group": {
+        "follow": "Seguimiento",
+        "content": "Contenido",
+        "settings": "Ajustes"
+      }
     },
     "courseNew": {
       "back": "Volver a mis cursos",
@@ -842,7 +918,8 @@
       "loadError": "No hemos podido cargar tus cursos",
       "pageTitle": "Mis cursos",
       "title": "Mis cursos",
-      "students": "{count, plural, one {# estudiante} other {# estudiantes}}"
+      "students": "{count, plural, one {# estudiante} other {# estudiantes}}",
+      "search": "Buscar cursos"
     },
     "dashboard": {
       "all": "Todo el curso",
@@ -924,7 +1001,8 @@
       "removeTitle": "¿Quitar la corrección?",
       "removeBody": "Tu estudiante dejará de ver la corrección y la marca «Revisado por tu profesor/a».",
       "removeConfirm": "Quitar corrección",
-      "correctionLabel": "Corrección:"
+      "correctionLabel": "Corrección:",
+      "back": "Volver a respuestas marcadas"
     },
     "fragments": {
       "backToMaterial": "Volver al material",
@@ -1012,7 +1090,8 @@
       "delete": "Eliminar",
       "deleteTitle": "¿Eliminar «{name}»?",
       "deleteBody": "Se borrarán el archivo y sus fragmentos. No se puede deshacer.",
-      "openOriginal": "Ver original"
+      "openOriginal": "Ver original",
+      "search": "Buscar por nombre de archivo"
     },
     "questions": {
       "approved": "Aprobadas",
@@ -1071,7 +1150,8 @@
       "listLabel": "Preguntas {status}",
       "unavailable": "El tutor no está disponible ahora mismo. Inténtalo de nuevo en unos minutos.",
       "correctOption": "Opción {n} es la correcta",
-      "checkAnswerKey": "Las preguntas las redacta la IA y a veces marca como correcta una opción equivocada o deja dos opciones válidas. Resuélvela tú antes de aprobarla."
+      "checkAnswerKey": "Las preguntas las redacta la IA y a veces marca como correcta una opción equivocada o deja dos opciones válidas. Resuélvela tú antes de aprobarla.",
+      "search": "Buscar por enunciado o tema"
     },
     "risk": {
       "activityBasis": "Mensajes al tutor, ejercicios enviados y cuestionarios terminados.",
@@ -1102,8 +1182,7 @@
         "dashboard": "Panel",
         "questions": "Preguntas"
       },
-      "role": "Profesor/a",
-      "course": "Curso"
+      "role": "Profesor/a"
     },
     "tutorSettings": {
       "back": "Volver al curso",
@@ -1186,7 +1265,8 @@
       "mistakesLead": "Los errores de sus ejercicios, por tema y tipo. Cada ejemplo lleva a la corrección.",
       "noMistakesTitle": "{name} todavía no tiene errores registrados",
       "noMistakesBody": "Cuando envíe ejercicios con errores, aparecerán aquí con su tipo y su tema.",
-      "backToCourse": "Volver al curso"
+      "backToCourse": "Volver al curso",
+      "backTo": "Volver a {name}"
     },
     "topics": {
       "pageTitle": "Temas del curso",
@@ -1205,7 +1285,6 @@
       "addFirst": "Añadir el primer tema",
       "saveName": "Guardar nombre",
       "added": "«{name}» se ha añadido. Asígnale secciones desde el material.",
-      "reordered": "«{name}» ha subido una posición.",
       "emptyTitle": "Todavía no hay temas",
       "emptyBody": "Los temas son los objetivos de aprendizaje del curso. Crea el primero y después asigna a cada documento o sección sus temas.",
       "deleteTitle": "¿Eliminar «{name}»?",
@@ -1217,7 +1296,11 @@
       "assign": "Asignar temas",
       "manage": "Gestionar los temas",
       "deletedSuffix": "eran del tema eliminado «{name}»",
-      "sections": "{count, plural, one {# sección asignada} other {# secciones asignadas}}"
+      "sections": "{count, plural, one {# sección asignada} other {# secciones asignadas}}",
+      "handle": "Mover «{name}»",
+      "handleHelp": "Arrastra para ordenar, usa las flechas ↑ ↓ o pulsa para ver las opciones.",
+      "movedTo": "«{name}» está ahora en la posición {position}.",
+      "moveFailed": "No se ha podido guardar el orden. Inténtalo de nuevo."
     },
     "topicAssignment": {
       "pageTitle": "Asignar temas",
