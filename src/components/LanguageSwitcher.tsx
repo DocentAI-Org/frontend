@@ -60,7 +60,7 @@ export function LanguageMenuRow() {
         disabled={pending}
         options={LOCALES.map((locale) => ({ value: locale, label: t(`language.${locale}`), lang: locale }))}
         onValueChange={choose}
-        className="ml-auto w-32"
+        className="ml-auto w-32 shrink-0"
       />
     </div>
   );

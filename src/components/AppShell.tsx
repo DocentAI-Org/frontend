@@ -133,7 +133,7 @@ export async function AppShell({
             <span className="sr-only">{t("userMenu")}</span>
             <Icon name="chevron-right" className="ml-auto size-4 shrink-0 -rotate-90 text-fg-muted" />
           </summary>
-          <div className="absolute bottom-full left-3 mb-2 w-64 rounded-lg border border-border bg-surface-raised p-2 shadow-lg">
+          <div className="absolute bottom-full left-3 mb-2 w-68 rounded-lg border border-border bg-surface-raised p-2 shadow-lg">
             <AccountRows profile={profile} />
           </div>
         </details>
