@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
-import { ImfaheAcknowledgement } from "@/components/ImfaheAcknowledgement";
 import { safeNext } from "@/lib/auth/home";
 
 import { SignInForm } from "./SignInForm";
@@ -53,22 +51,12 @@ export default async function SignInPage({
             <p className="text-sm font-semibold text-teacher-700">
               <sup className="text-xs font-bold">1</sup> {t("common.auth.preview.source")}
             </p>
-            <p className="line-clamp-4 font-serif text-sm text-fg-muted italic">{t("common.auth.preview.passage")}</p>
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-6">
-        <SignInForm next={safeNext(next)} expired={expired === "1"} />
-        <div className="flex flex-wrap items-center justify-between gap-4 border-t border-border pt-4 text-sm text-fg-muted">
-          <ImfaheAcknowledgement />
-          <Link
-            href="/about#privacy"
-            className="rounded-sm bg-surface text-fg underline decoration-neutral-400 underline-offset-2 hover:decoration-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
-          >
-            {t("common.privacy.link")}
-          </Link>
-        </div>
-      </div>
+      {/* IMFAHE and the privacy link are in the page footer (PublicFrame). */}
+      <SignInForm next={safeNext(next)} expired={expired === "1"} />
+
     </div>
   );
 }

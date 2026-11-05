@@ -205,15 +205,14 @@
       "signInTitle": "Sign in to DocentAI",
       "signingIn": "Signing in…",
       "identifier": "Email or code",
-      "identifierHint": "If you were given a code (for example, EST-7K3P9), type it here.",
+      "identifierHint": "Were you given a code? Type it here.",
       "invalidIdentifier": "Incorrect email, code or password. Check them and try again.",
       "missing": "Type your email or code and your password.",
       "preview": {
         "question": "How do I solve for x in 3x + 5 = 20?",
-        "answer": "To solve for x, you need to get it on its own on one side of the equals sign. Do it in two steps, then check the result:",
-        "equation": "3x + 5 − 5 = 20 − 5  →  3x = 15",
-        "source": "Unit 3 · p. 12",
-        "passage": "To solve a linear equation, apply the same operations to both sides until the unknown is on its own."
+        "answer": "Get x on its own: subtract 5 from both sides, then divide by 3.",
+        "equation": "3x + 5 = 20  →  3x = 15  →  x = 5",
+        "source": "Unit 3 · p. 12"
       }
     },
     "brand": {

@@ -205,15 +205,14 @@
       "signInTitle": "Entra en DocentAI",
       "signingIn": "Entrando…",
       "identifier": "Correo electrónico o código",
-      "identifierHint": "Si te han dado un código (por ejemplo, EST-7K3P9), escríbelo aquí.",
+      "identifierHint": "¿Te han dado un código? Escríbelo aquí.",
       "invalidIdentifier": "Correo, código o contraseña incorrectos. Revísalos e inténtalo de nuevo.",
       "missing": "Escribe tu correo o código y tu contraseña.",
       "preview": {
         "question": "¿Cómo despejo x en 3x + 5 = 20?",
-        "answer": "Para despejar x tienes que dejarla sola en un lado del igual. Hazlo en dos pasos y luego comprueba el resultado:",
-        "equation": "3x + 5 − 5 = 20 − 5  →  3x = 15",
-        "source": "Tema 3 · p. 12",
-        "passage": "Para resolver una ecuación de primer grado se aplican las mismas operaciones en los dos miembros hasta dejar la incógnita sola."
+        "answer": "Deja la x sola: resta 5 en los dos lados y divide entre 3.",
+        "equation": "3x + 5 = 20  →  3x = 15  →  x = 5",
+        "source": "Tema 3 · p. 12"
       }
     },
     "brand": {
