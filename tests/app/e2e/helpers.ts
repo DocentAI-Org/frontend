@@ -4,7 +4,7 @@ import { type Locator, type Page, test as base, expect } from "@playwright/test"
 
 export { expect };
 
-const MOCK = "http://127.0.0.1:8010";
+export const MOCK = "http://127.0.0.1:8010";
 const integration = process.env.E2E_TARGET === "integration";
 export const PASSWORD = "docentai-dev-password";
 
