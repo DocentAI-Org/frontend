@@ -14,9 +14,12 @@ body {
   font-family: var(--font-sans);
 }
 
-button,
-input,
-textarea,
-select {
-  font: inherit;
+/* In the base layer so text-sm, font-semibold and the like on a control still apply. */
+@layer base {
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
 }
