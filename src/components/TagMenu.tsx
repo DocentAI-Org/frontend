@@ -6,10 +6,12 @@ import { useEffect, useRef, useState } from "react";
 import { deleteTagAction } from "@/app/actions/tags";
 import type { TagColor } from "@/lib/tag-colors";
 
-import { buttonClass } from "./Button";
 import { ConfirmDialog } from "./ConfirmDialog";
 import { Icon } from "./Icon";
 import { TagDialog } from "./TagDialog";
+
+const MENU_ROW =
+  "flex min-h-9 w-full items-center gap-2 rounded-md px-3 text-left text-sm text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus";
 
 /** A tag's options in the side filter (spec 016 US4): edit it, or delete it after confirming. */
 export function TagMenu({ tag }: { tag: { id: string; name: string; color: TagColor } }) {
@@ -51,13 +53,13 @@ export function TagMenu({ tag }: { tag: { id: string; name: string; color: TagCo
             tag={tag}
             triggerLabel={t("editAction")}
             triggerIcon="settings"
-            triggerClassName={buttonClass("ghost")}
+            triggerClassName={MENU_ROW}
             onSaved={() => setOpen(false)}
           />
           <ConfirmDialog
             trigger={t("delete")}
-            triggerVariant="ghost"
             triggerIcon="trash-2"
+            triggerClassName={MENU_ROW.replace("text-fg", "text-danger-700")}
             title={t("deleteTitle", { name: tag.name })}
             body={t("deleteBody")}
             confirmLabel={t("deleteConfirm")}

@@ -23,10 +23,3 @@ body {
     font: inherit;
   }
 }
-
-/* The signed-in shell's fixed sidebar (src/components/AppShell.tsx) takes 15rem from lg up. */
-@media (width >= 64rem) {
-  body:has(aside[data-sidebar]) {
-    padding-inline-start: 15rem;
-  }
-}

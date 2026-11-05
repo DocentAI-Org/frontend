@@ -3,6 +3,7 @@
 import { type ReactNode, useId, useRef } from "react";
 
 import { Button, type ButtonVariant } from "./Button";
+import { Icon } from "./Icon";
 
 /**
  * The prototype's confirmation dialog on the native <dialog> (focus trap, Escape, top layer).
@@ -12,6 +13,7 @@ export function ConfirmDialog({
   trigger,
   triggerVariant = "secondary",
   triggerIcon,
+  triggerClassName,
   title,
   body,
   confirmLabel,
@@ -23,6 +25,8 @@ export function ConfirmDialog({
   trigger: ReactNode;
   triggerVariant?: ButtonVariant;
   triggerIcon?: string;
+  /** Replaces the Button look, e.g. a left-aligned menu row. */
+  triggerClassName?: string;
   title: string;
   body: ReactNode;
   confirmLabel: string;
@@ -35,9 +39,16 @@ export function ConfirmDialog({
   const titleId = useId();
   return (
     <>
-      <Button type="button" variant={triggerVariant} icon={triggerIcon} onClick={() => dialog.current?.showModal()}>
-        {trigger}
-      </Button>
+      {triggerClassName ? (
+        <button type="button" className={triggerClassName} onClick={() => dialog.current?.showModal()}>
+          {triggerIcon && <Icon name={triggerIcon} />}
+          <span>{trigger}</span>
+        </button>
+      ) : (
+        <Button type="button" variant={triggerVariant} icon={triggerIcon} onClick={() => dialog.current?.showModal()}>
+          {trigger}
+        </Button>
+      )}
       <dialog
         ref={dialog}
         aria-labelledby={titleId}
