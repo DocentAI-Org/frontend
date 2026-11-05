@@ -1,6 +1,7 @@
 import "server-only";
 
 import type { ApiResult } from "./client";
+import type { paths } from "./schema";
 
 const API_MAX = 100;
 
@@ -19,3 +20,8 @@ export async function upTo<T, Extra extends object = object>(
   }
   return { ok: true, data: { ...result.data, items } };
 }
+
+/** A list endpoint's search, sort and filters (backend specs/016), without the paging. */
+export type ListQuery<P extends keyof paths> = paths[P] extends { get: { parameters: { query?: infer Q } } }
+  ? Omit<NonNullable<Q>, "limit" | "offset">
+  : never;

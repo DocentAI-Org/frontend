@@ -6738,6 +6738,9 @@ export interface operations {
                 student_id?: string | null;
                 from?: string | null;
                 to?: string | null;
+                /** @description Words to look for. */
+                q?: string | null;
+                sort?: "recent" | "oldest";
                 limit?: number;
                 offset?: number;
             };

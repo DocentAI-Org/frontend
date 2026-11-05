@@ -4,15 +4,20 @@ import { getTranslations } from "next-intl/server";
 
 import { LinkButton } from "@/components/Button";
 import { EmptyState } from "@/components/EmptyState";
+import { FavoriteStar } from "@/components/FavoriteStar";
+import { ListFooter } from "@/components/ListFooter";
+import { ListToolbar } from "@/components/ListToolbar";
 import { ErrorState } from "@/components/ErrorState";
 import { Icon } from "@/components/Icon";
 import { MessageAllowance } from "@/components/MessageAllowance";
+import { NoMatches } from "@/components/NoMatches";
 import { PageHeader } from "@/components/PageHeader";
 import { StudyQuestionnaires } from "@/components/StudyQuestionnaires";
 import { getAllowance } from "@/lib/api/chat";
 import { listTestPhases } from "@/lib/api/course-tests";
 import { listStudentCourses } from "@/lib/api/courses";
 import { listMyQuestionnaires } from "@/lib/api/me";
+import { apiQuery, listState } from "@/lib/list";
 import { routes } from "@/lib/routes";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -23,11 +28,24 @@ export async function generateMetadata(): Promise<Metadata> {
 const ACTION =
   "inline-flex min-h-11 items-center gap-2 rounded-lg px-4 text-sm font-semibold text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus";
 
-export default async function StudentCoursesPage() {
+const SORTS = ["recent", "name"] as const;
+
+export default async function StudentCoursesPage({
+  searchParams
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const params = await searchParams;
+  const list = listState(params, SORTS);
   const t = await getTranslations("student.courses");
+  const tl = await getTranslations("common.list");
   const tt = await getTranslations("student.test");
   const tp = await getTranslations("teacher.test");
-  const [courses, allowance, questionnaires] = await Promise.all([listStudentCourses(), getAllowance(), listMyQuestionnaires()]);
+  const [courses, allowance, questionnaires] = await Promise.all([
+    listStudentCourses(apiQuery(list, SORTS), list.shown),
+    getAllowance(),
+    listMyQuestionnaires()
+  ]);
   // An open pre/post-test the student has not done yet is announced on its card (010 US3 AS1).
   const pending = new Map<string, "pre" | "post">();
   if (courses.ok) {
@@ -49,11 +67,16 @@ export default async function StudentCoursesPage() {
       {questionnaires.ok && <StudyQuestionnaires items={questionnaires.data} />}
       {!courses.ok ? (
         <ErrorState code={courses.code} />
-      ) : courses.data.items.length === 0 ? (
+      ) : courses.data.total === 0 && !list.q ? (
         <EmptyState icon="book-open" title={t("emptyTitle")} body={t("emptyBody")} action={join("primary")} />
       ) : (
         <>
           {allowance.ok && <MessageAllowance allowance={allowance.data} />}
+          <ListToolbar
+            searchLabel={t("search")}
+            sorts={SORTS.map((value) => ({ value, label: tl(`sorts.${value}`) }))}
+          />
+          {courses.data.items.length === 0 && <NoMatches q={list.q} />}
           <ul className="grid gap-4 md:grid-cols-2">
             {courses.data.items.map((course) => (
               <li
@@ -62,9 +85,12 @@ export default async function StudentCoursesPage() {
                 data-component="Card"
               >
                 <div className="flex flex-col gap-2">
-                  <h2 id={`course-${course.id}`} className="font-serif text-2xl font-semibold text-fg">
-                    {course.name}
-                  </h2>
+                  <div className="flex items-start justify-between gap-2">
+                    <h2 id={`course-${course.id}`} className="font-serif text-2xl font-semibold text-fg">
+                      {course.name}
+                    </h2>
+                    <FavoriteStar courseId={course.id} name={course.name} initial={course.is_favorite} />
+                  </div>
                   <p className="inline-flex items-center gap-2 text-sm text-teacher-700">
                     <Icon name="graduation-cap" />
                     <span>{t("teacher", { teacher: course.teacher_name })}</span>
@@ -101,6 +127,9 @@ export default async function StudentCoursesPage() {
               </li>
             ))}
           </ul>
+          {courses.data.items.length > 0 && (
+            <ListFooter path="/student/courses" params={params} shown={list.shown} total={courses.data.total} />
+          )}
         </>
       )}
     </div>

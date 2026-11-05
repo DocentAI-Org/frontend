@@ -1,16 +1,25 @@
 import "server-only";
 
 import { type Schemas, request } from "./client";
+import { type ListQuery, upTo } from "./paging";
 
 export type QuestionStatus = Schemas["TeacherQuestion"]["status"];
 
 // --- Teacher: questions drafted by the AI and reviewed (backend specs/006, T7) ----------
 
-export const listQuestions = (course_id: string, status: QuestionStatus, topic_id?: string) =>
-  request((api) =>
-    api.GET("/v1/teacher/courses/{course_id}/questions", {
-      params: { path: { course_id }, query: { status, topic_id, limit: 100, offset: 0 } }
-    })
+export const listQuestions = (
+  course_id: string,
+  status: QuestionStatus,
+  topic_id?: string,
+  query: Omit<ListQuery<"/v1/teacher/courses/{course_id}/questions">, "status" | "topic_id"> = {},
+  shown = 100
+) =>
+  upTo(shown, (limit, offset) =>
+    request((api) =>
+      api.GET("/v1/teacher/courses/{course_id}/questions", {
+        params: { path: { course_id }, query: { status, topic_id, ...query, limit, offset } }
+      })
+    )
   );
 
 export const generateQuestions = (course_id: string, topic_id: string, count: number) =>

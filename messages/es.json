@@ -506,7 +506,8 @@
       "progress": "Mi progreso",
       "quiz": "Hacer un cuestionario",
       "teacher": "Profesor/a: {teacher}",
-      "title": "Mis cursos"
+      "title": "Mis cursos",
+      "search": "Buscar cursos"
     },
     "errorPatterns": {
       "back": "Volver a la corrección",
@@ -860,7 +861,8 @@
       "loadError": "No hemos podido cargar tus cursos",
       "pageTitle": "Mis cursos",
       "title": "Mis cursos",
-      "students": "{count, plural, one {# estudiante} other {# estudiantes}}"
+      "students": "{count, plural, one {# estudiante} other {# estudiantes}}",
+      "search": "Buscar cursos"
     },
     "dashboard": {
       "all": "Todo el curso",

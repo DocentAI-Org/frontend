@@ -119,7 +119,13 @@ export const reviewRoutes: Route[] = [
       let rows = ctx.state.submissions.filter((s) => s.course_id === course.id);
       if (q.get("student_id")) rows = rows.filter((s) => s.student_id === q.get("student_id"));
       if (q.get("from")) rows = rows.filter((s) => s.created_at >= q.get("from")!);
-      return page(rows.reverse().map((s) => teacherSubmission(ctx.state, s.id)), ctx.url);
+      const sort = sortParam(ctx.url, ["recent", "oldest"] as const);
+      const views = search(
+        rows.reverse().map((s) => teacherSubmission(ctx.state, s.id)),
+        ctx.url,
+        (s) => [s.student_name, s.problem_statement, s.worked_answer, s.topic_name]
+      );
+      return page(sort === "oldest" ? views.reverse() : views, ctx.url);
     }
   },
   {

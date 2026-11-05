@@ -1,12 +1,13 @@
 import "server-only";
 
 import { type Schemas, request } from "./client";
+import { type ListQuery, upTo } from "./paging";
 
 const PAGE = { limit: 100, offset: 0 };
 
 // Teacher
-export const listTeacherCourses = () =>
-  request((api) => api.GET("/v1/teacher/courses", { params: { query: PAGE } }));
+export const listTeacherCourses = (query: ListQuery<"/v1/teacher/courses"> = {}, shown = PAGE.limit) =>
+  upTo(shown, (limit, offset) => request((api) => api.GET("/v1/teacher/courses", { params: { query: { ...query, limit, offset } } })));
 
 export const getTeacherCourse = (course_id: string) =>
   request((api) => api.GET("/v1/teacher/courses/{course_id}", { params: { path: { course_id } } }));
@@ -27,9 +28,17 @@ export const setClassCodeActive = (course_id: string, active: boolean) =>
     api.PATCH("/v1/teacher/courses/{course_id}/class-code", { params: { path: { course_id } }, body: { active } })
   );
 
-export const listCourseStudents = (course_id: string) =>
-  request((api) =>
-    api.GET("/v1/teacher/courses/{course_id}/students", { params: { path: { course_id }, query: PAGE } })
+export const listCourseStudents = (
+  course_id: string,
+  query: ListQuery<"/v1/teacher/courses/{course_id}/students"> = {},
+  shown = PAGE.limit
+) =>
+  upTo(shown, (limit, offset) =>
+    request((api) =>
+      api.GET("/v1/teacher/courses/{course_id}/students", {
+        params: { path: { course_id }, query: { ...query, limit, offset } }
+      })
+    )
   );
 
 export const revokeStudent = (course_id: string, student_id: string) =>
@@ -40,8 +49,8 @@ export const revokeStudent = (course_id: string, student_id: string) =>
   );
 
 // Student
-export const listStudentCourses = () =>
-  request((api) => api.GET("/v1/student/courses", { params: { query: PAGE } }));
+export const listStudentCourses = (query: ListQuery<"/v1/student/courses"> = {}, shown = PAGE.limit) =>
+  upTo(shown, (limit, offset) => request((api) => api.GET("/v1/student/courses", { params: { query: { ...query, limit, offset } } })));
 
 export const getStudentCourse = (course_id: string) =>
   request((api) => api.GET("/v1/student/courses/{course_id}", { params: { path: { course_id } } }));

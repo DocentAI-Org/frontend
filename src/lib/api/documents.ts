@@ -1,14 +1,21 @@
 import "server-only";
 
 import { type Schemas, request } from "./client";
+import { type ListQuery, upTo } from "./paging";
 
 type Path = { course_id: string; document_id: string };
 
-export const listDocuments = (course_id: string) =>
-  request((api) =>
-    api.GET("/v1/teacher/courses/{course_id}/documents", {
-      params: { path: { course_id }, query: { limit: 100, offset: 0 } }
-    })
+export const listDocuments = (
+  course_id: string,
+  query: ListQuery<"/v1/teacher/courses/{course_id}/documents"> = {},
+  shown = 100
+) =>
+  upTo(shown, (limit, offset) =>
+    request((api) =>
+      api.GET("/v1/teacher/courses/{course_id}/documents", {
+        params: { path: { course_id }, query: { ...query, limit, offset } }
+      })
+    )
   );
 
 export const getDocument = (path: Path) =>

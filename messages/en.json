@@ -506,7 +506,8 @@
       "progress": "My progress",
       "quiz": "Take a quiz",
       "teacher": "Teacher: {teacher}",
-      "title": "My courses"
+      "title": "My courses",
+      "search": "Search courses"
     },
     "errorPatterns": {
       "back": "Back to the feedback",
@@ -860,7 +861,8 @@
       "loadError": "We couldn't load your courses",
       "pageTitle": "My courses",
       "title": "My courses",
-      "students": "{count, plural, one {# student} other {# students}}"
+      "students": "{count, plural, one {# student} other {# students}}",
+      "search": "Search courses"
     },
     "dashboard": {
       "all": "Whole course",
