@@ -42,7 +42,7 @@ test.describe("US6 student chat", () => {
     await expect(page.getByText(COVERED)).toBeVisible();
     const answer = tutorMessages(page).last();
     await expect(answer).toContainText(/según el material/i);
-    await expect(answer.getByRole("button", { name: /ver fuente: ecuaciones\.md · § 3\.2/i })).toBeVisible();
+    await expect(answer.getByRole("button", { name: /ecuaciones\.md · § 3\.2.* ver el pasaje/i })).toBeVisible();
     await expect(answer.getByText(/^IA$/)).toBeVisible();
     await expectAccessible(page);
   });
@@ -51,7 +51,7 @@ test.describe("US6 student chat", () => {
     await classroom(request, page);
     await ask(page, COVERED);
 
-    await tutorMessages(page).last().getByRole("button", { name: /ver fuente/i }).first().click();
+    await tutorMessages(page).last().getByRole("button", { name: /ver el pasaje/i }).first().click();
 
     const sheet = page.getByRole("dialog", { name: /fuente citada/i });
     await expect(sheet).toContainText("ecuaciones.md");
@@ -68,7 +68,7 @@ test.describe("US6 student chat", () => {
 
     const notCovered = page.locator('[data-component="NoSourceNotice"]').last();
     await expect(notCovered).toContainText(/el material del curso no cubre esta pregunta/i);
-    await expect(notCovered.getByRole("button", { name: /ver fuente/i })).toHaveCount(0);
+    await expect(notCovered.getByRole("button", { name: /ver el pasaje/i })).toHaveCount(0);
     await expect(notCovered.getByRole("button", { name: /reformular la pregunta/i })).toBeVisible();
     await expectAccessible(page);
   });
@@ -168,7 +168,7 @@ test.describe("US6 student chat", () => {
     await classroom(request, page, { policy: "hints_only" });
     await ask(page, COVERED);
 
-    await expect(tutorMessages(page).last().getByRole("button", { name: /ver fuente/i }).first()).toBeVisible();
+    await expect(tutorMessages(page).last().getByRole("button", { name: /ver el pasaje/i }).first()).toBeVisible();
   });
 
   scenario("002-US6-AS1", "the disclosure acknowledgement is saved", async ({ page, request }) => {
@@ -188,7 +188,7 @@ test.describe("US6 student chat", () => {
     await request.post(`${MOCK}/__test/exclude-all`);
     await page.reload();
 
-    await tutorMessages(page).last().getByRole("button", { name: /ver fuente/i }).first().click();
+    await tutorMessages(page).last().getByRole("button", { name: /ver el pasaje/i }).first().click();
     await expect(page.getByRole("dialog", { name: /fuente citada/i })).toContainText(/ya no disponible/i);
   });
 

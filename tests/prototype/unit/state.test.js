@@ -313,9 +313,18 @@ describe("leave guard", () => {
   it("does not interfere in other states", () => {
     applyState(document.body, e3);
     bindNavigation(document.body);
-    const click = new MouseEvent("click", { bubbles: true, cancelable: true });
-    document.getElementById("away").dispatchEvent(click);
-    expect(click.defaultPrevented).toBe(false);
+    // Record the outcome once the click has passed the guard, then stop jsdom from navigating.
+    let prevented;
+    window.addEventListener(
+      "click",
+      (event) => {
+        prevented = event.defaultPrevented;
+        event.preventDefault();
+      },
+      { once: true }
+    );
+    document.getElementById("away").dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true }));
+    expect(prevented).toBe(false);
   });
 });
 

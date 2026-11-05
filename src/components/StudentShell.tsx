@@ -43,13 +43,14 @@ export async function StudentShell({
             </nav>
             <details className="relative ml-auto self-center">
               <summary
-                aria-label={t("common.a11y.userMenu")}
                 className="flex min-h-11 cursor-pointer list-none items-center gap-2 rounded-lg px-2 text-sm font-medium text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
               >
                 <span className="inline-flex size-8 items-center justify-center rounded-full border border-border-strong bg-surface text-fg">
                   <Icon name="user" />
                 </span>
                 <span className="hidden sm:inline">{userName}</span>
+                {/* Not an aria-label: the accessible name must keep the visible name (WCAG 2.5.3). */}
+                <span className="sr-only">{t("common.a11y.userMenu")}</span>
               </summary>
               <div className="absolute right-0 mt-2 w-64 rounded-xl border border-border bg-surface-raised p-2 shadow-lg">
                 <p className="px-4 pt-2 font-semibold text-fg sm:hidden">{userName}</p>

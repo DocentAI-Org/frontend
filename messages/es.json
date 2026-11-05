@@ -366,7 +366,6 @@
       "aiTagLabel": "Respuesta generada por inteligencia artificial",
       "citation": {
         "chip": "{doc} · {loc}",
-        "chipLabel": "Ver fuente: {doc} · {loc}",
         "passageLabel": "Fragmento citado",
         "sheetTitle": "Fuente citada",
         "unavailable": "Documento ya no disponible",

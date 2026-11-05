@@ -77,7 +77,10 @@ export async function signIn(page: Page, identifier: string, password = PASSWORD
 
 /** Opens the mobile menu (sidebar hidden at 390 px) or the student user menu, if not open yet. */
 export async function openMenuIfNeeded(page: Page) {
-  const menu = page.getByLabel(/^(abrir menú|open menu|menú de usuario|user menu)$/i).filter({ visible: true });
+  const menu = page
+    .getByLabel(/^(abrir menú|open menu)$/i)
+    .or(page.locator("summary", { hasText: /menú de usuario|user menu/i }))
+    .filter({ visible: true });
   if ((await menu.count()) && !(await page.locator("details[open]").count())) await menu.click();
 }
 
