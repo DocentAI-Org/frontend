@@ -7,6 +7,8 @@ export default defineConfig({
   },
   test: {
     environment: "jsdom",
+    // One jsdom per worker instead of per file; each file still runs in its own context.
+    pool: "vmThreads",
     include: ["tests/prototype/unit/**/*.test.js", "tests/app/unit/**/*.test.{ts,tsx}"]
   }
 });
