@@ -103,9 +103,16 @@ export function TagDialog({
               {TAG_COLORS.map((color) => (
                 <label
                   key={color}
-                  className="flex min-h-9 cursor-pointer items-center gap-2 rounded-md border border-border px-2 text-sm text-fg has-checked:border-neutral-900 has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-focus"
+                  className="relative flex min-h-9 cursor-pointer items-center gap-2 rounded-md border border-border px-2 text-sm text-fg has-checked:border-neutral-900 has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-focus"
                 >
-                  <input type="radio" name="color" value={color} defaultChecked={(tag?.color ?? "violet") === color} className="sr-only" />
+                  {/* Transparent over the whole option, so the swatch and its name are the control. */}
+                  <input
+                    type="radio"
+                    name="color"
+                    value={color}
+                    defaultChecked={(tag?.color ?? "violet") === color}
+                    className="absolute inset-0 cursor-pointer appearance-none rounded-md opacity-0"
+                  />
                   <span aria-hidden="true" className={`size-3 shrink-0 rounded-full ${TAG_STYLES[color].dot}`} />
                   <span>{t(`colors.${color}`)}</span>
                 </label>
