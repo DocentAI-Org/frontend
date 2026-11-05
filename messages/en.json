@@ -401,7 +401,40 @@
         "favorites": "Favourites"
       },
       "noFavorites": "No favourite courses yet",
-      "noFavoritesBody": "Press a course’s star to keep it at hand here."
+      "noFavoritesBody": "Press a course’s star to keep it at hand here.",
+      "rowActions": "More actions for {name}"
+    },
+    "tags": {
+      "title": "Tags",
+      "new": "New tag",
+      "edit": "Edit tag",
+      "name": "Name",
+      "color": "Colour",
+      "colors": {
+        "violet": "Violet",
+        "green": "Green",
+        "blue": "Blue",
+        "amber": "Amber",
+        "red": "Red",
+        "gray": "Grey"
+      },
+      "create": "Create",
+      "save": "Save",
+      "cancel": "Cancel",
+      "close": "Close",
+      "editAction": "Edit",
+      "delete": "Delete tag",
+      "deleteTitle": "Delete the tag “{name}”?",
+      "deleteBody": "The courses stay; they only lose the tag.",
+      "deleteConfirm": "Delete",
+      "menu": "Options for the tag {name}",
+      "courseAction": "Tags…",
+      "courseTitle": "Tags of {course}",
+      "courseLead": "Tick this course’s tags. Only you see them.",
+      "none": "No tags yet. Create one with “New tag” in the filter panel.",
+      "taken": "You already have a tag with that name.",
+      "invalid": "Type a name of up to 40 characters.",
+      "failed": "It could not be saved. Try again."
     }
   },
   "student": {

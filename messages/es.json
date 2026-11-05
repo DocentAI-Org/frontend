@@ -401,7 +401,40 @@
         "favorites": "Favoritos"
       },
       "noFavorites": "Aún no tienes cursos favoritos",
-      "noFavoritesBody": "Pulsa la estrella de un curso para tenerlo siempre a mano aquí."
+      "noFavoritesBody": "Pulsa la estrella de un curso para tenerlo siempre a mano aquí.",
+      "rowActions": "Más acciones de {name}"
+    },
+    "tags": {
+      "title": "Etiquetas",
+      "new": "Nueva etiqueta",
+      "edit": "Editar etiqueta",
+      "name": "Nombre",
+      "color": "Color",
+      "colors": {
+        "violet": "Violeta",
+        "green": "Verde",
+        "blue": "Azul",
+        "amber": "Ámbar",
+        "red": "Rojo",
+        "gray": "Gris"
+      },
+      "create": "Crear",
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "close": "Cerrar",
+      "editAction": "Editar",
+      "delete": "Borrar etiqueta",
+      "deleteTitle": "¿Borrar la etiqueta «{name}»?",
+      "deleteBody": "Los cursos se quedan; solo pierden la etiqueta.",
+      "deleteConfirm": "Borrar",
+      "menu": "Opciones de la etiqueta {name}",
+      "courseAction": "Etiquetas…",
+      "courseTitle": "Etiquetas de {course}",
+      "courseLead": "Marca las etiquetas de este curso. Solo las ves tú.",
+      "none": "Aún no tienes etiquetas. Crea una con «Nueva etiqueta» en el panel de filtros.",
+      "taken": "Ya tienes una etiqueta con ese nombre.",
+      "invalid": "Escribe un nombre de hasta 40 caracteres.",
+      "failed": "No se ha podido guardar. Inténtalo de nuevo."
     }
   },
   "student": {

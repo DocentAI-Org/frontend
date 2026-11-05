@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server";
 
 import { LinkButton } from "@/components/Button";
 import { CourseScope } from "@/components/CourseScope";
+import { CourseTagsDialog } from "@/components/CourseTagsDialog";
 import { EmptyState } from "@/components/EmptyState";
 import { FavoriteStar } from "@/components/FavoriteStar";
 import { ListFooter } from "@/components/ListFooter";
@@ -14,10 +15,11 @@ import { MessageAllowance } from "@/components/MessageAllowance";
 import { NoMatches } from "@/components/NoMatches";
 import { PageHeader } from "@/components/PageHeader";
 import { StudyQuestionnaires } from "@/components/StudyQuestionnaires";
+import { TagChips } from "@/components/TagChips";
 import { getAllowance } from "@/lib/api/chat";
 import { listTestPhases } from "@/lib/api/course-tests";
 import { listStudentCourses } from "@/lib/api/courses";
-import { listMyQuestionnaires } from "@/lib/api/me";
+import { listCourseTags, listMyQuestionnaires } from "@/lib/api/me";
 import { env } from "@/lib/env";
 import { apiQuery, listState } from "@/lib/list";
 import { routes } from "@/lib/routes";
@@ -44,11 +46,13 @@ export default async function StudentCoursesPage({
   const tt = await getTranslations("student.test");
   const tp = await getTranslations("teacher.test");
   const favoritesOnly = params.only === "favorites";
-  const [courses, all, favorites, allowance, questionnaires] = await Promise.all([
-    listStudentCourses({ ...apiQuery(list, SORTS), favorite: favoritesOnly || undefined }, list.shown),
+  const tagId = typeof params.tag === "string" ? params.tag : undefined;
+  const [courses, all, favorites, tags, allowance, questionnaires] = await Promise.all([
+    listStudentCourses({ ...apiQuery(list, SORTS), favorite: favoritesOnly || undefined, tag: tagId }, list.shown),
     // The side filter's counts, whatever the search (spec 016).
     listStudentCourses({}, 1),
     listStudentCourses({ favorite: true }, 1),
+    listCourseTags(),
     getAllowance(),
     env.studyQuestionnaires ? listMyQuestionnaires() : null
   ]);
@@ -68,6 +72,7 @@ export default async function StudentCoursesPage({
     </LinkButton>
   );
   const allCount = all.ok ? all.data.total : 0;
+  const myTags = tags.ok ? tags.data : [];
   return (
     <div className="flex flex-col gap-6">
       <PageHeader title={t("title")} actions={join("secondary")} />
@@ -83,8 +88,9 @@ export default async function StudentCoursesPage({
             <CourseScope
               path="/student/courses"
               params={params}
-              favoritesOnly={favoritesOnly}
+              current={{ favorites: favoritesOnly, tag: tagId }}
               counts={{ all: allCount, favorites: favorites.ok ? favorites.data.total : 0 }}
+              tags={myTags}
             />
             <div className="flex min-w-0 flex-col gap-4">
               <ListToolbar
@@ -124,6 +130,7 @@ export default async function StudentCoursesPage({
                             </span>
                             {course.description && <span className="line-clamp-1 min-w-0">{course.description}</span>}
                           </p>
+                          <TagChips tags={course.tags ?? []} />
                           {phase && (
                             <p className="flex flex-wrap items-center gap-2 text-sm text-info-800" data-component="TestNotice">
                               <span>{tt("cardOpen", { phase: tp(`phaseLower.${phase}`) })}</span>
@@ -149,6 +156,13 @@ export default async function StudentCoursesPage({
                               <Icon name="ellipsis" className="size-5 shrink-0" />
                             </summary>
                             <div className="absolute right-0 z-20 mt-1 flex w-60 flex-col gap-1 rounded-lg border border-border bg-surface-raised p-2 shadow-lg">
+                              <CourseTagsDialog
+                                courseId={course.id}
+                                courseName={course.name}
+                                tags={myTags}
+                                selected={(course.tags ?? []).map((tag) => tag.id)}
+                                triggerClassName={ACTION}
+                              />
                               <Link href={routes.studentExercise(course.id)} className={ACTION}>
                                 <Icon name="file-text" />
                                 <span>{t("exercise")}</span>

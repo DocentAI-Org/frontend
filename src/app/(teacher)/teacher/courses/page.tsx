@@ -4,6 +4,7 @@ import { getFormatter, getTranslations } from "next-intl/server";
 
 import { LinkButton } from "@/components/Button";
 import { CourseScope } from "@/components/CourseScope";
+import { CourseTagsDialog } from "@/components/CourseTagsDialog";
 import { EmptyState } from "@/components/EmptyState";
 import { FavoriteStar } from "@/components/FavoriteStar";
 import { ErrorState } from "@/components/ErrorState";
@@ -13,8 +14,9 @@ import { ListToolbar } from "@/components/ListToolbar";
 import { NoMatches } from "@/components/NoMatches";
 import { PageHeader } from "@/components/PageHeader";
 import { StudyQuestionnaires } from "@/components/StudyQuestionnaires";
+import { TagChips } from "@/components/TagChips";
 import { listTeacherCourses } from "@/lib/api/courses";
-import { listMyQuestionnaires } from "@/lib/api/me";
+import { listCourseTags, listMyQuestionnaires } from "@/lib/api/me";
 import { env } from "@/lib/env";
 import { apiQuery, listState } from "@/lib/list";
 import { routes } from "@/lib/routes";
@@ -25,6 +27,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const SORTS = ["recent", "name"] as const;
+const MENU_ROW =
+  "flex min-h-9 w-full items-center gap-2 rounded-md px-3 text-sm text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus";
 
 export default async function TeacherCoursesPage({
   searchParams
@@ -37,13 +41,16 @@ export default async function TeacherCoursesPage({
   const tl = await getTranslations("common.list");
   const format = await getFormatter();
   const favoritesOnly = params.only === "favorites";
-  const [courses, all, favorites, questionnaires] = await Promise.all([
-    listTeacherCourses({ ...apiQuery(list, SORTS), favorite: favoritesOnly || undefined }, list.shown),
+  const tagId = typeof params.tag === "string" ? params.tag : undefined;
+  const [courses, all, favorites, tags, questionnaires] = await Promise.all([
+    listTeacherCourses({ ...apiQuery(list, SORTS), favorite: favoritesOnly || undefined, tag: tagId }, list.shown),
     // The side filter's counts, whatever the search (spec 016).
     listTeacherCourses({}, 1),
     listTeacherCourses({ favorite: true }, 1),
+    listCourseTags(),
     env.studyQuestionnaires ? listMyQuestionnaires() : null
   ]);
+  const myTags = tags.ok ? tags.data : [];
   const create = (
     <LinkButton href="/teacher/courses/new" icon="plus">
       {t("create")}
@@ -62,8 +69,9 @@ export default async function TeacherCoursesPage({
           <CourseScope
             path="/teacher/courses"
             params={params}
-            favoritesOnly={favoritesOnly}
+            current={{ favorites: favoritesOnly, tag: tagId }}
             counts={{ all: all.ok ? all.data.total : 0, favorites: favorites.ok ? favorites.data.total : 0 }}
+            tags={myTags}
           />
           <div className="flex min-w-0 flex-col gap-4">
             <ListToolbar
@@ -102,8 +110,27 @@ export default async function TeacherCoursesPage({
                           </span>
                         </span>
                       </span>
+                      <TagChips tags={course.tags ?? []} />
                     </Link>
                     <FavoriteStar courseId={course.id} name={course.name} initial={course.is_favorite} />
+                    <details className="relative">
+                      <summary
+                        aria-label={tl("rowActions", { name: course.name })}
+                        title={tl("rowActions", { name: course.name })}
+                        className="flex size-9 cursor-pointer list-none items-center justify-center rounded-md text-fg-muted hover:bg-surface-sunken hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+                      >
+                        <Icon name="ellipsis" className="size-5 shrink-0" />
+                      </summary>
+                      <div className="absolute right-0 z-20 mt-1 flex w-56 flex-col gap-1 rounded-lg border border-border bg-surface-raised p-2 shadow-lg">
+                        <CourseTagsDialog
+                          courseId={course.id}
+                          courseName={course.name}
+                          tags={myTags}
+                          selected={(course.tags ?? []).map((tag) => tag.id)}
+                          triggerClassName={MENU_ROW}
+                        />
+                      </div>
+                    </details>
                   </li>
                 ))}
               </ul>
