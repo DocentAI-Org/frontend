@@ -262,7 +262,9 @@
     },
     "theme": {
       "toDark": "Switch to dark theme",
-      "toLight": "Switch to light theme"
+      "toLight": "Switch to light theme",
+      "dark": "Dark theme",
+      "light": "Light theme"
     },
     "decision": {
       "why": "Why?",

@@ -262,7 +262,9 @@
     },
     "theme": {
       "toDark": "Cambiar a tema oscuro",
-      "toLight": "Cambiar a tema claro"
+      "toLight": "Cambiar a tema claro",
+      "dark": "Tema oscuro",
+      "light": "Tema claro"
     },
     "decision": {
       "why": "¿Por qué?",

@@ -7,10 +7,10 @@ import { MENU_ITEM, SignOutButton } from "./AppShell";
 import { AppFooter } from "./AppFooter";
 import { Brand } from "./Brand";
 import { Icon } from "./Icon";
-import { LanguageSwitcher } from "./LanguageSwitcher";
+import { LanguageMenuRow } from "./LanguageSwitcher";
 import { type NavItem, NavLinks } from "./NavLinks";
 import { SkipLink } from "./SkipLink";
-import { ThemeSwitcher } from "./ThemeSwitcher";
+import { ThemeMenuRow } from "./ThemeSwitcher";
 
 /**
  * The student shell of the prototype (partials/shell-student.html): header tabs and a user menu,
@@ -60,15 +60,13 @@ export async function StudentShell({
                 <p className="px-4 pt-2 font-semibold text-fg sm:hidden">{userName}</p>
                 <p className="px-4 pt-1 pb-2 text-sm text-fg-muted">{roleLabel}</p>
                 {/* The teacher sidebar's user block, folded: profile, language and theme, sign out. */}
-                <div className="flex flex-col gap-2 border-y border-border py-2">
+                <div className="flex flex-col border-y border-border py-1">
                   <Link href={profile.href} className={MENU_ITEM}>
                     <Icon name={profile.icon} />
                     <span>{profile.label}</span>
                   </Link>
-                  <div className="mx-1 flex gap-2">
-                    <LanguageSwitcher stretch />
-                    <ThemeSwitcher />
-                  </div>
+                  <LanguageMenuRow />
+                  <ThemeMenuRow className={MENU_ITEM} />
                 </div>
                 <div className="pt-2">
                   <SignOutButton />

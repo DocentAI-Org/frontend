@@ -41,3 +41,16 @@ export function ThemeSwitcher() {
     </button>
   );
 }
+
+/** A user-menu row that switches theme; the label names the theme it switches to. */
+export function ThemeMenuRow({ className }: { className: string }) {
+  const t = useTranslations("common.theme");
+  return (
+    <button type="button" onClick={toggleTheme} className={className} data-component="ThemeSwitcher" data-variant="menu">
+      <Icon name="moon" className="size-4 shrink-0 dark:hidden" />
+      <Icon name="sun" className="hidden size-4 shrink-0 dark:block" />
+      <span className="dark:hidden">{t("dark")}</span>
+      <span className="hidden dark:inline">{t("light")}</span>
+    </button>
+  );
+}
