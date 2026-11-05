@@ -1,7 +1,6 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
 import { type KeyboardEvent, type PointerEvent, useEffect, useId, useRef, useState, useTransition } from "react";
 
 import { ConfirmDialog } from "@/components/ConfirmDialog";
@@ -25,7 +24,6 @@ const MENU_ROW =
  */
 export function SortableTopics({ courseId, topics, label }: { courseId: string; topics: Topic[]; label: string }) {
   const t = useTranslations();
-  const router = useRouter();
   const ids = useId();
   const [order, setOrder] = useState(topics);
   const [dragging, setDragging] = useState<string | null>(null);
@@ -33,9 +31,10 @@ export function SortableTopics({ courseId, topics, label }: { courseId: string; 
   const [status, setStatus] = useState("");
   const [, startTransition] = useTransition();
   const rows = useRef(new Map<string, HTMLLIElement>());
-  const press = useRef<{ id: string; y: number; moved: boolean; start: string } | null>(null);
+  const press = useRef<{ id: string; y: number; moved: boolean; start: Topic[] } | null>(null);
 
-  // A refreshed list from the server wins over the local one.
+  // A list from the server (after adding, renaming or deleting) wins over the local one. Moves
+  // are not refreshed from the server: the local order is already what was saved.
   const [seen, setSeen] = useState(topics);
   if (topics !== seen) {
     setSeen(topics);
@@ -51,18 +50,16 @@ export function SortableTopics({ courseId, topics, label }: { courseId: string; 
     return () => document.removeEventListener("mousedown", close);
   }, [menu]);
 
-  const save = (next: Topic[], moved: Topic) => {
+  const save = (next: Topic[], moved: Topic, before = order) => {
     setOrder(next);
     setMenu(null);
     setStatus(t("teacher.topics.movedTo", { name: moved.name, position: next.indexOf(moved) + 1 }));
     startTransition(async () => {
       const result = await reorderTopicsAction(courseId, next.map((topic) => topic.id));
       if (!result.ok) {
-        setOrder(seen); // the server's order
+        setOrder(before);
         setStatus(t("teacher.topics.moveFailed"));
-        return;
       }
-      router.refresh();
     });
   };
 
@@ -89,7 +86,7 @@ export function SortableTopics({ courseId, topics, label }: { courseId: string; 
   const onPointerDown = (event: PointerEvent<HTMLButtonElement>, topic: Topic) => {
     if (event.button !== 0) return;
     event.currentTarget.setPointerCapture(event.pointerId);
-    press.current = { id: topic.id, y: event.clientY, moved: false, start: order.map((x) => x.id).join() };
+    press.current = { id: topic.id, y: event.clientY, moved: false, start: order };
   };
 
   const onPointerMove = (event: PointerEvent<HTMLButtonElement>, topic: Topic) => {
@@ -118,7 +115,7 @@ export function SortableTopics({ courseId, topics, label }: { courseId: string; 
       setMenu(menu === topic.id ? null : topic.id);
       return;
     }
-    if (order.map((x) => x.id).join() !== current.start) save(order, topic);
+    if (order.some((x, i) => x !== current.start[i])) save(order, topic, current.start);
   };
 
   const onKeyDown = (event: KeyboardEvent<HTMLButtonElement>, topic: Topic) => {
