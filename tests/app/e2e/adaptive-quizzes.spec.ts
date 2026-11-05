@@ -1,7 +1,7 @@
 // 008 — the teacher's question review and the student's adaptive quiz (spec 008 US1–US2).
 import type { APIRequestContext, Page } from "@playwright/test";
 
-import { USERS, chooseOption, expect, expectAccessible, scenario, signIn, signOut, test } from "./helpers";
+import { chooseOption, courseSection, expect, expectAccessible, scenario, signIn, signOut, test, USERS } from "./helpers";
 import { MOCK, classroom } from "./helpers-student";
 
 type Seeded = { id: string; statement: string; options: string[]; correct_option: number };
@@ -38,7 +38,7 @@ test.describe("008 US1 question review", () => {
     await seedQuestions(request, courseId, { levels: [2], status: "approved" });
     await openQuestions(page, courseId);
 
-    await expect(page.getByRole("link", { name: /^preguntas$/i })).toHaveAttribute("aria-current", "page");
+    await expect(await courseSection(page, /^preguntas$/i)).toHaveAttribute("aria-current", "page");
     await expect(statusTabs(page).getByRole("link", { name: /pendientes 2/i })).toHaveAttribute("aria-current", "page");
     await expect(statusTabs(page).getByRole("link", { name: /aprobadas 1/i })).toBeVisible();
     await expect(statusTabs(page).getByRole("link", { name: /rechazadas 0/i })).toBeVisible();

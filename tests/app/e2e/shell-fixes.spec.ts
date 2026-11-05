@@ -26,7 +26,7 @@ test.describe("004 US1 theme switcher", () => {
     scenario("004-US1-AS3", "signed-in users find it in the account menu, next to the language", async ({ page }) => {
       await signIn(page, USERS.teacher);
       await openMenuIfNeeded(page);
-      await expect(page.getByRole("group", { name: /^idioma$/i }).filter({ visible: true })).toBeVisible();
+      await expect(page.getByRole("combobox", { name: "Idioma" }).filter({ visible: true })).toBeVisible();
       await themeButton(page, /tema oscuro/i).click();
       await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
       await expectAccessible(page);

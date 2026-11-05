@@ -84,6 +84,13 @@ export async function openMenuIfNeeded(page: Page) {
   if ((await menu.count()) && !(await page.locator("details[open]").count())) await menu.click();
 }
 
+/** A course section link in the sidebar; on phones the sections are in the menu, opened first. */
+export async function courseSection(page: Page, name: RegExp) {
+  const menu = page.getByLabel(/^(abrir menú|open menu)$/i).filter({ visible: true });
+  if ((await menu.count()) && !(await page.locator("header details[open]").count())) await menu.click();
+  return page.getByRole("link", { name }).filter({ visible: true });
+}
+
 /** Picks an option in a Select (the app's combobox, not a native select). */
 export async function chooseOption(combobox: Locator, label: string | RegExp) {
   await combobox.click();

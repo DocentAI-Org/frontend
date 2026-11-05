@@ -1,7 +1,7 @@
 // US3 — teacher uploads, reviews and validates material (spec 002 US3, 001 US2).
 import type { Page } from "@playwright/test";
 
-import { USERS, expect, expectAccessible, scenario, signIn, test } from "./helpers";
+import { courseSection, expect, expectAccessible, scenario, signIn, test, USERS } from "./helpers";
 
 const MARKDOWN = `# Tema 3: Ecuaciones de primer grado
 
@@ -22,7 +22,7 @@ async function courseMaterial(page: Page) {
   await page.getByLabel(/nombre del curso/i).fill("Álgebra");
   await page.getByRole("button", { name: /crear curso/i }).click();
   await expect(page.getByRole("heading", { level: 1, name: "Álgebra" })).toBeVisible();
-  await page.getByRole("link", { name: /^material$/i }).click();
+  await (await courseSection(page, /^material$/i)).click();
   await expect(page.getByRole("heading", { level: 2, name: /sube tu primer documento/i })).toBeVisible();
 }
 

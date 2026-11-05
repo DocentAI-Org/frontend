@@ -122,7 +122,13 @@ export default async function DashboardPage({
             })}`}
           />
         ) : (
-          <div className="overflow-x-auto rounded-xl border border-border bg-surface-raised px-4 pt-4 sm:px-6">
+          // Scrolls sideways on phones, so it takes keyboard focus (WCAG 2.1.1, axe scrollable-region-focusable).
+          <div
+            role="region"
+            aria-labelledby="errors-title"
+            tabIndex={0}
+            className="overflow-x-auto rounded-xl border border-border bg-surface-raised px-4 pt-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus sm:px-6"
+          >
             <table aria-labelledby="errors-title" className="w-full border-collapse text-sm">
               <thead>
                 <tr className="border-b border-border">

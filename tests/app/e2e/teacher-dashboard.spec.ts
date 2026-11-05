@@ -1,7 +1,7 @@
 // 006 — teacher dashboard: recurring errors and students who may need help (spec 006 US1–US2).
 import type { APIRequestContext, Page } from "@playwright/test";
 
-import { USERS, expect, expectAccessible, scenario, signIn, test } from "./helpers";
+import { courseSection, expect, expectAccessible, scenario, signIn, test, USERS } from "./helpers";
 import { MOCK } from "./helpers-student";
 
 type Mode = "busy" | "quiet" | "calm";
@@ -23,7 +23,7 @@ const atRisk = (page: Page) => page.getByRole("region", { name: /estudiantes que
 test.describe("006 US1 recurring errors", () => {
   scenario("006-US1-AS1", "the teacher opens the dashboard and sees errors by topic", async ({ page, request }) => {
     await dashboardCourse(request, page, "busy", "");
-    await page.getByRole("link", { name: /^panel$/i }).click();
+    await (await courseSection(page, /^panel$/i)).click();
 
     const row = topicTable(page).getByRole("row").filter({ hasText: "Paréntesis" });
     await expect(row).toBeVisible();

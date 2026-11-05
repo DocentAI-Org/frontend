@@ -20,6 +20,21 @@ type SelectProps = {
   labelId?: string;
   "aria-label"?: string;
   className?: string;
+  /** "sm" is the compact trigger for menus and toolbars (32 px, small text). */
+  size?: "md" | "sm";
+};
+
+const SIZES = {
+  md: {
+    trigger: "min-h-11 rounded-lg border-border-strong py-2 pr-10 pl-4 text-base",
+    chevron: "right-3 size-5",
+    option: "min-h-11 text-base"
+  },
+  sm: {
+    trigger: "min-h-8 rounded-md border-border py-1 pr-8 pl-3 text-sm",
+    chevron: "right-2 size-4",
+    option: "min-h-9 text-sm"
+  }
 };
 
 const TYPEAHEAD_MS = 500;
@@ -39,8 +54,10 @@ export function Select({
   id,
   labelId,
   "aria-label": ariaLabel,
-  className = ""
+  className = "",
+  size = "md"
 }: SelectProps) {
+  const sized = SIZES[size];
   const autoId = useId();
   const triggerId = id ?? `${autoId}-trigger`;
   const listId = `${autoId}-list`;
@@ -191,14 +208,14 @@ export function Select({
         }}
         onKeyDown={onKeyDown}
         onBlur={() => setOpen(false)}
-        className="flex min-h-11 w-full items-center gap-2 rounded-lg border border-border-strong bg-surface-raised py-2 pr-10 pl-4 text-left text-base text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:bg-surface-sunken disabled:text-fg-muted"
+        className={`flex w-full items-center gap-2 border bg-surface-raised text-left text-fg ${sized.trigger} focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:bg-surface-sunken disabled:text-fg-muted`}
       >
         <span className="truncate" lang={current?.lang}>
           {current?.label}
         </span>
         <Icon
           name="chevron-right"
-          className={`pointer-events-none absolute top-1/2 right-3 size-5 -translate-y-1/2 text-fg-muted transition-transform motion-reduce:transition-none ${open ? "-rotate-90" : "rotate-90"}`}
+          className={`pointer-events-none absolute top-1/2 ${sized.chevron} -translate-y-1/2 text-fg-muted transition-transform motion-reduce:transition-none ${open ? "-rotate-90" : "rotate-90"}`}
         />
       </button>
       <ul
@@ -224,7 +241,7 @@ export function Select({
               lang={option.lang}
               onClick={() => choose(index)}
               onMouseMove={() => setActive(index)}
-              className={`flex min-h-11 cursor-pointer items-center gap-2 rounded-lg px-3 text-base text-fg ${index === active ? "bg-surface-sunken" : ""} ${isSelected ? "font-semibold" : ""}`}
+              className={`flex cursor-pointer items-center gap-2 rounded-lg px-3 text-fg ${sized.option} ${index === active ? "bg-surface-sunken" : ""} ${isSelected ? "font-semibold" : ""}`}
             >
               <Icon name="check" className={`size-4 shrink-0 ${isSelected ? "" : "invisible"}`} />
               <span>{option.label}</span>
