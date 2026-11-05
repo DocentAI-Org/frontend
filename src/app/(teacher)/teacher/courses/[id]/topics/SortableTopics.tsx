@@ -33,7 +33,7 @@ export function SortableTopics({ courseId, topics, label }: { courseId: string; 
   const [status, setStatus] = useState("");
   const [, startTransition] = useTransition();
   const rows = useRef(new Map<string, HTMLLIElement>());
-  const press = useRef<{ id: string; y: number; moved: boolean } | null>(null);
+  const press = useRef<{ id: string; y: number; moved: boolean; start: string } | null>(null);
 
   // A refreshed list from the server wins over the local one.
   const [seen, setSeen] = useState(topics);
@@ -89,7 +89,7 @@ export function SortableTopics({ courseId, topics, label }: { courseId: string; 
   const onPointerDown = (event: PointerEvent<HTMLButtonElement>, topic: Topic) => {
     if (event.button !== 0) return;
     event.currentTarget.setPointerCapture(event.pointerId);
-    press.current = { id: topic.id, y: event.clientY, moved: false };
+    press.current = { id: topic.id, y: event.clientY, moved: false, start: order.map((x) => x.id).join() };
   };
 
   const onPointerMove = (event: PointerEvent<HTMLButtonElement>, topic: Topic) => {
@@ -118,7 +118,7 @@ export function SortableTopics({ courseId, topics, label }: { courseId: string; 
       setMenu(menu === topic.id ? null : topic.id);
       return;
     }
-    if (order.map((x) => x.id).join() !== seen.map((x) => x.id).join()) save(order, topic);
+    if (order.map((x) => x.id).join() !== current.start) save(order, topic);
   };
 
   const onKeyDown = (event: KeyboardEvent<HTMLButtonElement>, topic: Topic) => {

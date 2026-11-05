@@ -43,8 +43,10 @@ test.describe("US5 topics", () => {
     await expect(page.getByRole("status").filter({ hasText: /«Paréntesis» está ahora en la posición 1/ })).toBeAttached();
 
     // The arrow keys move it back down.
+    const movedDown = page.waitForResponse((response) => response.request().method() === "POST");
     await page.getByRole("button", { name: "Mover «Paréntesis»" }).press("ArrowDown");
     await expect(topicItems(page).first()).toContainText("Ecuaciones");
+    await movedDown;
 
     // And dragging the handle moves it up again; the order survives a reload.
     const handle = page.getByRole("button", { name: "Mover «Paréntesis»" });
@@ -53,9 +55,10 @@ test.describe("US5 topics", () => {
     await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
     await page.mouse.down();
     await page.mouse.move(box.x + box.width / 2, target.y + 4, { steps: 8 });
+    const saved = page.waitForResponse((response) => response.request().method() === "POST");
     await page.mouse.up();
     await expect(topicItems(page).first()).toContainText("Paréntesis");
-    await page.waitForLoadState("networkidle");
+    await saved;
     await page.reload();
     await expect(topicItems(page).first()).toContainText("Paréntesis");
 
