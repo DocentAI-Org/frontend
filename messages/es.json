@@ -768,11 +768,11 @@
       },
       "role": "Estudiante",
       "course": {
-        "label": "Curso",
         "tutor": "Tutor",
         "exercise": "Ejercicios",
         "quiz": "Cuestionarios",
-        "progress": "Mi progreso"
+        "progress": "Mi progreso",
+        "sections": "Secciones del curso"
       }
     },
     "test": {
@@ -1176,8 +1176,7 @@
         "dashboard": "Panel",
         "questions": "Preguntas"
       },
-      "role": "Profesor/a",
-      "course": "Curso"
+      "role": "Profesor/a"
     },
     "tutorSettings": {
       "back": "Volver al curso",

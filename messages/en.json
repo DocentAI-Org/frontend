@@ -768,11 +768,11 @@
       },
       "role": "Student",
       "course": {
-        "label": "Course",
         "tutor": "Tutor",
         "exercise": "Exercises",
         "quiz": "Quizzes",
-        "progress": "My progress"
+        "progress": "My progress",
+        "sections": "Course sections"
       }
     },
     "test": {
@@ -1176,8 +1176,7 @@
         "dashboard": "Dashboard",
         "questions": "Questions"
       },
-      "role": "Teacher",
-      "course": "Course"
+      "role": "Teacher"
     },
     "tutorSettings": {
       "back": "Back to the course",

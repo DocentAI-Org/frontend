@@ -10,7 +10,7 @@ import { AppFooter } from "./AppFooter";
 import { Brand } from "./Brand";
 import { Icon } from "./Icon";
 import { LanguageMenuRow } from "./LanguageSwitcher";
-import { type CourseNav, type NavItem, ShellNav } from "./ShellNav";
+import { type NavItem, ShellNav } from "./ShellNav";
 import { SkipLink } from "./SkipLink";
 import { ThemeMenuRow } from "./ThemeSwitcher";
 
@@ -57,15 +57,14 @@ function Avatar() {
 }
 
 /**
- * The signed-in shell for every role, laid out like a project dashboard: a header with the brand
- * and the account menu, and under it the role's sections as tabs (and the current course's after a
- * divider), scrolling sideways when they do not fit.
+ * The signed-in shell for every role, laid out like a project dashboard: one header row with the
+ * brand, the role's sections as tabs and the account menu (the tabs get their own row on phones).
+ * A course's sections are tabs inside its pages (CourseTabs).
  */
 export async function AppShell({
   variant,
   home,
   nav,
-  course,
   profile,
   userName,
   roleLabel,
@@ -74,7 +73,6 @@ export async function AppShell({
   variant: "admin" | "teacher" | "student";
   home: Route;
   nav: NavItem[];
-  course?: CourseNav;
   profile?: NavItem;
   userName: string;
   roleLabel: string;
@@ -94,7 +92,7 @@ export async function AppShell({
             aria-label={t("mainNav")}
             className="order-last -mx-4 w-[calc(100%+2rem)] overflow-x-auto border-t border-border px-2 sm:-mx-6 sm:w-[calc(100%+3rem)] sm:px-4 md:order-none md:mx-0 md:w-auto md:min-w-0 md:flex-1 md:border-t-0 md:px-0"
           >
-            <ShellNav items={nav} course={course} />
+            <ShellNav items={nav} />
           </nav>
           <details className="relative ml-auto self-center md:ml-0">
             <summary className="flex min-h-11 cursor-pointer list-none items-center gap-2 rounded-md px-2 hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
