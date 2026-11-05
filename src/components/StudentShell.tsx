@@ -41,7 +41,12 @@ export async function StudentShell({
             <nav aria-label={t("common.a11y.mainNav")} className="hidden items-end md:flex">
               <NavLinks items={nav} variant="tabs" />
             </nav>
-            <details className="relative ml-auto self-center">
+            {/* Language and theme at hand, like the teacher sidebar; phones keep them in the menu. */}
+            <div className="ml-auto hidden items-center gap-2 self-center sm:flex">
+              <LanguageSwitcher />
+              <ThemeSwitcher />
+            </div>
+            <details className="relative ml-auto self-center sm:ml-0">
               <summary
                 className="flex min-h-11 cursor-pointer list-none items-center gap-2 rounded-lg px-2 text-sm font-medium text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
               >
@@ -55,7 +60,7 @@ export async function StudentShell({
               <div className="absolute right-0 mt-2 w-64 rounded-xl border border-border bg-surface-raised p-2 shadow-lg">
                 <p className="px-4 pt-2 font-semibold text-fg sm:hidden">{userName}</p>
                 <p className="px-4 pt-1 pb-2 text-sm text-fg-muted">{roleLabel}</p>
-                <div className="mx-1 mb-2 flex gap-2">
+                <div className="mx-1 mb-2 flex gap-2 sm:hidden">
                   <LanguageSwitcher stretch />
                   <ThemeSwitcher />
                 </div>
