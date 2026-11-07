@@ -1,4 +1,4 @@
-// 019 — AI settings per course (spec 019 US1–US4, US6): message limits, models per task, keys.
+// 019 — AI settings per course (spec 019 US1–US6): limits, models, keys, instructions, tests, usage.
 import type { APIRequestContext, Page } from "@playwright/test";
 
 import { courseSection, expect, expectAccessible, scenario, signIn, test, USERS } from "./helpers";
@@ -331,5 +331,77 @@ test.describe("019 US4 keys for commercial models", () => {
     await saved(page);
     await page.reload();
     await expect(page.getByRole("alert").filter({ hasText: /han vuelto al modelo heredado/i })).toHaveCount(0);
+  });
+});
+
+test.describe("019 US5 instructions, a test message and the usage", () => {
+  const EVERYDAY = "Responde siempre con un ejemplo de la vida cotidiana.";
+
+  scenario("019-US5-AS1", "instructions per task are saved, with a counter", async ({ page, request }) => {
+    const courseId = await teacherCourse(request, page);
+    await page.goto(`/teacher/courses/${courseId}/ai`);
+    const box = group(page, /^instrucciones$/i);
+    await expect(box.getByText(/sin instrucciones/i).first()).toBeVisible();
+    await box.getByRole("radio", { name: /personalizar/i }).check();
+    await expect(box.getByText(/no pueden cambiar las reglas de seguridad/i)).toBeVisible();
+    await box.getByLabel(/chat con el tutor/i).fill(EVERYDAY);
+    await expect(box.getByText(`${EVERYDAY.length} de 2000 caracteres`)).toBeVisible();
+    await save(page);
+
+    await saved(page);
+    await page.reload();
+    await expect(group(page, /^instrucciones$/i).getByLabel(/chat con el tutor/i)).toHaveValue(EVERYDAY);
+    await expectAccessible(page);
+  });
+
+  scenario("019-US5-AS3", "a test uses what is in the form, even unsaved", async ({ page, request }) => {
+    const courseId = await teacherCourse(request, page);
+    await page.goto(`/teacher/courses/${courseId}/ai`);
+    await pick(page, /chat con el tutor/i, /qwen2\.5:3b/i);
+    const box = group(page, /^instrucciones$/i);
+    await box.getByRole("radio", { name: /personalizar/i }).check();
+    await box.getByLabel(/chat con el tutor/i).fill(EVERYDAY);
+    const test = page.getByRole("region", { name: /^probar$/i });
+    await test.getByLabel(/pregunta de prueba/i).fill("¿Cómo despejo la x?");
+    await test.getByRole("button", { name: /probar con esta configuración/i }).click();
+
+    const result = page.getByTestId("test-result");
+    await expect(result).toContainText(/respuesta/i);
+    await expect(result).toContainText(EVERYDAY);
+    await expect(result).toContainText(/qwen2\.5:3b · 1,2 s · 1020 tokens/i);
+    await page.reload();
+    await expect(page.getByRole("combobox", { name: /chat con el tutor/i })).toHaveText(/los del estudio/i);
+    await expectAccessible(page);
+  });
+
+  scenario("019-US5-AS3b", "a test without a question asks for one", async ({ page, request }) => {
+    const courseId = await teacherCourse(request, page);
+    await page.goto(`/teacher/courses/${courseId}/ai`);
+    await page.getByRole("button", { name: /probar con esta configuración/i }).click();
+
+    await expect(page.getByRole("alert").filter({ hasText: /escribe lo que quieres probar/i })).toBeVisible();
+  });
+
+  scenario("019-US5-AS4", "the usage per task and who used most", async ({ page, request }) => {
+    const seeded = await request.post(`${MOCK}/__test/classroom`, { data: { policy: "direct", disclosure: true } });
+    const { course_id: courseId } = (await seeded.json()) as { course_id: string };
+    await request.post(`${MOCK}/__test/course-limit`, {
+      data: { course_id: courseId, used: 0, limits: { messages: 20, period: "week", counted_tasks: ["tutor"] } }
+    });
+    await signIn(page, USERS.student);
+    await page.goto(`/student/courses/${courseId}`);
+    await page.getByLabel(/escribe tu pregunta/i).fill("¿Cómo despejo la incógnita en una ecuación?");
+    await page.getByRole("button", { name: /enviar/i }).click();
+    await expect(page.getByText(/te quedan 19 mensajes esta semana/i)).toBeVisible();
+
+    await page.goto("about:blank");
+    await page.context().clearCookies();
+    await signIn(page, USERS.teacher);
+    await page.goto(`/teacher/courses/${courseId}/ai`);
+    const usage = page.getByRole("region", { name: /^consumo$/i });
+    await expect(usage.getByRole("row", { name: /chat con el tutor/i })).toContainText("1 ·");
+    await expect(usage.getByText(/quién ha usado más esta semana \(límite: 20\)/i)).toBeVisible();
+    await expect(usage.getByText(/lucas herrera: 1 mensaje/i)).toBeVisible();
+    await expectAccessible(page);
   });
 });
