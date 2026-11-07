@@ -96,7 +96,7 @@ test.describe("017 US1 the admin erases a student", () => {
 
     await dialog.getByRole("button", { name: /borrar para siempre/i }).click();
 
-    await expect(page.getByRole("alert")).toContainText(/no se ha podido borrar/i);
+    await expect(page.getByRole("alert").filter({ hasText: /no se ha podido borrar/i })).toContainText(/servicio de cuentas no responde/i);
     await expectAccessible(page);
     await mock.faults([]);
     await expect(await rowOf(page, code)).toBeVisible();

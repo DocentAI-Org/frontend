@@ -40,7 +40,8 @@ admin "Usuarios" page.
 
 - **FR-001**: A Server Action calls `DELETE /v1/admin/students/{student_id}` and redirects back to
   `/admin/users` with the counts or the error code; it checks the typed name again on the server,
-  so the dialog works the same without JavaScript.
+  so a forged request cannot skip the dialog. `ConfirmDialog` gains an optional typed
+  confirmation (`confirmPhrase`) for this and later destructive actions.
 - **FR-002**: No new dependency.
 
 ## Success Criteria *(mandatory)*

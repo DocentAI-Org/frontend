@@ -88,7 +88,20 @@
         "student": "Students"
       },
       "filterStatus": "Status",
-      "allStatuses": "All statuses"
+      "allStatuses": "All statuses",
+      "colActions": "Actions",
+      "erase": {
+        "trigger": "Erase student",
+        "triggerFor": "Erase student {name}",
+        "title": "Erase {name}?",
+        "body": "The account and all its data are deleted for good: courses, conversations, exercises, quizzes, tests, learning record and usage logs. This cannot be undone.",
+        "confirmLabel": "Type {name} to confirm",
+        "confirm": "Erase for good",
+        "done": "Student erased with all their data",
+        "doneBody": "Deleted {courses, plural, one {# course} other {# courses}}, {conversations, plural, one {# conversation} other {# conversations}}, {messages, plural, one {# message} other {# messages}}, {exercises, plural, one {# exercise} other {# exercises}}, {quizzes, plural, one {# quiz} other {# quizzes}}, {tests, plural, one {# test} other {# tests}} and {logs, plural, one {# usage log} other {# usage logs}}.",
+        "failed": "The student couldn't be erased",
+        "mismatch": "The name typed doesn't match, so nothing was erased."
+      }
     },
     "studentsNew": {
       "back": "Back to users",
@@ -1395,6 +1408,7 @@
     "not_a_tutor_message": "Only tutor answers can be corrected.",
     "email_taken": "An account with that email already exists.",
     "auth_unavailable": "The account service is not responding. Try again in a few minutes.",
+    "not_a_student": "Only student accounts can be erased.",
     "storage_unavailable": "The file could not be saved. Try again in a few minutes.",
     "api_unreachable": "We cannot connect to DocentAI. Check your connection and try again.",
     "unknown": "Something went wrong. Please try again.",
