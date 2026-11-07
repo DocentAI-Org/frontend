@@ -45,6 +45,8 @@ test.describe("016 US1 find something in a long list", () => {
     await signIn(page, USERS.admin);
 
     await search(page).fill("herrera");
+    // The search reaches the URL after a debounce; a filter chosen before it would be replaced.
+    await expect(page).toHaveURL(/[?&]q=herrera/);
     await expect(page.getByRole("main").getByText("Lucas Herrera").filter({ visible: true })).toBeVisible();
     await chooseOption(page.getByRole("combobox", { name: /rol/i }), /profesorado/i);
 
@@ -59,6 +61,7 @@ test.describe("016 US2 sort and page a long list", () => {
     await courses(request, ["Zoología", "Astronomía"]);
     await signIn(page, USERS.teacher);
     await search(page).fill("o");
+    await expect(page).toHaveURL(/[?&]q=o/);
 
     await chooseOption(page.getByRole("combobox", { name: /ordenar/i }), /nombre/i);
 
@@ -72,6 +75,7 @@ test.describe("016 US2 sort and page a long list", () => {
     await courses(request, Array.from({ length: 25 }, (_, i) => `Grupo ${String(i + 1).padStart(2, "0")}`));
     await signIn(page, USERS.teacher);
     await search(page).fill("grupo");
+    await expect(page).toHaveURL(/[?&]q=grupo/);
 
     await expect(courseTitles(page)).toHaveCount(20);
     await expect(page.getByText(/mostrando 20 de 25/i)).toBeVisible();
