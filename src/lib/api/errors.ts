@@ -31,6 +31,7 @@ export const API_ERROR_CODES = [
   "test_already_done",
   "email_taken",
   "auth_unavailable",
+  "not_a_student",
   "storage_unavailable",
   // Raised by the app when the API cannot be reached at all.
   "api_unreachable"

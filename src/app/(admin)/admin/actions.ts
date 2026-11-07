@@ -1,16 +1,20 @@
 "use server";
 
+import type { Route } from "next";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 import {
   createPseudonymousStudents,
   createQuestionnaire,
   createTeacher,
   deleteQuestionnaire,
+  eraseStudent,
   updateQuestionnaire,
   updateStudyCriteria
 } from "@/lib/api/admin";
 import type { Schemas } from "@/lib/api/client";
+import { samePhrase } from "@/lib/phrase";
 
 export type TeacherState = {
   nameError?: boolean;
@@ -90,4 +94,30 @@ export async function saveStudyCriteriaAction(body: Schemas["StudyCriteriaUpdate
   if (!result.ok) return { ok: false, code: result.code };
   revalidatePath("/admin/pedagogy");
   return { ok: true };
+}
+
+/**
+ * Erases a student (spec 017). The typed name is checked again here, so a forged request cannot
+ * skip the dialog. The result goes back as counts only: no name or code in the URL.
+ */
+export async function eraseStudentAction(form: FormData): Promise<void> {
+  const id = String(form.get("id") ?? "");
+  if (!samePhrase(String(form.get("confirm") ?? ""), String(form.get("name") ?? ""))) {
+    redirect("/admin/users?erase_error=mismatch" as Route);
+  }
+  const result = await eraseStudent(id);
+  if (!result.ok) redirect(`/admin/users?erase_error=${result.code}` as Route);
+  revalidatePath("/admin/users");
+  const d = result.data;
+  const counts = {
+    erased: "1",
+    courses: d.courses,
+    conversations: d.conversations,
+    messages: d.messages,
+    exercises: d.exercise_submissions,
+    quizzes: d.quizzes,
+    tests: d.test_attempts,
+    logs: d.interaction_logs
+  };
+  redirect(`/admin/users?${new URLSearchParams(Object.entries(counts).map(([k, v]) => [k, String(v)]))}` as Route);
 }

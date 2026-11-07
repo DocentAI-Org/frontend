@@ -48,6 +48,52 @@ export const adminRoutes: Route[] = [
     }
   },
   {
+    // Backend specs/017: the student and every row linked to them; counts of what went.
+    method: "DELETE",
+    path: "/v1/admin/students/{student_id}",
+    handler: (ctx) => {
+      requireRole(ctx, "admin");
+      if (ctx.state.faults.has("student_erasure_fails")) throw new HttpError(503, "auth_unavailable");
+      const sid = ctx.params.student_id;
+      const student = ctx.state.users.find((u) => u.id === sid);
+      if (!student) throw new HttpError(404, "not_found");
+      if (student.role !== "student") throw new HttpError(409, "not_a_student");
+      const s = ctx.state;
+      const mine = <T extends { student_id: string }>(rows: T[]) => rows.filter((r) => r.student_id === sid);
+      const others = <T extends { student_id: string }>(rows: T[]) => rows.filter((r) => r.student_id !== sid);
+      const conversations = new Set(mine(s.conversations).map((c) => c.id));
+      const messages = new Set(s.messages.filter((m) => conversations.has(m.conversation_id)).map((m) => m.id));
+      const submissions = new Set(mine(s.submissions).map((x) => x.id));
+      const erased: S["StudentErasure"] = {
+        student_id: sid,
+        courses: mine(s.enrolments).length,
+        conversations: conversations.size,
+        messages: messages.size,
+        exercise_submissions: submissions.size,
+        quizzes: mine(s.quizzes).length,
+        test_attempts: mine(s.testAttempts).length,
+        // The mock keeps no interaction logs: one per tutor answer and per feedback.
+        interaction_logs: s.messages.filter((m) => messages.has(m.id) && m.author === "tutor").length + submissions.size
+      };
+      s.users = s.users.filter((u) => u.id !== sid);
+      s.enrolments = others(s.enrolments);
+      s.conversations = others(s.conversations);
+      s.messages = s.messages.filter((m) => !messages.has(m.id));
+      s.flags = s.flags.filter((f) => !(f.message_id && messages.has(f.message_id)) && !(f.submission_id && submissions.has(f.submission_id)));
+      s.submissions = others(s.submissions);
+      s.reviews = s.reviews.filter((r) => !submissions.has(r.submission_id));
+      s.quizzes = others(s.quizzes);
+      s.testAttempts = others(s.testAttempts);
+      s.consent = others(s.consent);
+      s.usage.delete(sid);
+      s.favorites = new Set([...s.favorites].filter((key) => !key.startsWith(`${sid}:`)));
+      const tags = new Set(s.tags.filter((t) => t.user_id === sid).map((t) => t.id));
+      s.tags = s.tags.filter((t) => !tags.has(t.id));
+      s.tagLinks = new Set([...s.tagLinks].filter((key) => !tags.has(key.split(":")[0])));
+      return erased;
+    }
+  },
+  {
     method: "GET",
     path: "/v1/admin/courses",
     handler: (ctx) => {

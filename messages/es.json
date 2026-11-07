@@ -88,7 +88,20 @@
         "student": "Estudiantes"
       },
       "filterStatus": "Estado",
-      "allStatuses": "Todos los estados"
+      "allStatuses": "Todos los estados",
+      "colActions": "Acciones",
+      "erase": {
+        "trigger": "Borrar estudiante",
+        "triggerFor": "Borrar estudiante {name}",
+        "title": "¿Borrar a {name}?",
+        "body": "Se borrarán para siempre la cuenta y todos sus datos: cursos, conversaciones, ejercicios, quizzes, tests, historial de aprendizaje y registros de uso. No se puede deshacer.",
+        "confirmLabel": "Escribe {name} para confirmar",
+        "confirm": "Borrar para siempre",
+        "done": "Estudiante borrado con todos sus datos",
+        "doneBody": "Se han borrado {courses, plural, one {# curso} other {# cursos}}, {conversations, plural, one {# conversación} other {# conversaciones}}, {messages, plural, one {# mensaje} other {# mensajes}}, {exercises, plural, one {# ejercicio} other {# ejercicios}}, {quizzes, plural, one {# quiz} other {# quizzes}}, {tests, plural, one {# test} other {# tests}} y {logs, plural, one {# registro de uso} other {# registros de uso}}.",
+        "failed": "No se ha podido borrar al estudiante",
+        "mismatch": "El nombre escrito no coincide, así que no se ha borrado nada."
+      }
     },
     "studentsNew": {
       "back": "Volver a usuarios",
@@ -1395,6 +1408,7 @@
     "not_a_tutor_message": "Solo se pueden corregir respuestas del tutor.",
     "email_taken": "Ya existe una cuenta con ese correo.",
     "auth_unavailable": "El servicio de cuentas no responde. Inténtalo de nuevo en unos minutos.",
+    "not_a_student": "Solo se pueden borrar cuentas de estudiante.",
     "storage_unavailable": "No se ha podido guardar el archivo. Inténtalo de nuevo en unos minutos.",
     "api_unreachable": "No podemos conectar con DocentAI. Comprueba tu conexión e inténtalo de nuevo.",
     "unknown": "Algo ha fallado. Inténtalo de nuevo.",
