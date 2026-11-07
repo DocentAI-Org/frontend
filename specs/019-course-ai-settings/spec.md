@@ -49,8 +49,8 @@ default, everything reachable.
 2. **When** they open "Opciones avanzadas" of a task, **Then** they can set temperature (hidden
    for models that do not take it), reasoning effort and reply length, each with a one-line
    explanation.
-3. **Given** a group reset by the admin removing a model, **Then** a notice explains it (PR 2,
-   with the credentials).
+3. **Given** a task reset because the admin removed its key or model, **Then** a notice
+   explains it until the settings are saved again.
 
 ### User Story 4 — Credentials (Priority: P1)
 
@@ -59,7 +59,8 @@ default, everything reachable.
 1. **Given** an admin, **When** they open "Proveedores de IA", **Then** they see the server
    credential (read-only), can add a credential (provider, label, key), see `…last4`, choose
    the models courses may use, and switch "Los profesores pueden añadir sus claves".
-2. **Given** that switch on, **Then** the teacher's "IA" tab offers "Añadir mi clave", with a
+2. **Given** that switch on (in "IA del estudio"), **Then** the teacher's "IA" tab offers "Tus
+   claves", with a
    notice that the course's requests then go to that provider under their account.
 3. **When** a key is rejected, **Then** the error says so and nothing is saved; deleting asks
    for confirmation.
