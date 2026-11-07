@@ -97,7 +97,7 @@ export function RepeatedMistakeNotice({
       </div>
       {error && (
         <Alert tone="danger">
-          {error.code === "daily_limit_reached" && error.resetsAt
+          {(error.code === "daily_limit_reached" || error.code === "course_limit_reached") && error.resetsAt
             ? t("limit", { time: format.dateTime(new Date(error.resetsAt), { timeStyle: "short" }) })
             : tAll(errorMessageKey(error.code))}
         </Alert>

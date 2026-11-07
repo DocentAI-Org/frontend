@@ -32,7 +32,8 @@
         "users": "Users",
         "studyExport": "Study data",
         "questionnaires": "Questionnaires",
-        "criteria": "Pedagogical criteria"
+        "criteria": "Pedagogical criteria",
+        "ai": "Study AI"
       },
       "role": "Administration"
     },
@@ -172,6 +173,11 @@
       "pageTitle": "Pedagogical criteria",
       "title": "Pedagogical criteria",
       "lead": "The study's values for every course. Each teacher can customise them in their course; courses that don't use these."
+    },
+    "ai": {
+      "pageTitle": "Study AI",
+      "title": "Study AI",
+      "lead": "The AI values for every course. Each teacher may customise them in their course; the others use these. If you change nothing, the server's apply."
     }
   },
   "common": {
@@ -448,6 +454,79 @@
       "taken": "You already have a tag with that name.",
       "invalid": "Type a name of up to 40 characters.",
       "failed": "It could not be saved. Try again."
+    },
+    "ai": {
+      "study": "The study's",
+      "server": "The server's",
+      "custom": "Customise",
+      "save": "Save settings",
+      "saving": "Saving…",
+      "saved": "Saved",
+      "invalid": "Not saved. Check the values: messages and fragments start at 1, percentages go from 0 to 100 and temperature from 0 to 2.",
+      "failed": "The settings could not be saved. Try again in a few minutes.",
+      "task": {
+        "tutor": "Tutor chat",
+        "feedback": "Exercise feedback",
+        "review": "Mistake review",
+        "questions": "Quiz question drafts"
+      },
+      "period": {
+        "day": "Per day",
+        "week": "Per week",
+        "course": "For the whole course"
+      },
+      "effort": {
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High",
+        "xhigh": "Very high",
+        "max": "Maximum"
+      },
+      "limits": {
+        "legend": "Message limit",
+        "help": "How many messages each student can use and which tasks use them. A message that fails doesn't count.",
+        "summary": "{messages, select, none {No message limit} other {{messages} messages per student {period, select, day {per day} week {per week} other {for the whole course}}}}. Counted: {tasks}.",
+        "noTasks": "no task",
+        "kind": "Limit",
+        "none": "No limit",
+        "some": "Limited",
+        "messages": "Messages per student",
+        "period": "Period",
+        "counted": "Which tasks use messages",
+        "ceilingNote": "Also, the study allows at most {count, plural, one {# message} other {# messages}} a day per student, across all their courses."
+      },
+      "ceiling": {
+        "legend": "Daily maximum per student",
+        "help": "A cost safety net: it counts every message of a student in all their courses, even if the course doesn't count them.",
+        "summary": "{count, plural, one {# message} other {# messages}} a day per student, across all their courses.",
+        "none": "No daily maximum.",
+        "noCeiling": "No maximum",
+        "some": "Maximum",
+        "messages": "Messages per day"
+      },
+      "models": {
+        "legend": "Models",
+        "help": "The model that answers in each task. Local models cost nothing; commercial ones need a key on the server.",
+        "inherit": "{source}: {model}",
+        "unreachable": "{source} isn't answering now: its models can't be chosen.",
+        "advanced": "Advanced options",
+        "advancedInherit": "Choose a model to change its options.",
+        "default": "Default",
+        "temperature": "Temperature",
+        "temperatureHelp": "From 0 to 2. Lower, steadier answers; higher, more varied.",
+        "effort": "Reasoning",
+        "effortHelp": "How much the model thinks before answering, if it supports it.",
+        "maxTokens": "Maximum length",
+        "maxTokensHelp": "In tokens (about 3/4 of a word)."
+      },
+      "retrieval": {
+        "legend": "Material retrieval",
+        "help": "How much material the model gets and how similar to the question it must be. Changing it can make answers worse: measure first.",
+        "topK": "Fragments per answer",
+        "history": "Earlier messages remembered",
+        "minSimilarity": "Minimum similarity in the chat (%)",
+        "minSimilarityExercises": "Minimum similarity in exercises (%)"
+      }
     }
   },
   "student": {
@@ -472,7 +551,6 @@
       "disclosure": {
         "ack": "I've read and understand how the tutor works",
         "ai": "You'll be talking to an artificial intelligence tutor, not a person.",
-        "limit": "You have {limit} messages a day in total, across all your courses.",
         "material": "It answers only from the material your teacher has approved and shows where each answer comes from.",
         "review": "Remember: your teacher may review your conversations.",
         "start": "Start",
@@ -484,13 +562,9 @@
       },
       "followUp": "You could also ask:",
       "limit": {
-        "body": "You can write again at {time}. Until then, you can reread the conversation.",
-        "draftLabel": "Your draft is saved:",
-        "exerciseBody": "You can't submit exercises until {time}. The limit is shared with the chat.",
-        "title": "You've used all {limit} messages for today"
+        "draftLabel": "Your draft is saved:"
       },
       "loadError": "We couldn't load the conversation",
-      "lowWarning": "They reset at {time}.",
       "noSource": {
         "askTeacher": "Ask your teacher",
         "body": "I couldn't find anything on this in the material your teacher has approved, so I won't give you an answer without a source.",
@@ -528,7 +602,6 @@
         "progress": "See my progress",
         "teacherSees": "Your teacher sees the same explanation."
       },
-      "remaining": "{count, plural, one {You have # message left today, across all your courses.} other {You have # messages left today, across all your courses.}}",
       "hint": "Hint {n}",
       "failedMessage": "Not sent"
     },
@@ -810,6 +883,48 @@
       "notOpen": "The {phase} is not open yet.",
       "cardOpen": "Your teacher has opened the {phase}.",
       "cardLink": "Take the {phase}"
+    },
+    "allowance": {
+      "remaining": {
+        "daily": "{count, plural, one {You have # message left today, across all your courses.} other {You have # messages left today, across all your courses.}}",
+        "day": "{count, plural, one {You have # message left today in this course.} other {You have # messages left today in this course.}}",
+        "week": "{count, plural, one {You have # message left this week in this course.} other {You have # messages left this week in this course.}}",
+        "course": "{count, plural, one {You have # message left in this course.} other {You have # messages left in this course.}}"
+      },
+      "renews": {
+        "day": "They renew at {time}.",
+        "week": "They renew on {date}."
+      },
+      "title": {
+        "daily": "You've used your {limit} messages for today",
+        "day": "You've used your {limit} messages for today in this course",
+        "week": "You've used your {limit} messages for this week in this course",
+        "course": "You've used the {limit} messages of this course"
+      },
+      "titleAll": {
+        "daily": "You've used all your messages for today",
+        "day": "You've used all your messages for today in this course",
+        "week": "You've used all your messages for this week in this course",
+        "course": "You've used all the messages of this course"
+      },
+      "chatBody": {
+        "day": "You can write again at {time}. Meanwhile, you can reread the conversation.",
+        "week": "You can write again on {date}. Meanwhile, you can reread the conversation.",
+        "course": "If you need more, talk to your teacher. Meanwhile, you can reread the conversation."
+      },
+      "exerciseBody": {
+        "day": "You can't send exercises until {time}. The limit is the same as the chat's.",
+        "week": "You can't send exercises until {date}.",
+        "course": "If you need to send more, talk to your teacher."
+      },
+      "disclosure": {
+        "daily": "You have {limit} messages a day in total, across all your courses.",
+        "day": "You have {limit} messages a day in this course.",
+        "week": "You have {limit} messages a week in this course.",
+        "course": "You have {limit} messages in total in this course.",
+        "none": "This course has no message limit.",
+        "perCourse": "Each course may have its own message limit."
+      }
     }
   },
   "teacher": {
@@ -896,7 +1011,8 @@
         "dashboard": "Dashboard",
         "questions": "Questions",
         "test": "Pre/post-test",
-        "criteria": "Criteria"
+        "criteria": "Criteria",
+        "ai": "AI"
       },
       "tabs": "Course sections",
       "group": {
@@ -1385,6 +1501,10 @@
     "criteria": {
       "pageTitle": "Criteria",
       "lead": "How this course decides who may need help, what a repeated mistake is, when explanations are adapted and each topic's level. By default the study's are used; you can customise each group."
+    },
+    "ai": {
+      "pageTitle": "AI",
+      "lead": "Your students' message limit, the model for each task and how much material is used. The study's values apply by default; you can customise each group."
     }
   },
   "errors": {
@@ -1419,6 +1539,11 @@
     "test_locked": "The questions can no longer change: the pre-test has been opened.",
     "test_empty": "Add questions before opening the test.",
     "test_not_open": "This test is not open.",
-    "test_already_done": "You have already taken this test."
+    "test_already_done": "You have already taken this test.",
+    "course_limit_reached": "You've used all the messages of this course for now.",
+    "provider_unavailable": "The server has no key for that provider.",
+    "provider_unreachable": "That provider isn't answering right now. Try again later.",
+    "model_unavailable": "That model is no longer available. Choose another one.",
+    "temperature_not_supported": "Anthropic models don't take a temperature."
   }
 }

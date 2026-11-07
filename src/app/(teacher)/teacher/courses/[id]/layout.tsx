@@ -60,7 +60,8 @@ export default async function TeacherCourseLayout({
             label: t("group.settings"),
             sections: [
               { path: "/tutor", label: t("tab.settings") },
-              { path: "/criteria", label: t("tab.criteria") }
+              { path: "/criteria", label: t("tab.criteria") },
+              { path: "/ai", label: t("tab.ai") }
             ]
           }
         ]}

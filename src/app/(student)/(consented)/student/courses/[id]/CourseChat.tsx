@@ -4,7 +4,7 @@ import { AccessDenied, deniedReasonFor } from "@/components/AccessDenied";
 import { ErrorState } from "@/components/ErrorState";
 import { Icon } from "@/components/Icon";
 import { errorTypeLabel } from "@/components/LearningRecord";
-import { getAllowance, getConversation } from "@/lib/api/chat";
+import { getConversation, getCourseAllowance } from "@/lib/api/chat";
 import { getStudentCourse } from "@/lib/api/courses";
 import { getErrorTypes } from "@/lib/api/exercises";
 import { getStudentTutorSettings } from "@/lib/api/tutor";
@@ -18,7 +18,7 @@ export async function CourseChat({ courseId, conversationId }: { courseId: strin
   const [course, settings, allowance, conversation, taxonomy] = await Promise.all([
     getStudentCourse(courseId),
     getStudentTutorSettings(courseId),
-    getAllowance(),
+    getCourseAllowance(courseId),
     conversationId ? getConversation(courseId, conversationId) : Promise.resolve(null),
     getErrorTypes()
   ]);
