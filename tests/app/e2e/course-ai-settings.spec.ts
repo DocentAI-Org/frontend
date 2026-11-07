@@ -1,4 +1,4 @@
-// 019 — AI settings per course (spec 019 US1, US2, US3, US6): message limits, models per task.
+// 019 — AI settings per course (spec 019 US1–US4, US6): message limits, models per task, keys.
 import type { APIRequestContext, Page } from "@playwright/test";
 
 import { courseSection, expect, expectAccessible, scenario, signIn, test, USERS } from "./helpers";
@@ -200,5 +200,136 @@ test.describe("019 US6 the admin sets the study's values", () => {
     await expect(page.getByRole("alert").filter({ hasText: /revisa los valores/i })).toBeVisible();
     await page.reload();
     await expect(group(page, /recuperación del material/i).getByLabel(/fragmentos por respuesta/i)).toHaveValue("4");
+  });
+});
+
+test.describe("019 US4 keys for commercial models", () => {
+  const KEY = "sk-test-0123456789abcdef";
+
+  async function addKey(page: Page, label: string, key = KEY) {
+    await page.getByLabel("Nombre", { exact: true }).fill(label);
+    await page.getByLabel("Clave", { exact: true }).fill(key);
+    await page.getByRole("button", { name: /comprobar y guardar la clave/i }).click();
+  }
+
+  async function adminAddsStudyKey(page: Page) {
+    await signIn(page, USERS.admin);
+    await page.goto("/admin/ai-providers");
+    await addKey(page, "OpenAI UNI");
+    await expect(page.getByRole("status").filter({ hasText: /clave guardada/i })).toBeVisible();
+  }
+
+  async function switchTo(page: Page, user: string) {
+    // Leave the page first: without its session it would redirect while the test signs in.
+    await page.goto("about:blank");
+    await page.context().clearCookies();
+    await signIn(page, user);
+  }
+
+  scenario("019-US4-AS1", "the admin adds a key; only its last characters are shown", async ({ page }) => {
+    await signIn(page, USERS.admin);
+    await page.getByRole("link", { name: /proveedores de ia/i }).filter({ visible: true }).first().click();
+    await expect(page.getByRole("heading", { level: 1, name: /proveedores de ia/i })).toBeVisible();
+    await expect(page.getByRole("region", { name: /del servidor/i }).getByText(/ollama \(local\)/i)).toBeVisible();
+    await expect(page.getByLabel("Clave", { exact: true })).toHaveAttribute("type", "password");
+    await addKey(page, "OpenAI UNI");
+
+    const key = page.getByTestId("credential");
+    await expect(key.getByText("OpenAI UNI", { exact: true })).toBeVisible();
+    await expect(key.getByText("…cdef")).toBeVisible();
+    await expect(page.getByText(KEY)).toHaveCount(0);
+    await expect(page.getByLabel("Clave", { exact: true })).toHaveValue("");
+    await expectAccessible(page);
+  });
+
+  scenario("019-US4-AS1b", "courses get only the models the admin offers", async ({ page, request }) => {
+    const seeded = await request.post(`${MOCK}/__test/classroom`, { data: { disclosure: true } });
+    const { course_id: courseId } = (await seeded.json()) as { course_id: string };
+    await adminAddsStudyKey(page);
+    const key = page.getByTestId("credential");
+    await key.getByRole("checkbox", { name: /todos/i }).uncheck();
+    await key.getByRole("checkbox", { name: "gpt-mini" }).uncheck();
+    await key.getByRole("button", { name: /guardar modelos/i }).click();
+    await page.waitForLoadState("networkidle");
+    await page.reload();
+    await expect(page.getByTestId("credential").getByRole("checkbox", { name: "gpt-mini" })).not.toBeChecked();
+
+    await switchTo(page, USERS.teacher);
+    await page.goto(`/teacher/courses/${courseId}/ai`);
+    await page.getByRole("combobox", { name: /corrección de ejercicios/i }).click();
+    await expect(page.getByRole("option", { name: /gpt-test · openai uni \(clave del estudio\)/i })).toBeVisible();
+    await expect(page.getByRole("option", { name: /gpt-mini/i })).toHaveCount(0);
+  });
+
+  scenario("019-US4-AS2", "with teachers' keys allowed, a teacher adds their own", async ({ page, request }) => {
+    const seeded = await request.post(`${MOCK}/__test/classroom`, { data: { disclosure: true } });
+    const { course_id: courseId } = (await seeded.json()) as { course_id: string };
+    await signIn(page, USERS.admin);
+    await page.goto("/admin/ai");
+    await page.getByRole("checkbox", { name: /los profesores pueden añadir sus propias claves/i }).check();
+    await save(page);
+    await saved(page);
+
+    await switchTo(page, USERS.teacher);
+    await page.goto(`/teacher/courses/${courseId}/ai`);
+    const own = page.getByRole("region", { name: /tus claves/i });
+    await expect(own.getByText(/con tu cuenta y a tu cargo/i)).toBeVisible();
+    await addKey(page, "Mi OpenAI");
+    await expect(own.getByText("…cdef")).toBeVisible();
+    await page.getByRole("combobox", { name: /chat con el tutor/i }).click();
+    await expect(page.getByRole("option", { name: /gpt-test · mi openai \(tu clave\)/i })).toBeVisible();
+    await page.keyboard.press("Escape");
+    await expectAccessible(page);
+  });
+
+  scenario("019-US4-AS2b", "without permission there is no place for teachers' keys", async ({ page, request }) => {
+    const courseId = await teacherCourse(request, page);
+    await page.goto(`/teacher/courses/${courseId}/ai`);
+
+    await expect(group(page, /límite de mensajes/i)).toBeVisible();
+    await expect(page.getByRole("region", { name: /tus claves/i })).toHaveCount(0);
+  });
+
+  scenario("019-US4-AS3", "a rejected key is explained and not saved; deleting asks first", async ({ page }) => {
+    await signIn(page, USERS.admin);
+    await page.goto("/admin/ai-providers");
+    await addKey(page, "Mala", "bad-key-0123456");
+    await expect(page.getByRole("alert").filter({ hasText: /no acepta esa clave/i })).toBeVisible();
+    await expect(page.getByTestId("credential")).toHaveCount(0);
+    await expect(page.getByLabel("Nombre", { exact: true })).toHaveValue("Mala");
+    await expect(page.getByLabel("Clave", { exact: true })).toHaveValue("");
+
+    await addKey(page, "OpenAI UNI");
+    await page.getByRole("button", { name: /borrar la clave openai uni/i }).click();
+    await expect(page.getByRole("dialog")).toContainText(/vuelven al modelo heredado/i);
+    await page.getByRole("dialog").getByRole("button", { name: /^borrar la clave$/i }).click();
+    await expect(page.getByTestId("credential")).toHaveCount(0);
+  });
+
+  scenario("019-US3-AS3", "a course is told when the key of its model is deleted", async ({ page, request }) => {
+    const seeded = await request.post(`${MOCK}/__test/classroom`, { data: { disclosure: true } });
+    const { course_id: courseId } = (await seeded.json()) as { course_id: string };
+    await adminAddsStudyKey(page);
+    await switchTo(page, USERS.teacher);
+    await page.goto(`/teacher/courses/${courseId}/ai`);
+    await pick(page, /corrección de ejercicios/i, /gpt-test · openai uni/i);
+    await save(page);
+    await saved(page);
+
+    await switchTo(page, USERS.admin);
+    await page.goto("/admin/ai-providers");
+    await page.getByRole("button", { name: /borrar la clave openai uni/i }).click();
+    await page.getByRole("dialog").getByRole("button", { name: /^borrar la clave$/i }).click();
+    await expect(page.getByTestId("credential")).toHaveCount(0);
+
+    await switchTo(page, USERS.teacher);
+    await page.goto(`/teacher/courses/${courseId}/ai`);
+    const notice = page.getByRole("alert").filter({ hasText: /han vuelto al modelo heredado/i });
+    await expect(notice).toContainText(/corrección de ejercicios: se borró la clave de gpt-test/i);
+    await expect(page.getByRole("combobox", { name: /corrección de ejercicios/i })).toHaveText(/los del estudio/i);
+    await save(page);
+    await saved(page);
+    await page.reload();
+    await expect(page.getByRole("alert").filter({ hasText: /han vuelto al modelo heredado/i })).toHaveCount(0);
   });
 });
