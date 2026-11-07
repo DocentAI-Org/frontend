@@ -24,3 +24,14 @@ only run against the mock API.
 - `roles`, `us9-admin`, `english-routes`, `shell-fixes` and `pedagogy-criteria`: 64 passed.
 - Unit tests: 286 passed; typecheck and lint clean.
 - The pages were only run against the mock API; the backend half was checked on the real stack.
+
+# Validation: Instructions, test message and usage (PR 3)
+
+**Date**: 2026-11-08
+
+- `tests/app/e2e/course-ai-settings.spec.ts`: 23 scenarios (4 new); with `us6-chat`,
+  `us7-exercises`, `roles` and `us9-admin`, 110 passed on desktop and mobile, with axe on the
+  instructions, the test result and the usage panel.
+- Unit tests: 286 passed; typecheck and lint clean.
+- The pages were only run against the mock API (its test replies are scripted); the backend half
+  was checked on the real stack.

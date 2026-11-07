@@ -6,9 +6,10 @@ import { AISettingsForm } from "@/components/AISettingsForm";
 import { CredentialForm } from "@/components/CredentialForm";
 import { CredentialList } from "@/components/CredentialList";
 import { ErrorState } from "@/components/ErrorState";
-import { getCourseAIModels, getCourseAISettings, listOwnCredentials } from "@/lib/api/ai";
+import { AIUsagePanel } from "@/components/AIUsagePanel";
+import { getCourseAIModels, getCourseAISettings, getCourseAIUsage, listOwnCredentials } from "@/lib/api/ai";
 
-import { createOwnCredentialAction, deleteOwnCredentialAction, saveCourseAISettingsAction } from "./actions";
+import { createOwnCredentialAction, deleteOwnCredentialAction, saveCourseAISettingsAction, testCourseAIAction } from "./actions";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("teacher.ai");
@@ -19,7 +20,12 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function CourseAIPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const t = await getTranslations("teacher.ai");
-  const [settings, models, own] = await Promise.all([getCourseAISettings(id), getCourseAIModels(id), listOwnCredentials(id)]);
+  const [settings, models, own, usage] = await Promise.all([
+    getCourseAISettings(id),
+    getCourseAIModels(id),
+    listOwnCredentials(id),
+    getCourseAIUsage(id)
+  ]);
   if (!settings.ok) return <ErrorState code={settings.code} />;
   if (!models.ok) return <ErrorState code={models.code} />;
   return (
@@ -35,7 +41,9 @@ export default async function CourseAIPage({ params }: { params: Promise<{ id: s
         ceiling={settings.data.ceiling}
         sources={models.data.sources}
         save={saveCourseAISettingsAction.bind(null, id)}
+        test={testCourseAIAction.bind(null, id)}
       />
+      {usage.ok ? <AIUsagePanel usage={usage.data} /> : <ErrorState code={usage.code} />}
       {settings.data.allow_teacher_keys && (
         <section aria-labelledby="own-keys" className="flex max-w-3xl flex-col gap-4 rounded-xl border border-border bg-surface-raised p-4 sm:p-6">
           <h2 id="own-keys" className="text-xl font-semibold text-fg">

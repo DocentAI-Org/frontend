@@ -27,6 +27,7 @@ export const API_ERROR_CODES = [
   "credentials_not_configured",
   "credential_unavailable",
   "teacher_keys_disabled",
+  "test_limit_reached",
   "solution_not_allowed",
   "tutor_unavailable",
   "not_a_tutor_message",

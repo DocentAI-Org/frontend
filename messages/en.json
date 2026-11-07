@@ -559,6 +559,53 @@
         "model_withdrawn": "{task}: {model} is no longer offered.",
         "teacher_keys_disabled": "{task}: the study no longer allows own keys ({model}).",
         "clear": "This notice goes away when you save the settings."
+      },
+      "instructions": {
+        "legend": "Instructions",
+        "help": "Your directions for each task: the approach, the style or what to highlight. They're added to the tutor's rules.",
+        "none": "No instructions.",
+        "count": "{count} of {max} characters",
+        "rules": "They can't change the safety rules: the tutor still uses only validated material and your solution policy.",
+        "example": {
+          "tutor": "E.g.: Always answer with an everyday example.",
+          "feedback": "E.g.: Point out what's right before the mistake.",
+          "review": "E.g.: Use examples with small numbers.",
+          "questions": "E.g.: Include questions about interpreting the result."
+        }
+      },
+      "test": {
+        "title": "Try it",
+        "help": "Try the settings as they are in the form, even unsaved. It doesn't count as any student's message. Up to 20 tries an hour.",
+        "task": "Task",
+        "message": "Test question",
+        "problem": "Problem",
+        "answer": "Student's answer (test)",
+        "run": "Try with these settings",
+        "running": "Trying…",
+        "missing": "Type what you want to try.",
+        "noModel": "no model",
+        "meta": "{model} · {seconds} s · {tokens} tokens · {cost}",
+        "kind": {
+          "answer": "Answer",
+          "hint": "Hint",
+          "no_source": "Not covered by the material",
+          "correct": "Correct",
+          "partially_correct": "Partially correct",
+          "incorrect": "Incorrect",
+          "not_assessed": "Not assessed"
+        }
+      },
+      "usage": {
+        "title": "Usage",
+        "help": "Messages students used and estimated cost with the configured prices. Local models cost nothing.",
+        "caption": "Messages and cost per task",
+        "task": "Task",
+        "lastDays": "Last {days} days",
+        "cell": "{messages} · {cost}",
+        "top": "Who used most {period, select, day {today} week {this week} other {in the course}} (limit: {limit})",
+        "topNoLimit": "Who used most {period, select, day {today} week {this week} other {in the course}}",
+        "student": "{name}: {used, plural, one {# message} other {# messages}}",
+        "noStudents": "Nobody used messages in this period."
       }
     },
     "credentials": {
@@ -1612,6 +1659,7 @@
     "key_rejected": "The provider doesn't accept that key. Check you copied all of it.",
     "credentials_not_configured": "The server has no master key (LLM_CREDENTIALS_KEY), so keys can't be stored.",
     "credential_unavailable": "This course can't use that key. Choose another model.",
-    "teacher_keys_disabled": "The study doesn't allow teachers to add their keys."
+    "teacher_keys_disabled": "The study doesn't allow teachers to add their keys.",
+    "test_limit_reached": "You've made 20 tries in the last hour. Wait a bit before trying again."
   }
 }
