@@ -112,6 +112,8 @@ test.describe("017 US2 only the admin", () => {
     await page.context().clearCookies();
 
     await signIn(page, USERS.student);
+    // Wait for the redirect to the consent page, or it interrupts the next navigation.
+    await expect(page).toHaveURL(/\/student\/consent/);
     await page.goto("/admin/users");
     await expect(page.getByRole("heading", { level: 1, name: /usuarios/i })).toHaveCount(0);
   });
