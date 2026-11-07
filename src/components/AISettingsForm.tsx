@@ -44,7 +44,9 @@ type Props = { sources: Source[] } & (
     }
 );
 
-const modelKey = (choice: Pick<Choice, "provider" | "model">) => `${choice.provider}::${choice.model}`;
+/** A model through a source: the provider, the stored key (none: the server's) and the model. */
+const modelKey = (choice: Pick<Choice, "provider" | "model" | "credential_id">) =>
+  `${choice.provider}::${choice.credential_id ?? ""}::${choice.model}`;
 
 /** A whole number from the form, or null when the field is empty. */
 function number(data: FormData, name: string): number | null {
@@ -82,14 +84,17 @@ export function AISettingsForm(props: Props) {
 
   const offered = props.sources.flatMap((source) =>
     source.models.map((m) => ({
-      value: modelKey({ provider: source.provider, model: m.id }),
-      label: [m.label ?? m.id, m.parameter_size, source.label].filter(Boolean).join(" · ")
+      value: modelKey({ provider: source.provider, model: m.id, credential_id: source.credential_id }),
+      label: [m.label ?? m.id, m.parameter_size, source.scope === "server" ? source.label : t(`models.scope.${source.scope}`, { label: source.label })]
+        .filter(Boolean)
+        .join(" · ")
     }))
   );
   // A saved model the source no longer lists (or that does not answer) stays selectable.
   const saved = TASKS.flatMap((task) => (own.models[task] ? [own.models[task]!] : []))
     .filter((choice) => !offered.some((o) => o.value === modelKey(choice)))
     .map((choice) => ({ value: modelKey(choice), label: `${choice.model} · ${choice.provider}` }));
+  const anthropicKey = (key: string) => key.startsWith("anthropic::");
   const unreachable = props.sources.filter((s) => !s.reachable);
 
   const taskName = (task: Task) => t(`task.${task}`);
@@ -103,10 +108,11 @@ export function AISettingsForm(props: Props) {
   function choiceOf(data: FormData, task: Task): Choice | null {
     const key = models[task];
     if (!key) return null;
-    const [provider, ...rest] = key.split("::");
+    const [provider, credential, ...rest] = key.split("::");
     const effort = String(data.get(`${task}.effort`) ?? "");
     return {
       provider: provider as Choice["provider"],
+      credential_id: credential || null,
       model: rest.join("::"),
       temperature: provider === "anthropic" ? null : number(data, `${task}.temperature`),
       effort: effort ? (effort as Choice["effort"]) : null,
@@ -140,7 +146,8 @@ export function AISettingsForm(props: Props) {
         props.mode === "study"
           ? await props.save({
               ...body,
-              ceiling: custom.ceiling ? { messages: ceilingLimited ? number(data, "ceiling.messages") : null } : null
+              ceiling: custom.ceiling ? { messages: ceilingLimited ? number(data, "ceiling.messages") : null } : null,
+              allow_teacher_keys: data.get("allow_teacher_keys") !== null
             })
           : await props.save(body);
       if (result.ok) {
@@ -268,6 +275,17 @@ export function AISettingsForm(props: Props) {
         </fieldset>
       )}
 
+      {props.mode === "study" && (
+        <fieldset className={GROUP}>
+          <legend className="px-1 text-lg font-semibold text-fg">{t("teacherKeys.legend")}</legend>
+          <label className="inline-flex min-h-11 items-start gap-2 text-fg">
+            <input type="checkbox" name="allow_teacher_keys" defaultChecked={props.own.allow_teacher_keys ?? false} className="mt-1 size-5 accent-primary-600" />
+            <span>{t("teacherKeys.allow")}</span>
+          </label>
+          <p className="text-sm text-fg-muted">{t("teacherKeys.help")}</p>
+        </fieldset>
+      )}
+
       <fieldset className={GROUP}>
         <legend className="px-1 text-lg font-semibold text-fg">{t("models.legend")}</legend>
         <p className="text-sm text-fg-muted">{t("models.help")}</p>
@@ -279,7 +297,7 @@ export function AISettingsForm(props: Props) {
         {TASKS.map((task) => {
           const inherited = base.models[task];
           const selected = models[task];
-          const anthropic = selected.startsWith("anthropic::");
+          const anthropic = anthropicKey(selected);
           const choice = own.models[task];
           const labelId = `${ids}-${task}-model`;
           return (

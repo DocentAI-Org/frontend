@@ -33,7 +33,8 @@
         "studyExport": "Datos del estudio",
         "questionnaires": "Cuestionarios",
         "criteria": "Criterios pedagógicos",
-        "ai": "IA del estudio"
+        "ai": "IA del estudio",
+        "providers": "Proveedores de IA"
       },
       "role": "Administración"
     },
@@ -178,6 +179,22 @@
       "pageTitle": "IA del estudio",
       "title": "IA del estudio",
       "lead": "Los valores de IA para todos los cursos. Cada profesor/a puede personalizarlos en su curso; los que no lo hagan usan estos. Si no cambias nada, se usan los del servidor."
+    },
+    "providers": {
+      "pageTitle": "Proveedores de IA",
+      "title": "Proveedores de IA",
+      "lead": "Las claves de los modelos comerciales que pueden usar los cursos. Los modelos locales (Ollama) no necesitan clave.",
+      "serverTitle": "Del servidor",
+      "serverHelp": "Configurados en el entorno del servidor. No se pueden cambiar desde aquí.",
+      "studyTitle": "Claves del estudio",
+      "studyHelp": "Todos los cursos pueden usar los modelos que elijas de cada clave.",
+      "offered": "Modelos de «{label}» que pueden usar los cursos",
+      "allModels": "Todos, también los que el proveedor añada más adelante",
+      "offeredHelp": "Si quitas un modelo que un curso usa, ese curso vuelve al modelo heredado y se le avisa.",
+      "saveOffered": "Guardar modelos",
+      "modelsUnreachable": "El proveedor no responde ahora: no se pueden elegir sus modelos.",
+      "addTitle": "Añadir una clave",
+      "addHelp": "Usa un proveedor con un acuerdo de tratamiento de datos (DPA) revisado y sin uso de los datos para entrenar."
     }
   },
   "common": {
@@ -517,7 +534,11 @@
         "effort": "Razonamiento",
         "effortHelp": "Cuánto piensa el modelo antes de responder, si lo admite.",
         "maxTokens": "Longitud máxima",
-        "maxTokensHelp": "En tokens (unas 3/4 partes de una palabra)."
+        "maxTokensHelp": "En tokens (unas 3/4 partes de una palabra).",
+        "scope": {
+          "study": "{label} (clave del estudio)",
+          "course": "{label} (tu clave)"
+        }
       },
       "retrieval": {
         "legend": "Recuperación del material",
@@ -526,7 +547,46 @@
         "history": "Mensajes anteriores que recuerda",
         "minSimilarity": "Parecido mínimo en el chat (%)",
         "minSimilarityExercises": "Parecido mínimo en ejercicios (%)"
+      },
+      "teacherKeys": {
+        "legend": "Claves de los profesores",
+        "allow": "Los profesores pueden añadir sus propias claves en sus cursos",
+        "help": "Las peticiones de ese curso irán al proveedor con la cuenta del profesor/a: revisad antes su acuerdo de tratamiento de datos (DPA). Si lo desactivas, las tareas que usen esas claves vuelven al modelo heredado."
+      },
+      "notices": {
+        "title": "Algunas tareas han vuelto al modelo heredado",
+        "credential_removed": "{task}: se borró la clave de {model}.",
+        "model_withdrawn": "{task}: {model} ya no se ofrece.",
+        "teacher_keys_disabled": "{task}: el estudio ya no permite claves propias ({model}).",
+        "clear": "Este aviso desaparece al guardar la configuración."
       }
+    },
+    "credentials": {
+      "provider": "Proveedor",
+      "providers": {
+        "openai": "OpenAI",
+        "anthropic": "Anthropic",
+        "openai_compatible": "Compatible con OpenAI (Mistral, vLLM…)"
+      },
+      "label": "Nombre",
+      "labelHint": "Para reconocerla, p. ej. «OpenAI del departamento».",
+      "labelError": "Escribe un nombre.",
+      "baseUrl": "Dirección de la API",
+      "baseUrlHint": "P. ej. https://api.mistral.ai/v1",
+      "baseUrlError": "Escribe una dirección que empiece por https://",
+      "key": "Clave",
+      "keyHint": "Se comprueba con el proveedor y se guarda cifrada. No se vuelve a mostrar: solo sus 4 últimos caracteres.",
+      "keyError": "Pega la clave completa.",
+      "add": "Comprobar y guardar la clave",
+      "checking": "Comprobando…",
+      "added": "Clave guardada.",
+      "none": "Todavía no hay claves.",
+      "delete": "Borrar",
+      "deleteFor": "Borrar la clave {label}",
+      "deleteTitle": "¿Borrar la clave «{label}»?",
+      "deleteBody": "La clave se borra para siempre. Las tareas que usen sus modelos vuelven al modelo heredado y se avisa en cada curso.",
+      "deleteConfirm": "Borrar la clave",
+      "cancel": "Cancelar"
     }
   },
   "student": {
@@ -1504,7 +1564,11 @@
     },
     "ai": {
       "pageTitle": "IA",
-      "lead": "El límite de mensajes de tus estudiantes, el modelo de cada tarea y cuánto material se usa. Por defecto se usan los valores del estudio; puedes personalizar cada grupo."
+      "lead": "El límite de mensajes de tus estudiantes, el modelo de cada tarea y cuánto material se usa. Por defecto se usan los valores del estudio; puedes personalizar cada grupo.",
+      "ownKeys": {
+        "title": "Tus claves",
+        "help": "Puedes añadir tu propia clave para usar sus modelos en este curso. Las peticiones irán a ese proveedor con tu cuenta y a tu cargo; comprueba antes que tiene un acuerdo de tratamiento de datos (DPA) adecuado."
+      }
     }
   },
   "errors": {
@@ -1544,6 +1608,10 @@
     "provider_unavailable": "El servidor no tiene clave para ese proveedor.",
     "provider_unreachable": "Ese proveedor no responde ahora mismo. Inténtalo más tarde.",
     "model_unavailable": "Ese modelo ya no está disponible. Elige otro.",
-    "temperature_not_supported": "Los modelos de Anthropic no admiten temperatura."
+    "temperature_not_supported": "Los modelos de Anthropic no admiten temperatura.",
+    "key_rejected": "El proveedor no acepta esa clave. Comprueba que la has copiado entera.",
+    "credentials_not_configured": "El servidor no tiene configurada la clave maestra (LLM_CREDENTIALS_KEY), así que no se pueden guardar claves.",
+    "credential_unavailable": "Este curso no puede usar esa clave. Elige otro modelo.",
+    "teacher_keys_disabled": "El estudio no permite que los profesores añadan sus claves."
   }
 }

@@ -11,10 +11,14 @@ import {
   deleteQuestionnaire,
   eraseStudent,
   updateQuestionnaire,
+  createStudyCredential,
+  deleteStudyCredential,
   updateStudyAISettings,
+  updateStudyCredential,
   updateStudyCriteria
 } from "@/lib/api/admin";
 import type { Schemas } from "@/lib/api/client";
+import { type CredentialState, credentialFromForm } from "@/lib/credentials";
 import { samePhrase } from "@/lib/phrase";
 
 export type TeacherState = {
@@ -102,6 +106,28 @@ export async function saveStudyAISettingsAction(body: Schemas["StudyOverrides"])
   if (!result.ok) return { ok: false, code: result.code };
   revalidatePath("/admin/ai");
   return { ok: true };
+}
+
+/** Adds a study key (spec 019); the key is checked by the API and never comes back. */
+export async function createStudyCredentialAction(_: CredentialState, form: FormData): Promise<CredentialState> {
+  const parsed = credentialFromForm(form);
+  if ("state" in parsed) return parsed.state;
+  const result = await createStudyCredential(parsed.body);
+  if (!result.ok) return { error: result.code, values: parsed.values };
+  revalidatePath("/admin/ai-providers");
+  return { created: Date.now() };
+}
+
+/** The models courses may use from a study key; the others go back to the inherited ones. */
+export async function saveOfferedModelsAction(form: FormData): Promise<void> {
+  const offered = form.getAll("model").map(String);
+  await updateStudyCredential(String(form.get("id")), { offered_models: form.get("all") ? null : offered });
+  revalidatePath("/admin/ai-providers");
+}
+
+export async function deleteStudyCredentialAction(form: FormData): Promise<void> {
+  await deleteStudyCredential(String(form.get("id")));
+  revalidatePath("/admin/ai-providers");
 }
 
 /**

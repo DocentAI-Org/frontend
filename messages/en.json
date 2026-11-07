@@ -33,7 +33,8 @@
         "studyExport": "Study data",
         "questionnaires": "Questionnaires",
         "criteria": "Pedagogical criteria",
-        "ai": "Study AI"
+        "ai": "Study AI",
+        "providers": "AI providers"
       },
       "role": "Administration"
     },
@@ -178,6 +179,22 @@
       "pageTitle": "Study AI",
       "title": "Study AI",
       "lead": "The AI values for every course. Each teacher may customise them in their course; the others use these. If you change nothing, the server's apply."
+    },
+    "providers": {
+      "pageTitle": "AI providers",
+      "title": "AI providers",
+      "lead": "The keys for commercial models courses can use. Local models (Ollama) need no key.",
+      "serverTitle": "The server's",
+      "serverHelp": "Set in the server's environment. They can't be changed here.",
+      "studyTitle": "Study keys",
+      "studyHelp": "Every course can use the models you choose from each key.",
+      "offered": "Models of “{label}” courses can use",
+      "allModels": "All, including those the provider adds later",
+      "offeredHelp": "If you remove a model a course uses, that course goes back to the inherited model and is told.",
+      "saveOffered": "Save models",
+      "modelsUnreachable": "The provider isn't answering now: its models can't be chosen.",
+      "addTitle": "Add a key",
+      "addHelp": "Use a provider with a reviewed data processing agreement (DPA) that doesn't train on the data."
     }
   },
   "common": {
@@ -517,7 +534,11 @@
         "effort": "Reasoning",
         "effortHelp": "How much the model thinks before answering, if it supports it.",
         "maxTokens": "Maximum length",
-        "maxTokensHelp": "In tokens (about 3/4 of a word)."
+        "maxTokensHelp": "In tokens (about 3/4 of a word).",
+        "scope": {
+          "study": "{label} (study key)",
+          "course": "{label} (your key)"
+        }
       },
       "retrieval": {
         "legend": "Material retrieval",
@@ -526,7 +547,46 @@
         "history": "Earlier messages remembered",
         "minSimilarity": "Minimum similarity in the chat (%)",
         "minSimilarityExercises": "Minimum similarity in exercises (%)"
+      },
+      "teacherKeys": {
+        "legend": "Teachers' keys",
+        "allow": "Teachers may add their own keys to their courses",
+        "help": "That course's requests will go to the provider under the teacher's account: review its data processing agreement (DPA) first. If you turn this off, tasks using those keys go back to the inherited model."
+      },
+      "notices": {
+        "title": "Some tasks went back to the inherited model",
+        "credential_removed": "{task}: the key for {model} was deleted.",
+        "model_withdrawn": "{task}: {model} is no longer offered.",
+        "teacher_keys_disabled": "{task}: the study no longer allows own keys ({model}).",
+        "clear": "This notice goes away when you save the settings."
       }
+    },
+    "credentials": {
+      "provider": "Provider",
+      "providers": {
+        "openai": "OpenAI",
+        "anthropic": "Anthropic",
+        "openai_compatible": "OpenAI-compatible (Mistral, vLLM…)"
+      },
+      "label": "Name",
+      "labelHint": "To recognise it, e.g. “Department's OpenAI”.",
+      "labelError": "Type a name.",
+      "baseUrl": "API address",
+      "baseUrlHint": "E.g. https://api.mistral.ai/v1",
+      "baseUrlError": "Type an address starting with https://",
+      "key": "Key",
+      "keyHint": "It's checked with the provider and stored encrypted. It's never shown again: only its last 4 characters.",
+      "keyError": "Paste the whole key.",
+      "add": "Check and save the key",
+      "checking": "Checking…",
+      "added": "Key saved.",
+      "none": "No keys yet.",
+      "delete": "Delete",
+      "deleteFor": "Delete the key {label}",
+      "deleteTitle": "Delete the key “{label}”?",
+      "deleteBody": "The key is deleted for good. Tasks using its models go back to the inherited model, and each course is told.",
+      "deleteConfirm": "Delete the key",
+      "cancel": "Cancel"
     }
   },
   "student": {
@@ -1504,7 +1564,11 @@
     },
     "ai": {
       "pageTitle": "AI",
-      "lead": "Your students' message limit, the model for each task and how much material is used. The study's values apply by default; you can customise each group."
+      "lead": "Your students' message limit, the model for each task and how much material is used. The study's values apply by default; you can customise each group.",
+      "ownKeys": {
+        "title": "Your keys",
+        "help": "You can add your own key to use its models in this course. Requests will go to that provider under your account and at your cost; check first that it has a suitable data processing agreement (DPA)."
+      }
     }
   },
   "errors": {
@@ -1544,6 +1608,10 @@
     "provider_unavailable": "The server has no key for that provider.",
     "provider_unreachable": "That provider isn't answering right now. Try again later.",
     "model_unavailable": "That model is no longer available. Choose another one.",
-    "temperature_not_supported": "Anthropic models don't take a temperature."
+    "temperature_not_supported": "Anthropic models don't take a temperature.",
+    "key_rejected": "The provider doesn't accept that key. Check you copied all of it.",
+    "credentials_not_configured": "The server has no master key (LLM_CREDENTIALS_KEY), so keys can't be stored.",
+    "credential_unavailable": "This course can't use that key. Choose another model.",
+    "teacher_keys_disabled": "The study doesn't allow teachers to add their keys."
   }
 }

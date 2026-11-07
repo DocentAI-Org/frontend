@@ -14,3 +14,19 @@ export const updateCourseAISettings = (courseId: string, body: Schemas["CourseOv
 /** The models the course can use, by source. */
 export const getCourseAIModels = (courseId: string) =>
   request((api) => api.GET("/v1/teacher/courses/{course_id}/ai-models", { params: { path: { course_id: courseId } } }));
+
+const own = "/v1/teacher/courses/{course_id}/llm-credentials" as const;
+
+/** The teacher's own keys for the course, if the study allows them. */
+export const listOwnCredentials = (courseId: string) =>
+  request((api) => api.GET(own, { params: { path: { course_id: courseId } } }));
+
+export const createOwnCredential = (courseId: string, body: Schemas["CredentialCreate"]) =>
+  request((api) => api.POST(own, { params: { path: { course_id: courseId } }, body }));
+
+export const deleteOwnCredential = (courseId: string, credentialId: string) =>
+  request((api) =>
+    api.DELETE("/v1/teacher/courses/{course_id}/llm-credentials/{credential_id}", {
+      params: { path: { course_id: courseId, credential_id: credentialId } }
+    })
+  );
