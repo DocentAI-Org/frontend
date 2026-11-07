@@ -38,7 +38,8 @@ export const SOURCES: S["ModelSource"][] = [
 function serverValues(): S["StudyValues"] {
   return {
     models: Object.fromEntries(TASKS.map((t) => [t, { ...SERVER_MODEL, origin: "server" }])) as S["StudyValues"]["models"],
-    ...structuredClone(SERVER)
+    ...structuredClone(SERVER),
+    instructions: { tutor: null, feedback: null, review: null, questions: null }
   };
 }
 
@@ -55,11 +56,12 @@ function layer(base: S["StudyValues"], own: Overrides | undefined, origin: "stud
     models,
     limits: own.limits ?? base.limits,
     retrieval: own.retrieval ?? base.retrieval,
-    ceiling: own.ceiling ?? base.ceiling
+    ceiling: own.ceiling ?? base.ceiling,
+    instructions: own.instructions ?? base.instructions
   };
 }
 
-const values = (v: S["StudyValues"]): S["Values"] => ({ models: v.models, limits: v.limits, retrieval: v.retrieval });
+const values = (v: S["StudyValues"]): S["Values"] => ({ models: v.models, limits: v.limits, retrieval: v.retrieval, instructions: v.instructions });
 const study = (state: State) => layer(serverValues(), state.aiStudy, "study");
 
 export function aiInEffect(state: State, courseId: string): S["StudyValues"] {
@@ -71,7 +73,8 @@ function overrides(own: S["CourseOverrides"] | undefined): S["CourseOverrides"] 
   return {
     models: Object.fromEntries(TASKS.map((t) => [t, own?.models?.[t] ?? null])) as S["TaskModels"],
     limits: own?.limits ?? null,
-    retrieval: own?.retrieval ?? null
+    retrieval: own?.retrieval ?? null,
+    instructions: own?.instructions ?? null
   };
 }
 
@@ -126,6 +129,7 @@ function check(state: State, body: Overrides, courseId?: string) {
   if (retrieval && (retrieval.top_k < 1 || retrieval.top_k > 10 || retrieval.history_messages > 20)) invalid();
   if (retrieval && [retrieval.min_similarity, retrieval.min_similarity_exercises].some((v) => v < 0 || v > 1)) invalid();
   if (ceiling && ceiling.messages !== null && ceiling.messages < 1) invalid();
+  if (Object.values(body.instructions ?? {}).some((text) => (text ?? "").length > 2000)) invalid();
   for (const task of TASKS) {
     const choice = body.models?.[task];
     if (!choice) continue;
@@ -264,7 +268,65 @@ function removeKey(state: State, credential: Credential) {
   state.credentials = state.credentials.filter((c) => c.id !== credential.id);
 }
 
+// --- Test messages and usage --------------------------------------------------------------
+
+/** A scripted reply (no model): it says which model and instructions it would use. */
+function testReply(state: State, course: { id: string }, body: S["AITestRequest"]): S["AITestResult"] {
+  const settings = body.settings ? layer(study(state), body.settings, "course") : aiInEffect(state, course.id);
+  const task = body.task;
+  const model = settings.models[task];
+  const instruction = settings.instructions[task];
+  const text = instruction ? `Respuesta de prueba siguiendo: «${instruction}»` : "Respuesta de prueba según el material.";
+  return {
+    kind: task === "tutor" ? "answer" : "incorrect",
+    text,
+    model: model.model,
+    latency_ms: 1200,
+    input_tokens: 900,
+    output_tokens: 120,
+    estimated_cost_usd: model.provider === "ollama" ? 0 : 0.0012,
+    fragments: 3
+  };
+}
+
+function usageOf(state: State, courseId: string): S["AIUsage"] {
+  const conversations = new Set(state.conversations.filter((c) => c.course_id === courseId).map((c) => c.id));
+  const asked = state.messages.filter((m) => conversations.has(m.conversation_id) && m.author === "student" && m.status === "sent");
+  const exercises = state.submissions.filter((s) => s.course_id === courseId);
+  const counts: Record<string, number> = { tutor: asked.length, feedback: exercises.length, review: 0, questions: 0 };
+  const window = (days: number) => ({
+    days,
+    tasks: TASKS.map((task) => ({ task, messages: counts[task], input_tokens: counts[task] * 900, output_tokens: counts[task] * 120, estimated_cost_usd: 0 }))
+  });
+  const { messages: limit, period } = aiInEffect(state, courseId).limits;
+  const top = state.users
+    .filter((u) => u.role === "student")
+    .map((u) => ({ student_id: u.id, display_name: u.display_name, used: state.courseUsage.get(usageKey(u.id, courseId, period)) ?? 0 }))
+    .filter((u) => u.used > 0)
+    .sort((a, b) => b.used - a.used)
+    .slice(0, 5);
+  return { windows: [window(7), window(30)], limit, period, top_students: top };
+}
+
 export const aiRoutes: Route[] = [
+  {
+    method: "POST",
+    path: "/v1/teacher/courses/{course_id}/ai-test",
+    handler: (ctx) => {
+      const course = ownedCourse(ctx);
+      const body = ctx.body as S["AITestRequest"];
+      const missing = body.task === "tutor" ? !body.message : !(body.problem_statement && body.worked_answer);
+      if (missing) throw new HttpError(422, "validation_error");
+      if (body.settings) check(ctx.state, body.settings, course.id);
+      if (ctx.state.faults.has("tutor_unavailable")) throw new HttpError(503, "tutor_unavailable");
+      return testReply(ctx.state, course, body);
+    }
+  },
+  {
+    method: "GET",
+    path: "/v1/teacher/courses/{course_id}/ai-usage",
+    handler: (ctx) => usageOf(ctx.state, ownedCourse(ctx).id)
+  },
   {
     method: "GET",
     path: "/v1/admin/ai-settings",
