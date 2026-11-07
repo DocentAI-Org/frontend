@@ -15,8 +15,8 @@ Three PRs against `main`, each after its backend PR.
 
 ## PR 2 — Credentials (US4)
 
-- [ ] T007 E2E: 019-US4; mock API credentials
-- [ ] T008 "Proveedores de IA" admin page; "Añadir mi clave" in the course tab
+- [x] T007 E2E: 019-US4 and US3-AS3; mock API credentials
+- [x] T008 "Proveedores de IA" admin page; "Tus claves" in the course tab; notices
 
 ## PR 3 — Instructions, test and usage (US5)
 

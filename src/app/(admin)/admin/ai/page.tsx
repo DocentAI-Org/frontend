@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 
+import { AINotices } from "@/components/AINotices";
 import { AISettingsForm } from "@/components/AISettingsForm";
 import { ErrorState } from "@/components/ErrorState";
 import { PageHeader } from "@/components/PageHeader";
@@ -25,13 +26,18 @@ export default async function StudyAIPage() {
       ) : !models.ok ? (
         <ErrorState code={models.code} />
       ) : (
-        <AISettingsForm
+        <>
+          <div className="max-w-3xl">
+            <AINotices notices={settings.data.notices} />
+          </div>
+          <AISettingsForm
           mode="study"
           server={settings.data.server}
           own={settings.data.study}
           sources={models.data.sources}
           save={saveStudyAISettingsAction}
-        />
+          />
+        </>
       )}
     </div>
   );

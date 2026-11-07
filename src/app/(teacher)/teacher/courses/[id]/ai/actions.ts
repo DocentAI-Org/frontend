@@ -2,8 +2,9 @@
 
 import { revalidatePath } from "next/cache";
 
-import { updateCourseAISettings } from "@/lib/api/ai";
+import { createOwnCredential, deleteOwnCredential, updateCourseAISettings } from "@/lib/api/ai";
 import type { Schemas } from "@/lib/api/client";
+import { type CredentialState, credentialFromForm } from "@/lib/credentials";
 import { routes } from "@/lib/routes";
 
 export async function saveCourseAISettingsAction(
@@ -14,4 +15,19 @@ export async function saveCourseAISettingsAction(
   if (!result.ok) return { ok: false, code: result.code };
   revalidatePath(routes.teacherAI(courseId));
   return { ok: true };
+}
+
+/** Adds the teacher's own key to the course, if the study allows it (spec 019). */
+export async function createOwnCredentialAction(courseId: string, _: CredentialState, form: FormData): Promise<CredentialState> {
+  const parsed = credentialFromForm(form);
+  if ("state" in parsed) return parsed.state;
+  const result = await createOwnCredential(courseId, parsed.body);
+  if (!result.ok) return { error: result.code, values: parsed.values };
+  revalidatePath(routes.teacherAI(courseId));
+  return { created: Date.now() };
+}
+
+export async function deleteOwnCredentialAction(courseId: string, form: FormData): Promise<void> {
+  await deleteOwnCredential(courseId, String(form.get("id")));
+  revalidatePath(routes.teacherAI(courseId));
 }

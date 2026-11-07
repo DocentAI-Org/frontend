@@ -353,6 +353,59 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/admin/llm-credentials": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** The server's keys and the study's stored keys (specs/019) */
+        get: operations["list_credentials_v1_admin_llm_credentials_get"];
+        put?: never;
+        /** Add a key every course may use; checked with the provider, then encrypted */
+        post: operations["create_credential_v1_admin_llm_credentials_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/admin/llm-credentials/{credential_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Delete a key; the courses using it go back to the inherited model */
+        delete: operations["delete_credential_v1_admin_llm_credentials__credential_id__delete"];
+        options?: never;
+        head?: never;
+        /** Rename a key or choose the models courses may use */
+        patch: operations["update_credential_v1_admin_llm_credentials__credential_id__patch"];
+        trace?: never;
+    };
+    "/v1/admin/llm-credentials/{credential_id}/models": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Every model the key's account offers, to choose those courses may use */
+        get: operations["list_credential_models_v1_admin_llm_credentials__credential_id__models_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/teacher/courses": {
         parameters: {
             query?: never;
@@ -1147,6 +1200,41 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/teacher/courses/{course_id}/llm-credentials": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** The teacher's own keys for the course (specs/019) */
+        get: operations["list_own_credentials_v1_teacher_courses__course_id__llm_credentials_get"];
+        put?: never;
+        /** Add the teacher's own key, if the study allows it; requests then go to that provider under the teacher's account */
+        post: operations["create_own_credential_v1_teacher_courses__course_id__llm_credentials_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/teacher/courses/{course_id}/llm-credentials/{credential_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Delete the teacher's own key; its tasks go back to the inherited model */
+        delete: operations["delete_own_credential_v1_teacher_courses__course_id__llm_credentials__credential_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/student/enrolments": {
         parameters: {
             query?: never;
@@ -1911,6 +1999,13 @@ export interface components {
             effective: components["schemas"]["Values"];
             /** @description The study's daily ceiling, for reference. */
             ceiling: components["schemas"]["Ceiling"];
+            /** Allow Teacher Keys */
+            allow_teacher_keys: boolean;
+            /**
+             * Notices
+             * @description Cleared when the settings are saved.
+             */
+            notices: components["schemas"]["Notice"][];
         };
         /** CourseCreate */
         CourseCreate: {
@@ -2103,6 +2198,73 @@ export interface components {
              * @description Shown once; the API does not store it.
              */
             initial_password: string;
+        };
+        /** Credential */
+        Credential: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /**
+             * Provider
+             * @enum {string}
+             */
+            provider: "openai" | "anthropic" | "openai_compatible";
+            /** Label */
+            label: string;
+            /** Base Url */
+            base_url: string | null;
+            /**
+             * Key Hint
+             * @description The last four characters, e.g. …cdef.
+             */
+            key_hint: string;
+            /**
+             * Scope
+             * @enum {string}
+             */
+            scope: "study" | "course";
+            /**
+             * Offered Models
+             * @description The study's: the models courses may use; null is all.
+             */
+            offered_models: string[] | null;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+        };
+        /** CredentialCreate */
+        CredentialCreate: {
+            /**
+             * Provider
+             * @enum {string}
+             */
+            provider: "openai" | "anthropic" | "openai_compatible";
+            /** Label */
+            label: string;
+            /**
+             * Base Url
+             * @description Required for an OpenAI-compatible API.
+             */
+            base_url?: string | null;
+            /**
+             * Api Key
+             * Format: password
+             */
+            api_key: string;
+        };
+        /** CredentialUpdate */
+        CredentialUpdate: {
+            /** Label */
+            label?: string | null;
+            /**
+             * Offered Models
+             * @description Models courses may use; omitted keeps them.
+             */
+            offered_models?: string[] | null;
         };
         /** Criteria */
         Criteria: {
@@ -2555,6 +2717,11 @@ export interface components {
              * @description Longest reply; null: the server's.
              */
             max_tokens?: number | null;
+            /**
+             * Credential Id
+             * @description A stored key; null: the server's key.
+             */
+            credential_id?: string | null;
         };
         /** ModelInfo */
         ModelInfo: {
@@ -2582,6 +2749,17 @@ export interface components {
             reachable: boolean;
             /** Models */
             models: components["schemas"]["ModelInfo"][];
+            /**
+             * Credential Id
+             * @description Null for the server's own keys.
+             */
+            credential_id?: string | null;
+            /**
+             * Scope
+             * @default server
+             * @enum {string}
+             */
+            scope: "server" | "study" | "course";
         };
         /**
          * MyQuestionnaire
@@ -2597,6 +2775,29 @@ export interface components {
             title: string;
             /** Url */
             url: string;
+        };
+        /**
+         * Notice
+         * @description A task that went back to the inherited model, and why.
+         */
+        Notice: {
+            /**
+             * Task
+             * @enum {string}
+             */
+            task: "tutor" | "feedback" | "review" | "questions";
+            /** Model */
+            model: string;
+            /**
+             * Reason
+             * @enum {string}
+             */
+            reason: "credential_removed" | "model_withdrawn" | "teacher_keys_disabled";
+            /**
+             * At
+             * Format: date-time
+             */
+            at: string;
         };
         /** Page[AdminCourse] */
         Page_AdminCourse_: {
@@ -3170,6 +3371,11 @@ export interface components {
              */
             max_tokens?: number | null;
             /**
+             * Credential Id
+             * @description A stored key; null: the server's key.
+             */
+            credential_id?: string | null;
+            /**
              * Origin
              * @enum {string}
              */
@@ -3212,6 +3418,16 @@ export interface components {
             thresholds: {
                 [key: string]: number;
             };
+        };
+        /** ServerKey */
+        ServerKey: {
+            /**
+             * Provider
+             * @enum {string}
+             */
+            provider: "ollama" | "openai" | "anthropic";
+            /** Label */
+            label: string;
         };
         /** SignedUrl */
         SignedUrl: {
@@ -3528,10 +3744,25 @@ export interface components {
             study: components["schemas"]["StudyOverrides"];
             effective: components["schemas"]["StudyValues"];
             /**
+             * Notices
+             * @description Cleared when the settings are saved.
+             */
+            notices: components["schemas"]["Notice"][];
+            /**
              * Updated At
              * Format: date-time
              */
             updated_at: string;
+        };
+        /** StudyCredentials */
+        StudyCredentials: {
+            /**
+             * Server
+             * @description Providers the server's environment has.
+             */
+            server: components["schemas"]["ServerKey"][];
+            /** Items */
+            items: components["schemas"]["Credential"][];
         };
         /** StudyCriteria */
         StudyCriteria: {
@@ -3560,6 +3791,12 @@ export interface components {
             limits?: components["schemas"]["Limits"] | null;
             retrieval?: components["schemas"]["Retrieval"] | null;
             ceiling?: components["schemas"]["Ceiling"] | null;
+            /**
+             * Allow Teacher Keys
+             * @description Teachers may add their own keys to their courses.
+             * @default false
+             */
+            allow_teacher_keys: boolean;
         };
         /** StudyValues */
         StudyValues: {
@@ -5785,6 +6022,289 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    list_credentials_v1_admin_llm_credentials_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StudyCredentials"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    create_credential_v1_admin_llm_credentials_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CredentialCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Credential"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    delete_credential_v1_admin_llm_credentials__credential_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                credential_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_credential_v1_admin_llm_credentials__credential_id__patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                credential_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CredentialUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Credential"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    list_credential_models_v1_admin_llm_credentials__credential_id__models_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                credential_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ModelSource"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };
@@ -9435,6 +9955,192 @@ export interface operations {
                 content: {
                     "application/json": components["schemas"]["AIModels"];
                 };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_own_credentials_v1_teacher_courses__course_id__llm_credentials_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Credential"][];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_own_credential_v1_teacher_courses__course_id__llm_credentials_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CredentialCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Credential"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    delete_own_credential_v1_teacher_courses__course_id__llm_credentials__credential_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+                credential_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
             /** @description Unauthorized */
             401: {
