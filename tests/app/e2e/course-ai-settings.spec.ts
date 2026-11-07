@@ -178,6 +178,9 @@ test.describe("019 US6 the admin sets the study's values", () => {
     await save(page);
     await saved(page);
 
+    // Leave the admin page first: without its session it would redirect to the sign-in page
+    // while the test opens it.
+    await page.goto("about:blank");
     await page.context().clearCookies();
     await signIn(page, USERS.teacher);
     await page.goto(`/teacher/courses/${courseId}/ai`);
