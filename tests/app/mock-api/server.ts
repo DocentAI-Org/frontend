@@ -5,6 +5,7 @@ import { createServer } from "node:http";
 import { type Ctx, HttpError, NO_CONTENT, RawBody, type Route, compile, send } from "./http.ts";
 import { authRoutes, subjectOf } from "./routes/auth.ts";
 import { adminRoutes } from "./routes/admin.ts";
+import { aiRoutes } from "./routes/ai.ts";
 import { chatRoutes } from "./routes/chat.ts";
 import { consentRoutes } from "./routes/consent.ts";
 import { courseRoutes } from "./routes/courses.ts";
@@ -43,7 +44,7 @@ const testRoutes: Route[] = [
   }
 ];
 
-const routes = [...testRoutes, ...authRoutes, ...meRoutes, ...consentRoutes, ...courseRoutes, ...documentRoutes, ...topicRoutes, ...settingsRoutes, ...chatRoutes, ...exerciseRoutes, ...recordRoutes, ...reviewRoutes, ...mistakeReviewRoutes, ...quizRoutes, ...progressRoutes, ...courseTestRoutes, ...dashboardRoutes, ...questionnaireRoutes, ...pedagogyRoutes, ...adminRoutes].map((route) => ({
+const routes = [...testRoutes, ...authRoutes, ...meRoutes, ...consentRoutes, ...courseRoutes, ...documentRoutes, ...topicRoutes, ...settingsRoutes, ...chatRoutes, ...exerciseRoutes, ...recordRoutes, ...reviewRoutes, ...mistakeReviewRoutes, ...quizRoutes, ...progressRoutes, ...courseTestRoutes, ...dashboardRoutes, ...questionnaireRoutes, ...pedagogyRoutes, ...aiRoutes, ...adminRoutes].map((route) => ({
   ...route,
   matcher: compile(route.path)
 }));

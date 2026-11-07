@@ -1,7 +1,8 @@
 // Student chat with a deterministic tutor: it answers from validated, non-excluded fragments that
 // share words with the question, follows the course's solution policy, and never improvises.
 import { HttpError, type Route, page, requireRole } from "../http.ts";
-import { type Conversation, DAILY_LIMIT, type Msg, type S, type State, id, now } from "../state.ts";
+import { type Conversation, type Msg, type S, type State, id, now } from "../state.ts";
+import { courseAllowance, dailyAllowance, reserveMessage } from "./ai.ts";
 import { consentStatus } from "./consent.ts";
 import { activeEnrolment } from "./courses.ts";
 
@@ -62,13 +63,6 @@ function conversationView(state: State, conversation: Conversation): S["Conversa
   };
 }
 
-function allowance(state: State, studentId: string): S["Allowance"] {
-  const used = state.usage.get(studentId) ?? 0;
-  const midnight = new Date();
-  midnight.setHours(24, 0, 0, 0);
-  return { limit: DAILY_LIMIT, used, remaining: Math.max(DAILY_LIMIT - used, 0), resets_at: midnight.toISOString() };
-}
-
 function ownConversation(state: State, courseId: string, studentId: string, conversationId: string): Conversation {
   const conversation = state.conversations.find(
     (c) => c.id === conversationId && c.course_id === courseId && c.student_id === studentId
@@ -114,23 +108,20 @@ function exchange(state: State, conversation: Conversation, question: Msg, stude
   if (question.request_solution && course.settings.solution_policy === "hints_only") {
     throw new HttpError(409, "solution_not_allowed");
   }
-  const used = state.usage.get(studentId) ?? 0;
-  if (used >= DAILY_LIMIT) {
-    throw new HttpError(429, "daily_limit_reached", { resets_at: allowance(state, studentId).resets_at });
-  }
+  const giveBack = reserveMessage(state, studentId, conversation.course_id, "tutor");
   if (!state.messages.includes(question)) state.messages.push(question);
   if (state.faults.has("tutor_unavailable")) {
+    giveBack();
     question.status = "failed";
     question.counts_toward_limit = false;
     throw new HttpError(503, "tutor_unavailable", { message_id: question.id });
   }
   question.status = "sent";
   question.counts_toward_limit = true;
-  state.usage.set(studentId, used + 1);
   const answer = reply(state, conversation, question);
   state.messages.push(answer);
   conversation.last_message_at = now();
-  return { student_message: messageView(state, question), tutor_message: messageView(state, answer), allowance: allowance(state, studentId) };
+  return { student_message: messageView(state, question), tutor_message: messageView(state, answer), allowance: courseAllowance(state, studentId, conversation.course_id) };
 }
 
 const BASE = "/v1/student/courses/{course_id}/conversations";
@@ -219,7 +210,7 @@ export const chatRoutes: Route[] = [
 chatRoutes.push({
   method: "GET",
   path: "/v1/student/allowance",
-  handler: (ctx) => allowance(ctx.state, requireRole(ctx, "student").id)
+  handler: (ctx) => dailyAllowance(ctx.state, requireRole(ctx, "student").id)
 });
 
 /** Test helper: use up a student's daily messages. */

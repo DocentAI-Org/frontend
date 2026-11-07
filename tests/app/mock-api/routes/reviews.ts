@@ -2,7 +2,8 @@
 // review, a "not covered" one, an unavailable tutor or the daily limit. /__test/mistakes seeds
 // Lucas's mistakes of the same type and topic, so the third one repeats a pattern.
 import { HttpError, type Route } from "../http.ts";
-import { DAILY_LIMIT, type Review, type S, type State, id, now } from "../state.ts";
+import { type Review, type S, type State, id, now } from "../state.ts";
+import { reserveMessage } from "./ai.ts";
 import { citationView } from "./chat.ts";
 import { activeEnrolment, ownedCourse } from "./courses.ts";
 import { repeatedOf } from "./exercises.ts";
@@ -41,7 +42,7 @@ export const mistakeReviewRoutes: Route[] = [
         throw new HttpError(429, "daily_limit_reached", { resets_at: midnight.toISOString() });
       }
       if (mode.mode === "fail") throw new HttpError(503, "tutor_unavailable");
-      state.usage.set(enrolment.student_id, Math.min(DAILY_LIMIT, (state.usage.get(enrolment.student_id) ?? 0) + 1));
+      reserveMessage(state, enrolment.student_id, enrolment.course_id, "review");
       const fragment = state.fragments.find((f) => state.documents.some((d) => d.id === f.document_id && d.course_id === s.course_id && d.validation_status === "validated"));
       const grounded = mode.mode === "answer" && fragment !== undefined;
       const review: Review = {
