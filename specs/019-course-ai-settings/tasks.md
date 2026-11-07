@@ -20,5 +20,5 @@ Three PRs against `main`, each after its backend PR.
 
 ## PR 3 — Instructions, test and usage (US5)
 
-- [ ] T009 E2E: 019-US5; mock API test and usage
-- [ ] T010 Instructions, retrieval, "Probar" and "Consumo"
+- [x] T009 E2E: 019-US5; mock API test and usage
+- [x] T010 Instructions, "Probar" and "Consumo" (retrieval came with PR 1)

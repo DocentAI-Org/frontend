@@ -559,6 +559,53 @@
         "model_withdrawn": "{task}: {model} ya no se ofrece.",
         "teacher_keys_disabled": "{task}: el estudio ya no permite claves propias ({model}).",
         "clear": "Este aviso desaparece al guardar la configuración."
+      },
+      "instructions": {
+        "legend": "Instrucciones",
+        "help": "Indicaciones tuyas para cada tarea: el enfoque, el estilo o qué destacar. Se añaden a las reglas del tutor.",
+        "none": "Sin instrucciones.",
+        "count": "{count} de {max} caracteres",
+        "rules": "No pueden cambiar las reglas de seguridad: el tutor sigue usando solo el material validado y tu política de soluciones.",
+        "example": {
+          "tutor": "P. ej.: Responde siempre con un ejemplo de la vida cotidiana.",
+          "feedback": "P. ej.: Señala primero lo que está bien antes del error.",
+          "review": "P. ej.: Usa ejemplos con números pequeños.",
+          "questions": "P. ej.: Incluye preguntas sobre interpretar el resultado."
+        }
+      },
+      "test": {
+        "title": "Probar",
+        "help": "Prueba la configuración tal y como está en el formulario, aunque no la hayas guardado. No cuenta como mensaje de ningún estudiante. Hasta 20 pruebas por hora.",
+        "task": "Tarea",
+        "message": "Pregunta de prueba",
+        "problem": "Enunciado",
+        "answer": "Respuesta del estudiante (de prueba)",
+        "run": "Probar con esta configuración",
+        "running": "Probando…",
+        "missing": "Escribe lo que quieres probar.",
+        "noModel": "sin modelo",
+        "meta": "{model} · {seconds} s · {tokens} tokens · {cost}",
+        "kind": {
+          "answer": "Respuesta",
+          "hint": "Pista",
+          "no_source": "El material no lo cubre",
+          "correct": "Correcto",
+          "partially_correct": "Parcialmente correcto",
+          "incorrect": "Incorrecto",
+          "not_assessed": "Sin evaluar"
+        }
+      },
+      "usage": {
+        "title": "Consumo",
+        "help": "Mensajes que han usado los estudiantes y coste estimado según los precios configurados. Los modelos locales no tienen coste.",
+        "caption": "Mensajes y coste por tarea",
+        "task": "Tarea",
+        "lastDays": "Últimos {days} días",
+        "cell": "{messages} · {cost}",
+        "top": "Quién ha usado más {period, select, day {hoy} week {esta semana} other {en el curso}} (límite: {limit})",
+        "topNoLimit": "Quién ha usado más {period, select, day {hoy} week {esta semana} other {en el curso}}",
+        "student": "{name}: {used, plural, one {# mensaje} other {# mensajes}}",
+        "noStudents": "Nadie ha usado mensajes en este periodo."
       }
     },
     "credentials": {
@@ -1612,6 +1659,7 @@
     "key_rejected": "El proveedor no acepta esa clave. Comprueba que la has copiado entera.",
     "credentials_not_configured": "El servidor no tiene configurada la clave maestra (LLM_CREDENTIALS_KEY), así que no se pueden guardar claves.",
     "credential_unavailable": "Este curso no puede usar esa clave. Elige otro modelo.",
-    "teacher_keys_disabled": "El estudio no permite que los profesores añadan sus claves."
+    "teacher_keys_disabled": "El estudio no permite que los profesores añadan sus claves.",
+    "test_limit_reached": "Has hecho 20 pruebas en la última hora. Espera un poco antes de probar de nuevo."
   }
 }

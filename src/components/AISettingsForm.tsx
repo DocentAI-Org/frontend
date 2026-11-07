@@ -2,7 +2,7 @@
 
 import { useFormatter, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import { useId, useState, useTransition } from "react";
+import { useId, useRef, useState, useTransition } from "react";
 
 import type { Schemas } from "@/lib/api/client";
 import { errorMessageKey } from "@/lib/api/errors";
@@ -10,6 +10,7 @@ import { errorMessageKey } from "@/lib/api/errors";
 import { Alert } from "./Alert";
 import { Button } from "./Button";
 import { Select } from "./Select";
+import { TextArea } from "./TextArea";
 
 type Values = Schemas["Values"];
 type Task = keyof Schemas["TaskModels"];
@@ -27,6 +28,9 @@ const FIELD =
 const GROUP = "flex flex-col gap-4 rounded-xl border border-border bg-surface-raised p-4 sm:p-6";
 
 export type SaveAISettings = { ok: true } | { ok: false; code: string };
+export type TestAISettings = { ok: true; result: Schemas["AITestResult"] } | { ok: false; code: string };
+const MODEL_ERRORS = ["provider_unavailable", "provider_unreachable", "model_unavailable", "temperature_not_supported", "credential_unavailable"];
+const INSTRUCTION_CHARS = 2000;
 
 type Props = { sources: Source[] } & (
   | {
@@ -41,6 +45,8 @@ type Props = { sources: Source[] } & (
       own: Schemas["CourseOverrides"];
       ceiling: Schemas["Ceiling"];
       save: (body: Schemas["CourseOverrides"]) => Promise<SaveAISettings>;
+      /** Tries a message with the settings as they are in the form, saved or not. */
+      test: (body: Schemas["AITestRequest"]) => Promise<TestAISettings>;
     }
 );
 
@@ -69,6 +75,7 @@ export function AISettingsForm(props: Props) {
   const { own } = props;
   const [custom, setCustom] = useState({
     limits: Boolean(own.limits),
+    instructions: Boolean(own.instructions),
     retrieval: Boolean(own.retrieval),
     ceiling: props.mode === "study" && Boolean(props.own.ceiling)
   });
@@ -120,10 +127,17 @@ export function AISettingsForm(props: Props) {
     };
   }
 
-  function submit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const body = {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [lengths, setLengths] = useState<Record<Task, number>>(
+    () => Object.fromEntries(TASKS.map((task) => [task, (own.instructions ?? base.instructions)[task]?.length ?? 0])) as Record<Task, number>
+  );
+  const [testTask, setTestTask] = useState<"tutor" | "feedback">("tutor");
+  const [tested, setTested] = useState<TestAISettings | null>(null);
+  const [testing, startTest] = useTransition();
+
+  /** The form as the API's settings: what is customised, null for what is inherited. */
+  function bodyFrom(data: FormData): Schemas["CourseOverrides"] {
+    return {
       models: Object.fromEntries(TASKS.map((task) => [task, choiceOf(data, task)])) as Schemas["TaskModels"],
       limits: custom.limits
         ? {
@@ -139,8 +153,17 @@ export function AISettingsForm(props: Props) {
             min_similarity_exercises: (number(data, "retrieval.min_similarity_exercises") ?? -1) / 100,
             history_messages: number(data, "retrieval.history_messages") ?? -1
           }
+        : null,
+      instructions: custom.instructions
+        ? (Object.fromEntries(TASKS.map((task) => [task, String(data.get(`instructions.${task}`) ?? "").trim() || null])) as Schemas["Instructions"])
         : null
     };
+  }
+
+  function submit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const body = bodyFrom(data);
     startTransition(async () => {
       const result =
         props.mode === "study"
@@ -154,13 +177,31 @@ export function AISettingsForm(props: Props) {
         setOutcome({ kind: "saved" });
         router.refresh();
       } else if (result.code === "validation_error") setOutcome({ kind: "invalid" });
-      else if (["provider_unavailable", "provider_unreachable", "model_unavailable", "temperature_not_supported"].includes(result.code)) {
+      else if (MODEL_ERRORS.includes(result.code)) {
         setOutcome({ kind: "code", code: result.code });
       } else setOutcome({ kind: "failed" });
     });
   }
 
-  function sourceRadios(group: "limits" | "retrieval" | "ceiling") {
+  function runTest() {
+    if (props.mode !== "course" || !formRef.current) return;
+    const data = new FormData(formRef.current);
+    const text = (name: string) => String(data.get(name) ?? "").trim() || null;
+    const test = props.test;
+    startTest(async () => {
+      setTested(
+        await test({
+          task: testTask,
+          settings: bodyFrom(data),
+          message: testTask === "tutor" ? text("test.message") : null,
+          problem_statement: testTask === "feedback" ? text("test.problem") : null,
+          worked_answer: testTask === "feedback" ? text("test.answer") : null
+        })
+      );
+    });
+  }
+
+  function sourceRadios(group: "limits" | "retrieval" | "ceiling" | "instructions") {
     return (
       <div className="flex flex-wrap gap-x-6 gap-y-2">
         {([false, true] as const).map((value) => (
@@ -195,7 +236,7 @@ export function AISettingsForm(props: Props) {
   const retrieval = own.retrieval ?? base.retrieval;
 
   return (
-    <form onSubmit={submit} onChange={() => setOutcome(null)} noValidate className="flex max-w-3xl flex-col gap-6">
+    <form ref={formRef} onSubmit={submit} onChange={() => setOutcome(null)} noValidate className="flex max-w-3xl flex-col gap-6">
       <fieldset className={GROUP}>
         <legend className="px-1 text-lg font-semibold text-fg">{t("limits.legend")}</legend>
         <p className="text-sm text-fg-muted">{t("limits.help")}</p>
@@ -413,6 +454,46 @@ export function AISettingsForm(props: Props) {
         </div>
       </fieldset>
 
+      <fieldset className={GROUP}>
+        <legend className="px-1 text-lg font-semibold text-fg">{t("instructions.legend")}</legend>
+        <p className="text-sm text-fg-muted">{t("instructions.help")}</p>
+        {sourceRadios("instructions")}
+        {/* Remounted when the source changes, so the fields show the right values. */}
+        <div key={String(custom.instructions)} className="flex flex-col gap-4">
+          {TASKS.map((task) => {
+            const shown = (custom.instructions ? (own.instructions ?? base.instructions) : base.instructions)[task] ?? "";
+            if (!custom.instructions) {
+              return (
+                <div key={task}>
+                  <p className="text-sm font-semibold text-fg">{taskName(task)}</p>
+                  <p className="text-fg whitespace-pre-line">{shown || t("instructions.none")}</p>
+                </div>
+              );
+            }
+            return (
+              <div key={task} className="flex flex-col gap-1">
+                <TextArea
+                  name={`instructions.${task}`}
+                  label={taskName(task)}
+                  defaultValue={shown}
+                  rows={3}
+                  maxLength={INSTRUCTION_CHARS}
+                  placeholder={t(`instructions.example.${task}`)}
+                  onInput={(event) => {
+                    const length = event.currentTarget.value.length;
+                    setLengths((current) => ({ ...current, [task]: length }));
+                  }}
+                />
+                <p className="self-end text-xs text-fg-muted tabular-nums" aria-live="polite">
+                  {t("instructions.count", { count: lengths[task], max: INSTRUCTION_CHARS })}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+        <p className="text-sm text-fg-muted">{t("instructions.rules")}</p>
+      </fieldset>
+
       {outcome?.kind === "invalid" && <Alert tone="danger">{t("invalid")}</Alert>}
       {outcome?.kind === "code" && <Alert tone="danger">{tAll(errorMessageKey(outcome.code!))}</Alert>}
       {outcome?.kind === "failed" && <Alert tone="danger">{t("failed")}</Alert>}
@@ -424,6 +505,58 @@ export function AISettingsForm(props: Props) {
           {t("save")}
         </Button>
       </div>
+
+      {props.mode === "course" && (
+        <section aria-labelledby={`${ids}-test`} className={GROUP}>
+          <h2 id={`${ids}-test`} className="text-lg font-semibold text-fg">
+            {t("test.title")}
+          </h2>
+          <p className="text-sm text-fg-muted">{t("test.help")}</p>
+          <div className="flex flex-col gap-2 sm:w-72">
+            <span id={`${ids}-test-task`} className="text-sm font-semibold text-fg">
+              {t("test.task")}
+            </span>
+            <Select
+              labelId={`${ids}-test-task`}
+              value={testTask}
+              onValueChange={(value) => setTestTask(value as "tutor" | "feedback")}
+              options={(["tutor", "feedback"] as const).map((task) => ({ value: task, label: taskName(task) }))}
+            />
+          </div>
+          {testTask === "tutor" ? (
+            <TextArea name="test.message" label={t("test.message")} rows={2} maxLength={4000} />
+          ) : (
+            <>
+              <TextArea name="test.problem" label={t("test.problem")} rows={2} maxLength={2000} />
+              <TextArea name="test.answer" label={t("test.answer")} rows={3} maxLength={4000} />
+            </>
+          )}
+          <div>
+            <Button type="button" variant="secondary" icon="send" pending={testing} pendingLabel={t("test.running")} onClick={runTest}>
+              {t("test.run")}
+            </Button>
+          </div>
+          <div aria-live="polite">
+            {tested && !tested.ok && (
+              <Alert tone="danger">{tested.code === "validation_error" ? t("test.missing") : tAll(errorMessageKey(tested.code))}</Alert>
+            )}
+            {tested?.ok && (
+              <div className="flex flex-col gap-2 rounded-lg border border-border p-4" data-testid="test-result">
+                <p className="text-sm font-semibold text-fg-muted">{t(`test.kind.${tested.result.kind}`)}</p>
+                <p className="whitespace-pre-line text-fg">{tested.result.text}</p>
+                <p className="text-sm text-fg-muted tabular-nums">
+                  {t("test.meta", {
+                    model: tested.result.model ?? t("test.noModel"),
+                    seconds: format.number(tested.result.latency_ms / 1000, { maximumFractionDigits: 1 }),
+                    tokens: tested.result.input_tokens + tested.result.output_tokens,
+                    cost: format.number(tested.result.estimated_cost_usd, { style: "currency", currency: "USD", maximumFractionDigits: 4 })
+                  })}
+                </p>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
     </form>
   );
 }

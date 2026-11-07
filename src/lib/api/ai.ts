@@ -30,3 +30,11 @@ export const deleteOwnCredential = (courseId: string, credentialId: string) =>
       params: { path: { course_id: courseId, credential_id: credentialId } }
     })
   );
+
+/** Tries a message with the given (unsaved) settings; not a student interaction. */
+export const testCourseAI = (courseId: string, body: Schemas["AITestRequest"]) =>
+  request((api) => api.POST("/v1/teacher/courses/{course_id}/ai-test", { params: { path: { course_id: courseId } }, body }));
+
+/** Messages, tokens and cost per task, and who used most. */
+export const getCourseAIUsage = (courseId: string) =>
+  request((api) => api.GET("/v1/teacher/courses/{course_id}/ai-usage", { params: { path: { course_id: courseId } } }));

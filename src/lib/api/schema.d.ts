@@ -1235,6 +1235,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/teacher/courses/{course_id}/ai-test": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Try a message with the given (unsaved) settings; it is not a student interaction and uses no allowance; at most 20 an hour */
+        post: operations["test_ai_settings_v1_teacher_courses__course_id__ai_test_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/teacher/courses/{course_id}/ai-usage": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Messages, tokens and estimated cost per task, and who used most */
+        get: operations["read_ai_usage_v1_teacher_courses__course_id__ai_usage_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/student/enrolments": {
         parameters: {
             query?: never;
@@ -1683,6 +1717,73 @@ export interface components {
             /** Sources */
             sources: components["schemas"]["ModelSource"][];
         };
+        /**
+         * AITestRequest
+         * @description A message to try the settings with; `settings` are the unsaved ones (null:
+         *     the saved ones).
+         */
+        AITestRequest: {
+            /**
+             * Task
+             * @enum {string}
+             */
+            task: "tutor" | "feedback";
+            settings?: components["schemas"]["CourseOverrides"] | null;
+            /** Message */
+            message?: string | null;
+            /** Problem Statement */
+            problem_statement?: string | null;
+            /** Worked Answer */
+            worked_answer?: string | null;
+        };
+        /** AITestResult */
+        AITestResult: {
+            /**
+             * Kind
+             * @description The reply kind, or the verdict for feedback.
+             */
+            kind: string;
+            /** Text */
+            text: string;
+            /** Model */
+            model: string | null;
+            /** Latency Ms */
+            latency_ms: number;
+            /** Input Tokens */
+            input_tokens: number;
+            /** Output Tokens */
+            output_tokens: number;
+            /** Estimated Cost Usd */
+            estimated_cost_usd: number;
+            /**
+             * Fragments
+             * @description Fragments of material sent to the model.
+             */
+            fragments: number;
+        };
+        /** AIUsage */
+        AIUsage: {
+            /**
+             * Windows
+             * @description The last 7 and 30 days.
+             */
+            windows: components["schemas"]["UsageWindow"][];
+            /**
+             * Limit
+             * @description The course's limit in effect; null: none.
+             */
+            limit: number | null;
+            /**
+             * Period
+             * @enum {string}
+             */
+            period: "day" | "week" | "course";
+            /**
+             * Top Students
+             * @description Those who used most in the current period (at most 5).
+             */
+            top_students: components["schemas"]["StudentUsage"][];
+        };
         /** ActivityCounts */
         ActivityCounts: {
             /**
@@ -2095,6 +2196,7 @@ export interface components {
             models: components["schemas"]["TaskModels"];
             limits?: components["schemas"]["Limits"] | null;
             retrieval?: components["schemas"]["Retrieval"] | null;
+            instructions?: components["schemas"]["Instructions"] | null;
         };
         /** CourseStudent */
         CourseStudent: {
@@ -2544,6 +2646,20 @@ export interface components {
             since: string;
             /** Never Active */
             never_active: boolean;
+        };
+        /**
+         * Instructions
+         * @description The teacher's words for each task, after the rules; null or empty: none.
+         */
+        Instructions: {
+            /** Tutor */
+            tutor?: string | null;
+            /** Feedback */
+            feedback?: string | null;
+            /** Review */
+            review?: string | null;
+            /** Questions */
+            questions?: string | null;
         };
         /** JoinCourse */
         JoinCourse: {
@@ -3736,6 +3852,18 @@ export interface components {
              */
             solution_policy: "direct" | "hints_first" | "hints_only";
         };
+        /** StudentUsage */
+        StudentUsage: {
+            /**
+             * Student Id
+             * Format: uuid
+             */
+            student_id: string;
+            /** Display Name */
+            display_name: string;
+            /** Used */
+            used: number;
+        };
         /** StudyAISettings */
         StudyAISettings: {
             /** @description The values in the server's environment. */
@@ -3790,6 +3918,7 @@ export interface components {
             models: components["schemas"]["TaskModels"];
             limits?: components["schemas"]["Limits"] | null;
             retrieval?: components["schemas"]["Retrieval"] | null;
+            instructions?: components["schemas"]["Instructions"] | null;
             ceiling?: components["schemas"]["Ceiling"] | null;
             /**
              * Allow Teacher Keys
@@ -3806,6 +3935,7 @@ export interface components {
             };
             limits: components["schemas"]["Limits"];
             retrieval: components["schemas"]["Retrieval"];
+            instructions: components["schemas"]["Instructions"];
             ceiling: components["schemas"]["Ceiling"];
         };
         /** SubmissionCreate */
@@ -3824,6 +3954,22 @@ export interface components {
             feedback?: components["schemas"]["ModelChoice"] | null;
             review?: components["schemas"]["ModelChoice"] | null;
             questions?: components["schemas"]["ModelChoice"] | null;
+        };
+        /** TaskUsage */
+        TaskUsage: {
+            /**
+             * Task
+             * @enum {string}
+             */
+            task: "tutor" | "feedback" | "review" | "questions";
+            /** Messages */
+            messages: number;
+            /** Input Tokens */
+            input_tokens: number;
+            /** Output Tokens */
+            output_tokens: number;
+            /** Estimated Cost Usd */
+            estimated_cost_usd: number;
         };
         /** TeacherConversation */
         TeacherConversation: {
@@ -4492,6 +4638,13 @@ export interface components {
              */
             sections: string[];
         };
+        /** UsageWindow */
+        UsageWindow: {
+            /** Days */
+            days: number;
+            /** Tasks */
+            tasks: components["schemas"]["TaskUsage"][];
+        };
         /** ValidationError */
         ValidationError: {
             /** Location */
@@ -4513,6 +4666,7 @@ export interface components {
             };
             limits: components["schemas"]["Limits"];
             retrieval: components["schemas"]["Retrieval"];
+            instructions: components["schemas"]["Instructions"];
         };
         /** WeekActivity */
         WeekActivity: {
@@ -10141,6 +10295,144 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    test_ai_settings_v1_teacher_courses__course_id__ai_test_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AITestRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AITestResult"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    read_ai_usage_v1_teacher_courses__course_id__ai_usage_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AIUsage"];
+                };
             };
             /** @description Unauthorized */
             401: {

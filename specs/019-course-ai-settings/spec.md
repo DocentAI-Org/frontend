@@ -73,8 +73,9 @@ default, everything reachable.
    (2000), examples, and a note that they cannot change the safety rules.
 2. **When** they personalise "Recuperación del material", **Then** fragments, minimum
    similarity (as a percentage) and history length can be set.
-3. **When** they press "Probar" with unsaved settings and a message, **Then** the reply, model,
-   time and estimated cost appear.
+3. **When** they press "Probar" with unsaved settings and a message (the tutor) or a problem and
+   an answer (exercise feedback), **Then** the reply or verdict, model, time, tokens and
+   estimated cost appear; nothing is saved.
 4. **Then** a "Consumo" panel shows messages and cost per task for 7 and 30 days, and the
    students closest to the limit.
 
