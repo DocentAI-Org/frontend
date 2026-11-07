@@ -224,6 +224,10 @@ export type State = {
   aiStudy: S["StudyOverrides"];
   aiStudyUpdatedAt: string;
   aiCourses: Map<string, S["CourseOverrides"]>;
+  /** Stored keys for commercial models (backend specs/019); the key itself is never kept. */
+  credentials: (S["Credential"] & { course_id: string | null })[];
+  /** Tasks that went back to the inherited model, per course id or "study". */
+  aiNotices: Map<string, S["Notice"][]>;
   /** Named faults tests can switch on, e.g. "expire_sessions", "tutor_unavailable". */
   faults: Set<string>;
   /** The adaptation of the next tutor answers and feedback (backend specs/013), set by /__test/adaptation. */
@@ -312,9 +316,11 @@ export function seed(): State {
     consent: [],
     usage: new Map(),
     courseUsage: new Map(),
-    aiStudy: { models: {}, limits: null, retrieval: null, ceiling: null },
+    aiStudy: { models: {}, limits: null, retrieval: null, ceiling: null, allow_teacher_keys: false },
     aiStudyUpdatedAt: now(),
     aiCourses: new Map(),
+    credentials: [],
+    aiNotices: new Map(),
     faults: new Set(),
     adaptation: null,
     feedback: { mode: "mistake", delay_ms: 0 },
