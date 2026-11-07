@@ -86,6 +86,7 @@ export const adminRoutes: Route[] = [
       s.testAttempts = others(s.testAttempts);
       s.consent = others(s.consent);
       s.usage.delete(sid);
+      s.courseUsage = new Map([...s.courseUsage].filter(([key]) => !key.startsWith(`${sid}:`)));
       s.favorites = new Set([...s.favorites].filter((key) => !key.startsWith(`${sid}:`)));
       const tags = new Set(s.tags.filter((t) => t.user_id === sid).map((t) => t.id));
       s.tags = s.tags.filter((t) => !tags.has(t.id));

@@ -1,12 +1,14 @@
 "use client";
 
-import { useFormatter, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useId, useRef, useState, useTransition } from "react";
 
 import { Alert } from "@/components/Alert";
+import { LimitReachedBanner } from "@/components/AllowanceNotice";
 import { Button } from "@/components/Button";
-import { Icon } from "@/components/Icon";
+import { reachedAllowance } from "@/lib/allowance";
+import type { Schemas } from "@/lib/api/client";
 import { errorMessageKey } from "@/lib/api/errors";
 import { routes } from "@/lib/routes";
 
@@ -18,19 +20,17 @@ const FIELD =
 /** Submit a worked exercise (#11, 001 US6 AS1, AS5, AS6): write, review, send. */
 export function ExerciseForm({
   courseId,
-  limit,
-  resetsAt,
+  allowance,
   initialProblem = ""
 }: {
   courseId: string;
-  limit: number;
-  resetsAt: string | null;
+  /** Messages left for exercise feedback in the course (backend specs/019). */
+  allowance: Schemas["Allowance"];
   /** A practice statement from a mistake review (spec 007 US2 AS3). */
   initialProblem?: string;
 }) {
   const t = useTranslations("student");
   const tAll = useTranslations();
-  const format = useFormatter();
   const router = useRouter();
   const ids = useId();
   const problemRef = useRef<HTMLTextAreaElement>(null);
@@ -40,25 +40,13 @@ export function ExerciseForm({
   const [reviewing, setReviewing] = useState(false);
   const [empty, setEmpty] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [reached, setReached] = useState<string | null>(resetsAt);
+  const [reached, setReached] = useState(allowance.remaining === 0 ? allowance : null);
   const [pending, startTransition] = useTransition();
 
   if (reached) {
     return (
       <div className="flex flex-col gap-6">
-        <section aria-labelledby={`${ids}-limit`} className="rounded-xl border border-warning-300 bg-warning-50 p-4" data-component="LimitReachedBanner" data-variant="exercise">
-          <div className="flex gap-4">
-            <Icon name="clock" className="mt-1 size-6 shrink-0 text-warning-800" />
-            <div>
-              <h2 id={`${ids}-limit`} className="font-semibold text-fg tabular-nums">
-                {t("chat.limit.title", { limit })}
-              </h2>
-              <p className="mt-1 text-fg">
-                {t("chat.limit.exerciseBody", { time: format.dateTime(new Date(reached), { timeStyle: "short" }) })}
-              </p>
-            </div>
-          </div>
-        </section>
+        <LimitReachedBanner allowance={reached} variant="exercise" />
         <Fields ids={ids} disabled defaults={values} problemRef={problemRef} stepsRef={stepsRef} invalid={false} />
       </div>
     );
@@ -105,7 +93,8 @@ export function ExerciseForm({
             onClick={() =>
               startTransition(async () => {
                 const result = await submitAction(courseId, values.problem, values.steps);
-                if (result.code === "daily_limit_reached") setReached(result.resetsAt ?? new Date().toISOString());
+                const reachedNow = reachedAllowance(allowance, result.code, result.details ?? {});
+                if (reachedNow) setReached(reachedNow);
                 else if (result.code === "consent_required") router.push("/student/consent");
                 else setError(result.code);
               })

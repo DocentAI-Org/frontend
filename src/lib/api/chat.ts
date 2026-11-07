@@ -6,6 +6,12 @@ const PAGE = { limit: 50, offset: 0 };
 
 export const getAllowance = () => request((api) => api.GET("/v1/student/allowance"));
 
+/** Messages left in a course for a task: its limit or the daily ceiling (backend specs/019). */
+export const getCourseAllowance = (course_id: string, task: "tutor" | "feedback" | "review" = "tutor") =>
+  request((api) =>
+    api.GET("/v1/student/courses/{course_id}/allowance", { params: { path: { course_id }, query: { task } } })
+  );
+
 export const listConversations = (course_id: string) =>
   request((api) =>
     api.GET("/v1/student/courses/{course_id}/conversations", { params: { path: { course_id }, query: PAGE } })

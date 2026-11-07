@@ -6,10 +6,12 @@ import { useEffect, useId, useRef, useState, useTransition } from "react";
 
 import { AdaptationNote } from "@/components/AdaptationNote";
 import { Alert } from "@/components/Alert";
+import { AllowanceLine, LimitReachedBanner } from "@/components/AllowanceNotice";
 import { Button } from "@/components/Button";
 import { CitationNotes } from "@/components/CitationNotes";
 import { Icon } from "@/components/Icon";
 import { MathText } from "@/components/MathText";
+import { allowanceKind, reachedAllowance } from "@/lib/allowance";
 import type { Schemas } from "@/lib/api/client";
 import { errorMessageKey } from "@/lib/api/errors";
 import { routes } from "@/lib/routes";
@@ -32,7 +34,7 @@ const AI_TAG = "rounded-sm border border-info-300 px-1 text-xs font-bold text-in
 
 /**
  * The course chat (#8, #10; 001 US1, US5): AI disclosure on first use, answers with citations,
- * hints, "not covered", failures with retry, the daily allowance and the tutor's settings.
+ * hints, "not covered", failures with retry, the course's allowance and the tutor's settings.
  */
 export function ChatScreen({
   courseId,
@@ -74,7 +76,6 @@ export function ChatScreen({
 
   const guided = settings.solution_policy !== "direct";
   const reached = allowance.remaining === 0;
-  const time = (iso: string) => format.dateTime(new Date(iso), { timeStyle: "short" });
 
   function handle(result: ChatResult, optimisticId?: string) {
     if (result.conversationId && result.conversationId !== conversationId) {
@@ -102,13 +103,9 @@ export function ChatScreen({
       return;
     }
     setMessages((current) => current.filter((m) => m.id !== optimisticId));
-    if (result.code === "daily_limit_reached") {
-      setAllowance((current) => ({
-        ...current,
-        used: current.limit,
-        remaining: 0,
-        resets_at: typeof details.resets_at === "string" ? details.resets_at : current.resets_at
-      }));
+    const reachedNow = reachedAllowance(allowance, result.code, details);
+    if (reachedNow) {
+      setAllowance(reachedNow);
     } else if (result.code === "consent_required") {
       router.push(`/student/consent?next=${encodeURIComponent(routes.studentCourse(courseId))}` as never);
     } else if (result.code === "disclosure_not_acknowledged") {
@@ -164,7 +161,12 @@ export function ChatScreen({
               ["sparkles", t("chat.disclosure.ai")],
               ["book-open", t("chat.disclosure.material")],
               ["eye", t("chat.disclosure.review")],
-              ["message-circle", t("chat.disclosure.limit", { limit: allowance.limit })]
+              [
+                "message-circle",
+                allowance.limit === null
+                  ? t("allowance.disclosure.none")
+                  : t(`allowance.disclosure.${allowanceKind(allowance)}`, { limit: allowance.limit })
+              ]
             ] as const
           ).map(([icon, text]) => (
             <li key={icon} className="flex gap-4">
@@ -353,31 +355,7 @@ export function ChatScreen({
 
       {error && <Alert tone="danger">{tAll(errorMessageKey(error))}</Alert>}
 
-      {reached ? (
-        <section aria-labelledby={`${ids}-limit`} className="rounded-xl border border-warning-300 bg-warning-50 p-4" data-component="LimitReachedBanner" data-variant="chat">
-          <div className="flex gap-4">
-            <Icon name="clock" className="mt-1 size-6 shrink-0 text-warning-800" />
-            <div className="min-w-0 flex-1">
-              <h2 id={`${ids}-limit`} className="font-semibold text-fg tabular-nums">
-                {t("chat.limit.title", { limit: allowance.limit })}
-              </h2>
-              <p className="mt-1 text-fg">{t("chat.limit.body", { time: time(allowance.resets_at) })}</p>
-            </div>
-          </div>
-        </section>
-      ) : (
-        <p
-          className={`inline-flex items-center gap-2 text-sm ${allowance.remaining <= 5 ? "text-warning-900" : "text-fg-muted"}`}
-          data-component="MessageAllowance"
-          data-variant={allowance.remaining <= 5 ? "low" : "normal"}
-        >
-          <Icon name="message-circle" />
-          <span className="tabular-nums">
-            {t("chat.remaining", { count: allowance.remaining })}
-            {allowance.remaining <= 5 && <> {t("chat.lowWarning", { time: time(allowance.resets_at) })}</>}
-          </span>
-        </p>
-      )}
+      {reached ? <LimitReachedBanner allowance={allowance} variant="chat" /> : <AllowanceLine allowance={allowance} />}
 
       <form
         className="flex items-end gap-2 rounded-lg border border-border-strong bg-surface-raised p-2 shadow-sm focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-focus"

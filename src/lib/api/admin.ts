@@ -34,6 +34,12 @@ export const updateQuestionnaire = (id: string, body: Schemas["QuestionnaireUpda
 export const deleteQuestionnaire = (id: string) =>
   request((api) => api.DELETE("/v1/admin/questionnaires/{questionnaire_id}", { params: { path: { questionnaire_id: id } } }));
 
+/** The study's AI settings and the models the server offers (backend specs/019). */
+export const getStudyAISettings = () => request((api) => api.GET("/v1/admin/ai-settings"));
+export const updateStudyAISettings = (body: Schemas["StudyOverrides"]) =>
+  request((api) => api.PUT("/v1/admin/ai-settings", { body }));
+export const getServerAIModels = () => request((api) => api.GET("/v1/admin/ai-models"));
+
 /** The study's pedagogical criteria (backend specs/015). */
 export const getStudyCriteria = () => request((api) => api.GET("/v1/admin/pedagogy-criteria"));
 export const updateStudyCriteria = (body: Schemas["StudyCriteriaUpdate"]) =>

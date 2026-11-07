@@ -32,7 +32,8 @@
         "users": "Usuarios",
         "studyExport": "Datos del estudio",
         "questionnaires": "Cuestionarios",
-        "criteria": "Criterios pedagógicos"
+        "criteria": "Criterios pedagógicos",
+        "ai": "IA del estudio"
       },
       "role": "Administración"
     },
@@ -172,6 +173,11 @@
       "pageTitle": "Criterios pedagógicos",
       "title": "Criterios pedagógicos",
       "lead": "Los valores del estudio para todos los cursos. Cada profesor/a puede personalizarlos en su curso; los cursos que no lo hagan usan estos."
+    },
+    "ai": {
+      "pageTitle": "IA del estudio",
+      "title": "IA del estudio",
+      "lead": "Los valores de IA para todos los cursos. Cada profesor/a puede personalizarlos en su curso; los que no lo hagan usan estos. Si no cambias nada, se usan los del servidor."
     }
   },
   "common": {
@@ -448,6 +454,79 @@
       "taken": "Ya tienes una etiqueta con ese nombre.",
       "invalid": "Escribe un nombre de hasta 40 caracteres.",
       "failed": "No se ha podido guardar. Inténtalo de nuevo."
+    },
+    "ai": {
+      "study": "Los del estudio",
+      "server": "Los del servidor",
+      "custom": "Personalizar",
+      "save": "Guardar configuración",
+      "saving": "Guardando…",
+      "saved": "Guardado",
+      "invalid": "No se ha guardado. Revisa los valores: los mensajes y los fragmentos empiezan en 1, los porcentajes van de 0 a 100 y la temperatura de 0 a 2.",
+      "failed": "No se ha podido guardar la configuración. Inténtalo de nuevo en unos minutos.",
+      "task": {
+        "tutor": "Chat con el tutor",
+        "feedback": "Corrección de ejercicios",
+        "review": "Repaso de errores",
+        "questions": "Borradores de preguntas de quiz"
+      },
+      "period": {
+        "day": "Al día",
+        "week": "A la semana",
+        "course": "En todo el curso"
+      },
+      "effort": {
+        "low": "Bajo",
+        "medium": "Medio",
+        "high": "Alto",
+        "xhigh": "Muy alto",
+        "max": "Máximo"
+      },
+      "limits": {
+        "legend": "Límite de mensajes",
+        "help": "Cuántos mensajes puede usar cada estudiante y qué tareas los gastan. Si un mensaje falla, no cuenta.",
+        "summary": "{messages, select, none {Sin límite de mensajes} other {{messages} mensajes por estudiante {period, select, day {al día} week {a la semana} other {en todo el curso}}}}. Cuentan: {tasks}.",
+        "noTasks": "ninguna tarea",
+        "kind": "Límite",
+        "none": "Sin límite",
+        "some": "Con límite",
+        "messages": "Mensajes por estudiante",
+        "period": "Periodo",
+        "counted": "Qué tareas gastan mensajes",
+        "ceilingNote": "Además, el estudio limita a {count, plural, one {# mensaje} other {# mensajes}} al día por estudiante, sumando todos sus cursos."
+      },
+      "ceiling": {
+        "legend": "Máximo diario por estudiante",
+        "help": "Una red de seguridad del coste: cuenta todos los mensajes de un estudiante en todos sus cursos, aunque el curso no los cuente.",
+        "summary": "{count, plural, one {# mensaje} other {# mensajes}} al día por estudiante, sumando todos sus cursos.",
+        "none": "Sin máximo diario.",
+        "noCeiling": "Sin máximo",
+        "some": "Con máximo",
+        "messages": "Mensajes al día"
+      },
+      "models": {
+        "legend": "Modelos",
+        "help": "El modelo que responde en cada tarea. Los modelos locales no tienen coste; los comerciales necesitan una clave en el servidor.",
+        "inherit": "{source}: {model}",
+        "unreachable": "{source} no responde ahora: no se pueden elegir sus modelos.",
+        "advanced": "Opciones avanzadas",
+        "advancedInherit": "Elige un modelo para cambiar sus opciones.",
+        "default": "Por defecto",
+        "temperature": "Temperatura",
+        "temperatureHelp": "De 0 a 2. Más baja, respuestas más estables; más alta, más variadas.",
+        "effort": "Razonamiento",
+        "effortHelp": "Cuánto piensa el modelo antes de responder, si lo admite.",
+        "maxTokens": "Longitud máxima",
+        "maxTokensHelp": "En tokens (unas 3/4 partes de una palabra)."
+      },
+      "retrieval": {
+        "legend": "Recuperación del material",
+        "help": "Cuánto material se le da al modelo y desde qué parecido con la pregunta. Cambiarlo puede empeorar las respuestas: mídelo antes.",
+        "topK": "Fragmentos por respuesta",
+        "history": "Mensajes anteriores que recuerda",
+        "minSimilarity": "Parecido mínimo en el chat (%)",
+        "minSimilarityExercises": "Parecido mínimo en ejercicios (%)"
+      }
     }
   },
   "student": {
@@ -472,7 +551,6 @@
       "disclosure": {
         "ack": "He leído y entiendo cómo funciona el tutor",
         "ai": "Vas a hablar con un tutor de inteligencia artificial, no con una persona.",
-        "limit": "Tienes {limit} mensajes al día en total, sumando todos tus cursos.",
         "material": "Responde solo con el material que ha validado tu profesor/a y te muestra de dónde sale cada respuesta.",
         "review": "Recuerda: tu profesor/a puede revisar tus conversaciones.",
         "start": "Empezar",
@@ -484,13 +562,9 @@
       },
       "followUp": "También puedes preguntar:",
       "limit": {
-        "body": "Podrás escribir de nuevo a las {time}. Mientras tanto, puedes releer la conversación.",
-        "draftLabel": "Tu borrador está guardado:",
-        "exerciseBody": "No puedes enviar ejercicios hasta las {time}. El límite es el mismo que el del chat.",
-        "title": "Has usado tus {limit} mensajes de hoy"
+        "draftLabel": "Tu borrador está guardado:"
       },
       "loadError": "No hemos podido cargar la conversación",
-      "lowWarning": "Se renuevan a las {time}.",
       "noSource": {
         "askTeacher": "Preguntar al profesor/a",
         "body": "No he encontrado nada sobre esto en el material que ha validado tu profesor/a, así que prefiero no darte una respuesta sin fuente.",
@@ -528,7 +602,6 @@
         "progress": "Ver mi progreso",
         "teacherSees": "Tu profesor/a ve la misma explicación."
       },
-      "remaining": "{count, plural, one {Te queda # mensaje hoy, en todos tus cursos.} other {Te quedan # mensajes hoy, en todos tus cursos.}}",
       "hint": "Pista {n}",
       "failedMessage": "No enviado"
     },
@@ -810,6 +883,48 @@
       "notOpen": "El {phase} todavía no está abierto.",
       "cardOpen": "Tu profesor/a ha abierto el {phase}.",
       "cardLink": "Hacer el {phase}"
+    },
+    "allowance": {
+      "remaining": {
+        "daily": "{count, plural, one {Te queda # mensaje hoy, en todos tus cursos.} other {Te quedan # mensajes hoy, en todos tus cursos.}}",
+        "day": "{count, plural, one {Te queda # mensaje hoy en este curso.} other {Te quedan # mensajes hoy en este curso.}}",
+        "week": "{count, plural, one {Te queda # mensaje esta semana en este curso.} other {Te quedan # mensajes esta semana en este curso.}}",
+        "course": "{count, plural, one {Te queda # mensaje en este curso.} other {Te quedan # mensajes en este curso.}}"
+      },
+      "renews": {
+        "day": "Se renuevan a las {time}.",
+        "week": "Se renuevan el {date}."
+      },
+      "title": {
+        "daily": "Has usado tus {limit} mensajes de hoy",
+        "day": "Has usado tus {limit} mensajes de hoy en este curso",
+        "week": "Has usado tus {limit} mensajes de esta semana en este curso",
+        "course": "Has usado los {limit} mensajes de este curso"
+      },
+      "titleAll": {
+        "daily": "Has usado todos tus mensajes de hoy",
+        "day": "Has usado todos tus mensajes de hoy en este curso",
+        "week": "Has usado todos tus mensajes de esta semana en este curso",
+        "course": "Has usado todos los mensajes de este curso"
+      },
+      "chatBody": {
+        "day": "Podrás escribir de nuevo a las {time}. Mientras tanto, puedes releer la conversación.",
+        "week": "Podrás escribir de nuevo el {date}. Mientras tanto, puedes releer la conversación.",
+        "course": "Si necesitas más, habla con tu profesor/a. Mientras tanto, puedes releer la conversación."
+      },
+      "exerciseBody": {
+        "day": "No puedes enviar ejercicios hasta las {time}. El límite es el mismo que el del chat.",
+        "week": "No puedes enviar ejercicios hasta el {date}.",
+        "course": "Si necesitas enviar más, habla con tu profesor/a."
+      },
+      "disclosure": {
+        "daily": "Tienes {limit} mensajes al día en total, sumando todos tus cursos.",
+        "day": "Tienes {limit} mensajes al día en este curso.",
+        "week": "Tienes {limit} mensajes a la semana en este curso.",
+        "course": "Tienes {limit} mensajes en total en este curso.",
+        "none": "En este curso no hay límite de mensajes.",
+        "perCourse": "Cada curso puede tener su propio límite de mensajes."
+      }
     }
   },
   "teacher": {
@@ -896,7 +1011,8 @@
         "dashboard": "Panel",
         "questions": "Preguntas",
         "test": "Pre/post-test",
-        "criteria": "Criterios"
+        "criteria": "Criterios",
+        "ai": "IA"
       },
       "tabs": "Secciones del curso",
       "group": {
@@ -1385,6 +1501,10 @@
     "criteria": {
       "pageTitle": "Criterios",
       "lead": "Cómo se decide en este curso quién puede necesitar ayuda, qué es un error repetido, cuándo se adaptan las explicaciones y qué nivel tiene cada tema. Por defecto se usan los del estudio; puedes personalizar cada grupo."
+    },
+    "ai": {
+      "pageTitle": "IA",
+      "lead": "El límite de mensajes de tus estudiantes, el modelo de cada tarea y cuánto material se usa. Por defecto se usan los valores del estudio; puedes personalizar cada grupo."
     }
   },
   "errors": {
@@ -1419,6 +1539,11 @@
     "test_locked": "Las preguntas ya no se pueden cambiar: el pre-test se ha abierto.",
     "test_empty": "Añade preguntas antes de abrir el test.",
     "test_not_open": "Este test no está abierto.",
-    "test_already_done": "Ya has hecho este test."
+    "test_already_done": "Ya has hecho este test.",
+    "course_limit_reached": "Has usado todos los mensajes de este curso por ahora.",
+    "provider_unavailable": "El servidor no tiene clave para ese proveedor.",
+    "provider_unreachable": "Ese proveedor no responde ahora mismo. Inténtalo más tarde.",
+    "model_unavailable": "Ese modelo ya no está disponible. Elige otro.",
+    "temperature_not_supported": "Los modelos de Anthropic no admiten temperatura."
   }
 }

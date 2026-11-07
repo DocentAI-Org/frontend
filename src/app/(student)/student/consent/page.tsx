@@ -32,7 +32,7 @@ export default async function ConsentPage({
 
   if (step === "2" && consent.data.given) {
     const allowance = await getAllowance();
-    const limit = allowance.ok ? allowance.data.limit : 30;
+    const limit = allowance.ok ? allowance.data.limit : null;
     return (
       <div className="mx-auto flex w-full max-w-2xl flex-col gap-8">
         <section aria-labelledby="how-title" className="rounded-xl border border-border bg-surface-raised p-6 sm:p-8" data-component="AIDisclosure" data-variant="consent-step">
@@ -45,7 +45,7 @@ export default async function ConsentPage({
                 ["sparkles", t("chat.disclosure.ai")],
                 ["book-open", t("chat.disclosure.material")],
                 ["eye", t("chat.disclosure.review")],
-                ["message-circle", t("chat.disclosure.limit", { limit })]
+                ["message-circle", limit === null ? t("allowance.disclosure.perCourse") : t("allowance.disclosure.daily", { limit })]
               ] as const
             ).map(([icon, text]) => (
               <li key={icon} className="flex gap-4">

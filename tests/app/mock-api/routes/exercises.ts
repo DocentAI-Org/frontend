@@ -2,7 +2,8 @@
 // /__test/feedback picks a mistake, a correct answer or an unavailable tutor; uncovered exercises
 // are not assessed. Also the error taxonomy and the learning record.
 import { HttpError, type Route, page, requireRole } from "../http.ts";
-import { DAILY_LIMIT, type S, type State, type Submission, id, now } from "../state.ts";
+import { type S, type State, type Submission, id, now } from "../state.ts";
+import { reserveMessage } from "./ai.ts";
 import { citationView } from "./chat.ts";
 import { consentStatus } from "./consent.ts";
 import { activeEnrolment } from "./courses.ts";
@@ -73,13 +74,7 @@ export const exerciseRoutes: Route[] = [
       if (!problem || !answer) throw new HttpError(422, "validation_error");
       if (!consentStatus(state, enrolment.student_id).given) throw new HttpError(409, "consent_required");
       if (!enrolment.disclosure_acknowledged_at) throw new HttpError(409, "disclosure_not_acknowledged");
-      const used = state.usage.get(enrolment.student_id) ?? 0;
-      if (used >= DAILY_LIMIT) {
-        const midnight = new Date();
-        midnight.setHours(24, 0, 0, 0);
-        throw new HttpError(429, "daily_limit_reached", { resets_at: midnight.toISOString() });
-      }
-      state.usage.set(enrolment.student_id, used + 1);
+      const giveBack = reserveMessage(state, enrolment.student_id, enrolment.course_id, "feedback");
       const query = words(problem);
       const hit = state.fragments.find((f) => {
         const doc = state.documents.find((d) => d.id === f.document_id)!;
@@ -93,7 +88,7 @@ export const exerciseRoutes: Route[] = [
       const mode = state.feedback;
       if (mode.delay_ms) await new Promise((resolve) => setTimeout(resolve, mode.delay_ms));
       if (mode.mode === "fail") {
-        state.usage.set(enrolment.student_id, used);
+        giveBack();
         throw new HttpError(503, "tutor_unavailable");
       }
       const topic = state.topics

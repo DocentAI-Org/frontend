@@ -11,6 +11,7 @@ import {
   deleteQuestionnaire,
   eraseStudent,
   updateQuestionnaire,
+  updateStudyAISettings,
   updateStudyCriteria
 } from "@/lib/api/admin";
 import type { Schemas } from "@/lib/api/client";
@@ -93,6 +94,13 @@ export async function saveStudyCriteriaAction(body: Schemas["StudyCriteriaUpdate
   const result = await updateStudyCriteria(body);
   if (!result.ok) return { ok: false, code: result.code };
   revalidatePath("/admin/pedagogy");
+  return { ok: true };
+}
+
+export async function saveStudyAISettingsAction(body: Schemas["StudyOverrides"]): Promise<{ ok: true } | { ok: false; code: string }> {
+  const result = await updateStudyAISettings(body);
+  if (!result.ok) return { ok: false, code: result.code };
+  revalidatePath("/admin/ai");
   return { ok: true };
 }
 

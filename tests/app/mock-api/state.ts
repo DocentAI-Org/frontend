@@ -216,8 +216,14 @@ export type State = {
   topics: Topic[];
   assignments: Assignment[];
   consent: { student_id: string; action: "given" | "revoked"; version: string; created_at: string }[];
-  /** Messages used today per student (shared across courses). */
+  /** Messages used today per student (shared across courses): the daily ceiling. */
   usage: Map<string, number>;
+  /** Messages used per course and period (backend specs/019), as "<student_id>:<course_id>:<period>". */
+  courseUsage: Map<string, number>;
+  /** AI settings (backend specs/019): the study's and each course's own. */
+  aiStudy: S["StudyOverrides"];
+  aiStudyUpdatedAt: string;
+  aiCourses: Map<string, S["CourseOverrides"]>;
   /** Named faults tests can switch on, e.g. "expire_sessions", "tutor_unavailable". */
   faults: Set<string>;
   /** The adaptation of the next tutor answers and feedback (backend specs/013), set by /__test/adaptation. */
@@ -258,7 +264,6 @@ export const DEFAULT_CRITERIA: S["Criteria"] = {
 };
 
 export const CONSENT_VERSION = "2026-10";
-export const DAILY_LIMIT = 30;
 
 let counter = 0;
 export function id(): string {
@@ -306,6 +311,10 @@ export function seed(): State {
     assignments: [],
     consent: [],
     usage: new Map(),
+    courseUsage: new Map(),
+    aiStudy: { models: {}, limits: null, retrieval: null, ceiling: null },
+    aiStudyUpdatedAt: now(),
+    aiCourses: new Map(),
     faults: new Set(),
     adaptation: null,
     feedback: { mode: "mistake", delay_ms: 0 },

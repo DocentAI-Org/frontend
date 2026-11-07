@@ -4,7 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { AccessDenied, deniedReasonFor } from "@/components/AccessDenied";
 import { ErrorState } from "@/components/ErrorState";
 import { PageHeader } from "@/components/PageHeader";
-import { getAllowance } from "@/lib/api/chat";
+import { getCourseAllowance } from "@/lib/api/chat";
 import { getStudentCourse } from "@/lib/api/courses";
 import { routes } from "@/lib/routes";
 
@@ -25,7 +25,7 @@ export default async function ExercisePage({
   const { id } = await params;
   const { problem } = await searchParams;
   const t = await getTranslations("student");
-  const [course, allowance] = await Promise.all([getStudentCourse(id), getAllowance()]);
+  const [course, allowance] = await Promise.all([getStudentCourse(id), getCourseAllowance(id, "feedback")]);
   if (!course.ok) {
     return course.status === 404 || course.status === 403 ? (
       <AccessDenied reason={deniedReasonFor(course.code)} home="/student/courses" />
@@ -43,8 +43,7 @@ export default async function ExercisePage({
       />
       <ExerciseForm
         courseId={id}
-        limit={allowance.data.limit}
-        resetsAt={allowance.data.remaining === 0 ? allowance.data.resets_at : null}
+        allowance={allowance.data}
         initialProblem={problem?.slice(0, 2000)}
       />
     </div>

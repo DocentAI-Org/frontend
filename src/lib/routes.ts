@@ -10,6 +10,7 @@ export const routes = {
   teacherDocument: (id: string, documentId: string) => `/teacher/courses/${id}/material/${documentId}` as Route,
   teacherSettings: (id: string) => `/teacher/courses/${id}/tutor` as Route,
   teacherCriteria: (id: string) => `/teacher/courses/${id}/criteria` as Route,
+  teacherAI: (id: string) => `/teacher/courses/${id}/ai` as Route,
   teacherTopics: (id: string) => `/teacher/courses/${id}/topics` as Route,
   teacherTopicAssignment: (id: string) => `/teacher/courses/${id}/topics/assignment` as Route,
   teacherConversations: (id: string) => `/teacher/courses/${id}/conversations` as Route,
