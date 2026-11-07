@@ -8445,6 +8445,192 @@
         }
       }
     },
+    "/v1/teacher/courses/{course_id}/ai-test": {
+      "post": {
+        "tags": [
+          "teacher: AI settings"
+        ],
+        "summary": "Try a message with the given (unsaved) settings; it is not a student interaction and uses no allowance; at most 20 an hour",
+        "operationId": "test_ai_settings_v1_teacher_courses__course_id__ai_test_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "course_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Course Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AITestRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AITestResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/teacher/courses/{course_id}/ai-usage": {
+      "get": {
+        "tags": [
+          "teacher: AI settings"
+        ],
+        "summary": "Messages, tokens and estimated cost per task, and who used most",
+        "operationId": "read_ai_usage_v1_teacher_courses__course_id__ai_usage_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "course_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Course Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AIUsage"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/student/enrolments": {
       "post": {
         "tags": [
@@ -11234,6 +11420,179 @@
         ],
         "title": "AIModels"
       },
+      "AITestRequest": {
+        "properties": {
+          "task": {
+            "type": "string",
+            "enum": [
+              "tutor",
+              "feedback"
+            ],
+            "title": "Task"
+          },
+          "settings": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CourseOverrides"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "message": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 4000,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message"
+          },
+          "problem_statement": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2000,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Problem Statement"
+          },
+          "worked_answer": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 4000,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Worked Answer"
+          }
+        },
+        "type": "object",
+        "required": [
+          "task"
+        ],
+        "title": "AITestRequest",
+        "description": "A message to try the settings with; `settings` are the unsaved ones (null:\nthe saved ones)."
+      },
+      "AITestResult": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "title": "Kind",
+            "description": "The reply kind, or the verdict for feedback."
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "model": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model"
+          },
+          "latency_ms": {
+            "type": "integer",
+            "title": "Latency Ms"
+          },
+          "input_tokens": {
+            "type": "integer",
+            "title": "Input Tokens"
+          },
+          "output_tokens": {
+            "type": "integer",
+            "title": "Output Tokens"
+          },
+          "estimated_cost_usd": {
+            "type": "number",
+            "title": "Estimated Cost Usd"
+          },
+          "fragments": {
+            "type": "integer",
+            "title": "Fragments",
+            "description": "Fragments of material sent to the model."
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind",
+          "text",
+          "model",
+          "latency_ms",
+          "input_tokens",
+          "output_tokens",
+          "estimated_cost_usd",
+          "fragments"
+        ],
+        "title": "AITestResult"
+      },
+      "AIUsage": {
+        "properties": {
+          "windows": {
+            "items": {
+              "$ref": "#/components/schemas/UsageWindow"
+            },
+            "type": "array",
+            "title": "Windows",
+            "description": "The last 7 and 30 days."
+          },
+          "limit": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Limit",
+            "description": "The course's limit in effect; null: none."
+          },
+          "period": {
+            "type": "string",
+            "enum": [
+              "day",
+              "week",
+              "course"
+            ],
+            "title": "Period"
+          },
+          "top_students": {
+            "items": {
+              "$ref": "#/components/schemas/StudentUsage"
+            },
+            "type": "array",
+            "title": "Top Students",
+            "description": "Those who used most in the current period (at most 5)."
+          }
+        },
+        "type": "object",
+        "required": [
+          "windows",
+          "limit",
+          "period",
+          "top_students"
+        ],
+        "title": "AIUsage"
+      },
       "ActivityCounts": {
         "properties": {
           "messages": {
@@ -12225,6 +12584,16 @@
             "anyOf": [
               {
                 "$ref": "#/components/schemas/Retrieval"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "instructions": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Instructions"
               },
               {
                 "type": "null"
@@ -13287,6 +13656,61 @@
           "never_active"
         ],
         "title": "InactiveReason"
+      },
+      "Instructions": {
+        "properties": {
+          "tutor": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tutor"
+          },
+          "feedback": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Feedback"
+          },
+          "review": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Review"
+          },
+          "questions": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Questions"
+          }
+        },
+        "type": "object",
+        "title": "Instructions",
+        "description": "The teacher's words for each task, after the rules; null or empty: none."
       },
       "JoinCourse": {
         "properties": {
@@ -16299,6 +16723,30 @@
         ],
         "title": "StudentTutorSettings"
       },
+      "StudentUsage": {
+        "properties": {
+          "student_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Student Id"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          },
+          "used": {
+            "type": "integer",
+            "title": "Used"
+          }
+        },
+        "type": "object",
+        "required": [
+          "student_id",
+          "display_name",
+          "used"
+        ],
+        "title": "StudentUsage"
+      },
       "StudyAISettings": {
         "properties": {
           "server": {
@@ -16428,6 +16876,16 @@
               }
             ]
           },
+          "instructions": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Instructions"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "ceiling": {
             "anyOf": [
               {
@@ -16471,6 +16929,9 @@
           "retrieval": {
             "$ref": "#/components/schemas/Retrieval"
           },
+          "instructions": {
+            "$ref": "#/components/schemas/Instructions"
+          },
           "ceiling": {
             "$ref": "#/components/schemas/Ceiling"
           }
@@ -16480,6 +16941,7 @@
           "models",
           "limits",
           "retrieval",
+          "instructions",
           "ceiling"
         ],
         "title": "StudyValues"
@@ -16552,6 +17014,45 @@
         "type": "object",
         "title": "TaskModels",
         "description": "A task's own model, or null for the one it inherits."
+      },
+      "TaskUsage": {
+        "properties": {
+          "task": {
+            "type": "string",
+            "enum": [
+              "tutor",
+              "feedback",
+              "review",
+              "questions"
+            ],
+            "title": "Task"
+          },
+          "messages": {
+            "type": "integer",
+            "title": "Messages"
+          },
+          "input_tokens": {
+            "type": "integer",
+            "title": "Input Tokens"
+          },
+          "output_tokens": {
+            "type": "integer",
+            "title": "Output Tokens"
+          },
+          "estimated_cost_usd": {
+            "type": "number",
+            "title": "Estimated Cost Usd"
+          }
+        },
+        "type": "object",
+        "required": [
+          "task",
+          "messages",
+          "input_tokens",
+          "output_tokens",
+          "estimated_cost_usd"
+        ],
+        "title": "TaskUsage"
       },
       "TeacherConversation": {
         "properties": {
@@ -18180,6 +18681,27 @@
         ],
         "title": "UnassignedDocument"
       },
+      "UsageWindow": {
+        "properties": {
+          "days": {
+            "type": "integer",
+            "title": "Days"
+          },
+          "tasks": {
+            "items": {
+              "$ref": "#/components/schemas/TaskUsage"
+            },
+            "type": "array",
+            "title": "Tasks"
+          }
+        },
+        "type": "object",
+        "required": [
+          "days",
+          "tasks"
+        ],
+        "title": "UsageWindow"
+      },
       "ValidationError": {
         "properties": {
           "loc": {
@@ -18242,13 +18764,17 @@
           },
           "retrieval": {
             "$ref": "#/components/schemas/Retrieval"
+          },
+          "instructions": {
+            "$ref": "#/components/schemas/Instructions"
           }
         },
         "type": "object",
         "required": [
           "models",
           "limits",
-          "retrieval"
+          "retrieval",
+          "instructions"
         ],
         "title": "Values"
       },
