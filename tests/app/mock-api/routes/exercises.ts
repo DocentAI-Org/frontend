@@ -13,8 +13,49 @@ function words(text: string): Set<string> {
 }
 
 const DAY = 24 * 60 * 60 * 1000;
-// Backend defaults (specs/005): the same type and topic 3 times in 30 days.
-export const REPEATED = { count: 3, days: 30 };
+// Backend defaults (specs/005, 022): the same type and topic 3 times in 30 days; overcome after
+// 3 correct exercises in a row in the topic.
+export const REPEATED = { count: 3, days: 30, overcome_after: 3 };
+const ASSESSED = new Set(["correct", "partially_correct", "incorrect"]);
+
+/** Correct exercises in a row in the topic after `after` (and up to `until`), as the backend counts them (specs/022). */
+export function correctRun(state: State, courseId: string, studentId: string, topicName: string | null, after: string, until?: string): number {
+  const list = state.submissions
+    .filter(
+      (o) =>
+        o.course_id === courseId &&
+        o.student_id === studentId &&
+        ASSESSED.has(o.verdict) &&
+        o.topic_name === topicName &&
+        o.created_at > after &&
+        (!until || o.created_at <= until)
+    )
+    .sort((a, b) => b.created_at.localeCompare(a.created_at));
+  let run = 0;
+  for (const o of list) {
+    if (o.verdict !== "correct") break;
+    run += 1;
+  }
+  return run;
+}
+
+/** The repeated patterns this correct exercise overcomes, said once (backend specs/022). */
+function overcomeOf(state: State, s: Submission): S["OvercomePattern"][] {
+  if (s.verdict !== "correct") return [];
+  const mistakes = state.submissions.filter(
+    (o) => o.saved && o.error_type && o.course_id === s.course_id && o.student_id === s.student_id && o.topic_name === s.topic_name && o.created_at < s.created_at
+  );
+  const latest = new Map<string, string>();
+  for (const m of mistakes) if (m.created_at > (latest.get(m.error_type!) ?? "")) latest.set(m.error_type!, m.created_at);
+  const found: S["OvercomePattern"][] = [];
+  for (const [type, at] of [...latest.entries()].sort()) {
+    const run = correctRun(state, s.course_id, s.student_id, s.topic_name, at, s.created_at);
+    if (run !== REPEATED.overcome_after) continue;
+    const count = mistakes.filter((m) => m.error_type === type && m.created_at <= at && Date.parse(at) - Date.parse(m.created_at) < REPEATED.days * DAY).length;
+    if (count >= REPEATED.count) found.push({ error_type: type, topic_name: s.topic_name, count, correct: run });
+  }
+  return found;
+}
 
 /** The pattern a saved mistake repeats, counted up to it (backend specs/005 US1). */
 export function repeatedOf(state: State, s: Submission): S["RepeatedMistake"] | null {
@@ -54,6 +95,7 @@ export function submissionView(state: State, s: Submission): S["StudentSubmissio
     correction: flag ? { text: flag.correction, reviewed_at: flag.updated_at } : null,
     repeated_mistake: repeatedOf(state, s),
     adaptation: s.adaptation ?? null,
+    overcome: overcomeOf(state, s),
     created_at: s.created_at
   };
 }

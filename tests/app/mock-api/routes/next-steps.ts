@@ -4,7 +4,7 @@
 import { HttpError, type Route } from "../http.ts";
 import type { S, State } from "../state.ts";
 import { activeEnrolment, ownedCourse } from "./courses.ts";
-import { REPEATED } from "./exercises.ts";
+import { REPEATED, correctRun } from "./exercises.ts";
 import { progressOf } from "./progress.ts";
 
 const DAY = 86_400_000;
@@ -25,6 +25,8 @@ function reviewMistake(state: State, courseId: string, studentId: string): Step 
   }
   const top = [...patterns.values()]
     .filter((p) => p.count >= REPEATED.count)
+    // Overcome patterns are not recommended (backend specs/022).
+    .filter((p) => correctRun(state, courseId, studentId, p.latest.topic_name, p.latest.created_at) < REPEATED.overcome_after)
     .sort((a, b) => b.count - a.count || b.latest.created_at.localeCompare(a.latest.created_at))[0];
   if (!top) return null;
   const s = top.latest;
