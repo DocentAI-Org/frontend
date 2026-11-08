@@ -93,9 +93,10 @@ test.describe("009 US1 my progress", () => {
   scenario("009-US1-AS7", "without activity an empty state points to the tutor and quizzes", async ({ page, request }) => {
     await progressPage(request, page, []);
 
+    // Since 020 the next steps carry the actions; the empty state no longer repeats them.
     await expect(page.getByRole("heading", { name: /todavía no hay actividad/i })).toBeVisible();
-    await expect(page.getByRole("link", { name: /preguntar al tutor/i })).toBeVisible();
-    await expect(page.getByRole("link", { name: /hacer un cuestionario/i })).toBeVisible();
+    await expect(page.getByRole("link", { name: /preguntar al tutor/i })).toHaveCount(1);
+    await expect(page.getByRole("region", { name: /tu siguiente paso/i }).getByRole("link", { name: /preguntar al tutor/i })).toBeVisible();
     await expectAccessible(page);
   });
 
