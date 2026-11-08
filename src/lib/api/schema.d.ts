@@ -964,6 +964,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/teacher/courses/{course_id}/students/{student_id}/next-steps": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * A student's recommended next steps
+         * @description Exactly what the student sees as their next steps (spec 020).
+         */
+        get: operations["read_student_next_steps_v1_teacher_courses__course_id__students__student_id__next_steps_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/teacher/risk-criteria": {
         parameters: {
             query?: never;
@@ -1623,6 +1643,26 @@ export interface paths {
          * @description Every course topic with a provisional mastery level, its score and the graded exercises and quiz answers behind it, a weekly history and the most frequent mistakes. The teacher sees exactly the same (spec 007).
          */
         get: operations["read_progress_v1_student_courses__course_id__progress_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/student/courses/{course_id}/next-steps": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * My recommended next steps
+         * @description Up to three steps, most important first: an open test, an unfinished quiz, the most repeated mistake, the weakest topic and a topic not started, each with its basis. Computed on read; the teacher sees the same (spec 020).
+         */
+        get: operations["read_next_steps_v1_student_courses__course_id__next_steps_get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -2892,6 +2932,19 @@ export interface components {
             /** Url */
             url: string;
         };
+        /** NextSteps */
+        NextSteps: {
+            /**
+             * Provisional
+             * @description True while the criteria are the technical team's draft (spec 015).
+             */
+            provisional: boolean;
+            /**
+             * Steps
+             * @description At most three, most important first.
+             */
+            steps: (components["schemas"]["TestStep"] | components["schemas"]["ResumeQuizStep"] | components["schemas"]["ReviewMistakeStep"] | components["schemas"]["PracticeTopicStep"] | components["schemas"]["StartTopicStep"])[];
+        };
         /**
          * Notice
          * @description A task that went back to the inherited model, and why.
@@ -3118,6 +3171,41 @@ export interface components {
              * @enum {string}
              */
             status: "open" | "closed";
+        };
+        /** PracticeTopicStep */
+        PracticeTopicStep: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "practice_topic";
+            /**
+             * Topic Id
+             * Format: uuid
+             */
+            topic_id: string;
+            /** Topic Name */
+            topic_name: string;
+            /**
+             * Level
+             * @enum {string}
+             */
+            level: "starting" | "progressing";
+            /**
+             * Score
+             * @description Share right, 0-1 (spec 007).
+             */
+            score: number;
+            /**
+             * Items
+             * @description Graded items behind the score.
+             */
+            items: number;
+            /**
+             * Has Questions
+             * @description The topic has approved quiz questions.
+             */
+            has_questions: boolean;
         };
         /** Progress */
         Progress: {
@@ -3497,6 +3585,28 @@ export interface components {
              */
             origin: "course" | "study" | "server";
         };
+        /** ResumeQuizStep */
+        ResumeQuizStep: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "resume_quiz";
+            /**
+             * Quiz Id
+             * Format: uuid
+             */
+            quiz_id: string;
+            /**
+             * Topic Name
+             * @description Null for a quiz on every topic.
+             */
+            topic_name: string | null;
+            /** Answered */
+            answered: number;
+            /** Total */
+            total: number;
+        };
         /** Retrieval */
         Retrieval: {
             /**
@@ -3513,6 +3623,35 @@ export interface components {
              * @description Earlier messages kept.
              */
             history_messages: number;
+        };
+        /** ReviewMistakeStep */
+        ReviewMistakeStep: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "review_mistake";
+            /** Error Type */
+            error_type: string;
+            /** Topic Id */
+            topic_id: string | null;
+            /** Topic Name */
+            topic_name: string | null;
+            /** Count */
+            count: number;
+            /** Window Days */
+            window_days: number;
+            /**
+             * Submission Id
+             * Format: uuid
+             * @description The pattern's latest submission.
+             */
+            submission_id: string;
+            /**
+             * Reviewed
+             * @description Its targeted review was already requested.
+             */
+            reviewed: boolean;
         };
         /** RiskCriteriaList */
         RiskCriteriaList: {
@@ -3554,6 +3693,35 @@ export interface components {
              * Format: date-time
              */
             expires_at: string;
+        };
+        /** StartTopicStep */
+        StartTopicStep: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "start_topic";
+            /**
+             * Topic Id
+             * Format: uuid
+             */
+            topic_id: string;
+            /** Topic Name */
+            topic_name: string;
+            /**
+             * Level
+             * @enum {string}
+             */
+            level: "not_started" | "insufficient";
+            /** Items */
+            items: number;
+            /**
+             * Min Items
+             * @description Items needed for a score.
+             */
+            min_items: number;
+            /** Has Questions */
+            has_questions: boolean;
         };
         /** StudentConversationSummary */
         StudentConversationSummary: {
@@ -4357,6 +4525,19 @@ export interface components {
             students: components["schemas"]["StudentResult"][];
             /** Averages */
             averages: components["schemas"]["PhaseAverage"][];
+        };
+        /** TestStep */
+        TestStep: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "test";
+            /**
+             * Phase
+             * @enum {string}
+             */
+            phase: "pre" | "post";
         };
         /** TestSubmission */
         TestSubmission: {
@@ -9143,6 +9324,65 @@ export interface operations {
             };
         };
     };
+    read_student_next_steps_v1_teacher_courses__course_id__students__student_id__next_steps_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+                student_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["NextSteps"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     list_risk_criteria_v1_teacher_risk_criteria_get: {
         parameters: {
             query?: never;
@@ -11971,6 +12211,64 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Progress"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    read_next_steps_v1_student_courses__course_id__next_steps_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["NextSteps"];
                 };
             };
             /** @description Unauthorized */

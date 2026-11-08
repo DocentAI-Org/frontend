@@ -634,6 +634,38 @@
       "deleteBody": "The key is deleted for good. Tasks using its models go back to the inherited model, and each course is told.",
       "deleteConfirm": "Delete the key",
       "cancel": "Cancel"
+    },
+    "nextSteps": {
+      "provisional": "This is a provisional recommendation: the education team is still reviewing the criteria.",
+      "phase": {
+        "pre": "pre-",
+        "post": "post-"
+      },
+      "test": {
+        "student": "Your teacher has opened it and you have not taken it yet. It measures what you learn in the course.",
+        "teacher": "It is open and they have not taken it yet."
+      },
+      "resume": {
+        "student": "You have answered {answered} of {total} questions.",
+        "teacher": "They have answered {answered} of {total} questions."
+      },
+      "review": {
+        "student": "You made {count} mistakes of type “{type}” in “{topic}” in the last {days} days.",
+        "studentNoTopic": "You made {count} mistakes of type “{type}” in the last {days} days.",
+        "teacher": "They made {count} mistakes of type “{type}” in “{topic}” in the last {days} days.",
+        "teacherNoTopic": "They made {count} mistakes of type “{type}” in the last {days} days.",
+        "reviewed": "They already asked for the review of this mistake."
+      },
+      "practice": {
+        "student": "It is your weakest topic: you got {score} of your last {count} exercises and questions right.",
+        "teacher": "It is their weakest topic: they got {score} of their last {count} exercises and questions right."
+      },
+      "start": {
+        "notStartedStudent": "You have not worked on this topic yet.",
+        "notStartedTeacher": "They have not worked on this topic yet.",
+        "insufficientStudent": "You have {items} of the {min} exercises or questions needed to work out your level.",
+        "insufficientTeacher": "They have {items} of the {min} exercises or questions needed to work out their level."
+      }
     }
   },
   "student": {
@@ -951,7 +983,8 @@
       "topicLabel": "Topic",
       "allTopics": "All topics",
       "topicOption": "{topic} · {count, plural, one {# question} other {# questions}}",
-      "reasonExhausted": "There are no more {from} questions left: the next one is {to}."
+      "reasonExhausted": "There are no more {from} questions left: the next one is {to}.",
+      "weakestFirst": "Start with the topics you missed most."
     },
     "shell": {
       "nav": {
@@ -1032,6 +1065,27 @@
         "none": "This course has no message limit.",
         "perCourse": "Each course may have its own message limit."
       }
+    },
+    "nextSteps": {
+      "title": "Your next step",
+      "lead": "What we recommend now, based on your activity in this course.",
+      "listLabel": "Recommended steps",
+      "none": "You are up to date: you have mastered every topic. Review with a quiz whenever you like.",
+      "test": "Take the {phase}test",
+      "resume": "Finish your quiz",
+      "resumeTopic": "Finish your quiz on “{topic}”",
+      "review": "Review a mistake that keeps coming back",
+      "practice": "Practise “{topic}”",
+      "start": "Start with “{topic}”",
+      "takeTest": "Take the test",
+      "continue": "Continue",
+      "openReview": "See the review",
+      "startReview": "Review it",
+      "quiz": "Take a quiz",
+      "askTutor": "Ask the tutor",
+      "exercise": "Submit an exercise",
+      "practiceTopic": "Practise",
+      "practiceTopicLabel": "Practise “{topic}” with a quiz"
     }
   },
   "teacher": {
@@ -1502,7 +1556,18 @@
       "noMistakesTitle": "{name} has no recorded mistakes yet",
       "noMistakesBody": "When they send exercises with mistakes, they appear here with their type and topic.",
       "backToCourse": "Back to the course",
-      "backTo": "Back to {name}"
+      "backTo": "Back to {name}",
+      "nextSteps": {
+        "title": "Recommended next steps",
+        "lead": "What the student sees in their progress, with the reason for each step.",
+        "none": "No recommendations: they have mastered every topic.",
+        "test": "Pending {phase}test",
+        "resume": "Unfinished quiz",
+        "resumeTopic": "Unfinished quiz on “{topic}”",
+        "review": "A mistake that keeps coming back",
+        "practice": "Weakest topic: “{topic}”",
+        "start": "Topic to start: “{topic}”"
+      }
     },
     "topics": {
       "pageTitle": "Course topics",

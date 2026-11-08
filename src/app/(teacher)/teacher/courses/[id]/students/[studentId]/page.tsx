@@ -6,13 +6,14 @@ import { EmptyState } from "@/components/EmptyState";
 import { ErrorState } from "@/components/ErrorState";
 import { Icon } from "@/components/Icon";
 import { LearningRecord } from "@/components/LearningRecord";
+import { NextStepsList } from "@/components/NextSteps";
 import { PageHeader } from "@/components/PageHeader";
 import { RiskReasons } from "@/components/RiskReasons";
 import { TopicProgressList } from "@/components/TopicProgress";
 import type { Schemas } from "@/lib/api/client";
 import { listCourseStudents } from "@/lib/api/courses";
 import { getStudentRisk } from "@/lib/api/dashboard";
-import { getStudentProgress } from "@/lib/api/progress";
+import { getStudentNextSteps, getStudentProgress } from "@/lib/api/progress";
 import { getErrorTypes, getStudentLearningRecord } from "@/lib/api/exercises";
 import { routes } from "@/lib/routes";
 
@@ -113,7 +114,8 @@ async function WhyFlagged({ risk }: { risk: Schemas["StudentRisk"] }) {
 }
 
 /**
- * A student's learning record (#28, spec 005 US3) and, when they are flagged, why (spec 006 US2).
+ * A student's learning record (#28, spec 005 US3) and, when they are flagged, why (spec 006 US2);
+ * their recommended next steps, as the student sees them (020 US2).
  * Mastery and quizzes are P2 stories not defined yet.
  */
 export default async function StudentRecordPage({
@@ -127,12 +129,13 @@ export default async function StudentRecordPage({
   const { from } = await searchParams;
   const t = await getTranslations("teacher.student");
   const tr = await getTranslations("teacher.risk");
-  const [students, record, taxonomy, risk, progress] = await Promise.all([
+  const [students, record, taxonomy, risk, progress, nextSteps] = await Promise.all([
     listCourseStudents(id),
     getStudentLearningRecord(id, studentId),
     getErrorTypes(),
     getStudentRisk(id, studentId),
-    getStudentProgress(id, studentId)
+    getStudentProgress(id, studentId),
+    getStudentNextSteps(id, studentId)
   ]);
   if (!students.ok) return <ErrorState code={students.code} />;
   const student = students.data.items.find((s) => s.student_id === studentId);
@@ -152,6 +155,7 @@ export default async function StudentRecordPage({
           <ActivityTable risk={risk.data} headingLevel={2} />
         </section>
       )}
+      {nextSteps.ok && <NextStepsList nextSteps={nextSteps.data} taxonomy={taxonomy.ok ? taxonomy.data : null} audience="teacher" />}
       <section aria-labelledby="progress-title" className="flex flex-col gap-4">
         <h2 id="progress-title" className="text-xl font-semibold text-fg">
           {t("progressTitle")}
