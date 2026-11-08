@@ -11,9 +11,9 @@ import { Button } from "./Button";
 
 type Criteria = Schemas["Criteria"];
 type Group = keyof Criteria;
-type Field = { key: string; kind: "bool" | "int" | "percent"; label: string };
+type Field = { key: string; kind: "bool" | "int" | "percent"; label: string; max?: number };
 
-const GROUPS: Group[] = ["inactive", "error_rate", "repeated_mistakes", "adaptation", "mastery"];
+const GROUPS: Group[] = ["inactive", "error_rate", "repeated_mistakes", "adaptation", "mastery", "quiz"];
 const FIELDS: Record<Group, Field[]> = {
   inactive: [
     { key: "enabled", kind: "bool", label: "inactiveEnabled" },
@@ -35,6 +35,12 @@ const FIELDS: Record<Group, Field[]> = {
     { key: "min_items", kind: "int", label: "masteryMinItems" },
     { key: "progressing", kind: "percent", label: "progressing" },
     { key: "mastered", kind: "percent", label: "mastered" }
+  ],
+  quiz: [
+    { key: "adaptive", kind: "bool", label: "quizAdaptive" },
+    { key: "length", kind: "int", label: "quizLength", max: 30 },
+    { key: "streak", kind: "int", label: "quizStreak", max: 10 },
+    { key: "start_level", kind: "int", label: "quizStartLevel", max: 3 }
   ]
 };
 
@@ -177,7 +183,7 @@ export function CriteriaForm(
                       type="number"
                       inputMode="numeric"
                       min={1}
-                      max={field.kind === "percent" ? 100 : 365}
+                      max={field.max ?? (field.kind === "percent" ? 100 : 365)}
                       name={`${group}.${field.key}`}
                       defaultValue={String(value)}
                       disabled={!editable}
