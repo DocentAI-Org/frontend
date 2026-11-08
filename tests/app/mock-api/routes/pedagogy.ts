@@ -2,18 +2,24 @@ import { HttpError, type Route, requireRole } from "../http.ts";
 import { type S, type State, now } from "../state.ts";
 import { ownedCourse } from "./courses.ts";
 
-const GROUPS = ["inactive", "error_rate", "repeated_mistakes", "adaptation", "mastery"] as const;
+const GROUPS = ["inactive", "error_rate", "repeated_mistakes", "adaptation", "mastery", "quiz"] as const;
 
 /** The backend's rules (specs/015), enough for the E2E. */
 function check(groups: Partial<S["Criteria"]>) {
   const invalid = () => {
     throw new HttpError(422, "validation_error", { fields: [{ loc: ["body", "criteria"] }] });
   };
-  const { inactive, error_rate, repeated_mistakes, mastery } = groups;
+  const { inactive, error_rate, repeated_mistakes, mastery, quiz } = groups;
   if (inactive && inactive.days < 1) invalid();
   if (error_rate && (error_rate.rate <= 0 || error_rate.rate > 1 || error_rate.min_exercises < 1)) invalid();
   if (repeated_mistakes && repeated_mistakes.count < 1) invalid();
   if (mastery && (mastery.progressing >= mastery.mastered || mastery.min_items > mastery.window)) invalid();
+  if (quiz && (quiz.length < 1 || quiz.length > 30 || quiz.streak < 1 || quiz.streak > 10 || quiz.start_level < 1 || quiz.start_level > 3)) invalid();
+}
+
+/** The criteria a course follows: its own group or the study's (backend specs/015). */
+export function effectiveCriteria(state: State, courseId: string): S["Criteria"] {
+  return courseView(state, courseId).effective;
 }
 
 function courseView(state: State, courseId: string): S["CourseCriteria"] {
