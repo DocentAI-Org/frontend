@@ -27,7 +27,8 @@ const FIELDS: Record<Group, Field[]> = {
   ],
   repeated_mistakes: [
     { key: "count", kind: "int", label: "repeatedCount" },
-    { key: "window_days", kind: "int", label: "windowDays" }
+    { key: "window_days", kind: "int", label: "windowDays" },
+    { key: "overcome_after", kind: "int", label: "overcomeAfter", max: 20 }
   ],
   adaptation: [{ key: "enabled", kind: "bool", label: "adaptationEnabled" }],
   mastery: [

@@ -12,7 +12,7 @@ function check(groups: Partial<S["Criteria"]>) {
   const { inactive, error_rate, repeated_mistakes, mastery, quiz } = groups;
   if (inactive && inactive.days < 1) invalid();
   if (error_rate && (error_rate.rate <= 0 || error_rate.rate > 1 || error_rate.min_exercises < 1)) invalid();
-  if (repeated_mistakes && repeated_mistakes.count < 1) invalid();
+  if (repeated_mistakes && (repeated_mistakes.count < 1 || (repeated_mistakes.overcome_after ?? 3) < 1 || (repeated_mistakes.overcome_after ?? 3) > 20)) invalid();
   if (mastery && (mastery.progressing >= mastery.mastered || mastery.min_items > mastery.window)) invalid();
   if (quiz && (quiz.length < 1 || quiz.length > 30 || quiz.streak < 1 || quiz.streak > 10 || quiz.start_level < 1 || quiz.start_level > 3)) invalid();
 }

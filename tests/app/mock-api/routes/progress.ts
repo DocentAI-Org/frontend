@@ -4,6 +4,7 @@
 import { HttpError, type Route } from "../http.ts";
 import { type S, type State, id } from "../state.ts";
 import { activeEnrolment, ownedCourse } from "./courses.ts";
+import { REPEATED } from "./exercises.ts";
 
 const CRITERIA = { window: 10, min_items: 3, progressing: 0.5, mastered: 0.8 };
 const VALUE: Record<string, number> = { correct: 1, partially_correct: 0.5, incorrect: 0 };
@@ -58,7 +59,16 @@ function view(topicId: string | null, name: string | null, bucket: Bucket): S["T
     top_errors: [...bucket.errors.entries()]
       .sort((a, b) => b[1].count - a[1].count || b[1].at.localeCompare(a[1].at))
       .slice(0, 3)
-      .map(([error_type, e]) => ({ error_type, count: e.count, latest_submission_id: e.latest })),
+      .map(([error_type, e]) => {
+        // Correct exercises in a row in the topic after the latest occurrence (backend specs/022).
+        const after = bucket.items.filter((i) => i.kind === "exercise" && i.at > e.at).sort((a, b) => a.at.localeCompare(b.at));
+        let run = 0;
+        for (const i of [...after].reverse()) {
+          if (i.value !== 1) break;
+          run += 1;
+        }
+        return { error_type, count: e.count, latest_submission_id: e.latest, correct_since: run, overcome: run >= REPEATED.overcome_after };
+      }),
     last_activity_at: bucket.items.map((i) => i.at).sort().at(-1) ?? null
   };
 }
@@ -144,13 +154,16 @@ export const progressRoutes: Route[] = [
       };
       (body.topics ?? []).forEach(topicId);
       const quizzes = new Map<string | null, State["quizzes"][number]>();
+      const submissions: string[] = [];
       for (const [n, item] of body.items.entries()) {
         const at = new Date(Date.now() - item.days_ago * DAY + n * 1000).toISOString();
         const tid = item.topic ? topicId(item.topic) : null;
         if (item.kind === "exercise") {
           const mistake = item.result !== "correct";
+          const submissionId = id();
+          submissions.push(submissionId);
           state.submissions.push({
-            id: id(),
+            id: submissionId,
             course_id: body.course_id,
             student_id: student.id,
             problem_statement: `Ejercicio ${n + 1}: 2(x - 3) = 4x + 2`,
@@ -178,7 +191,8 @@ export const progressRoutes: Route[] = [
           quiz.items.push({ question_id: id(), position: quiz.items.length + 1, topic_id: tid, topic_name: item.topic ?? "", statement: "¿?", options: ["a", "b", "c", "d"], correct_option: 0, explanation: "", difficulty: 2, choice: item.result === "correct" ? 0 : 1, correct: item.result === "correct", answered_at: at });
         }
       }
-      return { ok: true };
+      // The exercises' ids, in the order given.
+      return { ok: true, submissions };
     }
   }
 ];
