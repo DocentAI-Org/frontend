@@ -1,3 +1,5 @@
+import type { Route } from "next";
+import Link from "next/link";
 import type { ReactNode } from "react";
 import { getFormatter, getLocale, getTranslations } from "next-intl/server";
 
@@ -81,22 +83,19 @@ async function StepItem({
   audience: "student" | "teacher";
   action: ReactNode;
 }) {
-  const t = await getTranslations(audience === "student" ? "student.nextSteps" : "teacher.student.nextSteps");
   const tc = await getTranslations("common.nextSteps");
   const format = await getFormatter();
   const locale = await getLocale();
   const who = audience === "student" ? "Student" : "Teacher";
 
-  let title: string;
+  const title = await stepTitle(step, audience);
   let reason: string;
   let extra: string | null = null;
   switch (step.kind) {
     case "test":
-      title = t("test", { phase: tc(`phase.${step.phase}`) });
       reason = tc(`test.${audience}`);
       break;
     case "resume_quiz":
-      title = step.topic_name ? t("resumeTopic", { topic: step.topic_name }) : t("resume");
       reason = tc(`resume.${audience}`, { answered: step.answered, total: step.total });
       break;
     case "review_mistake": {
@@ -106,20 +105,17 @@ async function StepItem({
         type: errorTypeLabel(taxonomy, step.error_type, locale),
         topic: step.topic_name ?? ""
       };
-      title = t("review");
       reason = tc(`review.${audience}${step.topic_name ? "" : "NoTopic"}`, values);
       if (audience === "teacher" && step.reviewed) extra = tc("review.reviewed");
       break;
     }
     case "practice_topic":
-      title = t("practice", { topic: step.topic_name });
       reason = tc(`practice.${audience}`, {
         score: format.number(step.score, { style: "percent", maximumFractionDigits: 0 }),
         count: step.items
       });
       break;
     case "start_topic":
-      title = t("start", { topic: step.topic_name });
       reason =
         step.level === "not_started"
           ? tc(`start.notStarted${who}`)
@@ -141,5 +137,43 @@ async function StepItem({
       </div>
       {action && <div className="flex flex-wrap gap-2">{action}</div>}
     </li>
+  );
+}
+
+/** A step's title, worded for its reader (020); the same on every page that names it. */
+async function stepTitle(step: Step, audience: "student" | "teacher"): Promise<string> {
+  const t = await getTranslations(audience === "student" ? "student.nextSteps" : "teacher.student.nextSteps");
+  const tc = await getTranslations("common.nextSteps");
+  switch (step.kind) {
+    case "test":
+      return t("test", { phase: tc(`phase.${step.phase}`) });
+    case "resume_quiz":
+      return step.topic_name ? t("resumeTopic", { topic: step.topic_name }) : t("resume");
+    case "review_mistake":
+      return t("review");
+    case "practice_topic":
+      return t("practice", { topic: step.topic_name });
+    case "start_topic":
+      return t("start", { topic: step.topic_name });
+  }
+}
+
+/**
+ * The first recommended step in one line (023), where the student starts: "Mis cursos" and the
+ * chat. It links to the progress page, which gives its reason and actions.
+ */
+export async function NextStepLine({ step, href }: { step: Step; href: Route }) {
+  const t = await getTranslations("student.nextSteps");
+  return (
+    <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-primary-800" data-component="NextStepLine" data-variant={step.kind}>
+      <Icon name={ICON[step.kind]} className="size-4 shrink-0" />
+      <span>{t("lineLabel")}</span>{" "}
+      <Link
+        href={href}
+        className="rounded-sm font-semibold underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+      >
+        {await stepTitle(step, "student")}
+      </Link>
+    </p>
   );
 }
