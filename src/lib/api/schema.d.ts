@@ -2970,6 +2970,26 @@ export interface components {
              */
             at: string;
         };
+        /**
+         * OvercomePattern
+         * @description A repeated pattern this correct exercise completes (specs/022, provisional).
+         */
+        OvercomePattern: {
+            /** Error Type */
+            error_type: string;
+            /** Topic Name */
+            topic_name: string | null;
+            /**
+             * Count
+             * @description Its mistakes in the window, up to the latest.
+             */
+            count: number;
+            /**
+             * Correct
+             * @description Correct exercises in a row in the topic since.
+             */
+            correct: number;
+        };
         /** Page[AdminCourse] */
         Page_AdminCourse_: {
             /** Items */
@@ -3571,13 +3591,20 @@ export interface components {
         };
         /**
          * RepeatedMistakeCriteria
-         * @description The same mistake this many times in this many days (spec 005).
+         * @description The same mistake this many times in this many days (spec 005), and the correct
+         *     exercises that overcome it (spec 022).
          */
         RepeatedMistakeCriteria: {
             /** Count */
             count: number;
             /** Window Days */
             window_days: number;
+            /**
+             * Overcome After
+             * @description Correct exercises in a row in the topic that overcome it (specs/022).
+             * @default 3
+             */
+            overcome_after: number;
         };
         /** ResolvedModel */
         ResolvedModel: {
@@ -3986,6 +4013,11 @@ export interface components {
             repeated_mistake: components["schemas"]["RepeatedMistake"] | null;
             /** @description Set when the feedback was adapted (specs/013). */
             adaptation?: components["schemas"]["Adaptation"] | null;
+            /**
+             * Overcome
+             * @description Repeated patterns this correct exercise overcomes (specs/022); said once, on the exercise that completes the run.
+             */
+            overcome?: components["schemas"]["OvercomePattern"][];
             /**
              * Created At
              * Format: date-time
@@ -4464,6 +4496,11 @@ export interface components {
             /** @description Set when the feedback was adapted (specs/013). */
             adaptation?: components["schemas"]["Adaptation"] | null;
             /**
+             * Overcome
+             * @description Repeated patterns this correct exercise overcomes (specs/022); said once, on the exercise that completes the run.
+             */
+            overcome?: components["schemas"]["OvercomePattern"][];
+            /**
              * Created At
              * Format: date-time
              */
@@ -4716,6 +4753,16 @@ export interface components {
              * Format: uuid
              */
             latest_submission_id: string;
+            /**
+             * Correct Since
+             * @description Correct exercises in a row in the topic after its latest occurrence (specs/022).
+             */
+            correct_since: number;
+            /**
+             * Overcome
+             * @description `correct_since` reaches `overcome_after`.
+             */
+            overcome: boolean;
         };
         /** TopicErrors */
         TopicErrors: {
