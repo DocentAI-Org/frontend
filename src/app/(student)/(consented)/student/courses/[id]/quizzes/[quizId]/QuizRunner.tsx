@@ -10,7 +10,7 @@ import { Icon } from "@/components/Icon";
 import { MathText } from "@/components/MathText";
 import type { Schemas } from "@/lib/api/client";
 import { errorMessageKey } from "@/lib/api/errors";
-import { levelKey } from "@/lib/quiz/levels";
+import { levelKey, weakestFirst } from "@/lib/quiz/levels";
 import { routes } from "@/lib/routes";
 
 import { answerAction } from "../../quiz/actions";
@@ -245,9 +245,10 @@ function Summary({ courseId, quiz }: { courseId: string; quiz: Quiz }) {
       </div>
       <div className="flex flex-col gap-2">
         <h3 className="font-semibold text-fg">{t("nextSteps")}</h3>
+        {s.by_topic.length > 1 && <p className="text-sm text-fg-muted">{t("weakestFirst")}</p>}
         <div className="flex flex-wrap gap-2">
           <StartQuiz courseId={courseId} label={t("stepAnother")} icon="refresh-cw" />
-          {s.by_topic
+          {weakestFirst(s.by_topic)
             .filter((topic) => topic.topic_id)
             .map((topic) => (
               <StartQuiz key={topic.topic_id} courseId={courseId} topicId={topic.topic_id!} label={t("stepTopic", { topic: topic.topic_name })} icon="lightbulb" variant="secondary" />

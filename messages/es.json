@@ -634,6 +634,38 @@
       "deleteBody": "La clave se borra para siempre. Las tareas que usen sus modelos vuelven al modelo heredado y se avisa en cada curso.",
       "deleteConfirm": "Borrar la clave",
       "cancel": "Cancelar"
+    },
+    "nextSteps": {
+      "provisional": "Es una recomendación provisional: el equipo educativo todavía revisa los criterios.",
+      "phase": {
+        "pre": "inicial",
+        "post": "final"
+      },
+      "test": {
+        "student": "Tu profesor/a lo ha abierto y todavía no lo has hecho. Sirve para medir lo que aprendes en el curso.",
+        "teacher": "Está abierto y todavía no lo ha hecho."
+      },
+      "resume": {
+        "student": "Llevas {answered} de {total} preguntas.",
+        "teacher": "Lleva {answered} de {total} preguntas."
+      },
+      "review": {
+        "student": "Has cometido {count} errores de tipo «{type}» en «{topic}» en los últimos {days} días.",
+        "studentNoTopic": "Has cometido {count} errores de tipo «{type}» en los últimos {days} días.",
+        "teacher": "Ha cometido {count} errores de tipo «{type}» en «{topic}» en los últimos {days} días.",
+        "teacherNoTopic": "Ha cometido {count} errores de tipo «{type}» en los últimos {days} días.",
+        "reviewed": "Ya pidió el repaso de este error."
+      },
+      "practice": {
+        "student": "Es tu tema más flojo: has acertado el {score} de tus últimos {count} ejercicios y preguntas.",
+        "teacher": "Es su tema más flojo: ha acertado el {score} de sus últimos {count} ejercicios y preguntas."
+      },
+      "start": {
+        "notStartedStudent": "Todavía no has trabajado este tema.",
+        "notStartedTeacher": "Todavía no ha trabajado este tema.",
+        "insufficientStudent": "Llevas {items} de los {min} ejercicios o preguntas que hacen falta para calcular tu nivel.",
+        "insufficientTeacher": "Lleva {items} de los {min} ejercicios o preguntas que hacen falta para calcular su nivel."
+      }
     }
   },
   "student": {
@@ -951,7 +983,8 @@
       "topicLabel": "Tema",
       "allTopics": "Todos los temas",
       "topicOption": "{topic} · {count, plural, one {# pregunta} other {# preguntas}}",
-      "reasonExhausted": "No quedan más preguntas de dificultad {from}: la siguiente es {to}."
+      "reasonExhausted": "No quedan más preguntas de dificultad {from}: la siguiente es {to}.",
+      "weakestFirst": "Empieza por los temas en los que has fallado más."
     },
     "shell": {
       "nav": {
@@ -1032,6 +1065,27 @@
         "none": "En este curso no hay límite de mensajes.",
         "perCourse": "Cada curso puede tener su propio límite de mensajes."
       }
+    },
+    "nextSteps": {
+      "title": "Tu siguiente paso",
+      "lead": "Lo que te recomendamos ahora, según tu actividad en este curso.",
+      "listLabel": "Pasos recomendados",
+      "none": "Vas al día: dominas todos los temas. Repasa con un cuestionario cuando quieras.",
+      "test": "Haz el test {phase}",
+      "resume": "Termina tu cuestionario",
+      "resumeTopic": "Termina tu cuestionario de «{topic}»",
+      "review": "Repasa un error que se repite",
+      "practice": "Practica «{topic}»",
+      "start": "Empieza con «{topic}»",
+      "takeTest": "Hacer el test",
+      "continue": "Continuar",
+      "openReview": "Ver el repaso",
+      "startReview": "Repasar",
+      "quiz": "Hacer un cuestionario",
+      "askTutor": "Preguntar al tutor",
+      "exercise": "Enviar un ejercicio",
+      "practiceTopic": "Practicar",
+      "practiceTopicLabel": "Practicar «{topic}» con un cuestionario"
     }
   },
   "teacher": {
@@ -1502,7 +1556,18 @@
       "noMistakesTitle": "{name} todavía no tiene errores registrados",
       "noMistakesBody": "Cuando envíe ejercicios con errores, aparecerán aquí con su tipo y su tema.",
       "backToCourse": "Volver al curso",
-      "backTo": "Volver a {name}"
+      "backTo": "Volver a {name}",
+      "nextSteps": {
+        "title": "Siguientes pasos recomendados",
+        "lead": "Lo mismo que ve el estudiante en su progreso, con el motivo de cada paso.",
+        "none": "No hay recomendaciones: domina todos los temas.",
+        "test": "Test {phase} pendiente",
+        "resume": "Cuestionario sin terminar",
+        "resumeTopic": "Cuestionario de «{topic}» sin terminar",
+        "review": "Un error que se repite",
+        "practice": "Tema más flojo: «{topic}»",
+        "start": "Tema por empezar: «{topic}»"
+      }
     },
     "topics": {
       "pageTitle": "Temas del curso",

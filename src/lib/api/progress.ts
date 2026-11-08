@@ -12,3 +12,14 @@ export const getStudentProgress = (course_id: string, student_id: string) =>
       params: { path: { course_id, student_id } }
     })
   );
+
+/** Recommended next steps (backend specs/020): the same for the student and the teacher. */
+export const getNextSteps = (course_id: string) =>
+  request((api) => api.GET("/v1/student/courses/{course_id}/next-steps", { params: { path: { course_id } } }));
+
+export const getStudentNextSteps = (course_id: string, student_id: string) =>
+  request((api) =>
+    api.GET("/v1/teacher/courses/{course_id}/students/{student_id}/next-steps", {
+      params: { path: { course_id, student_id } }
+    })
+  );

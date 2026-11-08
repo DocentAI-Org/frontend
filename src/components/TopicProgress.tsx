@@ -1,5 +1,6 @@
 import type { Route } from "next";
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { getFormatter, getLocale, getTranslations } from "next-intl/server";
 
 import type { Schemas } from "@/lib/api/client";
@@ -24,12 +25,15 @@ export async function TopicProgressList({
   taxonomy,
   audience,
   exampleHref,
+  action,
   headingLevel = 2
 }: {
   progress: Progress;
   taxonomy: Taxonomy | null;
   audience: "student" | "teacher";
   exampleHref: (submissionId: string) => Route;
+  /** What the student can do next in a topic (020), at the end of its card. */
+  action?: (topic: Topic) => ReactNode;
   headingLevel?: 2 | 3;
 }) {
   const t = await getTranslations();
@@ -44,6 +48,7 @@ export async function TopicProgressList({
           taxonomy={taxonomy}
           audience={audience}
           exampleHref={exampleHref}
+          action={action?.(topic)}
           headingLevel={headingLevel}
         />
       ))}
@@ -57,6 +62,7 @@ async function TopicCard({
   taxonomy,
   audience,
   exampleHref,
+  action,
   headingLevel
 }: {
   topic: Topic;
@@ -64,6 +70,7 @@ async function TopicCard({
   taxonomy: Taxonomy | null;
   audience: "student" | "teacher";
   exampleHref: (submissionId: string) => Route;
+  action?: ReactNode;
   headingLevel: 2 | 3;
 }) {
   const t = await getTranslations();
@@ -189,6 +196,7 @@ async function TopicCard({
           )}
         </>
       )}
+      {action && <div className="flex flex-wrap gap-2">{action}</div>}
     </li>
   );
 }
