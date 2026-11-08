@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useFormatter, useTranslations } from "next-intl";
 import { useId, useRef, useState, useTransition } from "react";
 
 import { Alert } from "@/components/Alert";
@@ -65,6 +65,7 @@ export function QuizRunner({ courseId, initial }: { courseId: string; initial: Q
       ) : (
         quiz.current && (
           <>
+            {!change && quiz.answered_count === 0 && quiz.start_basis && <StartNote quiz={quiz} />}
             {change && (
               <p role="status" className="flex items-start gap-2 rounded-xl border border-info-200 bg-info-50 p-4 font-medium text-info-800" data-component="DecisionReason">
                 <Icon name="sparkles" className="mt-0.5 size-5 shrink-0" />
@@ -85,6 +86,33 @@ export function QuizRunner({ courseId, initial }: { courseId: string; initial: Q
       )}
       {error && <Alert tone="danger">{tAll(errorMessageKey(error))}</Alert>}
     </div>
+  );
+}
+
+const MASTERY_KEY = { starting: "start", progressing: "progress", mastered: "mastered" } as const;
+
+/** Why the quiz starts at its level (backend specs/021, §4.7), before the first answer. */
+function StartNote({ quiz }: { quiz: Quiz }) {
+  const t = useTranslations("student.quiz");
+  const tAll = useTranslations();
+  const format = useFormatter();
+  const basis = quiz.start_basis!;
+  const level = tAll(`common.quiz.${levelKey(quiz.level)}`).toLocaleLowerCase();
+  const text =
+    basis.reason === "mastery" && basis.mastery_level && basis.score !== null
+      ? t(quiz.topic_id ? "startTopic" : "startCourse", {
+          level,
+          mastery: tAll(`common.record.level.${MASTERY_KEY[basis.mastery_level]}`),
+          score: format.number(basis.score, { style: "percent", maximumFractionDigits: 0 })
+        })
+      : t(basis.reason === "fixed" ? "startFixed" : "startNoScore", { level });
+  return (
+    <p className="flex items-start gap-2 rounded-xl border border-info-200 bg-info-50 p-4 font-medium text-info-800" data-component="DecisionReason" data-variant="start">
+      <Icon name="sparkles" className="mt-0.5 size-5 shrink-0" />
+      <span>
+        {text} {t("startProvisional")}
+      </span>
+    </p>
   );
 }
 

@@ -2179,6 +2179,7 @@ export interface components {
             repeated_mistakes?: components["schemas"]["RepeatedMistakeCriteria"] | null;
             adaptation?: components["schemas"]["AdaptationCriteria"] | null;
             mastery?: components["schemas"]["MasteryCriteria"] | null;
+            quiz?: components["schemas"]["QuizCriteria"] | null;
         };
         /** CourseFlag */
         CourseFlag: {
@@ -2415,6 +2416,7 @@ export interface components {
             repeated_mistakes: components["schemas"]["RepeatedMistakeCriteria"];
             adaptation: components["schemas"]["AdaptationCriteria"];
             mastery: components["schemas"]["MasteryCriteria"];
+            quiz: components["schemas"]["QuizCriteria"];
         };
         /** DifficultyChange */
         DifficultyChange: {
@@ -3409,6 +3411,8 @@ export interface components {
              * @description Current difficulty level, 1-3.
              */
             level: number;
+            /** @description Why it started at its level; null for quizzes before specs/021. */
+            start_basis: components["schemas"]["StartBasis"] | null;
             /** @description Null once completed. */
             current: components["schemas"]["QuizQuestion"] | null;
             /** @description Set once completed. */
@@ -3433,6 +3437,26 @@ export interface components {
              * @description Index of the option, 0-3.
              */
             choice: number;
+        };
+        /**
+         * QuizCriteria
+         * @description Quiz length, the streak that moves the level and the start (specs/006, 021).
+         */
+        QuizCriteria: {
+            /** Length */
+            length: number;
+            /** Streak */
+            streak: number;
+            /**
+             * Start Level
+             * @description The start without a score, or without `adaptive`.
+             */
+            start_level: number;
+            /**
+             * Adaptive
+             * @description Start from the student's mastery and favour their weak topics.
+             */
+            adaptive: boolean;
         };
         /** QuizDetail */
         QuizDetail: {
@@ -3459,6 +3483,8 @@ export interface components {
              * @description Current difficulty level, 1-3.
              */
             level: number;
+            /** @description Why it started at its level; null for quizzes before specs/021. */
+            start_basis: components["schemas"]["StartBasis"] | null;
             /** @description Null once completed. */
             current: components["schemas"]["QuizQuestion"] | null;
             /** @description Set once completed. */
@@ -3693,6 +3719,25 @@ export interface components {
              * Format: date-time
              */
             expires_at: string;
+        };
+        /**
+         * StartBasis
+         * @description Why a quiz started at its level (specs/021), as it was then.
+         */
+        StartBasis: {
+            /**
+             * Reason
+             * @description `no_score`: too few items for a mastery level; `fixed`: the course starts every quiz at `start_level`.
+             * @enum {string}
+             */
+            reason: "mastery" | "no_score" | "fixed";
+            /**
+             * Mastery Level
+             * @description The topic's level, or for a quiz on every topic the level of the mean score of the scored topics.
+             */
+            mastery_level: ("starting" | "progressing" | "mastered") | null;
+            /** Score */
+            score: number | null;
         };
         /** StartTopicStep */
         StartTopicStep: {

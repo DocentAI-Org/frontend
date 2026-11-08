@@ -1,16 +1,17 @@
 // Quiz questions and adaptive quizzes (backend specs/006). /__test/generation scripts the model
 // (drafts, nothing usable, unavailable); /__test/questions seeds approved questions. The quiz
-// follows the backend's provisional rule: the level is the difficulty shown, starting nearest
-// to 2; 2 in a row aim one level up or down; 5 questions.
+// follows the backend's provisional rule: the level is the difficulty shown; with the course's
+// `quiz` criteria (specs/021) it starts from the student's mastery (or `start_level`), on every
+// topic it favours weak topics, `streak` in a row aim one level up or down, `length` questions.
 import { HttpError, type Route, page, search, sortParam } from "../http.ts";
 import { type Question, type Quiz, type QuizItem, type S, type State, id, now } from "../state.ts";
 import { citationView } from "./chat.ts";
 import { consentStatus } from "./consent.ts";
 import { activeEnrolment, ownedCourse } from "./courses.ts";
+import { effectiveCriteria } from "./pedagogy.ts";
+import { progressOf } from "./progress.ts";
 
-const QUIZ_LENGTH = 5;
-const START_LEVEL = 2;
-const STREAK = 2;
+const START: Record<string, number> = { starting: 1, progressing: 2, mastered: 3 };
 const STATUSES = ["pending", "approved", "rejected"] as const;
 
 let drafted = 0;
@@ -103,6 +104,7 @@ function quizView(quiz: Quiz): S["Quiz"] {
     question_count: quiz.question_count,
     answered_count: quiz.items.filter((i) => i.answered_at).length,
     level: quiz.level,
+    start_basis: quiz.start_basis ?? null,
     current: item
       ? {
           id: item.question_id,
@@ -128,8 +130,28 @@ function approved(state: State, courseId: string, topicId: string | null) {
   return state.questions.filter((q) => q.course_id === courseId && q.status === "approved" && (!topicId || q.topic_id === topicId));
 }
 
+/** The start level and why (backend specs/021). */
+function startOf(state: State, quiz: Quiz): [number, S["StartBasis"]] {
+  const criteria = effectiveCriteria(state, quiz.course_id).quiz;
+  if (!criteria.adaptive) return [criteria.start_level, { reason: "fixed", mastery_level: null, score: null }];
+  const progress = progressOf(state, quiz.course_id, quiz.student_id);
+  const scores = progress.topics.filter((t) => t.score !== null && (!quiz.topic_id || t.topic_id === quiz.topic_id)).map((t) => t.score!);
+  if (!scores.length) return [criteria.start_level, { reason: "no_score", mastery_level: null, score: null }];
+  const score = scores.reduce((a, b) => a + b, 0) / scores.length;
+  const level = score >= progress.criteria.mastered ? "mastered" : score >= progress.criteria.progressing ? "progressing" : "starting";
+  return [START[level], { reason: "mastery", mastery_level: level, score }];
+}
+
+/** Each topic's score on a quiz over every topic with `adaptive`; none counts as progressing. */
+function weakness(state: State, quiz: Quiz): Map<string | null, number> | null {
+  if (quiz.topic_id || !effectiveCriteria(state, quiz.course_id).quiz.adaptive) return null;
+  const progress = progressOf(state, quiz.course_id, quiz.student_id);
+  return new Map(progress.topics.map((t) => [t.topic_id, t.score ?? progress.criteria.progressing]));
+}
+
 function pick(state: State, quiz: Quiz, target: number): Question | undefined {
   const used = new Set(quiz.items.map((i) => i.question_id));
+  const weak = weakness(state, quiz);
   const answered = (qid: string) =>
     state.quizzes
       .filter((z) => z.student_id === quiz.student_id && z.course_id === quiz.course_id)
@@ -141,6 +163,7 @@ function pick(state: State, quiz: Quiz, target: number): Question | undefined {
       (a, b) =>
         Math.abs(a.difficulty - target) - Math.abs(b.difficulty - target) ||
         answered(a.id) - answered(b.id) ||
+        (weak ? (weak.get(a.topic_id) ?? 1) - (weak.get(b.topic_id) ?? 1) : 0) ||
         a.difficulty - b.difficulty ||
         a.created_at.localeCompare(b.created_at)
     )[0];
@@ -272,15 +295,17 @@ export const quizRoutes: Route[] = [
         topic_id: topic?.id ?? null,
         topic_name: topic?.name ?? null,
         status: "in_progress",
-        question_count: Math.min(QUIZ_LENGTH, available),
-        level: START_LEVEL,
+        question_count: Math.min(effectiveCriteria(state, enrolment.course_id).quiz.length, available),
+        level: 2,
         streak: 0,
         started_at: now(),
         completed_at: null,
         items: []
       };
+      const [level, basis] = startOf(state, quiz);
+      Object.assign(quiz, { level, start_basis: basis });
       state.quizzes.push(quiz);
-      const first = pick(state, quiz, START_LEVEL)!;
+      const first = pick(state, quiz, level)!;
       quiz.level = first.difficulty;
       addItem(state, quiz, first);
       return quizView(quiz);
@@ -360,9 +385,10 @@ export const quizRoutes: Route[] = [
         quiz.status = "completed";
         quiz.completed_at = now();
       } else {
+        const streak = effectiveCriteria(state, quiz.course_id).quiz.streak;
         let target = from;
-        if (run >= STREAK && from < 3) target = from + 1;
-        if (-run >= STREAK && from > 1) target = from - 1;
+        if (run >= streak && from < 3) target = from + 1;
+        if (-run >= streak && from > 1) target = from - 1;
         const next = pick(state, quiz, target);
         if (next) {
           if (next.difficulty !== from) {

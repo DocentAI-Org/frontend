@@ -169,6 +169,8 @@ export type Quiz = {
   question_count: number;
   level: number;
   streak: number;
+  /** Why it started at its level (backend specs/021); absent for seeded quizzes. */
+  start_basis?: S["StartBasis"] | null;
   started_at: string;
   completed_at: string | null;
   items: QuizItem[];
@@ -264,7 +266,8 @@ export const DEFAULT_CRITERIA: S["Criteria"] = {
   error_rate: { enabled: true, rate: 0.6, min_exercises: 5, window_days: 14 },
   repeated_mistakes: { count: 3, window_days: 30 },
   adaptation: { enabled: true },
-  mastery: { window: 10, min_items: 3, progressing: 0.5, mastered: 0.8 }
+  mastery: { window: 10, min_items: 3, progressing: 0.5, mastered: 0.8 },
+  quiz: { length: 5, streak: 2, start_level: 2, adaptive: true }
 };
 
 export const CONSENT_VERSION = "2026-10";

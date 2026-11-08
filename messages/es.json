@@ -411,7 +411,15 @@
         "masteryWindow": "Últimas actividades que cuentan",
         "masteryMinItems": "Actividades necesarias para dar un nivel",
         "progressing": "En progreso desde (%)",
-        "mastered": "Dominado desde (%)"
+        "mastered": "Dominado desde (%)",
+        "quizAdaptive": "Empezar según el dominio del estudiante e insistir en sus temas flojos",
+        "quizLength": "Preguntas por cuestionario (1-30)",
+        "quizStreak": "Aciertos o fallos seguidos que cambian el nivel (1-10)",
+        "quizStartLevel": "Dificultad inicial sin datos suficientes (1 fácil, 2 media, 3 difícil)"
+      },
+      "quiz": {
+        "legend": "Cuestionarios",
+        "help": "Cuántas preguntas tiene cada cuestionario, cuántos aciertos o fallos seguidos cambian el nivel y dónde empieza. Si es adaptativo, empieza en el nivel de dominio del estudiante y, con todos los temas, insiste en sus temas más flojos."
       }
     },
     "list": {
@@ -984,7 +992,12 @@
       "allTopics": "Todos los temas",
       "topicOption": "{topic} · {count, plural, one {# pregunta} other {# preguntas}}",
       "reasonExhausted": "No quedan más preguntas de dificultad {from}: la siguiente es {to}.",
-      "weakestFirst": "Empieza por los temas en los que has fallado más."
+      "weakestFirst": "Empieza por los temas en los que has fallado más.",
+      "startTopic": "Empiezas con preguntas de dificultad {level} porque tu dominio de este tema es «{mastery}» ({score} de aciertos).",
+      "startCourse": "Empiezas con preguntas de dificultad {level} porque tu dominio del curso es «{mastery}» ({score} de aciertos de media en tus temas).",
+      "startNoScore": "Empiezas con preguntas de dificultad {level}: todavía hay poca actividad para saber tu nivel.",
+      "startFixed": "Empiezas con preguntas de dificultad {level}, la que ha fijado tu profesor/a para este curso.",
+      "startProvisional": "El nivel cambiará según tus respuestas. Es una regla provisional."
     },
     "shell": {
       "nav": {

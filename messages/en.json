@@ -411,7 +411,15 @@
         "masteryWindow": "Latest activities that count",
         "masteryMinItems": "Activities needed for a level",
         "progressing": "Progressing from (%)",
-        "mastered": "Mastered from (%)"
+        "mastered": "Mastered from (%)",
+        "quizAdaptive": "Start from the student's mastery and focus on their weak topics",
+        "quizLength": "Questions per quiz (1-30)",
+        "quizStreak": "Right or wrong answers in a row that change the level (1-10)",
+        "quizStartLevel": "Starting difficulty without enough data (1 easy, 2 medium, 3 hard)"
+      },
+      "quiz": {
+        "legend": "Quizzes",
+        "help": "How many questions each quiz has, how many right or wrong answers in a row change the level and where it starts. When adaptive, it starts at the student's mastery level and, on every topic, focuses on their weakest topics."
       }
     },
     "list": {
@@ -984,7 +992,12 @@
       "allTopics": "All topics",
       "topicOption": "{topic} · {count, plural, one {# question} other {# questions}}",
       "reasonExhausted": "There are no more {from} questions left: the next one is {to}.",
-      "weakestFirst": "Start with the topics you missed most."
+      "weakestFirst": "Start with the topics you missed most.",
+      "startTopic": "You start with {level} questions because your mastery of this topic is “{mastery}” ({score} right).",
+      "startCourse": "You start with {level} questions because your mastery of the course is “{mastery}” ({score} right on average across your topics).",
+      "startNoScore": "You start with {level} questions: there is not enough activity yet to know your level.",
+      "startFixed": "You start with {level} questions, as your teacher set for this course.",
+      "startProvisional": "The level will change with your answers. This rule is provisional."
     },
     "shell": {
       "nav": {
