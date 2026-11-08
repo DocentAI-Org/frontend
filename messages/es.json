@@ -679,6 +679,17 @@
         "insufficientStudent": "Llevas {items} de los {min} ejercicios o preguntas que hacen falta para calcular tu nivel.",
         "insufficientTeacher": "Lleva {items} de los {min} ejercicios o preguntas que hacen falta para calcular su nivel."
       }
+    },
+    "overcome": {
+      "title": {
+        "student": "¡Error superado!",
+        "teacher": "Error superado"
+      },
+      "student": "Llevas {correct} ejercicios bien seguidos en «{topic}» desde tu último error de tipo «{type}», que habías cometido {count} veces.",
+      "studentNoTopic": "Llevas {correct} ejercicios bien seguidos desde tu último error de tipo «{type}», que habías cometido {count} veces.",
+      "teacher": "Lleva {correct} ejercicios bien seguidos en «{topic}» desde su último error de tipo «{type}», que había cometido {count} veces.",
+      "teacherNoTopic": "Lleva {correct} ejercicios bien seguidos desde su último error de tipo «{type}», que había cometido {count} veces.",
+      "provisional": "Es un criterio provisional: el equipo educativo todavía lo está revisando."
     }
   },
   "student": {
@@ -875,11 +886,7 @@
         "not_assessed": "No evaluado"
       },
       "mistakeLabel": "Dónde está el error:",
-      "explanationTitle": "Explicación",
-      "overcomeTitle": "¡Error superado!",
-      "overcomeBody": "Llevas {correct} ejercicios bien seguidos en «{topic}» desde tu último error de tipo «{type}», que habías cometido {count} veces.",
-      "overcomeBodyNoTopic": "Llevas {correct} ejercicios bien seguidos desde tu último error de tipo «{type}», que habías cometido {count} veces.",
-      "overcomeProvisional": "Es un criterio provisional: el equipo educativo todavía lo está revisando."
+      "explanationTitle": "Explicación"
     },
     "guided": {
       "anotherHint": "Otra pista",
@@ -1107,7 +1114,8 @@
       "askTutor": "Preguntar al tutor",
       "exercise": "Enviar un ejercicio",
       "practiceTopic": "Practicar",
-      "practiceTopicLabel": "Practicar «{topic}» con un cuestionario"
+      "practiceTopicLabel": "Practicar «{topic}» con un cuestionario",
+      "lineLabel": "Tu siguiente paso:"
     }
   },
   "teacher": {

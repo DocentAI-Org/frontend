@@ -12,14 +12,17 @@ import { ListToolbar } from "@/components/ListToolbar";
 import { ErrorState } from "@/components/ErrorState";
 import { Icon } from "@/components/Icon";
 import { MessageAllowance } from "@/components/MessageAllowance";
+import { NextStepLine } from "@/components/NextSteps";
 import { NoMatches } from "@/components/NoMatches";
 import { PageHeader } from "@/components/PageHeader";
 import { StudyQuestionnaires } from "@/components/StudyQuestionnaires";
 import { TagChips } from "@/components/TagChips";
 import { getAllowance } from "@/lib/api/chat";
+import type { Schemas } from "@/lib/api/client";
 import { listTestPhases } from "@/lib/api/course-tests";
 import { listStudentCourses } from "@/lib/api/courses";
 import { listCourseTags, listMyQuestionnaires } from "@/lib/api/me";
+import { getNextSteps } from "@/lib/api/progress";
 import { env } from "@/lib/env";
 import { apiQuery, listState } from "@/lib/list";
 import { routes } from "@/lib/routes";
@@ -56,14 +59,21 @@ export default async function StudentCoursesPage({
     getAllowance(),
     env.studyQuestionnaires ? listMyQuestionnaires() : null
   ]);
-  // An open pre/post-test the student has not done yet is announced on its row (010 US3 AS1).
+  // An open pre/post-test the student has not done yet is announced on its row (010 US3 AS1);
+  // otherwise, the first recommended step (023).
   const pending = new Map<string, "pre" | "post">();
+  const firstStep = new Map<string, Schemas["NextSteps"]["steps"][number]>();
   if (courses.ok) {
-    const phases = await Promise.all(courses.data.items.map((course) => listTestPhases(course.id)));
+    const [phases, steps] = await Promise.all([
+      Promise.all(courses.data.items.map((course) => listTestPhases(course.id))),
+      Promise.all(courses.data.items.map((course) => getNextSteps(course.id)))
+    ]);
     courses.data.items.forEach((course, i) => {
       const result = phases[i];
       const open = result.ok ? result.data.find((p) => p.status === "open" && !p.done) : undefined;
       if (open) pending.set(course.id, open.phase);
+      const step = steps[i].ok ? steps[i].data.steps[0] : undefined;
+      if (!open && step) firstStep.set(course.id, step);
     });
   }
   const join = (variant: "primary" | "secondary") => (
@@ -110,6 +120,7 @@ export default async function StudentCoursesPage({
                 >
                   {courses.data.items.map((course) => {
                     const phase = pending.get(course.id);
+                    const step = firstStep.get(course.id);
                     return (
                       <li key={course.id} className="flex flex-wrap items-center gap-x-3 gap-y-2 px-3 py-3 sm:px-4" data-component="CourseRow">
                         <FavoriteStar courseId={course.id} name={course.name} initial={course.is_favorite} />
@@ -142,6 +153,7 @@ export default async function StudentCoursesPage({
                               </Link>
                             </p>
                           )}
+                          {step && <NextStepLine step={step} href={routes.studentProgress(course.id)} />}
                         </div>
                         <div className="ml-auto flex items-center gap-1">
                           <LinkButton href={routes.studentCourse(course.id)} icon="message-circle">

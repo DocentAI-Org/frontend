@@ -8,6 +8,7 @@ import { ErrorState } from "@/components/ErrorState";
 import { Icon } from "@/components/Icon";
 import { errorTypeLabel } from "@/components/LearningRecord";
 import { MathText } from "@/components/MathText";
+import { OvercomeNotice } from "@/components/OvercomeNotice";
 import type { Schemas } from "@/lib/api/client";
 import { getErrorTypes } from "@/lib/api/exercises";
 import { getCourseSubmission, getCourseSubmissionReview } from "@/lib/api/review";
@@ -111,6 +112,7 @@ export default async function SubmissionReviewPage({
         </h2>
       </div>
       {saved && <Alert tone="success">{t("teacher.flags.saved")}</Alert>}
+      <OvercomeNotice overcome={s.overcome ?? []} taxonomy={taxonomy.ok ? taxonomy.data : null} audience="teacher" />
       {repeated && (
         <RepeatedMistake
           repeated={repeated}

@@ -679,6 +679,17 @@
         "insufficientStudent": "You have {items} of the {min} exercises or questions needed to work out your level.",
         "insufficientTeacher": "They have {items} of the {min} exercises or questions needed to work out their level."
       }
+    },
+    "overcome": {
+      "title": {
+        "student": "Mistake overcome!",
+        "teacher": "Mistake overcome"
+      },
+      "student": "You have done {correct} exercises in a row right in “{topic}” since your last “{type}” mistake, which you had made {count} times.",
+      "studentNoTopic": "You have done {correct} exercises in a row right since your last “{type}” mistake, which you had made {count} times.",
+      "teacher": "They have done {correct} exercises in a row right in “{topic}” since their last “{type}” mistake, which they had made {count} times.",
+      "teacherNoTopic": "They have done {correct} exercises in a row right since their last “{type}” mistake, which they had made {count} times.",
+      "provisional": "This criterion is provisional: the education team is still reviewing it."
     }
   },
   "student": {
@@ -875,11 +886,7 @@
         "not_assessed": "Not assessed"
       },
       "mistakeLabel": "Where the mistake is:",
-      "explanationTitle": "Explanation",
-      "overcomeTitle": "Mistake overcome!",
-      "overcomeBody": "You have done {correct} exercises in a row right in “{topic}” since your last “{type}” mistake, which you had made {count} times.",
-      "overcomeBodyNoTopic": "You have done {correct} exercises in a row right since your last “{type}” mistake, which you had made {count} times.",
-      "overcomeProvisional": "This criterion is provisional: the education team is still reviewing it."
+      "explanationTitle": "Explanation"
     },
     "guided": {
       "anotherHint": "Another hint",
@@ -1107,7 +1114,8 @@
       "askTutor": "Ask the tutor",
       "exercise": "Submit an exercise",
       "practiceTopic": "Practise",
-      "practiceTopicLabel": "Practise “{topic}” with a quiz"
+      "practiceTopicLabel": "Practise “{topic}” with a quiz",
+      "lineLabel": "Your next step:"
     }
   },
   "teacher": {

@@ -4,10 +4,13 @@ import { AccessDenied, deniedReasonFor } from "@/components/AccessDenied";
 import { ErrorState } from "@/components/ErrorState";
 import { Icon } from "@/components/Icon";
 import { errorTypeLabel } from "@/components/LearningRecord";
+import { NextStepLine } from "@/components/NextSteps";
 import { getConversation, getCourseAllowance } from "@/lib/api/chat";
 import { getStudentCourse } from "@/lib/api/courses";
 import { getErrorTypes } from "@/lib/api/exercises";
+import { getNextSteps } from "@/lib/api/progress";
 import { getStudentTutorSettings } from "@/lib/api/tutor";
+import { routes } from "@/lib/routes";
 
 import { ChatScreen } from "./ChatScreen";
 
@@ -15,13 +18,16 @@ import { ChatScreen } from "./ChatScreen";
 export async function CourseChat({ courseId, conversationId }: { courseId: string; conversationId: string | null }) {
   const t = await getTranslations("student.chat");
   const locale = await getLocale();
-  const [course, settings, allowance, conversation, taxonomy] = await Promise.all([
+  const [course, settings, allowance, conversation, taxonomy, nextSteps] = await Promise.all([
     getStudentCourse(courseId),
     getStudentTutorSettings(courseId),
     getCourseAllowance(courseId),
     conversationId ? getConversation(courseId, conversationId) : Promise.resolve(null),
-    getErrorTypes()
+    getErrorTypes(),
+    getNextSteps(courseId)
   ]);
+  // Where the student starts, the first recommended step (023).
+  const step = nextSteps.ok ? nextSteps.data.steps[0] : undefined;
   // Names for the adaptation sentence (014 US1); the chat itself is a client component.
   const errorTypeNames = Object.fromEntries(
     (taxonomy.ok ? taxonomy.data.items : []).map((type) => [type.code, errorTypeLabel(taxonomy.ok ? taxonomy.data : null, type.code, locale)])
@@ -47,6 +53,7 @@ export async function CourseChat({ courseId, conversationId }: { courseId: strin
           <Icon name="graduation-cap" />
           <span>{t("teacherLine", { teacher: course.data.teacher_name })}</span>
         </p>
+        {step && <NextStepLine step={step} href={routes.studentProgress(courseId)} />}
       </div>
       <ChatScreen
         courseId={courseId}
