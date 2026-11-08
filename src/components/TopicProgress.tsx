@@ -175,8 +175,22 @@ async function TopicCard({
             <ul aria-label={t("common.progress.errorsLabel")} className="flex flex-col divide-y divide-border rounded-lg border border-border">
               {topic.top_errors.map((error) => (
                 <li key={error.error_type} className="flex flex-wrap items-center justify-between gap-2 px-4 py-2">
-                  <span className="text-fg">
-                    {errorTypeLabel(taxonomy, error.error_type, locale)} · <span className="tabular-nums">{t("common.record.times", { count: error.count })}</span>
+                  <span className="flex flex-col gap-0.5">
+                    <span className="text-fg">
+                      {errorTypeLabel(taxonomy, error.error_type, locale)} · <span className="tabular-nums">{t("common.record.times", { count: error.count })}</span>
+                    </span>
+                    {error.overcome ? (
+                      <span className="inline-flex items-center gap-1 text-sm font-semibold text-success-800" data-component="OvercomeBadge">
+                        <Icon name="check" />
+                        {t(audience === "student" ? "common.progress.overcomeStudent" : "common.progress.overcomeTeacher", { count: error.correct_since })}
+                      </span>
+                    ) : (
+                      error.correct_since > 0 && (
+                        <span className="text-sm text-fg-muted tabular-nums">
+                          {t(audience === "student" ? "common.progress.correctSinceStudent" : "common.progress.correctSinceTeacher", { count: error.correct_since })}
+                        </span>
+                      )
+                    )}
                   </span>
                   <Link
                     href={exampleHref(error.latest_submission_id)}

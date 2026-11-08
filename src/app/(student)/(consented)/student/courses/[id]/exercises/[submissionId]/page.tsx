@@ -41,9 +41,35 @@ export default async function FeedbackPage({ params }: { params: Promise<{ id: s
   const s = submission.data;
   const types = taxonomy.ok ? taxonomy.data : null;
   const repeated = s.repeated_mistake;
+  const overcome = s.overcome ?? [];
   return (
     <div className="flex flex-col gap-6">
       <PageHeader title={t("student.feedback.title")} back={{ href: "/student/courses", label: t("student.feedback.backToCourses") }} />
+      {overcome.length > 0 && (
+        <section
+          aria-labelledby="overcome-title"
+          className="flex items-start gap-4 rounded-xl border border-success-300 bg-success-50 p-6"
+          data-component="OvercomeNotice"
+        >
+          <Icon name="check" className="mt-1 size-6 shrink-0 text-success-800" />
+          <div className="flex min-w-0 flex-col gap-1">
+            <h2 id="overcome-title" className="text-lg font-semibold text-fg">
+              {t("student.feedback.overcomeTitle")}
+            </h2>
+            {overcome.map((o) => (
+              <p key={o.error_type} className="text-fg tabular-nums">
+                {t(o.topic_name ? "student.feedback.overcomeBody" : "student.feedback.overcomeBodyNoTopic", {
+                  correct: o.correct,
+                  count: o.count,
+                  type: errorTypeLabel(types, o.error_type, locale),
+                  topic: o.topic_name ?? ""
+                })}
+              </p>
+            ))}
+            <p className="text-sm text-fg-muted">{t("student.feedback.overcomeProvisional")}</p>
+          </div>
+        </section>
+      )}
       {repeated && (
         <RepeatedMistakeNotice
           courseId={id}

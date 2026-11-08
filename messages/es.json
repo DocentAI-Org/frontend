@@ -359,7 +359,11 @@
       "noData": "sin datos",
       "errorsLabel": "Errores más frecuentes en este tema",
       "lastActivity": "Última actividad: {date}",
-      "allMistakes": "Todos tus errores"
+      "allMistakes": "Todos tus errores",
+      "overcomeStudent": "Superado: {count, plural, one {# ejercicio bien} other {# ejercicios bien seguidos}} desde el último",
+      "overcomeTeacher": "Superado: {count, plural, one {# ejercicio bien} other {# ejercicios bien seguidos}} desde el último",
+      "correctSinceStudent": "Llevas {count, plural, one {# ejercicio bien} other {# ejercicios bien seguidos}} desde el último",
+      "correctSinceTeacher": "Lleva {count, plural, one {# ejercicio bien} other {# ejercicios bien seguidos}} desde el último"
     },
     "questionnaires": {
       "title": "Cuestionarios del estudio",
@@ -389,7 +393,7 @@
       },
       "repeated_mistakes": {
         "legend": "Errores repetidos",
-        "help": "Un error del mismo tipo y tema que se repite estas veces en este tiempo se avisa como error repetido, con repaso y práctica."
+        "help": "Un error del mismo tipo y tema que se repite estas veces en este tiempo se avisa como error repetido, con repaso y práctica. Se da por superado tras varios ejercicios bien seguidos en el mismo tema."
       },
       "adaptation": {
         "legend": "Adaptación de las explicaciones",
@@ -415,7 +419,8 @@
         "quizAdaptive": "Empezar según el dominio del estudiante e insistir en sus temas flojos",
         "quizLength": "Preguntas por cuestionario (1-30)",
         "quizStreak": "Aciertos o fallos seguidos que cambian el nivel (1-10)",
-        "quizStartLevel": "Dificultad inicial sin datos suficientes (1 fácil, 2 media, 3 difícil)"
+        "quizStartLevel": "Dificultad inicial sin datos suficientes (1 fácil, 2 media, 3 difícil)",
+        "overcomeAfter": "Ejercicios bien seguidos en el tema para darlo por superado (1-20)"
       },
       "quiz": {
         "legend": "Cuestionarios",
@@ -870,7 +875,11 @@
         "not_assessed": "No evaluado"
       },
       "mistakeLabel": "Dónde está el error:",
-      "explanationTitle": "Explicación"
+      "explanationTitle": "Explicación",
+      "overcomeTitle": "¡Error superado!",
+      "overcomeBody": "Llevas {correct} ejercicios bien seguidos en «{topic}» desde tu último error de tipo «{type}», que habías cometido {count} veces.",
+      "overcomeBodyNoTopic": "Llevas {correct} ejercicios bien seguidos desde tu último error de tipo «{type}», que habías cometido {count} veces.",
+      "overcomeProvisional": "Es un criterio provisional: el equipo educativo todavía lo está revisando."
     },
     "guided": {
       "anotherHint": "Otra pista",

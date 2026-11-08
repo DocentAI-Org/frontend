@@ -359,7 +359,11 @@
       "noData": "no data",
       "errorsLabel": "Most frequent mistakes in this topic",
       "lastActivity": "Last activity: {date}",
-      "allMistakes": "All your mistakes"
+      "allMistakes": "All your mistakes",
+      "overcomeStudent": "Overcome: {count, plural, one {# exercise right} other {# exercises right in a row}} since the last one",
+      "overcomeTeacher": "Overcome: {count, plural, one {# exercise right} other {# exercises right in a row}} since the last one",
+      "correctSinceStudent": "You have {count, plural, one {# exercise right} other {# exercises right in a row}} since the last one",
+      "correctSinceTeacher": "They have {count, plural, one {# exercise right} other {# exercises right in a row}} since the last one"
     },
     "questionnaires": {
       "title": "Study questionnaires",
@@ -389,7 +393,7 @@
       },
       "repeated_mistakes": {
         "legend": "Repeated mistakes",
-        "help": "A mistake of the same type and topic repeated this many times in this period is flagged as repeated, with a review and practice."
+        "help": "A mistake of the same type and topic repeated this many times in this period is flagged as repeated, with a review and practice. It counts as overcome after several exercises right in a row in the same topic."
       },
       "adaptation": {
         "legend": "Adapted explanations",
@@ -415,7 +419,8 @@
         "quizAdaptive": "Start from the student's mastery and focus on their weak topics",
         "quizLength": "Questions per quiz (1-30)",
         "quizStreak": "Right or wrong answers in a row that change the level (1-10)",
-        "quizStartLevel": "Starting difficulty without enough data (1 easy, 2 medium, 3 hard)"
+        "quizStartLevel": "Starting difficulty without enough data (1 easy, 2 medium, 3 hard)",
+        "overcomeAfter": "Exercises right in a row in the topic to count it as overcome (1-20)"
       },
       "quiz": {
         "legend": "Quizzes",
@@ -870,7 +875,11 @@
         "not_assessed": "Not assessed"
       },
       "mistakeLabel": "Where the mistake is:",
-      "explanationTitle": "Explanation"
+      "explanationTitle": "Explanation",
+      "overcomeTitle": "Mistake overcome!",
+      "overcomeBody": "You have done {correct} exercises in a row right in “{topic}” since your last “{type}” mistake, which you had made {count} times.",
+      "overcomeBodyNoTopic": "You have done {correct} exercises in a row right since your last “{type}” mistake, which you had made {count} times.",
+      "overcomeProvisional": "This criterion is provisional: the education team is still reviewing it."
     },
     "guided": {
       "anotherHint": "Another hint",
