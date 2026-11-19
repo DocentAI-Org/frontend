@@ -133,6 +133,31 @@ describe("decorateLinks", () => {
     expect(rel.searchParams.get("panel")).toBe("0");
     expect(document.getElementById("ext").getAttribute("href")).toBe("https://example.org/x");
   });
+
+  function hrefFrom(value) {
+    const root = document.createElement("div");
+    root.innerHTML = '<a href="../student/courses.html" data-href-param="home">Home</a>';
+    decorateLinks(root, `?home=${encodeURIComponent(value)}`);
+    return root.querySelector("a").getAttribute("href");
+  }
+
+  it("takes a relative destination from the URL", () => {
+    expect(hrefFrom("../teacher/courses.html")).toBe("../teacher/courses.html");
+  });
+
+  // The browser strips leading spaces and removes tabs and newlines before reading the scheme.
+  it.each([
+    "javascript:alert(1)",
+    " javascript:alert(1)",
+    "java\tscript:alert(1)",
+    "\njavascript:alert(1)",
+    "https://example.org/x",
+    "//example.org/x",
+    "/\\example.org/x",
+    "#top"
+  ])("keeps the page's own link instead of %j", (value) => {
+    expect(hrefFrom(value)).toBe("../student/courses.html");
+  });
 });
 
 describe("panel", () => {

@@ -248,8 +248,13 @@ export function bindNavigation(root = document.body) {
   });
 }
 
+// Read as the browser reads it: leading and trailing spaces and controls dropped, tabs and
+// newlines removed, so " javascript:" or "java\tscript:" cannot pass as relative.
 function isRelative(href) {
-  return href && !/^([a-z][a-z0-9+.-]*:|#|\/\/)/i.test(href);
+  if (!href) return false;
+  const normalized = href.replace(/^[\u0000- ]+|[\u0000- ]+$/g, "").replace(/[\t\n\r]/g, "");
+  if (/^([a-z][a-z0-9+.-]*:|#|[/\\]{2})/i.test(normalized)) return false;
+  return new URL(normalized, window.location.href).origin === window.location.origin;
 }
 
 export function decorateLinks(root = document.body, search = window.location.search) {
