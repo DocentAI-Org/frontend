@@ -17,7 +17,8 @@ These are the rules for changing this repository, for people and coding agents a
 ```bash
 npm install                       # also enables the git hooks
 npm run dev                       # http://localhost:3000
-npm run lint && npm run typecheck
+npm run lint && npm run typecheck   # ESLint includes SonarJS's rules
+npm run knip                      # unused files, exports and dependencies
 npm run test                      # Vitest unit and component tests
 npm run test:e2e:app              # app E2E with axe, against the typed mock backend
 npm run test:e2e:integration      # the same suite against the real local stack
@@ -26,8 +27,10 @@ npm run api:types                 # regenerate src/lib/api/schema.d.ts; api:chec
 npm run build
 ```
 
-CI runs lint, types, unit tests, the build, and the E2E suites a change can affect; all must pass
-before merge.
+CI runs lint, knip, types, unit tests, the build, and the E2E suites a change can affect; all must
+pass before merge. GitHub also runs CodeQL on every pull request, and Dependabot proposes
+dependency and action updates. A rule silenced in new code (`eslint-disable`, a knip ignore) says
+why next to it.
 
 ## Rules
 

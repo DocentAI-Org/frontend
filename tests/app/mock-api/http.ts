@@ -1,6 +1,6 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
 
-import { type State, type User, state } from "./state.ts";
+import { type State, type User } from "./state.ts";
 
 export type Ctx = {
   req: IncomingMessage;
@@ -89,10 +89,6 @@ export function requireRole(ctx: Ctx, role: User["role"]): User {
   if (!ctx.user) throw new HttpError(401, "unauthenticated");
   if (ctx.user.role !== role) throw new HttpError(403, "forbidden");
   return ctx.user;
-}
-
-export function current(): State {
-  return state.current;
 }
 
 /** Turns "/v1/teacher/courses/{course_id}" into a matcher with named params. */

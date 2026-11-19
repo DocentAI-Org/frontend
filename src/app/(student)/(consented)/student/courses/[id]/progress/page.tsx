@@ -70,6 +70,7 @@ async function StepAction({ courseId, step }: { courseId: string; step: Schemas[
  * My progress (#13, 001 US13; 009 US1): the recommended next steps (020), mastery by topic, then
  * the mistakes of the learning record (spec 005).
  */
+// eslint-disable-next-line sonarjs/cognitive-complexity -- above the limit when it was set (2026-11-19); split it when it next changes
 export default async function ProgressPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const t = await getTranslations("student.progress");

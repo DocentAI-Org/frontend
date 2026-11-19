@@ -34,7 +34,8 @@ To run against the real backend, start it as described in its README (Supabase, 
 | Command | What it does |
 |---|---|
 | `npm run dev` / `build` / `start` | Next.js development server, production build, production server |
-| `npm run lint` · `npm run typecheck` | ESLint · route types and TypeScript |
+| `npm run lint` · `npm run typecheck` | ESLint (with SonarJS rules) · route types and TypeScript |
+| `npm run knip` | Unused files, exports and dependencies |
 | `npm run test` | Unit and component tests (Vitest + Testing Library, `tests/app/unit`) |
 | `npm run test:e2e:app` | App E2E with axe (Playwright, desktop 1440 px and mobile 390 px) against the typed mock backend in `tests/app/mock-api`; starts the mock and the app itself |
 | `npm run test:e2e:integration` | The same suite against the real local stack and an app started with `npm run dev` |

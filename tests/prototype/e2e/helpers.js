@@ -32,10 +32,6 @@ export function readManifest() {
   return JSON.parse(fs.readFileSync(path.join(ROOT, "assets/pages.json"), "utf8"));
 }
 
-export function manifestEntry(pagePath) {
-  return readManifest().find((p) => p.path === pagePath);
-}
-
 /** Open a prototype page in a given state and wait until it is revealed. */
 export async function gotoState(page, pagePath, state = "default", { lang = "es", panel = 0 } = {}) {
   const params = new URLSearchParams({ lang, panel: String(panel) });

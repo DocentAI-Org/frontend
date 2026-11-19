@@ -30,6 +30,7 @@ const SORTS = ["recent", "name"] as const;
 const MENU_ROW =
   "flex min-h-9 w-full items-center gap-2 rounded-md px-3 text-sm text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus";
 
+// eslint-disable-next-line sonarjs/cognitive-complexity -- above the limit when it was set (2026-11-19); split it when it next changes
 export default async function TeacherCoursesPage({
   searchParams
 }: {

@@ -15,9 +15,6 @@ export const getTeacherCourse = (course_id: string) =>
 export const createCourse = (body: Schemas["CourseCreate"]) =>
   request((api) => api.POST("/v1/teacher/courses", { body }));
 
-export const updateCourse = (course_id: string, body: Schemas["CourseUpdate"]) =>
-  request((api) => api.PATCH("/v1/teacher/courses/{course_id}", { params: { path: { course_id } }, body }));
-
 export const regenerateClassCode = (course_id: string) =>
   request((api) =>
     api.POST("/v1/teacher/courses/{course_id}/class-code/regenerate", { params: { path: { course_id } } })

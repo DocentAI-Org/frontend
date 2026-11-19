@@ -197,6 +197,7 @@ export function bindNavigation(root = document.body) {
   boundRoots.add(root);
   root.addEventListener("submit", onRouteSubmit);
 
+  // eslint-disable-next-line sonarjs/cognitive-complexity -- above the limit when it was set (2026-11-19); split it when it next changes
   root.addEventListener("click", (event) => {
     const target = event.target instanceof Element ? event.target : null;
     if (!target) return;

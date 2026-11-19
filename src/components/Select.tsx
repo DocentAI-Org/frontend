@@ -128,6 +128,7 @@ export function Select({
     return match ? options.indexOf(match) : -1;
   }
 
+  // eslint-disable-next-line sonarjs/cognitive-complexity -- above the limit when it was set (2026-11-19); split it when it next changes
   function onKeyDown(event: KeyboardEvent<HTMLButtonElement>) {
     const last = options.length - 1;
     if (!open) {
