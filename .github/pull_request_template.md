@@ -8,19 +8,14 @@
 
 ## Type of change
 
-- [ ] Feature (spec `NNN-name`)
+- [ ] Feature (`NNN-name`)
 - [ ] Fix
 - [ ] Refactor (no behavior change)
 - [ ] Docs, CI or tooling
 
-## Spec and tasks
+## Prototype pages
 
-<!-- Feature PRs (branch NNN-name) must link their spec; CI checks it. Otherwise "n/a". -->
-
-- Spec: `specs/NNN-name/spec.md`
-- Prototype pages:
-- Tasks: T###–T###
-- Checklists: `specs/NNN-name/checklists/`
+<!-- UI changes: the pages of `public/prototype/` this implements. Otherwise "n/a". -->
 
 ## What changes
 
@@ -53,7 +48,7 @@
 
 ## Checks
 
-- [ ] Constitution Check passed in `plan.md` (before and after design)
+- [ ] Follows the rules in `AGENTS.md`
 - [ ] Tests written first and seen failing; none skipped without a reason below
 - [ ] E2E tests with axe pass for every new screen (WCAG 2.2 AA), desktop and mobile
 - [ ] Spanish and English complete; no hard-coded user-facing text

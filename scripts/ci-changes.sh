@@ -6,7 +6,7 @@
 # Any error exits non-zero, so CI fails instead of silently skipping a suite.
 set -euo pipefail
 
-docs='^(specs/|docs/|plans/|\.githooks/|\.github/pull_request_template\.md$|\.specify/|\.claude/|\.agents/|\.impeccable/|[^/]*\.md$)'
+docs='^(docs/|\.githooks/|\.github/pull_request_template\.md$|\.claude/|[^/]*\.md$)'
 prototype_only='^(public/prototype/|tests/prototype/)'
 prototype='^(public/prototype/|tests/prototype/|playwright\.config\.ts$|package(-lock)?\.json$|next\.config\.ts$|vercel\.ts$|src/proxy\.ts$|\.github/workflows/ci\.yml$)'
 

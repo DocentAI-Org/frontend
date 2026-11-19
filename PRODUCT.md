@@ -15,7 +15,7 @@ Two primary audiences of equal weight, each with its own surfaces:
 
 A third role, **admin**, is deliberately minimal: it creates teacher accounts and lists users and courses. Nothing else.
 
-**Student age range: undecided.** `knowledge-base/docs/requirements.md` §2 records pilot participants as over 18, but the target education level (secondary and/or university) is still open. The constitution therefore writes every rule for the most restrictive case, where students may be minors. Design work must respect that constraint until the age range is decided.
+**Student age range: undecided.** `knowledge-base/docs/requirements.md` §2 records pilot participants as over 18, but the target education level (secondary and/or university) is still open. `AGENTS.md` therefore writes every rule for the most restrictive case, where students may be minors. Design work must respect that constraint until the age range is decided.
 
 ## Product Purpose
 
@@ -60,7 +60,7 @@ The current Spanish copy addresses students informally ("tú") and uses inclusiv
 ## Evidence on Hand
 
 - Proposal: `docs/proposal/Project Description - DocentAI.pdf`. Requirements, budget, timeline and grant obligations are in `../knowledge-base/docs/`.
-- Feature spec, plan and validation notes are in `specs/001-mvp-prototype/`. The clickable prototype (ES/EN, every state reachable through `?state=`) is in `public/prototype/`.
+- The clickable prototype (ES/EN, every state reachable through `?state=`) is in `public/prototype/`.
 - **All prototype content is fictional** (sample secondary-school algebra course, sample names). Deployments carry `noindex` for that reason.
 - **No real** users, testimonials, pilot results, metrics, partner institutions or customer logos exist yet. Do not fabricate any.
 

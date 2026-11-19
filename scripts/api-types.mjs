@@ -1,4 +1,4 @@
-// Generates src/lib/api/schema.d.ts from the pinned backend contract (Constitution VI).
+// Generates src/lib/api/schema.d.ts from the pinned backend contract (AGENTS.md VI).
 //   node scripts/api-types.mjs          regenerate
 //   node scripts/api-types.mjs --check  fail if the committed file is stale
 // openapi-typescript runs through npx with pinned versions: it needs TypeScript 5, while the
@@ -8,7 +8,7 @@ import { mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-const CONTRACT = "specs/022-mistake-overcome/contracts/backend-openapi.json";
+const CONTRACT = "contracts/backend-openapi.json";
 const OUTPUT = "src/lib/api/schema.d.ts";
 const GENERATOR = ["-y", "-p", "openapi-typescript@7.13.0", "-p", "typescript@5.9.3"];
 

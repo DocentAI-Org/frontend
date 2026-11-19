@@ -31,7 +31,7 @@ export const test = base.extend<{ mock: { faults: (names: string[]) => Promise<v
   ]
 });
 
-/** One acceptance scenario = one test, titled with its ID (Constitution V). */
+/** One acceptance scenario = one test, titled with its ID (AGENTS.md V). */
 export function scenario(id: string, title: string, fn: Parameters<typeof test>[2]) {
   test(`${id} ${title}`, fn);
 }

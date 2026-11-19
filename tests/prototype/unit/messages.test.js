@@ -1,4 +1,4 @@
-// Constitution VIII: ES and EN complete; every key used by a page exists in both (contract §5).
+// AGENTS.md VIII: ES and EN complete; every key used by a page exists in both (contract §5).
 import { describe, expect, it } from "vitest";
 import { flattenKeys, listFiles, parseHtml, read, readJson } from "./files.js";
 

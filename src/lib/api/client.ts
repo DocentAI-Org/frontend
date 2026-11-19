@@ -19,7 +19,7 @@ export type ApiResult<T> =
 
 type FetchResult<T> = { data?: T; error?: unknown; response: Response };
 
-/** The only way the app talks to the DocentAI API (Constitution VI). */
+/** The only way the app talks to the DocentAI API (AGENTS.md VI). */
 export async function apiClient() {
   const token = await getAccessToken();
   return createClient<paths>({

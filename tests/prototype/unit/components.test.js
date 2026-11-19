@@ -1,4 +1,4 @@
-// Constitution IV: component names match the future React components (plan.md › Components).
+// AGENTS.md IV: component names match the future React components (plan.md › Components).
 import { describe, expect, it } from "vitest";
 import { listFiles, parseHtml } from "./files.js";
 

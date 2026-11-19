@@ -1,4 +1,4 @@
-// Constitution IV: no raw colors or arbitrary values outside assets/theme.css.
+// AGENTS.md IV: no raw colors or arbitrary values outside assets/theme.css.
 import { describe, expect, it } from "vitest";
 import { listFiles, parseHtml, read } from "./files.js";
 

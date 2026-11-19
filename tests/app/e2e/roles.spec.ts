@@ -1,4 +1,4 @@
-// Role separation over every app route (spec 002 SC-006, Constitution II, routes.md "Guards").
+// Role separation over every app route (spec 002 SC-006, AGENTS.md II, routes.md "Guards").
 import type { APIRequestContext, Page } from "@playwright/test";
 
 import { USERS, expect, scenario, signIn, test } from "./helpers";

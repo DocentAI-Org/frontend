@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Commit message rules from the constitution (Development Workflow).
+# Commit message rules from CONTRIBUTING.md.
 # Mirrored in the frontend and backend repositories: change both together.
 #
 #   <type>(<scope>)[!]: <description>      header of at most 72 characters

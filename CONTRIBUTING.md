@@ -1,7 +1,8 @@
 # Contributing
 
-The rules come from the constitution (`.specify/memory/constitution.md`, Development Workflow).
-Git hooks check them locally and the `PR conventions` workflow checks them on every pull request.
+The rules for the code are in `AGENTS.md`; these are the conventions for branches, commits and
+pull requests. Git hooks check them locally and the `PR conventions` workflow checks them on every
+pull request.
 The hooks in `.githooks/` are mirrored in the backend repository: change both together.
 
 ## Set up the hooks
@@ -13,7 +14,7 @@ The hooks in `.githooks/` are mirrored in the backend repository: change both to
 
 ## Branches
 
-- A Spec Kit feature: the name of its `specs/` folder, e.g. `001-mvp-prototype`.
+- A feature: its number and name, e.g. `001-mvp-prototype`.
 - Anything else: `<type>/<name>`, e.g. `ci/commit-conventions`, `fix/chat-focus`.
 
 ## Commit messages
@@ -28,16 +29,15 @@ The hooks in `.githooks/` are mirrored in the backend repository: change both to
   `revert`. The scope is required and lowercase.
 - Header of at most 72 characters, no trailing period.
 - `feat` and `fix` reference their task IDs: `feat(chat): T012 citation sheet`.
-- One commit per Spec Kit artifact: `docs(spec): …`, `docs(plan): …`, `docs(tasks): …`.
-  Amendments to the constitution: `docs(constitution): vX.Y.Z`.
+- Changes to `AGENTS.md` rules: `docs(agents): …`, with the reason in the body.
 
 ## Pull requests
 
 - One PR per feature, squash-merged. The PR title becomes the commit, so it follows the same
   format (a task ID is not required in the title).
-- Feature PRs link `specs/NNN-name/spec.md` in the description; the template lists the rest:
-  prototype pages, checklists, Vercel preview and pedagogy review.
-- The description follows the template: summary, type, spec, what changes, screenshots, how to
+- The template asks for the prototype pages a UI change implements, the Vercel preview and the
+  pedagogy review.
+- The description follows the template: summary, type, prototype pages, what changes, screenshots, how to
   verify, dependencies and merge order, risks and rollback, checks, and known gaps. CI fails if
   "Summary" or "How to verify" is empty. Write "None" or "n/a" in a section that does not apply.
 - "How to verify" is written for a reviewer who has not followed the work: setup (and whether
@@ -50,7 +50,7 @@ The hooks in `.githooks/` are mirrored in the backend repository: change both to
 `CI` runs lint, types, unit tests and the build on every pull request, and the E2E suites only
 where a change can affect them (`scripts/ci-changes.sh`):
 
-- **App E2E** (3 shards): anything but documentation (`specs/`, `docs/`, `*.md`), repository
+- **App E2E** (3 shards): anything but documentation (`docs/`, `*.md`), repository
   tooling and the prototype.
 - **Prototype E2E** (3 shards): `public/prototype/`, its tests, dependencies, Next.js and Vercel
   config, `src/proxy.ts` and the workflow itself.

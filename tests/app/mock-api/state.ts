@@ -1,5 +1,5 @@
 // In-memory state of the mock DocentAI backend. Types come from the generated contract, so a
-// contract change that breaks the app also breaks the mock (Constitution VI).
+// contract change that breaks the app also breaks the mock (AGENTS.md VI).
 import type { components } from "../../../src/lib/api/schema.d.ts";
 
 export type S = components["schemas"];
