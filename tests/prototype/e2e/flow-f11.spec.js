@@ -22,6 +22,7 @@ test.describe("F11 · Conversations and corrections", () => {
   });
 
   scenario("US-08 AS2", "flagging requires a correction, which the teacher previews as the student will see it and saves", async ({ page }, testInfo) => {
+    // Skipped on mobile only: a desktop-only page.
     test.skip(testInfo.project.name === "mobile", "conversation detail is a desktop page");
     await gotoState(page, "teacher/conversations.html");
     await page.locator("[data-conversation]").filter({ hasText: "Lucas Herrera" }).getByRole("link").first().click();
@@ -47,6 +48,7 @@ test.describe("F11 · Conversations and corrections", () => {
   });
 
   scenario("US-08 AS3", "the flags list shows type, correction and date, and links back to the message", async ({ page }, testInfo) => {
+    // Skipped on mobile only: a desktop-only page.
     test.skip(testInfo.project.name === "mobile", "flags list is a desktop page");
     await gotoState(page, "teacher/flags.html");
     const item = page.locator("[data-flag]").first();
@@ -69,6 +71,7 @@ test.describe("F11 · Conversations and corrections", () => {
   });
 
   scenario("US-08 AS6", "a correction can be edited, or removed after confirming", async ({ page }, testInfo) => {
+    // Skipped on mobile only: a desktop-only page.
     test.skip(testInfo.project.name === "mobile", "conversation detail is a desktop page");
     await gotoState(page, "teacher/conversation.html", "flagged");
     const correction = page.locator('[data-component="TeacherCorrection"][data-variant="teacher"]:visible');
@@ -88,6 +91,7 @@ test.describe("F11 · Conversations and corrections", () => {
   });
 
   scenario("US-08 AS7", "if saving fails, the correction is kept and can be retried", async ({ page }, testInfo) => {
+    // Skipped on mobile only: a desktop-only page.
     test.skip(testInfo.project.name === "mobile", "conversation detail is a desktop page");
     await gotoState(page, "teacher/conversation.html", "save-failed");
     const dialog = page.getByRole("dialog", { name: "Así lo verá tu estudiante" });

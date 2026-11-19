@@ -20,13 +20,13 @@ describe("pages.json", () => {
 
   it("has unique paths", () => {
     const paths = pages.map((p) => p.path);
-    expect(paths.length).toBe(new Set(paths).size);
+    expect(paths).toHaveLength(new Set(paths).size);
   });
 
   it.each(pages.map((p) => [p.path, p]))("%s has a valid entry", (_, page) => {
     expect(page.states[0]).toBe("default");
     expect(page.states.every((s) => KEBAB.test(s))).toBe(true);
-    expect(page.states.length).toBe(new Set(page.states).size);
+    expect(page.states).toHaveLength(new Set(page.states).size);
     expect(Array.isArray(page.screen) && page.screen.every(Number.isInteger)).toBe(true);
     expect(["all", "admin", "teacher", "student"]).toContain(page.role);
     expect(typeof page.titleKey).toBe("string");

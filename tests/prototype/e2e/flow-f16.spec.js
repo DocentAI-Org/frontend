@@ -4,6 +4,7 @@ import { expect, gotoState, scenario, test, waitForReady } from "./helpers.js";
 test.describe.configure({ mode: "serial" });
 
 test.describe("F16 · Course topics", () => {
+  // Skipped on mobile only: a desktop-only page.
   test.skip(({ isMobile }) => isMobile, "the topic pages are desktop pages");
 
   scenario("US-14 (start)", "the teacher reaches the topics from the course tabs", async ({ page }) => {

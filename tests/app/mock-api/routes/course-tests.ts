@@ -30,6 +30,7 @@ function phaseView(state: State, courseId: string, phase: Phase): S["TestPhaseVi
 
 function view(q: TestQuestion): S["TestQuestion"] {
   const { course_id: _course, ...rest } = q;
+  // eslint-disable-next-line sonarjs/void-use -- drops course_id, which the API does not return
   void _course;
   return rest;
 }

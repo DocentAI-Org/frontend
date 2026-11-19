@@ -4,8 +4,8 @@ import sonarjs from "eslint-plugin-sonarjs";
 
 const eslintConfig = [
   {
-    // Playwright output folders are generated; .review/ holds local scratch scripts.
-    ignores: [".next/**", "node_modules/**", "test-results/**", "playwright-report/**", "blob-report/**", ".review/**"]
+    // Playwright output folders are generated.
+    ignores: [".next/**", "node_modules/**", "test-results/**", "playwright-report/**", "blob-report/**"]
   },
   ...nextVitals,
   ...nextTypescript,
@@ -29,20 +29,15 @@ const eslintConfig = [
     rules: { "sonarjs/class-name": "off" }
   },
   {
-    // Test code: Playwright specs register tests through helpers, skips are conditional on the
-    // viewport with a reason, and the mock backend runs on localhost with throwaway ids.
+    // Test code: Playwright specs register tests through helpers, mock handlers mirror the backend's
+    // branching, and the mock backend runs on localhost with throwaway ids and patterns.
     files: ["tests/**"],
     rules: {
       "sonarjs/cognitive-complexity": "off",
-      "sonarjs/concise-regex": "off",
       "sonarjs/no-clear-text-protocols": "off",
       "sonarjs/no-empty-test-file": "off",
-      "sonarjs/no-invariant-returns": "off",
-      "sonarjs/no-skipped-tests": "off",
-      "sonarjs/prefer-specific-assertions": "off",
       "sonarjs/pseudo-random": "off",
-      "sonarjs/super-linear-regex": "off",
-      "sonarjs/void-use": "off"
+      "sonarjs/super-linear-regex": "off"
     }
   }
 ];

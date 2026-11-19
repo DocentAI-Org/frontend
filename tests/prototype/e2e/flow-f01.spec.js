@@ -44,6 +44,7 @@ test.describe("F1 · Upload and validate the course material", () => {
   });
 
   scenario("US-02 AS4", "the fragment review lists ordered fragments with locations and a search", async ({ page }, testInfo) => {
+    // Skipped on mobile only: a desktop-only page.
     test.skip(testInfo.project.name === "mobile", "fragment review is a desktop page");
     await gotoState(page, "teacher/material.html");
     await page.getByRole("link", { name: /Revisar fragmentos.*Tema 3/ }).click();
@@ -76,6 +77,7 @@ test.describe("F1 · Upload and validate the course material", () => {
   });
 
   scenario("US-02 AS6", "excluding a fragment marks it, offers to include it again and counts it", async ({ page }, testInfo) => {
+    // Skipped on mobile only: a desktop-only page.
     test.skip(testInfo.project.name === "mobile", "fragment review is a desktop page");
     await gotoState(page, "teacher/fragments.html");
     const first = page.locator('[data-component="FragmentItem"]:visible').first();

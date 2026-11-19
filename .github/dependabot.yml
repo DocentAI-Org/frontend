@@ -4,10 +4,18 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    # Conventional titles, as the PR conventions check requires.
+    commit-message:
+      prefix: build
+      include: scope
     groups:
+      # Minor and patch updates together; a major update gets its own pull request.
       npm:
-        patterns: ["*"]
+        update-types: ["minor", "patch"]
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: monthly
+    commit-message:
+      prefix: ci
+      include: scope
