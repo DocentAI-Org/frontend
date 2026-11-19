@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { toAuthEmail } from "@/lib/auth/identifier";
+import { isEmail, toAuthEmail } from "@/lib/auth/identifier";
 
 const DOMAIN = "students.docentai.invalid";
 
@@ -16,5 +16,25 @@ describe("toAuthEmail", () => {
 
   it("returns null for an empty identifier", () => {
     expect(toAuthEmail("   ", DOMAIN)).toBeNull();
+  });
+});
+
+describe("isEmail", () => {
+  it.each(["ana@example.org", "a.b+c@mail.example.org"])("accepts %s", (value) => {
+    expect(isEmail(value)).toBe(true);
+  });
+
+  it.each(["", "ana", "ana@example", "ana@example.", "ana@.org", "a b@example.org", "@example.org", "ana@example..org"])(
+    "rejects %j",
+    (value) => {
+      expect(isEmail(value)).toBe(false);
+    }
+  );
+
+  // A server action accepts up to 1 MB; the check must stay linear in the input.
+  it("answers quickly for a long input that is not an email", () => {
+    const start = performance.now();
+    expect(isEmail(`a@${".".repeat(200_000)}@`)).toBe(false);
+    expect(performance.now() - start).toBeLessThan(200);
   });
 });

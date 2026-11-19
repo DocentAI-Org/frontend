@@ -1,4 +1,5 @@
 import { HttpError, RawBody, type Route, byName, page, requireRole, search, sortParam } from "../http.ts";
+import { isEmail } from "../../../../src/lib/auth/identifier.ts";
 import { type S, type User, id, now } from "../state.ts";
 
 const ALPHABET = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
@@ -119,7 +120,7 @@ export const adminRoutes: Route[] = [
       requireRole(ctx, "admin");
       const body = ctx.body as S["TeacherCreate"];
       const email = String(body.email ?? "").toLowerCase();
-      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || !body.display_name?.trim()) {
+      if (!isEmail(email) || !body.display_name?.trim()) {
         throw new HttpError(422, "validation_error", { fields: [{ loc: ["body", "email"] }] });
       }
       if (ctx.state.users.some((u) => u.email === email)) throw new HttpError(409, "email_taken");
