@@ -29,6 +29,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 /** Quiz questions drafted by the AI, reviewed by the teacher (#30 questions.html, 001 US10; 008 US1). */
+// eslint-disable-next-line sonarjs/cognitive-complexity -- above the limit when it was set (2026-11-19); split it when it next changes
 export default async function QuestionsPage({
   params,
   searchParams

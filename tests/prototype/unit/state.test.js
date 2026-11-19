@@ -103,7 +103,7 @@ describe("bindNavigation", () => {
     const before = window.history.length;
     document.getElementById("go").click();
     expect(new URL(window.location.href).searchParams.get("state")).toBe("failed");
-    expect(window.history.length).toBe(before + 1);
+    expect(window.history).toHaveLength(before + 1);
     expect(document.getElementById("answer").hidden).toBe(false);
   });
 
@@ -157,6 +157,12 @@ describe("decorateLinks", () => {
     "#top"
   ])("keeps the page's own link instead of %j", (value) => {
     expect(hrefFrom(value)).toBe("../student/courses.html");
+  });
+
+  it("answers quickly for a long run of spaces inside the value", () => {
+    const start = performance.now();
+    expect(hrefFrom(`x${" ".repeat(50_000)}x`)).toBeTruthy();
+    expect(performance.now() - start).toBeLessThan(200);
   });
 });
 

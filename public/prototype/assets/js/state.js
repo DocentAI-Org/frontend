@@ -197,6 +197,7 @@ export function bindNavigation(root = document.body) {
   boundRoots.add(root);
   root.addEventListener("submit", onRouteSubmit);
 
+  // eslint-disable-next-line sonarjs/cognitive-complexity -- above the limit when it was set (2026-11-19); split it when it next changes
   root.addEventListener("click", (event) => {
     const target = event.target instanceof Element ? event.target : null;
     if (!target) return;
@@ -248,11 +249,12 @@ export function bindNavigation(root = document.body) {
   });
 }
 
-// Read as the browser reads it: leading and trailing spaces and controls dropped, tabs and
-// newlines removed, so " javascript:" or "java\tscript:" cannot pass as relative.
+// Read the start as the browser reads it: leading spaces and controls dropped, tabs and newlines
+// removed, so " javascript:" or "java\tscript:" cannot pass as relative. Only the start decides
+// the scheme, and stripping just the start keeps this linear.
 function isRelative(href) {
   if (!href) return false;
-  const normalized = href.replace(/^[\u0000- ]+|[\u0000- ]+$/g, "").replace(/[\t\n\r]/g, "");
+  const normalized = href.replace(/^[\u0000- ]+/, "").replace(/[\t\n\r]/g, "");
   if (/^([a-z][a-z0-9+.-]*:|#|[/\\]{2})/i.test(normalized)) return false;
   return new URL(normalized, window.location.href).origin === window.location.origin;
 }

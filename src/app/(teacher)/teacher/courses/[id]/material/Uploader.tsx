@@ -12,6 +12,8 @@ import { deleteSilently } from "./actions";
 
 const ACCEPTED = /\.(pdf|docx|md|markdown)$/i;
 const MAX_BYTES = 20 * 1024 * 1024;
+// Keys for the rows of this page's uploads; only unique within the page.
+let uploads = 0;
 
 type Item = { key: string; name: string; percent: number; error?: string };
 type Existing = { id: string; name: string };
@@ -54,7 +56,8 @@ export function Uploader({ courseId, uploadUrl, existing }: { courseId: string; 
     setItems((current) => current.map((item) => (item.key === key ? { ...item, ...patch } : item)));
 
   async function upload(file: File, replacing?: Existing) {
-    const key = `${file.name}-${Date.now()}-${Math.random()}`;
+    uploads += 1;
+    const key = `upload-${uploads}`;
     setItems((current) => [...current, { key, name: file.name, percent: 0 }]);
     if (!ACCEPTED.test(file.name)) return update(key, { error: t("error.format") });
     if (file.size > MAX_BYTES) return update(key, { error: t("error.size") });

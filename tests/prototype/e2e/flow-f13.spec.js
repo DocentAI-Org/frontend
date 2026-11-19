@@ -7,6 +7,7 @@ const card = (page, text) => page.locator('[data-component="QuizQuestion"]:visib
 const tab = (page, name) => page.getByRole("navigation", { name: "Estado de las preguntas" }).getByRole("link", { name: new RegExp(name) });
 
 test.describe("F13 · Question review", () => {
+  // Skipped on mobile only: a desktop-only page.
   test.skip(({ isMobile }) => isMobile, "question review is a desktop page");
 
   scenario("US-10 AS1", "each pending question shows text, options, answer, difficulty, topic and source", async ({ page }) => {

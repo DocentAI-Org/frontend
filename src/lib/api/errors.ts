@@ -47,8 +47,6 @@ export const API_ERROR_CODES = [
   "api_unreachable"
 ] as const;
 
-export type ApiErrorCode = (typeof API_ERROR_CODES)[number];
-
 const KNOWN = new Set<string>(API_ERROR_CODES);
 
 export function errorMessageKey(code: string | undefined): string {

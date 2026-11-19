@@ -132,7 +132,7 @@ test.describe("008 US1 question review", () => {
     await expect(page.getByRole("status").filter({ hasText: /tus estudiantes ya pueden verla/i })).toBeVisible();
     await statusTabs(page).getByRole("link", { name: /aprobadas 1/i }).click();
     const edited = card(page, "¿Cuánto es 2(x - 3) sin paréntesis?");
-    await expect(edited.getByRole("listitem").filter({ hasText: /(?<![0-9])2x - 6(?![0-9])/ })).toContainText(/respuesta correcta/i);
+    await expect(edited.getByRole("listitem").filter({ hasText: /(?<!\d)2x - 6(?!\d)/ })).toContainText(/respuesta correcta/i);
     await expect(edited.getByText(/editada/i)).toBeVisible();
   });
 

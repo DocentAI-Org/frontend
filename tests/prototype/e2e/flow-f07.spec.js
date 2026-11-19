@@ -4,6 +4,7 @@ import { expect, gotoState, scenario, test } from "./helpers.js";
 test.describe.configure({ mode: "serial" });
 
 test.describe("F7 · Configure the tutor", () => {
+  // Skipped on mobile only: a desktop-only page.
   test.skip(({ isMobile }) => isMobile, "tutor settings is a desktop page");
 
   scenario("US-03 AS1", "sensible defaults are pre-selected and each option is explained", async ({ page }) => {
