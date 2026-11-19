@@ -3,18 +3,16 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
 import { LinkButton } from "@/components/Button";
-import { CourseScope } from "@/components/CourseScope";
+import { COURSE_SORTS, CourseList } from "@/components/CourseList";
 import { CourseTagsDialog } from "@/components/CourseTagsDialog";
 import { EmptyState } from "@/components/EmptyState";
 import { FavoriteStar } from "@/components/FavoriteStar";
-import { ListFooter } from "@/components/ListFooter";
-import { ListToolbar } from "@/components/ListToolbar";
 import { ErrorState } from "@/components/ErrorState";
 import { Icon } from "@/components/Icon";
 import { MessageAllowance } from "@/components/MessageAllowance";
 import { NextStepLine } from "@/components/NextSteps";
-import { NoMatches } from "@/components/NoMatches";
 import { PageHeader } from "@/components/PageHeader";
+import { RowMenu } from "@/components/RowMenu";
 import { StudyQuestionnaires } from "@/components/StudyQuestionnaires";
 import { TagChips } from "@/components/TagChips";
 import { getAllowance } from "@/lib/api/chat";
@@ -35,24 +33,20 @@ export async function generateMetadata(): Promise<Metadata> {
 const ACTION =
   "flex min-h-9 items-center gap-2 rounded-md px-3 text-sm text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus";
 
-const SORTS = ["recent", "name"] as const;
-
 type Step = Schemas["NextSteps"]["steps"][number];
 
-// eslint-disable-next-line sonarjs/cognitive-complexity -- above the limit when it was set (2026-11-19); split it when it next changes
 export default async function StudentCoursesPage({
   searchParams
 }: {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const params = await searchParams;
-  const list = listState(params, SORTS);
+  const list = listState(params, COURSE_SORTS);
   const t = await getTranslations("student.courses");
-  const tl = await getTranslations("common.list");
   const favoritesOnly = params.only === "favorites";
   const tagId = typeof params.tag === "string" ? params.tag : undefined;
   const [courses, all, favorites, tags, allowance, questionnaires] = await Promise.all([
-    listStudentCourses({ ...apiQuery(list, SORTS), favorite: favoritesOnly || undefined, tag: tagId }, list.shown),
+    listStudentCourses({ ...apiQuery(list, COURSE_SORTS), favorite: favoritesOnly || undefined, tag: tagId }, list.shown),
     // The side filter's counts, whatever the search (spec 016).
     listStudentCourses({}, 1),
     listStudentCourses({ favorite: true }, 1),
@@ -79,40 +73,27 @@ export default async function StudentCoursesPage({
       ) : (
         <>
           {allowance.ok && <MessageAllowance allowance={allowance.data} />}
-          <div className="grid gap-6 lg:grid-cols-[12rem_minmax(0,1fr)] lg:items-start">
-            <CourseScope
-              path="/student/courses"
-              params={params}
-              current={{ favorites: favoritesOnly, tag: tagId }}
-              counts={{ all: allCount, favorites: favorites.ok ? favorites.data.total : 0 }}
-              tags={myTags}
-            />
-            <div className="flex min-w-0 flex-col gap-4">
-              <ListToolbar
-                searchLabel={t("search")}
-                sorts={SORTS.map((value) => ({ value, label: tl(`sorts.${value}`) }))}
-              />
-              {courses.data.items.length === 0 ? (
-                favoritesOnly && !list.q ? (
-                  <EmptyState icon="star" title={tl("noFavorites")} body={tl("noFavoritesBody")} />
-                ) : (
-                  <NoMatches q={list.q} />
-                )
-              ) : (
-                <ul
-                  aria-label={t("title")}
-                  className="flex flex-col divide-y divide-border rounded-xl border border-border bg-surface-raised"
-                >
-                  {courses.data.items.map((course) => (
-                    <CourseRow key={course.id} course={course} tags={myTags} phase={pending.get(course.id)} step={firstStep.get(course.id)} />
-                  ))}
-                </ul>
-              )}
-              {courses.data.items.length > 0 && (
-                <ListFooter path="/student/courses" params={params} shown={list.shown} total={courses.data.total} />
-              )}
-            </div>
-          </div>
+          <CourseList
+            path="/student/courses"
+            params={params}
+            current={{ favorites: favoritesOnly, tag: tagId }}
+            counts={{ all: allCount, favorites: favorites.ok ? favorites.data.total : 0 }}
+            tags={myTags}
+            searchLabel={t("search")}
+            q={list.q}
+            shown={list.shown}
+            total={courses.data.total}
+            empty={courses.data.items.length === 0}
+          >
+            <ul
+              aria-label={t("title")}
+              className="flex flex-col divide-y divide-border rounded-xl border border-border bg-surface-raised"
+            >
+              {courses.data.items.map((course) => (
+                <CourseRow key={course.id} course={course} tags={myTags} phase={pending.get(course.id)} step={firstStep.get(course.id)} />
+              ))}
+            </ul>
+          </CourseList>
         </>
       )}
     </div>
@@ -192,36 +173,27 @@ async function CourseRow({
         <LinkButton href={routes.studentCourse(course.id)} icon="message-circle">
           {t("openChat")}
         </LinkButton>
-        <details className="relative">
-          <summary
-            aria-label={t("moreActions", { name: course.name })}
-            title={t("moreActions", { name: course.name })}
-            className="flex size-9 cursor-pointer list-none items-center justify-center rounded-md text-fg-muted hover:bg-surface-sunken hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
-          >
-            <Icon name="ellipsis" className="size-5 shrink-0" />
-          </summary>
-          <div className="absolute right-0 z-20 mt-1 flex w-60 flex-col gap-1 rounded-lg border border-border bg-surface-raised p-2 shadow-lg">
-            <CourseTagsDialog
-              courseId={course.id}
-              courseName={course.name}
-              tags={tags}
-              selected={(course.tags ?? []).map((tag) => tag.id)}
-              triggerClassName={ACTION}
-            />
-            <Link href={routes.studentExercise(course.id)} className={ACTION}>
-              <Icon name="file-text" />
-              <span>{t("exercise")}</span>
-            </Link>
-            <Link href={routes.studentQuizStart(course.id)} className={ACTION}>
-              <Icon name="lightbulb" />
-              <span>{t("quiz")}</span>
-            </Link>
-            <Link href={routes.studentProgress(course.id)} className={ACTION}>
-              <Icon name="chart-column" />
-              <span>{t("progress")}</span>
-            </Link>
-          </div>
-        </details>
+        <RowMenu label={t("moreActions", { name: course.name })} className="w-60">
+          <CourseTagsDialog
+            courseId={course.id}
+            courseName={course.name}
+            tags={tags}
+            selected={(course.tags ?? []).map((tag) => tag.id)}
+            triggerClassName={ACTION}
+          />
+          <Link href={routes.studentExercise(course.id)} className={ACTION}>
+            <Icon name="file-text" />
+            <span>{t("exercise")}</span>
+          </Link>
+          <Link href={routes.studentQuizStart(course.id)} className={ACTION}>
+            <Icon name="lightbulb" />
+            <span>{t("quiz")}</span>
+          </Link>
+          <Link href={routes.studentProgress(course.id)} className={ACTION}>
+            <Icon name="chart-column" />
+            <span>{t("progress")}</span>
+          </Link>
+        </RowMenu>
       </div>
     </li>
   );
