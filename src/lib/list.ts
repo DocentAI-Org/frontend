@@ -48,3 +48,10 @@ export function toSearch(params: Params): URLSearchParams {
   }
   return result;
 }
+
+/** The course lists' side filter (spec 016): all courses, `?only=favorites` or `?tag=<id>`. */
+export type CourseScope = { favorites: boolean; tag?: string };
+
+export function courseScope(params: Params): CourseScope {
+  return { favorites: params.only === "favorites", tag: typeof params.tag === "string" ? params.tag : undefined };
+}
