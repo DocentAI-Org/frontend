@@ -2,16 +2,15 @@ import type { Metadata } from "next";
 import { getFormatter, getTranslations } from "next-intl/server";
 
 import { Alert } from "@/components/Alert";
-import { Button, LinkButton } from "@/components/Button";
+import { Button } from "@/components/Button";
 import { ConfirmDialog } from "@/components/ConfirmDialog";
-import { EmptyState } from "@/components/EmptyState";
+import { DoneAlert } from "@/components/DoneAlert";
 import { ErrorState } from "@/components/ErrorState";
+import { NoTopics } from "@/components/NoTopics";
 import type { Schemas } from "@/lib/api/client";
 import { type TestPhase, getCourseTest, getTestResults } from "@/lib/api/course-tests";
-import { errorMessageKey } from "@/lib/api/errors";
 import { listQuestions } from "@/lib/api/quizzes";
 import { listTopics } from "@/lib/api/topics";
-import { routes } from "@/lib/routes";
 
 import { CopyQuestion } from "./CopyQuestion";
 import { TestQuestionForm } from "./TestQuestionForm";
@@ -23,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return { title: t("pageTitle") };
 }
 
-const DONE = { added: "added", saved: "saved", deleted: "deleted" } as const;
+const DONE = { added: "teacher.test.added", saved: "teacher.test.saved", deleted: "teacher.test.deleted" };
 const TH = "pb-2 pr-4 text-left text-sm font-semibold text-fg-muted";
 const TD = "py-2 pr-4 text-fg tabular-nums";
 
@@ -44,20 +43,10 @@ export default async function TestPage({ params, searchParams }: { params: Promi
         <h2 className="text-2xl font-semibold text-fg">{t("teacher.test.title")}</h2>
         <p className="max-w-3xl text-fg-muted">{t("teacher.test.lead")}</p>
       </div>
-      {done in DONE && <Alert tone="success">{t(`teacher.test.${DONE[done as keyof typeof DONE]}`)}</Alert>}
-      {done.startsWith("error:") && <Alert tone="danger">{t(errorMessageKey(done.slice("error:".length)))}</Alert>}
+      <DoneAlert done={done} messages={DONE} />
 
       {topicList.length === 0 ? (
-        <EmptyState
-          icon="book-open"
-          title={t("teacher.questions.noTopicsTitle")}
-          body={t("teacher.questions.noTopicsBody")}
-          action={
-            <LinkButton href={routes.teacherTopics(id)} icon="chevron-right">
-              {t("teacher.questions.goTopics")}
-            </LinkButton>
-          }
-        />
+        <NoTopics courseId={id} />
       ) : (
         <>
           <div className="grid gap-4 md:grid-cols-2">

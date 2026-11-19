@@ -5,11 +5,12 @@ import { useId, useState, useTransition } from "react";
 
 import { Alert } from "@/components/Alert";
 import { Button } from "@/components/Button";
+import { QuestionOptionsFields } from "@/components/QuestionOptionsFields";
 import { Select } from "@/components/Select";
 import { TextArea } from "@/components/TextArea";
-import { TextField } from "@/components/TextField";
 import type { Schemas } from "@/lib/api/client";
 import { errorMessageKey } from "@/lib/api/errors";
+import { optionsProblem } from "@/lib/quiz/options";
 
 import { addQuestionAction, editQuestionAction } from "./actions";
 
@@ -46,8 +47,8 @@ export function TestQuestionForm({
     const options = OPTIONS.map((i) => String(form.get(`option${i}`) ?? "").trim());
     const found: Errors = {};
     if (!statement) found.statement = tq("required");
-    if (options.some((o) => !o)) found.options = tq("optionsRequired");
-    else if (new Set(options.map((o) => o.toLocaleLowerCase())).size !== options.length) found.options = tq("optionsDistinct");
+    const problem = optionsProblem(options);
+    if (problem) found.options = tq(problem);
     setErrors(found);
     if (Object.keys(found).length > 0) return;
     const body = {
@@ -85,43 +86,12 @@ export function TestQuestionForm({
         />
       </div>
       <TextArea name="statement" label={tq("statement")} defaultValue={question?.statement ?? ""} rows={2} error={errors.statement} />
-      <fieldset className="flex flex-col gap-2" aria-describedby={errors.options ? `${ids}-options-error` : undefined}>
-        <legend className="mb-2 text-sm font-semibold text-fg">{tq("optionsLabel")}</legend>
-        {OPTIONS.map((i) => (
-          <TextField
-            key={i}
-            name={`option${i}`}
-            label={tq("option", { n: i + 1 })}
-            defaultValue={question?.options[i] ?? ""}
-            aria-invalid={errors.options ? true : undefined}
-          />
-        ))}
-        {errors.options && (
-          <p id={`${ids}-options-error`} className="text-sm text-danger-700">
-            {errors.options}
-          </p>
-        )}
-      </fieldset>
-      <fieldset className="flex flex-col gap-2">
-        <legend className="mb-2 text-sm font-semibold text-fg">{tq("correct")}</legend>
-        <div className="flex flex-wrap gap-2">
-          {OPTIONS.map((i) => (
-            <label
-              key={i}
-              className="inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-lg border border-border-strong px-4 has-checked:border-neutral-900 has-checked:bg-surface-sunken"
-            >
-              <input
-                type="radio"
-                name="correct"
-                value={i}
-                defaultChecked={(question?.correct_option ?? 0) === i}
-                className="size-6 accent-primary-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
-              />
-              <span className="text-fg">{tq("correctOption", { n: i + 1 })}</span>
-            </label>
-          ))}
-        </div>
-      </fieldset>
+      <QuestionOptionsFields
+        count={OPTIONS.length}
+        error={errors.options}
+        field={(i) => ({ name: `option${i}`, defaultValue: question?.options[i] ?? "" })}
+        radio={(i) => ({ name: "correct", value: i, defaultChecked: (question?.correct_option ?? 0) === i })}
+      />
       {errors.form && <Alert tone="danger">{errors.form}</Alert>}
       <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
         {onCancel && (
