@@ -64,6 +64,7 @@ export default async function TeacherCoursesPage({
         <CourseList
           path="/teacher/courses"
           params={params}
+          scope={scope}
           counts={{ all: allCount, favorites: favorites.ok ? favorites.data.total : 0 }}
           tags={myTags}
           searchLabel={t("search")}
