@@ -9,11 +9,12 @@ import { CitationNotes } from "@/components/CitationNotes";
 import { Icon } from "@/components/Icon";
 import { Select } from "@/components/Select";
 import { TextArea } from "@/components/TextArea";
-import { TextField } from "@/components/TextField";
 import { MathText } from "@/components/MathText";
+import { QuestionOptionsFields } from "@/components/QuestionOptionsFields";
 import type { Schemas } from "@/lib/api/client";
 import { errorMessageKey } from "@/lib/api/errors";
 import { levelKey } from "@/lib/quiz/levels";
+import { optionsProblem } from "@/lib/quiz/options";
 
 import { editQuestionAction, reviewQuestionAction } from "./actions";
 
@@ -154,8 +155,8 @@ function QuestionEditor({
     const cleaned = options.map((o) => o.trim());
     if (!statement.trim()) found.statement = t("required");
     if (!explanation.trim()) found.explanation = t("required");
-    if (cleaned.some((o) => !o)) found.options = t("optionsRequired");
-    else if (new Set(cleaned.map((o) => o.toLocaleLowerCase())).size !== cleaned.length) found.options = t("optionsDistinct");
+    const problem = optionsProblem(cleaned);
+    if (problem) found.options = t(problem);
     return found;
   };
 
@@ -191,40 +192,12 @@ function QuestionEditor({
         {t("editTitle")}
       </h3>
       <TextArea label={t("statement")} value={statement} onChange={(e) => setStatement(e.target.value)} rows={2} error={errors.statement} />
-      <fieldset className="flex flex-col gap-2" aria-describedby={errors.options ? `${ids}-options-error` : undefined}>
-        <legend className="mb-2 text-sm font-semibold text-fg">{t("optionsLabel")}</legend>
-        {options.map((option, i) => (
-          <TextField
-            key={i}
-            label={t("option", { n: i + 1 })}
-            value={option}
-            onChange={(e) => setOptions((all) => all.map((o, j) => (j === i ? e.target.value : o)))}
-            aria-invalid={errors.options ? true : undefined}
-          />
-        ))}
-        {errors.options && (
-          <p id={`${ids}-options-error`} className="text-sm text-danger-700">
-            {errors.options}
-          </p>
-        )}
-      </fieldset>
-      <fieldset className="flex flex-col gap-2">
-        <legend className="mb-2 text-sm font-semibold text-fg">{t("correct")}</legend>
-        <div className="flex flex-wrap gap-2">
-          {options.map((_, i) => (
-            <label key={i} className="inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-lg border border-border-strong px-4 has-checked:border-neutral-900 has-checked:bg-surface-sunken">
-              <input
-                type="radio"
-                name={`${ids}-correct`}
-                checked={correct === i}
-                onChange={() => setCorrect(i)}
-                className="size-6 accent-primary-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
-              />
-              <span className="text-fg">{t("correctOption", { n: i + 1 })}</span>
-            </label>
-          ))}
-        </div>
-      </fieldset>
+      <QuestionOptionsFields
+        count={options.length}
+        error={errors.options}
+        field={(i) => ({ value: options[i], onChange: (e) => setOptions((all) => all.map((o, j) => (j === i ? e.target.value : o))) })}
+        radio={(i) => ({ name: `${ids}-correct`, checked: correct === i, onChange: () => setCorrect(i) })}
+      />
       <TextArea label={t("explanation")} value={explanation} onChange={(e) => setExplanation(e.target.value)} rows={2} error={errors.explanation} />
       <div className="flex flex-col gap-2 sm:w-48">
         <span id={`${ids}-difficulty`} className="text-sm font-semibold text-fg">
