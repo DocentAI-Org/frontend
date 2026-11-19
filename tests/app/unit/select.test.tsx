@@ -149,6 +149,41 @@ describe("Select", () => {
       expect(submitted()).toBe("s1");
     });
 
+    it("closed, type-ahead starts after the chosen option", () => {
+      render(
+        <Select
+          aria-label="Persona"
+          value="b"
+          options={[
+            { value: "b", label: "Bruno" },
+            { value: "e", label: "Beatriz" }
+          ]}
+        />
+      );
+      const combobox = screen.getByRole("combobox", { name: "Persona" });
+
+      press(combobox, "b");
+      expect(active(combobox)).toBe("Beatriz");
+    });
+
+    it("closed, Alt+ArrowDown opens the list on the chosen option", () => {
+      const combobox = renderInForm();
+
+      expect(press(combobox, "ArrowDown", { altKey: true })).toBe(false);
+      expect(expanded(combobox)).toBe("true");
+      expect(active(combobox)).toBe("Lucas Herrera");
+    });
+
+    it("open, Shift+Tab chooses the active option and lets the focus move back", () => {
+      const combobox = renderInForm();
+
+      press(combobox, "ArrowDown");
+      press(combobox, "ArrowDown");
+      expect(press(combobox, "Tab", { shiftKey: true })).toBe(true);
+      expect(expanded(combobox)).toBe("false");
+      expect(submitted()).toBe("s2");
+    });
+
     it("open, the arrows, Home, End, PageUp and PageDown move within the list without choosing", () => {
       const combobox = renderInForm();
       press(combobox, "ArrowDown");
