@@ -2,15 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
-import { Alert } from "@/components/Alert";
 import { Icon } from "@/components/Icon";
-import { LinkButton } from "@/components/Button";
+import { DoneAlert } from "@/components/DoneAlert";
 import { EmptyState } from "@/components/EmptyState";
 import { ListFooter } from "@/components/ListFooter";
 import { ListToolbar } from "@/components/ListToolbar";
 import { NoMatches } from "@/components/NoMatches";
+import { NoTopics } from "@/components/NoTopics";
 import { ErrorState } from "@/components/ErrorState";
-import { errorMessageKey } from "@/lib/api/errors";
 import { type QuestionStatus, listQuestions } from "@/lib/api/quizzes";
 import { listTopics } from "@/lib/api/topics";
 import { apiQuery, listState } from "@/lib/list";
@@ -21,7 +20,11 @@ import { RequestQuestions } from "./RequestQuestions";
 import { TopicFilter } from "./TopicFilter";
 
 const STATUSES: QuestionStatus[] = ["pending", "approved", "rejected"];
-const DONE = { approved: "approvedToast", rejected: "rejectedToast", saved: "savedToast" } as const;
+const DONE = {
+  approved: "teacher.questions.approvedToast",
+  rejected: "teacher.questions.rejectedToast",
+  saved: "teacher.questions.savedToast"
+};
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("teacher.questions");
@@ -67,20 +70,10 @@ export default async function QuestionsPage({
         <p className="max-w-3xl text-fg-muted">{t("teacher.questions.lead")}</p>
       </div>
 
-      {done in DONE && <Alert tone="success">{t(`teacher.questions.${DONE[done as keyof typeof DONE]}`)}</Alert>}
-      {done.startsWith("error:") && <Alert tone="danger">{t(errorMessageKey(done.slice("error:".length)))}</Alert>}
+      <DoneAlert done={done} messages={DONE} />
 
       {topicList.length === 0 ? (
-        <EmptyState
-          icon="book-open"
-          title={t("teacher.questions.noTopicsTitle")}
-          body={t("teacher.questions.noTopicsBody")}
-          action={
-            <LinkButton href={routes.teacherTopics(id)} icon="chevron-right">
-              {t("teacher.questions.goTopics")}
-            </LinkButton>
-          }
-        />
+        <NoTopics courseId={id} />
       ) : (
         <>
           <RequestQuestions courseId={id} topics={topicList} />
