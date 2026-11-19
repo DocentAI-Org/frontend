@@ -17,7 +17,7 @@ import type { Schemas } from "@/lib/api/client";
 import { listTeacherCourses } from "@/lib/api/courses";
 import { listCourseTags, listMyQuestionnaires } from "@/lib/api/me";
 import { env } from "@/lib/env";
-import { apiQuery, listState } from "@/lib/list";
+import { apiQuery, courseScope, listState } from "@/lib/list";
 import { routes } from "@/lib/routes";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -36,10 +36,9 @@ export default async function TeacherCoursesPage({
   const params = await searchParams;
   const list = listState(params, COURSE_SORTS);
   const t = await getTranslations("teacher.courses");
-  const favoritesOnly = params.only === "favorites";
-  const tagId = typeof params.tag === "string" ? params.tag : undefined;
+  const scope = courseScope(params);
   const [courses, all, favorites, tags, questionnaires] = await Promise.all([
-    listTeacherCourses({ ...apiQuery(list, COURSE_SORTS), favorite: favoritesOnly || undefined, tag: tagId }, list.shown),
+    listTeacherCourses({ ...apiQuery(list, COURSE_SORTS), favorite: scope.favorites || undefined, tag: scope.tag }, list.shown),
     // The side filter's counts, whatever the search (spec 016).
     listTeacherCourses({}, 1),
     listTeacherCourses({ favorite: true }, 1),
@@ -65,12 +64,10 @@ export default async function TeacherCoursesPage({
         <CourseList
           path="/teacher/courses"
           params={params}
-          current={{ favorites: favoritesOnly, tag: tagId }}
           counts={{ all: allCount, favorites: favorites.ok ? favorites.data.total : 0 }}
           tags={myTags}
           searchLabel={t("search")}
-          q={list.q}
-          shown={list.shown}
+          list={list}
           total={courses.data.total}
           empty={courses.data.items.length === 0}
         >

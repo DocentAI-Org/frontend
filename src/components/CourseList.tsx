@@ -1,6 +1,8 @@
 import type { ComponentProps, ReactNode } from "react";
 import { getTranslations } from "next-intl/server";
 
+import { type ListState, courseScope } from "@/lib/list";
+
 import { CourseScope } from "./CourseScope";
 import { EmptyState } from "./EmptyState";
 import { ListFooter } from "./ListFooter";
@@ -18,44 +20,41 @@ export const COURSE_SORTS = ["recent", "name"] as const;
 export async function CourseList({
   path,
   params,
-  current,
+  list,
   counts,
   tags,
   searchLabel,
-  q,
-  shown,
   total,
   empty,
   children
 }: {
   path: string;
   params: Params;
-  current: { favorites: boolean; tag?: string };
+  list: ListState<(typeof COURSE_SORTS)[number]>;
   counts: { all: number; favorites: number };
   tags: ComponentProps<typeof CourseScope>["tags"];
   searchLabel: string;
-  q: string;
-  shown: number;
   total: number;
   empty: boolean;
   children: ReactNode;
 }) {
   const tl = await getTranslations("common.list");
+  const current = courseScope(params);
   return (
     <div className="grid gap-6 lg:grid-cols-[12rem_minmax(0,1fr)] lg:items-start">
       <CourseScope path={path} params={params} current={current} counts={counts} tags={tags} />
       <div className="flex min-w-0 flex-col gap-4">
         <ListToolbar searchLabel={searchLabel} sorts={COURSE_SORTS.map((value) => ({ value, label: tl(`sorts.${value}`) }))} />
         {empty ? (
-          current.favorites && !q ? (
+          current.favorites && !list.q ? (
             <EmptyState icon="star" title={tl("noFavorites")} body={tl("noFavoritesBody")} />
           ) : (
-            <NoMatches q={q} />
+            <NoMatches q={list.q} />
           )
         ) : (
           children
         )}
-        {!empty && <ListFooter path={path} params={params} shown={shown} total={total} />}
+        {!empty && <ListFooter path={path} params={params} shown={list.shown} total={total} />}
       </div>
     </div>
   );
