@@ -12,6 +12,7 @@ test.describe("F6 · Create a course and join it", () => {
   });
 
   scenario("US-04 AS2", "creating a course shows the class code and link with copy actions", async ({ page }, testInfo) => {
+    // Skipped on mobile only: a desktop-only page.
     test.skip(testInfo.project.name === "mobile", "create course is a desktop page");
     await gotoState(page, "teacher/course-new.html");
     await page.getByRole("button", { name: "Crear curso" }).click();

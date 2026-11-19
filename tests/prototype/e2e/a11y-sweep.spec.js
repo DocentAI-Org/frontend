@@ -39,6 +39,7 @@ for (const entry of readManifest()) {
   for (const state of entry.states) {
     for (const { lang, scheme } of runs) {
       test(`axe ${entry.path}?state=${state} [${lang}, ${scheme}]`, async ({ page }, testInfo) => {
+        // Skipped on mobile only: a desktop-only page.
         test.skip(testInfo.project.name === "mobile" && !entry.mobile, "desktop-only page");
         await page.emulateMedia({ colorScheme: scheme });
         await gotoState(page, entry.path, state, { lang });

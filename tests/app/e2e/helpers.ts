@@ -91,6 +91,7 @@ export async function openMenuIfNeeded(page: Page) {
  * A course section link. The teacher's sections are grouped (Seguimiento, Contenido, Ajustes) and
  * only the current group's are shown, so the other groups are opened in turn until it appears.
  */
+// eslint-disable-next-line sonarjs/no-invariant-returns -- always the same locator, after opening the group that shows it
 export async function courseSection(page: Page, name: RegExp) {
   const link = page.getByRole("link", { name }).filter({ visible: true });
   if (await link.count()) return link;

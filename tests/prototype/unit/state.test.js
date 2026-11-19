@@ -103,7 +103,7 @@ describe("bindNavigation", () => {
     const before = window.history.length;
     document.getElementById("go").click();
     expect(new URL(window.location.href).searchParams.get("state")).toBe("failed");
-    expect(window.history.length).toBe(before + 1);
+    expect(window.history).toHaveLength(before + 1);
     expect(document.getElementById("answer").hidden).toBe(false);
   });
 

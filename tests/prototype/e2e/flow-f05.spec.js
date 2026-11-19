@@ -32,6 +32,7 @@ test.describe("F5 · Minimal admin tasks", () => {
   });
 
   scenario("US-07 AS6", "the admin creates a teacher, who appears with a pending invitation", async ({ page }, testInfo) => {
+    // Skipped on mobile only: a desktop-only page.
     test.skip(testInfo.project.name === "mobile", "create teacher is a desktop page");
     await gotoState(page, "admin/users.html", "empty");
     await page.locator('[data-component="EmptyState"]').getByRole("link", { name: "Crear cuenta de profesor/a" }).click();

@@ -30,7 +30,7 @@ describe("celebrate", () => {
     celebrate();
     const dots = document.querySelectorAll("[data-celebrate-dot]").length;
     expect(celebrate()).toBe(false);
-    expect(document.querySelectorAll("[data-celebrate-dot]").length).toBe(dots);
+    expect(document.querySelectorAll("[data-celebrate-dot]")).toHaveLength(dots);
   });
 
   it("does not animate with reduced motion", () => {

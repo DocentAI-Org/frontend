@@ -4,6 +4,7 @@ import { expect, gotoState, scenario, test, waitForReady } from "./helpers.js";
 test.describe.configure({ mode: "serial" });
 
 test.describe("F12 · Dashboard and at-risk students", () => {
+  // Skipped on mobile only: a desktop-only page.
   test.skip(({ isMobile }) => isMobile, "the dashboard is a desktop page");
 
   scenario("US-09 AS1", "recurring errors by topic switch to by student, with counts and a time range", async ({ page }) => {

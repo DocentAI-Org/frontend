@@ -47,6 +47,7 @@ test.describe("F18 · Adapted explanations", () => {
   });
 
   scenario("US-16 AS5", "the teacher sees the same label and reason in the conversation", async ({ page }, testInfo) => {
+    // Skipped on mobile only: a desktop-only page.
     test.skip(testInfo.project.name === "mobile", "conversation detail is a desktop page");
     await gotoState(page, "teacher/conversation.html", "adapted");
     await expect(page.locator('[data-component="AdaptedBadge"]:visible')).toContainText("Adaptado para ti");
