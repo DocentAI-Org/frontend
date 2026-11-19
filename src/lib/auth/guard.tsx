@@ -13,7 +13,7 @@ import { ROLE_HOME } from "./home";
 type Me = Schemas["Me"];
 
 /**
- * Server-side role check for a route group (Constitution II, spec FR-005). Returns the user, or
+ * Server-side role check for a route group (AGENTS.md II, spec FR-005). Returns the user, or
  * the screen to render instead: the API's error state or access denied with a link home.
  */
 export async function requireRole(role: Me["role"]): Promise<{ me: Me } | { screen: ReactNode }> {

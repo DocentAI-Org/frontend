@@ -1,4 +1,4 @@
-// T103 · Constitution VII: sample people are fictitious and every email uses the reserved example.org domain.
+// T103 · AGENTS.md VII: sample people are fictitious and every email uses the reserved example.org domain.
 import { describe, expect, it } from "vitest";
 import { flattenKeys, read } from "./files.js";
 

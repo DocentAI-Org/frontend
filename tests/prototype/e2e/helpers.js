@@ -55,7 +55,7 @@ export async function waitForReady(page) {
   );
 }
 
-/** One acceptance scenario = one test, titled with its ID (Constitution V). */
+/** One acceptance scenario = one test, titled with its ID (AGENTS.md V). */
 export function scenario(id, title, fn) {
   test(`${id} ${title}`, fn);
 }

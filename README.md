@@ -27,8 +27,7 @@ npm run dev                  # http://localhost:3000
 | `PRIVACY_CONTACT_EMAIL` | Contact shown on `/about` |
 
 To run against the real backend, start it as described in its README (Supabase, Ollama,
-`uvicorn`, `scripts/seed_dev.py`); the full walkthrough is in
-[`specs/002-app-api-integration/quickstart.md`](specs/002-app-api-integration/quickstart.md).
+`uvicorn`, `scripts/seed_dev.py`).
 
 ## Scripts
 
@@ -40,7 +39,7 @@ To run against the real backend, start it as described in its README (Supabase, 
 | `npm run test:e2e:app` | App E2E with axe (Playwright, desktop 1440 px and mobile 390 px) against the typed mock backend in `tests/app/mock-api`; starts the mock and the app itself |
 | `npm run test:e2e:integration` | The same suite against the real local stack and an app started with `npm run dev` |
 | `npm run test:e2e` | Prototype tests (`tests/prototype`) |
-| `npm run api:types` · `api:check` | Regenerate / check `src/lib/api/schema.d.ts` from the pinned contract `specs/010-pre-post-tests/contracts/backend-openapi.json` |
+| `npm run api:types` · `api:check` | Regenerate / check `src/lib/api/schema.d.ts` from the pinned contract `contracts/backend-openapi.json` |
 
 ## Structure
 
@@ -52,11 +51,8 @@ src/
 ├── components/         # ported prototype components (AppShell, StudentShell, …)
 └── app/                # (public), (student), (teacher), (admin) route groups
 messages/es.json · en.json   # ES and EN catalogs (next-intl)
-specs/                       # Spec Kit features (001 prototype, 002 app)
+contracts/backend-openapi.json  # the backend contract the API types are generated from
 ```
-
-Routes, their prototype pages and API calls are listed in
-[`specs/002-app-api-integration/contracts/routes.md`](specs/002-app-api-integration/contracts/routes.md).
 
 ## Deployment (Vercel)
 

@@ -12,7 +12,7 @@ function keys(tree: Tree, prefix = ""): string[] {
   );
 }
 
-describe("message catalogs (Constitution VIII)", () => {
+describe("message catalogs (AGENTS.md VIII)", () => {
   it("have the same keys in Spanish and English", () => {
     expect(keys(en as Tree).sort()).toEqual(keys(es as Tree).sort());
   });

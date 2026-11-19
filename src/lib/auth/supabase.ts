@@ -24,7 +24,7 @@ export async function createSupabase() {
 
 /**
  * The access token sent to the DocentAI API. It is read from the session cookie without a
- * round trip: the API verifies every token itself (backend constitution II).
+ * round trip: the API verifies every token itself (backend AGENTS.md II).
  */
 export async function getAccessToken(): Promise<string | null> {
   const supabase = await createSupabase();

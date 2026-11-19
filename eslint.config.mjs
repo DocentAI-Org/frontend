@@ -5,7 +5,7 @@ const eslintConfig = [
   {
     // .agents/ holds third-party agent skills (vendored via skills-lock.json, incl. minified bundles),
     // not project code. Playwright output folders are generated.
-    ignores: [".next/**", "node_modules/**", ".agents/**", "test-results/**", "playwright-report/**", "blob-report/**"]
+    ignores: [".next/**", "node_modules/**", "test-results/**", "playwright-report/**", "blob-report/**"]
   },
   ...nextVitals,
   ...nextTypescript,
