@@ -37,6 +37,7 @@ const ACTION =
 
 const SORTS = ["recent", "name"] as const;
 
+// eslint-disable-next-line sonarjs/cognitive-complexity -- above the limit when it was set (2026-11-19); split it when it next changes
 export default async function StudentCoursesPage({
   searchParams
 }: {
