@@ -1,10 +1,53 @@
+<p align="center">
+  <img src="public/prototype/assets/img/docentai-logo-144.png" alt="DocentAI" width="120">
+</p>
+
+[![CI](https://github.com/DocentAI-Org/frontend/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/DocentAI-Org/frontend/actions/workflows/ci.yml)
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+
 # DocentAI Frontend
 
-Next.js 16 (App Router) app for DocentAI, the teacher-controlled AI tutor: students chat with a
-tutor that only answers from material their teacher has validated, teachers manage courses,
-material, tutor settings and corrections, and admins manage accounts. It talks to the DocentAI
+DocentAI is a teacher-guided AI tutor. The teacher uploads and validates the course material; the
+tutor answers students **only** from that material, cites the document and section of every answer,
+and says plainly when the material does not cover a question. Beyond answering, it gives feedback
+on worked exercises, notices recurring mistakes, adapts quizzes to each student, and shows the
+teacher where the class is struggling. It works for any subject, from secondary-school maths to
+university courses.
+
+This repository is the Next.js 16 (App Router) web app: students chat with the tutor, submit
+exercises, take quizzes and follow their progress; teachers manage courses, material, tutor
+settings and corrections, and follow their class; admins manage accounts. It talks to the DocentAI
 API v1 ([`DocentAI-Org/backend`](https://github.com/DocentAI-Org/backend)) and uses Supabase Auth
-for sessions.
+for sessions. Spanish is the pilot language; English is complete for every feature.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/student-chat-dark.png">
+  <img src="docs/images/student-chat-light.png" alt="A student asks the course tutor how to solve 2x = 4. The tutor answers from the teacher's material and cites it: ecuaciones.md, section 3.2, with a link to the passage. Below, the student's remaining daily messages.">
+</picture>
+
+<table>
+  <tr>
+    <td width="50%">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="docs/images/teacher-dashboard-dark.png">
+        <img src="docs/images/teacher-dashboard-light.png" alt="The teacher dashboard of a course: repeated errors by topic, with counts, students affected and the most frequent error type, and below, students who may need help.">
+      </picture>
+    </td>
+    <td width="50%">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="docs/images/sign-in-dark.png">
+        <img src="docs/images/sign-in-light.png" alt="The sign-in page: an example of a cited tutor answer next to the form, which accepts an email or a student code, and the IMFAHE acknowledgement in the footer.">
+      </picture>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">Teacher dashboard</td>
+    <td align="center">Sign-in</td>
+  </tr>
+</table>
+
+The screenshots come from the typed mock backend used by the E2E tests (`tests/app/mock-api`),
+with fictitious people.
 
 The validated clickable prototype lives in `public/prototype/` and is the design reference for
 every screen (same tokens in `public/prototype/assets/theme.css`, same component names).
@@ -74,3 +117,45 @@ One-time setup:
 
 After that, every push gets a preview URL (`https://<preview-url>/prototype`) and every merge to
 `main` deploys to production.
+
+## Use of Generative AI
+
+DocentAI is developed with AI coding agents, mostly Claude, under the guidance of the team. The
+specifications, agent configuration and evaluation tools live in a separate repository and evolve
+with the project; they are not a validated methodology for agentic software development.
+
+Every change goes through AI code review and the checks above: ESLint with SonarJS rules, knip,
+type checking, the API contract check, unit tests and E2E tests with axe accessibility checks,
+plus CodeQL on every pull request. Even so, the code may contain the usual issues of AI-generated
+code, and bugs that will be fixed as they are found.
+
+## Disclaimer
+
+DocentAI is a research prototype under development, not a commercial product. It is provided
+"as is", without warranty of any kind, as stated in its [license](LICENSE). Its answers come from a
+language model and can be wrong even when they cite the material; teachers remain responsible
+for the material they validate and for how the tutor is used in their courses. Never load real
+student data into a development or test environment.
+
+## Acknowledgements
+
+<a href="https://imfahe.org"><img src="public/prototype/assets/img/imfahe.logo.webp" alt="IMFAHE" width="160" align="right"></a>
+
+DocentAI is funded by the [IMFAHE Foundation](https://imfahe.org) (International Mentoring
+Foundation for the Advancement of Higher Education) through the IMFAHE Global Idea Competition –
+Shark Tank 2026. *Proyecto financiado por la Fundación IMFAHE.*
+
+## Team
+
+| Member | Area |
+|---|---|
+| Miguel Romero | Product and development |
+| Denisa-Andreea Constantinescu | Infrastructure and security |
+| Génesis M. De León | Pedagogy |
+| Laura M. Ezama | Study design and ethics |
+| Mariano Soler | Finance and sustainability |
+
+## License
+
+Apache License, Version 2.0. See [LICENSE](LICENSE) and [NOTICE](NOTICE). The IMFAHE logo is a
+trademark of the IMFAHE Foundation and is not covered by this license.
