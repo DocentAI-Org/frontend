@@ -18,6 +18,7 @@ import {
   updateStudyCriteria
 } from "@/lib/api/admin";
 import type { Schemas } from "@/lib/api/client";
+import { isEmail } from "@/lib/auth/identifier";
 import { type CredentialState, credentialFromForm } from "@/lib/credentials";
 import { samePhrase } from "@/lib/phrase";
 
@@ -29,14 +30,12 @@ export type TeacherState = {
   created?: { name: string; email: string; password: string };
 };
 
-const EMAIL = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
-
 export async function createTeacherAction(_: TeacherState, form: FormData): Promise<TeacherState> {
   const name = String(form.get("name") ?? "").trim();
   const email = String(form.get("email") ?? "").trim();
   const values = { name, email };
   const nameError = !name;
-  const emailError = !EMAIL.test(email);
+  const emailError = !isEmail(email);
   if (nameError || emailError) return { nameError, emailError, values };
   const result = await createTeacher({ display_name: name, email });
   if (!result.ok) return { error: result.code, values };
