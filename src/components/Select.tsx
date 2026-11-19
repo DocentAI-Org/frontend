@@ -39,6 +39,11 @@ const SIZES = {
 
 const TYPEAHEAD_MS = 500;
 
+/** A printable key without Alt, Ctrl or Meta: it searches the options by their label. */
+function isTypeahead(event: KeyboardEvent) {
+  return event.key.length === 1 && !event.altKey && !event.ctrlKey && !event.metaKey;
+}
+
 /**
  * Select (prototype › Forms): the WAI-ARIA select-only combobox. The list is drawn by the app, not by
  * the operating system, so it looks the same in every browser. Focus stays on the trigger and the
@@ -128,59 +133,52 @@ export function Select({
     return match ? options.indexOf(match) : -1;
   }
 
-  // eslint-disable-next-line sonarjs/cognitive-complexity -- above the limit when it was set (2026-11-19); split it when it next changes
-  function onKeyDown(event: KeyboardEvent<HTMLButtonElement>) {
-    const last = options.length - 1;
-    if (!open) {
-      if (["ArrowDown", "ArrowUp", "Enter", " "].includes(event.key)) {
-        event.preventDefault();
-        show();
-      } else if (event.key === "Home" || event.key === "End") {
-        event.preventDefault();
-        show(event.key === "Home" ? 0 : last);
-      } else if (event.key.length === 1 && !event.altKey && !event.ctrlKey && !event.metaKey) {
-        const match = findByText(event.key);
-        if (match >= 0) show(match);
-      }
-      return;
+  const last = options.length - 1;
+
+  // Closed: the keys that open the list, and the option each one opens it at.
+  const openAt = new Map<string, number>([
+    ["ArrowDown", selectedIndex],
+    ["ArrowUp", selectedIndex],
+    ["Enter", selectedIndex],
+    [" ", selectedIndex],
+    ["Home", 0],
+    ["End", last]
+  ]);
+
+  // Open: what each key does. These keys prevent the default; Tab and type-ahead keep it.
+  const whileOpen = new Map<string, (altKey: boolean) => void>([
+    ["ArrowDown", () => setActive((index) => Math.min(index + 1, last))],
+    ["ArrowUp", (altKey) => (altKey ? choose(active) : setActive((index) => Math.max(index - 1, 0)))],
+    ["Home", () => setActive(0)],
+    ["PageUp", () => setActive(0)],
+    ["End", () => setActive(last)],
+    ["PageDown", () => setActive(last)],
+    ["Enter", () => choose(active)],
+    [" ", () => choose(active)],
+    ["Escape", () => setOpen(false)]
+  ]);
+
+  function onKeyDownClosed(event: KeyboardEvent<HTMLButtonElement>) {
+    const index = openAt.get(event.key);
+    if (index !== undefined) {
+      event.preventDefault();
+      show(index);
+    } else if (isTypeahead(event)) {
+      const match = findByText(event.key);
+      if (match >= 0) show(match);
     }
-    switch (event.key) {
-      case "ArrowDown":
-        event.preventDefault();
-        setActive((index) => Math.min(index + 1, last));
-        break;
-      case "ArrowUp":
-        event.preventDefault();
-        if (event.altKey) choose(active);
-        else setActive((index) => Math.max(index - 1, 0));
-        break;
-      case "Home":
-      case "PageUp":
-        event.preventDefault();
-        setActive(0);
-        break;
-      case "End":
-      case "PageDown":
-        event.preventDefault();
-        setActive(last);
-        break;
-      case "Enter":
-      case " ":
-        event.preventDefault();
-        choose(active);
-        break;
-      case "Escape":
-        event.preventDefault();
-        setOpen(false);
-        break;
-      case "Tab":
-        choose(active);
-        break;
-      default:
-        if (event.key.length === 1 && !event.altKey && !event.ctrlKey && !event.metaKey) {
-          const match = findByText(event.key);
-          if (match >= 0) setActive(match);
-        }
+  }
+
+  function onKeyDownOpen(event: KeyboardEvent<HTMLButtonElement>) {
+    const action = whileOpen.get(event.key);
+    if (action) {
+      event.preventDefault();
+      action(event.altKey);
+    } else if (event.key === "Tab") {
+      choose(active);
+    } else if (isTypeahead(event)) {
+      const match = findByText(event.key);
+      if (match >= 0) setActive(match);
     }
   }
 
@@ -207,7 +205,7 @@ export function Select({
           if (open) setOpen(false);
           else show();
         }}
-        onKeyDown={onKeyDown}
+        onKeyDown={open ? onKeyDownOpen : onKeyDownClosed}
         onBlur={() => setOpen(false)}
         className={`flex w-full items-center gap-2 border bg-surface-raised text-left text-fg ${sized.trigger} focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:bg-surface-sunken disabled:text-fg-muted`}
       >
