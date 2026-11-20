@@ -1416,6 +1416,8 @@
       "validatedToast": "“{name}” is validated. The tutor can now use it.",
       "excludedToast": "“{name}” is excluded. The tutor no longer uses it.",
       "topicsLabel": "Topics:",
+      "suggestedSections": "{count, plural, one {# section with a suggested topic} other {# sections with a suggested topic}}",
+      "reviewTopics": "Review topics",
       "assignTopics": "Assign topics",
       "excludedFragments": "{count, plural, one {# excluded fragment} other {# excluded fragments}}",
       "unassignedSection": "{count, plural, one {# section with no topic} other {# sections with no topic}}",
@@ -1659,7 +1661,9 @@
       "saved": "Topics saved. Only confirmed topics count.",
       "suggestionsError": "We couldn't load the suggestions. You can assign the topics by hand.",
       "loadError": "We couldn't load the sections",
-      "listLabel": "Document sections"
+      "listLabel": "Document sections",
+      "page": "p. {page}",
+      "pages": "pp. {first}–{last}"
     },
     "test": {
       "pageTitle": "Pre-test and post-test",

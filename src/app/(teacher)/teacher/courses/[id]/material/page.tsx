@@ -160,6 +160,16 @@ export default async function MaterialPage({
                         <span className="text-fg-muted">{t("topicsLabel")}</span> {doc.topics.map((topic) => topic.name).join(", ")}
                       </p>
                     )}
+                    {/* The assignment page lists validated material only (spec 024 US1). */}
+                    {doc.validation_status === "validated" && doc.suggested_sections > 0 && (
+                      <p className="text-sm text-fg">
+                        <span className="tabular-nums">{t("suggestedSections", { count: doc.suggested_sections })}</span>
+                        {" · "}
+                        <Link href={routes.teacherTopicAssignment(id)} className="font-medium text-teacher-700 underline underline-offset-2">
+                          {t("reviewTopics")}
+                        </Link>
+                      </p>
+                    )}
                   </div>
                   <div className="flex flex-wrap items-center gap-2">
                     {doc.processing_status === "ready" && (

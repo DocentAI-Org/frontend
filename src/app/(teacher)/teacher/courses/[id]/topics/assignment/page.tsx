@@ -17,7 +17,24 @@ export async function generateMetadata(): Promise<Metadata> {
   return { title: t("pageTitle") };
 }
 
-/** Topic assignment per section (#34, 001 US14 AS3, AS5; no AI suggestions yet, deviation D5). */
+const PAGE = /\bp\. (\d+)$/;
+
+/** Each section in document order, with the pages its fragments are on when the label has them. */
+function sectionPages(fragments: Schemas["Fragment"][]) {
+  const pages = new Map<string, number[]>();
+  for (const fragment of fragments) {
+    const found = PAGE.exec(fragment.location_label);
+    const list = pages.get(fragment.section) ?? [];
+    if (found) list.push(Number(found[1]));
+    pages.set(fragment.section, list);
+  }
+  return [...pages].map(([section, list]) => ({
+    section,
+    pages: list.length ? { first: Math.min(...list), last: Math.max(...list) } : null
+  }));
+}
+
+/** Topic assignment per section (#34, 001 US14 AS3, AS5), with the pages of each (spec 024). */
 export default async function TopicAssignmentPage({
   params,
   searchParams
@@ -37,7 +54,7 @@ export default async function TopicAssignmentPage({
   const sections = await Promise.all(
     validated.map(async (doc) => {
       const fragments = await listAllFragments({ course_id: id, document_id: doc.id });
-      return { doc, sections: fragments.ok ? [...new Set(fragments.data.map((f) => f.section))] : [] };
+      return { doc, sections: fragments.ok ? sectionPages(fragments.data) : [] };
     })
   );
   const current = (documentId: string, section: string): Schemas["TopicAssignment"] | undefined =>
@@ -60,13 +77,20 @@ export default async function TopicAssignmentPage({
                 {doc.file_name}
               </h2>
               <ul aria-label={t("listLabel")} className="flex flex-col divide-y divide-border rounded-xl border border-border bg-surface-raised px-4 sm:px-6">
-                {list.map((section) => {
+                {list.map(({ section, pages }) => {
                   const key = `${doc.id}::${section}`;
                   const assignment = current(doc.id, section);
                   return (
                     <li key={key} className="py-4">
                       <fieldset className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                        <legend className="float-left font-medium text-fg sm:w-1/2">{section}</legend>
+                        <legend className="float-left font-medium text-fg sm:w-1/2">
+                          {section}
+                          {pages && (
+                            <span className="ml-2 text-sm font-normal text-fg-muted tabular-nums">
+                              {pages.first === pages.last ? t("page", { page: pages.first }) : t("pages", pages)}
+                            </span>
+                          )}
+                        </legend>
                         <input type="hidden" name="key" value={key} />
                         <input
                           type="hidden"

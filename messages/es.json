@@ -1416,6 +1416,8 @@
       "validatedToast": "«{name}» está validado. El tutor ya puede usarlo.",
       "excludedToast": "«{name}» está excluido. El tutor ya no lo usa.",
       "topicsLabel": "Temas:",
+      "suggestedSections": "{count, plural, one {# sección con tema sugerido} other {# secciones con tema sugerido}}",
+      "reviewTopics": "Revisar temas",
       "assignTopics": "Asignar temas",
       "excludedFragments": "{count, plural, one {# fragmento excluido} other {# fragmentos excluidos}}",
       "unassignedSection": "{count, plural, one {# sección sin tema} other {# secciones sin tema}}",
@@ -1659,7 +1661,9 @@
       "saved": "Temas guardados. Solo cuentan los temas confirmados.",
       "suggestionsError": "No hemos podido cargar las sugerencias. Puedes asignar los temas a mano.",
       "loadError": "No hemos podido cargar las secciones",
-      "listLabel": "Secciones del documento"
+      "listLabel": "Secciones del documento",
+      "page": "p. {page}",
+      "pages": "p. {first}–{last}"
     },
     "test": {
       "pageTitle": "Pre-test y post-test",
