@@ -36,7 +36,7 @@ function questionView(state: State, q: Question): S["TeacherQuestion"] {
 /** The default order: pending drafts the key check doubts, other pending, the rest (backend specs/025). */
 function rank(q: Question) {
   if (q.status !== "pending") return 2;
-  return q.key_check === "disagrees" || q.key_check === "several" ? 0 : 1;
+  return q.key_check === "disagrees" || q.key_check === "several" || q.key_check === "no_right" ? 0 : 1;
 }
 
 function courseFragment(state: State, courseId: string) {
