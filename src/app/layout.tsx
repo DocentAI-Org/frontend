@@ -3,7 +3,9 @@ import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getTranslations } from "next-intl/server";
 import { cookies } from "next/headers";
 
+import { DemoBanner } from "@/components/DemoBanner";
 import { NavigationTracker } from "@/components/NavigationTracker";
+import { isDemo } from "@/lib/demo";
 import { THEME_COOKIE, themeFromCookie } from "@/lib/theme";
 
 import "./globals.css";
@@ -25,6 +27,7 @@ export default async function RootLayout({
     <html lang={locale} data-theme={theme}>
       <body suppressHydrationWarning>
         <NavigationTracker />
+        {isDemo() && <DemoBanner />}
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
     </html>

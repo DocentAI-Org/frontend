@@ -1,5 +1,7 @@
 import "server-only";
 
+import { DEMO_ORIGIN, isDemo } from "@/lib/demo";
+
 function required(name: string): string {
   const value = process.env[name];
   if (!value) throw new Error(`Missing environment variable ${name} (see .env.example).`);
@@ -8,13 +10,13 @@ function required(name: string): string {
 
 export const env = {
   get supabaseUrl() {
-    return required("NEXT_PUBLIC_SUPABASE_URL");
+    return isDemo() ? DEMO_ORIGIN : required("NEXT_PUBLIC_SUPABASE_URL");
   },
   get supabaseKey() {
-    return required("NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY");
+    return isDemo() ? "demo" : required("NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY");
   },
   get apiBaseUrl() {
-    return required("API_BASE_URL");
+    return isDemo() ? DEMO_ORIGIN : required("API_BASE_URL");
   },
   get pseudonymEmailDomain() {
     return process.env.PSEUDONYM_EMAIL_DOMAIN ?? "students.docentai.invalid";

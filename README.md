@@ -71,9 +71,19 @@ npm run dev                  # http://localhost:3000
 | `PSEUDONYM_EMAIL_DOMAIN` | Pseudonymous students sign in with a code; their auth email is `<code>@<domain>` |
 | `STUDY_QUESTIONNAIRES` | `on` shows the study questionnaires card on "Mis cursos"; hidden otherwise (off for now) |
 | `PRIVACY_CONTACT_EMAIL` | Contact shown on `/about` |
+| `DEMO_MODE` | `on` runs the demo: no backend needed (see below); the variables above are then ignored except the last three |
 
 To run against the real backend, start it as described in its README (Supabase, Ollama,
 `uvicorn`, `scripts/seed_dev.py`).
+
+### Demo mode
+
+`DEMO_MODE=on npm run dev` runs the app with no backend: its API and Auth calls are answered in
+process by the typed mock of the E2E tests (`tests/app/mock-api/demo.ts`), loaded with a sample
+algebra course, a student's activity and a quiz bank. The sign-in page lists the sample accounts
+with one-click buttons, and a notice on every page says the data is fictitious. Changes live in
+the server's memory: every visitor sees them, and the data starts over every hour (and whenever
+the server restarts).
 
 ## Scripts
 
@@ -85,6 +95,7 @@ To run against the real backend, start it as described in its README (Supabase, 
 | `npm run test` | Unit and component tests (Vitest + Testing Library, `tests/app/unit`) |
 | `npm run test:e2e:app` | App E2E with axe (Playwright, desktop 1440 px and mobile 390 px) against the typed mock backend in `tests/app/mock-api`; starts the mock and the app itself |
 | `npm run test:e2e:integration` | The same suite against the real local stack and an app started with `npm run dev` |
+| `npm run test:e2e:demo` | Demo mode E2E with axe (`tests/app/demo`); starts the app with `DEMO_MODE=on` |
 | `npm run api:types` · `api:check` | Regenerate / check `src/lib/api/schema.d.ts` from the pinned contract `contracts/backend-openapi.json` |
 
 ## Structure
@@ -105,7 +116,8 @@ contracts/backend-openapi.json  # the backend contract the API types are generat
 The project deploys to Vercel as a Next.js app; build settings live in `vercel.ts` (install with
 `npm ci`, build with `npm run build`). Every response carries `X-Robots-Tag: noindex`.
 
-Set the variables above for Preview and Production.
+Until the backend is deployed, the deployment runs in demo mode: set `DEMO_MODE=on` for
+Preview and Production. Once there is a backend, remove it and set the variables above instead.
 
 One-time setup:
 

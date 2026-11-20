@@ -3,12 +3,14 @@ import "server-only";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
+import { demoFetch, isDemo } from "@/lib/demo";
 import { env } from "@/lib/env";
 
 /** Supabase Auth with HttpOnly cookie sessions (research R1); never used in the browser. */
 export async function createSupabase() {
   const store = await cookies();
   return createServerClient(env.supabaseUrl, env.supabaseKey, {
+    global: isDemo() ? { fetch: demoFetch } : undefined,
     cookies: {
       getAll: () => store.getAll(),
       setAll(list) {

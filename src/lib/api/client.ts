@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import createClient from "openapi-fetch";
 
 import { getAccessToken } from "@/lib/auth/supabase";
+import { demoFetch, isDemo } from "@/lib/demo";
 import { env } from "@/lib/env";
 import { PATHNAME_HEADER } from "@/lib/request-path";
 
@@ -25,7 +26,8 @@ export async function apiClient() {
   return createClient<paths>({
     baseUrl: env.apiBaseUrl,
     headers: token ? { Authorization: `Bearer ${token}` } : {},
-    cache: "no-store"
+    cache: "no-store",
+    fetch: isDemo() ? demoFetch : undefined
   });
 }
 
