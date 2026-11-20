@@ -95,7 +95,8 @@ export function documentView(current: State, doc: Doc): S["Document"] {
     topics: current.topics
       .filter((t) => current.assignments.some((a) => a.document_id === doc.id && a.topic_id === t.id && a.status === "confirmed"))
       .sort((a, b) => a.position - b.position)
-      .map((t) => ({ id: t.id, name: t.name }))
+      .map((t) => ({ id: t.id, name: t.name })),
+    suggested_sections: new Set(current.assignments.filter((a) => a.document_id === doc.id && a.status === "suggested").map((a) => a.section)).size
   };
 }
 

@@ -13371,6 +13371,10 @@
             },
             "type": "array",
             "title": "Topics"
+          },
+          "suggested_sections": {
+            "type": "integer",
+            "title": "Suggested Sections"
           }
         },
         "type": "object",
@@ -13388,7 +13392,8 @@
           "fragment_count",
           "excluded_fragment_count",
           "uploaded_at",
-          "topics"
+          "topics",
+          "suggested_sections"
         ],
         "title": "Document"
       },

@@ -2481,6 +2481,8 @@ export interface components {
             uploaded_at: string;
             /** Topics */
             topics: components["schemas"]["TopicRef"][];
+            /** Suggested Sections */
+            suggested_sections: number;
         };
         /** ErrorBody */
         ErrorBody: {
