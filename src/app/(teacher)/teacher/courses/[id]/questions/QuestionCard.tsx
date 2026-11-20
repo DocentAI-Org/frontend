@@ -28,6 +28,9 @@ export function QuestionCard({ courseId, question, view }: { courseId: string; q
   const ids = useId();
   const [editing, setEditing] = useState(false);
   const q = question;
+  // The draft solved without its key disagrees, or finds several right options (backend specs/025).
+  const doubted = q.key_check === "disagrees" || q.key_check === "several";
+  const checked = (i: number) => doubted && q.key_check_options.includes(i);
 
   return (
     <article aria-labelledby={`${ids}-statement`} className="flex flex-col gap-4 rounded-xl border border-border bg-surface-raised p-6">
@@ -51,6 +54,23 @@ export function QuestionCard({ courseId, question, view }: { courseId: string; q
           <h3 id={`${ids}-statement`} className="font-serif text-xl font-semibold text-fg">
             <MathText text={q.statement} />
           </h3>
+          {doubted && (
+            <p
+              role="note"
+              className="flex items-start gap-2 rounded-lg border border-warning-300 bg-warning-50 px-4 py-3 text-sm text-fg"
+              data-component="KeyCheckNotice"
+            >
+              <Icon name="triangle-alert" className="mt-0.5 size-4 shrink-0 text-warning-900" />
+              <span>
+                {t(q.key_check === "several" ? "keyCheckSeveral" : "keyCheckDisagrees", {
+                  options: format.list(
+                    q.key_check_options.map((i) => `${String.fromCharCode(65 + i)} «${q.options[i]}»`),
+                    { type: "conjunction" }
+                  )
+                })}
+              </span>
+            </p>
+          )}
           <ol aria-label={t("optionsLabel")} className="flex flex-col gap-2">
             {q.options.map((option, i) => {
               const right = i === q.correct_option;
@@ -63,10 +83,20 @@ export function QuestionCard({ courseId, question, view }: { courseId: string; q
                     {String.fromCharCode(65 + i)}
                   </span>
                   <span className="text-fg"><MathText text={option} /></span>
-                  {right && (
-                    <span className="ml-auto inline-flex items-center gap-1 text-sm font-semibold text-success-800">
-                      <Icon name="check" />
-                      {tQuiz("correctAnswer")}
+                  {(right || checked(i)) && (
+                    <span className="ml-auto flex flex-wrap items-center gap-x-4 gap-y-1">
+                      {right && (
+                        <span className="inline-flex items-center gap-1 text-sm font-semibold text-success-800">
+                          <Icon name="check" />
+                          {tQuiz("correctAnswer")}
+                        </span>
+                      )}
+                      {checked(i) && (
+                        <span className="inline-flex items-center gap-1 text-sm font-semibold text-warning-900">
+                          <Icon name="triangle-alert" />
+                          {t("keyCheckMark")}
+                        </span>
+                      )}
                     </span>
                   )}
                 </li>
