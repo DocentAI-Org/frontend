@@ -180,3 +180,20 @@ topicRoutes.push({
     return { ok: true };
   }
 });
+
+/** Test helper: a PDF's section over pages, as the API labels it (spec 024): "§ {section}, p. {n}". */
+topicRoutes.push({
+  method: "POST",
+  path: "/__test/pages",
+  handler: (ctx) => {
+    const { section, pages } = ctx.body as { section: string; pages: number[] };
+    const fragments = ctx.state.fragments.filter((f) => f.section === section);
+    if (!fragments.length) throw new HttpError(404, "not_found");
+    pages.forEach((pageNumber, index) => {
+      const fragment = fragments[index] ?? { ...fragments[0], id: id(), position: fragments[0].position + index };
+      if (!fragments[index]) ctx.state.fragments.push(fragment);
+      fragment.location_label = `§ ${section}, p. ${pageNumber}`;
+    });
+    return { ok: true };
+  }
+});
