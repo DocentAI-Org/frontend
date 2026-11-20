@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/prototype/assets/img/docentai-logo-144.png" alt="DocentAI" width="120">
+  <img src="public/img/docentai-logo-144.png" alt="DocentAI" width="120">
 </p>
 
 <p align="center">
@@ -51,8 +51,9 @@ for sessions. Spanish is the pilot language; English is complete for every featu
 The screenshots come from the typed mock backend used by the E2E tests (`tests/app/mock-api`),
 with fictitious people.
 
-The validated clickable prototype lives in `public/prototype/` and is the design reference for
-every screen (same tokens in `public/prototype/assets/theme.css`, same component names).
+The design system lives in the app: tokens in `src/app/theme.css`, described in `DESIGN.md`. The
+static HTML prototype that guided the first screens is archived in the `archive/prototype` branch
+(tag `prototype-final`).
 
 ## Getting started
 
@@ -84,7 +85,6 @@ To run against the real backend, start it as described in its README (Supabase, 
 | `npm run test` | Unit and component tests (Vitest + Testing Library, `tests/app/unit`) |
 | `npm run test:e2e:app` | App E2E with axe (Playwright, desktop 1440 px and mobile 390 px) against the typed mock backend in `tests/app/mock-api`; starts the mock and the app itself |
 | `npm run test:e2e:integration` | The same suite against the real local stack and an app started with `npm run dev` |
-| `npm run test:e2e` | Prototype tests (`tests/prototype`) |
 | `npm run api:types` · `api:check` | Regenerate / check `src/lib/api/schema.d.ts` from the pinned contract `contracts/backend-openapi.json` |
 
 ## Structure
@@ -94,7 +94,7 @@ src/
 ├── proxy.ts            # Supabase session refresh, signed-out redirect to /sign-in
 ├── lib/api/            # typed API client (server-only), one module per area
 ├── lib/auth/           # Supabase server client, role guards, sign-in identifiers
-├── components/         # ported prototype components (AppShell, StudentShell, …)
+├── components/         # design system components (AppShell, StudentShell, …)
 └── app/                # (public), (student), (teacher), (admin) route groups
 messages/es.json · en.json   # ES and EN catalogs (next-intl)
 contracts/backend-openapi.json  # the backend contract the API types are generated from
@@ -105,10 +105,7 @@ contracts/backend-openapi.json  # the backend contract the API types are generat
 The project deploys to Vercel as a Next.js app; build settings live in `vercel.ts` (install with
 `npm ci`, build with `npm run build`). Every response carries `X-Robots-Tag: noindex`.
 
-While no backend is deployed, the deployment root still redirects to the static prototype
-(`vercel.ts`), so a bare preview URL can be shared with session participants. Remove that
-redirect once the app has a backend to talk to, and set the variables above for Preview and
-Production.
+Set the variables above for Preview and Production.
 
 One-time setup:
 
@@ -117,7 +114,7 @@ One-time setup:
 2. Check Settings → Deployment Protection. If previews require a Vercel login, create a
    shareable link or a protection bypass before sharing a preview with session participants.
 
-After that, every push gets a preview URL (`https://<preview-url>/prototype`) and every merge to
+After that, every push gets a preview URL and every merge to
 `main` deploys to production.
 
 ## Use of Generative AI
@@ -141,7 +138,7 @@ student data into a development or test environment.
 
 ## Acknowledgements
 
-<a href="https://imfahe.org"><img src="public/prototype/assets/img/imfahe.logo.webp" alt="IMFAHE" width="160" align="right"></a>
+<a href="https://imfahe.org"><img src="public/img/imfahe.logo.webp" alt="IMFAHE" width="160" align="right"></a>
 
 DocentAI is funded by the [IMFAHE Foundation](https://imfahe.org) (International Mentoring
 Foundation for the Advancement of Higher Education) through the IMFAHE Global Idea Competition –

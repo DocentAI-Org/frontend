@@ -9,7 +9,7 @@ import { Icon } from "./Icon";
 import { TextField } from "./TextField";
 
 /**
- * The prototype's confirmation dialog on the native <dialog> (focus trap, Escape, top layer).
+ * The confirmation dialog on the native <dialog> (focus trap, Escape, top layer).
  * The confirm button submits `action` (a Server Action) with the hidden `fields`.
  * With `confirmPhrase`, the user must type it (any case) before confirming; it is sent as
  * `confirm` so the action can check it again (spec 017).

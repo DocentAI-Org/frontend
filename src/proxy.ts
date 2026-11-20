@@ -54,6 +54,6 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  // Not for static files, the prototype or Next.js internals.
-  matcher: ["/((?!_next/|prototype/|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|webp|woff2?|css|js)$).*)"]
+  // Not for static files or Next.js internals.
+  matcher: ["/((?!_next/|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|webp|woff2?|css|js)$).*)"]
 };

@@ -1,6 +1,6 @@
 @import "tailwindcss";
-@import "../../public/prototype/assets/fonts/fonts.css";
-@import "../../public/prototype/assets/theme.css";
+@import "./fonts.css";
+@import "./theme.css";
 
 :root {
   color-scheme: light dark;

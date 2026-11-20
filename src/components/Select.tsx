@@ -45,7 +45,7 @@ function isTypeahead(event: KeyboardEvent) {
 }
 
 /**
- * Select (prototype › Forms): the WAI-ARIA select-only combobox. The list is drawn by the app, not by
+ * Select: the WAI-ARIA select-only combobox. The list is drawn by the app, not by
  * the operating system, so it looks the same in every browser. Focus stays on the trigger and the
  * active option is announced through aria-activedescendant.
  */

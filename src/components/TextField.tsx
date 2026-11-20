@@ -6,7 +6,7 @@ type TextFieldProps = ComponentProps<"input"> & {
   error?: string;
 };
 
-/** The prototype's TextField: label, input, optional hint and error tied with aria. */
+/** TextField: label, input, optional hint and error tied with aria. */
 export function TextField({ label, hint, error, id, className = "", ...props }: TextFieldProps) {
   const generated = useId();
   const inputId = id ?? generated;

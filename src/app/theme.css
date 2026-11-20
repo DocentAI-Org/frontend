@@ -5,8 +5,7 @@
  * from the system preference, or from data-theme="light|dark" on <html> when the user picks one.
  * Dark scales mirror the light ones (50 is the darkest tint, 900 the lightest), so a pairing such as
  * bg-primary-50 + text-primary-800 or bg-primary-600 + text-fg-inverse keeps its contrast in both.
- * Loaded by the HTML prototype (assets/js/prototype.js) and imported by the React app
- * (src/app/globals.css). Only this file may contain raw color values.
+ * Imported by src/app/globals.css. Only this file may contain raw color values.
  */
 @theme {
   /* Remove Tailwind's default palette: only DocentAI colors exist. */

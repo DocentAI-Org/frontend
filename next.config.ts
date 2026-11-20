@@ -13,11 +13,7 @@ const nextConfig: NextConfig = {
     proxyClientMaxBodySize: UPLOAD_LIMIT
   },
   async redirects() {
-    // The static prototype lives in public/prototype/. A redirect (not a rewrite) keeps the
-    // browser URL inside /prototype/, so the pages' relative asset paths resolve correctly.
     return [
-      { source: "/prototype", destination: "/prototype/index.html", permanent: false },
-      { source: "/prototype/", destination: "/prototype/index.html", permanent: false },
       // Invitation links shared before the routes were English (003 FR-005).
       { source: "/unirse/:code", destination: "/join/:code", permanent: true }
     ];

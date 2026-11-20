@@ -5,9 +5,9 @@ export async function ImfaheAcknowledgement() {
   const t = await getTranslations("common.imfahe");
   return (
     <div className="flex items-center gap-4" data-component="ImfaheAcknowledgement">
-      {/* eslint-disable-next-line @next/next/no-img-element -- static prototype asset, decorative */}
+      {/* eslint-disable-next-line @next/next/no-img-element -- static asset, decorative */}
       <img
-        src="/prototype/assets/img/imfahe-logo-transparent.webp"
+        src="/img/imfahe-logo-transparent.webp"
         alt=""
         width={90}
         height={40}
