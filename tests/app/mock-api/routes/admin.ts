@@ -1,6 +1,6 @@
 import { HttpError, RawBody, type Route, byName, page, requireRole, search, sortParam } from "../http.ts";
 import { isEmail } from "../../../../src/lib/auth/identifier.ts";
-import { type S, type User, id, now } from "../state.ts";
+import { type S, type User, id, now, randomCode } from "../state.ts";
 
 const ALPHABET = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
 
@@ -17,7 +17,7 @@ function adminUser(user: User): S["AdminUser"] {
 }
 
 function password(): string {
-  return `pw-${Math.random().toString(36).slice(2, 12)}`;
+  return `pw-${randomCode("abcdefghijklmnopqrstuvwxyz0123456789", 10)}`;
 }
 
 // An empty ZIP archive: only the end-of-central-directory record.
@@ -151,7 +151,7 @@ export const adminRoutes: Route[] = [
         throw new HttpError(422, "validation_error", { fields: [{ loc: ["body", "count"] }] });
       }
       const accounts = Array.from({ length: count }, () => {
-        const code = `EST-${Array.from({ length: 5 }, () => ALPHABET[Math.floor(Math.random() * ALPHABET.length)]).join("")}`;
+        const code = `EST-${randomCode(ALPHABET, 5)}`;
         const initial = password();
         const user: User = {
           id: id(),
