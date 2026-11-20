@@ -2,8 +2,18 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 
 import { safeNext } from "@/lib/auth/home";
+import { isDemo } from "@/lib/demo";
 
+import { DemoAccounts } from "./DemoAccounts";
 import { SignInForm } from "./SignInForm";
+
+// The demo deployment's sample accounts (tests/app/mock-api/state.ts).
+const DEMO_ACCOUNTS = [
+  { role: "teacher", email: "profesora@docentai.local" },
+  { role: "student", email: "alumno@docentai.local" },
+  { role: "admin", email: "admin@docentai.local" }
+] as const;
+const DEMO_PASSWORD = "docentai-dev-password";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("common.auth");
@@ -53,7 +63,10 @@ export default async function SignInPage({
         </div>
       </div>
       {/* IMFAHE and the privacy link are in the page footer (PublicFrame). */}
-      <SignInForm next={safeNext(next)} expired={expired === "1"} />
+      <div className="flex flex-col gap-6">
+        {isDemo() && <DemoAccounts accounts={[...DEMO_ACCOUNTS]} password={DEMO_PASSWORD} />}
+        <SignInForm next={safeNext(next)} expired={expired === "1"} />
+      </div>
 
     </div>
   );

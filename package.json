@@ -15,7 +15,8 @@
     "api:types": "node scripts/api-types.mjs",
     "api:check": "node scripts/api-types.mjs --check",
     "test:e2e:app": "playwright test -c playwright.app.config.ts",
-    "test:e2e:integration": "E2E_TARGET=integration playwright test -c playwright.app.config.ts"
+    "test:e2e:integration": "E2E_TARGET=integration playwright test -c playwright.app.config.ts",
+    "test:e2e:demo": "playwright test -c playwright.demo.config.ts"
   },
   "dependencies": {
     "@supabase/ssr": "0.12.7",

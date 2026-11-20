@@ -47,5 +47,5 @@ The hooks in `.githooks/` are mirrored in the backend repository: change both to
 ## CI
 
 `CI` runs lint, types, unit tests and the build on every pull request, and the app E2E suite
-(3 shards) for anything but documentation (`docs/`, `*.md`) and repository tooling
-(`scripts/ci-changes.sh`). Pushes to `main` run everything.
+(3 shards) and the demo E2E suite for anything but documentation (`docs/`, `*.md`) and repository
+tooling (`scripts/ci-changes.sh`). Pushes to `main` run everything.

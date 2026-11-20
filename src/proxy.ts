@@ -2,6 +2,7 @@ import { createServerClient } from "@supabase/ssr";
 import { type NextRequest, NextResponse } from "next/server";
 
 import { safeNext } from "@/lib/auth/home";
+import { DEMO_ORIGIN, demoFetch, isDemo } from "@/lib/demo";
 import { PATHNAME_HEADER } from "@/lib/request-path";
 
 /** Routes reachable without a session; everything else needs one. */
@@ -21,10 +22,12 @@ export async function proxy(request: NextRequest) {
   let response = next();
 
   // Refreshes the session cookies (research R1).
+  const demo = isDemo();
   const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL ?? "",
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? "",
+    demo ? DEMO_ORIGIN : (process.env.NEXT_PUBLIC_SUPABASE_URL ?? ""),
+    demo ? "demo" : (process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? ""),
     {
+      global: demo ? { fetch: demoFetch } : undefined,
       cookies: {
         getAll: () => request.cookies.getAll(),
         setAll(list) {

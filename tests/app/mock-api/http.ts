@@ -1,10 +1,7 @@
-import type { IncomingMessage, ServerResponse } from "node:http";
-
 import { type State, type User } from "./state.ts";
 
 export type Ctx = {
-  req: IncomingMessage;
-  res: ServerResponse;
+  headers: Headers;
   url: URL;
   params: Record<string, string>;
   body: unknown;
@@ -27,11 +24,6 @@ export class HttpError extends Error {
     this.code = code;
     this.details = details;
   }
-}
-
-export function send(res: ServerResponse, status: number, body?: unknown): void {
-  res.writeHead(status, { "content-type": "application/json" });
-  res.end(body === undefined ? "" : JSON.stringify(body));
 }
 
 /** A non-JSON body, such as a file download. */

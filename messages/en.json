@@ -689,6 +689,19 @@
       "teacher": "They have done {correct} exercises in a row right in “{topic}” since their last “{type}” mistake, which they had made {count} times.",
       "teacherNoTopic": "They have done {correct} exercises in a row right since their last “{type}” mistake, which they had made {count} times.",
       "provisional": "This criterion is provisional: the education team is still reviewing it."
+    },
+    "demo": {
+      "banner": "Demo with fictitious data: other visitors see your changes, and they are erased every hour.",
+      "title": "Try the demo",
+      "lead": "Sign in with one of these sample accounts to see the platform from each role.",
+      "signInAs": "Sign in as {role}",
+      "password": "You can also type them in the form. Password for all of them: <code>{password}</code>",
+      "failed": "Could not sign in. Please try again.",
+      "roles": {
+        "teacher": "teacher",
+        "student": "student",
+        "admin": "admin"
+      }
     }
   },
   "student": {

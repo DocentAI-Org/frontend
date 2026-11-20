@@ -689,6 +689,19 @@
       "teacher": "Lleva {correct} ejercicios bien seguidos en «{topic}» desde su último error de tipo «{type}», que había cometido {count} veces.",
       "teacherNoTopic": "Lleva {correct} ejercicios bien seguidos desde su último error de tipo «{type}», que había cometido {count} veces.",
       "provisional": "Es un criterio provisional: el equipo educativo todavía lo está revisando."
+    },
+    "demo": {
+      "banner": "Demo con datos ficticios: lo que cambies lo ven el resto de visitantes y se borra cada hora.",
+      "title": "Prueba la demo",
+      "lead": "Entra con una de estas cuentas de ejemplo para ver la plataforma desde cada rol.",
+      "signInAs": "Entrar como {role}",
+      "password": "También puedes escribirlas en el formulario. Contraseña de todas: <code>{password}</code>",
+      "failed": "No se ha podido entrar. Vuelve a intentarlo.",
+      "roles": {
+        "teacher": "profesora",
+        "student": "alumno",
+        "admin": "administración"
+      }
     }
   },
   "student": {

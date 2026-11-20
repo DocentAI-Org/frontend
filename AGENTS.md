@@ -22,6 +22,7 @@ npm run knip                      # unused files, exports and dependencies
 npm run test                      # Vitest unit and component tests
 npm run test:e2e:app              # app E2E with axe, against the typed mock backend
 npm run test:e2e:integration      # the same suite against the real local stack
+npm run test:e2e:demo             # the demo deployment (DEMO_MODE=on) with axe
 npm run api:types                 # regenerate src/lib/api/schema.d.ts; api:check verifies it
 npm run build
 ```

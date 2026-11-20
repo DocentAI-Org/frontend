@@ -278,6 +278,11 @@ export function id(): string {
   return `00000000-0000-4000-8000-${counter.toString(16).padStart(12, "0")}`;
 }
 
+/** Starts ids over, so state built the same way gets the same ids in every process (demo.ts). */
+export function resetIds(): void {
+  counter = 0;
+}
+
 export function now(): string {
   return new Date().toISOString();
 }
