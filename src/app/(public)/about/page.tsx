@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function AboutPage() {
   const t = await getTranslations();
-  const email = process.env.PRIVACY_CONTACT_EMAIL ?? "privacidad@example.org";
+  const email = process.env.PRIVACY_CONTACT_EMAIL || "docentai.org@gmail.com";
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-6">
       <BackLink>{t("about.back")}</BackLink>
