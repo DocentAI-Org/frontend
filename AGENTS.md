@@ -22,7 +22,6 @@ npm run knip                      # unused files, exports and dependencies
 npm run test                      # Vitest unit and component tests
 npm run test:e2e:app              # app E2E with axe, against the typed mock backend
 npm run test:e2e:integration      # the same suite against the real local stack
-npm run test:e2e                  # prototype tests
 npm run api:types                 # regenerate src/lib/api/schema.d.ts; api:check verifies it
 npm run build
 ```
@@ -63,13 +62,12 @@ Code comments cite them by number, e.g. "AGENTS.md IV".
 
 ### IV. Design system first
 
-- The design reference is the static HTML prototype in `public/prototype/` (Tailwind v4, browser
-  CDN build). It is the source of truth for visuals.
-- The prototype declares its design tokens in `@theme`, with the same names and values as the
-  app's.
+- The design system is the app itself: tokens in `src/app/theme.css` (`@theme`), described in
+  `DESIGN.md`, and the components in `src/components/`. New screens reuse them before adding new
+  ones.
 - Hard-coded visual values (hex/rgb colours, arbitrary `[..]` utilities, raw pixel spacing) are
-  forbidden outside token definitions, in the prototype and in the app.
-- Reusable components have the same name in the prototype and in React.
+  forbidden outside token definitions.
+- Reusable components carry their name in `data-component`, the name `DESIGN.md` uses.
 
 ### V. Test-first
 
@@ -84,8 +82,7 @@ Code comments cite them by number, e.g. "AGENTS.md IV".
   `contracts/backend-openapi.json`; hand-written API types are forbidden.
 - Every backend call goes through `src/lib`; components never call the API directly.
 - Mocks (`tests/app/mock-api`) honour the same generated contract.
-- Loading, empty and error states are designed in the prototype and tested for every data-driven
-  view.
+- Loading, empty and error states are designed and tested for every data-driven view.
 
 ### VII. Privacy by design (GDPR, possible minors)
 
@@ -111,8 +108,7 @@ Code comments cite them by number, e.g. "AGENTS.md IV".
 
 ## Technical constraints
 
-- Next.js 16 (App Router), React 19, TypeScript strict, Tailwind CSS v4 (the standard build in the
-  app; the browser CDN build only in the prototype).
+- Next.js 16 (App Router), React 19, TypeScript strict, Tailwind CSS v4.
 - Vercel (hosting and previews), Supabase Auth, Sentry.
 - Desktop-first for every role, and fully usable on mobile with no horizontal scroll.
 - The last two versions of Chrome, Edge, Firefox and Safari.
@@ -130,7 +126,5 @@ A development or evaluation tool may rely on the commands above and on these fil
 nothing else. Changing them is a change to this repository, made in a pull request that says so:
 
 - `contracts/backend-openapi.json` and `src/lib/api/schema.d.ts`, the pinned API contract.
-- `public/prototype/` and its page manifest `public/prototype/assets/pages.json` (each page's
-  states and mobile flag).
 - `messages/es.json` and `messages/en.json`.
 - `PRODUCT.md` and `DESIGN.md`.
