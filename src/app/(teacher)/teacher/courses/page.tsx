@@ -10,7 +10,6 @@ import { FavoriteStar } from "@/components/FavoriteStar";
 import { ErrorState } from "@/components/ErrorState";
 import { Icon } from "@/components/Icon";
 import { PageHeader } from "@/components/PageHeader";
-import { RowMenu } from "@/components/RowMenu";
 import { StudyQuestionnaires } from "@/components/StudyQuestionnaires";
 import { TagChips } from "@/components/TagChips";
 import type { Schemas } from "@/lib/api/client";
@@ -25,8 +24,8 @@ export async function generateMetadata(): Promise<Metadata> {
   return { title: t("pageTitle") };
 }
 
-const MENU_ROW =
-  "flex min-h-9 w-full items-center gap-2 rounded-md px-3 text-sm text-fg hover:bg-surface-sunken focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus";
+const TAG_BUTTON =
+  "flex size-9 shrink-0 items-center justify-center rounded-md text-fg-muted hover:bg-surface-sunken hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus";
 
 export default async function TeacherCoursesPage({
   searchParams
@@ -88,7 +87,6 @@ export default async function TeacherCoursesPage({
 
 async function CourseRow({ course, tags }: { course: Schemas["TeacherCourse"]; tags: Schemas["CourseTag"][] }) {
   const t = await getTranslations("teacher.courses");
-  const tl = await getTranslations("common.list");
   const format = await getFormatter();
   return (
     <li className="flex items-center gap-2 py-1">
@@ -114,15 +112,14 @@ async function CourseRow({ course, tags }: { course: Schemas["TeacherCourse"]; t
         <TagChips tags={course.tags ?? []} />
       </Link>
       <FavoriteStar courseId={course.id} name={course.name} initial={course.is_favorite} />
-      <RowMenu label={tl("rowActions", { name: course.name })} className="w-56">
-        <CourseTagsDialog
-          courseId={course.id}
-          courseName={course.name}
-          tags={tags}
-          selected={(course.tags ?? []).map((tag) => tag.id)}
-          triggerClassName={MENU_ROW}
-        />
-      </RowMenu>
+      <CourseTagsDialog
+        courseId={course.id}
+        courseName={course.name}
+        tags={tags}
+        selected={(course.tags ?? []).map((tag) => tag.id)}
+        triggerClassName={TAG_BUTTON}
+        iconOnly
+      />
     </li>
   );
 }

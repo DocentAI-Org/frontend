@@ -450,8 +450,7 @@
         "favorites": "Favourites"
       },
       "noFavorites": "No favourite courses yet",
-      "noFavoritesBody": "Press a course’s star to keep it at hand here.",
-      "rowActions": "More actions for {name}"
+      "noFavoritesBody": "Press a course’s star to keep it at hand here."
     },
     "tags": {
       "title": "Tags",

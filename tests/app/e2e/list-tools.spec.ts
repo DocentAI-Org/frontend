@@ -167,8 +167,14 @@ async function newTag(page: Page, name: string, color = /verde/i) {
 }
 
 async function tagCourse(page: Page, course: string, tag: string) {
-  await page.locator(`summary[aria-label="Más acciones de ${course}"]`).click();
-  await page.getByRole("button", { name: /^etiquetas…$/i }).filter({ visible: true }).click();
+  // The teacher's row has a tag button; the student's keeps tags in the row's menu.
+  const menu = page.locator(`summary[aria-label="Más acciones de ${course}"]`);
+  if (await menu.count()) {
+    await menu.click();
+    await page.getByRole("button", { name: /^etiquetas…$/i }).filter({ visible: true }).click();
+  } else {
+    await page.getByRole("button", { name: `Etiquetas de ${course}` }).click();
+  }
   const dialog = page.getByRole("dialog", { name: `Etiquetas de ${course}` });
   await dialog.getByRole("checkbox", { name: tag }).check();
   await expect(dialog.getByRole("checkbox", { name: tag })).toBeChecked();
