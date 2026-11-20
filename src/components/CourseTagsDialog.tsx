@@ -14,20 +14,23 @@ type Tag = { id: string; name: string; color: TagColor };
 
 /**
  * A course's tags (spec 016 US4): every tag of the user as a checkbox, saved as it is ticked;
- * closing refreshes the list so chips and counts follow.
+ * closing refreshes the list so chips and counts follow. `iconOnly` shows the trigger as a tag
+ * icon named after the course, for rows where it is the only action.
  */
 export function CourseTagsDialog({
   courseId,
   courseName,
   tags,
   selected,
-  triggerClassName
+  triggerClassName,
+  iconOnly = false
 }: {
   courseId: string;
   courseName: string;
   tags: Tag[];
   selected: string[];
   triggerClassName: string;
+  iconOnly?: boolean;
 }) {
   const t = useTranslations("common.tags");
   const router = useRouter();
@@ -64,13 +67,15 @@ export function CourseTagsDialog({
       <button
         type="button"
         className={triggerClassName}
+        aria-label={iconOnly ? t("courseTitle", { course: courseName }) : undefined}
+        title={iconOnly ? t("courseTitle", { course: courseName }) : undefined}
         onClick={() => {
           setChecked(new Set(selected));
           dialog.current?.showModal();
         }}
       >
-        <Icon name="tag" />
-        <span>{t("courseAction")}</span>
+        <Icon name="tag" className={iconOnly ? "size-5 shrink-0" : undefined} />
+        {!iconOnly && <span>{t("courseAction")}</span>}
       </button>
       <dialog
         ref={dialog}

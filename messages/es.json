@@ -450,8 +450,7 @@
         "favorites": "Favoritos"
       },
       "noFavorites": "Aún no tienes cursos favoritos",
-      "noFavoritesBody": "Pulsa la estrella de un curso para tenerlo siempre a mano aquí.",
-      "rowActions": "Más acciones de {name}"
+      "noFavoritesBody": "Pulsa la estrella de un curso para tenerlo siempre a mano aquí."
     },
     "tags": {
       "title": "Etiquetas",
