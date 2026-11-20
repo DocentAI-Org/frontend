@@ -90,8 +90,9 @@ export function createHandler(current: () => State) {
             : { error: { code: error.code, message: error.code, details: error.details } };
           return json(error.status, payload);
         }
+        // The error stays in the server log; the demo serves this mock to anyone.
         console.error(error);
-        return json(500, { error: { code: "unknown", message: String(error), details: null } });
+        return json(500, { error: { code: "unknown", message: "Internal error.", details: null } });
       }
     }
     return json(404, { error: { code: "not_found", message: `No mock for ${request.method} ${url.pathname}`, details: null } });

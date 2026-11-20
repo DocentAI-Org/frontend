@@ -1,11 +1,10 @@
 import { type Ctx, HttpError, type Route, byName, noContent, page, requireRole, search, sortParam } from "../http.ts";
-import { type Course, type Enrolment, type S, type State, id, now } from "../state.ts";
+import { type Course, type Enrolment, type S, type State, id, now, randomCode } from "../state.ts";
 
 const ALPHABET = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
 
 function code(): string {
-  const pick = (n: number) => Array.from({ length: n }, () => ALPHABET[Math.floor(Math.random() * ALPHABET.length)]).join("");
-  return `${pick(3)}-${pick(4)}`;
+  return `${randomCode(ALPHABET, 3)}-${randomCode(ALPHABET, 4)}`;
 }
 
 function studentCount(state: State, course: Course): number {

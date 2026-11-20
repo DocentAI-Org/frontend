@@ -1,5 +1,6 @@
 // In-memory state of the mock DocentAI backend. Types come from the generated contract, so a
 // contract change that breaks the app also breaks the mock (AGENTS.md VI).
+import { randomInt } from "node:crypto";
 import type { components } from "../../../src/lib/api/schema.d.ts";
 
 export type S = components["schemas"];
@@ -281,6 +282,11 @@ export function id(): string {
 /** Starts ids over, so state built the same way gets the same ids in every process (demo.ts). */
 export function resetIds(): void {
   counter = 0;
+}
+
+/** `length` characters from `alphabet`, from a secure source: the demo serves this mock. */
+export function randomCode(alphabet: string, length: number): string {
+  return Array.from({ length }, () => alphabet[randomInt(alphabet.length)]).join("");
 }
 
 export function now(): string {
