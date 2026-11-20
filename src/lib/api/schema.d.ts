@@ -4437,6 +4437,16 @@ export interface components {
             /** Citations */
             citations: components["schemas"]["Citation"][];
             /**
+             * Key Check
+             * @description The draft solved by the AI without its key (specs/025): `agrees`, `disagrees` (another option is right) or `several` (more than one is); null when not checked, or after the teacher changed the options or the key.
+             */
+            key_check: ("agrees" | "disagrees" | "several") | null;
+            /**
+             * Key Check Options
+             * @description The options the check found right, by index.
+             */
+            key_check_options: number[];
+            /**
              * Answered Count
              * @description Answers given in students' quizzes.
              */

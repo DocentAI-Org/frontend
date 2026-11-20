@@ -298,6 +298,8 @@ function build(): State {
           difficulty: q.difficulty,
           status: pending ? "pending" : n === 3 && k === 2 && index % 3 === 0 ? "rejected" : "approved",
           origin: (n + k) % 4 === 3 ? "edited" : "ai",
+          key_check: null,
+          key_check_options: [],
           cited: [t.fragment.id],
           reviewed_at: pending ? null : iso(Date.parse(createdAt) + DAY),
           created_at: createdAt

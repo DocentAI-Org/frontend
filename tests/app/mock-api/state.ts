@@ -139,6 +139,9 @@ export type Question = {
   difficulty: number;
   status: "pending" | "approved" | "rejected";
   origin: "ai" | "edited";
+  // The draft solved without its key (backend specs/025).
+  key_check: S["TeacherQuestion"]["key_check"];
+  key_check_options: number[];
   cited: string[];
   reviewed_at: string | null;
   created_at: string;
