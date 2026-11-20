@@ -33,6 +33,12 @@ function questionView(state: State, q: Question): S["TeacherQuestion"] {
   };
 }
 
+/** The default order: pending drafts the key check doubts, other pending, the rest (backend specs/025). */
+function rank(q: Question) {
+  if (q.status !== "pending") return 2;
+  return q.key_check === "disagrees" || q.key_check === "several" ? 0 : 1;
+}
+
 function courseFragment(state: State, courseId: string) {
   return state.fragments.find((f) =>
     state.documents.some((d) => d.id === f.document_id && d.course_id === courseId && d.validation_status === "validated")
@@ -57,6 +63,8 @@ function draft(state: State, courseId: string, topicId: string, difficulty: numb
     difficulty,
     status,
     origin: "ai",
+    key_check: null,
+    key_check_options: [],
     cited,
     reviewed_at: status === "pending" ? null : now(),
     created_at: now()
@@ -234,7 +242,7 @@ export const quizRoutes: Route[] = [
         .filter((q) => !status || q.status === status)
         .sort(
           (a, b) =>
-            (sort === "default" ? Number(a.status !== "pending") - Number(b.status !== "pending") : 0) ||
+            (sort === "default" ? rank(a) - rank(b) : 0) ||
             b.created_at.localeCompare(a.created_at)
         );
       return { ...page(rows.map((q) => questionView(state, q)), ctx.url), counts };
@@ -258,6 +266,7 @@ export const quizRoutes: Route[] = [
       if (body.statement !== undefined && body.statement !== null && !body.statement.trim()) {
         throw new HttpError(422, "validation_error", { fields: { statement: "required" } });
       }
+      const before = { options: JSON.stringify(q.options), correct: q.correct_option };
       let edited = false;
       for (const field of ["statement", "options", "correct_option", "explanation", "difficulty"] as const) {
         const value = body[field];
@@ -268,6 +277,10 @@ export const quizRoutes: Route[] = [
         }
       }
       if (edited) q.origin = "edited";
+      if ((body.options && JSON.stringify(body.options) !== before.options) || (body.correct_option != null && body.correct_option !== before.correct)) {
+        q.key_check = null;
+        q.key_check_options = [];
+      }
       if (body.status) {
         q.status = body.status;
         q.reviewed_at = now();
@@ -448,6 +461,19 @@ export const quizRoutes: Route[] = [
       );
       state.questions.push(...made);
       return { topic_id: topic.id, questions: made.map((q) => ({ id: q.id, correct_option: q.correct_option, options: q.options, statement: q.statement })) };
+    }
+  },
+  {
+    method: "POST",
+    path: "/__test/key-check",
+    handler: (ctx) => {
+      // A key check on a question, as the backend stores it after drafting (specs/025).
+      const body = ctx.body as { question_id: string; key_check: Question["key_check"]; options: number[] };
+      const q = ctx.state.questions.find((x) => x.id === body.question_id);
+      if (!q) throw new HttpError(404, "not_found");
+      q.key_check = body.key_check;
+      q.key_check_options = body.options;
+      return { ok: true };
     }
   }
 ];

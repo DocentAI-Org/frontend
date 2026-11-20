@@ -18144,6 +18144,31 @@
             "type": "array",
             "title": "Citations"
           },
+          "key_check": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "agrees",
+                  "disagrees",
+                  "several"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Key Check",
+            "description": "The draft solved by the AI without its key (specs/025): `agrees`, `disagrees` (another option is right) or `several` (more than one is); null when not checked, or after the teacher changed the options or the key."
+          },
+          "key_check_options": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Key Check Options",
+            "description": "The options the check found right, by index."
+          },
           "answered_count": {
             "type": "integer",
             "title": "Answered Count",
@@ -18192,6 +18217,8 @@
           "status",
           "origin",
           "citations",
+          "key_check",
+          "key_check_options",
           "answered_count",
           "correct_rate",
           "reviewed_at",
