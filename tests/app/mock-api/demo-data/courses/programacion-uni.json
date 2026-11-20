@@ -1,0 +1,369 @@
+{
+  "key": "programacion-uni",
+  "name": "Fundamentos de programación",
+  "description": "Introducción a la programación estructurada en Python: tipos de datos, control de flujo, funciones y listas, con prácticas semanales en el laboratorio.",
+  "documents": [
+    {
+      "file_name": "tema1-2-tipos-y-control.pdf",
+      "file_type": "pdf",
+      "page_count": 22,
+      "sections": [
+        {
+          "title": "1.3 Variables y tipos de datos",
+          "page": 4,
+          "text": "Una variable es un nombre asociado a un valor; Python tiene tipado dinámico, de modo que no se declara el tipo, sino que lo determina el valor asignado y puede consultarse con type(). Los tipos básicos son int (enteros), float (reales), str (cadenas de texto) y bool (True o False). Las conversiones se hacen explícitamente con int('7'), float('2.5') o str(3). La función input() devuelve siempre una cadena, por lo que para operar con números hay que convertirla: edad = int(input('Edad: ')). Entre los operadores aritméticos, / devuelve siempre un float (7 / 2 vale 3.5), // es la división entera (7 // 2 vale 3) y % el resto (7 % 2 vale 1). Mezclar tipos incompatibles produce un error: '3' + 4 lanza TypeError, mientras que '3' + '4' concatena y da '34'."
+        },
+        {
+          "title": "2.2 Sentencias condicionales",
+          "page": 11,
+          "text": "La sentencia if ejecuta un bloque solo si se cumple una condición; puede ir seguida de varias ramas elif y de una rama else final. El bloque se delimita por la indentación, normalmente cuatro espacios. Las condiciones se evalúan en orden y solo se ejecuta la primera rama verdadera, por lo que el orden de las ramas importa. Para comparar se usa == (la asignación = dentro de una condición es un error de sintaxis); se combinan con and, or y not, y Python permite encadenar comparaciones como 0 <= nota < 5. Los valores 0, la cadena vacía '' y la lista vacía [] se evalúan como falsos en una condición. Ejemplo: if nota >= 9: print('Sobresaliente') / elif nota >= 7: print('Notable') / elif nota >= 5: print('Aprobado') / else: print('Suspenso')."
+        },
+        {
+          "title": "2.4 Bucles for y while",
+          "page": 15,
+          "text": "El bucle for recorre los elementos de una secuencia; con range(inicio, fin, paso) se generan enteros desde inicio hasta fin − 1, es decir, el extremo superior no se incluye: for i in range(1, 6) recorre 1, 2, 3, 4 y 5. El bucle while repite su bloque mientras la condición sea verdadera, y es responsabilidad del programador que alguna instrucción del bloque modifique la condición; si no, el bucle es infinito. La sentencia break termina el bucle de inmediato. Un patrón habitual es el acumulador: suma = 0; for i in range(1, n + 1): suma += i, que para n = 100 da 5050. Como criterio general, se usa for cuando se conoce de antemano el número de iteraciones y while cuando depende de una condición, por ejemplo pedir un dato hasta que sea válido."
+        }
+      ]
+    },
+    {
+      "file_name": "tema3-4-funciones-listas.md",
+      "file_type": "markdown",
+      "page_count": null,
+      "sections": [
+        {
+          "title": "3.1 Definición de funciones",
+          "page": null,
+          "text": "Una función se define con def nombre(parámetros): seguido de un bloque indentado, y la sentencia return devuelve un valor a quien la llama y termina la ejecución de la función; si no hay return, la función devuelve None. Conviene distinguir print, que solo muestra un valor por pantalla, de return, que lo entrega al código que llama para que pueda usarlo en otras operaciones. Las variables creadas dentro de una función son locales: no existen fuera de ella. Los parámetros pueden tener valores por defecto, como en def potencia(base, exp=2), y una función puede devolver varios valores separados por comas, que se reciben como una tupla: return minimo, maximo. Ejemplo: def area_rectangulo(base, altura): return base * altura, de modo que a = area_rectangulo(3, 4) guarda 12 en a."
+        },
+        {
+          "title": "4.2 Listas y sus operaciones",
+          "page": null,
+          "text": "Una lista es una secuencia ordenada y mutable de elementos: notas = [7, 5.5, 9]. Los índices empiezan en 0, de modo que notas[0] es 7, y los negativos cuentan desde el final: notas[-1] es 9. Las operaciones básicas son len(lista), append(x), que añade al final, insert(i, x), que inserta en la posición i, remove(x) y el operador in para comprobar pertenencia; append modifica la lista y devuelve None. El troceado lista[i:j] obtiene los elementos desde la posición i hasta la j − 1. Al ser mutables, b = a no copia la lista: ambos nombres hacen referencia al mismo objeto, y para obtener una copia independiente se usa a.copy() o a[:]. Ejemplo: media = sum(notas) / len(notas) da 21.5 / 3, aproximadamente 7.17."
+        }
+      ]
+    },
+    {
+      "file_name": "ejercicios-resueltos-depuracion.docx",
+      "file_type": "docx",
+      "page_count": 10,
+      "sections": [
+        {
+          "title": "R.1 Trazas de ejecución",
+          "page": 2,
+          "text": "Una traza es una tabla en la que se anota, línea a línea, el valor de cada variable durante la ejecución de un programa. Es la herramienta más útil para encontrar errores lógicos sin depurador. Ejercicio resuelto: para x = 3; y = x * 2; x = y - 1, la traza da x = 3, y = 6 y finalmente x = 5. En el laboratorio se recomienda añadir print temporales en los puntos dudosos y retirarlos al terminar."
+        },
+        {
+          "title": "R.2 Recorrido de cadenas de texto",
+          "page": 6,
+          "text": "Las cadenas se recorren con for igual que las listas, carácter a carácter, aunque son inmutables: no se puede asignar cadena[0] = 'A'. Ejercicio resuelto: contar las vocales de una frase con un acumulador, for c in frase.lower(): if c in 'aeiou': total += 1. Para 'Hola Mundo' el resultado es 4."
+        }
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "name": "Variables y tipos",
+      "document": "tema1-2-tipos-y-control.pdf",
+      "section": "1.3 Variables y tipos de datos",
+      "questions": [
+        {
+          "question": "por qué si leo dos números con input y los sumo me los junta en vez de sumarlos? me sale 34 en vez de 7",
+          "answer": "Porque input() devuelve siempre una cadena, y el operador + entre cadenas concatena: '3' + '4' da '34'. Para operar numéricamente tienes que convertir cada entrada, por ejemplo a = int(input('a: ')). Con esa conversión, a + b dará 7."
+        },
+        {
+          "question": "cuál es la diferencia entre / y //? en clase usamos los dos",
+          "answer": "El operador / es la división real y devuelve siempre un float, aunque el resultado sea exacto: 7 / 2 vale 3.5. El operador // es la división entera y descarta la parte decimal: 7 // 2 vale 3. Se suele combinar con %, que da el resto: 7 % 2 vale 1."
+        },
+        {
+          "question": "hay que declarar el tipo de las variables como en C? el profe no lo hace nunca",
+          "answer": "No. Python tiene tipado dinámico: el tipo no se declara, sino que lo determina el valor asignado, y puedes consultarlo con type(). Eso sí, las conversiones entre tipos deben hacerse explícitamente, con int(), float() o str(), porque mezclar tipos incompatibles, como '3' + 4, produce un TypeError."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Escribe un programa que pida al usuario dos números enteros y muestre su suma.",
+          "correct_answer": "a = int(input('Primer número: '))\nb = int(input('Segundo número: '))\nprint(a + b)",
+          "wrong_answer": "a = input('Primer número: ')\nb = input('Segundo número: ')\nprint(a + b)",
+          "mistake_location": "Líneas 1 y 2",
+          "error_type": "procedural",
+          "explanation": "Falta el paso de conversión: input() devuelve cadenas, así que a + b las concatena (con 3 y 4 mostraría 34). Envuelve cada lectura con int(), por ejemplo a = int(input('Primer número: '))."
+        },
+        {
+          "statement": "Sin ejecutarlo, indica qué muestra print(17 // 5, 17 % 5, 17 / 5).",
+          "correct_answer": "3 2 3.4",
+          "wrong_answer": "3 2 3",
+          "mistake_location": "Tercer valor",
+          "error_type": "conceptual",
+          "explanation": "En Python, el operador / devuelve siempre un float, aunque ambos operandos sean enteros; no trunca como en otros lenguajes. Por eso 17 / 5 vale 3.4, mientras que la división entera la realiza //."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿De qué tipo es el valor que devuelve input()?",
+          "options": ["int", "Depende de lo que escriba el usuario", "str", "float"],
+          "correct": 2,
+          "explanation": "input() devuelve siempre una cadena (str), aunque el usuario escriba un número; hay que convertirla para operar.",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Qué ocurre al ejecutar print('3' + 4)?",
+          "options": ["Muestra 7", "Muestra 34", "Lanza TypeError", "Muestra '3' + 4"],
+          "correct": 2,
+          "explanation": "No se puede sumar una cadena y un entero: Python lanza TypeError. Para obtener 7 habría que escribir int('3') + 4.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Cuál es el valor de x tras ejecutar x = 7 // 2 + 7 % 2 * 2.0?",
+          "options": ["5.0", "5", "8.0", "4.5"],
+          "correct": 0,
+          "explanation": "7 // 2 vale 3 y 7 % 2 * 2.0 vale 1 * 2.0 = 2.0; la suma de un int y un float es un float, así que x vale 5.0.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Sentencias condicionales",
+      "document": "tema1-2-tipos-y-control.pdf",
+      "section": "2.2 Sentencias condicionales",
+      "questions": [
+        {
+          "question": "si pongo varios if seguidos en vez de if-elif es lo mismo, no?",
+          "answer": "No siempre. Con if-elif las condiciones se evalúan en orden y solo se ejecuta la primera rama verdadera; con varios if independientes se evalúan todos y pueden ejecutarse varios bloques. Por ejemplo, con nota = 9.5 y tres if (nota >= 9, nota >= 7, nota >= 5) se imprimirían «Sobresaliente», «Notable» y «Aprobado»."
+        },
+        {
+          "question": "por qué me da SyntaxError en if x = 5: ?",
+          "answer": "Porque = es el operador de asignación y no puede usarse como condición. Para comparar si x es igual a 5 debes escribir if x == 5:. Es un error frecuente al principio, y Python lo detecta antes de ejecutar el programa."
+        },
+        {
+          "question": "puedo escribir if 0 < x < 10 o tengo que poner un and sí o sí?",
+          "answer": "Puedes escribirlo así: Python permite encadenar comparaciones, y 0 < x < 10 equivale a 0 < x and x < 10. Es más legible y es la forma habitual en Python, como en el ejemplo del tema, 0 <= nota < 5."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Dado un entero n ya leído, escribe el código que muestre «par» o «impar» según corresponda.",
+          "correct_answer": "if n % 2 == 0:\n    print('par')\nelse:\n    print('impar')",
+          "wrong_answer": "if n % 2 = 0:\n    print('par')\nelse:\n    print('impar')",
+          "mistake_location": "Línea 1",
+          "error_type": "execution",
+          "explanation": "La lógica es correcta, pero en la condición has usado el operador de asignación = en lugar del de comparación ==, lo que produce un SyntaxError. Corrígelo escribiendo if n % 2 == 0:."
+        },
+        {
+          "statement": "Escribe el código que muestre la calificación de una nota numérica: Sobresaliente (9 o más), Notable (7 o más), Aprobado (5 o más) o Suspenso.",
+          "correct_answer": "if nota >= 9:\n    print('Sobresaliente')\nelif nota >= 7:\n    print('Notable')\nelif nota >= 5:\n    print('Aprobado')\nelse:\n    print('Suspenso')",
+          "wrong_answer": "if nota >= 5:\n    print('Aprobado')\nelif nota >= 7:\n    print('Notable')\nelif nota >= 9:\n    print('Sobresaliente')\nelse:\n    print('Suspenso')",
+          "mistake_location": "Línea 1 (orden de las ramas)",
+          "error_type": "procedural",
+          "explanation": "Como solo se ejecuta la primera rama verdadera, cualquier nota de 5 o más entra en «Aprobado» y las ramas de Notable y Sobresaliente nunca se alcanzan. Ordena las condiciones de la más restrictiva a la menos restrictiva: primero nota >= 9, después nota >= 7 y luego nota >= 5."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "Con x = 7, ¿qué muestra este código?\nif x > 5:\n    print('A')\nelif x > 3:\n    print('B')\nelse:\n    print('C')",
+          "options": ["A", "B", "A y B", "C"],
+          "correct": 0,
+          "explanation": "La primera condición, x > 5, es verdadera, así que se ejecuta su rama y las demás ya no se evalúan.",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Qué expresión es equivalente a 0 <= n < 10?",
+          "options": ["0 <= n or n < 10", "n >= 0 and n < 10", "not (n < 0 and n >= 10)", "n > 0 and n <= 10"],
+          "correct": 1,
+          "explanation": "Una comparación encadenada equivale a unir cada par con and. Con or, o con la negación de una condición imposible, la expresión sería siempre verdadera.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Qué muestra este código?\nx = 0\nif x:\n    print('sí')\nelse:\n    print('no')",
+          "options": ["sí", "Lanza un error porque x no es booleano", "Nada", "no"],
+          "correct": 3,
+          "explanation": "El valor 0 se evalúa como falso en una condición, así que se ejecuta la rama else.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Bucles for y while",
+      "document": "tema1-2-tipos-y-control.pdf",
+      "section": "2.4 Bucles for y while",
+      "questions": [
+        {
+          "question": "por qué range(1, 5) no llega al 5? me parece un poco absurdo",
+          "answer": "Por convenio, range(inicio, fin) genera enteros desde inicio hasta fin − 1: el extremo superior no se incluye. Así, range(1, 5) produce 1, 2, 3 y 4. Una ventaja de este convenio es que range(0, n) produce exactamente n valores, que coinciden con los índices válidos de una secuencia de longitud n."
+        },
+        {
+          "question": "cuándo tengo que usar for y cuándo while? hago lo mismo con los dos",
+          "answer": "Es cierto que muchas veces ambos sirven, pero el criterio general es usar for cuando se conoce de antemano el número de iteraciones o se recorre una secuencia, y while cuando la repetición depende de una condición. Por ejemplo, sumar los números de 1 a n es un caso de for, y pedir un dato hasta que sea válido es un caso de while."
+        },
+        {
+          "question": "mi while no para nunca y se me queda colgado el programa, qué estoy haciendo mal?",
+          "answer": "Lo más probable es que ninguna instrucción dentro del bucle modifique las variables de la condición, de modo que esta sigue siendo verdadera indefinidamente. Comprueba que el bloque actualiza la variable de control, por ejemplo con i -= 1, o que se ejecuta un break cuando corresponde. Puedes interrumpir el programa con Ctrl+C."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Dado un entero n ≥ 2 ya leído, calcula y muestra la suma de los números pares de 2 a n, ambos incluidos.",
+          "correct_answer": "suma = 0\nfor i in range(2, n + 1, 2):\n    suma += i\nprint(suma)",
+          "wrong_answer": "suma = 0\nfor i in range(2, n, 2):\n    suma += i\nprint(suma)",
+          "mistake_location": "Línea 2",
+          "error_type": "execution",
+          "explanation": "range no incluye el extremo superior, así que con range(2, n, 2) el valor n queda fuera cuando es par (para n = 10 obtendrías 20 en lugar de 30). Usa range(2, n + 1, 2) para incluirlo."
+        },
+        {
+          "statement": "Usando while, muestra una cuenta atrás de 10 a 1.",
+          "correct_answer": "i = 10\nwhile i > 0:\n    print(i)\n    i -= 1",
+          "wrong_answer": "i = 10\nwhile i > 0:\n    print(i)",
+          "mistake_location": "Línea 3 (falta una instrucción después)",
+          "error_type": "incomplete",
+          "explanation": "Falta actualizar la variable de control dentro del bucle: i siempre vale 10, la condición nunca se hace falsa y el programa imprime 10 indefinidamente. Añade i -= 1 al final del bloque."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Qué valores genera list(range(2, 11, 3))?",
+          "options": ["[2, 5, 8, 11]", "[3, 6, 9]", "[2, 4, 6, 8, 10]", "[2, 5, 8]"],
+          "correct": 3,
+          "explanation": "Empieza en 2 y avanza de 3 en 3; el 11 es el extremo superior y no se incluye.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Cuántas veces se ejecuta print(i) en for i in range(5)?",
+          "options": ["4", "6", "5", "Infinitas"],
+          "correct": 2,
+          "explanation": "range(5) genera 0, 1, 2, 3 y 4: cinco valores.",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Qué muestra este código?\nn = 1\nwhile n < 50:\n    n *= 3\nprint(n)",
+          "options": ["27", "81", "50", "243"],
+          "correct": 1,
+          "explanation": "n toma los valores 1, 3, 9, 27 y 81; al llegar a 81 la condición n < 50 es falsa y el bucle termina.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Funciones y return",
+      "document": "tema3-4-funciones-listas.md",
+      "section": "3.1 Definición de funciones",
+      "questions": [
+        {
+          "question": "cuál es la diferencia entre return y print? a mí me sale lo mismo en pantalla",
+          "answer": "print solo muestra un valor por pantalla; return lo entrega al código que llama a la función para que pueda usarlo, por ejemplo en otra operación o guardándolo en una variable. En el intérprete interactivo pueden parecer iguales porque este muestra el valor devuelto, pero en un programa una función sin return devuelve None, y operar con ese resultado provoca errores."
+        },
+        {
+          "question": "por qué me dice NameError si la variable la creé dentro de la función?",
+          "answer": "Precisamente por eso: las variables creadas dentro de una función son locales y dejan de existir al terminar la llamada, así que fuera de ella el nombre no está definido. Si necesitas ese valor fuera, devuélvelo con return y guárdalo en una variable: resultado = mi_funcion()."
+        },
+        {
+          "question": "una función puede devolver dos cosas a la vez?",
+          "answer": "Sí: basta con separar los valores por comas en el return, por ejemplo return minimo, maximo. Python los devuelve como una tupla, que puedes desempaquetar al llamar a la función: mn, mx = extremos(lista)."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Escribe una función cuadrado(x) que devuelva el cuadrado de x y úsala para mostrar cuadrado(3) + cuadrado(4).",
+          "correct_answer": "def cuadrado(x):\n    return x * x\n\nprint(cuadrado(3) + cuadrado(4))  # 25",
+          "wrong_answer": "def cuadrado(x):\n    print(x * x)\n\nprint(cuadrado(3) + cuadrado(4))",
+          "mistake_location": "Línea 2",
+          "error_type": "conceptual",
+          "explanation": "La función muestra el cuadrado, pero no lo devuelve, así que cada llamada devuelve None y la suma None + None lanza TypeError. Sustituye print(x * x) por return x * x para que el valor llegue al código que llama."
+        },
+        {
+          "statement": "Escribe una función maximo(a, b) que devuelva el mayor de dos números.",
+          "correct_answer": "def maximo(a, b):\n    if a > b:\n        return a\n    return b",
+          "wrong_answer": "def maximo(a, b):\n    if a > b:\n        return 'El máximo es ' + str(a)\n    return 'El máximo es ' + str(b)",
+          "mistake_location": "Líneas 3 y 4",
+          "error_type": "comprehension",
+          "explanation": "El enunciado pide devolver el mayor número, no un mensaje: tu función devuelve una cadena, con la que no se puede operar después (maximo(3, 5) + 1 fallaría). Devuelve directamente a o b y deja la presentación para quien llama a la función."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Qué muestra este código?\ndef f():\n    x = 5\n\nprint(f())",
+          "options": ["5", "None", "Lanza un error", "0"],
+          "correct": 1,
+          "explanation": "La función no tiene return, así que devuelve None, que es lo que imprime print.",
+          "difficulty": 1
+        },
+        {
+          "statement": "Con def g(a, b=2): return a ** b, ¿qué devuelve g(3)?",
+          "options": ["6", "5", "Lanza un error porque falta un argumento", "9"],
+          "correct": 3,
+          "explanation": "Como b no se pasa, toma su valor por defecto, 2, y g(3) devuelve 3 ** 2 = 9.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Qué ocurre al ejecutar este código?\ndef h():\n    y = 10\n\nh()\nprint(y)",
+          "options": ["Muestra 10", "Muestra None", "Lanza NameError", "Muestra 0"],
+          "correct": 2,
+          "explanation": "y es una variable local de h y no existe fuera de la función, por lo que print(y) lanza NameError.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Listas",
+      "document": "tema3-4-funciones-listas.md",
+      "section": "4.2 Listas y sus operaciones",
+      "questions": [
+        {
+          "question": "por qué el primer elemento de una lista es el 0 y no el 1? me equivoco siempre",
+          "answer": "En Python los índices empiezan en 0, así que en notas = [7, 5.5, 9] el primer elemento es notas[0], y el último, notas[2]. Un truco útil es usar índices negativos para contar desde el final: notas[-1] es siempre el último elemento, sea cual sea la longitud."
+        },
+        {
+          "question": "hice b = a y al modificar b se me cambió también a, es un bug de python?",
+          "answer": "No es un bug: las listas son mutables y b = a no copia la lista, sino que hace que ambos nombres hagan referencia al mismo objeto. Cualquier cambio a través de b se ve también desde a. Si necesitas una copia independiente, usa b = a.copy() o b = a[:]."
+        },
+        {
+          "question": "qué diferencia hay entre append e insert?",
+          "answer": "append(x) añade x siempre al final de la lista, mientras que insert(i, x) lo coloca en la posición i y desplaza los elementos siguientes. Ambas modifican la lista original y devuelven None, así que no debes asignar su resultado a una variable."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Escribe una función positivos(lista) que devuelva una nueva lista con los elementos mayores que 0.",
+          "correct_answer": "def positivos(lista):\n    resultado = []\n    for x in lista:\n        if x > 0:\n            resultado.append(x)\n    return resultado",
+          "wrong_answer": "def positivos(lista):\n    resultado = []\n    for x in lista:\n        if x > 0:\n            resultado = resultado.append(x)\n    return resultado",
+          "mistake_location": "Línea 5",
+          "error_type": "conceptual",
+          "explanation": "append modifica la lista y devuelve None, así que al asignar su resultado pierdes la lista: tras el primer positivo, resultado vale None y el siguiente append lanza AttributeError. Escribe solo resultado.append(x), sin asignación."
+        },
+        {
+          "statement": "Explica en una o dos frases la diferencia entre b = a y b = a.copy() cuando a es una lista.",
+          "correct_answer": "Con b = a no se crea una lista nueva: a y b hacen referencia al mismo objeto, y los cambios hechos a través de uno se ven en el otro. Con b = a.copy() se crea una lista independiente, y modificar b no afecta a a.",
+          "wrong_answer": "Con copy b es igual que a, y sin copy también es igual, pero de otra forma.",
+          "mistake_location": "Toda la respuesta",
+          "error_type": "expression",
+          "explanation": "La respuesta es demasiado vaga y no llega a explicar la diferencia. Debes precisar que b = a hace que ambos nombres referencien la misma lista (mutable), mientras que a.copy() crea un objeto nuevo e independiente."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "Con notas = [4, 8, 6, 10], ¿qué vale notas[-2]?",
+          "options": ["8", "6", "10", "4"],
+          "correct": 1,
+          "explanation": "Los índices negativos cuentan desde el final: notas[-1] es 10 y notas[-2] es 6.",
+          "difficulty": 1
+        },
+        {
+          "statement": "Con datos = [10, 20, 30, 40], ¿qué devuelve datos[1:3]?",
+          "options": ["[10, 20, 30]", "[20, 30, 40]", "[20, 30]", "[10, 20]"],
+          "correct": 2,
+          "explanation": "El troceado incluye la posición 1 y excluye la 3, así que devuelve los elementos de las posiciones 1 y 2.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Qué muestra este código?\na = [1, 2, 3]\nb = a\nb.append(4)\nprint(a)",
+          "options": ["[1, 2, 3]", "[4]", "Lanza un error", "[1, 2, 3, 4]"],
+          "correct": 3,
+          "explanation": "b = a no copia la lista: ambos nombres referencian el mismo objeto, así que el append hecho a través de b también se ve en a.",
+          "difficulty": 3
+        }
+      ]
+    }
+  ],
+  "off_topic": [
+    "¿Cómo se hace una interfaz gráfica con ventanas y botones en Python?",
+    "¿Qué es más rápido, Python o Java?"
+  ]
+}

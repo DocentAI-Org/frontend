@@ -1,0 +1,369 @@
+{
+  "key": "lengua-3b",
+  "name": "Lengua castellana",
+  "description": "Sintaxis de la oración simple, comunicación, tipos de texto y ortografía para 3º ESO, con ejercicios para practicar cada semana.",
+  "documents": [
+    {
+      "file_name": "tema4-oracion-simple.pdf",
+      "file_type": "pdf",
+      "page_count": 14,
+      "sections": [
+        {
+          "title": "4.1 El sujeto y el predicado",
+          "page": 2,
+          "text": "La oración simple tiene un solo verbo conjugado y se divide en dos partes: el sujeto, que es quien realiza o recibe la acción, y el predicado, que es lo que se dice del sujeto. Para localizar el sujeto con seguridad no basta con preguntar «¿quién?»: hay que comprobar la concordancia, porque el núcleo del sujeto concuerda en número y persona con el verbo. Por ejemplo, en «Me gustan mucho las películas de miedo», si cambiamos el verbo a singular («me gusta») también tenemos que cambiar «las películas» a «la película»; por tanto, el sujeto es «las películas de miedo» y no «me». Cuando el sujeto no aparece escrito pero se deduce por la terminación del verbo, hablamos de sujeto omitido o elíptico: en «Llegamos tarde al instituto» el sujeto es «nosotros». El sujeto nunca va precedido de preposición, salvo casos muy concretos como «entre» y «hasta» («Entre tú y yo lo arreglaremos»)."
+        },
+        {
+          "title": "4.2 El complemento directo y el complemento indirecto",
+          "page": 6,
+          "text": "El complemento directo (CD) es la palabra o grupo de palabras que completa el significado de un verbo transitivo y recibe directamente la acción. La prueba más fiable para reconocerlo es sustituirlo por los pronombres «lo, la, los, las»: en «Lucía compró unas zapatillas», decimos «Lucía las compró», así que «unas zapatillas» es CD. Si el CD es de persona, lleva la preposición «a»: «Vi a tu hermano» → «Lo vi». El complemento indirecto (CI) indica el destinatario o beneficiario de la acción, siempre va introducido por «a» (o «para» en algunos casos) y se sustituye por «le, les»: «Lucía regaló unas zapatillas a su primo» → «Lucía le regaló unas zapatillas». Cuando aparecen los dos pronombres juntos, «le» o «les» se convierte en «se»: «Se las regaló». Ejemplo analizado: en «El profesor devolvió los exámenes a los alumnos», «los exámenes» es CD (los devolvió) y «a los alumnos» es CI (les devolvió)."
+        }
+      ]
+    },
+    {
+      "file_name": "tema1-comunicacion-textos-ortografia.docx",
+      "file_type": "docx",
+      "page_count": 18,
+      "sections": [
+        {
+          "title": "1.1 Los elementos de la comunicación",
+          "page": 2,
+          "text": "Todo acto de comunicación tiene seis elementos: el emisor, que produce el mensaje; el receptor, que lo recibe e interpreta; el mensaje, que es la información transmitida; el código, que es el sistema de signos que comparten emisor y receptor (una lengua, las señales de tráfico, el lenguaje de signos); el canal, que es el medio físico por el que circula el mensaje (el aire, el papel, una pantalla), y el contexto o situación, que son las circunstancias que rodean la comunicación. Por ejemplo, cuando una profesora escribe en la plataforma del centro «Mañana no hay clase de Lengua», la emisora es la profesora, los receptores son los alumnos, el código es el castellano escrito, el canal es la pantalla y el contexto es la vida del instituto. Si falla alguno de los elementos, se produce un ruido que dificulta la comunicación, como una mala conexión o una palabra que el receptor no conoce."
+        },
+        {
+          "title": "1.3 Los tipos de texto",
+          "page": 7,
+          "text": "Según su intención, los textos se clasifican en cinco tipos principales. El texto narrativo cuenta hechos reales o imaginarios que les suceden a unos personajes en un tiempo y un lugar; abundan los verbos de acción en pasado. El texto descriptivo explica cómo es una persona, un lugar o un objeto, y en él predominan los adjetivos y los verbos como «ser», «estar» o «tener». El texto expositivo informa o explica un tema de forma objetiva y ordenada, como un libro de texto o una noticia de divulgación. El texto argumentativo defiende una opinión o tesis con argumentos para convencer al receptor, como un artículo de opinión. Por último, el texto instructivo indica los pasos para hacer algo y usa imperativos o infinitivos, como una receta. Un mismo texto puede combinar varios tipos, pero siempre hay uno que predomina: una novela es narrativa aunque incluya descripciones."
+        },
+        {
+          "title": "1.5 Las reglas generales de acentuación",
+          "page": 13,
+          "text": "Para saber si una palabra lleva tilde, primero separamos sus sílabas y localizamos la sílaba tónica, que es la que se pronuncia con más intensidad. Las palabras agudas tienen la tónica en la última sílaba y llevan tilde cuando terminan en vocal, en -n o en -s: «café», «camión», «compás», pero no «reloj» ni «pared». Las llanas tienen la tónica en la penúltima sílaba y llevan tilde cuando no terminan en vocal, -n ni -s: «árbol», «lápiz», «cóctel», pero no «mesa» ni «examen». Las esdrújulas, con la tónica en la antepenúltima, y las sobresdrújulas llevan tilde siempre: «música», «pájaro», «dígaselo». Por ejemplo, «examen» es llana terminada en -n y no lleva tilde, pero su plural «exámenes» es esdrújula y sí la lleva."
+        }
+      ]
+    },
+    {
+      "file_name": "ejercicios-resueltos-sintaxis.md",
+      "file_type": "markdown",
+      "page_count": null,
+      "sections": [
+        {
+          "title": "Análisis resuelto 1: una oración con CD y CI",
+          "page": null,
+          "text": "Oración: «Mis abuelos nos mandaron una postal desde Galicia». Primero buscamos el verbo: «mandaron». Comprobamos el sujeto con la concordancia: si decimos «mi abuelo nos mandó», cambia el verbo, así que el sujeto es «mis abuelos». En el predicado, «una postal» es CD porque se sustituye por «la» («nos la mandaron»), «nos» es CI porque indica a quién se manda, y «desde Galicia» es un complemento circunstancial de lugar."
+        },
+        {
+          "title": "Análisis resuelto 2: una oración con sujeto omitido",
+          "page": null,
+          "text": "Oración: «Ayer terminamos el trabajo de Ciencias en la biblioteca». No hay ningún grupo nominal que concuerde con «terminamos», por lo que el sujeto es omitido (nosotros). «El trabajo de Ciencias» es CD («lo terminamos»), «ayer» es complemento circunstancial de tiempo y «en la biblioteca» es complemento circunstancial de lugar."
+        }
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "name": "Sujeto y predicado",
+      "document": "tema4-oracion-simple.pdf",
+      "section": "4.1 El sujeto y el predicado",
+      "questions": [
+        {
+          "question": "en me gustan las pelis de miedo el sujeto es me no? porque soy yo al que le gustan",
+          "answer": "Es una confusión muy habitual, pero no: el sujeto es «las pelis de miedo». Haz la prueba de la concordancia: si pones el verbo en singular («me gusta»), tienes que cambiar «las pelis» a «la peli», mientras que «me» no cambia. Además, «me» es un pronombre que nunca puede funcionar como sujeto."
+        },
+        {
+          "question": "que es eso del sujeto omitido, que no hay sujeto?",
+          "answer": "Sí hay sujeto, solo que no está escrito. Se deduce por la terminación del verbo: en «Llegamos tarde al instituto», la forma «llegamos» nos dice que el sujeto es «nosotros». Por eso se llama sujeto omitido o elíptico."
+        },
+        {
+          "question": "el sujeto puede llevar preposicion delante?",
+          "answer": "Normalmente no: el sujeto nunca va precedido de preposición. Solo hay excepciones muy concretas con «entre» y «hasta», como en «Entre tú y yo lo arreglaremos». Así que, si un grupo lleva «de», «a» o «con» delante, puedes descartar que sea el sujeto."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Señala el sujeto y el predicado de la oración: «A mi hermana le encantan los conciertos al aire libre».",
+          "correct_answer": "Sujeto: «los conciertos al aire libre». Predicado: «A mi hermana le encantan». Prueba: «le encanta el concierto» / «le encantan los conciertos».",
+          "wrong_answer": "Sujeto: «A mi hermana». Predicado: «le encantan los conciertos al aire libre».",
+          "mistake_location": "Identificación del sujeto",
+          "error_type": "conceptual",
+          "explanation": "Has tomado como sujeto a la persona que siente el gusto, pero «a mi hermana» lleva preposición y no concuerda con el verbo. Haz la prueba de la concordancia: al pasar a singular cambian «encantan» y «los conciertos», así que el sujeto es «los conciertos al aire libre»."
+        },
+        {
+          "statement": "Indica el sujeto de estas dos oraciones y explica cómo lo has comprobado: a) «Llegamos tarde al partido». b) «Los vecinos del quinto organizaron una fiesta».",
+          "correct_answer": "a) Sujeto omitido: nosotros (lo indica la terminación de «llegamos»). b) Sujeto: «Los vecinos del quinto»; si digo «el vecino del quinto organizó», cambia el verbo.",
+          "wrong_answer": "a) No tiene sujeto. b) Sujeto: «Los vecinos del quinto».",
+          "mistake_location": "Apartado a)",
+          "error_type": "comprehension",
+          "explanation": "En el apartado a) dices que no hay sujeto, pero que no esté escrito no significa que no exista. La terminación «-mos» de «llegamos» indica primera persona del plural, así que el sujeto es omitido: «nosotros»."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Cuál es el sujeto de «Me duelen mucho los pies»?",
+          "options": ["Me", "Mucho", "Los pies", "Es una oración sin sujeto"],
+          "correct": 2,
+          "explanation": "«Los pies» concuerda con «duelen»: si decimos «me duele el pie», cambian los dos.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Qué prueba es la más fiable para localizar el sujeto?",
+          "options": ["La concordancia en número y persona con el verbo", "Preguntar «¿quién?» al verbo", "Buscar el primer sustantivo de la oración", "Buscar la palabra que va antes del verbo"],
+          "correct": 0,
+          "explanation": "El núcleo del sujeto siempre concuerda con el verbo; las otras pistas fallan a menudo.",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿En cuál de estas oraciones el sujeto va precedido de preposición?",
+          "options": ["Con mis amigos fui al cine", "Entre todos pintamos el aula", "A Pedro le molesta el ruido", "De pequeño jugaba al fútbol"],
+          "correct": 1,
+          "explanation": "«Entre» es una de las pocas preposiciones que pueden introducir el sujeto: «entre todos» concuerda con «pintamos».",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Complemento directo e indirecto",
+      "document": "tema4-oracion-simple.pdf",
+      "section": "4.2 El complemento directo y el complemento indirecto",
+      "questions": [
+        {
+          "question": "si lleva a delante es siempre complemento indirecto?",
+          "answer": "No siempre. El CD de persona también lleva «a»: en «Vi a tu hermano», «a tu hermano» es CD porque se sustituye por «lo» («Lo vi»). Para distinguirlos, usa la sustitución: si es «lo, la, los, las», es CD; si es «le, les», es CI."
+        },
+        {
+          "question": "porque en se las regalo pone se si es le",
+          "answer": "Porque cuando «le» o «les» van junto a «lo, la, los, las», se transforman en «se». No decimos «le las regaló», sino «se las regaló». Ese «se» sigue siendo el CI."
+        },
+        {
+          "question": "como hago para saber cual es el cd rapido",
+          "answer": "Sustituye el grupo que sospechas por «lo, la, los, las» y comprueba que la oración sigue teniendo sentido. Por ejemplo, «Lucía compró unas zapatillas» → «Lucía las compró», así que «unas zapatillas» es CD."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Analiza el CD y el CI de «El entrenador explicó la jugada a las jugadoras» y sustitúyelos por pronombres.",
+          "correct_answer": "CD: «la jugada» (la explicó). CI: «a las jugadoras» (les explicó). Con los dos pronombres: «Se la explicó».",
+          "wrong_answer": "CD: «la jugada» (la explicó). CI: «a las jugadoras» (les explicó). Con los dos pronombres: «Les la explicó».",
+          "mistake_location": "Última línea: sustitución de los dos complementos",
+          "error_type": "execution",
+          "explanation": "Has identificado bien los complementos, pero al juntar los pronombres has dejado «les». Cuando «le» o «les» van delante de «lo, la, los, las», se convierten en «se»: «Se la explicó»."
+        },
+        {
+          "statement": "Indica la función de «a mi prima» en la oración «Esperé a mi prima en la estación» y justifica tu respuesta.",
+          "correct_answer": "Es CD, porque se sustituye por «la»: «La esperé en la estación». Lleva «a» porque es un CD de persona.",
+          "wrong_answer": "Es CI, porque lleva la preposición «a» delante.",
+          "mistake_location": "Justificación",
+          "error_type": "procedural",
+          "explanation": "No basta con fijarse en la preposición «a», porque el CD de persona también la lleva. Aplica la prueba de sustitución: decimos «la esperé» y no «le esperé», así que es CD."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "En «Devolví los libros a la biblioteca», ¿cuál es el CD?",
+          "options": ["a la biblioteca", "Devolví", "los libros", "No tiene CD"],
+          "correct": 2,
+          "explanation": "«Los libros» se sustituye por «los»: «Los devolví a la biblioteca».",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Por qué pronombres se sustituye el complemento indirecto?",
+          "options": ["lo, la, los, las", "le, les", "me, te, nos", "él, ella, ellos"],
+          "correct": 1,
+          "explanation": "El CI se sustituye por «le» o «les» (o «se» si va junto a otro pronombre).",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Qué función cumple «a sus alumnos» en «La tutora felicitó a sus alumnos»?",
+          "options": ["Complemento indirecto", "Complemento circunstancial", "Sujeto", "Complemento directo"],
+          "correct": 3,
+          "explanation": "Se sustituye por «los» («La tutora los felicitó»), así que es CD de persona.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Elementos de la comunicación",
+      "document": "tema1-comunicacion-textos-ortografia.docx",
+      "section": "1.1 Los elementos de la comunicación",
+      "questions": [
+        {
+          "question": "no entiendo la diferencia entre codigo y canal, no es lo mismo?",
+          "answer": "No, son cosas distintas. El código es el sistema de signos que comparten emisor y receptor, por ejemplo el castellano o las señales de tráfico. El canal es el medio físico por el que viaja el mensaje, como el aire, el papel o una pantalla."
+        },
+        {
+          "question": "en un whatsapp cual seria el canal",
+          "answer": "El canal sería la pantalla del móvil, que es el medio físico por el que llega el mensaje. El código sería la lengua escrita (y los emojis, si los usas), y el contexto, la conversación y la situación en la que se escribe."
+        },
+        {
+          "question": "que es el ruido? tiene que ser un sonido?",
+          "answer": "No tiene que ser un sonido. El ruido es cualquier fallo en alguno de los elementos que dificulta la comunicación, como una mala conexión o una palabra que el receptor no conoce."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Identifica los seis elementos de la comunicación en esta situación: el director anuncia por megafonía en el patio que el autobús de la excursión saldrá a las nueve.",
+          "correct_answer": "Emisor: el director. Receptor: los alumnos del patio. Mensaje: el autobús sale a las nueve. Código: el castellano oral. Canal: el aire (a través de la megafonía). Contexto: el patio del instituto antes de una excursión.",
+          "wrong_answer": "Emisor: el director. Receptor: los alumnos. Mensaje: el autobús sale a las nueve. Código: la megafonía. Canal: el aire.",
+          "mistake_location": "Código y contexto",
+          "error_type": "incomplete",
+          "explanation": "Falta el contexto, que es uno de los seis elementos, y además la megafonía no es el código. El código es el sistema de signos compartido, aquí el castellano oral; la megafonía forma parte del canal."
+        },
+        {
+          "statement": "Explica con tus palabras qué es el contexto en la comunicación y pon un ejemplo.",
+          "correct_answer": "El contexto son las circunstancias que rodean la comunicación. Por ejemplo, «¡Fuera!» no significa lo mismo en un partido de fútbol que en una casa cuando alguien entra con los zapatos llenos de barro.",
+          "wrong_answer": "El contexto es lo que dice el mensaje, por ejemplo el texto de un cartel.",
+          "mistake_location": "Primera oración (definición)",
+          "error_type": "comprehension",
+          "explanation": "Has confundido el contexto con el mensaje. El mensaje es la información que se transmite; el contexto son las circunstancias en las que se comunica, y puede cambiar el sentido de lo que se dice."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "En una señal de «Prohibido aparcar», ¿cuál es el código?",
+          "options": ["El conductor", "El sistema de señales de tráfico", "La chapa metálica de la señal", "La calle"],
+          "correct": 1,
+          "explanation": "El código es el sistema de signos que comparten emisor y receptor: las señales de tráfico.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Cuántos elementos tiene la comunicación según el tema?",
+          "options": ["Cuatro", "Cinco", "Siete", "Seis"],
+          "correct": 3,
+          "explanation": "Emisor, receptor, mensaje, código, canal y contexto.",
+          "difficulty": 1
+        },
+        {
+          "statement": "Un alumno no entiende la palabra «perímetro» que usa su profesor. ¿Qué se ha producido?",
+          "options": ["Un ruido", "Un cambio de canal", "Un cambio de emisor", "Un error de contexto"],
+          "correct": 0,
+          "explanation": "Una palabra que el receptor no conoce es un ruido: dificulta que el mensaje llegue.",
+          "difficulty": 2
+        }
+      ]
+    },
+    {
+      "name": "Tipos de texto",
+      "document": "tema1-comunicacion-textos-ortografia.docx",
+      "section": "1.3 Los tipos de texto",
+      "questions": [
+        {
+          "question": "un texto expositivo y uno argumentativo no son iguales? los dos explican cosas",
+          "answer": "Se parecen, pero su intención es distinta. El expositivo informa de forma objetiva, como un libro de texto. El argumentativo defiende una opinión o tesis con argumentos para convencer, como un artículo de opinión."
+        },
+        {
+          "question": "una receta de que tipo es",
+          "answer": "Es un texto instructivo, porque indica los pasos para hacer algo. Fíjate en que usa imperativos o infinitivos: «Pela las patatas», «Batir los huevos»."
+        },
+        {
+          "question": "si una novela tiene descripciones entonces es descriptiva?",
+          "answer": "No, sigue siendo narrativa. Un texto puede combinar varios tipos, pero siempre hay uno que predomina, y en una novela lo principal es contar hechos que les pasan a unos personajes."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Indica el tipo de texto y justifica: «Creo que el instituto debería abrir la biblioteca por las tardes. En primer lugar, muchos alumnos no tienen un lugar tranquilo para estudiar en casa; además, ...».",
+          "correct_answer": "Es argumentativo: defiende una opinión (abrir la biblioteca por las tardes) y da argumentos para convencer («en primer lugar», «además»).",
+          "wrong_answer": "Es expositivo, porque explica lo que pasa en el instituto con la biblioteca.",
+          "mistake_location": "Clasificación del texto",
+          "error_type": "conceptual",
+          "explanation": "El texto no informa de forma objetiva: expresa una opinión («Creo que...») y la apoya con argumentos. Esa intención de convencer es lo que define al texto argumentativo."
+        },
+        {
+          "statement": "Escribe dos rasgos lingüísticos del texto descriptivo con un ejemplo de cada uno.",
+          "correct_answer": "Abundan los adjetivos: «una casa vieja y luminosa». Predominan verbos como «ser», «estar» o «tener»: «Tiene el pelo rizado».",
+          "wrong_answer": "Tiene muchos verbos de acción en pasado como «corrió» y «llegó», y adjetivos como «grande».",
+          "mistake_location": "Primer rasgo",
+          "error_type": "conceptual",
+          "explanation": "Los verbos de acción en pasado son propios del texto narrativo, no del descriptivo. En la descripción predominan los adjetivos y los verbos como «ser», «estar» o «tener»."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Qué tipo de texto usa sobre todo imperativos o infinitivos?",
+          "options": ["Narrativo", "Descriptivo", "Argumentativo", "Instructivo"],
+          "correct": 3,
+          "explanation": "El texto instructivo da pasos para hacer algo: «Mezcla», «Añadir».",
+          "difficulty": 1
+        },
+        {
+          "statement": "Un artículo de opinión sobre el uso del móvil en clase es un texto…",
+          "options": ["argumentativo", "expositivo", "narrativo", "instructivo"],
+          "correct": 0,
+          "explanation": "Defiende una tesis con argumentos para convencer al lector.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Qué afirmación sobre los tipos de texto es correcta?",
+          "options": ["Un texto solo puede pertenecer a un tipo", "Si un texto tiene una descripción, es descriptivo", "Un texto puede combinar tipos, pero uno predomina", "Los textos expositivos expresan opiniones"],
+          "correct": 2,
+          "explanation": "Los textos mezclan tipos, pero siempre hay uno predominante, como la narración en una novela.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Reglas de acentuación",
+      "document": "tema1-comunicacion-textos-ortografia.docx",
+      "section": "1.5 Las reglas generales de acentuación",
+      "questions": [
+        {
+          "question": "por que examen no lleva tilde y examenes si",
+          "answer": "Porque cambia la sílaba tónica de posición respecto al final. «Examen» es llana terminada en -n, y las llanas acabadas en -n no llevan tilde. «Exámenes» es esdrújula, y las esdrújulas la llevan siempre."
+        },
+        {
+          "question": "reloj es aguda? entonces no deberia llevar tilde?",
+          "answer": "Sí, es aguda, y precisamente por eso no lleva tilde: las agudas solo la llevan si terminan en vocal, -n o -s, y «reloj» termina en -j. Lo mismo pasa con «pared»."
+        },
+        {
+          "question": "las llanas cuando llevan tilde que siempre me lio",
+          "answer": "Al revés que las agudas: las llanas llevan tilde cuando no terminan en vocal, -n ni -s. Por eso «árbol» y «lápiz» la llevan, pero «mesa» y «examen» no."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Pon tilde donde haga falta y clasifica cada palabra: camion, arbol, cancion, cesped, pared.",
+          "correct_answer": "camión (aguda en -n), árbol (llana en -l), canción (aguda en -n), césped (llana en -d), pared (aguda en -d, sin tilde).",
+          "wrong_answer": "camión (aguda), árbol (llana), canción (aguda), cesped (aguda), paréd (aguda).",
+          "mistake_location": "Cuarta y quinta palabras",
+          "error_type": "execution",
+          "explanation": "«Césped» es llana (CÉS-ped) y termina en -d, así que lleva tilde. «Pared» es aguda terminada en -d y no la lleva; recuerda que las agudas solo llevan tilde si acaban en vocal, -n o -s."
+        },
+        {
+          "statement": "Explica por qué lleva tilde «pájaro» y no la lleva «mesa».",
+          "correct_answer": "«Pájaro» es esdrújula (PÁ-ja-ro) y las esdrújulas llevan tilde siempre. «Mesa» es llana terminada en vocal, y las llanas que acaban en vocal no llevan tilde.",
+          "wrong_answer": "Porque pájaro es más larga y se pronuncia más fuerte.",
+          "mistake_location": "Toda la respuesta",
+          "error_type": "expression",
+          "explanation": "La explicación no usa las reglas: la longitud de la palabra no influye. Tienes que separar sílabas, localizar la tónica, clasificar la palabra (esdrújula, llana) y aplicar la regla correspondiente."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Cuál de estas palabras está mal escrita?",
+          "options": ["lápiz", "compás", "reloj", "jóven"],
+          "correct": 3,
+          "explanation": "«Joven» es llana terminada en -n y no lleva tilde.",
+          "difficulty": 2
+        },
+        {
+          "statement": "Las palabras esdrújulas llevan tilde…",
+          "options": ["solo si terminan en vocal", "siempre", "nunca", "solo si terminan en -n o -s"],
+          "correct": 1,
+          "explanation": "Esdrújulas y sobresdrújulas llevan tilde siempre.",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Por qué «cóctel» lleva tilde?",
+          "options": ["Es aguda terminada en -l", "Es esdrújula", "Es llana y no termina en vocal, -n ni -s", "Porque es una palabra extranjera"],
+          "correct": 2,
+          "explanation": "CÓC-tel es llana y acaba en -l, así que lleva tilde.",
+          "difficulty": 3
+        }
+      ]
+    }
+  ],
+  "off_topic": [
+    "¿Qué diferencia hay entre una oración subordinada sustantiva y una adjetiva?",
+    "¿Cuándo es el próximo partido de la selección española de fútbol?"
+  ]
+}

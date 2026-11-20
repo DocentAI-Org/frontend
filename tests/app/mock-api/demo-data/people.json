@@ -1,0 +1,600 @@
+{
+  "teachers": [
+    {
+      "key": "ruiz",
+      "email": "profesora@docentai.local",
+      "name": "Prof. Elena Ruiz",
+      "subject": "Matemáticas"
+    },
+    {
+      "key": "molina",
+      "email": "javier.molina@example.org",
+      "name": "Prof. Javier Molina",
+      "subject": "Lengua castellana y Literatura"
+    },
+    {
+      "key": "ortega",
+      "email": "carmen.ortega@example.org",
+      "name": "Prof. Carmen Ortega",
+      "subject": "Geografía e Historia"
+    },
+    {
+      "key": "navarro",
+      "email": "andres.navarro@example.org",
+      "name": "Prof. Andrés Navarro",
+      "subject": "Ingeniería Informática"
+    }
+  ],
+  "groups": [
+    {
+      "key": "3b",
+      "label": "3º ESO B",
+      "tag_color": "blue",
+      "students": [
+        {
+          "name": "Lucas Herrera",
+          "email": "alumno@docentai.local",
+          "pseudonym": null
+        },
+        {
+          "name": "EST-DEMO1",
+          "email": "est-demo1@students.docentai.invalid",
+          "pseudonym": "EST-DEMO1"
+        },
+        {
+          "name": "Lucía Moreno",
+          "email": "lucia.moreno@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Hugo Sánchez",
+          "email": "hugo.sanchez@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Martina Gil",
+          "email": "martina.gil@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Pablo Romero",
+          "email": "pablo.romero@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Sofía Navarro",
+          "email": "sofia.navarro@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Daniel Torres",
+          "email": "daniel.torres@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Valeria Domínguez",
+          "email": "valeria.dominguez@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Álvaro Vázquez",
+          "email": "alvaro.vazquez@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Paula Ramos",
+          "email": "paula.ramos@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Mario Castillo",
+          "email": "mario.castillo@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Julia Iglesias",
+          "email": "julia.iglesias@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Adrián Medina",
+          "email": "adrian.medina@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Carla Garrido",
+          "email": "carla.garrido@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Diego Cortés",
+          "email": "diego.cortes@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Noa Santos",
+          "email": "noa.santos@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Marcos Lozano",
+          "email": "marcos.lozano@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Alba Guerrero",
+          "email": "alba.guerrero@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Javier Cano",
+          "email": "javier.cano@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Emma Prieto",
+          "email": "emma.prieto@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Leo Méndez",
+          "email": "leo.mendez@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Irene Calvo",
+          "email": "irene.calvo@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Izan Herrero",
+          "email": "izan.herrero@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Claudia Peña",
+          "email": "claudia.pena@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Rubén Flores",
+          "email": "ruben.flores@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Lola Cabrera",
+          "email": "lola.cabrera@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Nicolás Vidal",
+          "email": "nicolas.vidal@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Aitana Fuentes",
+          "email": "aitana.fuentes@example.org",
+          "pseudonym": null
+        }
+      ]
+    },
+    {
+      "key": "4a",
+      "label": "4º ESO A",
+      "tag_color": "green",
+      "students": [
+        {
+          "name": "Manuel Rubio",
+          "email": "manuel.rubio@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Elena Marín",
+          "email": "elena.marin@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Sergio Pascual",
+          "email": "sergio.pascual@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Carmen Sáez",
+          "email": "carmen.saez@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Iker Molina",
+          "email": "iker.molina@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Daniela Ortiz",
+          "email": "daniela.ortiz@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Gonzalo León",
+          "email": "gonzalo.leon@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Ainhoa Crespo",
+          "email": "ainhoa.crespo@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Jorge Benítez",
+          "email": "jorge.benitez@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Laura Morales",
+          "email": "laura.morales@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Bruno Parra",
+          "email": "bruno.parra@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Ariadna Rojas",
+          "email": "ariadna.rojas@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Héctor Delgado",
+          "email": "hector.delgado@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Vega Soler",
+          "email": "vega.soler@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Óscar Montero",
+          "email": "oscar.montero@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Candela Hidalgo",
+          "email": "candela.hidalgo@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Raúl Vega",
+          "email": "raul.vega@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Mía Carrasco",
+          "email": "mia.carrasco@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Aarón Nieto",
+          "email": "aaron.nieto@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Inés Pastor",
+          "email": "ines.pastor@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Marc Ferrer",
+          "email": "marc.ferrer@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Olivia Aguilar",
+          "email": "olivia.aguilar@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "EST-4A01",
+          "email": "est-4a01@students.docentai.invalid",
+          "pseudonym": "EST-4A01"
+        },
+        {
+          "name": "EST-4A02",
+          "email": "est-4a02@students.docentai.invalid",
+          "pseudonym": "EST-4A02"
+        },
+        {
+          "name": "EST-4A03",
+          "email": "est-4a03@students.docentai.invalid",
+          "pseudonym": "EST-4A03"
+        },
+        {
+          "name": "EST-4A04",
+          "email": "est-4a04@students.docentai.invalid",
+          "pseudonym": "EST-4A04"
+        }
+      ]
+    },
+    {
+      "key": "uni",
+      "label": "1º Ingeniería Informática",
+      "tag_color": "violet",
+      "students": [
+        {
+          "name": "Andrea López Ferrer",
+          "email": "andrea.lopez@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Carlos Jiménez Ruiz",
+          "email": "carlos.jimenez@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "María Fernández Soto",
+          "email": "maria.fernandez@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Alejandro Martín Rey",
+          "email": "alejandro.martin@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Lucía Gómez Arias",
+          "email": "lucia.gomez@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "David Ruiz Montes",
+          "email": "david.ruiz@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Natalia Díaz Lara",
+          "email": "natalia.diaz@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Pedro Muñoz Gallardo",
+          "email": "pedro.munoz@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Sara Álvarez Bravo",
+          "email": "sara.alvarez@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Iván Hernández Mora",
+          "email": "ivan.hernandez@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Cristina Romero Sanz",
+          "email": "cristina.romero@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Antonio Alonso Rivas",
+          "email": "antonio.alonso@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Marta Gutiérrez Pons",
+          "email": "marta.gutierrez@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Francisco Serrano Vera",
+          "email": "francisco.serrano@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Beatriz Blanco Luna",
+          "email": "beatriz.blanco@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Miguel Suárez Campos",
+          "email": "miguel.suarez@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Raquel Molina Varela",
+          "email": "raquel.molina@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Jesús Castro Duran",
+          "email": "jesus.castro@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Patricia Ortega Lorenzo",
+          "email": "patricia.ortega@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Alberto Rubio Esteban",
+          "email": "alberto.rubio@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Silvia Marín Quintana",
+          "email": "silvia.marin@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Fernando Sanz Ibáñez",
+          "email": "fernando.sanz@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Eva Núñez Carmona",
+          "email": "eva.nunez@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Rafael Moreno Bermúdez",
+          "email": "rafael.moreno@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Lorena Gil Velasco",
+          "email": "lorena.gil@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Tomás Navarro Pardo",
+          "email": "tomas.navarro@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Rocío Domínguez Mateo",
+          "email": "rocio.dominguez@example.org",
+          "pseudonym": null
+        },
+        {
+          "name": "Samuel Cruz Salas",
+          "email": "samuel.cruz@example.org",
+          "pseudonym": null
+        }
+      ]
+    }
+  ],
+  "courses": [
+    {
+      "key": "algebra-3b",
+      "teacher": "ruiz",
+      "group": "3b",
+      "class_code": "ALG-7K3P",
+      "settings": {
+        "level": "intermediate",
+        "tone": "friendly",
+        "solution_policy": "hints_first"
+      }
+    },
+    {
+      "key": "geometria-3b",
+      "teacher": "ruiz",
+      "group": "3b",
+      "class_code": "GEM-3B4M",
+      "settings": {
+        "level": "intermediate",
+        "tone": "friendly",
+        "solution_policy": "hints_first"
+      }
+    },
+    {
+      "key": "funciones-4a",
+      "teacher": "ruiz",
+      "group": "4a",
+      "class_code": "FUN-4A8R",
+      "settings": {
+        "level": "intermediate",
+        "tone": "friendly",
+        "solution_policy": "direct"
+      }
+    },
+    {
+      "key": "estadistica-4a",
+      "teacher": "ruiz",
+      "group": "4a",
+      "class_code": "EST-4A2Q",
+      "settings": {
+        "level": "basic",
+        "tone": "friendly",
+        "solution_policy": "hints_first"
+      }
+    },
+    {
+      "key": "lengua-3b",
+      "teacher": "molina",
+      "group": "3b",
+      "class_code": "LEN-3B6T",
+      "settings": {
+        "level": "intermediate",
+        "tone": "friendly",
+        "solution_policy": "direct"
+      }
+    },
+    {
+      "key": "comentario-4a",
+      "teacher": "molina",
+      "group": "4a",
+      "class_code": "COM-4A9H",
+      "settings": {
+        "level": "intermediate",
+        "tone": "neutral",
+        "solution_policy": "hints_only"
+      }
+    },
+    {
+      "key": "siglo-de-oro-4a",
+      "teacher": "molina",
+      "group": "4a",
+      "class_code": "SGD-4A5K",
+      "settings": {
+        "level": "intermediate",
+        "tone": "neutral",
+        "solution_policy": "direct"
+      }
+    },
+    {
+      "key": "edad-moderna-3b",
+      "teacher": "ortega",
+      "group": "3b",
+      "class_code": "HST-3B7W",
+      "settings": {
+        "level": "basic",
+        "tone": "friendly",
+        "solution_policy": "direct"
+      }
+    },
+    {
+      "key": "contemporanea-4a",
+      "teacher": "ortega",
+      "group": "4a",
+      "class_code": "HCT-4A3N",
+      "settings": {
+        "level": "intermediate",
+        "tone": "neutral",
+        "solution_policy": "direct"
+      }
+    },
+    {
+      "key": "calculo-uni",
+      "teacher": "navarro",
+      "group": "uni",
+      "class_code": "CAL-U24D",
+      "settings": {
+        "level": "advanced",
+        "tone": "formal",
+        "solution_policy": "hints_first"
+      }
+    },
+    {
+      "key": "programacion-uni",
+      "teacher": "navarro",
+      "group": "uni",
+      "class_code": "PRG-U28F",
+      "settings": {
+        "level": "advanced",
+        "tone": "neutral",
+        "solution_policy": "hints_first"
+      }
+    },
+    {
+      "key": "bases-datos-uni",
+      "teacher": "navarro",
+      "group": "uni",
+      "class_code": "BDA-U22J",
+      "settings": {
+        "level": "advanced",
+        "tone": "formal",
+        "solution_policy": "direct"
+      }
+    }
+  ]
+}

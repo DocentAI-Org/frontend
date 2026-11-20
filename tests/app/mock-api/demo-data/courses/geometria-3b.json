@@ -1,0 +1,369 @@
+{
+  "key": "geometria-3b",
+  "name": "Geometría",
+  "description": "Pitágoras, áreas, semejanza y cuerpos geométricos para 3º ESO, con problemas de la vida cotidiana.",
+  "documents": [
+    {
+      "file_name": "tema6-geometria-plana.pdf",
+      "file_type": "pdf",
+      "page_count": 18,
+      "sections": [
+        {
+          "title": "6.1 Teorema de Pitágoras",
+          "page": 2,
+          "text": "En un triángulo rectángulo, el lado mayor, opuesto al ángulo recto, se llama hipotenusa, y los otros dos lados son los catetos. El teorema de Pitágoras dice que el cuadrado de la hipotenusa es igual a la suma de los cuadrados de los catetos: a² = b² + c². Por ejemplo, si los catetos miden 6 cm y 8 cm, a² = 36 + 64 = 100, así que la hipotenusa mide √100 = 10 cm. Para calcular un cateto se resta: si la hipotenusa mide 13 cm y un cateto 5 cm, el otro mide √(169 - 25) = √144 = 12 cm. El teorema solo se cumple en triángulos rectángulos."
+        },
+        {
+          "title": "6.2 Áreas de figuras planas",
+          "page": 7,
+          "text": "El área de un rectángulo es base por altura, y la de un triángulo es la mitad: A = b · h / 2, donde la altura es perpendicular a la base. El área de un trapecio es la semisuma de las bases por la altura: A = (B + b) · h / 2. Por ejemplo, un trapecio con bases de 10 cm y 6 cm y altura 4 cm tiene un área de (10 + 6) · 4 / 2 = 32 cm². El área de un círculo de radio r es A = π · r². Las áreas se expresan siempre en unidades al cuadrado, como cm² o m²."
+        },
+        {
+          "title": "6.3 Teorema de Tales",
+          "page": 13,
+          "text": "Si dos rectas secantes se cortan por varias rectas paralelas, los segmentos que determinan en una de ellas son proporcionales a los que determinan en la otra. Por ejemplo, si en una recta los segmentos miden 3 cm y 4,5 cm, y en la otra el primero mide 2 cm, el segundo mide x con 3/2 = 4,5/x, es decir, x = 3 cm. Dos triángulos en posición de Tales son semejantes: tienen los ángulos iguales y los lados proporcionales. La razón entre lados correspondientes se llama razón de semejanza. Así se puede calcular la altura de un árbol o de un poste comparando su sombra con la de un palo de altura conocida."
+        }
+      ]
+    },
+    {
+      "file_name": "tema7-cuerpos-geometricos.docx",
+      "file_type": "docx",
+      "page_count": 12,
+      "sections": [
+        {
+          "title": "7.1 Área de prismas y cilindros",
+          "page": 2,
+          "text": "El área total de un prisma es la suma del área lateral (las caras laterales, que son rectángulos) y el área de las dos bases. En un ortoedro las caras van por parejas iguales: uno de 5 cm × 3 cm × 2 cm tiene un área total de 2 · (5 · 3 + 5 · 2 + 3 · 2) = 2 · 31 = 62 cm². El desarrollo de un cilindro está formado por un rectángulo y dos círculos; la base del rectángulo es la longitud de la circunferencia, 2πr. Por eso el área lateral del cilindro es 2πr · h y el área total es 2πr · h + 2πr²."
+        },
+        {
+          "title": "7.2 Volumen de prismas y cilindros",
+          "page": 7,
+          "text": "El volumen de un prisma o de un cilindro es el área de la base por la altura: V = A_base · h. Un ortoedro de 5 cm × 3 cm × 2 cm tiene un volumen de 30 cm³. Un cilindro de radio 2 cm y altura 10 cm tiene un volumen de π · 2² · 10 = 40π ≈ 125,66 cm³. El volumen se expresa en unidades cúbicas; recuerda que 1 dm³ equivale a 1 litro y que 1 m³ = 1000 dm³. Si te dan el diámetro, divide entre 2 para obtener el radio antes de aplicar la fórmula."
+        }
+      ]
+    },
+    {
+      "file_name": "lecturas-geometria.md",
+      "file_type": "markdown",
+      "page_count": null,
+      "sections": [
+        {
+          "title": "1. La cuerda de los doce nudos",
+          "page": null,
+          "text": "Se suele contar que los agrimensores del antiguo Egipto usaban una cuerda con doce nudos a la misma distancia para trazar ángulos rectos. Si se forma un triángulo con lados de 3, 4 y 5 tramos, el ángulo opuesto al lado mayor es recto, porque 3² + 4² = 5². Este truco permitía volver a marcar los límites de los campos después de las crecidas del Nilo. Todavía hoy hay albañiles que usan la regla 3-4-5 para comprobar que una esquina está a escuadra."
+        },
+        {
+          "title": "2. Tales y la altura de las pirámides",
+          "page": null,
+          "text": "Según una anécdota transmitida por autores griegos, Tales de Mileto midió la altura de una pirámide comparando su sombra con la de un bastón. Esperó al momento en que la sombra del bastón era igual a su altura: entonces la sombra de la pirámide también debía ser igual a su altura. La idea se basa en que los rayos del Sol llegan paralelos y forman triángulos semejantes. Es un ejemplo temprano de cómo la geometría permite medir lo que no se puede alcanzar."
+        }
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "name": "Teorema de Pitágoras",
+      "document": "tema6-geometria-plana.pdf",
+      "section": "6.1 Teorema de Pitágoras",
+      "questions": [
+        {
+          "question": "la hipotenusa es siempre el lado mas largo?",
+          "answer": "Sí: la hipotenusa es el lado opuesto al ángulo recto y siempre es el mayor del triángulo rectángulo. Lo ves en el teorema: a² = b² + c², así que a² es mayor que el cuadrado de cada cateto. Si al calcular una hipotenusa te sale más corta que un cateto, revisa la cuenta."
+        },
+        {
+          "question": "si me dan la hipotenusa y un cateto también sumo los cuadrados?",
+          "answer": "No, en ese caso se resta: el cateto que falta es la raíz de la hipotenusa al cuadrado menos el otro cateto al cuadrado. Con hipotenusa 13 cm y cateto 5 cm, el otro cateto mide √(169 - 25) = √144 = 12 cm. Solo se suman los cuadrados cuando buscas la hipotenusa."
+        },
+        {
+          "question": "puedo usar pitagoras en cualquier triangulo",
+          "answer": "No, el teorema de Pitágoras solo se cumple en triángulos rectángulos, es decir, con un ángulo de 90°. Antes de aplicarlo, asegúrate de que el triángulo tiene un ángulo recto y de cuál es la hipotenusa, que es el lado opuesto a ese ángulo."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Un triángulo rectángulo tiene una hipotenusa de 13 cm y un cateto de 5 cm. Calcula el otro cateto.",
+          "correct_answer": "c² = 13² - 5² = 169 - 25 = 144\nc = √144 = 12 cm",
+          "wrong_answer": "c² = 13² + 5² = 169 + 25 = 194\nc = √194 ≈ 13,9 cm",
+          "mistake_location": "Línea 1",
+          "error_type": "conceptual",
+          "explanation": "En la línea 1 sumas los cuadrados como si buscaras la hipotenusa, pero 13 cm ya es la hipotenusa. Para un cateto hay que restar: c² = 169 - 25 = 144 y c = 12 cm. Fíjate en que un cateto de 13,9 cm sería mayor que la hipotenusa, lo que es imposible."
+        },
+        {
+          "statement": "Calcula la hipotenusa de un triángulo rectángulo cuyos catetos miden 6 cm y 8 cm.",
+          "correct_answer": "a² = 6² + 8² = 36 + 64 = 100\na = √100 = 10 cm",
+          "wrong_answer": "a² = 6² + 8² = 36 + 64 = 100\na = 100 cm",
+          "mistake_location": "Línea 2",
+          "error_type": "incomplete",
+          "explanation": "El planteamiento es correcto, pero 100 es el valor de a², no de a. Falta el último paso: hacer la raíz cuadrada, a = √100 = 10 cm. Una hipotenusa de 100 cm no tendría sentido con catetos de 6 y 8 cm."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "En un triángulo rectángulo, ¿cómo se llama el lado opuesto al ángulo recto?",
+          "options": ["Cateto mayor", "Hipotenusa", "Altura", "Base"],
+          "correct": 1,
+          "explanation": "El lado opuesto al ángulo recto es la hipotenusa, y es siempre el lado mayor.",
+          "difficulty": 1
+        },
+        {
+          "statement": "Los catetos de un triángulo rectángulo miden 9 cm y 12 cm. ¿Cuánto mide la hipotenusa?",
+          "options": ["21 cm", "√63 cm", "15 cm", "225 cm"],
+          "correct": 2,
+          "explanation": "a² = 81 + 144 = 225, así que a = √225 = 15 cm.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Cuál de estas ternas de medidas puede corresponder a un triángulo rectángulo?",
+          "options": ["4, 5 y 6", "2, 3 y 4", "6, 7 y 9", "5, 12 y 13"],
+          "correct": 3,
+          "explanation": "Solo en la última se cumple el teorema: 5² + 12² = 25 + 144 = 169 = 13².",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Áreas de figuras planas",
+      "document": "tema6-geometria-plana.pdf",
+      "section": "6.2 Áreas de figuras planas",
+      "questions": [
+        {
+          "question": "por que el area del triangulo se divide entre 2?",
+          "answer": "Porque un triángulo es la mitad de un rectángulo con la misma base y la misma altura. Por eso su área es A = b · h / 2. Ojo: la altura tiene que ser perpendicular a la base; no vale cualquier lado."
+        },
+        {
+          "question": "la formula del trapecio no me sale, que es eso de la semisuma",
+          "answer": "La semisuma de las bases es sumar la base mayor y la menor y dividir entre 2. Después se multiplica por la altura: A = (B + b) · h / 2. Con bases de 10 cm y 6 cm y altura 4 cm: (10 + 6) · 4 / 2 = 32 cm²."
+        },
+        {
+          "question": "el area se pone en cm o en cm cuadrados? en el examen puse cm",
+          "answer": "Siempre en unidades al cuadrado, como cm² o m², porque el área mide una superficie. Si multiplicas dos longitudes en centímetros, el resultado queda en cm². Los centímetros sin elevar al cuadrado son para longitudes, como un lado o un perímetro."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Calcula el área de un triángulo de 8 cm de base y 5 cm de altura.",
+          "correct_answer": "A = 8 · 5 / 2 = 20 cm²",
+          "wrong_answer": "A = 8 · 5 = 40 cm²",
+          "mistake_location": "Paso 1",
+          "error_type": "procedural",
+          "explanation": "Has usado la fórmula del rectángulo: el área de un triángulo es la mitad de base por altura. Lo correcto es A = 8 · 5 / 2 = 20 cm²."
+        },
+        {
+          "statement": "Calcula el área de un círculo de 3 cm de radio. Da el resultado en función de π y aproximado.",
+          "correct_answer": "A = π · 3² = 9π cm² ≈ 28,27 cm²",
+          "wrong_answer": "A = π · 3² = 9π ≈ 28,27 cm",
+          "mistake_location": "Unidades del resultado",
+          "error_type": "expression",
+          "explanation": "El cálculo es correcto, pero el área se expresa en unidades al cuadrado: 9π cm² ≈ 28,27 cm². Escribir «cm» indica una longitud, no una superficie."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Cuál es el área de un rectángulo de 7 m de base y 4 m de altura?",
+          "options": ["28 m²", "22 m²", "14 m²", "11 m²"],
+          "correct": 0,
+          "explanation": "Área del rectángulo = base · altura = 7 · 4 = 28 m². 22 m es su perímetro.",
+          "difficulty": 1
+        },
+        {
+          "statement": "Un trapecio tiene bases de 12 cm y 8 cm y una altura de 5 cm. ¿Cuál es su área?",
+          "options": ["100 cm²", "60 cm²", "50 cm²", "25 cm²"],
+          "correct": 2,
+          "explanation": "A = (12 + 8) · 5 / 2 = 20 · 5 / 2 = 50 cm².",
+          "difficulty": 2
+        },
+        {
+          "statement": "Si se duplica el radio de un círculo, ¿qué le ocurre a su área?",
+          "options": ["Se duplica", "Se multiplica por 4", "Se multiplica por π", "Se reduce a la mitad"],
+          "correct": 1,
+          "explanation": "Como A = π · r², al pasar de r a 2r el área es π · (2r)² = 4 · π · r².",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Teorema de Tales",
+      "document": "tema6-geometria-plana.pdf",
+      "section": "6.3 Teorema de Tales",
+      "questions": [
+        {
+          "question": "las rectas tienen que ser paralelas si o si para usar tales?",
+          "answer": "Sí, las rectas que cortan a las dos secantes tienen que ser paralelas; si no lo son, los segmentos no son proporcionales. Esa es la condición del teorema de Tales. Cuando se cumple, puedes plantear una proporción entre los segmentos de una recta y los de la otra."
+        },
+        {
+          "question": "como planteo la proporcion? no se que va arriba y que va abajo",
+          "answer": "Lo importante es mantener el mismo orden en las dos fracciones. Si pones un segmento de la primera recta arriba y su correspondiente de la segunda abajo, hazlo igual en la otra fracción: 3/2 = 4,5/x. Despejando, x = 2 · 4,5 / 3 = 3 cm."
+        },
+        {
+          "question": "semejante es lo mismo que igual?",
+          "answer": "No exactamente. Dos triángulos semejantes tienen los ángulos iguales y los lados proporcionales, pero pueden tener distinto tamaño, como una foto y su ampliación. Solo son iguales si la razón de semejanza es 1."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Dos rectas secantes se cortan por rectas paralelas. En la primera, los segmentos miden 3 cm y 4,5 cm; en la segunda, el primero mide 2 cm. Calcula el segundo, x.",
+          "correct_answer": "3/2 = 4,5/x\nx = 2 · 4,5 / 3 = 3 cm",
+          "wrong_answer": "3/2 = x/4,5\nx = 3 · 4,5 / 2 = 6,75 cm",
+          "mistake_location": "Línea 1",
+          "error_type": "conceptual",
+          "explanation": "En la línea 1 la proporción no respeta la correspondencia: en la primera fracción pones la recta 1 arriba y en la segunda la pones abajo. Debe ser 3/2 = 4,5/x, con los segmentos de la primera recta siempre arriba, y entonces x = 3 cm."
+        },
+        {
+          "statement": "Un poste proyecta una sombra de 6 m a la misma hora en que un palo de 1,5 m proyecta una sombra de 2 m. ¿Cuánto mide el poste?",
+          "correct_answer": "altura/6 = 1,5/2\naltura = 6 · 1,5 / 2 = 4,5 m",
+          "wrong_answer": "altura/2 = 1,5/6\naltura = 2 · 1,5 / 6 = 0,5 m",
+          "mistake_location": "Línea 1",
+          "error_type": "comprehension",
+          "explanation": "Has asociado al poste la sombra de 2 m, que es la del palo. La sombra del poste es 6 m, así que altura/6 = 1,5/2 y el poste mide 4,5 m. Un poste de 0,5 m no tiene sentido: no puede ser más bajo que el palo si su sombra es mayor."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Qué condición deben cumplir las rectas que cortan a las dos secantes para aplicar el teorema de Tales?",
+          "options": ["Ser perpendiculares", "Medir lo mismo", "Ser paralelas", "Pasar por el mismo punto"],
+          "correct": 2,
+          "explanation": "El teorema de Tales exige que las rectas que cortan a las secantes sean paralelas.",
+          "difficulty": 1
+        },
+        {
+          "statement": "En una recta los segmentos miden 4 cm y 6 cm; en la otra, el primero mide 6 cm. ¿Cuánto mide el segundo?",
+          "options": ["8 cm", "9 cm", "4 cm", "12 cm"],
+          "correct": 1,
+          "explanation": "4/6 = 6/x, así que x = 6 · 6 / 4 = 9 cm.",
+          "difficulty": 2
+        },
+        {
+          "statement": "Dos triángulos semejantes tienen razón de semejanza 3. Si un lado del triángulo pequeño mide 5 cm, ¿cuánto mide el lado correspondiente del grande?",
+          "options": ["5/3 cm", "8 cm", "45 cm", "15 cm"],
+          "correct": 3,
+          "explanation": "Los lados son proporcionales con razón 3: 5 · 3 = 15 cm. Sumar 3 (8 cm) no es una proporción.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Área de prismas y cilindros",
+      "document": "tema7-cuerpos-geometricos.docx",
+      "section": "7.1 Área de prismas y cilindros",
+      "questions": [
+        {
+          "question": "el area lateral y el area total no son lo mismo?",
+          "answer": "No. El área lateral solo incluye las caras laterales, y el área total suma además las dos bases. En el cilindro, el área lateral es 2πr · h y el área total es 2πr · h + 2πr²."
+        },
+        {
+          "question": "por que en el cilindro sale 2πr si la cara de los lados es un rectangulo",
+          "answer": "Porque al desarrollar el cilindro, la cara lateral se convierte en un rectángulo cuya base mide lo mismo que la circunferencia de la tapa, es decir, 2πr. La altura del rectángulo es la del cilindro, h. Por eso el área lateral es 2πr · h."
+        },
+        {
+          "question": "en un ortoedro hay que calcular las 6 caras una por una?",
+          "answer": "Puedes hacerlo, pero las caras van por parejas iguales, así que basta con calcular tres y multiplicar por 2. En un ortoedro de 5 cm × 3 cm × 2 cm: 2 · (5 · 3 + 5 · 2 + 3 · 2) = 2 · 31 = 62 cm²."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Calcula el área total de un cilindro de 3 cm de radio y 10 cm de altura (en función de π y aproximada).",
+          "correct_answer": "A lateral = 2π · 3 · 10 = 60π cm²\nA bases = 2π · 3² = 18π cm²\nA total = 78π cm² ≈ 245,04 cm²",
+          "wrong_answer": "A = 2π · 3 · 10 = 60π cm² ≈ 188,50 cm²",
+          "mistake_location": "Final (faltan las bases)",
+          "error_type": "incomplete",
+          "explanation": "Has calculado bien el área lateral, pero el ejercicio pide el área total, que incluye los dos círculos de las bases: 2π · 3² = 18π cm². Sumando, el área total es 78π cm² ≈ 245,04 cm²."
+        },
+        {
+          "statement": "Calcula el área total de un ortoedro de 4 cm × 3 cm × 2 cm.",
+          "correct_answer": "A = 2 · (4 · 3 + 4 · 2 + 3 · 2)\nA = 2 · (12 + 8 + 6) = 2 · 26 = 52 cm²",
+          "wrong_answer": "A = 2 · (4 · 3 + 4 · 2 + 3 · 2)\nA = 2 · (12 + 8 + 6) = 2 · 24 = 48 cm²",
+          "mistake_location": "Línea 2",
+          "error_type": "execution",
+          "explanation": "El planteamiento es correcto, pero en la línea 2 la suma está mal: 12 + 8 + 6 = 26, no 24. Con la suma bien hecha, el área total es 2 · 26 = 52 cm²."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿De qué figuras está formado el desarrollo de un cilindro?",
+          "options": ["Un rectángulo y dos círculos", "Tres rectángulos", "Un triángulo y un círculo", "Dos rectángulos y un círculo"],
+          "correct": 0,
+          "explanation": "La cara lateral se desarrolla como un rectángulo y las dos bases son círculos.",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Cuál es el área lateral de un cilindro de 2 cm de radio y 5 cm de altura?",
+          "options": ["10π cm²", "20π cm²", "40π cm²", "28π cm²"],
+          "correct": 1,
+          "explanation": "A lateral = 2π · 2 · 5 = 20π cm². 28π cm² sería el área total, al sumar las bases.",
+          "difficulty": 2
+        },
+        {
+          "statement": "Un ortoedro mide 6 cm × 4 cm × 3 cm. ¿Cuál es su área total?",
+          "options": ["72 cm²", "54 cm²", "216 cm²", "108 cm²"],
+          "correct": 3,
+          "explanation": "A = 2 · (6 · 4 + 6 · 3 + 4 · 3) = 2 · (24 + 18 + 12) = 108 cm². 54 cm² olvida multiplicar por 2.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Volumen de cuerpos",
+      "document": "tema7-cuerpos-geometricos.docx",
+      "section": "7.2 Volumen de prismas y cilindros",
+      "questions": [
+        {
+          "question": "el volumen del cilindro se hace igual que el del prisma?",
+          "answer": "Sí, con la misma idea: área de la base por la altura. Lo que cambia es la base, que en el cilindro es un círculo, así que V = π · r² · h. Por ejemplo, con r = 2 cm y h = 10 cm, V = 40π ≈ 125,66 cm³."
+        },
+        {
+          "question": "un dm3 cuantos litros son? lo tengo que pasar siempre a litros?",
+          "answer": "1 dm³ equivale exactamente a 1 litro. Solo necesitas pasar a litros cuando el problema pregunta por capacidad, por ejemplo cuánta agua cabe en un depósito. Si no, deja el volumen en unidades cúbicas como cm³ o m³."
+        },
+        {
+          "question": "por que el volumen va en cm³ y no en cm²",
+          "answer": "Porque el volumen multiplica tres longitudes: las dos de la base y la altura. Centímetros por centímetros por centímetros da cm³. El cm² es para áreas, que solo tienen dos dimensiones."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Un depósito cilíndrico tiene 4 dm de diámetro y 10 dm de altura. ¿Cuántos litros caben?",
+          "correct_answer": "r = 4 / 2 = 2 dm\nV = π · 2² · 10 = 40π ≈ 125,66 dm³ → 125,66 litros",
+          "wrong_answer": "V = π · 4² · 10 = 160π ≈ 502,65 dm³ → 502,65 litros",
+          "mistake_location": "Línea 1",
+          "error_type": "comprehension",
+          "explanation": "El enunciado da el diámetro, no el radio, y la fórmula usa el radio. Primero divide entre 2: r = 2 dm. Así V = π · 2² · 10 = 40π ≈ 125,66 dm³, es decir, unos 125,66 litros."
+        },
+        {
+          "statement": "Calcula el volumen de un prisma de base cuadrada de 3 cm de lado y 7 cm de altura.",
+          "correct_answer": "A base = 3² = 9 cm²\nV = 9 · 7 = 63 cm³",
+          "wrong_answer": "A base = 3² = 6 cm²\nV = 6 · 7 = 42 cm³",
+          "mistake_location": "Línea 1",
+          "error_type": "execution",
+          "explanation": "En la línea 1 calculas 3² como 3 · 2 = 6, pero 3² = 3 · 3 = 9. Con el área de la base correcta, el volumen es 9 · 7 = 63 cm³."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Cuál es el volumen de un ortoedro de 5 cm × 3 cm × 2 cm?",
+          "options": ["10 cm³", "62 cm³", "30 cm²", "30 cm³"],
+          "correct": 3,
+          "explanation": "V = 5 · 3 · 2 = 30 cm³; el volumen se expresa en unidades cúbicas. 62 cm² es su área total.",
+          "difficulty": 1
+        },
+        {
+          "statement": "Un cilindro tiene 3 cm de radio y 4 cm de altura. ¿Cuál es su volumen?",
+          "options": ["12π cm³", "36π cm³", "24π cm³", "48π cm³"],
+          "correct": 1,
+          "explanation": "V = π · 3² · 4 = 36π cm³. 24π es el área lateral, 2π · 3 · 4.",
+          "difficulty": 2
+        },
+        {
+          "statement": "Un depósito con forma de ortoedro mide 2 m × 1 m × 0,5 m. ¿Cuántos litros caben?",
+          "options": ["1 litro", "100 litros", "1000 litros", "3,5 litros"],
+          "correct": 2,
+          "explanation": "V = 2 · 1 · 0,5 = 1 m³ = 1000 dm³, y cada dm³ es un litro: 1000 litros.",
+          "difficulty": 3
+        }
+      ]
+    }
+  ],
+  "off_topic": [
+    "¿Cómo se calcula el volumen de una esfera?",
+    "¿Qué es el seno de un ángulo y para qué sirve la trigonometría?"
+  ]
+}

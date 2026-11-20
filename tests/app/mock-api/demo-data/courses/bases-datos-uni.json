@@ -1,0 +1,369 @@
+{
+  "key": "bases-datos-uni",
+  "name": "Bases de datos",
+  "description": "Diseño y uso de bases de datos relacionales: modelo relacional, normalización, consultas SQL y transacciones, con prácticas sobre una base de datos de gestión académica.",
+  "documents": [
+    {
+      "file_name": "tema1-modelo-relacional.pdf",
+      "file_type": "pdf",
+      "page_count": 16,
+      "sections": [
+        {
+          "title": "1.2 Relaciones, claves primarias y claves ajenas",
+          "page": 3,
+          "text": "En el modelo relacional los datos se organizan en relaciones (tablas) formadas por atributos (columnas) y tuplas (filas), y una relación no puede contener tuplas duplicadas. La clave primaria es el conjunto mínimo de atributos que identifica de forma única cada tupla; puede ser simple o compuesta y ninguno de sus atributos admite nulos (integridad de entidad). Una clave ajena es un atributo, o conjunto de atributos, que referencia la clave primaria de otra relación; su valor debe existir en la relación referenciada o ser nulo (integridad referencial). Ejemplo: en Matricula(dni, cod_asig, nota) la clave primaria es compuesta, (dni, cod_asig); dni es clave ajena hacia Alumno y cod_asig hacia Asignatura, de modo que no puede insertarse una matrícula de una asignatura inexistente. Al borrar una tupla referenciada, la política definida en la clave ajena decide qué ocurre: RESTRICT impide el borrado, CASCADE borra también las tuplas que la referencian y SET NULL pone a nulo la clave ajena en ellas."
+        },
+        {
+          "title": "1.5 Normalización: 1FN, 2FN y 3FN",
+          "page": 11,
+          "text": "La normalización reorganiza las relaciones para evitar redundancia y las anomalías de inserción, actualización y borrado que esta provoca. Una relación está en primera forma normal (1FN) si todos sus atributos son atómicos, sin grupos repetidos ni listas de valores en una celda. Está en segunda forma normal (2FN) si está en 1FN y todo atributo no clave depende de la clave primaria completa y no solo de una parte; el problema solo puede aparecer con claves compuestas, por lo que una relación en 1FN con clave simple ya está en 2FN. Está en tercera forma normal (3FN) si está en 2FN y no hay dependencias transitivas, es decir, ningún atributo no clave depende de otro atributo no clave. Ejemplo: en Matricula(dni, cod_asig, nombre_alumno, nota), nombre_alumno depende solo de dni, lo que viola la 2FN; se descompone en Alumno(dni, nombre_alumno) y Matricula(dni, cod_asig, nota). En Alumno(dni, cod_postal, ciudad), como cod_postal determina ciudad, hay una dependencia transitiva; se separa CodigoPostal(cod_postal, ciudad) y se conserva cod_postal en Alumno como clave ajena, para que la descomposición no pierda información."
+        }
+      ]
+    },
+    {
+      "file_name": "tema2-lenguaje-sql.docx",
+      "file_type": "docx",
+      "page_count": 28,
+      "sections": [
+        {
+          "title": "2.3 Consultas SELECT con WHERE y ORDER BY",
+          "page": 5,
+          "text": "La forma básica de una consulta es SELECT columnas FROM tabla WHERE condición ORDER BY columna [ASC | DESC]. Lógicamente se evalúa primero FROM, después WHERE, luego SELECT y por último ORDER BY; por eso un alias definido en el SELECT no puede usarse en el WHERE, aunque sí en el ORDER BY. En las condiciones se usan los operadores =, <>, <, >, <=, >=, BETWEEN (que incluye ambos extremos), IN para una lista de valores y LIKE para patrones, donde % representa cualquier secuencia de caracteres y _ exactamente un carácter. La comparación con nulos se hace con IS NULL o IS NOT NULL: una condición como nota = NULL nunca es verdadera, porque cualquier comparación con NULL da un resultado desconocido. DISTINCT elimina las filas duplicadas del resultado. Ejemplo: SELECT dni, nota FROM Matricula WHERE nota BETWEEN 5 AND 7 ORDER BY nota DESC; devuelve las matrículas con nota entre 5 y 7, ambas incluidas, de mayor a menor."
+        },
+        {
+          "title": "2.6 Combinación de tablas con JOIN",
+          "page": 14,
+          "text": "Un INNER JOIN (o simplemente JOIN) combina las filas de dos tablas que cumplen la condición indicada en ON; las filas sin correspondencia en la otra tabla no aparecen en el resultado. Un LEFT JOIN conserva todas las filas de la tabla de la izquierda y rellena con NULL las columnas de la derecha cuando no hay correspondencia. Ejemplo: SELECT a.nombre, m.nota FROM Alumno a JOIN Matricula m ON a.dni = m.dni; obtiene las notas de cada alumno, y SELECT a.nombre FROM Alumno a LEFT JOIN Matricula m ON a.dni = m.dni WHERE m.dni IS NULL; obtiene los alumnos sin ninguna matrícula. Si se omite la condición de combinación se obtiene el producto cartesiano: con 100 alumnos y 300 matrículas resultan 30 000 filas, casi todas sin sentido. Los alias de tabla (a, m) abrevian la consulta y permiten distinguir columnas con el mismo nombre en tablas distintas, como a.nombre y s.nombre."
+        },
+        {
+          "title": "2.9 Transacciones y propiedades ACID",
+          "page": 24,
+          "text": "Una transacción es una secuencia de operaciones que el SGBD trata como una unidad lógica: comienza con START TRANSACTION (o BEGIN), COMMIT confirma sus cambios y ROLLBACK los deshace; una vez confirmada, una transacción ya no puede deshacerse con ROLLBACK. Las transacciones cumplen las propiedades ACID: atomicidad (se ejecutan todas sus operaciones o ninguna), consistencia (llevan la base de datos de un estado válido a otro que respeta las restricciones), aislamiento (una transacción no ve los resultados intermedios de otras concurrentes) y durabilidad (los cambios confirmados persisten aunque después falle el sistema). Ejemplo: un traspaso de 100 € ejecuta UPDATE Cuenta SET saldo = saldo - 100 WHERE id = 1; UPDATE Cuenta SET saldo = saldo + 100 WHERE id = 2; COMMIT; si el sistema cae entre los dos UPDATE, la atomicidad garantiza que el primero se deshace. Sin un aislamiento adecuado aparecen anomalías como la lectura sucia, cuando una transacción lee datos modificados por otra que aún no ha confirmado, o la lectura no repetible, cuando leer dos veces el mismo dato da valores distintos porque otra transacción lo modificó y confirmó entre ambas lecturas."
+        }
+      ]
+    },
+    {
+      "file_name": "practicas-resueltas-sql.md",
+      "file_type": "markdown",
+      "page_count": null,
+      "sections": [
+        {
+          "title": "P.1 Agrupación con GROUP BY y HAVING",
+          "page": null,
+          "text": "GROUP BY agrupa las filas con el mismo valor en las columnas indicadas para aplicar funciones de agregación como COUNT, AVG, SUM, MIN o MAX. HAVING filtra grupos, mientras que WHERE filtra filas antes de agrupar. Práctica resuelta: nota media por asignatura, solo de las asignaturas con más de 20 matriculados: SELECT cod_asig, AVG(nota) FROM Matricula GROUP BY cod_asig HAVING COUNT(*) > 20;"
+        },
+        {
+          "title": "P.2 Subconsultas con IN y EXISTS",
+          "page": null,
+          "text": "Una subconsulta es una consulta anidada dentro de otra. Práctica resuelta: alumnos con alguna nota superior a 9: SELECT nombre FROM Alumno WHERE dni IN (SELECT dni FROM Matricula WHERE nota > 9); La misma consulta puede escribirse con EXISTS y una subconsulta correlacionada, que se evalúa para cada fila de la consulta exterior."
+        }
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "name": "Claves primarias y ajenas",
+      "document": "tema1-modelo-relacional.pdf",
+      "section": "1.2 Relaciones, claves primarias y claves ajenas",
+      "questions": [
+        {
+          "question": "una clave primaria puede tener dos columnas? pensaba que era siempre un id",
+          "answer": "Sí: la clave primaria es el conjunto mínimo de atributos que identifica cada tupla, y puede ser compuesta. En Matricula(dni, cod_asig, nota) la clave es (dni, cod_asig), porque un alumno se matricula en varias asignaturas y una asignatura tiene varios alumnos, pero la pareja no se repite. Un identificador numérico es solo una opción de diseño, no un requisito del modelo."
+        },
+        {
+          "question": "si una clave ajena puede ser nula entonces la primaria también puede, no?",
+          "answer": "No. La integridad de entidad exige que ningún atributo de la clave primaria sea nulo, porque es lo que identifica cada tupla. La clave ajena, en cambio, sí puede ser nula: la integridad referencial solo exige que, si tiene valor, este exista en la relación referenciada."
+        },
+        {
+          "question": "qué pasa si borro un alumno que tiene matrículas?",
+          "answer": "Depende de la política definida en la clave ajena dni de Matricula. Con RESTRICT el borrado se rechaza mientras existan matrículas suyas; con CASCADE se borran también sus matrículas; y con SET NULL se pondría a nulo el dni de esas matrículas, aunque en este esquema no sería posible porque dni forma parte de la clave primaria de Matricula."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Indica la clave primaria y las claves ajenas de Prestamo(id_libro, id_socio, fecha_prestamo, fecha_devolucion), sabiendo que un socio puede tomar prestado el mismo libro varias veces en fechas distintas y que existen las tablas Libro y Socio.",
+          "correct_answer": "Clave primaria: (id_libro, id_socio, fecha_prestamo). Claves ajenas: id_libro → Libro e id_socio → Socio.",
+          "wrong_answer": "Clave primaria: (id_libro, id_socio). Claves ajenas: id_libro → Libro e id_socio → Socio.",
+          "mistake_location": "Clave primaria",
+          "error_type": "comprehension",
+          "explanation": "El enunciado indica que un socio puede tomar prestado el mismo libro varias veces, y con (id_libro, id_socio) como clave solo se podría registrar un préstamo por pareja. Debes añadir fecha_prestamo a la clave para identificar cada préstamo de forma única; las claves ajenas son correctas."
+        },
+        {
+          "statement": "Explica por qué falla INSERT INTO Matricula VALUES ('12345678Z', 'BD99', 7.5); si en la tabla Asignatura no existe ninguna asignatura con código 'BD99'.",
+          "correct_answer": "Falla porque viola la integridad referencial: cod_asig es clave ajena hacia Asignatura, y su valor debe existir en esa tabla o ser nulo. 'BD99' no existe, así que el SGBD rechaza la inserción.",
+          "wrong_answer": "Falla porque la clave primaria no puede repetirse, y ya hay una matrícula con esos datos.",
+          "mistake_location": "Primera oración",
+          "error_type": "conceptual",
+          "explanation": "Confundes la integridad de entidad (clave primaria única y no nula) con la integridad referencial. El problema no es una repetición, sino que cod_asig, clave ajena hacia Asignatura, toma un valor que no existe en la tabla referenciada."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Qué debe cumplir una clave primaria?",
+          "options": ["Puede contener nulos si es compuesta", "Identifica de forma única cada tupla y no admite nulos", "Debe ser siempre un número entero", "Debe referenciar otra tabla"],
+          "correct": 1,
+          "explanation": "La clave primaria identifica cada tupla y, por la integridad de entidad, ninguno de sus atributos puede ser nulo; puede ser de cualquier tipo y simple o compuesta.",
+          "difficulty": 1
+        },
+        {
+          "statement": "Si la clave ajena dni de Matricula se define con ON DELETE CASCADE, ¿qué ocurre al borrar un alumno con matrículas?",
+          "options": ["Se impide el borrado del alumno", "Se pone a NULL el dni en sus matrículas", "Se borran también sus matrículas", "Se borra la tabla Matricula completa"],
+          "correct": 2,
+          "explanation": "CASCADE propaga el borrado a las tuplas que referencian la tupla borrada; impedirlo corresponde a RESTRICT, y poner nulos, a SET NULL.",
+          "difficulty": 2
+        },
+        {
+          "statement": "En Matricula(dni, cod_asig, nota), con clave primaria (dni, cod_asig), ¿qué operación viola la integridad de entidad?",
+          "options": ["Insertar una matrícula con nota nula", "Insertar una matrícula con cod_asig nulo", "Insertar una matrícula con el dni de un alumno inexistente", "Borrar una asignatura sin matrículas"],
+          "correct": 1,
+          "explanation": "cod_asig forma parte de la clave primaria y no puede ser nulo. Un dni inexistente violaría la integridad referencial, no la de entidad, y nota no es atributo de la clave.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Normalización hasta 3FN",
+      "document": "tema1-modelo-relacional.pdf",
+      "section": "1.5 Normalización: 1FN, 2FN y 3FN",
+      "questions": [
+        {
+          "question": "si una tabla tiene clave primaria de un solo atributo ya está en 2FN automáticamente?",
+          "answer": "Sí, siempre que esté en 1FN. La 2FN prohíbe que un atributo no clave dependa solo de una parte de la clave, y con una clave simple no hay partes. Eso no garantiza la 3FN: todavía puede haber dependencias transitivas entre atributos no clave."
+        },
+        {
+          "question": "qué es exactamente una dependencia transitiva? no lo acabo de pillar",
+          "answer": "Es cuando un atributo no clave depende de otro atributo no clave, en lugar de depender directamente de la clave. En Alumno(dni, cod_postal, ciudad), dni determina cod_postal y cod_postal determina ciudad, así que ciudad depende de dni solo «a través» de cod_postal. Para eliminarla se separa CodigoPostal(cod_postal, ciudad) y se deja cod_postal en Alumno como clave ajena."
+        },
+        {
+          "question": "para qué sirve normalizar si luego hay que hacer joins para juntar otra vez las tablas?",
+          "answer": "El objetivo es evitar la redundancia y las anomalías que provoca: si el nombre de un alumno se repite en cada matrícula, cambiarlo exige actualizar muchas filas (anomalía de actualización), y borrar su última matrícula haría perder su nombre (anomalía de borrado). Los joins tienen un coste, pero garantizan que cada dato se almacena una sola vez y de forma coherente."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Dada Pedido(num_pedido, cod_producto, cantidad, nombre_producto, precio_unitario), con clave primaria (num_pedido, cod_producto), indica en qué forma normal está y normalízala hasta 3FN.",
+          "correct_answer": "Está en 1FN, pero no en 2FN: nombre_producto y precio_unitario dependen solo de cod_producto. Descomposición: LineaPedido(num_pedido, cod_producto, cantidad) y Producto(cod_producto, nombre_producto, precio_unitario); ambas están en 3FN.",
+          "wrong_answer": "Está en 2FN porque tiene clave primaria. Está en 3FN porque no hay dependencias transitivas, así que no hay que descomponerla.",
+          "mistake_location": "Primera oración",
+          "error_type": "conceptual",
+          "explanation": "Tener clave primaria no garantiza la 2FN: con una clave compuesta hay que comprobar que cada atributo no clave depende de la clave completa. Aquí nombre_producto y precio_unitario dependen solo de cod_producto, así que debes separar Producto de LineaPedido."
+        },
+        {
+          "statement": "Lleva a 3FN la relación Empleado(id_emp, nombre, id_depto, nombre_depto), con clave primaria id_emp.",
+          "correct_answer": "id_depto → nombre_depto es una dependencia transitiva. Empleado(id_emp, nombre, id_depto), con id_depto clave ajena, y Departamento(id_depto, nombre_depto).",
+          "wrong_answer": "id_depto → nombre_depto es transitiva. Empleado(id_emp, nombre) y Departamento(id_depto, nombre_depto).",
+          "mistake_location": "Esquema de Empleado",
+          "error_type": "procedural",
+          "explanation": "Detectas bien la dependencia transitiva, pero al descomponer has eliminado id_depto de Empleado y ya no se sabe a qué departamento pertenece cada empleado: la descomposición pierde información. id_depto debe permanecer en Empleado como clave ajena hacia Departamento."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Qué exige la primera forma normal?",
+          "options": ["Que todos los atributos sean atómicos", "Que no haya dependencias transitivas", "Que la clave primaria sea simple", "Que no haya claves ajenas"],
+          "correct": 0,
+          "explanation": "La 1FN exige atributos atómicos, sin grupos repetidos ni listas de valores en una celda.",
+          "difficulty": 1
+        },
+        {
+          "statement": "En Alumno(dni, cod_postal, ciudad), con clave dni y la dependencia cod_postal → ciudad, ¿qué forma normal se incumple?",
+          "options": ["2FN", "3FN", "1FN", "Ninguna"],
+          "correct": 1,
+          "explanation": "La clave es simple, así que está en 2FN, pero ciudad depende de un atributo no clave (cod_postal): es una dependencia transitiva, que viola la 3FN.",
+          "difficulty": 2
+        },
+        {
+          "statement": "R(A, B, C, D) tiene clave primaria (A, B), atributos atómicos y la dependencia A → C. ¿Cuál es la forma normal más alta que cumple con certeza?",
+          "options": ["3FN", "2FN", "1FN", "No está ni en 1FN"],
+          "correct": 2,
+          "explanation": "C depende solo de una parte de la clave compuesta, lo que viola la 2FN; como los atributos son atómicos, cumple la 1FN.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Consultas SELECT básicas",
+      "document": "tema2-lenguaje-sql.docx",
+      "section": "2.3 Consultas SELECT con WHERE y ORDER BY",
+      "questions": [
+        {
+          "question": "por qué WHERE nota = NULL no me devuelve nada si sé que hay notas vacías?",
+          "answer": "Porque cualquier comparación con NULL da un resultado desconocido, nunca verdadero, así que ninguna fila cumple nota = NULL. Para comprobar nulos hay que usar WHERE nota IS NULL, o IS NOT NULL para lo contrario."
+        },
+        {
+          "question": "qué diferencia hay entre LIKE 'A%' y LIKE 'A_'?",
+          "answer": "En LIKE, % representa cualquier secuencia de caracteres (incluida la vacía) y _ exactamente un carácter. Por tanto, 'A%' encaja con cualquier valor que empiece por A, como «Ana» o «Alberto», mientras que 'A_' solo encaja con valores de dos caracteres que empiecen por A."
+        },
+        {
+          "question": "puedo usar en el WHERE el alias que he puesto en el SELECT? me da error",
+          "answer": "No, y por eso te da error: lógicamente, la consulta evalúa FROM, después WHERE, luego SELECT y finalmente ORDER BY, así que cuando se evalúa el WHERE el alias todavía no existe. Debes repetir la expresión en el WHERE; en el ORDER BY, en cambio, sí puedes usar el alias."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Escribe una consulta que obtenga los nombres de los alumnos cuyo nombre empieza por «M», ordenados alfabéticamente. Tabla: Alumno(dni, nombre, ciudad).",
+          "correct_answer": "SELECT nombre\nFROM Alumno\nWHERE nombre LIKE 'M%'\nORDER BY nombre;",
+          "wrong_answer": "SELECT nombre\nFROM Alumno\nWHERE nombre = 'M%'\nORDER BY nombre;",
+          "mistake_location": "Línea 3 (cláusula WHERE)",
+          "error_type": "execution",
+          "explanation": "El comodín % solo tiene significado con LIKE; con = se busca literalmente el texto «M%», y la consulta no devuelve ninguna fila. Sustituye = por LIKE."
+        },
+        {
+          "statement": "Escribe una consulta que obtenga el dni y el código de asignatura de las matrículas que todavía no tienen nota. Tabla: Matricula(dni, cod_asig, nota).",
+          "correct_answer": "SELECT dni, cod_asig\nFROM Matricula\nWHERE nota IS NULL;",
+          "wrong_answer": "SELECT dni, cod_asig\nFROM Matricula\nWHERE nota = NULL;",
+          "mistake_location": "Línea 3 (cláusula WHERE)",
+          "error_type": "conceptual",
+          "explanation": "NULL no es un valor que pueda compararse con =: la comparación da un resultado desconocido y la consulta devuelve cero filas. Para detectar nulos debes usar nota IS NULL."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Qué hace DISTINCT en una consulta SELECT?",
+          "options": ["Ordena el resultado", "Elimina las filas duplicadas del resultado", "Descarta los valores nulos", "Cuenta las filas"],
+          "correct": 1,
+          "explanation": "DISTINCT elimina las filas repetidas del resultado; ordenar corresponde a ORDER BY.",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Cuál de estos nombres cumple la condición nombre LIKE '_a%'?",
+          "options": ["Ana", "Elena", "María", "Irene"],
+          "correct": 2,
+          "explanation": "El patrón exige exactamente un carácter cualquiera seguido de una «a» y luego cualquier secuencia; solo «María» tiene una «a» en la segunda posición.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Qué consulta devuelve las matrículas con nota entre 5 y 7, ambas incluidas, de mayor a menor nota?",
+          "options": ["SELECT * FROM Matricula WHERE nota > 5 AND nota < 7 ORDER BY nota DESC;", "SELECT * FROM Matricula WHERE nota BETWEEN 5 AND 7 ORDER BY nota ASC;", "SELECT * FROM Matricula WHERE nota IN (5, 7) ORDER BY nota DESC;", "SELECT * FROM Matricula WHERE nota BETWEEN 5 AND 7 ORDER BY nota DESC;"],
+          "correct": 3,
+          "explanation": "BETWEEN incluye ambos extremos y DESC ordena de mayor a menor. Con > y < se excluyen el 5 y el 7, e IN solo selecciona esos dos valores exactos.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Combinación con JOIN",
+      "document": "tema2-lenguaje-sql.docx",
+      "section": "2.6 Combinación de tablas con JOIN",
+      "questions": [
+        {
+          "question": "cuándo tengo que usar LEFT JOIN y cuándo el JOIN normal?",
+          "answer": "Usa JOIN (INNER) cuando solo te interesan las filas que tienen correspondencia en ambas tablas, por ejemplo, las notas de los alumnos matriculados. Usa LEFT JOIN cuando necesitas conservar todas las filas de la tabla izquierda aunque no tengan correspondencia; es lo que permite, combinado con WHERE m.dni IS NULL, encontrar los alumnos sin ninguna matrícula."
+        },
+        {
+          "question": "me salen muchísimas filas repetidas al hacer el join, por qué?",
+          "answer": "Lo más probable es que falte, o esté mal escrita, la condición de combinación ON, y estés obteniendo el producto cartesiano: cada fila de una tabla se combina con todas las de la otra. Con 100 alumnos y 300 matrículas saldrían 30 000 filas. Revisa que cada JOIN tenga su ON relacionando la clave ajena con la clave primaria correspondiente."
+        },
+        {
+          "question": "si Alumno y Asignatura tienen las dos una columna nombre, cómo sé cuál me está sacando?",
+          "answer": "Debes calificar la columna con el nombre o el alias de su tabla, como a.nombre y s.nombre; si escribes solo nombre, el SGBD dará un error de columna ambigua. Por eso se usan los alias de tabla: abrevian la consulta y permiten distinguir columnas con el mismo nombre."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Obtén el nombre del alumno y el nombre de la asignatura de cada matrícula. Tablas: Alumno(dni, nombre), Matricula(dni, cod_asig, nota), Asignatura(cod_asig, nombre).",
+          "correct_answer": "SELECT a.nombre, s.nombre\nFROM Alumno a\nJOIN Matricula m ON a.dni = m.dni\nJOIN Asignatura s ON m.cod_asig = s.cod_asig;",
+          "wrong_answer": "SELECT a.nombre, s.nombre\nFROM Alumno a\nJOIN Matricula m ON a.dni = m.dni, Asignatura s;",
+          "mistake_location": "Línea 3",
+          "error_type": "incomplete",
+          "explanation": "Has incluido Asignatura sin ninguna condición de combinación, así que cada matrícula se combina con todas las asignaturas (producto cartesiano). Falta relacionar m.cod_asig con s.cod_asig, por ejemplo con JOIN Asignatura s ON m.cod_asig = s.cod_asig."
+        },
+        {
+          "statement": "Obtén el nombre de las asignaturas en las que no hay ningún alumno matriculado.",
+          "correct_answer": "SELECT s.nombre\nFROM Asignatura s\nLEFT JOIN Matricula m ON s.cod_asig = m.cod_asig\nWHERE m.cod_asig IS NULL;",
+          "wrong_answer": "SELECT s.nombre\nFROM Asignatura s\nJOIN Matricula m ON s.cod_asig = m.cod_asig\nWHERE m.cod_asig IS NULL;",
+          "mistake_location": "Línea 3 (tipo de JOIN)",
+          "error_type": "procedural",
+          "explanation": "Con un INNER JOIN solo aparecen las asignaturas que tienen matrículas, y en ellas m.cod_asig nunca es nulo, así que la consulta siempre devuelve cero filas. Necesitas LEFT JOIN para conservar las asignaturas sin correspondencia y luego filtrar con IS NULL."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Qué devuelve Alumno a LEFT JOIN Matricula m ON a.dni = m.dni?",
+          "options": ["Solo los alumnos que tienen matrículas", "Todos los alumnos, con NULL en las columnas de Matricula cuando no tienen matrículas", "Todas las matrículas, aunque el alumno no exista", "El producto cartesiano de ambas tablas"],
+          "correct": 1,
+          "explanation": "El LEFT JOIN conserva todas las filas de la tabla izquierda y rellena con NULL cuando no hay correspondencia en la derecha.",
+          "difficulty": 1
+        },
+        {
+          "statement": "Si se combinan una tabla de 100 alumnos y otra de 300 matrículas sin ninguna condición de combinación, ¿cuántas filas se obtienen?",
+          "options": ["300", "400", "30 000", "100"],
+          "correct": 2,
+          "explanation": "Sin condición se obtiene el producto cartesiano: cada una de las 100 filas se combina con las 300, es decir, 100 × 300 = 30 000.",
+          "difficulty": 2
+        },
+        {
+          "statement": "Hay tres alumnos: Nerea, con 2 matrículas; Iker, con ninguna; y Lucía, con 1. ¿Cuántas filas devuelve SELECT a.nombre, m.cod_asig FROM Alumno a LEFT JOIN Matricula m ON a.dni = m.dni;?",
+          "options": ["3", "2", "5", "4"],
+          "correct": 3,
+          "explanation": "Nerea aparece dos veces, Lucía una e Iker una, con cod_asig a NULL, porque el LEFT JOIN conserva a los alumnos sin correspondencia: 2 + 1 + 1 = 4.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Transacciones y ACID",
+      "document": "tema2-lenguaje-sql.docx",
+      "section": "2.9 Transacciones y propiedades ACID",
+      "questions": [
+        {
+          "question": "qué diferencia hay entre atomicidad y consistencia? me parecen lo mismo",
+          "answer": "La atomicidad se refiere a la ejecución: una transacción se ejecuta completa o no se ejecuta nada de ella. La consistencia se refiere al estado de los datos: la transacción debe llevar la base de datos de un estado válido a otro que respete las restricciones. En un traspaso, la atomicidad evita que se aplique solo uno de los dos UPDATE, y la consistencia exige, por ejemplo, que el dinero total no cambie y que se cumplan las restricciones definidas."
+        },
+        {
+          "question": "si hago ROLLBACK después del COMMIT se deshace todo?",
+          "answer": "No. COMMIT confirma definitivamente los cambios de la transacción y, a partir de ese momento, ROLLBACK ya no puede deshacerlos; además, por la durabilidad, persisten aunque falle el sistema. ROLLBACK solo deshace los cambios de la transacción en curso, antes de confirmarla."
+        },
+        {
+          "question": "qué es una lectura sucia? el nombre no ayuda mucho",
+          "answer": "Una lectura sucia ocurre cuando una transacción lee datos que otra ha modificado pero todavía no ha confirmado. Si esa otra transacción termina con ROLLBACK, la primera habrá trabajado con valores que en realidad nunca existieron. Es una de las anomalías que aparecen sin un aislamiento adecuado."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Escribe la transacción que traspasa 50 € de la cuenta 7 a la cuenta 9. Tabla: Cuenta(id, saldo).",
+          "correct_answer": "START TRANSACTION;\nUPDATE Cuenta SET saldo = saldo - 50 WHERE id = 7;\nUPDATE Cuenta SET saldo = saldo + 50 WHERE id = 9;\nCOMMIT;",
+          "wrong_answer": "START TRANSACTION;\nUPDATE Cuenta SET saldo = saldo + 50 WHERE id = 7;\nUPDATE Cuenta SET saldo = saldo - 50 WHERE id = 9;\nCOMMIT;",
+          "mistake_location": "Líneas 2 y 3",
+          "error_type": "execution",
+          "explanation": "La estructura de la transacción es correcta, pero has intercambiado los signos: tu código traspasa 50 € de la cuenta 9 a la 7. La cuenta de origen (7) debe restar el importe y la de destino (9), sumarlo."
+        },
+        {
+          "statement": "El sistema cae justo después de que una transacción ejecute COMMIT. ¿Qué propiedad ACID garantiza que sus cambios no se pierden? Justifica la respuesta.",
+          "correct_answer": "La durabilidad: garantiza que los cambios de una transacción confirmada persisten aunque después falle el sistema. Como el COMMIT ya se había ejecutado, el SGBD debe conservarlos al recuperarse.",
+          "wrong_answer": "La durabilidad, porque los datos duran.",
+          "mistake_location": "Justificación",
+          "error_type": "expression",
+          "explanation": "Identificas bien la propiedad, pero la justificación es circular y no explica nada. Debes precisar que la durabilidad garantiza que los cambios confirmados con COMMIT persisten aunque el sistema falle después, que es justo lo que ocurre en el enunciado."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Qué propiedad ACID garantiza que una transacción se ejecuta completa o no se ejecuta en absoluto?",
+          "options": ["Atomicidad", "Consistencia", "Aislamiento", "Durabilidad"],
+          "correct": 0,
+          "explanation": "La atomicidad es la propiedad de «todo o nada».",
+          "difficulty": 1
+        },
+        {
+          "statement": "Tras ejecutar START TRANSACTION; UPDATE Cuenta SET saldo = 0 WHERE id = 1; ROLLBACK;, ¿qué saldo tiene la cuenta 1?",
+          "options": ["0", "NULL", "El que tenía antes de empezar la transacción", "Se produce un error"],
+          "correct": 2,
+          "explanation": "ROLLBACK deshace todos los cambios de la transacción en curso, así que el saldo vuelve a su valor anterior.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Qué describe una lectura sucia?",
+          "options": ["Leer dos veces el mismo dato y obtener valores distintos porque otra transacción lo modificó y confirmó entre ambas lecturas", "Leer datos modificados por otra transacción que aún no ha confirmado", "Leer una tabla que no tiene clave primaria", "Leer filas que ya se han borrado y confirmado"],
+          "correct": 1,
+          "explanation": "La lectura sucia consiste en leer cambios no confirmados de otra transacción; la primera opción describe la lectura no repetible.",
+          "difficulty": 3
+        }
+      ]
+    }
+  ],
+  "off_topic": [
+    "¿Cómo se diseña una base de datos NoSQL con MongoDB?",
+    "¿Cuándo es la revisión del examen parcial?"
+  ]
+}

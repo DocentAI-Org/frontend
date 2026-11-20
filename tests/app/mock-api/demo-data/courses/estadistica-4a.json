@@ -1,0 +1,369 @@
+{
+  "key": "estadistica-4a",
+  "name": "Estadística y probabilidad",
+  "description": "Parámetros estadísticos y probabilidad para 4º ESO: aprender a resumir datos y a medir la incertidumbre.",
+  "documents": [
+    {
+      "file_name": "tema8-estadistica.docx",
+      "file_type": "docx",
+      "page_count": 10,
+      "sections": [
+        {
+          "title": "8.1 Media, mediana y moda",
+          "page": 2,
+          "text": "La media aritmética se obtiene sumando todos los datos y dividiendo entre el número de datos. La mediana es el valor central cuando los datos están ordenados de menor a mayor; si hay un número par de datos, es la media de los dos centrales. La moda es el valor que más se repite. Ejemplo: con las notas 4, 6, 6, 7 y 9, la media es 32/5 = 6,4, la mediana es 6 y la moda es 6. La media se ve muy afectada por los valores extremos, mientras que la mediana apenas cambia."
+        },
+        {
+          "title": "8.2 Medidas de dispersión",
+          "page": 6,
+          "text": "Las medidas de dispersión indican si los datos están agrupados o separados respecto de la media. El rango o recorrido es la diferencia entre el valor mayor y el menor. La varianza es la media de los cuadrados de las desviaciones respecto de la media, y la desviación típica es su raíz cuadrada. Ejemplo con los datos 2, 4 y 6: la media es 4, las desviaciones son -2, 0 y 2, la varianza es (4 + 0 + 4)/3 = 8/3 ≈ 2,67 y la desviación típica es √(8/3) ≈ 1,63. Cuanto mayor es la desviación típica, más dispersos están los datos; cuanto menor, más homogéneos."
+        }
+      ]
+    },
+    {
+      "file_name": "tema9-probabilidad.pdf",
+      "file_type": "pdf",
+      "page_count": 15,
+      "sections": [
+        {
+          "title": "9.1 Regla de Laplace",
+          "page": 2,
+          "text": "Un experimento aleatorio es aquel cuyo resultado no se puede predecir, como lanzar un dado. Si todos los resultados son igual de probables, la probabilidad de un suceso A se calcula con la regla de Laplace: P(A) = casos favorables / casos posibles. Por ejemplo, al lanzar un dado, la probabilidad de sacar un número par es 3/6 = 1/2, porque los casos favorables son 2, 4 y 6. La probabilidad siempre es un número entre 0 (suceso imposible) y 1 (suceso seguro). La regla de Laplace no sirve si los resultados no son equiprobables, como ocurre con un dado trucado."
+        },
+        {
+          "title": "9.2 Suceso contrario",
+          "page": 6,
+          "text": "El suceso contrario de A, que se escribe Ā, ocurre cuando no ocurre A. Como siempre ocurre uno de los dos y nunca ambos a la vez, sus probabilidades suman 1: P(Ā) = 1 - P(A). Por ejemplo, si la probabilidad de que llueva mañana es 0,3, la de que no llueva es 1 - 0,3 = 0,7. Esta regla es útil cuando es más fácil contar los casos en que no ocurre algo: la probabilidad de no sacar un 6 con un dado es 1 - 1/6 = 5/6. Una probabilidad también puede darse en porcentaje multiplicando por 100: 0,7 equivale a un 70 %."
+        },
+        {
+          "title": "9.3 Diagramas de árbol",
+          "page": 9,
+          "text": "En un experimento compuesto se realizan varias experiencias seguidas, como lanzar dos monedas o extraer dos bolas de una urna. Un diagrama de árbol ayuda a ver todos los resultados: en cada rama se escribe su probabilidad. La probabilidad de un camino es el producto de las probabilidades de sus ramas, y si un suceso se puede obtener por varios caminos, se suman las probabilidades de esos caminos. Ejemplo: en una urna hay 3 bolas rojas y 2 azules y se sacan dos sin devolver; P(roja y roja) = 3/5 · 2/4 = 6/20 = 3/10. Si la bola se devuelve, la urna no cambia y P(roja y roja) = 3/5 · 3/5 = 9/25."
+        }
+      ]
+    },
+    {
+      "file_name": "lecturas-probabilidad.md",
+      "file_type": "markdown",
+      "page_count": null,
+      "sections": [
+        {
+          "title": "1. Probabilidad y frecuencia relativa",
+          "page": null,
+          "text": "Si lanzas una moneda diez veces, puede que salgan siete caras, y eso no significa que la moneda esté trucada. Al repetir un experimento muchas veces, la frecuencia relativa de un suceso tiende a acercarse a su probabilidad: es la llamada ley de los grandes números. Con mil lanzamientos, lo normal es que el porcentaje de caras esté muy cerca del 50 %. Por eso las probabilidades de sucesos no equiprobables, como los de un dado trucado, se estiman repitiendo el experimento."
+        },
+        {
+          "title": "2. Las encuestas y la muestra",
+          "page": null,
+          "text": "Para conocer la opinión de toda una población no se pregunta a todo el mundo, sino a una muestra. La muestra debe ser representativa: si solo se pregunta a los alumnos de una clase, el resultado no vale para todo el instituto. El tamaño también importa, porque una muestra muy pequeña da resultados poco fiables. Antes de creer el dato de una encuesta, pregúntate a quién se preguntó y a cuántas personas."
+        }
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "name": "Media, mediana y moda",
+      "document": "tema8-estadistica.docx",
+      "section": "8.1 Media, mediana y moda",
+      "questions": [
+        {
+          "question": "para la mediana hay que ordenar los datos si o si?",
+          "answer": "Sí, la mediana es el valor central de los datos ordenados de menor a mayor. Si no los ordenas, el valor que queda en medio puede ser cualquiera. Con 4, 6, 6, 7 y 9, ya ordenados, la mediana es 6."
+        },
+        {
+          "question": "y si hay un numero par de datos cual es el del medio",
+          "answer": "Con un número par de datos no hay un único valor central, así que la mediana es la media de los dos centrales. Por ejemplo, con 3, 5, 8 y 10, la mediana es (5 + 8)/2 = 6,5."
+        },
+        {
+          "question": "por que dicen que la media a veces engaña?",
+          "answer": "Porque la media se ve muy afectada por los valores extremos. Si casi todo un grupo saca un 5 y una persona saca un 10, la media sube aunque la mayoría no haya cambiado. La mediana, en cambio, apenas varía con un valor extremo, y a veces representa mejor al grupo."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Halla la mediana de los datos 7, 3, 9, 5, 4.",
+          "correct_answer": "Ordenados: 3, 4, 5, 7, 9\nMediana = 5",
+          "wrong_answer": "El valor central es 9\nMediana = 9",
+          "mistake_location": "Línea 1",
+          "error_type": "procedural",
+          "explanation": "Has tomado el valor central de la lista tal como venía, sin ordenarla. La mediana se busca con los datos ordenados: 3, 4, 5, 7, 9, y el central es 5."
+        },
+        {
+          "statement": "Calcula la media de los datos 5, 8, 6, 7, 9.",
+          "correct_answer": "Suma = 5 + 8 + 6 + 7 + 9 = 35\nMedia = 35/5 = 7",
+          "wrong_answer": "Suma = 5 + 8 + 6 + 7 + 9 = 33\nMedia = 33/5 = 6,6",
+          "mistake_location": "Línea 1",
+          "error_type": "execution",
+          "explanation": "El método es correcto, pero la suma está mal: 5 + 8 + 6 + 7 + 9 = 35. Dividiendo entre los 5 datos, la media es 7."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Cuál es la moda de los datos 2, 3, 3, 5, 3, 7, 5?",
+          "options": ["5", "3", "3,5", "7"],
+          "correct": 1,
+          "explanation": "La moda es el valor que más se repite: el 3 aparece tres veces.",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Cuál es la mediana de los datos 10, 2, 8, 4?",
+          "options": ["6", "8", "4", "5"],
+          "correct": 0,
+          "explanation": "Ordenados quedan 2, 4, 8, 10; hay un número par de datos, así que la mediana es (4 + 8)/2 = 6.",
+          "difficulty": 2
+        },
+        {
+          "statement": "Las notas de cinco alumnos son 5, 5, 6, 6 y 10. ¿Qué ocurre si el 10 se cambia por un 7?",
+          "options": ["Bajan la media y la mediana", "La media no cambia y la mediana baja", "No cambia ninguna de las dos", "La media baja y la mediana no cambia"],
+          "correct": 3,
+          "explanation": "La media pasa de 6,4 a 5,8, pero la mediana sigue siendo 6, porque el valor central no cambia: la media es sensible a los extremos y la mediana no.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Medidas de dispersión",
+      "document": "tema8-estadistica.docx",
+      "section": "8.2 Medidas de dispersión",
+      "questions": [
+        {
+          "question": "el rango es lo mismo que la desviacion tipica?",
+          "answer": "No. El rango es la diferencia entre el dato mayor y el menor, así que solo usa dos datos. La desviación típica tiene en cuenta todos los datos y mide cuánto se separan de la media."
+        },
+        {
+          "question": "por que se elevan al cuadrado las desviaciones? no se pueden sumar sin mas",
+          "answer": "Si las sumaras tal cual, las positivas y las negativas se compensarían: con 2, 4 y 6 las desviaciones -2, 0 y 2 suman 0. Al elevarlas al cuadrado todas son positivas, y su media es la varianza, 8/3 ≈ 2,67. Después se hace la raíz cuadrada para obtener la desviación típica, ≈ 1,63."
+        },
+        {
+          "question": "una desviacion tipica grande es buena o mala",
+          "answer": "No es ni buena ni mala: solo indica que los datos están más dispersos, más alejados de la media. Una desviación típica pequeña significa que los datos son más homogéneos, parecidos entre sí. Lo que interese depende de la situación que estés estudiando."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Calcula la desviación típica de los datos 2, 4 y 6.",
+          "correct_answer": "Media = 4\nVarianza = (4 + 0 + 4)/3 = 8/3 ≈ 2,67\nDesviación típica = √(8/3) ≈ 1,63",
+          "wrong_answer": "Media = 4\nVarianza = (4 + 0 + 4)/3 ≈ 2,67\nDesviación típica ≈ 2,67",
+          "mistake_location": "Línea 3",
+          "error_type": "conceptual",
+          "explanation": "En la línea 3 confundes la varianza con la desviación típica. La desviación típica es la raíz cuadrada de la varianza: √(8/3) ≈ 1,63."
+        },
+        {
+          "statement": "Calcula el rango de A = {5, 6, 7} y de B = {2, 6, 10} e indica cuál de los dos conjuntos está más disperso.",
+          "correct_answer": "Rango A = 7 - 5 = 2\nRango B = 10 - 2 = 8\nB está más disperso, porque su rango es mayor.",
+          "wrong_answer": "Rango A = 7 - 5 = 2\nRango B = 10 - 2 = 8",
+          "mistake_location": "Falta la conclusión",
+          "error_type": "incomplete",
+          "explanation": "Los dos rangos están bien calculados, pero no respondes a la pregunta de cuál está más disperso. Como el rango de B (8) es mayor que el de A (2), el conjunto B está más disperso."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Cuál es el rango de los datos 3, 8, 12, 5, 10?",
+          "options": ["9", "12", "7", "38"],
+          "correct": 0,
+          "explanation": "Rango = valor mayor - valor menor = 12 - 3 = 9.",
+          "difficulty": 1
+        },
+        {
+          "statement": "Si la varianza de unos datos es 16, ¿cuál es su desviación típica?",
+          "options": ["8", "256", "4", "16"],
+          "correct": 2,
+          "explanation": "La desviación típica es la raíz cuadrada de la varianza: √16 = 4.",
+          "difficulty": 2
+        },
+        {
+          "statement": "Dos clases tienen media 6 en un examen. La clase A tiene desviación típica 0,8 y la clase B, 2,5. ¿Qué se puede afirmar?",
+          "options": ["La clase B tiene mejores notas", "Las notas de A están más agrupadas en torno a la media", "La clase A tiene seguro un rango mayor", "Las dos clases tienen las mismas notas"],
+          "correct": 1,
+          "explanation": "Con la misma media, una desviación típica menor indica datos más homogéneos, más cerca de la media.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Regla de Laplace",
+      "document": "tema9-probabilidad.pdf",
+      "section": "9.1 Regla de Laplace",
+      "questions": [
+        {
+          "question": "la probabilidad puede ser mayor que 1?",
+          "answer": "No, la probabilidad siempre está entre 0 y 1. Vale 0 para un suceso imposible y 1 para un suceso seguro. Si te sale más de 1, seguramente has puesto los casos posibles arriba y los favorables abajo."
+        },
+        {
+          "question": "si el dado esta trucado sigue siendo 1/6?",
+          "answer": "No: la regla de Laplace solo sirve cuando todos los resultados son igual de probables. En un dado trucado unas caras salen más que otras, así que no puedes dividir casos favorables entre casos posibles."
+        },
+        {
+          "question": "los casos favorables son los que yo quiero que salgan?",
+          "answer": "Exacto: son los resultados en los que se cumple el suceso que estudias. Para «sacar par» con un dado, los favorables son 2, 4 y 6, y los posibles son las seis caras, así que P = 3/6 = 1/2."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Se lanza un dado. Calcula la probabilidad de sacar un número mayor que 4.",
+          "correct_answer": "Favorables: 5 y 6 → 2 casos\nP = 2/6 = 1/3",
+          "wrong_answer": "Favorables: 4, 5 y 6 → 3 casos\nP = 3/6 = 1/2",
+          "mistake_location": "Línea 1",
+          "error_type": "comprehension",
+          "explanation": "«Mayor que 4» no incluye el 4: los casos favorables son solo 5 y 6. Por tanto, P = 2/6 = 1/3. Si el enunciado dijera «mayor o igual que 4», entonces sí serían tres casos."
+        },
+        {
+          "statement": "En una bolsa hay 3 bolas rojas y 7 verdes. ¿Cuál es la probabilidad de sacar una bola roja?",
+          "correct_answer": "Casos posibles: 10; favorables: 3\nP(roja) = 3/10 = 0,3",
+          "wrong_answer": "Hay dos colores, rojo y verde\nP(roja) = 1/2",
+          "mistake_location": "Línea 1",
+          "error_type": "conceptual",
+          "explanation": "Los dos colores no son igual de probables, porque hay más bolas verdes que rojas, así que no puedes contar los colores como casos. Los casos equiprobables son las 10 bolas: P(roja) = 3/10."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "Al lanzar un dado, ¿cuál es la probabilidad de sacar un 3?",
+          "options": ["1/3", "3/6", "1/6", "1/2"],
+          "correct": 2,
+          "explanation": "Hay 1 caso favorable entre 6 posibles: P = 1/6.",
+          "difficulty": 1
+        },
+        {
+          "statement": "Se extrae una carta de una baraja española de 40 cartas. ¿Cuál es la probabilidad de que sea de copas?",
+          "options": ["1/10", "1/4", "1/40", "4/10"],
+          "correct": 1,
+          "explanation": "Hay 10 copas entre 40 cartas: P = 10/40 = 1/4.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿En cuál de estas situaciones NO se puede aplicar directamente la regla de Laplace?",
+          "options": ["Lanzar un dado trucado", "Lanzar una moneda equilibrada", "Sacar una bola de una urna con bolas del mismo tamaño", "Elegir al azar un número del 1 al 10"],
+          "correct": 0,
+          "explanation": "En un dado trucado los resultados no son equiprobables, que es la condición para aplicar la regla de Laplace.",
+          "difficulty": 2
+        }
+      ]
+    },
+    {
+      "name": "Suceso contrario",
+      "document": "tema9-probabilidad.pdf",
+      "section": "9.2 Suceso contrario",
+      "questions": [
+        {
+          "question": "el contrario de sacar un 6 es sacar un 1?",
+          "answer": "No: el suceso contrario de «sacar un 6» es «no sacar un 6», es decir, sacar 1, 2, 3, 4 o 5. Por eso su probabilidad es 1 - 1/6 = 5/6. El contrario incluye todos los resultados en los que no ocurre el suceso."
+        },
+        {
+          "question": "por que la probabilidad de algo y la de su contrario suman 1",
+          "answer": "Porque siempre ocurre uno de los dos y nunca ambos a la vez: o pasa A o no pasa. Juntos forman el suceso seguro, que tiene probabilidad 1. Por eso, si P(llueva) = 0,3, P(no llueva) = 0,7."
+        },
+        {
+          "question": "cuando conviene usar lo del contrario?",
+          "answer": "Cuando es más fácil contar los casos en que el suceso no ocurre. Por ejemplo, para «no sacar un 6» es más rápido calcular 1 - 1/6 = 5/6 que contar los cinco casos favorables. En problemas más largos esta idea ahorra muchos cálculos."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "La probabilidad de sacar un 6 con un dado es 1/6. Calcula la probabilidad de no sacarlo y exprésala en forma decimal y en porcentaje.",
+          "correct_answer": "P(no 6) = 1 - 1/6 = 5/6 ≈ 0,83 → 83 %",
+          "wrong_answer": "P(no 6) = 1 - 1/6 = 5/6 = 0,83 %",
+          "mistake_location": "Resultado final",
+          "error_type": "expression",
+          "explanation": "El cálculo es correcto, pero 0,83 no es un porcentaje: para expresarlo en porcentaje hay que multiplicar por 100, y queda un 83 %. Además, 5/6 no es exactamente 0,83, así que conviene escribir «≈» en lugar de «=»."
+        },
+        {
+          "statement": "La probabilidad de que un autobús llegue puntual es 0,85. ¿Cuál es la probabilidad de que no llegue puntual?",
+          "correct_answer": "P(no puntual) = 1 - 0,85 = 0,15",
+          "wrong_answer": "P(no puntual) = 0,85 - 1 = -0,15",
+          "mistake_location": "Línea 1",
+          "error_type": "procedural",
+          "explanation": "La fórmula del suceso contrario es P(Ā) = 1 - P(A), no P(A) - 1. Además, una probabilidad negativa es imposible, porque siempre está entre 0 y 1. Lo correcto es 1 - 0,85 = 0,15."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "Si P(A) = 0,4, ¿cuánto vale P(Ā)?",
+          "options": ["1,4", "-0,6", "0,4", "0,6"],
+          "correct": 3,
+          "explanation": "P(Ā) = 1 - P(A) = 1 - 0,4 = 0,6.",
+          "difficulty": 1
+        },
+        {
+          "statement": "En una urna hay 12 bolas y 5 son blancas. ¿Cuál es la probabilidad de NO sacar una bola blanca?",
+          "options": ["5/12", "7/12", "1/12", "7/5"],
+          "correct": 1,
+          "explanation": "P(blanca) = 5/12, así que P(no blanca) = 1 - 5/12 = 7/12.",
+          "difficulty": 2
+        },
+        {
+          "statement": "Al lanzar un dado, ¿cuál es el suceso contrario de «sacar un número menor que 3»?",
+          "options": ["Sacar un número mayor que 3", "Sacar un número mayor o igual que 3", "Sacar un 3", "Sacar un número par"],
+          "correct": 1,
+          "explanation": "Menor que 3 son el 1 y el 2; el contrario son todos los demás: 3, 4, 5 y 6, es decir, mayor o igual que 3.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Diagramas de árbol",
+      "document": "tema9-probabilidad.pdf",
+      "section": "9.3 Diagramas de árbol",
+      "questions": [
+        {
+          "question": "en el arbol las probabilidades de un camino se suman o se multiplican?",
+          "answer": "Se multiplican: la probabilidad de un camino es el producto de las probabilidades de sus ramas. En la urna con 3 rojas y 2 azules, sin devolver, P(roja y roja) = 3/5 · 2/4 = 3/10. Solo se suman cuando un suceso se puede obtener por varios caminos distintos."
+        },
+        {
+          "question": "por que en la segunda bola pone 2/4 y no 3/5",
+          "answer": "Porque la primera bola no se devuelve: después de sacar una roja quedan 4 bolas y solo 2 son rojas. Por eso la segunda rama vale 2/4. Si la bola se devolviera, la urna quedaría igual y volvería a ser 3/5."
+        },
+        {
+          "question": "lanzar dos monedas cuantos resultados tiene? yo creo que 3",
+          "answer": "Tiene cuatro resultados: cara-cara, cara-cruz, cruz-cara y cruz-cruz. En el diagrama de árbol la primera moneda abre dos ramas y cada una se divide en otras dos. Cada camino tiene probabilidad 1/2 · 1/2 = 1/4."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "En una urna hay 3 bolas rojas y 2 azules. Se sacan dos bolas sin devolución. Calcula P(roja y roja).",
+          "correct_answer": "P = 3/5 · 2/4 = 6/20 = 3/10",
+          "wrong_answer": "P = 3/5 + 2/4 = 11/10",
+          "mistake_location": "Línea 1",
+          "error_type": "conceptual",
+          "explanation": "Las probabilidades de las ramas de un mismo camino se multiplican, no se suman. Además, 11/10 es mayor que 1, lo que es imposible para una probabilidad. Lo correcto es 3/5 · 2/4 = 3/10."
+        },
+        {
+          "statement": "En la misma urna (3 rojas y 2 azules) se saca una bola, se anota su color y no se devuelve; después se saca otra. Calcula P(azul y azul).",
+          "correct_answer": "P = 2/5 · 1/4 = 2/20 = 1/10",
+          "wrong_answer": "P = 2/5 · 2/5 = 4/25",
+          "mistake_location": "Segunda rama",
+          "error_type": "comprehension",
+          "explanation": "Has calculado como si la bola se devolviera, pero el enunciado dice que no se devuelve. Tras sacar una azul quedan 4 bolas y solo 1 azul, así que la segunda rama vale 1/4: P = 2/5 · 1/4 = 1/10."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Cuál es la probabilidad de obtener dos caras al lanzar dos monedas?",
+          "options": ["1/2", "1/4", "3/4", "1/3"],
+          "correct": 1,
+          "explanation": "Es un solo camino de cuatro posibles: 1/2 · 1/2 = 1/4.",
+          "difficulty": 1
+        },
+        {
+          "statement": "En una urna hay 3 bolas rojas y 2 azules. Se sacan dos bolas CON devolución. ¿Cuál es P(roja y roja)?",
+          "options": ["9/25", "3/10", "6/5", "3/5"],
+          "correct": 0,
+          "explanation": "Al devolver la bola la urna no cambia: 3/5 · 3/5 = 9/25. 3/10 sería el resultado sin devolución.",
+          "difficulty": 2
+        },
+        {
+          "statement": "En una urna hay 4 bolas blancas y 1 negra. Se sacan dos sin devolución. ¿Cuál es la probabilidad de que la segunda bola sea negra?",
+          "options": ["1/4", "4/25", "1/20", "1/5"],
+          "correct": 3,
+          "explanation": "Solo hay un camino válido, blanca y después negra: 4/5 · 1/4 = 1/5. El camino negra-negra tiene probabilidad 0 porque solo hay una negra.",
+          "difficulty": 3
+        }
+      ]
+    }
+  ],
+  "off_topic": [
+    "¿Qué es la distribución normal y la campana de Gauss?",
+    "¿Cuántas combinaciones distintas hay en la lotería primitiva?"
+  ]
+}

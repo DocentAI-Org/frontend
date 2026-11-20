@@ -1,0 +1,369 @@
+{
+  "key": "contemporanea-4a",
+  "name": "Historia contemporánea",
+  "description": "De la Revolución francesa a la Segunda República: estudiamos las causas y consecuencias de los grandes cambios de los siglos XIX y XX.",
+  "documents": [
+    {
+      "file_name": "tema2-revoluciones-liberales-e-industrial.pdf",
+      "file_type": "pdf",
+      "page_count": 22,
+      "sections": [
+        {
+          "title": "2.1 La Revolución francesa",
+          "page": 2,
+          "text": "A finales del siglo XVIII Francia era una monarquía absoluta con una sociedad estamental: el clero y la nobleza tenían privilegios y no pagaban impuestos, mientras el tercer estado (burguesía, campesinos y artesanos) soportaba toda la carga fiscal. La crisis económica y la bancarrota de la Hacienda obligaron a Luis XVI a convocar los Estados Generales en 1789; allí los representantes del tercer estado se separaron y formaron una Asamblea Nacional dispuesta a redactar una constitución. El 14 de julio de 1789 el pueblo de París asaltó la Bastilla, una prisión que simbolizaba el poder absoluto del rey, y en agosto la Asamblea aprobó la Declaración de los Derechos del Hombre y del Ciudadano, que proclamaba la libertad y la igualdad ante la ley. La revolución pasó después por varias fases: una monarquía constitucional (1789-1792), una república radical que ejecutó al rey en 1793 y una república moderada, hasta que Napoleón tomó el poder en 1799. Su importancia es que acabó con el Antiguo Régimen en Francia y extendió por Europa las ideas liberales: soberanía nacional, división de poderes y derechos individuales."
+        },
+        {
+          "title": "2.3 La Revolución industrial",
+          "page": 9,
+          "text": "La Revolución industrial comenzó en Gran Bretaña hacia 1760 y consistió en el paso de una economía agraria y artesanal a otra basada en la industria y la producción mecanizada en fábricas. Fue posible gracias a varios factores: una revolución agrícola que produjo más alimentos con menos mano de obra, un fuerte crecimiento de la población, abundancia de carbón y hierro, capitales procedentes del comercio colonial y un gobierno favorable a los negocios. La innovación clave fue la máquina de vapor, perfeccionada por James Watt en 1769, que se aplicó primero a la industria textil del algodón y después al transporte con el ferrocarril y el barco de vapor. La industrialización transformó la sociedad: surgió la sociedad de clases, con una burguesía propietaria de las fábricas y un proletariado obrero que trabajaba jornadas de 12 a 14 horas, incluidos mujeres y niños, por salarios muy bajos. Estas duras condiciones dieron origen al movimiento obrero, que se organizó en sindicatos para reclamar mejoras."
+        }
+      ]
+    },
+    {
+      "file_name": "tema5-primera-mitad-siglo-xx.md",
+      "file_type": "markdown",
+      "page_count": null,
+      "sections": [
+        {
+          "title": "5.1 Las causas de la Primera Guerra Mundial",
+          "page": null,
+          "text": "La Primera Guerra Mundial (1914-1918) tuvo causas profundas que venían de años atrás. Las potencias europeas competían por las colonias (imperialismo), por los mercados y por el prestigio, y algunos pueblos, como los de los Balcanes, reclamaban su propio Estado (nacionalismo). Además, los países se armaron en una carrera de armamentos durante la llamada Paz Armada y se agruparon en dos bloques de alianzas: la Triple Alianza (Alemania, Austria-Hungría e Italia) y la Triple Entente (Francia, Reino Unido y Rusia). La causa inmediata o detonante fue el asesinato del heredero austrohúngaro, el archiduque Francisco Fernando, en Sarajevo el 28 de junio de 1914, a manos de un nacionalista serbio. Austria-Hungría declaró la guerra a Serbia y, por el sistema de alianzas, en pocas semanas el conflicto se extendió a toda Europa. Conviene distinguir bien: el atentado no explica por sí solo la guerra, sino que encendió una situación de tensión que ya existía."
+        },
+        {
+          "title": "5.3 El crac de 1929 y la Gran Depresión",
+          "page": null,
+          "text": "Tras la Primera Guerra Mundial, Estados Unidos vivió en los años veinte una época de prosperidad, pero también de especulación: mucha gente compraba acciones con dinero prestado esperando que su precio siguiera subiendo. Además, la producción crecía más deprisa que la capacidad de compra de la población, por lo que se acumulaban productos sin vender. El 24 de octubre de 1929, conocido como el Jueves Negro, millones de accionistas intentaron vender a la vez en la Bolsa de Nueva York (Wall Street) y los precios se hundieron. El crac arruinó a inversores, provocó la quiebra de miles de bancos y empresas y disparó el paro, que en 1932 afectaba a uno de cada cuatro trabajadores estadounidenses. La crisis se extendió al resto del mundo porque Estados Unidos retiró los préstamos que había concedido a Europa. Para salir de ella, el presidente Roosevelt aplicó el New Deal, un programa en el que el Estado intervino en la economía con obras públicas y ayudas sociales."
+        },
+        {
+          "title": "5.5 La Segunda República española",
+          "page": null,
+          "text": "Tras las elecciones municipales del 12 de abril de 1931, en las que las candidaturas republicanas ganaron en las grandes ciudades, el rey Alfonso XIII abandonó España y el 14 de abril se proclamó la Segunda República. La Constitución de 1931 estableció un Estado democrático y laico, reconoció el sufragio universal, incluido por primera vez el voto de las mujeres, permitió el divorcio y la autonomía de las regiones que la solicitaran, como Cataluña. Durante el primer bienio (1931-1933), los gobiernos de izquierda impulsaron reformas como la reforma agraria, para repartir tierras entre los campesinos, la reforma militar y la creación de miles de escuelas. En el bienio de 1933 a 1935 gobernaron partidos de centro-derecha, que frenaron muchas de esas reformas, y en febrero de 1936 ganó las elecciones el Frente Popular. El clima de enfrentamiento político culminó con el golpe de Estado militar de julio de 1936, que dio comienzo a la Guerra Civil."
+        }
+      ]
+    },
+    {
+      "file_name": "lecturas-complementarias-contemporanea.docx",
+      "file_type": "docx",
+      "page_count": 8,
+      "sections": [
+        {
+          "title": "Lectura 1: un día en una fábrica textil de Mánchester (1840)",
+          "page": 1,
+          "text": "Relato ficticio basado en informes de la época: Mary, de once años, entra a trabajar a las seis de la mañana en una hilandería de algodón y no sale hasta las ocho de la tarde, con una sola pausa para comer. El ruido de las máquinas es ensordecedor y el aire está lleno de pelusa. Preguntas: ¿qué problemas de salud podía sufrir Mary? ¿Qué reclamarían los sindicatos ante esta situación?"
+        },
+        {
+          "title": "Lectura 2: cartas desde las trincheras",
+          "page": 5,
+          "text": "Recreación de las cartas de un soldado francés en el frente occidental en 1916, donde describe el barro, las ratas, el frío y la espera bajo los bombardeos. Sirve para comprender por qué la guerra de trincheras se convirtió en una guerra de desgaste en la que avanzar unos pocos metros costaba miles de vidas."
+        }
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "name": "La Revolución francesa",
+      "document": "tema2-revoluciones-liberales-e-industrial.pdf",
+      "section": "2.1 La Revolución francesa",
+      "questions": [
+        {
+          "question": "por que la bastilla es tan importante si solo era una carcel",
+          "answer": "Por lo que simbolizaba: era una prisión que representaba el poder absoluto del rey. Su asalto por el pueblo de París el 14 de julio de 1789 se convirtió en el símbolo del inicio de la revolución."
+        },
+        {
+          "question": "el tercer estado eran solo los pobres?",
+          "answer": "No solo. El tercer estado incluía a todos los que no eran ni clero ni nobleza: la burguesía, que podía ser muy rica, los campesinos y los artesanos. Lo que tenían en común es que no tenían privilegios y pagaban todos los impuestos."
+        },
+        {
+          "question": "con la revolucion se acabo el rey directamente?",
+          "answer": "No, fue por fases. Primero hubo una monarquía constitucional (1789-1792); después una república radical, que ejecutó a Luis XVI en 1793; luego una república moderada, hasta que Napoleón tomó el poder en 1799."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Explica dos causas de la Revolución francesa.",
+          "correct_answer": "La sociedad estamental injusta: el clero y la nobleza tenían privilegios y no pagaban impuestos, mientras el tercer estado soportaba toda la carga. Y la crisis económica con la bancarrota de la Hacienda, que obligó a convocar los Estados Generales.",
+          "wrong_answer": "El asalto a la Bastilla y la Declaración de los Derechos del Hombre y del Ciudadano.",
+          "mistake_location": "Toda la respuesta",
+          "error_type": "conceptual",
+          "explanation": "Has dado hechos de la propia revolución, no sus causas. Las causas son anteriores a 1789: la sociedad estamental con privilegios y la crisis económica de la monarquía."
+        },
+        {
+          "statement": "Ordena estos hechos y pon la fecha: ejecución de Luis XVI, toma del poder por Napoleón, asalto a la Bastilla, convocatoria de los Estados Generales.",
+          "correct_answer": "1789 convocatoria de los Estados Generales; 14 de julio de 1789 asalto a la Bastilla; 1793 ejecución de Luis XVI; 1799 Napoleón toma el poder.",
+          "wrong_answer": "1789 asalto a la Bastilla; 1789 convocatoria de los Estados Generales; 1793 ejecución de Luis XVI; 1799 Napoleón toma el poder.",
+          "mistake_location": "Primer y segundo hecho",
+          "error_type": "procedural",
+          "explanation": "Cuando dos hechos tienen el mismo año hay que fijarse en la secuencia. La convocatoria de los Estados Generales fue anterior y de ella nació la Asamblea Nacional; el asalto a la Bastilla llegó después, en julio."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Qué grupo pagaba los impuestos en la Francia del Antiguo Régimen?",
+          "options": ["La nobleza", "El clero", "El tercer estado", "Todos por igual"],
+          "correct": 2,
+          "explanation": "Clero y nobleza estaban exentos; el tercer estado soportaba toda la carga fiscal.",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Qué documento proclamó en 1789 la libertad y la igualdad ante la ley?",
+          "options": ["La Declaración de los Derechos del Hombre y del Ciudadano", "La Constitución de Cádiz", "El Código Napoleónico", "El Tratado de Versalles"],
+          "correct": 0,
+          "explanation": "La Asamblea la aprobó en agosto de 1789.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Cuál de estas ideas extendió la Revolución francesa por Europa?",
+          "options": ["La monarquía absoluta", "La sociedad estamental", "Los privilegios de la nobleza", "La división de poderes"],
+          "correct": 3,
+          "explanation": "Difundió las ideas liberales: soberanía nacional, división de poderes y derechos individuales.",
+          "difficulty": 2
+        }
+      ]
+    },
+    {
+      "name": "La Revolución industrial",
+      "document": "tema2-revoluciones-liberales-e-industrial.pdf",
+      "section": "2.3 La Revolución industrial",
+      "questions": [
+        {
+          "question": "por que empezo en inglaterra y no en otro pais",
+          "answer": "Porque en Gran Bretaña coincidieron varios factores: una revolución agrícola, un fuerte crecimiento de la población, abundancia de carbón y hierro, capitales del comercio colonial y un gobierno favorable a los negocios."
+        },
+        {
+          "question": "james watt invento la maquina de vapor?",
+          "answer": "Según el tema, Watt la perfeccionó en 1769, y esa versión fue la que se aplicó con éxito a la industria textil del algodón y después al transporte, con el ferrocarril y el barco de vapor."
+        },
+        {
+          "question": "que es el proletariado",
+          "answer": "Es la clase obrera que surgió con la industrialización: trabajaba en las fábricas jornadas de 12 a 14 horas por salarios muy bajos, incluidos mujeres y niños. Frente a ella estaba la burguesía, propietaria de las fábricas."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Explica la relación entre la revolución agrícola y la Revolución industrial.",
+          "correct_answer": "La revolución agrícola produjo más alimentos con menos mano de obra. Así la población creció y muchos campesinos quedaron libres para trabajar en las fábricas de las ciudades.",
+          "wrong_answer": "La revolución agrícola produjo más alimentos con menos mano de obra.",
+          "mistake_location": "Falta la relación con la industria",
+          "error_type": "incomplete",
+          "explanation": "Describes bien la revolución agrícola, pero no la relacionas con la industria, que es lo que pide el enunciado. Explica que liberó mano de obra para las fábricas y permitió alimentar a una población mayor."
+        },
+        {
+          "statement": "Describe las condiciones de trabajo del proletariado y explica qué respuesta provocaron.",
+          "correct_answer": "Jornadas de 12 a 14 horas, salarios muy bajos y trabajo de mujeres y niños. Estas condiciones dieron origen al movimiento obrero, que se organizó en sindicatos para reclamar mejoras.",
+          "wrong_answer": "Trabajaban 8 horas, pero cobraban poco. Por eso surgió la burguesía, que defendía a los obreros.",
+          "mistake_location": "Primera y segunda oración",
+          "error_type": "comprehension",
+          "explanation": "Las jornadas eran de 12 a 14 horas, no de 8. Además, la burguesía era la propietaria de las fábricas; la respuesta de los obreros fue el movimiento obrero y los sindicatos."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Dónde comenzó la Revolución industrial?",
+          "options": ["Francia", "Gran Bretaña", "Alemania", "Estados Unidos"],
+          "correct": 1,
+          "explanation": "Empezó en Gran Bretaña hacia 1760.",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿A qué industria se aplicó primero la máquina de vapor?",
+          "options": ["Siderúrgica", "Química", "Automovilística", "Textil del algodón"],
+          "correct": 3,
+          "explanation": "Primero se aplicó a la industria textil y después al transporte.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Qué factor NO favoreció la industrialización británica?",
+          "options": ["Abundancia de carbón y hierro", "Capitales del comercio colonial", "Una población en descenso", "Un gobierno favorable a los negocios"],
+          "correct": 2,
+          "explanation": "La población creció con fuerza, lo que aportó mano de obra y consumidores.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Causas de la Gran Guerra",
+      "document": "tema5-primera-mitad-siglo-xx.md",
+      "section": "5.1 Las causas de la Primera Guerra Mundial",
+      "questions": [
+        {
+          "question": "la primera guerra mundial empezo porque mataron a un archiduque no?",
+          "answer": "Ese asesinato, en Sarajevo el 28 de junio de 1914, fue la causa inmediata o detonante. Pero no explica por sí solo la guerra: había causas profundas como el imperialismo, el nacionalismo, la carrera de armamentos y los bloques de alianzas."
+        },
+        {
+          "question": "que era la paz armada? si habia paz por que se armaban",
+          "answer": "Es el nombre del periodo anterior a la guerra en el que, aunque no había combates, los países se armaron en una carrera de armamentos por la desconfianza mutua. Esa tensión fue una de las causas profundas del conflicto."
+        },
+        {
+          "question": "italia estaba con alemania?",
+          "answer": "Al principio formaba parte de la Triple Alianza junto con Alemania y Austria-Hungría. Frente a ella estaba la Triple Entente, formada por Francia, Reino Unido y Rusia."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Distingue entre causas profundas y causa inmediata de la Primera Guerra Mundial.",
+          "correct_answer": "Causas profundas: imperialismo, nacionalismo, carrera de armamentos (Paz Armada) y sistema de alianzas. Causa inmediata: el asesinato del archiduque Francisco Fernando en Sarajevo en 1914.",
+          "wrong_answer": "Causas profundas: el asesinato del archiduque en Sarajevo. Causa inmediata: el imperialismo y el nacionalismo.",
+          "mistake_location": "Toda la clasificación",
+          "error_type": "conceptual",
+          "explanation": "Has invertido los dos tipos de causa. Las causas profundas son tensiones que venían de años atrás, como el imperialismo y el nacionalismo; el atentado de Sarajevo fue el detonante."
+        },
+        {
+          "statement": "Explica por qué un conflicto entre Austria-Hungría y Serbia se convirtió en una guerra europea.",
+          "correct_answer": "Por el sistema de alianzas: cuando Austria-Hungría declaró la guerra a Serbia, los países aliados de cada bando fueron entrando en el conflicto y en pocas semanas se extendió a toda Europa.",
+          "wrong_answer": "Porque Serbia era muy grande y tenía colonias en toda Europa.",
+          "mistake_location": "Toda la respuesta",
+          "error_type": "comprehension",
+          "explanation": "La extensión de la guerra no se debió al tamaño de Serbia. La clave es el sistema de alianzas en dos bloques, que arrastró a las potencias al conflicto."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Qué países formaban la Triple Entente?",
+          "options": ["Francia, Reino Unido y Rusia", "Alemania, Austria-Hungría e Italia", "Francia, Italia y Serbia", "Reino Unido, Alemania y Rusia"],
+          "correct": 0,
+          "explanation": "La Triple Alianza la formaban Alemania, Austria-Hungría e Italia.",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Cuál fue la causa inmediata de la Primera Guerra Mundial?",
+          "options": ["La carrera de armamentos", "El imperialismo", "El asesinato del archiduque Francisco Fernando", "El crac de 1929"],
+          "correct": 2,
+          "explanation": "El atentado de Sarajevo fue el detonante.",
+          "difficulty": 1
+        },
+        {
+          "statement": "Las reivindicaciones de los pueblos balcánicos para tener su propio Estado son un ejemplo de…",
+          "options": ["imperialismo", "Paz Armada", "sistema de alianzas", "nacionalismo"],
+          "correct": 3,
+          "explanation": "El nacionalismo es el deseo de un pueblo de tener su propio Estado.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "El crac de 1929",
+      "document": "tema5-primera-mitad-siglo-xx.md",
+      "section": "5.3 El crac de 1929 y la Gran Depresión",
+      "questions": [
+        {
+          "question": "que paso exactamente el jueves negro",
+          "answer": "El 24 de octubre de 1929 millones de accionistas intentaron vender a la vez en la Bolsa de Nueva York (Wall Street) y los precios de las acciones se hundieron. Fue el inicio del crac."
+        },
+        {
+          "question": "si la crisis fue en estados unidos por que llego a europa",
+          "answer": "Porque Estados Unidos retiró los préstamos que había concedido a Europa tras la Primera Guerra Mundial. Sin ese dinero, la crisis se extendió al resto del mundo."
+        },
+        {
+          "question": "el new deal que era, un banco?",
+          "answer": "No, era un programa del presidente Roosevelt para salir de la crisis. Consistió en que el Estado interviniera en la economía con obras públicas y ayudas sociales."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Explica dos causas del crac de 1929.",
+          "correct_answer": "La especulación: mucha gente compraba acciones con dinero prestado esperando que subieran. Y la sobreproducción: la producción crecía más que la capacidad de compra y se acumulaban productos sin vender.",
+          "wrong_answer": "La quiebra de miles de bancos y el aumento del paro.",
+          "mistake_location": "Toda la respuesta",
+          "error_type": "conceptual",
+          "explanation": "Has dado consecuencias del crac, no sus causas. Las causas son anteriores: la especulación en Bolsa con dinero prestado y la sobreproducción."
+        },
+        {
+          "statement": "Calcula y explica: si en 1932 había unos 50 millones de trabajadores en Estados Unidos, ¿cuántos parados había aproximadamente según el dato del tema?",
+          "correct_answer": "Uno de cada cuatro trabajadores estaba en paro: 50 ÷ 4 = 12,5 millones de parados aproximadamente.",
+          "wrong_answer": "Uno de cada cuatro trabajadores estaba en paro: 50 × 4 = 200 millones de parados.",
+          "mistake_location": "Operación",
+          "error_type": "execution",
+          "explanation": "Has multiplicado en lugar de dividir, y el resultado no tiene sentido porque supera el total de trabajadores. «Uno de cada cuatro» significa la cuarta parte: 50 ÷ 4 = 12,5 millones."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Dónde se produjo el crac de 1929?",
+          "options": ["En la Bolsa de Londres", "En la Bolsa de Nueva York", "En el Banco de Francia", "En la Bolsa de Berlín"],
+          "correct": 1,
+          "explanation": "Fue en Wall Street, la Bolsa de Nueva York.",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Qué proporción de trabajadores estadounidenses estaba en paro en 1932?",
+          "options": ["Uno de cada diez", "La mitad", "Uno de cada cuatro", "Tres de cada cuatro"],
+          "correct": 2,
+          "explanation": "El paro afectaba a uno de cada cuatro trabajadores.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿En qué consistió el New Deal?",
+          "options": ["En que el Estado interviniera en la economía con obras públicas y ayudas", "En dejar que el mercado se recuperase solo", "En prohibir la compra de acciones", "En pedir préstamos a Europa"],
+          "correct": 0,
+          "explanation": "Roosevelt hizo que el Estado interviniera activamente en la economía.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "La Segunda República",
+      "document": "tema5-primera-mitad-siglo-xx.md",
+      "section": "5.5 La Segunda República española",
+      "questions": [
+        {
+          "question": "la republica se proclamo porque gano unas elecciones generales?",
+          "answer": "No, fueron unas elecciones municipales, las del 12 de abril de 1931. Las candidaturas republicanas ganaron en las grandes ciudades, Alfonso XIII abandonó España y el 14 de abril se proclamó la República."
+        },
+        {
+          "question": "las mujeres votaban antes de la republica?",
+          "answer": "No. La Constitución de 1931 reconoció el sufragio universal, incluido por primera vez el voto de las mujeres."
+        },
+        {
+          "question": "que era la reforma agraria",
+          "answer": "Fue una de las reformas del primer bienio (1931-1933), impulsada por los gobiernos de izquierda. Su objetivo era repartir tierras entre los campesinos."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Explica tres novedades de la Constitución de 1931.",
+          "correct_answer": "Estableció un Estado democrático y laico; reconoció el sufragio universal con el voto de las mujeres por primera vez; permitió el divorcio y la autonomía de regiones como Cataluña.",
+          "wrong_answer": "Estableció un Estado democrático y laico; hizo la reforma agraria; creó miles de escuelas.",
+          "mistake_location": "Segunda y tercera novedad",
+          "error_type": "comprehension",
+          "explanation": "La reforma agraria y las escuelas fueron medidas de los gobiernos del primer bienio, no artículos de la Constitución. Busca lo que estableció la Constitución: el voto femenino, el divorcio o la autonomía regional."
+        },
+        {
+          "statement": "Ordena las etapas de la Segunda República con sus fechas y explica qué ocurrió al final.",
+          "correct_answer": "Primer bienio (1931-1933), gobiernos de izquierda y reformas; bienio de centro-derecha (1933-1935), que frena las reformas; victoria del Frente Popular (febrero de 1936). En julio de 1936 un golpe de Estado militar dio comienzo a la Guerra Civil.",
+          "wrong_answer": "Primer bienio (1931-1933), gobiernos de izquierda y reformas; bienio de centro-derecha (1933-1935); victoria del Frente Popular (febrero de 1936).",
+          "mistake_location": "Falta el final",
+          "error_type": "incomplete",
+          "explanation": "Las etapas están bien ordenadas, pero no explicas qué ocurrió al final, que también se pedía. Añade el golpe de Estado de julio de 1936 y el comienzo de la Guerra Civil."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Qué día se proclamó la Segunda República?",
+          "options": ["12 de abril de 1931", "18 de julio de 1936", "6 de diciembre de 1931", "14 de abril de 1931"],
+          "correct": 3,
+          "explanation": "Las elecciones fueron el 12 de abril y la proclamación, el 14.",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Qué gobiernos impulsaron la reforma agraria y la creación de escuelas?",
+          "options": ["Los del bienio de centro-derecha", "Los del primer bienio, de izquierda", "Los de Alfonso XIII", "Los del Frente Popular en 1937"],
+          "correct": 1,
+          "explanation": "Fueron reformas del primer bienio (1931-1933).",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Qué partido o coalición ganó las elecciones de febrero de 1936?",
+          "options": ["La CEDA", "El Partido Radical", "El Frente Popular", "La Unión Patriótica"],
+          "correct": 2,
+          "explanation": "Ganó el Frente Popular; en julio se produjo el golpe de Estado.",
+          "difficulty": 3
+        }
+      ]
+    }
+  ],
+  "off_topic": [
+    "¿Cómo terminó la Segunda Guerra Mundial en el Pacífico?",
+    "¿Qué tiempo va a hacer el sábado para la excursión?"
+  ]
+}

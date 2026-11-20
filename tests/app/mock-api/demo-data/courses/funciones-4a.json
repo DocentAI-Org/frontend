@@ -1,0 +1,369 @@
+{
+  "key": "funciones-4a",
+  "name": "Funciones lineales",
+  "description": "La función lineal en 4º ESO: pendiente, ordenada en el origen, posición de rectas y problemas reales con tarifas.",
+  "documents": [
+    {
+      "file_name": "tema5-funciones-lineales.pdf",
+      "file_type": "pdf",
+      "page_count": 16,
+      "sections": [
+        {
+          "title": "5.1 Pendiente de una recta",
+          "page": 2,
+          "text": "Una función lineal (o afín) tiene la forma y = mx + n, y su gráfica es una recta. El número m es la pendiente: indica cuánto aumenta y cuando x aumenta una unidad. Si m > 0 la recta es creciente, si m < 0 es decreciente y si m = 0 es horizontal. Dados dos puntos de la recta, la pendiente se calcula como m = (y₂ - y₁)/(x₂ - x₁), restando en el mismo orden arriba y abajo. Por ejemplo, entre A(1, 3) y B(3, 7), m = (7 - 3)/(3 - 1) = 4/2 = 2."
+        },
+        {
+          "title": "5.2 Ordenada en el origen",
+          "page": 6,
+          "text": "En y = mx + n, el número n es la ordenada en el origen: es el valor de y cuando x = 0, es decir, el punto donde la recta corta al eje Y, (0, n). En y = 2x + 1 la recta corta al eje Y en (0, 1). Si n = 0, la función es de proporcionalidad directa, y = mx, y su gráfica pasa por el origen (0, 0). Para hallar dónde corta al eje X se hace y = 0: en y = 2x - 6, 0 = 2x - 6 y x = 3, así que el punto es (3, 0)."
+        },
+        {
+          "title": "5.3 Ecuación de la recta que pasa por dos puntos",
+          "page": 10,
+          "text": "Para obtener la ecuación de la recta que pasa por dos puntos, primero se calcula la pendiente y después la ordenada en el origen. Ejemplo con A(1, 3) y B(3, 7): la pendiente es m = 2, así que y = 2x + n. Sustituyendo las coordenadas de A, 3 = 2 · 1 + n, luego n = 1. La ecuación es y = 2x + 1, y se comprueba con B: 2 · 3 + 1 = 7. También se puede usar la forma punto-pendiente, y - y₁ = m(x - x₁), que da la misma recta."
+        }
+      ]
+    },
+    {
+      "file_name": "tema5-rectas-y-aplicaciones.md",
+      "file_type": "markdown",
+      "page_count": null,
+      "sections": [
+        {
+          "title": "5.4 Rectas paralelas y secantes",
+          "page": null,
+          "text": "Dos rectas son paralelas si tienen la misma pendiente y distinta ordenada en el origen, como y = 3x + 1 e y = 3x - 2: nunca se cortan. Si tienen la misma pendiente y la misma ordenada en el origen, son la misma recta (coincidentes). Si tienen distinta pendiente, son secantes y se cortan en un único punto, que se obtiene resolviendo el sistema formado por sus ecuaciones. Por ejemplo, y = x + 1 e y = -x + 5 se cortan cuando x + 1 = -x + 5, es decir, x = 2 e y = 3: el punto de corte es (2, 3)."
+        },
+        {
+          "title": "5.5 Problemas con funciones lineales",
+          "page": null,
+          "text": "Muchas situaciones reales se describen con una función lineal: una parte fija (la ordenada en el origen) y una parte que crece de forma constante (la pendiente). Por ejemplo, un taxi cobra 3 € de bajada de bandera y 1,20 € por kilómetro, así que el precio es y = 1,2x + 3, donde x son los kilómetros. Un trayecto de 10 km cuesta 1,2 · 10 + 3 = 15 €. Para saber cuántos kilómetros se recorren con 21 €, se sustituye la y y se resuelve 21 = 1,2x + 3, de donde x = 15 km. Conviene indicar siempre qué representa cada variable y en qué unidades."
+        }
+      ]
+    },
+    {
+      "file_name": "problemas-resueltos-funciones.docx",
+      "file_type": "docx",
+      "page_count": 6,
+      "sections": [
+        {
+          "title": "1. Leer una gráfica",
+          "page": 1,
+          "text": "Antes de calcular nada, conviene leer bien la gráfica: qué magnitud hay en cada eje, en qué unidades y con qué escala. Un tramo que sube indica que la magnitud del eje vertical aumenta, y uno horizontal, que se mantiene constante. Ejemplo resuelto: en la gráfica de la distancia recorrida por una ciclista, un tramo horizontal entre los minutos 30 y 40 significa que estuvo parada diez minutos. En un tramo recto, la velocidad es la pendiente de ese tramo."
+        },
+        {
+          "title": "2. Funciones definidas a trozos",
+          "page": 4,
+          "text": "Algunas tarifas cambian según el valor de x y se describen con una expresión distinta en cada intervalo. Por ejemplo, un aparcamiento cobra 2 € fijos por las dos primeras horas y 1,50 € por cada hora adicional: y = 2 si 0 < x ≤ 2, e y = 2 + 1,5(x - 2) si x > 2. Así, 5 horas cuestan 2 + 1,5 · 3 = 6,50 €. En la gráfica, cada trozo es un segmento de recta con su propia pendiente."
+        }
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "name": "Pendiente de una recta",
+      "document": "tema5-funciones-lineales.pdf",
+      "section": "5.1 Pendiente de una recta",
+      "questions": [
+        {
+          "question": "la pendiente es el numero que va con la x o el que va solo?",
+          "answer": "La pendiente es el número que multiplica a la x, la m de y = mx + n. El número que va solo, n, es la ordenada en el origen. Por ejemplo, en y = 2x + 1 la pendiente es 2."
+        },
+        {
+          "question": "si la pendiente es negativa la recta va hacia abajo?",
+          "answer": "Sí: si m < 0 la recta es decreciente, es decir, al aumentar x, la y disminuye. Si m > 0 es creciente y si m = 0 es horizontal. Por ejemplo, y = -3x + 5 es decreciente."
+        },
+        {
+          "question": "en la formula de la pendiente da igual que punto ponga primero",
+          "answer": "Da igual, siempre que restes en el mismo orden arriba y abajo. Con A(1, 3) y B(3, 7): (7 - 3)/(3 - 1) = 2, y también (3 - 7)/(1 - 3) = -4/-2 = 2. El error típico es restar en un orden en el numerador y en el contrario en el denominador."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Calcula la pendiente de la recta que pasa por A(2, 5) y B(4, 1).",
+          "correct_answer": "m = (1 - 5)/(4 - 2) = -4/2 = -2",
+          "wrong_answer": "m = (1 - 5)/(4 - 2) = 4/2 = 2",
+          "mistake_location": "Segunda igualdad",
+          "error_type": "execution",
+          "explanation": "El planteamiento es correcto, pero 1 - 5 da -4, no 4. Con el signo bien, m = -4/2 = -2, y la recta es decreciente, como se ve porque al pasar de x = 2 a x = 4 la y baja de 5 a 1."
+        },
+        {
+          "statement": "¿Es creciente o decreciente la función y = -3x + 5? Justifica tu respuesta.",
+          "correct_answer": "Decreciente, porque su pendiente es m = -3, que es negativa.",
+          "wrong_answer": "Creciente, porque el 5 es positivo.",
+          "mistake_location": "Justificación",
+          "error_type": "conceptual",
+          "explanation": "Que la recta crezca o decrezca depende de la pendiente, no de la ordenada en el origen. Aquí la pendiente es m = -3 < 0, así que la función es decreciente; el 5 solo indica que corta al eje Y en (0, 5)."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Cuál es la pendiente de la recta y = -4x + 7?",
+          "options": ["7", "-4", "4", "-7"],
+          "correct": 1,
+          "explanation": "La pendiente es el coeficiente de x: m = -4.",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Qué pendiente tiene la recta que pasa por (0, 2) y (3, 8)?",
+          "options": ["3", "1/2", "6", "2"],
+          "correct": 3,
+          "explanation": "m = (8 - 2)/(3 - 0) = 6/3 = 2. Si se divide al revés sale 1/2.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Qué pendiente tiene la recta que pasa por (-1, 4) y (2, -2)?",
+          "options": ["-2", "2", "-1/2", "6"],
+          "correct": 0,
+          "explanation": "m = (-2 - 4)/(2 - (-1)) = -6/3 = -2.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Ordenada en el origen",
+      "document": "tema5-funciones-lineales.pdf",
+      "section": "5.2 Ordenada en el origen",
+      "questions": [
+        {
+          "question": "la ordenada en el origen es donde corta al eje x no?",
+          "answer": "No, es donde la recta corta al eje Y: el punto (0, n), que se obtiene haciendo x = 0. En y = 2x + 1 corta al eje Y en (0, 1). El corte con el eje X se halla haciendo y = 0."
+        },
+        {
+          "question": "que pasa si no hay n? la recta pasa por el 0?",
+          "answer": "Sí: si n = 0, la función es y = mx, de proporcionalidad directa, y su gráfica pasa por el origen (0, 0). Por ejemplo, y = 3x pasa por (0, 0) y por (1, 3)."
+        },
+        {
+          "question": "como saco donde corta al eje x en y = 2x - 6",
+          "answer": "Haz y = 0 y resuelve la ecuación: 0 = 2x - 6, así que 2x = 6 y x = 3. El punto de corte con el eje X es (3, 0). En ese punto la y vale 0, por eso se sustituye y por 0."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Halla los puntos de corte de la recta y = 2x - 6 con los dos ejes.",
+          "correct_answer": "Eje Y: x = 0 → y = -6 → (0, -6)\nEje X: y = 0 → 2x = 6 → x = 3 → (3, 0)",
+          "wrong_answer": "Eje Y: x = 0 → y = -6 → (0, -6)",
+          "mistake_location": "Falta el corte con el eje X",
+          "error_type": "incomplete",
+          "explanation": "El corte con el eje Y está bien, pero el ejercicio pide los dos ejes. Para el eje X haz y = 0: 0 = 2x - 6, x = 3, y el punto es (3, 0)."
+        },
+        {
+          "statement": "Halla el punto de corte de la recta y = -2x + 8 con el eje X.",
+          "correct_answer": "0 = -2x + 8\n2x = 8\nx = 4 → (4, 0)",
+          "wrong_answer": "x = 0 → y = 8\nPunto (8, 0)",
+          "mistake_location": "Línea 1",
+          "error_type": "procedural",
+          "explanation": "En la línea 1 haces x = 0, que sirve para el eje Y, no para el eje X. Para el eje X hay que hacer y = 0: 0 = -2x + 8, x = 4, y el punto es (4, 0)."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿En qué punto corta la recta y = 5x - 3 al eje Y?",
+          "options": ["(0, 5)", "(-3, 0)", "(0, -3)", "(3/5, 0)"],
+          "correct": 2,
+          "explanation": "Al eje Y se corta con x = 0, en el punto (0, n) = (0, -3).",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Cuál de estas funciones pasa por el origen de coordenadas?",
+          "options": ["y = 4x", "y = 4x + 1", "y = x - 4", "y = 4"],
+          "correct": 0,
+          "explanation": "Solo y = 4x tiene n = 0, así que es de proporcionalidad directa y pasa por (0, 0).",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿En qué punto corta la recta y = -3x + 12 al eje X?",
+          "options": ["(0, 12)", "(4, 0)", "(-4, 0)", "(12, 0)"],
+          "correct": 1,
+          "explanation": "Con y = 0: 0 = -3x + 12, así que x = 4 y el punto es (4, 0). (0, 12) es el corte con el eje Y.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Recta por dos puntos",
+      "document": "tema5-funciones-lineales.pdf",
+      "section": "5.3 Ecuación de la recta que pasa por dos puntos",
+      "questions": [
+        {
+          "question": "una vez tengo la pendiente como saco la n",
+          "answer": "Sustituye las coordenadas de uno de los puntos en y = mx + n y despeja n. Con m = 2 y el punto A(1, 3): 3 = 2 · 1 + n, así que n = 1. La recta es y = 2x + 1."
+        },
+        {
+          "question": "da igual que punto use para sacar la n?",
+          "answer": "Sí, da igual, porque los dos puntos están en la recta y tiene que salir la misma n. Si usas B(3, 7): 7 = 2 · 3 + n, y también n = 1. De hecho, sustituir el otro punto es una buena forma de comprobar el resultado."
+        },
+        {
+          "question": "que es eso de punto pendiente? es otra formula distinta?",
+          "answer": "Es otra forma de escribir la misma recta: y - y₁ = m(x - x₁), donde (x₁, y₁) es un punto conocido. Con m = 2 y A(1, 3) queda y - 3 = 2(x - 1); si quitas el paréntesis y despejas y, obtienes y = 2x + 1, la misma ecuación."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Halla la ecuación de la recta que pasa por A(1, 3) y B(3, 7).",
+          "correct_answer": "m = (7 - 3)/(3 - 1) = 2\n3 = 2 · 1 + n → n = 1\ny = 2x + 1",
+          "wrong_answer": "m = (7 - 3)/(3 - 1) = 2\n3 = 2 · 3 + n → n = -3\ny = 2x - 3",
+          "mistake_location": "Línea 2",
+          "error_type": "execution",
+          "explanation": "En la línea 2 mezclas la y del punto A con la x del punto B. Hay que sustituir las dos coordenadas del mismo punto: con A(1, 3), 3 = 2 · 1 + n y n = 1. Comprueba con B: 2 · 3 + 1 = 7."
+        },
+        {
+          "statement": "Halla la ecuación de la recta que pasa por (0, 4) y (2, 10).",
+          "correct_answer": "m = (10 - 4)/(2 - 0) = 3\nn = 4\ny = 3x + 4",
+          "wrong_answer": "m = (10 - 4)/(2 - 0) = 3\nn = 4\nSolución: x = 3, y = 4",
+          "mistake_location": "Línea 3",
+          "error_type": "expression",
+          "explanation": "Has calculado bien m = 3 y n = 4, pero la respuesta debe ser la ecuación de la recta, y = 3x + 4. Escribir «x = 3, y = 4» indica un punto, (3, 4), que ni siquiera está en la recta."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Qué ecuación tiene la recta de pendiente 3 que pasa por (0, -1)?",
+          "options": ["y = -x + 3", "y = 3x - 1", "y = 3x + 1", "y = -3x - 1"],
+          "correct": 1,
+          "explanation": "Como pasa por (0, -1), n = -1, y con m = 3 queda y = 3x - 1.",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Cuál es la ecuación de la recta que pasa por (1, 5) y (3, 9)?",
+          "options": ["y = 2x + 5", "y = 4x + 1", "y = 2x + 1", "y = 2x + 3"],
+          "correct": 3,
+          "explanation": "m = (9 - 5)/(3 - 1) = 2; con (1, 5): 5 = 2 + n, así que n = 3 e y = 2x + 3.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Qué recta pasa por (2, 1) y (4, -3)?",
+          "options": ["y = -2x + 5", "y = 2x - 3", "y = -2x - 3", "y = -x + 3"],
+          "correct": 0,
+          "explanation": "m = (-3 - 1)/(4 - 2) = -2; con (2, 1): 1 = -4 + n, así que n = 5 e y = -2x + 5.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Posición de dos rectas",
+      "document": "tema5-rectas-y-aplicaciones.md",
+      "section": "5.4 Rectas paralelas y secantes",
+      "questions": [
+        {
+          "question": "como se si dos rectas son paralelas sin dibujarlas",
+          "answer": "Compara sus pendientes: si son iguales y las ordenadas en el origen son distintas, las rectas son paralelas. Por ejemplo, y = 3x + 1 e y = 3x - 2 tienen la misma pendiente, 3, y nunca se cortan."
+        },
+        {
+          "question": "para hallar donde se cortan tengo que igualar las y?",
+          "answer": "Sí, porque en el punto de corte las dos rectas tienen la misma y para la misma x. Con y = x + 1 e y = -x + 5, igualas x + 1 = -x + 5, obtienes x = 2 y, sustituyendo, y = 3. El punto de corte es (2, 3)."
+        },
+        {
+          "question": "y si tienen la misma pendiente y el mismo numero solo son paralelas?",
+          "answer": "En ese caso no son solo paralelas: son la misma recta, es decir, coincidentes, y tienen todos sus puntos en común. Paralelas son las que tienen la misma pendiente pero distinta ordenada en el origen; si las pendientes son distintas, son secantes."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Indica la posición relativa de las rectas y = 3x + 1 e y = -3x + 1.",
+          "correct_answer": "Son secantes, porque sus pendientes (3 y -3) son distintas. Se cortan en (0, 1).",
+          "wrong_answer": "Son paralelas, porque tienen la misma ordenada en el origen.",
+          "mistake_location": "Justificación",
+          "error_type": "conceptual",
+          "explanation": "Para saber si dos rectas son paralelas se comparan las pendientes, no las ordenadas en el origen. Aquí las pendientes son 3 y -3, distintas, así que son secantes; de hecho, se cortan justo en (0, 1)."
+        },
+        {
+          "statement": "Halla el punto de corte de las rectas y = 2x - 1 e y = x + 3.",
+          "correct_answer": "2x - 1 = x + 3\n2x - x = 3 + 1\nx = 4; y = 4 + 3 = 7 → (4, 7)",
+          "wrong_answer": "2x - 1 = x + 3\n2x - x = 3 - 1\nx = 2; y = 2 + 3 = 5 → (2, 5)",
+          "mistake_location": "Línea 2",
+          "error_type": "execution",
+          "explanation": "En la línea 2 el -1 pasa al otro miembro sumando, no restando: 2x - x = 3 + 1. Así x = 4 e y = 7. Puedes comprobar que (4, 7) cumple las dos ecuaciones, mientras que (2, 5) no cumple la primera: 2 · 2 - 1 = 3."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Cómo son las rectas y = 4x - 1 e y = 4x + 6?",
+          "options": ["Secantes", "Coincidentes", "Paralelas", "Perpendiculares"],
+          "correct": 2,
+          "explanation": "Tienen la misma pendiente, 4, y distinta ordenada en el origen, así que son paralelas.",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿En qué punto se cortan las rectas y = 3x - 4 e y = -x + 8?",
+          "options": ["(3, 5)", "(5, 3)", "(1, -1)", "(-3, 11)"],
+          "correct": 0,
+          "explanation": "3x - 4 = -x + 8, así que 4x = 12, x = 3 e y = 3 · 3 - 4 = 5.",
+          "difficulty": 3
+        },
+        {
+          "statement": "¿Cuál de estas rectas es paralela a y = -2x + 3 y pasa por (0, 5)?",
+          "options": ["y = 2x + 5", "y = -2x + 3", "y = 5x - 2", "y = -2x + 5"],
+          "correct": 3,
+          "explanation": "Debe tener la misma pendiente, -2, y ordenada en el origen 5: y = -2x + 5. y = -2x + 3 es la misma recta, no una paralela.",
+          "difficulty": 2
+        }
+      ]
+    },
+    {
+      "name": "Problemas con funciones lineales",
+      "document": "tema5-rectas-y-aplicaciones.md",
+      "section": "5.5 Problemas con funciones lineales",
+      "questions": [
+        {
+          "question": "en el problema del taxi por que los 3 euros son la n",
+          "answer": "Porque es la parte fija: se paga aunque recorras 0 km, igual que n es el valor de y cuando x = 0. Lo que depende de los kilómetros, 1,20 € por cada uno, es la pendiente. Por eso el precio es y = 1,2x + 3."
+        },
+        {
+          "question": "si me dan lo que cuesta y me piden los km tengo que despejar la x?",
+          "answer": "Exacto: sustituyes el precio en la y y resuelves la ecuación. Con 21 €: 21 = 1,2x + 3, así que 1,2x = 18 y x = 15 km. Si pusieras el 21 en la x, estarías calculando el precio de un viaje de 21 km."
+        },
+        {
+          "question": "es obligatorio decir que es x y que es y? me parece una tonteria",
+          "answer": "Es muy recomendable, porque sin eso la ecuación no se puede interpretar. Por ejemplo: x = kilómetros recorridos, y = precio en euros. Así queda claro qué significa cada número y en qué unidades está la respuesta."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Una tienda alquila bicis por 4 € fijos más 2,50 € por hora. Escribe la función que da el precio y calcula cuánto cuestan 3 horas.",
+          "correct_answer": "y = 2,5x + 4 (x: horas; y: precio en €)\ny = 2,5 · 3 + 4 = 11,50 €",
+          "wrong_answer": "y = 4x + 2,5\ny = 4 · 3 + 2,5 = 14,50 €",
+          "mistake_location": "Línea 1",
+          "error_type": "comprehension",
+          "explanation": "Has intercambiado la parte fija y la que depende de las horas. Los 4 € se pagan siempre, así que son la ordenada en el origen, y los 2,50 € por hora son la pendiente: y = 2,5x + 4. Entonces 3 horas cuestan 11,50 €."
+        },
+        {
+          "statement": "Con la tarifa del taxi y = 1,2x + 3 (x en km, y en €), ¿cuántos kilómetros se recorren con 21 €?",
+          "correct_answer": "21 = 1,2x + 3\n1,2x = 18\nx = 15 km",
+          "wrong_answer": "y = 1,2 · 21 + 3\ny = 28,20 km",
+          "mistake_location": "Línea 1",
+          "error_type": "procedural",
+          "explanation": "En la línea 1 sustituyes los 21 € en la x, que representa kilómetros, así que calculas el precio de un viaje de 21 km. El dato conocido es el precio, y: 21 = 1,2x + 3, de donde x = 15 km."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "Un gimnasio cobra 20 € de matrícula y 30 € al mes. ¿Qué función da el coste total y tras x meses?",
+          "options": ["y = 20x + 30", "y = 50x", "y = 30x + 20", "y = 30x - 20"],
+          "correct": 2,
+          "explanation": "La matrícula es la parte fija (n = 20) y la cuota mensual es la pendiente (m = 30): y = 30x + 20.",
+          "difficulty": 2
+        },
+        {
+          "statement": "Con la tarifa del taxi y = 1,2x + 3, ¿cuánto cuesta un trayecto de 5 km?",
+          "options": ["6 €", "9 €", "15 €", "7,20 €"],
+          "correct": 1,
+          "explanation": "y = 1,2 · 5 + 3 = 6 + 3 = 9 €. 6 € olvida la bajada de bandera.",
+          "difficulty": 1
+        },
+        {
+          "statement": "Una vela mide 20 cm y se consume 2 cm cada hora. ¿Cuántas horas tarda en consumirse del todo?",
+          "options": ["20 horas", "18 horas", "40 horas", "10 horas"],
+          "correct": 3,
+          "explanation": "La altura es y = -2x + 20; se consume cuando y = 0, es decir, 2x = 20 y x = 10 horas.",
+          "difficulty": 3
+        }
+      ]
+    }
+  ],
+  "off_topic": [
+    "¿Cómo se dibuja una parábola como y = x² - 4?",
+    "¿Qué nota necesito en el próximo examen para aprobar la evaluación?"
+  ]
+}

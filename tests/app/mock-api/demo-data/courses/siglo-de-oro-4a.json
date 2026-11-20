@@ -1,0 +1,369 @@
+{
+  "key": "siglo-de-oro-4a",
+  "name": "Literatura del Siglo de Oro",
+  "description": "Recorremos la literatura española de los siglos XVI y XVII, del Renacimiento al Barroco, leyendo fragmentos de sus grandes autores.",
+  "documents": [
+    {
+      "file_name": "tema5-renacimiento-y-barroco.pdf",
+      "file_type": "pdf",
+      "page_count": 20,
+      "sections": [
+        {
+          "title": "5.1 Del Renacimiento al Barroco",
+          "page": 2,
+          "text": "Llamamos Siglo de Oro al periodo de máximo esplendor de la literatura española, que abarca aproximadamente los siglos XVI y XVII. En el siglo XVI se desarrolla el Renacimiento, un movimiento optimista que recupera los modelos grecolatinos, sitúa al ser humano en el centro (antropocentrismo) y busca la armonía, el equilibrio y la naturalidad. En el siglo XVII llega el Barroco, marcado por la crisis económica, las guerras y la decadencia del Imperio español, que provocan una visión pesimista y desengañada de la vida. Por eso los temas cambian: frente al amor idealizado y la naturaleza armoniosa del Renacimiento, el Barroco insiste en el paso del tiempo, la muerte y la apariencia engañosa del mundo. El estilo también se transforma: de la sencillez renacentista se pasa a la complicación y el contraste barrocos."
+        },
+        {
+          "title": "5.2 Garcilaso de la Vega y la lírica renacentista",
+          "page": 5,
+          "text": "Garcilaso de la Vega (1501?-1536) introdujo en la poesía castellana las formas italianas, especialmente el soneto y el verso endecasílabo, de once sílabas. Su obra es breve: cuarenta sonetos, tres églogas, dos elegías, una epístola y algunas canciones. Sus temas principales son el amor, casi siempre doloroso y no correspondido, y la naturaleza idealizada, un paisaje sereno y perfecto llamado locus amoenus. También desarrolla el tópico del carpe diem, que invita a disfrutar de la juventud antes de que pase, como en el soneto XXIII: «coged de vuestra alegre primavera / el dulce fruto antes que el tiempo airado / cubra de nieve la hermosa cumbre». En estos versos la primavera es una metáfora de la juventud y la nieve, de las canas de la vejez."
+        },
+        {
+          "title": "5.4 Conceptismo y culteranismo",
+          "page": 11,
+          "text": "La poesía barroca se divide en dos grandes corrientes que buscan sorprender al lector, aunque por caminos distintos. El conceptismo, cuyo máximo representante es Francisco de Quevedo, se centra en el contenido: juega con el significado de las palabras mediante dobles sentidos, paradojas y antítesis, y concentra muchas ideas en pocas palabras. El culteranismo o gongorismo, encabezado por Luis de Góngora, se centra en la forma: busca la belleza sensorial con cultismos (palabras procedentes del latín), hipérbatos (alteración del orden lógico de la frase), metáforas complejas y referencias mitológicas. Por ejemplo, el verso de Quevedo «soy un fue, y un será, y un es cansado» condensa en un juego de tiempos verbales la angustia por el paso del tiempo. Ambos autores fueron rivales y se dedicaron poemas satíricos el uno al otro."
+        }
+      ]
+    },
+    {
+      "file_name": "tema6-novela-y-teatro.docx",
+      "file_type": "docx",
+      "page_count": 15,
+      "sections": [
+        {
+          "title": "6.1 El Lazarillo y la novela picaresca",
+          "page": 2,
+          "text": "La vida de Lazarillo de Tormes y de sus fortunas y adversidades se publicó en 1554 de forma anónima, probablemente porque critica a la sociedad y al clero de la época. Está escrita en primera persona como una carta autobiográfica en la que Lázaro, ya adulto, cuenta su vida a un destinatario al que llama «Vuestra Merced». El protagonista es un niño de origen humilde que sirve a varios amos (un ciego, un clérigo, un escudero…) y que aprende a sobrevivir mediante el engaño. Con el Lazarillo nace la novela picaresca, cuyos rasgos son el narrador en primera persona, un protagonista pícaro de bajo origen, la estructura en episodios ligados a distintos amos y una visión crítica y realista de la sociedad. Por ejemplo, el escudero aparenta ser noble y rico, pero en realidad pasa hambre, lo que muestra la obsesión por la honra y las apariencias."
+        },
+        {
+          "title": "6.3 Lope de Vega y la comedia nueva",
+          "page": 9,
+          "text": "Lope de Vega (1562-1635) renovó el teatro español con la llamada comedia nueva, que explicó en su obra Arte nuevo de hacer comedias en este tiempo (1609). Sus principales novedades fueron: dividir la obra en tres actos o jornadas en lugar de cinco; romper las unidades clásicas de tiempo y lugar, aunque mantiene en lo esencial la unidad de acción; mezclar lo trágico y lo cómico; usar distintos tipos de estrofa según la situación (por ejemplo, el romance para las narraciones y el soneto para los monólogos), y crear personajes tipo, como el galán, la dama o el gracioso. Los temas preferidos son el amor, el honor y la religión. Un ejemplo es Fuenteovejuna, donde un pueblo entero se rebela contra el comendador que abusa de su poder y, al ser interrogado, responde a una sola voz: «Fuenteovejuna, señor»."
+        }
+      ]
+    },
+    {
+      "file_name": "lecturas-complementarias-siglo-de-oro.md",
+      "file_type": "markdown",
+      "page_count": null,
+      "sections": [
+        {
+          "title": "Lectura 1: un soneto de Quevedo",
+          "page": null,
+          "text": "Leemos el soneto «Miré los muros de la patria mía», en el que Quevedo observa las ruinas de su casa y su ciudad y las convierte en símbolo del paso del tiempo y de la cercanía de la muerte. Fíjate en cómo todo lo que mira el poeta le recuerda su propio final: el poema termina con el verso «que no fuese recuerdo de la muerte»."
+        },
+        {
+          "title": "Lectura 2: el comienzo del Quijote",
+          "page": null,
+          "text": "Leemos el primer capítulo de Don Quijote de la Mancha (1605), de Miguel de Cervantes: «En un lugar de la Mancha, de cuyo nombre no quiero acordarme...». Observa cómo el hidalgo Alonso Quijano pierde el juicio leyendo libros de caballerías y decide hacerse caballero andante. Comentaremos en clase cómo Cervantes parodia esas novelas."
+        }
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "name": "Renacimiento y Barroco",
+      "document": "tema5-renacimiento-y-barroco.pdf",
+      "section": "5.1 Del Renacimiento al Barroco",
+      "questions": [
+        {
+          "question": "el siglo de oro es un siglo solo? porque pone siglo",
+          "answer": "No, a pesar del nombre abarca aproximadamente dos siglos, el XVI y el XVII. Se llama así porque fue el periodo de máximo esplendor de la literatura española."
+        },
+        {
+          "question": "por que en el barroco son tan pesimistas",
+          "answer": "Por la situación del siglo XVII: la crisis económica, las guerras y la decadencia del Imperio español provocaron una visión desengañada de la vida. Por eso los autores insisten en el paso del tiempo, la muerte y la apariencia engañosa del mundo."
+        },
+        {
+          "question": "que es antropocentrismo",
+          "answer": "Es la idea renacentista de situar al ser humano en el centro del interés. Va unida a la recuperación de los modelos grecolatinos y a la búsqueda de armonía y equilibrio."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Explica dos diferencias entre el Renacimiento y el Barroco en cuanto a los temas.",
+          "correct_answer": "El Renacimiento trata el amor idealizado y una naturaleza armoniosa, con visión optimista. El Barroco, pesimista, insiste en el paso del tiempo, la muerte y el engaño de las apariencias.",
+          "wrong_answer": "El Renacimiento es del siglo XVII y es pesimista; el Barroco es del siglo XVI y habla del amor idealizado.",
+          "mistake_location": "Toda la respuesta",
+          "error_type": "comprehension",
+          "explanation": "Has intercambiado los dos movimientos. El Renacimiento corresponde al siglo XVI y es optimista; el Barroco, al siglo XVII, con una visión pesimista centrada en el tiempo y la muerte."
+        },
+        {
+          "statement": "¿Por qué cambia la visión de la vida al pasar del siglo XVI al XVII? Relaciónalo con la historia de España.",
+          "correct_answer": "Porque en el siglo XVII hay crisis económica, guerras y decadencia del Imperio español. Ese contexto produce desengaño y pesimismo, que se reflejan en los temas barrocos.",
+          "wrong_answer": "Porque los escritores del Barroco eran más tristes y no les gustaba la naturaleza.",
+          "mistake_location": "Toda la respuesta",
+          "error_type": "conceptual",
+          "explanation": "Explicas el cambio por el carácter personal de los autores en vez de por el contexto histórico. La crisis, las guerras y la decadencia del Imperio son las causas del pesimismo barroco."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Qué siglos abarca aproximadamente el Siglo de Oro?",
+          "options": ["XV y XVI", "XVI y XVII", "XVII y XVIII", "Solo el XVI"],
+          "correct": 1,
+          "explanation": "Abarca los siglos XVI (Renacimiento) y XVII (Barroco).",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Qué rasgo es propio del Barroco?",
+          "options": ["Búsqueda de la armonía y la naturalidad", "Optimismo vital", "Imitación sencilla de los clásicos", "Visión pesimista y estilo complicado"],
+          "correct": 3,
+          "explanation": "El Barroco es desengañado y busca la complicación y el contraste.",
+          "difficulty": 2
+        },
+        {
+          "statement": "El antropocentrismo renacentista consiste en…",
+          "options": ["situar al ser humano en el centro", "rechazar la cultura grecolatina", "dar prioridad a la religión sobre todo", "insistir en la muerte"],
+          "correct": 0,
+          "explanation": "El Renacimiento pone al ser humano en el centro del interés.",
+          "difficulty": 2
+        }
+      ]
+    },
+    {
+      "name": "Garcilaso de la Vega",
+      "document": "tema5-renacimiento-y-barroco.pdf",
+      "section": "5.2 Garcilaso de la Vega y la lírica renacentista",
+      "questions": [
+        {
+          "question": "que es el carpe diem",
+          "answer": "Es un tópico literario que invita a disfrutar de la juventud antes de que pase. Garcilaso lo desarrolla en el soneto XXIII: «coged de vuestra alegre primavera / el dulce fruto antes que el tiempo airado / cubra de nieve la hermosa cumbre»."
+        },
+        {
+          "question": "garcilaso invento el soneto?",
+          "answer": "No lo inventó: el soneto procede de Italia. Lo que hizo Garcilaso fue introducirlo en la poesía castellana junto con el verso endecasílabo, de once sílabas."
+        },
+        {
+          "question": "lo de la nieve en el poema es que nieva de verdad?",
+          "answer": "No, es una metáfora. La primavera representa la juventud y la nieve que cubre la «hermosa cumbre» representa las canas de la vejez."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Explica el significado de la metáfora en «antes que el tiempo airado / cubra de nieve la hermosa cumbre».",
+          "correct_answer": "La «nieve» son las canas de la vejez y la «hermosa cumbre» es la cabeza de la joven. El poeta le dice que disfrute antes de envejecer (carpe diem).",
+          "wrong_answer": "El poeta describe una montaña que se cubre de nieve en invierno porque le gusta la naturaleza.",
+          "mistake_location": "Interpretación de la imagen",
+          "error_type": "comprehension",
+          "explanation": "Has leído la imagen de forma literal. Es una metáfora: la nieve son las canas y la cumbre, la cabeza; el sentido es la invitación a disfrutar de la juventud."
+        },
+        {
+          "statement": "Enumera las formas métricas que Garcilaso introdujo en la poesía castellana y los temas principales de su obra.",
+          "correct_answer": "Introdujo el soneto y el verso endecasílabo, de origen italiano. Sus temas son el amor doloroso y no correspondido y la naturaleza idealizada (locus amoenus).",
+          "wrong_answer": "Introdujo el soneto y el verso endecasílabo. Sus temas son la muerte y el paso del tiempo con una visión pesimista.",
+          "mistake_location": "Segunda oración",
+          "error_type": "conceptual",
+          "explanation": "La parte métrica está bien, pero los temas que citas son los del Barroco. Garcilaso, renacentista, escribe sobre el amor doloroso y la naturaleza idealizada."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Cuántas sílabas tiene el verso endecasílabo?",
+          "options": ["Ocho", "Diez", "Once", "Catorce"],
+          "correct": 2,
+          "explanation": "El endecasílabo tiene once sílabas.",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Qué es el locus amoenus?",
+          "options": ["Un tipo de estrofa italiana", "Un paisaje sereno e idealizado", "La invitación a gozar de la juventud", "Una figura retórica de repetición"],
+          "correct": 1,
+          "explanation": "Es el paisaje perfecto y armonioso de la lírica renacentista.",
+          "difficulty": 2
+        },
+        {
+          "statement": "En el soneto XXIII, la «alegre primavera» simboliza…",
+          "options": ["la vejez", "la muerte", "el paisaje real", "la juventud"],
+          "correct": 3,
+          "explanation": "La primavera es una metáfora de la juventud, que hay que aprovechar.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Conceptismo y culteranismo",
+      "document": "tema5-renacimiento-y-barroco.pdf",
+      "section": "5.4 Conceptismo y culteranismo",
+      "questions": [
+        {
+          "question": "no entiendo la diferencia entre conceptismo y culteranismo",
+          "answer": "Las dos corrientes quieren sorprender, pero el conceptismo (Quevedo) se centra en el contenido: dobles sentidos, paradojas y muchas ideas en pocas palabras. El culteranismo (Góngora) se centra en la forma: cultismos, hipérbatos, metáforas complejas y mitología."
+        },
+        {
+          "question": "que es un hiperbaton",
+          "answer": "Es la alteración del orden lógico de la frase. Es uno de los recursos típicos del culteranismo de Góngora, junto con los cultismos y las referencias mitológicas."
+        },
+        {
+          "question": "quevedo y gongora se llevaban bien?",
+          "answer": "No, fueron rivales y se dedicaron poemas satíricos el uno al otro."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Explica por qué el verso de Quevedo «soy un fue, y un será, y un es cansado» es conceptista.",
+          "correct_answer": "Porque juega con el significado de las palabras: usa los tiempos verbales «fue», «será» y «es» como sustantivos para condensar en pocas palabras la angustia del paso del tiempo.",
+          "wrong_answer": "Es conceptista porque tiene muchos cultismos y referencias mitológicas.",
+          "mistake_location": "Justificación",
+          "error_type": "conceptual",
+          "explanation": "Los cultismos y la mitología son rasgos del culteranismo, no del conceptismo. El verso es conceptista porque concentra muchas ideas en pocas palabras mediante un juego de significados."
+        },
+        {
+          "statement": "Completa la tabla: representante y rasgos de cada corriente (conceptismo / culteranismo).",
+          "correct_answer": "Conceptismo: Quevedo; dobles sentidos, paradojas, antítesis, concisión. Culteranismo: Góngora; cultismos, hipérbatos, metáforas complejas, mitología.",
+          "wrong_answer": "Conceptismo: Góngora; dobles sentidos y paradojas. Culteranismo: Quevedo; cultismos e hipérbatos.",
+          "mistake_location": "Representantes de las dos corrientes",
+          "error_type": "execution",
+          "explanation": "Los rasgos están bien asignados, pero has intercambiado los autores. Quevedo es el representante del conceptismo y Góngora, del culteranismo (también llamado gongorismo)."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Quién es el máximo representante del culteranismo?",
+          "options": ["Luis de Góngora", "Francisco de Quevedo", "Garcilaso de la Vega", "Lope de Vega"],
+          "correct": 0,
+          "explanation": "Por eso el culteranismo también se llama gongorismo.",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Qué es un cultismo?",
+          "options": ["Una palabra vulgar", "Un juego de doble sentido", "Una palabra procedente del latín", "Una alteración del orden de la frase"],
+          "correct": 2,
+          "explanation": "Los cultismos son palabras tomadas del latín, típicas del culteranismo.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Qué rasgo define mejor al conceptismo?",
+          "options": ["La belleza sensorial", "Las referencias mitológicas", "El uso del hipérbaton", "Concentrar muchas ideas en pocas palabras"],
+          "correct": 3,
+          "explanation": "El conceptismo se centra en el contenido y busca la concisión ingeniosa.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Lazarillo y picaresca",
+      "document": "tema6-novela-y-teatro.docx",
+      "section": "6.1 El Lazarillo y la novela picaresca",
+      "questions": [
+        {
+          "question": "por que no se sabe quien escribio el lazarillo",
+          "answer": "Se publicó de forma anónima en 1554, probablemente porque critica a la sociedad y al clero de la época, y el autor no quería sufrir represalias."
+        },
+        {
+          "question": "quien es vuestra merced",
+          "answer": "Es el destinatario de la carta. El Lazarillo está escrito como una carta autobiográfica en la que Lázaro, ya adulto, cuenta su vida a esa persona, a la que llama «Vuestra Merced»."
+        },
+        {
+          "question": "el escudero es rico no? porque es noble",
+          "answer": "Aparenta serlo, pero en realidad pasa hambre. Ese contraste muestra la obsesión de la época por la honra y las apariencias, que la novela critica."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Enumera los cuatro rasgos de la novela picaresca.",
+          "correct_answer": "Narrador en primera persona; protagonista pícaro de origen humilde; estructura en episodios ligados a distintos amos; visión crítica y realista de la sociedad.",
+          "wrong_answer": "Narrador en primera persona; protagonista pícaro de origen humilde; estructura en episodios con distintos amos.",
+          "mistake_location": "Falta el cuarto rasgo",
+          "error_type": "incomplete",
+          "explanation": "Los tres rasgos que das son correctos, pero falta la visión crítica y realista de la sociedad, que es esencial: por eso el Lazarillo se publicó de forma anónima."
+        },
+        {
+          "statement": "Explica qué critica el episodio del escudero.",
+          "correct_answer": "Critica la obsesión por la honra y las apariencias: el escudero finge ser noble y rico, pero pasa tanta hambre como Lázaro.",
+          "wrong_answer": "Critica que el escudero es un mal amo porque pega a Lázaro y le quita la comida como el ciego.",
+          "mistake_location": "Toda la respuesta",
+          "error_type": "comprehension",
+          "explanation": "Has confundido al escudero con otros amos. Lo que se critica en este episodio es la apariencia: el escudero presume de noble mientras pasa hambre."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿En qué año se publicó el Lazarillo de Tormes?",
+          "options": ["1492", "1605", "1554", "1609"],
+          "correct": 2,
+          "explanation": "Se publicó en 1554, de forma anónima.",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Desde qué punto de vista se narra el Lazarillo?",
+          "options": ["Primera persona, como una carta", "Tercera persona omnisciente", "Segunda persona", "Mediante diálogos teatrales"],
+          "correct": 0,
+          "explanation": "Lázaro adulto cuenta su vida en primera persona a «Vuestra Merced».",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Por qué el Lazarillo se publicó probablemente sin autor?",
+          "options": ["Porque el autor murió antes", "Porque era una traducción", "Porque lo escribieron varios autores", "Porque criticaba a la sociedad y al clero"],
+          "correct": 3,
+          "explanation": "Su crítica social y religiosa podía traer problemas al autor.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Lope y la comedia nueva",
+      "document": "tema6-novela-y-teatro.docx",
+      "section": "6.3 Lope de Vega y la comedia nueva",
+      "questions": [
+        {
+          "question": "que es la regla de las tres unidades",
+          "answer": "Es una norma del teatro clásico según la cual la obra debía tener una sola acción, transcurrir en poco tiempo y en un solo lugar. Lope rompió las unidades de tiempo y de lugar, aunque mantuvo en lo esencial la unidad de acción."
+        },
+        {
+          "question": "el gracioso es un personaje concreto?",
+          "answer": "No es un personaje concreto, sino un personaje tipo que se repite en muchas comedias, como el galán o la dama. Aporta el humor, ya que la comedia nueva mezcla lo trágico y lo cómico."
+        },
+        {
+          "question": "en fuenteovejuna quien mata al comendador",
+          "answer": "Todo el pueblo se rebela contra el comendador que abusa de su poder. Cuando les preguntan quién lo hizo, responden a una sola voz: «Fuenteovejuna, señor»."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Explica tres novedades de la comedia nueva de Lope de Vega.",
+          "correct_answer": "Divide la obra en tres actos en lugar de cinco; rompe las unidades de tiempo y lugar; mezcla lo trágico y lo cómico.",
+          "wrong_answer": "Divide la obra en cinco actos; respeta las unidades de tiempo y lugar; mezcla lo trágico y lo cómico.",
+          "mistake_location": "Primera y segunda novedad",
+          "error_type": "comprehension",
+          "explanation": "Has descrito el teatro anterior, no las novedades de Lope. La comedia nueva reduce la obra a tres actos y rompe las unidades de tiempo y lugar."
+        },
+        {
+          "statement": "¿Para qué usaba Lope el romance y el soneto en sus comedias? Responde con una oración completa.",
+          "correct_answer": "Lope usaba el romance para las narraciones y el soneto para los monólogos, porque adaptaba la estrofa a cada situación.",
+          "wrong_answer": "Romance narraciones soneto monologos.",
+          "mistake_location": "Toda la respuesta",
+          "error_type": "expression",
+          "explanation": "El contenido es correcto, pero no está redactado: faltan verbos, conectores y la tilde de «monólogos». Escríbelo como una oración completa y explica que la estrofa se adapta a la situación."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿En cuántos actos se divide la comedia nueva?",
+          "options": ["Cinco", "Tres", "Dos", "Uno"],
+          "correct": 1,
+          "explanation": "Lope redujo la obra a tres actos o jornadas.",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Cómo se titula la obra en la que Lope explicó su teatro?",
+          "options": ["Fuenteovejuna", "El perro del hortelano", "Arte nuevo de hacer comedias en este tiempo", "La vida es sueño"],
+          "correct": 2,
+          "explanation": "Lo expuso en el Arte nuevo de hacer comedias en este tiempo (1609).",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Cuáles son los temas preferidos de la comedia nueva?",
+          "options": ["El amor, el honor y la religión", "La muerte y el paso del tiempo", "La naturaleza idealizada", "La crítica al clero y el hambre"],
+          "correct": 0,
+          "explanation": "El amor, el honor y la religión son los grandes temas del teatro de Lope.",
+          "difficulty": 2
+        }
+      ]
+    }
+  ],
+  "off_topic": [
+    "¿Qué escribió Calderón de la Barca además de La vida es sueño?",
+    "¿Cuántas horas al día tengo que estudiar para sacar un sobresaliente?"
+  ]
+}
