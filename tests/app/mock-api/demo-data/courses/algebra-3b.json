@@ -1,0 +1,369 @@
+{
+  "key": "algebra-3b",
+  "name": "Álgebra",
+  "description": "Ecuaciones de primer grado y sistemas sencillos para 3º ESO, paso a paso y con muchos ejemplos resueltos.",
+  "documents": [
+    {
+      "file_name": "ecuaciones.md",
+      "file_type": "markdown",
+      "page_count": null,
+      "sections": [
+        {
+          "title": "3.1 Transponer términos",
+          "page": null,
+          "text": "Un término que suma en un miembro pasa restando al otro: en 2x + 3 = 7 se resta 3 y queda 2x = 4. Del mismo modo, un término que resta pasa sumando: en x - 5 = 8 se suma 5 y queda x = 13. En realidad estamos sumando o restando el mismo número en los dos miembros, y por eso la igualdad se mantiene. Conviene agrupar las x en un miembro y los números en el otro: en 5x - 2 = 3x + 6 pasamos 3x restando y -2 sumando, y queda 2x = 8."
+        },
+        {
+          "title": "3.2 Despejar la incógnita",
+          "page": null,
+          "text": "Para despejar la incógnita se divide entre el número que la multiplica: de 2x = 4 se obtiene x = 2. Si la incógnita está dividida, se multiplica: de x/3 = 5 se obtiene x = 15. El número pasa dividiendo con su propio signo, sin cambiarlo: de -4x = 12 se obtiene x = 12/(-4) = -3. Al terminar, comprueba siempre la solución sustituyéndola en la ecuación original."
+        },
+        {
+          "title": "3.3 Eliminar paréntesis",
+          "page": null,
+          "text": "Antes de transponer términos hay que quitar los paréntesis aplicando la propiedad distributiva: el número de fuera multiplica a cada término de dentro, por ejemplo 3(x + 2) = 3x + 6. Si delante del paréntesis hay un signo menos, cambian de signo todos los términos de dentro: -(x - 4) = -x + 4. Ejemplo: 2(x - 1) - (x + 3) = 5 se convierte en 2x - 2 - x - 3 = 5, es decir, x - 5 = 5, y por tanto x = 10. Cada paso se escribe en una línea nueva, sin encadenar igualdades."
+        }
+      ]
+    },
+    {
+      "file_name": "tema4-fracciones-y-sistemas.pdf",
+      "file_type": "pdf",
+      "page_count": 14,
+      "sections": [
+        {
+          "title": "4.1 Ecuaciones con denominadores",
+          "page": 2,
+          "text": "Cuando una ecuación tiene fracciones, primero se quitan los denominadores multiplicando los dos miembros por el mínimo común múltiplo (m.c.m.) de todos ellos. Hay que multiplicar todos los términos, también los que no tienen denominador. Ejemplo: x/2 + x/3 = 5; el m.c.m. de 2 y 3 es 6, y al multiplicar queda 3x + 2x = 30, así que 5x = 30 y x = 6. Si el numerador tiene varios términos, conviene ponerlo entre paréntesis antes de multiplicar, porque el signo menos delante de una fracción afecta a todo el numerador. En los problemas, «la mitad de un número» se escribe x/2 y «su tercera parte», x/3."
+        },
+        {
+          "title": "4.2 Sistemas de dos ecuaciones",
+          "page": 8,
+          "text": "Un sistema de dos ecuaciones con dos incógnitas busca los valores de x e y que cumplen las dos ecuaciones a la vez. En el método de sustitución se despeja una incógnita en una de las ecuaciones y se sustituye en la otra. Ejemplo: x + y = 10 y x - y = 2. De la primera, x = 10 - y; sustituyendo en la segunda, 10 - y - y = 2, luego -2y = -8 e y = 4. Por último, x = 10 - 4 = 6: la solución es x = 6, y = 4, y se comprueba en las dos ecuaciones."
+        }
+      ]
+    },
+    {
+      "file_name": "ejercicios-resueltos-ecuaciones.docx",
+      "file_type": "docx",
+      "page_count": 6,
+      "sections": [
+        {
+          "title": "1. Problemas de edades",
+          "page": 1,
+          "text": "Para resolver un problema con ecuaciones, primero se elige la incógnita y se traduce el enunciado al lenguaje algebraico. Ejemplo: «Ana tiene el triple de edad que su hermano y entre los dos suman 24 años». Si la edad del hermano es x, la de Ana es 3x, y la ecuación es x + 3x = 24. Así, 4x = 24 y x = 6: el hermano tiene 6 años y Ana, 18. Termina siempre con una frase que responda a la pregunta del problema."
+        },
+        {
+          "title": "2. Comprobar la solución",
+          "page": 4,
+          "text": "Comprobar una solución consiste en sustituirla en la ecuación original, no en una de las ecuaciones intermedias, porque el error podría estar en un paso anterior. Ejemplo: para comprobar que x = 10 es solución de 2(x - 1) - (x + 3) = 5, calculamos 2 · 9 - 13 = 18 - 13 = 5. Como los dos miembros coinciden, la solución es correcta. Si no coinciden, revisa los pasos uno a uno, empezando por los signos."
+        }
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "name": "Transponer términos",
+      "document": "ecuaciones.md",
+      "section": "3.1 Transponer términos",
+      "questions": [
+        {
+          "question": "si tengo x + 7 = 12 el 7 pasa al otro lado restando o sumando? siempre me lío",
+          "answer": "Pasa restando, porque en el primer miembro está sumando: x = 12 - 7, es decir, x = 5. La regla es que un término que suma en un miembro pasa restando al otro, y uno que resta pasa sumando. En realidad estás restando 7 en los dos miembros, por eso la igualdad no cambia."
+        },
+        {
+          "question": "por qué se puede pasar un número al otro lado? eso no cambia la ecuación?",
+          "answer": "No cambia la igualdad, porque en realidad sumas o restas el mismo número en los dos miembros. En 2x + 3 = 7, restar 3 a ambos lados da 2x = 4; «pasar el 3 restando» es solo una forma abreviada de decirlo. La ecuación cambia de aspecto, pero sus soluciones son las mismas."
+        },
+        {
+          "question": "en 5x - 2 = 3x + 6 tengo que pasar las x a la izquierda o da igual",
+          "answer": "Da igual el miembro que elijas; lo importante es juntar las x en uno y los números en el otro. Si pasas 3x restando a la izquierda y el -2 sumando a la derecha, queda 5x - 3x = 6 + 2, es decir, 2x = 8. Suele ser cómodo dejar las x en el miembro donde quedan con coeficiente positivo."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Resuelve la ecuación x - 5 = 8 transponiendo términos.",
+          "correct_answer": "x = 8 + 5\nx = 13",
+          "wrong_answer": "x = 8 - 5\nx = 3",
+          "mistake_location": "Línea 1",
+          "error_type": "procedural",
+          "explanation": "En la línea 1 el 5 pasa restando, pero en el primer miembro estaba restando, así que debe pasar sumando: x = 8 + 5 = 13. Puedes comprobarlo: 13 - 5 = 8, mientras que 3 - 5 = -2, que no es 8."
+        },
+        {
+          "statement": "Agrupa términos y resuelve 5x - 2 = 3x + 6.",
+          "correct_answer": "5x - 3x = 6 + 2\n2x = 8\nx = 4",
+          "wrong_answer": "5x + 3x = 6 + 2\n8x = 8\nx = 1",
+          "mistake_location": "Línea 1",
+          "error_type": "execution",
+          "explanation": "En la línea 1 el 3x estaba sumando en el segundo miembro, así que al pasarlo al primero debe ir restando: 5x - 3x. Con el signo correcto queda 2x = 8 y x = 4; comprueba que 5 · 4 - 2 = 18 y 3 · 4 + 6 = 18."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "En la ecuación x + 9 = 15, ¿qué se obtiene al transponer el 9?",
+          "options": ["x = 15 + 9", "x = 15 - 9", "x = 9 - 15", "x = 15 · 9"],
+          "correct": 1,
+          "explanation": "El 9 está sumando en el primer miembro, así que pasa restando: x = 15 - 9 = 6.",
+          "difficulty": 1
+        },
+        {
+          "statement": "Al agrupar términos en 7x + 4 = 2x + 19, ¿qué ecuación se obtiene?",
+          "options": ["9x = 23", "5x = 23", "5x = 15", "9x = 15"],
+          "correct": 2,
+          "explanation": "El 2x pasa restando y el 4 pasa restando: 7x - 2x = 19 - 4, es decir, 5x = 15.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Por qué transponer un término no cambia las soluciones de la ecuación?",
+          "options": ["Porque los números no influyen en el valor de x", "Porque se cambia el signo de toda la ecuación", "Porque solo se puede hacer con términos positivos", "Porque se suma o se resta el mismo número en los dos miembros"],
+          "correct": 3,
+          "explanation": "Transponer es una forma abreviada de sumar o restar lo mismo en ambos miembros, y eso mantiene la igualdad.",
+          "difficulty": 2
+        }
+      ]
+    },
+    {
+      "name": "Despejar la incógnita",
+      "document": "ecuaciones.md",
+      "section": "3.2 Despejar la incógnita",
+      "questions": [
+        {
+          "question": "si tengo 3x = 12 el 3 pasa restando no?",
+          "answer": "No: el 3 está multiplicando a la x, así que pasa dividiendo. De 3x = 12 se obtiene x = 12/3 = 4. Solo pasan restando los términos que están sumando; los que multiplican pasan dividiendo."
+        },
+        {
+          "question": "y si es -4x = 12 le cambio el signo al 4 cuando lo paso??",
+          "answer": "No, el número pasa dividiendo con su propio signo, sin cambiarlo. De -4x = 12 se obtiene x = 12/(-4) = -3. El cambio de signo es cosa de transponer sumas y restas, no de los números que multiplican."
+        },
+        {
+          "question": "como se despeja x/3 = 5? no hay nada multiplicando a la x",
+          "answer": "Aquí la x está dividida entre 3, así que el 3 pasa multiplicando al otro miembro: x = 5 · 3 = 15. Es la operación contraria: lo que divide pasa multiplicando y lo que multiplica pasa dividiendo. Puedes comprobarlo: 15/3 = 5."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Resuelve la ecuación 3x = 12.",
+          "correct_answer": "x = 12/3\nx = 4",
+          "wrong_answer": "x = 12 - 3\nx = 9",
+          "mistake_location": "Línea 1",
+          "error_type": "conceptual",
+          "explanation": "El 3 no está sumando a la x, sino multiplicándola, así que no pasa restando sino dividiendo. Lo correcto es x = 12/3 = 4. Comprueba siempre: 3 · 4 = 12, mientras que 3 · 9 = 27."
+        },
+        {
+          "statement": "Resuelve x/3 = 5 y comprueba la solución en la ecuación original.",
+          "correct_answer": "x = 5 · 3 = 15\nComprobación: 15/3 = 5 ✓",
+          "wrong_answer": "x = 5 · 3 = 15",
+          "mistake_location": "Final (falta la comprobación)",
+          "error_type": "incomplete",
+          "explanation": "El despeje es correcto, pero el enunciado pide también comprobar la solución y no lo has hecho. Sustituye x = 15 en la ecuación original: 15/3 = 5, así que la solución es correcta."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Cuál es la solución de 5x = 35?",
+          "options": ["x = 30", "x = 40", "x = 7", "x = 175"],
+          "correct": 2,
+          "explanation": "El 5 multiplica a la x, así que pasa dividiendo: x = 35/5 = 7.",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Cuál es la solución de -6x = 18?",
+          "options": ["x = 3", "x = -3", "x = 12", "x = -12"],
+          "correct": 1,
+          "explanation": "El -6 pasa dividiendo con su signo: x = 18/(-6) = -3.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Cuál es la solución de -x/5 = 3?",
+          "options": ["x = 15", "x = -3/5", "x = -15", "x = 8"],
+          "correct": 2,
+          "explanation": "El 5 pasa multiplicando: -x = 15, y como x está multiplicada por -1, x = -15.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Paréntesis",
+      "document": "ecuaciones.md",
+      "section": "3.3 Eliminar paréntesis",
+      "questions": [
+        {
+          "question": "en 3(x + 2) el 3 multiplica solo a la x?",
+          "answer": "No, multiplica a cada término de dentro del paréntesis: 3(x + 2) = 3x + 6. Es la propiedad distributiva. Un error muy frecuente es escribir 3x + 2, olvidando multiplicar el 2."
+        },
+        {
+          "question": "que pasa si hay un menos delante del paréntesis y no hay ningún número",
+          "answer": "Es como si hubiera un -1 multiplicando, así que cambian de signo todos los términos de dentro: -(x - 4) = -x + 4. Fíjate en que cambian todos, no solo el primero."
+        },
+        {
+          "question": "hay que quitar los paréntesis antes de pasar términos o se puede hacer al revés?",
+          "answer": "Primero se quitan los paréntesis y después se transponen términos. Por ejemplo, en 2(x - 1) - (x + 3) = 5 quitas paréntesis y queda 2x - 2 - x - 3 = 5; agrupando, x - 5 = 5 y x = 10. Si intentas mover términos que están dentro de un paréntesis, es muy fácil equivocarse."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Quita los paréntesis y resuelve: 7 - (x - 4) = 2.",
+          "correct_answer": "7 - x + 4 = 2\n11 - x = 2\n-x = -9\nx = 9",
+          "wrong_answer": "7 - x - 4 = 2\n3 - x = 2\n-x = -1\nx = 1",
+          "mistake_location": "Línea 1",
+          "error_type": "procedural",
+          "explanation": "Al quitar un paréntesis precedido de un signo menos cambian de signo todos los términos de dentro, no solo el primero: -(x - 4) = -x + 4. Con el signo correcto queda 11 - x = 2 y x = 9; comprueba que 7 - (9 - 4) = 2."
+        },
+        {
+          "statement": "Resuelve 2(x - 1) - (x + 3) = 5 escribiendo cada paso correctamente.",
+          "correct_answer": "2x - 2 - x - 3 = 5\nx - 5 = 5\nx = 10",
+          "wrong_answer": "2x - 2 - x - 3 = 5 = x - 5\nx = 10",
+          "mistake_location": "Línea 1",
+          "error_type": "expression",
+          "explanation": "El resultado es correcto, pero en la línea 1 encadenas igualdades: escribir «= 5 = x - 5» afirma que todas las expresiones valen lo mismo, lo cual no es cierto. Cada paso debe ir en una línea nueva: 2x - 2 - x - 3 = 5, después x - 5 = 5 y por último x = 10."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Qué se obtiene al quitar el paréntesis en 4(x - 3)?",
+          "options": ["4x - 3", "4x - 12", "x - 12", "4x + 12"],
+          "correct": 1,
+          "explanation": "El 4 multiplica a cada término: 4 · x - 4 · 3 = 4x - 12.",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Qué expresión es igual a -(2x - 5)?",
+          "options": ["-2x - 5", "2x + 5", "-2x + 5", "2x - 5"],
+          "correct": 2,
+          "explanation": "El signo menos cambia el signo de todos los términos de dentro: -2x + 5.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Cuál es la solución de 3(x + 1) - (x - 5) = 14?",
+          "options": ["x = 8", "x = 4", "x = 3", "x = 11"],
+          "correct": 2,
+          "explanation": "Queda 3x + 3 - x + 5 = 14, es decir, 2x + 8 = 14, y x = 3. Si no cambias el signo del 5 obtienes x = 8.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Ecuaciones con fracciones",
+      "document": "tema4-fracciones-y-sistemas.pdf",
+      "section": "4.1 Ecuaciones con denominadores",
+      "questions": [
+        {
+          "question": "para quitar denominadores multiplico por cualquier numero o tiene que ser el mcm?",
+          "answer": "Puedes multiplicar por cualquier múltiplo común, pero lo más cómodo es el mínimo común múltiplo, porque así los números quedan más pequeños. En x/2 + x/3 = 5 el m.c.m. de 2 y 3 es 6, y al multiplicar queda 3x + 2x = 30. Lo importante es multiplicar los dos miembros por el mismo número."
+        },
+        {
+          "question": "el número que no tiene fracción también lo multiplico??",
+          "answer": "Sí, hay que multiplicar todos los términos, también los que no tienen denominador. Si en x/2 + x/3 = 5 no multiplicas el 5 por 6, obtienes 5x = 5, que es incorrecto; la ecuación buena es 3x + 2x = 30. Un número sin denominador es como si tuviera denominador 1."
+        },
+        {
+          "question": "por que hay que poner paréntesis cuando el numerador tiene dos cosas",
+          "answer": "Porque el número por el que multiplicas afecta a todo el numerador, y si delante de la fracción hay un signo menos, ese signo afecta a todos sus términos. Por ejemplo, -(x - 1)/2 multiplicado por 2 da -(x - 1) = -x + 1, no -x - 1. El paréntesis te ayuda a no olvidar ningún cambio de signo."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Resuelve la ecuación x/2 + x/3 = 5.",
+          "correct_answer": "m.c.m.(2, 3) = 6\n3x + 2x = 30\n5x = 30\nx = 6",
+          "wrong_answer": "m.c.m.(2, 3) = 6\n3x + 2x = 5\n5x = 5\nx = 1",
+          "mistake_location": "Línea 2",
+          "error_type": "procedural",
+          "explanation": "En la línea 2 has multiplicado por 6 los términos con denominador, pero no el 5 del segundo miembro. Hay que multiplicar todos los términos: 3x + 2x = 30, y así x = 6. Comprueba: 6/2 + 6/3 = 3 + 2 = 5."
+        },
+        {
+          "statement": "La mitad de un número más su tercera parte es 5. Plantea la ecuación y resuélvela.",
+          "correct_answer": "x/2 + x/3 = 5\n3x + 2x = 30\nx = 6",
+          "wrong_answer": "x/2 + 3x = 5\nx + 6x = 10\nx = 10/7",
+          "mistake_location": "Línea 1",
+          "error_type": "comprehension",
+          "explanation": "«Su tercera parte» significa dividir entre 3, es decir, x/3, no multiplicar por 3. Con la ecuación bien planteada, x/2 + x/3 = 5, multiplicas por 6 y obtienes x = 6; comprueba que 3 + 2 = 5."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Cuál es el m.c.m. de los denominadores en x/4 + x/6 = 5?",
+          "options": ["10", "24", "12", "2"],
+          "correct": 2,
+          "explanation": "El menor múltiplo común de 4 y 6 es 12; 24 también es común, pero no es el mínimo.",
+          "difficulty": 1
+        },
+        {
+          "statement": "Al multiplicar por 6 la ecuación x/2 - 1 = x/3, ¿qué se obtiene?",
+          "options": ["3x - 1 = 2x", "3x - 6 = 2x", "x - 6 = x", "3x - 6 = 2"],
+          "correct": 1,
+          "explanation": "Hay que multiplicar todos los términos, también el 1: 3x - 6 = 2x.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Cuál es la solución de (x + 1)/2 - (x - 1)/3 = 2?",
+          "options": ["x = 7", "x = 11", "x = 9", "x = 13"],
+          "correct": 0,
+          "explanation": "Multiplicando por 6: 3(x + 1) - 2(x - 1) = 12, es decir, 3x + 3 - 2x + 2 = 12 y x = 7. Si olvidas que el menos afecta a todo el numerador sale x = 11.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Sistemas de dos ecuaciones",
+      "document": "tema4-fracciones-y-sistemas.pdf",
+      "section": "4.2 Sistemas de dos ecuaciones",
+      "questions": [
+        {
+          "question": "en un sistema que incognita tengo que despejar primero? da igual?",
+          "answer": "Da igual cuál despejes: la solución del sistema es la misma. Lo práctico es elegir una incógnita con coeficiente 1, como la x en x + y = 10, porque así no aparecen fracciones: x = 10 - y."
+        },
+        {
+          "question": "si ya tengo y = 4 ya está resuelto el sistema no?",
+          "answer": "Todavía no: la solución de un sistema son los dos valores, x e y. Sustituye y = 4 en la expresión que despejaste, x = 10 - y, y obtienes x = 6. Al final comprueba que x = 6, y = 4 cumplen las dos ecuaciones."
+        },
+        {
+          "question": "para comprobar basta con mirar una de las ecuaciones?",
+          "answer": "No, hay que comprobar las dos, porque la solución tiene que cumplirlas a la vez. En el ejemplo, 6 + 4 = 10 y 6 - 4 = 2, así que x = 6, y = 4 es correcta. Hay muchos pares que cumplen solo una, como x = 7, y = 3, que cumple la primera pero no la segunda."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Resuelve por sustitución el sistema: x + y = 10; x - y = 2.",
+          "correct_answer": "x = 10 - y\n10 - y - y = 2\n-2y = -8 → y = 4\nx = 10 - 4 = 6",
+          "wrong_answer": "x = 10 - y\n10 - y - y = 2\n-2y = -8 → y = 4",
+          "mistake_location": "Final (falta calcular x)",
+          "error_type": "incomplete",
+          "explanation": "Has calculado bien y = 4, pero la solución de un sistema incluye las dos incógnitas. Sustituye en x = 10 - y para obtener x = 6, y comprueba el par x = 6, y = 4 en las dos ecuaciones."
+        },
+        {
+          "statement": "Resuelve por sustitución el sistema: x + y = 7; 2x - y = 5.",
+          "correct_answer": "x = 7 - y\n2(7 - y) - y = 5\n14 - 3y = 5\n-3y = -9 → y = 3\nx = 4",
+          "wrong_answer": "x = 7 - y\n2(7 - y) - y = 5\n14 - 3y = 5\n-3y = -9 → y = -3\nx = 10",
+          "mistake_location": "Línea 4",
+          "error_type": "execution",
+          "explanation": "En la línea 4 divides -9 entre -3 y te sale -3, pero menos entre menos da más: y = 3. Entonces x = 7 - 3 = 4; comprueba que 4 + 3 = 7 y 2 · 4 - 3 = 5."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Qué significa resolver un sistema de dos ecuaciones con dos incógnitas?",
+          "options": ["Sumar las dos ecuaciones y despejar x", "Encontrar x en la primera ecuación e y en la segunda, por separado", "Encontrar un valor de x que cumpla al menos una de las ecuaciones", "Encontrar los valores de x e y que cumplen las dos ecuaciones a la vez"],
+          "correct": 3,
+          "explanation": "La solución de un sistema es un par de valores que cumple las dos ecuaciones al mismo tiempo.",
+          "difficulty": 1
+        },
+        {
+          "statement": "En el sistema x + y = 9; x - y = 3, si despejas x en la primera y la sustituyes en la segunda, ¿qué ecuación obtienes?",
+          "options": ["9 - y - y = 3", "9 + y - y = 3", "9 - y + y = 3", "x - 9 = 3"],
+          "correct": 0,
+          "explanation": "De la primera, x = 9 - y; al sustituir en x - y = 3 queda 9 - y - y = 3.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Cuál es la solución del sistema 2x + y = 8; x - y = 1?",
+          "options": ["x = 2, y = 4", "x = 3, y = 2", "x = 4, y = 0", "x = 3, y = 4"],
+          "correct": 1,
+          "explanation": "De la segunda, x = 1 + y; sustituyendo, 2 + 2y + y = 8, así que y = 2 y x = 3. El par (4, 0) cumple la primera ecuación pero no la segunda.",
+          "difficulty": 3
+        }
+      ]
+    }
+  ],
+  "off_topic": [
+    "¿Cómo se resuelve una ecuación de segundo grado como x² - 5x + 6 = 0?",
+    "¿Quién inventó el álgebra y por qué se usa la letra x?"
+  ]
+}

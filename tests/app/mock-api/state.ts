@@ -239,8 +239,8 @@ export type State = {
   reviews: Review[];
   /** What the next mistake review looks like (backend specs/005), set by /__test/review. */
   review: { mode: "answer" | "no_source" | "fail" | "limit"; delay_ms: number };
-  /** What each course's dashboard looks like (backend specs/004), set by /__test/dashboard. */
-  dashboard: Map<string, "busy" | "quiet" | "calm">;
+  /** What each course's dashboard looks like (backend specs/004), set by /__test/dashboard; "live" computes it. */
+  dashboard: Map<string, "busy" | "quiet" | "calm" | "live">;
   questions: Question[];
   quizzes: Quiz[];
   /** What the next question generation returns (backend specs/006), set by /__test/generation. */

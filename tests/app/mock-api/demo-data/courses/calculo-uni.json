@@ -1,0 +1,374 @@
+{
+  "key": "calculo-uni",
+  "name": "Cálculo I",
+  "description": "Límites, continuidad, derivación e integración de funciones reales de una variable, con aplicaciones a la optimización, para el primer curso del Grado en Ingeniería Informática.",
+  "documents": [
+    {
+      "file_name": "tema1-limites-continuidad.pdf",
+      "file_type": "pdf",
+      "page_count": 18,
+      "sections": [
+        {
+          "title": "1.2 Cálculo de límites e indeterminaciones",
+          "page": 3,
+          "text": "Cuando al sustituir el punto en la expresión se obtiene una forma del tipo 0/0, ∞/∞, ∞ − ∞, 0·∞, 1^∞, 0^0 o ∞^0, se dice que el límite presenta una indeterminación: el resultado no está determinado y hay que transformar la expresión antes de calcularlo. En un cociente de polinomios con forma 0/0 se factorizan numerador y denominador y se simplifica el factor común; por ejemplo, lím(x→2) (x² − 4)/(x − 2) = lím(x→2) (x + 2) = 4. En un cociente de polinomios con forma ∞/∞ cuando x → ∞ se comparan los grados: si el grado del numerador es menor, el límite es 0; si son iguales, es el cociente de los coeficientes principales; si es mayor, el límite es ±∞. En las formas ∞ − ∞ con raíces se multiplica y divide por el conjugado: lím(x→∞) (√(x² + x) − x) = lím(x→∞) x/(√(x² + x) + x) = 1/2. Durante todo el cálculo debe escribirse el símbolo lím(x→a) hasta el paso en que efectivamente se pasa al límite."
+        },
+        {
+          "title": "1.4 Continuidad de una función",
+          "page": 9,
+          "text": "Una función f es continua en x = a si se cumplen tres condiciones: existe f(a), existe lím(x→a) f(x) y ambos valores coinciden. Si falla alguna, f es discontinua en a y la discontinuidad se clasifica así: evitable, cuando el límite existe y es finito pero f(a) no existe o es distinto; de salto, cuando los límites laterales son finitos pero distintos; y asintótica o esencial, cuando algún límite lateral es infinito o no existe. Las funciones polinómicas son continuas en todo ℝ y las racionales lo son en todo punto salvo donde se anula el denominador. En una función definida a trozos hay que estudiar los puntos de cambio mediante los límites laterales. Ejemplo: si f(x) = x² + k para x < 1 y f(x) = 2x + 3 para x ≥ 1, el límite lateral izquierdo en 1 vale 1 + k y el derecho vale 5 = f(1), de modo que f es continua en x = 1 si y solo si 1 + k = 5, es decir, k = 4."
+        },
+        {
+          "title": "1.6 Asíntotas de una función",
+          "page": 14,
+          "text": "La recta x = a es una asíntota vertical de f si alguno de los límites laterales de f en a es infinito; suele aparecer en los puntos que anulan el denominador de una función racional. La recta y = L es una asíntota horizontal si lím(x→±∞) f(x) = L. Si no hay asíntota horizontal, puede existir una oblicua y = mx + n, con m = lím f(x)/x y n = lím (f(x) − mx). Por ejemplo, f(x) = (2x² + 1)/(x − 1) tiene asíntota vertical x = 1 y asíntota oblicua y = 2x + 2."
+        }
+      ]
+    },
+    {
+      "file_name": "temas2-3-derivadas-integrales.docx",
+      "file_type": "docx",
+      "page_count": 26,
+      "sections": [
+        {
+          "title": "2.2 Regla de la cadena",
+          "page": 4,
+          "text": "Si y = f(g(x)) es una composición de funciones derivables, su derivada es y' = f'(g(x))·g'(x): se deriva la función exterior evaluada en la interior y se multiplica por la derivada de la función interior. Por ejemplo, para y = (3x² + 1)^5 se obtiene y' = 5(3x² + 1)^4·6x = 30x(3x² + 1)^4. La regla se combina con las derivadas de las funciones elementales: (sen u)' = cos u·u', (e^u)' = e^u·u' y (ln u)' = u'/u. Así, si y = ln(x² + 1), entonces y' = 2x/(x² + 1), y si y = e^(sen x), entonces y' = e^(sen x)·cos x. Cuando hay varias composiciones anidadas, la regla se aplica sucesivamente de fuera hacia dentro, multiplicando una derivada por cada capa; para raíces conviene escribirlas antes como potencias, √u = u^(1/2), cuya derivada es u'/(2√u)."
+        },
+        {
+          "title": "2.5 Problemas de optimización",
+          "page": 13,
+          "text": "Un problema de optimización se resuelve siguiendo cinco pasos: (1) identificar la magnitud que se quiere maximizar o minimizar; (2) expresarla en función de una sola variable, usando la condición o ligadura del enunciado para eliminar las demás; (3) determinar el dominio en que tiene sentido esa variable; (4) derivar e igualar a cero para obtener los puntos críticos; y (5) comprobar si cada punto crítico es máximo o mínimo, con la segunda derivada (f'' < 0 indica máximo relativo, f'' > 0 mínimo relativo) o comparando con los extremos del intervalo. Que la derivada se anule no basta: un punto crítico puede ser máximo, mínimo o ninguna de las dos cosas. Ejemplo: entre los rectángulos de perímetro 20 m, buscamos el de área máxima. Como 2x + 2y = 20, se tiene y = 10 − x y A(x) = x(10 − x) = 10x − x² en (0, 10); A'(x) = 10 − 2x = 0 da x = 5, y A''(x) = −2 < 0 confirma el máximo. La solución es un cuadrado de 5 m de lado, con área 25 m², y la respuesta final debe darse en los términos del enunciado."
+        },
+        {
+          "title": "3.3 Integración por partes",
+          "page": 21,
+          "text": "La fórmula de integración por partes es ∫u dv = uv − ∫v du y procede de la derivada de un producto. Se elige como u la función que se simplifica al derivar y como dv la que se integra con facilidad; la regla mnemotécnica ALPES (arco funciones, logarítmicas, polinómicas, exponenciales, seno y coseno) indica el orden de preferencia para u. Ejemplo: en ∫x e^x dx se toma u = x y dv = e^x dx, de modo que du = dx y v = e^x, y resulta x e^x − ∫e^x dx = e^x(x − 1) + C. Incluso ∫ln x dx se resuelve así tomando u = ln x y dv = dx, lo que da x ln x − x + C. A veces hay que aplicar el método dos veces, como en ∫x² e^x dx, y en otros casos la integral original reaparece (∫e^x sen x dx) y se despeja como una incógnita. La constante de integración C es imprescindible, porque una integral indefinida representa toda una familia de primitivas."
+        }
+      ]
+    },
+    {
+      "file_name": "ejercicios-resueltos-bolzano-lhopital.md",
+      "file_type": "markdown",
+      "page_count": null,
+      "sections": [
+        {
+          "title": "E.1 Teorema de Bolzano",
+          "page": null,
+          "text": "Si f es continua en [a, b] y f(a) y f(b) tienen signos opuestos, existe al menos un c ∈ (a, b) con f(c) = 0. Ejercicio resuelto: probar que x³ + x − 1 = 0 tiene una solución en [0, 1]. La función f(x) = x³ + x − 1 es polinómica, luego continua; f(0) = −1 < 0 y f(1) = 1 > 0, de modo que por el teorema de Bolzano existe c ∈ (0, 1) con f(c) = 0. Además, como f'(x) = 3x² + 1 > 0, la función es estrictamente creciente y la raíz es única."
+        },
+        {
+          "title": "E.2 Regla de L'Hôpital",
+          "page": null,
+          "text": "Si lím f(x)/g(x) presenta la forma 0/0 o ∞/∞ y existe el límite del cociente de las derivadas, entonces lím f(x)/g(x) = lím f'(x)/g'(x). Ejercicio resuelto: lím(x→0) sen(3x)/x tiene forma 0/0; derivando, lím(x→0) 3cos(3x)/1 = 3. Conviene comprobar siempre que se trata de una indeterminación antes de aplicar la regla, ya que en otro caso el resultado es incorrecto."
+        }
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "name": "Límites e indeterminaciones",
+      "document": "tema1-limites-continuidad.pdf",
+      "section": "1.2 Cálculo de límites e indeterminaciones",
+      "questions": [
+        {
+          "question": "si al sustituir me sale 0/0 el límite es 0, no?",
+          "answer": "No: 0/0 es una indeterminación, lo que significa que el límite todavía no está determinado y puede valer cualquier cosa. Hay que transformar la expresión antes de pasar al límite; en un cociente de polinomios, se factorizan numerador y denominador y se simplifica el factor común. Por ejemplo, lím(x→2) (x² − 4)/(x − 2) = lím(x→2) (x + 2) = 4."
+        },
+        {
+          "question": "cómo se hace el límite cuando x tiende a infinito de (3x^2+1)/(5x^2-x)? me lío con los infinitos",
+          "answer": "Es una forma ∞/∞ en un cociente de polinomios, así que basta comparar grados. Numerador y denominador tienen el mismo grado (2), por lo que el límite es el cociente de los coeficientes principales: 3/5. Si el numerador tuviera menor grado el límite sería 0, y si tuviera mayor grado sería ±∞."
+        },
+        {
+          "question": "para qué sirve exactamente multiplicar por el conjugado? no veo por qué cambia algo",
+          "answer": "En una forma ∞ − ∞ con raíces, multiplicar y dividir por el conjugado transforma la diferencia en un cociente donde la raíz desaparece del numerador gracias a la identidad (a − b)(a + b) = a² − b². Por ejemplo, √(x² + x) − x se convierte en x/(√(x² + x) + x), que ya es una forma ∞/∞ manejable y tiende a 1/2. La expresión no cambia de valor, porque se multiplica por un cociente igual a 1; solo cambia su forma."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Calcula lím(x→3) (x² − 9)/(x² − 3x).",
+          "correct_answer": "Forma 0/0. lím(x→3) (x − 3)(x + 3)/(x(x − 3)) = lím(x→3) (x + 3)/x = 6/3 = 2.",
+          "wrong_answer": "Al sustituir queda (9 − 9)/(9 − 9) = 0/0 = 0. El límite vale 0.",
+          "mistake_location": "Paso 1",
+          "error_type": "conceptual",
+          "explanation": "0/0 no es igual a 0: es una indeterminación y no permite concluir nada sobre el límite. Debes factorizar, (x² − 9) = (x − 3)(x + 3) y x² − 3x = x(x − 3), simplificar el factor (x − 3) y después pasar al límite, que vale 2."
+        },
+        {
+          "statement": "Calcula lím(x→∞) (2x³ − x)/(4x³ + 5), escribiendo correctamente la notación en cada paso.",
+          "correct_answer": "lím(x→∞) (2x³ − x)/(4x³ + 5) = lím(x→∞) (2 − 1/x²)/(4 + 5/x³) = (2 − 0)/(4 + 0) = 1/2.",
+          "wrong_answer": "(2x³ − x)/(4x³ + 5) = (2 − 1/x²)/(4 + 5/x³) = 2/4 = 1/2.",
+          "mistake_location": "Pasos 1 y 3",
+          "error_type": "expression",
+          "explanation": "El resultado es correcto, pero la cadena de igualdades es falsa: (2 − 1/x²)/(4 + 5/x³) no es igual a 2/4 para ningún x concreto. Debes escribir lím(x→∞) delante de cada expresión hasta el paso en que efectivamente pasas al límite."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Cuánto vale lím(x→∞) (5x² + 1)/(2x³ − x)?",
+          "options": ["5/2", "0", "∞", "−5/2"],
+          "correct": 1,
+          "explanation": "Es un cociente de polinomios con forma ∞/∞ y el numerador tiene menor grado (2) que el denominador (3), por lo que el límite es 0.",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Cuál de las siguientes formas NO es una indeterminación?",
+          "options": ["0/0", "∞ − ∞", "1^∞", "0/∞"],
+          "correct": 3,
+          "explanation": "Un numerador que tiende a 0 dividido entre un denominador que crece sin límite tiende a 0, así que 0/∞ no es indeterminada. Las otras tres sí figuran en la lista de indeterminaciones.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Cuánto vale lím(x→∞) (√(x² + 4x) − x)?",
+          "options": ["0", "4", "2", "∞"],
+          "correct": 2,
+          "explanation": "Multiplicando por el conjugado se obtiene 4x/(√(x² + 4x) + x); dividiendo entre x, el límite es 4/(1 + 1) = 2.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Continuidad de funciones",
+      "document": "tema1-limites-continuidad.pdf",
+      "section": "1.4 Continuidad de una función",
+      "questions": [
+        {
+          "question": "si una función no está definida en un punto entonces ya es una discontinuidad de salto?",
+          "answer": "No necesariamente. Que no exista f(a) solo indica que la función es discontinua en a; el tipo depende de los límites. Si el límite existe y es finito, la discontinuidad es evitable; si los límites laterales son finitos pero distintos, es de salto; y si alguno es infinito o no existe, es asintótica o esencial."
+        },
+        {
+          "question": "en las funciones a trozos con una k, cómo saco el valor de k para que sea continua?",
+          "answer": "Calcula los límites laterales en el punto de cambio usando la expresión de cada trozo e iguálalos entre sí y con el valor de la función en ese punto. En el ejemplo del tema, f(x) = x² + k para x < 1 y 2x + 3 para x ≥ 1: el límite por la izquierda es 1 + k y por la derecha es 5 = f(1), luego 1 + k = 5 y k = 4."
+        },
+        {
+          "question": "1/x es continua o no? he leído las dos cosas",
+          "answer": "Las funciones racionales son continuas en todos los puntos salvo donde se anula el denominador. Por tanto, 1/x es continua en todo ℝ \\ {0}, que es su dominio, y en x = 0 presenta una discontinuidad asintótica, porque los límites laterales son −∞ y +∞. Las dos afirmaciones que has leído se refieren a cosas distintas: continuidad en su dominio o en todo ℝ."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Estudia y clasifica la discontinuidad de f(x) = (x² − 1)/(x − 1) en x = 1.",
+          "correct_answer": "f(1) no existe. lím(x→1) (x − 1)(x + 1)/(x − 1) = lím(x→1) (x + 1) = 2, finito. Discontinuidad evitable; se evitaría definiendo f(1) = 2.",
+          "wrong_answer": "f(1) no existe porque el denominador se anula. Como la función no está definida en 1, tiene una discontinuidad de salto.",
+          "mistake_location": "Conclusión (segunda oración)",
+          "error_type": "conceptual",
+          "explanation": "Que f(1) no exista no determina el tipo de discontinuidad: hay que calcular el límite. Aquí lím(x→1) f(x) = 2 es finito y los laterales coinciden, así que la discontinuidad es evitable, no de salto."
+        },
+        {
+          "statement": "Halla k para que f(x) = kx + 1 si x < 2, y f(x) = x² − k si x ≥ 2, sea continua en x = 2.",
+          "correct_answer": "Límite por la izquierda: 2k + 1. Límite por la derecha y f(2): 4 − k. 2k + 1 = 4 − k ⇒ 3k = 3 ⇒ k = 1.",
+          "wrong_answer": "Límite por la izquierda: 2k + 1. Límite por la derecha: 4 − k. 2k + 1 = 4 − k ⇒ 2k − k = 4 − 1 ⇒ k = 3.",
+          "mistake_location": "Paso 3 (transposición de términos)",
+          "error_type": "procedural",
+          "explanation": "El planteamiento es correcto, pero al pasar −k al primer miembro debe cambiar de signo y sumarse: 2k + k = 4 − 1, es decir, 3k = 3 y k = 1. Comprueba el resultado sustituyendo: con k = 1 ambos límites valen 3."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Cuál de las siguientes NO forma parte de la definición de continuidad de f en x = a?",
+          "options": ["Que exista f(a)", "Que exista lím(x→a) f(x)", "Que f sea derivable en a", "Que el límite coincida con f(a)"],
+          "correct": 2,
+          "explanation": "La definición exige tres condiciones: existencia de f(a), existencia del límite y coincidencia de ambos. La derivabilidad es una condición más fuerte que no forma parte de la definición.",
+          "difficulty": 1
+        },
+        {
+          "statement": "Sea f(x) = x + 1 si x < 0 y f(x) = x − 1 si x ≥ 0. ¿Qué ocurre en x = 0?",
+          "options": ["Discontinuidad evitable", "Discontinuidad de salto", "Discontinuidad asintótica", "La función es continua"],
+          "correct": 1,
+          "explanation": "Los límites laterales son 1 por la izquierda y −1 por la derecha: ambos finitos pero distintos, que es la definición de discontinuidad de salto.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Qué tipo de discontinuidad presenta g(x) = (x² − 4)/(x² − x − 2) en x = 2?",
+          "options": ["Asintótica", "De salto", "Evitable, con límite 4/3", "Evitable, con límite 2"],
+          "correct": 2,
+          "explanation": "Factorizando, g(x) = (x − 2)(x + 2)/((x − 2)(x + 1)), que para x ≠ 2 vale (x + 2)/(x + 1); el límite en 2 es 4/3, finito, y g(2) no existe, por lo que es evitable.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Regla de la cadena",
+      "document": "temas2-3-derivadas-integrales.docx",
+      "section": "2.2 Regla de la cadena",
+      "questions": [
+        {
+          "question": "por qué hay que multiplicar por la derivada de lo de dentro? no basta con derivar la función de fuera?",
+          "answer": "No basta, porque la función exterior no depende directamente de x sino de g(x), que a su vez varía con x. La regla de la cadena dice que y' = f'(g(x))·g'(x): la derivada de la exterior mide cómo cambia y respecto de g, y g'(x) mide cómo cambia g respecto de x. Por eso en (3x² + 1)^5 aparece el factor 6x: y' = 30x(3x² + 1)^4."
+        },
+        {
+          "question": "cómo derivo e^(sen x)? la derivada de e^x no era e^x sin más?",
+          "answer": "La derivada de e^x es e^x, pero aquí el exponente es sen x, así que hay que aplicar (e^u)' = e^u·u' con u = sen x. El resultado es e^(sen x)·cos x. Solo cuando el exponente es exactamente x el factor u' vale 1 y desaparece."
+        },
+        {
+          "question": "la derivada de ln(x^2+1) es 1/(x^2+1), verdad?",
+          "answer": "Casi, pero falta la derivada del argumento. Según (ln u)' = u'/u, con u = x² + 1 se obtiene y' = 2x/(x² + 1). La expresión 1/(x² + 1) solo sería correcta si el argumento fuera x, cuya derivada es 1."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Deriva y = sen(4x³).",
+          "correct_answer": "y' = cos(4x³)·12x² = 12x² cos(4x³).",
+          "wrong_answer": "y' = cos(12x²).",
+          "mistake_location": "Paso 1",
+          "error_type": "procedural",
+          "explanation": "Has derivado el argumento dentro del coseno en lugar de mantenerlo y multiplicar por su derivada. La regla de la cadena da (sen u)' = cos u·u': la función exterior se evalúa en el argumento original, 4x³, y después se multiplica por 12x²."
+        },
+        {
+          "statement": "Deriva y = √(x² + 5) y simplifica el resultado.",
+          "correct_answer": "y = (x² + 5)^(1/2). y' = (1/2)(x² + 5)^(−1/2)·2x = x/√(x² + 5).",
+          "wrong_answer": "y = (x² + 5)^(1/2). y' = (1/2)(x² + 5)^(−1/2)·2x = x·√(x² + 5).",
+          "mistake_location": "Paso 2 (simplificación)",
+          "error_type": "execution",
+          "explanation": "La derivación es correcta, pero al simplificar has tratado el exponente −1/2 como si fuera +1/2. Una potencia de exponente −1/2 equivale a dividir entre la raíz, de modo que el resultado es x/√(x² + 5)."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Cuál es la derivada de y = (x² + 1)³?",
+          "options": ["3(x² + 1)²", "6x(x² + 1)²", "3(2x)²", "6x(x² + 1)³"],
+          "correct": 1,
+          "explanation": "Se deriva la potencia, 3(x² + 1)², y se multiplica por la derivada de la base, 2x, lo que da 6x(x² + 1)².",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Cuál es la derivada de y = ln(cos x)?",
+          "options": ["−tg x", "1/cos x", "tg x", "−1/sen x"],
+          "correct": 0,
+          "explanation": "Aplicando (ln u)' = u'/u con u = cos x se obtiene −sen x/cos x = −tg x.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Cuál es la derivada de y = sen²(3x)?",
+          "options": ["2 sen(3x)", "2 sen(3x) cos(3x)", "3 cos²(3x)", "6 sen(3x) cos(3x)"],
+          "correct": 3,
+          "explanation": "Hay tres capas: el cuadrado da 2 sen(3x), el seno da cos(3x) y el argumento da 3; multiplicando, 6 sen(3x) cos(3x).",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Problemas de optimización",
+      "document": "temas2-3-derivadas-integrales.docx",
+      "section": "2.5 Problemas de optimización",
+      "questions": [
+        {
+          "question": "por qué hay que poner todo en función de una sola variable? no puedo derivar con las dos?",
+          "answer": "Las técnicas de este tema son para funciones de una variable: derivar e igualar a cero solo tiene sentido si la magnitud depende de una única variable. La ligadura del enunciado relaciona las variables y permite eliminar todas menos una; en el ejemplo del rectángulo, de 2x + 2y = 20 se despeja y = 10 − x y el área queda A(x) = 10x − x²."
+        },
+        {
+          "question": "si la derivada da cero en un punto ya es un máximo seguro?",
+          "answer": "No. Que la derivada se anule solo indica que es un punto crítico, que puede ser máximo, mínimo o ninguna de las dos cosas. Hay que comprobarlo, por ejemplo con la segunda derivada (f'' < 0 indica máximo relativo y f'' > 0 mínimo relativo) o comparando con los valores en los extremos del intervalo."
+        },
+        {
+          "question": "en el ejemplo del rectángulo de perímetro 20 por qué queda y = 10 − x y no 20 − x?",
+          "answer": "Porque el perímetro cuenta cada lado dos veces: 2x + 2y = 20. Al dividir entre 2 queda x + y = 10 y, por tanto, y = 10 − x. Si usaras y = 20 − x estarías imponiendo que la suma de dos lados, y no el perímetro, vale 20."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Halla dos números positivos cuya suma sea 12 y cuyo producto sea máximo.",
+          "correct_answer": "y = 12 − x, P(x) = x(12 − x) = 12x − x² en (0, 12). P'(x) = 12 − 2x = 0 ⇒ x = 6. P''(x) = −2 < 0 ⇒ máximo. Los números son 6 y 6, con producto máximo 36.",
+          "wrong_answer": "P(x) = 12x − x². P'(x) = 12 − 2x = 0 ⇒ x = 6.",
+          "mistake_location": "Final de la respuesta",
+          "error_type": "incomplete",
+          "explanation": "Encontrar el punto crítico no termina el problema: falta el paso 5, comprobar que es un máximo (P''(6) = −2 < 0), y responder en los términos del enunciado. Debes indicar que los dos números son 6 y 6 y que el producto máximo es 36."
+        },
+        {
+          "statement": "Una caja sin tapa, de base cuadrada, debe tener un volumen de 32 cm³. Halla las dimensiones que minimizan la cantidad de material.",
+          "correct_answer": "Lado de la base x, altura h: x²h = 32 ⇒ h = 32/x². S(x) = x² + 4xh = x² + 128/x. S'(x) = 2x − 128/x² = 0 ⇒ x³ = 64 ⇒ x = 4. S''(4) = 2 + 256/64 > 0 ⇒ mínimo. Base de 4 cm × 4 cm y altura de 2 cm.",
+          "wrong_answer": "x²h = 32 ⇒ h = 32/x². S(x) = 2x² + 4xh = 2x² + 128/x. S'(x) = 4x − 128/x² = 0 ⇒ x³ = 32 ⇒ x ≈ 3,17 cm.",
+          "mistake_location": "Paso 1 (función superficie)",
+          "error_type": "comprehension",
+          "explanation": "Has planteado la superficie de una caja con tapa, al contar dos veces el área de la base (2x²), pero el enunciado dice que la caja no tiene tapa. La superficie es S(x) = x² + 128/x, y con ella se obtiene x = 4 cm y h = 2 cm."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "Según el procedimiento del tema, ¿qué paso va justo después de expresar la magnitud en función de una sola variable?",
+          "options": ["Derivar e igualar a cero", "Determinar el dominio de la variable", "Comprobar con la segunda derivada", "Plantear la ligadura"],
+          "correct": 1,
+          "explanation": "El tercer paso es determinar el dominio en que la variable tiene sentido; es necesario para descartar puntos críticos no válidos y para comparar con los extremos del intervalo.",
+          "difficulty": 2
+        },
+        {
+          "statement": "Si f'(a) = 0 y f''(a) = 3, ¿qué se puede afirmar sobre x = a?",
+          "options": ["Es un máximo relativo", "Es un punto de inflexión", "No se puede concluir nada", "Es un mínimo relativo"],
+          "correct": 3,
+          "explanation": "Un punto crítico con segunda derivada positiva es un mínimo relativo.",
+          "difficulty": 1
+        },
+        {
+          "statement": "Entre todos los rectángulos de área 16 m², ¿cuál es el perímetro mínimo?",
+          "options": ["16 m", "32 m", "20 m", "8 m"],
+          "correct": 0,
+          "explanation": "Con y = 16/x, P(x) = 2x + 32/x y P'(x) = 2 − 32/x² = 0 da x = 4; el mínimo es un cuadrado de lado 4 m, con perímetro 16 m.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Integración por partes",
+      "document": "temas2-3-derivadas-integrales.docx",
+      "section": "3.3 Integración por partes",
+      "questions": [
+        {
+          "question": "cómo sé cuál tiene que ser la u y cuál la dv? siempre lo elijo al revés",
+          "answer": "Como u conviene la función que se simplifica al derivar, y como dv la que se integra con facilidad. La regla ALPES da el orden de preferencia para u: arco funciones, logarítmicas, polinómicas, exponenciales y seno o coseno. En ∫x e^x dx, por ejemplo, la polinómica va antes que la exponencial, así que u = x y dv = e^x dx."
+        },
+        {
+          "question": "en la integral de ln x no hay ningún producto, se puede hacer por partes igualmente?",
+          "answer": "Sí: se toma u = ln x y dv = dx, de modo que du = dx/x y v = x. Aplicando la fórmula, ∫ln x dx = x ln x − ∫x·(1/x) dx = x ln x − x + C. El «producto» es en realidad ln x por 1."
+        },
+        {
+          "question": "si se me olvida la constante C me quitan puntos? total es solo un número",
+          "answer": "La constante C es imprescindible: una integral indefinida no es una única función, sino toda la familia de primitivas, que difieren en una constante. Sin C la respuesta es incompleta y, en problemas con condiciones iniciales, perderías justo el dato que hay que determinar."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Calcula ∫x cos x dx.",
+          "correct_answer": "u = x, dv = cos x dx ⇒ du = dx, v = sen x. ∫x cos x dx = x sen x − ∫sen x dx = x sen x + cos x + C.",
+          "wrong_answer": "u = x, dv = cos x dx ⇒ du = dx, v = sen x. ∫x cos x dx = x sen x − ∫sen x dx = x sen x − cos x + C.",
+          "mistake_location": "Paso 3 (último signo)",
+          "error_type": "execution",
+          "explanation": "La elección de u y dv es correcta, pero ∫sen x dx = −cos x, de modo que −∫sen x dx = +cos x. El resultado es x sen x + cos x + C; puedes comprobarlo derivando."
+        },
+        {
+          "statement": "Calcula ∫x² e^x dx.",
+          "correct_answer": "u = x², dv = e^x dx: x² e^x − 2∫x e^x dx. De nuevo por partes, ∫x e^x dx = e^x(x − 1). Resultado: x² e^x − 2x e^x + 2e^x + C = e^x(x² − 2x + 2) + C.",
+          "wrong_answer": "u = x², dv = e^x dx ⇒ du = 2x dx, v = e^x. ∫x² e^x dx = x² e^x − 2∫x e^x dx.",
+          "mistake_location": "Última línea",
+          "error_type": "incomplete",
+          "explanation": "El primer paso es correcto, pero la integral que queda, ∫x e^x dx, todavía no está resuelta: hay que aplicar el método una segunda vez, como indica el tema para este caso. El resultado final es e^x(x² − 2x + 2) + C."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Cuál es la fórmula de integración por partes?",
+          "options": ["∫u dv = uv + ∫v du", "∫u dv = uv − ∫v du", "∫u dv = u'v − ∫uv'", "∫u dv = ∫u du · ∫v dv"],
+          "correct": 1,
+          "explanation": "La fórmula es ∫u dv = uv − ∫v du y se obtiene de la derivada de un producto.",
+          "difficulty": 1
+        },
+        {
+          "statement": "En ∫x ln x dx, ¿qué conviene tomar como u?",
+          "options": ["ln x", "x", "x ln x", "dx"],
+          "correct": 0,
+          "explanation": "Según ALPES, las logarítmicas van antes que las polinómicas. Además, ln x se simplifica al derivar (1/x) y no tiene una primitiva inmediata para usarla como dv.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Cuánto vale ∫x e^(2x) dx?",
+          "options": ["x e^(2x) − e^(2x) + C", "(x/2) e^(2x) + (1/4) e^(2x) + C", "(x/2) e^(2x) − (1/4) e^(2x) + C", "2x e^(2x) − 4e^(2x) + C"],
+          "correct": 2,
+          "explanation": "Con u = x y v = e^(2x)/2 se obtiene (x/2) e^(2x) − (1/2)∫e^(2x) dx = (x/2) e^(2x) − (1/4) e^(2x) + C.",
+          "difficulty": 3
+        }
+      ]
+    }
+  ],
+  "off_topic": [
+    "¿Cómo se calcula una integral doble sobre una región del plano?",
+    "¿Qué portátil me recomiendas para la carrera de Informática?"
+  ]
+}

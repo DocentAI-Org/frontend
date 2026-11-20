@@ -1,0 +1,369 @@
+{
+  "key": "edad-moderna-3b",
+  "name": "Historia: la Edad Moderna",
+  "description": "De los Reyes Católicos a la crisis del siglo XVII: descubrimientos, Reforma y el Imperio de los Austrias explicados con mapas, ejes y textos.",
+  "documents": [
+    {
+      "file_name": "tema7-inicios-edad-moderna.pdf",
+      "file_type": "pdf",
+      "page_count": 18,
+      "sections": [
+        {
+          "title": "7.2 Los Reyes Católicos",
+          "page": 4,
+          "text": "El matrimonio de Isabel de Castilla y Fernando de Aragón en 1469 unió las dos coronas más importantes de la península, pero no creó un único reino: cada corona mantuvo sus propias leyes, instituciones, moneda y Cortes. Por eso hablamos de una unión dinástica, es decir, de una unión basada en compartir los mismos reyes. Los Reyes Católicos fortalecieron el poder real frente a la nobleza, crearon la Santa Hermandad para mantener el orden y establecieron la Inquisición para vigilar la unidad religiosa. En 1492 se produjeron tres hechos clave: la conquista del reino nazarí de Granada, la expulsión de los judíos que no aceptaron convertirse y la llegada de Colón a América. Además, completaron la unidad territorial con la incorporación de Navarra en 1512, ya tras la muerte de Isabel."
+        },
+        {
+          "title": "7.3 Los grandes descubrimientos geográficos",
+          "page": 8,
+          "text": "En el siglo XV, Portugal y Castilla buscaron nuevas rutas hacia Asia para conseguir especias, oro y seda sin pasar por el Mediterráneo oriental, controlado por los turcos tras la caída de Constantinopla en 1453. Estos viajes fueron posibles gracias a avances técnicos como la brújula, el astrolabio y la carabela, un barco ligero y rápido capaz de navegar contra el viento. Portugal siguió la ruta africana: Bartolomé Díaz dobló el cabo de Buena Esperanza en 1488 y Vasco da Gama llegó a la India en 1498. Castilla apoyó el proyecto de Cristóbal Colón, que quería llegar a Asia navegando hacia el oeste y que, el 12 de octubre de 1492, llegó a una isla de las Bahamas sin saber que había encontrado un continente nuevo. Para repartirse las tierras descubiertas, Castilla y Portugal firmaron el Tratado de Tordesillas en 1494, que trazó una línea imaginaria de norte a sur en el Atlántico."
+        },
+        {
+          "title": "7.4 La Reforma protestante y la Contrarreforma",
+          "page": 12,
+          "text": "A comienzos del siglo XVI muchos cristianos criticaban la corrupción de la Iglesia, el lujo del clero y la venta de bulas o indulgencias, documentos con los que se perdonaban los pecados a cambio de dinero. En 1517 el monje alemán Martín Lutero publicó sus 95 tesis contra las indulgencias, lo que inició la Reforma protestante. Lutero defendía que la salvación se consigue solo por la fe, que cada creyente puede interpretar libremente la Biblia y que solo hay dos sacramentos, el bautismo y la eucaristía. La Iglesia católica respondió con la Contrarreforma, cuyo eje fue el Concilio de Trento (1545-1563), que reafirmó los siete sacramentos y la autoridad del papa, creó seminarios para formar a los sacerdotes y reforzó la Inquisición. Como consecuencia, Europa quedó dividida religiosamente entre un norte mayoritariamente protestante y un sur católico."
+        }
+      ]
+    },
+    {
+      "file_name": "tema8-los-austrias.docx",
+      "file_type": "docx",
+      "page_count": 14,
+      "sections": [
+        {
+          "title": "8.1 El Imperio de Carlos V",
+          "page": 2,
+          "text": "Carlos I de España, nieto de los Reyes Católicos y del emperador Maximiliano de Austria, heredó en 1516 un enorme conjunto de territorios: de sus abuelos maternos recibió Castilla, Aragón, los territorios italianos y las tierras americanas; de sus abuelos paternos, los Países Bajos, el Franco Condado y los dominios de los Habsburgo en Austria. En 1519 fue elegido emperador del Sacro Imperio Romano Germánico con el nombre de Carlos V. Su gran objetivo fue mantener la unidad de la cristiandad bajo su autoridad, lo que le llevó a enfrentarse con Francia, con el Imperio otomano y con los príncipes alemanes protestantes. Al principio de su reinado tuvo que hacer frente en Castilla a la revuelta de las Comunidades (1520-1521), protagonizada por ciudades que protestaban por la presencia de consejeros extranjeros y por los impuestos. En 1556, cansado, abdicó y repartió su herencia: a su hijo Felipe II le dejó los territorios hispánicos, italianos, americanos y los Países Bajos, y a su hermano Fernando, los dominios austriacos y el título imperial."
+        },
+        {
+          "title": "8.4 La crisis del siglo XVII",
+          "page": 10,
+          "text": "Durante el siglo XVII la Monarquía Hispánica entró en una profunda crisis. Los reyes de este siglo, Felipe III, Felipe IV y Carlos II, conocidos como los Austrias menores, dejaron el gobierno en manos de validos, personas de su confianza como el duque de Lerma o el conde-duque de Olivares. La población disminuyó por las epidemias de peste, las malas cosechas, las guerras y la expulsión de los moriscos en 1609, que afectó sobre todo a Valencia y Aragón. La economía se hundió: la llegada de plata americana se redujo, la agricultura y la artesanía decayeron y la Corona se declaró varias veces en bancarrota. Además, las guerras continuas llevaron a la pérdida de la hegemonía en Europa, como reflejó la Paz de Westfalia (1648), en la que se reconoció la independencia de las Provincias Unidas (Holanda). En 1640 estallaron rebeliones en Cataluña y Portugal; Portugal logró separarse definitivamente de la monarquía."
+        }
+      ]
+    },
+    {
+      "file_name": "ejercicios-resueltos-edad-moderna.md",
+      "file_type": "markdown",
+      "page_count": null,
+      "sections": [
+        {
+          "title": "Ejercicio resuelto 1: el eje cronológico",
+          "page": null,
+          "text": "Para hacer un eje cronológico de la Edad Moderna en España, dibujamos una línea de 1469 a 1700 con una escala fija (por ejemplo, 1 cm = 20 años). Marcamos los hechos en su posición: 1469, boda de los Reyes Católicos; 1492, toma de Granada y llegada a América; 1516, Carlos I rey; 1556, Felipe II rey; 1609, expulsión de los moriscos; 1700, muerte de Carlos II. Luego coloreamos los reinados por periodos para ver cuánto duró cada uno."
+        },
+        {
+          "title": "Ejercicio resuelto 2: comentario de un mapa de la herencia de Carlos V",
+          "page": null,
+          "text": "En el mapa identificamos con colores distintos la herencia de cada abuelo. Comentario modelo: «El mapa muestra la dispersión de los territorios de Carlos V por Europa y América. Esa dispersión explica que el emperador pasara gran parte de su vida viajando y que tuviera que enfrentarse a enemigos en muchos frentes a la vez»."
+        }
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "name": "Los Reyes Católicos",
+      "document": "tema7-inicios-edad-moderna.pdf",
+      "section": "7.2 Los Reyes Católicos",
+      "questions": [
+        {
+          "question": "con la boda de isabel y fernando ya era españa un solo pais?",
+          "answer": "No del todo. Fue una unión dinástica: Castilla y Aragón compartían los mismos reyes, pero cada corona mantuvo sus propias leyes, instituciones, moneda y Cortes."
+        },
+        {
+          "question": "que paso en 1492 que siempre sale en los examenes",
+          "answer": "En 1492 ocurrieron tres hechos clave: la conquista del reino nazarí de Granada, la expulsión de los judíos que no aceptaron convertirse y la llegada de Colón a América."
+        },
+        {
+          "question": "para que crearon la inquisicion",
+          "answer": "Los Reyes Católicos la establecieron para vigilar la unidad religiosa del reino. Formaba parte de su política de fortalecer el poder real, junto con la Santa Hermandad, que mantenía el orden."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Explica qué significa que la unión de Castilla y Aragón fuera una «unión dinástica».",
+          "correct_answer": "Significa que ambas coronas compartían a los mismos reyes, Isabel y Fernando, pero cada una conservó sus leyes, instituciones, moneda y Cortes.",
+          "wrong_answer": "Significa que Castilla y Aragón se juntaron en un solo reino con las mismas leyes y la misma moneda.",
+          "mistake_location": "Toda la respuesta",
+          "error_type": "conceptual",
+          "explanation": "Es justo lo contrario: no se creó un único reino. La unión dinástica consiste en compartir los reyes mientras cada corona mantiene sus propias leyes e instituciones."
+        },
+        {
+          "statement": "Ordena cronológicamente: incorporación de Navarra, boda de Isabel y Fernando, conquista de Granada.",
+          "correct_answer": "1469 boda de Isabel y Fernando; 1492 conquista de Granada; 1512 incorporación de Navarra.",
+          "wrong_answer": "1469 boda de Isabel y Fernando; 1512 incorporación de Navarra; 1492 conquista de Granada.",
+          "mistake_location": "Segundo y tercer hecho",
+          "error_type": "execution",
+          "explanation": "Las fechas son correctas, pero las has colocado en orden equivocado: 1492 va antes que 1512. Antes de entregar, comprueba que las fechas aumentan de un hecho al siguiente."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿En qué año se casaron Isabel y Fernando?",
+          "options": ["1469", "1492", "1479", "1512"],
+          "correct": 0,
+          "explanation": "El matrimonio se celebró en 1469.",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Cuál de estos hechos NO ocurrió en 1492?",
+          "options": ["Conquista de Granada", "Expulsión de los judíos", "Incorporación de Navarra", "Llegada de Colón a América"],
+          "correct": 2,
+          "explanation": "Navarra se incorporó en 1512.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Qué institución crearon los Reyes Católicos para mantener el orden?",
+          "options": ["Las Cortes", "El Consejo de Indias", "La Inquisición", "La Santa Hermandad"],
+          "correct": 3,
+          "explanation": "La Santa Hermandad se encargaba del orden; la Inquisición, de la unidad religiosa.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Los grandes descubrimientos",
+      "document": "tema7-inicios-edad-moderna.pdf",
+      "section": "7.3 Los grandes descubrimientos geográficos",
+      "questions": [
+        {
+          "question": "colon sabia que habia llegado a america?",
+          "answer": "No. Colón quería llegar a Asia navegando hacia el oeste y, cuando llegó a una isla de las Bahamas el 12 de octubre de 1492, no sabía que había encontrado un continente nuevo."
+        },
+        {
+          "question": "por que buscaban otra ruta si ya iban por el mediterraneo",
+          "answer": "Porque tras la caída de Constantinopla en 1453 los turcos controlaban el Mediterráneo oriental. Portugal y Castilla buscaron nuevas rutas para conseguir especias, oro y seda sin pasar por allí."
+        },
+        {
+          "question": "que es una carabela",
+          "answer": "Es un barco ligero y rápido capaz de navegar contra el viento. Junto con la brújula y el astrolabio, fue uno de los avances técnicos que hicieron posibles los grandes viajes."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Explica dos causas de los descubrimientos geográficos del siglo XV.",
+          "correct_answer": "La necesidad de nuevas rutas hacia Asia para conseguir especias, oro y seda, porque los turcos controlaban el Mediterráneo oriental desde 1453. Y los avances técnicos: brújula, astrolabio y carabela.",
+          "wrong_answer": "Porque querían descubrir América y conquistar a los indígenas.",
+          "mistake_location": "Toda la respuesta",
+          "error_type": "conceptual",
+          "explanation": "Nadie buscaba América, porque los europeos no sabían que existía. El objetivo era llegar a Asia por nuevas rutas, y los viajes fueron posibles gracias a avances técnicos como la carabela."
+        },
+        {
+          "statement": "Compara la ruta portuguesa y la castellana hacia Asia, con un viaje y una fecha de cada una.",
+          "correct_answer": "Portugal siguió la ruta africana: Vasco da Gama llegó a la India en 1498. Castilla apostó por la ruta del oeste: Colón llegó a América en 1492.",
+          "wrong_answer": "Portugal siguió la ruta africana: Vasco da Gama llegó a la India en 1498. Castilla también fue por África con Colón en 1492.",
+          "mistake_location": "Segunda oración",
+          "error_type": "comprehension",
+          "explanation": "La ruta portuguesa está bien, pero Colón no viajó por África: su proyecto era llegar a Asia navegando hacia el oeste por el Atlántico. Esa es la diferencia clave entre las dos rutas."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Qué tratado repartió las tierras descubiertas entre Castilla y Portugal?",
+          "options": ["Paz de Westfalia", "Tratado de Tordesillas", "Concilio de Trento", "Tratado de Utrecht"],
+          "correct": 1,
+          "explanation": "El Tratado de Tordesillas (1494) trazó una línea imaginaria en el Atlántico.",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Quién dobló el cabo de Buena Esperanza en 1488?",
+          "options": ["Vasco da Gama", "Cristóbal Colón", "Bartolomé Díaz", "Fernando de Magallanes"],
+          "correct": 2,
+          "explanation": "Bartolomé Díaz abrió la ruta africana; Vasco da Gama llegó a la India en 1498.",
+          "difficulty": 3
+        },
+        {
+          "statement": "¿Qué hecho de 1453 empujó a buscar nuevas rutas comerciales?",
+          "options": ["La caída de Constantinopla en manos turcas", "La conquista de Granada", "El viaje de Colón", "La Reforma protestante"],
+          "correct": 0,
+          "explanation": "Los turcos pasaron a controlar el Mediterráneo oriental.",
+          "difficulty": 2
+        }
+      ]
+    },
+    {
+      "name": "Reforma y Contrarreforma",
+      "document": "tema7-inicios-edad-moderna.pdf",
+      "section": "7.4 La Reforma protestante y la Contrarreforma",
+      "questions": [
+        {
+          "question": "que eran las indulgencias? se compraba el perdon?",
+          "answer": "Sí, más o menos. Las bulas o indulgencias eran documentos con los que se perdonaban los pecados a cambio de dinero. Su venta fue una de las críticas principales de Lutero en sus 95 tesis de 1517."
+        },
+        {
+          "question": "lutero queria crear otra religion?",
+          "answer": "Lutero empezó criticando la corrupción de la Iglesia y la venta de indulgencias. Sus ideas (salvación solo por la fe, libre interpretación de la Biblia, dos sacramentos) dieron origen a la Reforma protestante y a la división religiosa de Europa."
+        },
+        {
+          "question": "el concilio de trento es lo mismo que la contrarreforma",
+          "answer": "No exactamente: el Concilio de Trento (1545-1563) fue el eje de la Contrarreforma, pero esta incluyó más medidas. En Trento se reafirmaron los siete sacramentos y la autoridad del papa, se crearon seminarios y se reforzó la Inquisición."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Compara las ideas de Lutero con las que reafirmó el Concilio de Trento sobre los sacramentos y la autoridad.",
+          "correct_answer": "Lutero admitía solo dos sacramentos (bautismo y eucaristía) y defendía la libre interpretación de la Biblia. Trento reafirmó los siete sacramentos y la autoridad del papa.",
+          "wrong_answer": "Lutero admitía siete sacramentos y Trento solo dos, el bautismo y la eucaristía.",
+          "mistake_location": "Toda la respuesta",
+          "error_type": "comprehension",
+          "explanation": "Has intercambiado las posturas. Lutero redujo los sacramentos a dos, y el Concilio de Trento, como reacción, reafirmó los siete."
+        },
+        {
+          "statement": "Explica una consecuencia de la Reforma y la Contrarreforma para Europa.",
+          "correct_answer": "Europa quedó dividida religiosamente: el norte, mayoritariamente protestante, y el sur, católico.",
+          "wrong_answer": "Europa se dividió.",
+          "mistake_location": "Toda la respuesta",
+          "error_type": "incomplete",
+          "explanation": "La idea es correcta pero está incompleta: hay que explicar en qué consistió la división. Precisa que fue religiosa y qué zonas quedaron protestantes (norte) y católicas (sur)."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿En qué año publicó Lutero sus 95 tesis?",
+          "options": ["1492", "1545", "1563", "1517"],
+          "correct": 3,
+          "explanation": "Las 95 tesis de 1517 iniciaron la Reforma.",
+          "difficulty": 1
+        },
+        {
+          "statement": "Según Lutero, ¿cómo se consigue la salvación?",
+          "options": ["Solo por la fe", "Comprando indulgencias", "Con las buenas obras y los siete sacramentos", "Obedeciendo al papa"],
+          "correct": 0,
+          "explanation": "Lutero defendía la salvación solo por la fe.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Qué medida NO tomó el Concilio de Trento?",
+          "options": ["Crear seminarios", "Reafirmar la autoridad del papa", "Reducir los sacramentos a dos", "Reforzar la Inquisición"],
+          "correct": 2,
+          "explanation": "Reducir los sacramentos a dos fue una idea de Lutero; Trento reafirmó los siete.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "El Imperio de Carlos V",
+      "document": "tema8-los-austrias.docx",
+      "section": "8.1 El Imperio de Carlos V",
+      "questions": [
+        {
+          "question": "carlos I y carlos V son dos reyes distintos?",
+          "answer": "No, es la misma persona. Fue Carlos I como rey de España desde 1516 y Carlos V como emperador del Sacro Imperio Romano Germánico desde 1519."
+        },
+        {
+          "question": "de donde le vinieron tantos territorios",
+          "answer": "De sus cuatro abuelos. De los Reyes Católicos heredó Castilla, Aragón, los territorios italianos y América; de Maximiliano de Austria y su esposa, los Países Bajos, el Franco Condado y los dominios de los Habsburgo en Austria."
+        },
+        {
+          "question": "por que se rebelaron los comuneros",
+          "answer": "Las ciudades castellanas protestaban por la presencia de consejeros extranjeros en el gobierno y por los impuestos. La revuelta de las Comunidades tuvo lugar entre 1520 y 1521."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Explica cómo repartió Carlos V su herencia al abdicar en 1556.",
+          "correct_answer": "A su hijo Felipe II le dejó los territorios hispánicos, italianos, americanos y los Países Bajos. A su hermano Fernando, los dominios austriacos y el título imperial.",
+          "wrong_answer": "Se lo dejó todo a su hijo Felipe II, que también fue emperador.",
+          "mistake_location": "Toda la respuesta",
+          "error_type": "conceptual",
+          "explanation": "Carlos V dividió su herencia. Felipe II no fue emperador: los dominios austriacos y el título imperial pasaron a su hermano Fernando."
+        },
+        {
+          "statement": "Nombra tres enemigos de Carlos V y explica por qué se enfrentó a ellos.",
+          "correct_answer": "Francia, el Imperio otomano y los príncipes alemanes protestantes. Se enfrentó a ellos porque quería mantener la unidad de la cristiandad bajo su autoridad.",
+          "wrong_answer": "Francia, el Imperio otomano y los príncipes protestantes alemanes, porque querían quitarle América.",
+          "mistake_location": "Explicación de la causa",
+          "error_type": "comprehension",
+          "explanation": "Los enemigos son correctos, pero la causa no. Los conflictos se debieron al objetivo de Carlos V de mantener la unidad de la cristiandad bajo su autoridad, no a América."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿En qué año fue elegido Carlos emperador?",
+          "options": ["1516", "1519", "1521", "1556"],
+          "correct": 1,
+          "explanation": "En 1516 heredó los reinos hispánicos y en 1519 fue elegido emperador.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Qué territorio heredó Carlos de sus abuelos paternos?",
+          "options": ["Castilla", "Las tierras americanas", "Aragón", "Los Países Bajos"],
+          "correct": 3,
+          "explanation": "Los Países Bajos procedían de la herencia de Maximiliano de Austria y su esposa.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Cuál fue el gran objetivo político de Carlos V?",
+          "options": ["Mantener la unidad de la cristiandad bajo su autoridad", "Conquistar el Imperio otomano", "Expulsar a los moriscos", "Separar Castilla de Aragón"],
+          "correct": 0,
+          "explanation": "Ese objetivo explica sus guerras con Francia, los otomanos y los protestantes.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "La crisis del siglo XVII",
+      "document": "tema8-los-austrias.docx",
+      "section": "8.4 La crisis del siglo XVII",
+      "questions": [
+        {
+          "question": "que es un valido? es como un ministro?",
+          "answer": "Se parece, pero era una persona de confianza del rey a la que este dejaba el gobierno en sus manos. Los Austrias menores gobernaron con validos como el duque de Lerma o el conde-duque de Olivares."
+        },
+        {
+          "question": "por que bajo tanto la poblacion",
+          "answer": "Por varias causas a la vez: las epidemias de peste, las malas cosechas, las guerras y la expulsión de los moriscos en 1609, que afectó sobre todo a Valencia y Aragón."
+        },
+        {
+          "question": "portugal no era de españa?",
+          "answer": "Formó parte de la Monarquía Hispánica durante un tiempo, pero en 1640 se rebeló, igual que Cataluña. Portugal logró separarse definitivamente."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Explica tres causas de la crisis demográfica del siglo XVII en España.",
+          "correct_answer": "Las epidemias de peste, las malas cosechas y las guerras. Además, la expulsión de los moriscos en 1609 redujo la población, sobre todo en Valencia y Aragón.",
+          "wrong_answer": "Las epidemias de peste, la llegada de mucha plata de América y la expulsión de los judíos en 1609.",
+          "mistake_location": "Segunda y tercera causa",
+          "error_type": "comprehension",
+          "explanation": "La plata americana no aumentó, sino que disminuyó, y es un factor económico, no demográfico. Además, en 1609 se expulsó a los moriscos; los judíos fueron expulsados en 1492."
+        },
+        {
+          "statement": "Redacta un párrafo que explique la pérdida de la hegemonía española en Europa en el siglo XVII.",
+          "correct_answer": "Las guerras continuas agotaron a la Monarquía Hispánica, que perdió su hegemonía en Europa. La Paz de Westfalia (1648) lo reflejó al reconocer la independencia de las Provincias Unidas.",
+          "wrong_answer": "Guerras. Westfalia 1648. Holanda independiente. España pierde.",
+          "mistake_location": "Todo el párrafo",
+          "error_type": "expression",
+          "explanation": "Los datos son correctos, pero no forman un párrafo: son palabras sueltas sin verbos ni conectores. Redáctalo relacionando las ideas: las guerras causaron la pérdida de la hegemonía y la Paz de Westfalia lo confirmó."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Qué reyes forman el grupo de los Austrias menores?",
+          "options": ["Carlos I, Felipe II y Felipe III", "Felipe III, Felipe IV y Carlos II", "Isabel, Fernando y Carlos I", "Felipe II, Felipe IV y Carlos II"],
+          "correct": 1,
+          "explanation": "Los Austrias menores son los reyes del siglo XVII.",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Qué tratado de 1648 reconoció la independencia de las Provincias Unidas?",
+          "options": ["Tordesillas", "Utrecht", "Westfalia", "Trento"],
+          "correct": 2,
+          "explanation": "La Paz de Westfalia reflejó la pérdida de la hegemonía española.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Qué territorio se separó definitivamente de la monarquía tras la rebelión de 1640?",
+          "options": ["Cataluña", "Valencia", "Aragón", "Portugal"],
+          "correct": 3,
+          "explanation": "En 1640 se rebelaron Cataluña y Portugal, pero solo Portugal logró separarse.",
+          "difficulty": 3
+        }
+      ]
+    }
+  ],
+  "off_topic": [
+    "¿Cómo era la vida diaria en una ciudad azteca antes de la llegada de Hernán Cortés?",
+    "¿Qué pasó en la Revolución francesa?"
+  ]
+}

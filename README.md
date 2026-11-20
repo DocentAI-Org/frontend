@@ -79,8 +79,13 @@ To run against the real backend, start it as described in its README (Supabase, 
 ### Demo mode
 
 `DEMO_MODE=on npm run dev` runs the app with no backend: its API and Auth calls are answered in
-process by the typed mock of the E2E tests (`tests/app/mock-api/demo.ts`), loaded with a sample
-algebra course, a student's activity and a quiz bank. The sign-in page lists the sample accounts
+process by the typed mock of the E2E tests (`tests/app/mock-api/demo.ts`), loaded with sample
+data: four teachers, twelve courses (secondary maths, language and history, and first-year
+university computing) with their material, topics and question banks, three class groups of
+26–29 students, and eight weeks of activity generated per student (chats, exercises, quizzes,
+pre/post tests, teacher corrections), so the dashboards and lists show realistic volumes. The
+material and class lists are in `tests/app/mock-api/demo-data/`, shared with the backend's seed
+script. The sign-in page lists the sample accounts
 with one-click buttons, and a notice on every page says the data is fictitious. Changes live in
 the server's memory: every visitor sees them, and the data starts over every hour (and whenever
 the server restarts).

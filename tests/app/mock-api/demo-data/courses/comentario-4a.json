@@ -1,0 +1,364 @@
+{
+  "key": "comentario-4a",
+  "name": "Comentario de texto",
+  "description": "Aprendemos paso a paso a comentar textos literarios y periodísticos: localización, tema, estructura, recursos y valoración crítica.",
+  "documents": [
+    {
+      "file_name": "guia-comentario-de-texto.pdf",
+      "file_type": "pdf",
+      "page_count": 16,
+      "sections": [
+        {
+          "title": "1.1 La localización del texto",
+          "page": 2,
+          "text": "Localizar un texto es situarlo antes de analizarlo: indicar el autor, la obra a la que pertenece, el género literario, la época o movimiento y, si se conoce, el lugar que ocupa el fragmento dentro de la obra. La localización debe ser breve, de tres o cuatro líneas, y solo incluir datos que ayuden a entender el texto, no una biografía completa del autor. Por ejemplo: «El fragmento pertenece a las Rimas de Gustavo Adolfo Bécquer, obra lírica publicada en 1871 tras la muerte del autor y considerada una de las cumbres del Romanticismo tardío español; en ella el poeta reflexiona sobre la poesía, el amor y el desengaño». Si el texto no es literario, como un artículo de opinión, se indica el medio, la fecha y la sección en que apareció."
+        },
+        {
+          "title": "1.2 El tema y el resumen",
+          "page": 4,
+          "text": "El tema es la idea central del texto expresada en una sola frase breve, normalmente encabezada por un sustantivo abstracto: «La fugacidad de la vida», «El amor como fuerza que da sentido al mundo». No hay que confundirlo con el resumen, que cuenta el contenido del texto con nuestras propias palabras, de forma objetiva y sin copiar frases del original, en unas cinco líneas. Un error frecuente es escribir como tema el argumento («Un hombre recuerda a su amada que ha muerto») o una frase demasiado general («El amor»). Para encontrar el tema conviene preguntarse qué quiere transmitir el autor y qué palabras o ideas se repiten. Por ejemplo, en las Coplas de Jorge Manrique, los versos «Nuestras vidas son los ríos / que van a dar en la mar, / que es el morir» expresan el tema de la muerte como destino que iguala a todos."
+        },
+        {
+          "title": "1.3 La estructura del texto",
+          "page": 7,
+          "text": "Analizar la estructura consiste en dividir el texto en partes según su contenido y explicar cómo se relacionan entre sí. Cada parte se señala con las líneas o versos que abarca y se resume en una frase: por ejemplo, «Versos 1-4: el poeta describe el paisaje de otoño; versos 5-8: relaciona ese paisaje con su propia tristeza». En los textos argumentativos se suele hablar de estructura analizante (la tesis aparece al principio), sintetizante (la tesis aparece al final como conclusión) o encuadrada (la tesis aparece al principio y se repite al final). No basta con decir «introducción, desarrollo y conclusión»: hay que justificar dónde empieza y termina cada parte y por qué. Las marcas lingüísticas, como los conectores («sin embargo», «en definitiva») o un cambio de tiempo verbal, ayudan a ver los límites entre partes."
+        }
+      ]
+    },
+    {
+      "file_name": "recursos-y-valoracion-critica.md",
+      "file_type": "markdown",
+      "page_count": null,
+      "sections": [
+        {
+          "title": "2.1 Las figuras retóricas más frecuentes",
+          "page": null,
+          "text": "Las figuras retóricas son usos especiales del lenguaje que embellecen el texto y refuerzan su significado. La metáfora identifica un elemento real con otro imaginario por su parecido («Nuestras vidas son los ríos»); el símil o comparación hace lo mismo pero con un nexo como «como» o «cual» («Tus ojos brillan como estrellas»). La personificación atribuye cualidades humanas a seres inanimados («El viento lloraba en la ventana»), la anáfora repite una palabra al principio de varios versos y la hipérbole exagera («Te lo he dicho un millón de veces»). En el comentario no basta con nombrar la figura: hay que citar el ejemplo y explicar qué efecto produce o qué idea refuerza. Por ejemplo: «La metáfora de los ríos presenta la vida como un recorrido que avanza sin remedio hacia la muerte, simbolizada por el mar»."
+        },
+        {
+          "title": "2.2 La valoración crítica",
+          "page": null,
+          "text": "La valoración crítica es la parte final del comentario y en ella el alumno da su opinión razonada sobre el texto. Debe valorar dos aspectos: el contenido (si el tema sigue siendo actual, si estamos de acuerdo con las ideas del autor) y la forma (si los recursos y la estructura son adecuados para lo que se quiere transmitir). Las opiniones deben apoyarse siempre en argumentos y en referencias al texto; expresiones como «me ha gustado mucho» o «es aburrido» no sirven por sí solas. Es recomendable relacionar el texto con otras obras, con la época o con la actualidad: por ejemplo, la reflexión de Manrique sobre la muerte que iguala a ricos y pobres puede conectarse con debates actuales sobre la desigualdad. La valoración se cierra con una conclusión breve que recoja la idea principal de nuestra opinión."
+        }
+      ]
+    },
+    {
+      "file_name": "modelo-comentario-resuelto.docx",
+      "file_type": "docx",
+      "page_count": 6,
+      "sections": [
+        {
+          "title": "Modelo resuelto: Rima XXI de Bécquer",
+          "page": 1,
+          "text": "Texto: «¿Qué es poesía?, dices mientras clavas / en mi pupila tu pupila azul. / ¿Qué es poesía? ¿Y tú me lo preguntas? / Poesía... eres tú». Localización: Rimas de Bécquer, Romanticismo. Tema: la identificación entre la mujer amada y la poesía. Estructura: versos 1-2, pregunta de la amada; versos 3-4, respuesta del poeta. Recursos: interrogaciones retóricas y repetición de «pupila», que acerca a los amantes. Valoración: la brevedad y la sorpresa final hacen que el poema siga resultando cercano a un lector actual."
+        }
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "name": "Localización del texto",
+      "document": "guia-comentario-de-texto.pdf",
+      "section": "1.1 La localización del texto",
+      "questions": [
+        {
+          "question": "en la localizacion tengo que poner toda la vida del autor? cuando nacio y todo eso",
+          "answer": "No, la localización debe ser breve, de tres o cuatro líneas. Solo se incluyen los datos que ayudan a entender el texto: autor, obra, género, época o movimiento y, si se sabe, el lugar del fragmento en la obra. Una biografía completa sobra."
+        },
+        {
+          "question": "y si el texto es de un periodico que pongo",
+          "answer": "Si no es un texto literario, como un artículo de opinión, indicas el medio en que se publicó, la fecha y la sección. Si conoces al autor, también lo mencionas."
+        },
+        {
+          "question": "hay que decir el movimiento literario aunque no salga en el texto?",
+          "answer": "Sí, si lo conoces, porque situar el texto en su época o movimiento ayuda a entenderlo. Por ejemplo, decir que las Rimas de Bécquer pertenecen al Romanticismo tardío explica muchos rasgos del poema."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Redacta la localización de un fragmento de las Coplas por la muerte de su padre, de Jorge Manrique (siglo XV).",
+          "correct_answer": "El fragmento pertenece a las Coplas por la muerte de su padre, poema lírico escrito por Jorge Manrique en el siglo XV, a finales de la Edad Media. En la obra el autor reflexiona sobre la fugacidad de la vida y la muerte a partir del fallecimiento de su padre.",
+          "wrong_answer": "Jorge Manrique fue un poeta y militar que nació en Paredes de Nava. Participó en muchas batallas y murió luchando. Fue sobrino de otro poeta y era de una familia noble muy importante de Castilla.",
+          "mistake_location": "Todo el párrafo",
+          "error_type": "comprehension",
+          "explanation": "Has escrito una biografía del autor, pero no has localizado el texto: falta la obra, el género y la época. La localización debe ser breve y centrarse en los datos que ayudan a entender el fragmento."
+        },
+        {
+          "statement": "Localiza este texto: artículo de opinión titulado «Ciudades sin árboles», publicado en un periódico digital el 12 de marzo de 2025.",
+          "correct_answer": "Se trata de un artículo de opinión, texto periodístico argumentativo, publicado en la sección de Opinión de un periódico digital el 12 de marzo de 2025 con el título «Ciudades sin árboles».",
+          "wrong_answer": "Es un texto del Romanticismo porque habla de la naturaleza y de los sentimientos del autor.",
+          "mistake_location": "Primera oración",
+          "error_type": "conceptual",
+          "explanation": "Has aplicado la localización de un texto literario a un texto periodístico y has adivinado un movimiento por el tema. En un texto no literario hay que indicar el medio, la fecha y la sección, que aquí aparecen en el enunciado."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Qué dato NO es necesario en una localización?",
+          "options": ["La obra a la que pertenece", "El nombre de los hermanos del autor", "La época o movimiento", "El género literario"],
+          "correct": 1,
+          "explanation": "Solo se incluyen datos que ayuden a entender el texto, no detalles biográficos.",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Qué extensión aproximada debe tener la localización?",
+          "options": ["Una página", "Una sola palabra", "Tres o cuatro líneas", "Diez líneas como mínimo"],
+          "correct": 2,
+          "explanation": "La guía recomienda que sea breve, de tres o cuatro líneas.",
+          "difficulty": 1
+        },
+        {
+          "statement": "Al localizar un artículo de opinión, ¿qué datos se indican?",
+          "options": ["Movimiento literario y métrica", "Solo el título", "La biografía del periodista", "Medio, fecha y sección"],
+          "correct": 3,
+          "explanation": "En los textos no literarios se indica el medio, la fecha y la sección de publicación.",
+          "difficulty": 2
+        }
+      ]
+    },
+    {
+      "name": "Tema y resumen",
+      "document": "guia-comentario-de-texto.pdf",
+      "section": "1.2 El tema y el resumen",
+      "questions": [
+        {
+          "question": "el tema y el resumen no son lo mismo pero mas corto?",
+          "answer": "No exactamente. El resumen cuenta el contenido del texto con tus palabras en unas cinco líneas. El tema es la idea central en una sola frase breve, normalmente con un sustantivo abstracto, como «La fugacidad de la vida»; no cuenta lo que pasa."
+        },
+        {
+          "question": "si pongo de tema el amor esta bien?",
+          "answer": "Es demasiado general. El tema debe concretar qué se dice sobre el amor, por ejemplo «El amor como fuerza que da sentido al mundo». Pregúntate qué quiere transmitir el autor y qué ideas se repiten."
+        },
+        {
+          "question": "en el resumen puedo copiar frases del texto si son importantes",
+          "answer": "Mejor no. El resumen debe hacerse con tus propias palabras y de forma objetiva, sin copiar frases del original ni dar tu opinión."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Escribe el tema de estos versos de Jorge Manrique: «Nuestras vidas son los ríos / que van a dar en la mar, / que es el morir».",
+          "correct_answer": "La muerte como destino inevitable que iguala a todos los seres humanos.",
+          "wrong_answer": "El poeta dice que nuestras vidas son como ríos que van al mar y el mar es la muerte.",
+          "mistake_location": "Toda la respuesta",
+          "error_type": "procedural",
+          "explanation": "Has parafraseado los versos en lugar de extraer la idea central. El tema se formula en una frase breve, normalmente con un sustantivo abstracto, como «La muerte como destino inevitable»."
+        },
+        {
+          "statement": "Resume en dos o tres líneas la Rima XXI de Bécquer («¿Qué es poesía?, dices...»).",
+          "correct_answer": "La amada pregunta al poeta qué es la poesía mientras lo mira a los ojos, y él le responde que la poesía es ella misma.",
+          "wrong_answer": "La amada le pregunta qué es poesía y el poeta, de forma muy bonita y romántica, le dice que es ella, lo cual me parece precioso.",
+          "mistake_location": "Segunda parte de la oración",
+          "error_type": "expression",
+          "explanation": "El contenido es correcto, pero el resumen debe ser objetivo: «de forma muy bonita» y «me parece precioso» son opiniones. Guarda tus valoraciones para la valoración crítica."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Cuál de estas frases está bien formulada como tema?",
+          "options": ["La fugacidad de la vida humana", "Un hombre recuerda a su padre muerto", "El amor", "En el texto el autor habla de muchas cosas"],
+          "correct": 0,
+          "explanation": "Es breve, abstracta y concreta; las otras son argumento, demasiado general o vaga.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Qué característica debe tener el resumen?",
+          "options": ["Incluir la opinión del alumno", "Copiar las frases más importantes", "Ser objetivo y con palabras propias", "Ocupar una sola palabra"],
+          "correct": 2,
+          "explanation": "El resumen es objetivo y se redacta con nuestras propias palabras.",
+          "difficulty": 1
+        },
+        {
+          "statement": "«Un joven pierde a su amada y vaga por el bosque» es un error al escribir el tema porque…",
+          "options": ["es demasiado abstracto", "es una opinión", "no tiene sustantivos", "cuenta el argumento en lugar de la idea central"],
+          "correct": 3,
+          "explanation": "Narra lo que ocurre; el tema expresaría la idea, como «El dolor por la pérdida amorosa».",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Estructura del texto",
+      "document": "guia-comentario-de-texto.pdf",
+      "section": "1.3 La estructura del texto",
+      "questions": [
+        {
+          "question": "puedo poner introduccion desarrollo y conclusion y ya?",
+          "answer": "No basta. Tienes que indicar qué líneas o versos abarca cada parte, resumir su contenido en una frase y justificar por qué empieza y termina ahí. Las etiquetas solas no explican nada del texto."
+        },
+        {
+          "question": "que es estructura sintetizante",
+          "answer": "Es la de un texto argumentativo que presenta primero los argumentos y deja la tesis para el final, como conclusión. Si la tesis aparece al principio, es analizante, y si aparece al principio y se repite al final, encuadrada."
+        },
+        {
+          "question": "como se donde empieza una parte nueva",
+          "answer": "Fíjate en las marcas lingüísticas: conectores como «sin embargo» o «en definitiva», un cambio de tiempo verbal o un cambio en el contenido. Suelen señalar el límite entre partes."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Señala la estructura de un poema de 8 versos en el que los versos 1-4 describen un jardín en otoño y los versos 5-8 relacionan ese paisaje con la tristeza del poeta.",
+          "correct_answer": "Dos partes. Versos 1-4: descripción del jardín otoñal. Versos 5-8: el poeta proyecta su tristeza en el paisaje. La segunda parte da sentido a la primera: el otoño refleja su estado de ánimo.",
+          "wrong_answer": "Introducción: versos 1-2. Desarrollo: versos 3-6. Conclusión: versos 7-8.",
+          "mistake_location": "Toda la división",
+          "error_type": "procedural",
+          "explanation": "Has aplicado un esquema fijo sin mirar el contenido y sin resumir cada parte. Divide el texto según lo que dice (descripción y sentimiento) y explica cómo se relacionan las partes."
+        },
+        {
+          "statement": "Un artículo empieza con la tesis «Los deberes en vacaciones son innecesarios», ofrece tres argumentos y termina: «En definitiva, las vacaciones deben servir para descansar». Indica su tipo de estructura.",
+          "correct_answer": "Estructura encuadrada: la tesis aparece al principio y se repite al final, introducida por «En definitiva».",
+          "wrong_answer": "Estructura analizante, porque la tesis aparece al principio.",
+          "mistake_location": "Clasificación de la estructura",
+          "error_type": "incomplete",
+          "explanation": "Te has fijado solo en el principio. La conclusión con «En definitiva» retoma la tesis, y cuando la tesis aparece al principio y al final la estructura es encuadrada."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "Si la tesis aparece solo al final del texto, la estructura es…",
+          "options": ["analizante", "sintetizante", "encuadrada", "circular"],
+          "correct": 1,
+          "explanation": "En la estructura sintetizante la tesis se presenta al final como conclusión.",
+          "difficulty": 2
+        },
+        {
+          "statement": "¿Qué ayuda a detectar el límite entre dos partes de un texto?",
+          "options": ["El número de palabras", "La longitud del título", "Los conectores y los cambios de tiempo verbal", "El nombre del autor"],
+          "correct": 2,
+          "explanation": "Las marcas lingüísticas, como los conectores, suelen señalar el paso de una parte a otra.",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Cuál es la forma correcta de presentar una parte de la estructura?",
+          "options": ["«Desarrollo»", "«Parte 2: lo de en medio»", "«Conclusión: el final»", "«Versos 5-8: el poeta relaciona el paisaje con su tristeza»"],
+          "correct": 3,
+          "explanation": "Se indica qué versos o líneas abarca y se resume su contenido.",
+          "difficulty": 2
+        }
+      ]
+    },
+    {
+      "name": "Figuras retóricas",
+      "document": "recursos-y-valoracion-critica.md",
+      "section": "2.1 Las figuras retóricas más frecuentes",
+      "questions": [
+        {
+          "question": "cual es la diferencia entre metafora y comparacion",
+          "answer": "Las dos relacionan un elemento real con otro por su parecido, pero el símil o comparación usa un nexo como «como» o «cual» («Tus ojos brillan como estrellas»). La metáfora los identifica directamente, sin nexo («Nuestras vidas son los ríos»)."
+        },
+        {
+          "question": "con poner metafora y el verso es suficiente no?",
+          "answer": "No, en el comentario hay que nombrar la figura, citar el ejemplo y explicar qué efecto produce o qué idea refuerza. Por ejemplo, que la metáfora de los ríos presenta la vida como un recorrido que avanza hacia la muerte."
+        },
+        {
+          "question": "el viento lloraba es una metafora?",
+          "answer": "Es una personificación, porque se atribuye una acción humana, llorar, a algo inanimado como el viento."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Identifica la figura retórica y explica su efecto: «Te lo he dicho un millón de veces».",
+          "correct_answer": "Hipérbole: exagera el número de veces para expresar el enfado y el cansancio de quien habla.",
+          "wrong_answer": "Metáfora, porque compara las veces con un millón.",
+          "mistake_location": "Identificación de la figura",
+          "error_type": "conceptual",
+          "explanation": "No hay identificación de un elemento real con otro imaginario, sino una exageración. Esa figura es la hipérbole, y su efecto es transmitir el enfado del hablante."
+        },
+        {
+          "statement": "Analiza la figura de «Nuestras vidas son los ríos / que van a dar en la mar, / que es el morir» como lo harías en un comentario.",
+          "correct_answer": "Metáfora: la vida se identifica con los ríos y la muerte con el mar. Presenta la vida como un recorrido que avanza sin remedio hacia la muerte, donde todo termina.",
+          "wrong_answer": "Metáfora: «Nuestras vidas son los ríos».",
+          "mistake_location": "Falta la explicación del efecto",
+          "error_type": "incomplete",
+          "explanation": "Identificas bien la metáfora, pero en un comentario no basta con nombrarla y citarla. Explica qué idea refuerza: la vida como un río que fluye inevitablemente hacia el mar de la muerte."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "«Tus ojos brillan como estrellas» es un ejemplo de…",
+          "options": ["símil o comparación", "metáfora", "hipérbole", "anáfora"],
+          "correct": 0,
+          "explanation": "Relaciona dos elementos mediante el nexo «como».",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Qué figura repite una palabra al principio de varios versos?",
+          "options": ["Personificación", "Hipérbole", "Anáfora", "Símil"],
+          "correct": 2,
+          "explanation": "La anáfora es la repetición al comienzo de versos u oraciones.",
+          "difficulty": 2
+        },
+        {
+          "statement": "«La ciudad dormía bajo la niebla» contiene…",
+          "options": ["una hipérbole", "una anáfora", "un símil", "una personificación"],
+          "correct": 3,
+          "explanation": "Atribuye una acción humana, dormir, a algo inanimado.",
+          "difficulty": 3
+        }
+      ]
+    },
+    {
+      "name": "Valoración crítica",
+      "document": "recursos-y-valoracion-critica.md",
+      "section": "2.2 La valoración crítica",
+      "questions": [
+        {
+          "question": "en la valoracion puedo decir que no me ha gustado?",
+          "answer": "Sí, puedes, pero tienes que justificarlo con argumentos y referencias al texto. «Es aburrido» por sí solo no sirve; explica por qué, por ejemplo si el tema te parece poco actual o si los recursos no transmiten bien la idea."
+        },
+        {
+          "question": "que se valora el contenido o la forma",
+          "answer": "Las dos cosas. En el contenido valoras si el tema sigue siendo actual y si estás de acuerdo con el autor; en la forma, si los recursos y la estructura son adecuados para lo que quiere transmitir."
+        },
+        {
+          "question": "hay que relacionarlo con algo de ahora o no hace falta",
+          "answer": "Es muy recomendable. Relacionar el texto con otras obras, con su época o con la actualidad enriquece la valoración; por ejemplo, la muerte que iguala a ricos y pobres en Manrique puede conectarse con debates actuales sobre la desigualdad."
+        }
+      ],
+      "exercises": [
+        {
+          "statement": "Escribe una valoración crítica breve (4-5 líneas) de la Rima XXI de Bécquer.",
+          "correct_answer": "El tema, el amor como fuente de la poesía, sigue siendo actual. En cuanto a la forma, las interrogaciones y la respuesta final sorprenden al lector y transmiten con pocas palabras la intensidad del sentimiento. En conclusión, su brevedad y sencillez lo hacen cercano hoy.",
+          "wrong_answer": "Me ha gustado mucho el poema porque es muy bonito y corto. Bécquer es un gran poeta y lo recomiendo.",
+          "mistake_location": "Todo el párrafo",
+          "error_type": "expression",
+          "explanation": "Tu valoración expresa opiniones sin argumentos ni referencias al texto. Explica por qué te gusta, mencionando el contenido (si el tema es actual) y la forma (cómo funcionan las preguntas y la respuesta final)."
+        },
+        {
+          "statement": "Indica qué dos aspectos del texto deben valorarse en la valoración crítica y pon un ejemplo de cada uno.",
+          "correct_answer": "El contenido: si el tema de la muerte en Manrique sigue siendo actual. La forma: si la metáfora de los ríos es adecuada para transmitir la idea de la vida que pasa.",
+          "wrong_answer": "El autor: si es famoso. La época: si es antigua o moderna.",
+          "mistake_location": "Los dos aspectos",
+          "error_type": "comprehension",
+          "explanation": "La valoración no juzga la fama del autor ni la antigüedad del texto. Los dos aspectos que se valoran son el contenido y la forma del propio texto."
+        }
+      ],
+      "quiz": [
+        {
+          "statement": "¿Cuál de estas frases es adecuada para una valoración crítica?",
+          "options": ["Es aburrido", "La metáfora final refuerza con eficacia la idea de la muerte", "Me ha gustado mucho", "No lo he entendido"],
+          "correct": 1,
+          "explanation": "Es una opinión razonada y referida al texto.",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Dónde se sitúa la valoración crítica dentro del comentario?",
+          "options": ["Al principio", "Después de la localización", "Al final", "Dentro del resumen"],
+          "correct": 2,
+          "explanation": "Es la parte final y se cierra con una conclusión breve.",
+          "difficulty": 1
+        },
+        {
+          "statement": "¿Qué recomienda la guía para enriquecer la valoración?",
+          "options": ["Relacionar el texto con otras obras, su época o la actualidad", "Copiar opiniones de críticos", "Repetir el resumen", "Contar la biografía del autor"],
+          "correct": 0,
+          "explanation": "Las conexiones con otras obras y con la actualidad dan profundidad a la opinión.",
+          "difficulty": 2
+        }
+      ]
+    }
+  ],
+  "off_topic": [
+    "¿Cómo se mide un verso y qué es una sinalefa?",
+    "¿Me recomiendas una serie para ver este fin de semana?"
+  ]
+}
