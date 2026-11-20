@@ -35,9 +35,8 @@ The hooks in `.githooks/` are mirrored in the backend repository: change both to
 
 - One PR per feature, squash-merged. The PR title becomes the commit, so it follows the same
   format (a task ID is not required in the title).
-- The template asks for the prototype pages a UI change implements, the Vercel preview and the
-  pedagogy review.
-- The description follows the template: summary, type, prototype pages, what changes, screenshots, how to
+- The template asks for screenshots of UI changes, the Vercel preview and the pedagogy review.
+- The description follows the template: summary, type, what changes, screenshots, how to
   verify, dependencies and merge order, risks and rollback, checks, and known gaps. CI fails if
   "Summary" or "How to verify" is empty. Write "None" or "n/a" in a section that does not apply.
 - "How to verify" is written for a reviewer who has not followed the work: setup (and whether
@@ -47,12 +46,6 @@ The hooks in `.githooks/` are mirrored in the backend repository: change both to
 
 ## CI
 
-`CI` runs lint, types, unit tests and the build on every pull request, and the E2E suites only
-where a change can affect them (`scripts/ci-changes.sh`):
-
-- **App E2E** (3 shards): anything but documentation (`docs/`, `*.md`), repository
-  tooling and the prototype.
-- **Prototype E2E** (3 shards): `public/prototype/`, its tests, dependencies, Next.js and Vercel
-  config, `src/proxy.ts` and the workflow itself.
-
-Pushes to `main` run everything.
+`CI` runs lint, types, unit tests and the build on every pull request, and the app E2E suite
+(3 shards) for anything but documentation (`docs/`, `*.md`) and repository tooling
+(`scripts/ci-changes.sh`). Pushes to `main` run everything.

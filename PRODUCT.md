@@ -40,7 +40,7 @@ The teacher controls the content and the AI assists. ChatGPT-based tools, Khan A
 ## Capabilities and Constraints
 
 - **Stack (existing):** Next.js 16 App Router, React 19, strict TypeScript and Tailwind v4, deployed on Vercel, with Supabase Auth, Sentry and a FastAPI backend whose OpenAPI schema generates the API types.
-- **Design source of truth:** a static HTML prototype in `public/prototype/` (plain HTML, Tailwind v4 browser build, tokens in `@theme`). Figma is not used. The prototype's tokens and component names must match the React app exactly. Hardcoded visual values are forbidden outside token definitions. `spec.md` owns behaviour.
+- **Design source of truth:** the app itself: tokens in `src/app/theme.css` (`@theme`), described in `DESIGN.md`, and the components in `src/components/`. Figma is not used. Hardcoded visual values are forbidden outside token definitions. `spec.md` owns behaviour. The static HTML prototype that guided the first screens is archived in the `archive/prototype` branch.
 - **Accessibility:** WCAG 2.2 AA is non-negotiable (see below).
 - **Bilingual:** ES and EN. All strings are externalized, and dates, numbers and plurals follow the active locale.
 - **Required states:** every data-driven screen has populated, empty, loading and error states. Errors explain the problem in plain language and offer a recovery action.
@@ -48,11 +48,11 @@ The teacher controls the content and the AI assists. ChatGPT-based tools, Khan A
 - **Role separation:** each role has its own routes, navigation and layout, and access control is enforced server-side. No view mixes data across roles or students.
 - **Privacy (GDPR):** the client receives only the minimum data a view needs. Personal data stays out of logs, analytics and `localStorage`. Students may appear under a pseudonym.
 - **Budget:** about $1,000 in total, so the platform favours a simple stack with few dependencies.
-- **Undecided:** the student age range and education level, the evaluation topic (one poll option is language learning), the pilot participants, the course material rights, the LLM provider, the daily limit value (the prototype shows 30 per day as an illustration) and the exact IMFAHE acknowledgement wording (draft: "Proyecto financiado por la Fundación IMFAHE").
+- **Undecided:** the student age range and education level, the evaluation topic (one poll option is language learning), the pilot participants, the course material rights, the LLM provider, the daily limit value (30 per day is used as an illustration) and the exact IMFAHE acknowledgement wording (draft: "Proyecto financiado por la Fundación IMFAHE").
 
 ## Brand Commitments
 
-- **DocentAI logo:** the official mark in `public/prototype/assets/img/docentai-logo.png` (derivatives `docentai-logo-96.png` and `docentai-logo-144.png` have a transparent background) is the fixed identity. Do not redraw or reinterpret it.
+- **DocentAI logo:** the official mark in `public/img/docentai-logo.png` (derivatives `docentai-logo-96.png` and `docentai-logo-144.png` have a transparent background) is the fixed identity. Do not redraw or reinterpret it.
 - **IMFAHE acknowledgement (grant obligation):** the IMFAHE logo (`imfahe.logo.webp`; derivative `imfahe-logo-transparent.webp`) and an acknowledgement of IMFAHE as a funding organisation must appear on the sign-in screen and the public "Acerca de" page, and be reachable in at most one click or tap from every role's home. They must also appear in public materials (website, slides, posters).
 
 The current Spanish copy addresses students informally ("tú") and uses inclusive forms ("profesor/a"). This reflects current practice and is not a confirmed brand rule.
@@ -60,8 +60,7 @@ The current Spanish copy addresses students informally ("tú") and uses inclusiv
 ## Evidence on Hand
 
 - Proposal: `docs/proposal/Project Description - DocentAI.pdf`. Requirements, budget, timeline and grant obligations are in `../knowledge-base/docs/`.
-- The clickable prototype (ES/EN, every state reachable through `?state=`) is in `public/prototype/`.
-- **All prototype content is fictional** (sample secondary-school algebra course, sample names). Deployments carry `noindex` for that reason.
+- **All sample content is fictional** (sample secondary-school algebra course, sample names). Deployments carry `noindex` for that reason.
 - **No real** users, testimonials, pilot results, metrics, partner institutions or customer logos exist yet. Do not fabricate any.
 
 ## Product Principles

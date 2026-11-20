@@ -28,9 +28,9 @@ export default async function AboutPage() {
             data-component="ImfaheAcknowledgement"
             data-variant="about"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element -- static prototype asset, decorative */}
+            {/* eslint-disable-next-line @next/next/no-img-element -- static asset, decorative */}
             <img
-              src="/prototype/assets/img/imfahe-logo-transparent.webp"
+              src="/img/imfahe-logo-transparent.webp"
               alt=""
               width={145}
               height={64}

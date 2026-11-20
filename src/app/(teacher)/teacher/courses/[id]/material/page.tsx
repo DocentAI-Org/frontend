@@ -234,7 +234,7 @@ const BADGE_TONES = {
   neutral: "border-border-strong bg-surface text-fg-muted"
 } as const;
 
-/** The prototype's ValidationStatus badge. */
+/** The ValidationStatus badge. */
 function Badge({ tone, icon, label, spin = false }: { tone: keyof typeof BADGE_TONES; icon: string; label: string; spin?: boolean }) {
   return (
     <span

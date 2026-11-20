@@ -36,7 +36,7 @@ function group(entries: Entry[]): Group[] {
 }
 
 /**
- * The mistakes in a learning record (spec 005 US2–US3): prototype ProgressByTopic with its
+ * The mistakes in a learning record (spec 005 US2–US3): the ProgressByTopic pattern with its
  * ErrorTypeList, without mastery levels (P2, not defined yet). Entries come newest first.
  */
 export async function LearningRecord({

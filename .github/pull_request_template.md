@@ -13,10 +13,6 @@
 - [ ] Refactor (no behavior change)
 - [ ] Docs, CI or tooling
 
-## Prototype pages
-
-<!-- UI changes: the pages of `public/prototype/` this implements. Otherwise "n/a". -->
-
 ## What changes
 
 <!-- The main changes by area, so reviewers know where to look: routes and pages, components,

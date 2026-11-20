@@ -11,7 +11,6 @@
     "lint": "eslint .",
     "knip": "knip",
     "test": "vitest run",
-    "test:e2e": "playwright test",
     "typecheck": "next typegen && node node_modules/typescript7/bin/tsc --noEmit",
     "api:types": "node scripts/api-types.mjs",
     "api:check": "node scripts/api-types.mjs --check",
@@ -32,7 +31,6 @@
   "devDependencies": {
     "@axe-core/playwright": "4.14.0",
     "@playwright/test": "1.65.1",
-    "@tailwindcss/browser": "4.3.5",
     "@tailwindcss/postcss": "4.3.5",
     "@testing-library/dom": "10.4.2",
     "@testing-library/react": "16.3.3",

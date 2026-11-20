@@ -1,6 +1,6 @@
 /*
- * Self-hosted type, no third-party font request (SIL OFL 1.1, see OFL-geist.txt). Loaded by the prototype
- * (assets/js/prototype.js) and by the React app (src/app/globals.css).
+ * Self-hosted type, no third-party font request (SIL OFL 1.1, see public/fonts/OFL-geist.txt). Imported
+ * by src/app/globals.css.
  * - Geist (variable wght): every heading, answer and control; one voice for the whole interface.
  * - Geist Mono (variable wght): codes, equations and data that line up.
  */
@@ -9,7 +9,7 @@
   font-style: normal;
   font-display: swap;
   font-weight: 100 900;
-  src: url("geist-variable.woff2") format("woff2");
+  src: url("/fonts/geist-variable.woff2") format("woff2");
 }
 
 @font-face {
@@ -17,7 +17,7 @@
   font-style: normal;
   font-display: swap;
   font-weight: 100 900;
-  src: url("geist-mono-variable.woff2") format("woff2");
+  src: url("/fonts/geist-mono-variable.woff2") format("woff2");
 }
 
 /* Metric-matched fallback: local Arial scaled to Geist, so lines keep their breaks while it loads. */

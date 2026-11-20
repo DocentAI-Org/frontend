@@ -116,7 +116,7 @@ components:
 
 # Design System: DocentAI
 
-> **Source of truth.** `public/prototype/assets/theme.css` holds every token as `light-dark(light, dark)` and is imported unchanged by the React app (`src/app/globals.css`). The frontmatter lists **light-scheme** values under descriptive names; code uses the Tailwind token names (`primary-600`, `teacher-700`, `fg-muted`, …). When the two disagree, `theme.css` wins.
+> **Source of truth.** `src/app/theme.css` holds every token as `light-dark(light, dark)` and is imported by `src/app/globals.css`. The frontmatter lists **light-scheme** values under descriptive names; code uses the Tailwind token names (`primary-600`, `teacher-700`, `fg-muted`, …). When the two disagree, `theme.css` wins.
 
 ## Overview
 
@@ -258,7 +258,7 @@ Short, clear and warm, never childish. Verbs on buttons. Errors say what happene
 - **Do** put sources in the margin and keep reading text on plain paper.
 - **Do** keep spacing on the 8 px scale, so edges land on the grid.
 - **Do** check every pairing in light and dark.
-- **Do** name components identically in the prototype (`data-component`) and in React.
+- **Do** name components identically here, in `data-component` and in React.
 
 ### Don't:
 - **Don't** set long text directly on the grid.

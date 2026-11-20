@@ -12,7 +12,7 @@ import { errorMessageKey } from "@/lib/api/errors";
 
 import { type StudentsState, createStudentsAction } from "../../actions";
 
-/** Pseudonymous accounts for the pilot (spec 002 US9, prototype #35): codes shown once. */
+/** Pseudonymous accounts for the pilot (spec 002 US9): codes shown once. */
 export function StudentsForm() {
   const t = useTranslations();
   const [state, action, pending] = useActionState<StudentsState, FormData>(createStudentsAction, {});
