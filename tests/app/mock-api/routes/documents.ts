@@ -122,7 +122,7 @@ export const documentRoutes: Route[] = [
     status: 202,
     handler: (ctx) => {
       const course = ownedCourse(ctx);
-      const file = parseMultipart(String(ctx.req.headers["content-type"] ?? ""), ctx.rawBody);
+      const file = parseMultipart(ctx.headers.get("content-type") ?? "", ctx.rawBody);
       if (!file) throw new HttpError(422, "validation_error");
       const type = TYPES[file.name.split(".").pop()?.toLowerCase() ?? ""];
       if (!type) throw new HttpError(415, "unsupported_file_type");
