@@ -2,8 +2,10 @@
   <img src="public/prototype/assets/img/docentai-logo-144.png" alt="DocentAI" width="120">
 </p>
 
-[![CI](https://github.com/DocentAI-Org/frontend/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/DocentAI-Org/frontend/actions/workflows/ci.yml)
-[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+<p align="center">
+  <a href="https://github.com/DocentAI-Org/frontend/actions/workflows/ci.yml"><img src="https://github.com/DocentAI-Org/frontend/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-blue.svg" alt="License"></a>
+</p>
 
 # DocentAI Frontend
 
