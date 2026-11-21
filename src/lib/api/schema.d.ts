@@ -4438,9 +4438,9 @@ export interface components {
             citations: components["schemas"]["Citation"][];
             /**
              * Key Check
-             * @description The draft solved by the AI without its key (specs/025): `agrees`, `disagrees` (another option is right) or `several` (more than one is); null when not checked, or after the teacher changed the options or the key.
+             * @description The draft solved by the AI without its key (specs/025): `agrees`, `disagrees` (another option is right), `several` (more than one is) or `no_right` (none is); null when not checked, or after the teacher changed the options or the key.
              */
-            key_check: ("agrees" | "disagrees" | "several") | null;
+            key_check: ("agrees" | "disagrees" | "several" | "no_right") | null;
             /**
              * Key Check Options
              * @description The options the check found right, by index.

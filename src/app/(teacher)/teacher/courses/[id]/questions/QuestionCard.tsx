@@ -28,8 +28,10 @@ export function QuestionCard({ courseId, question, view }: { courseId: string; q
   const ids = useId();
   const [editing, setEditing] = useState(false);
   const q = question;
-  // The draft solved without its key disagrees, or finds several right options (backend specs/025).
-  const doubted = q.key_check === "disagrees" || q.key_check === "several";
+  // The draft solved without its key disagrees, or finds several or no right options (backend
+  // specs/025). The check is fallible too, so its choice is shown neutrally, never as the answer.
+  const doubted = q.key_check === "disagrees" || q.key_check === "several" || q.key_check === "no_right";
+  const notice = { disagrees: "keyCheckDisagrees", several: "keyCheckSeveral", no_right: "keyCheckNoRight" } as const;
   const checked = (i: number) => doubted && q.key_check_options.includes(i);
 
   return (
@@ -62,7 +64,7 @@ export function QuestionCard({ courseId, question, view }: { courseId: string; q
             >
               <Icon name="triangle-alert" className="mt-0.5 size-4 shrink-0 text-warning-900" />
               <span>
-                {t(q.key_check === "several" ? "keyCheckSeveral" : "keyCheckDisagrees", {
+                {t(notice[q.key_check as keyof typeof notice], {
                   options: format.list(
                     q.key_check_options.map((i) => `${String.fromCharCode(65 + i)} «${q.options[i]}»`),
                     { type: "conjunction" }
@@ -92,8 +94,8 @@ export function QuestionCard({ courseId, question, view }: { courseId: string; q
                         </span>
                       )}
                       {checked(i) && (
-                        <span className="inline-flex items-center gap-1 text-sm font-semibold text-warning-900">
-                          <Icon name="triangle-alert" />
+                        <span className="inline-flex items-center gap-1 text-sm text-fg-muted">
+                          <Icon name="info" />
                           {t("keyCheckMark")}
                         </span>
                       )}

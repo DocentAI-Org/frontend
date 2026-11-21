@@ -37,8 +37,11 @@ test.describe("025 quiz key check", () => {
     await openQuestions(page, courseId);
 
     const notice = card(page, q.statement).getByRole("note");
-    await expect(notice).toContainText(`eligió otra respuesta: ${letter(other(q))} «${q.options[other(q)]}»`);
-    await expect(card(page, q.statement).getByRole("listitem").filter({ hasText: q.options[other(q)] })).toContainText(/según la comprobación/i);
+    // The check is fallible too: its choice is a reason to look again, not the answer.
+    await expect(notice).toContainText(/no coincide con la clave/i);
+    await expect(notice).toContainText(`eligió ${letter(other(q))} «${q.options[other(q)]}»`);
+    await expect(notice).toContainText(/también puede equivocarse/i);
+    await expect(card(page, q.statement).getByRole("listitem").filter({ hasText: q.options[other(q)] })).toContainText(/elegida por la comprobación/i);
     await expectAccessible(page);
   });
 
@@ -50,9 +53,21 @@ test.describe("025 quiz key check", () => {
     await openQuestions(page, courseId);
 
     const notice = card(page, q.statement).getByRole("note");
-    await expect(notice).toContainText(/más de una respuesta correcta/i);
+    await expect(notice).toContainText(/más de una opción posible/i);
     for (const i of [q.correct_option, other(q)]) await expect(notice).toContainText(`${letter(i)} «${q.options[i]}»`);
-    await expect(card(page, q.statement).getByText(/según la comprobación/i)).toHaveCount(2);
+    await expect(card(page, q.statement).getByText(/elegida por la comprobación/i)).toHaveCount(2);
+  });
+
+  scenario("025-US1-AS2b", "a draft where the check found no right option says so", async ({ page, request }) => {
+    const { courseId, questions } = await pendingDrafts(request, page, [1]);
+    const [q] = questions;
+    await keyCheck(request, q, "no_right", []);
+
+    await openQuestions(page, courseId);
+
+    await expect(card(page, q.statement).getByRole("note")).toContainText(/no ve ninguna opción correcta/i);
+    await expect(card(page, q.statement).getByText(/elegida por la comprobación/i)).toHaveCount(0);
+    await expectAccessible(page);
   });
 
   scenario("025-US1-AS3", "a draft the check agrees with, or not checked, has no notice", async ({ page, request }) => {
@@ -64,7 +79,7 @@ test.describe("025 quiz key check", () => {
     for (const q of questions) {
       await expect(card(page, q.statement)).toBeVisible();
       await expect(card(page, q.statement).getByRole("note")).toHaveCount(0);
-      await expect(card(page, q.statement).getByText(/según la comprobación/i)).toHaveCount(0);
+      await expect(card(page, q.statement).getByText(/elegida por la comprobación/i)).toHaveCount(0);
     }
   });
 
